@@ -1,8 +1,15 @@
 ﻿<div ng-controller="galleryManagementController as vm">
     
+  
+
+    <div layout="column" layout-align="start start" flex>
+        <h3>Karfour Store</h3>
+        <h4>The biggest data store in egypt</h4>
+    </div>
+
     <div layout="column" layout-align="center end" flex>
-        <md-button class="md-fab md-primary md-default" ng-click="vm.editGallery(0)" aria-label="fab button">
-            <md-icon md-font-icon="zmdi zmdi-plus"></md-icon>
+        <md-button class="md-raised md-primary md-default" ng-click="vm.addGallery()" aria-label="fab button">
+            Add New Gallery
         </md-button>
     </div>
 

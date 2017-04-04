@@ -25,7 +25,9 @@
             var sortableColumns = [];
             var activeSortColumn = null;
             var activeSortOrder = false;
-            
+            $scope.test = function () {
+                alert(122);
+            }
             // init page size if not set to default
             $scope.pageSize = angular.isUndefined(attrs.pageSize) ? 0 : attrs.pageSize;
 
@@ -63,7 +65,6 @@
                     $scope.refresh();
                 }
             };
-
             $scope.showSortOrder = function(field, orderDown) {
                 return field === activeSortColumn && activeSortOrder === orderDown;
             };

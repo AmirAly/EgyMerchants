@@ -1,0 +1,38 @@
+﻿<div ng-controller="newGalleryController as vm" class="newGallery">
+    <h2 class="pageHeader">Create new gallery</h2>
+    <form name="formNewGallery">
+        <md-input-container class="md-block">
+            <label>Name of gallery</label>
+            <input id="name" label="name" name="name" type="text" ng-model="vm.gallery.name" required />
+            <div ng-messages="formNewGallery.name.$error" md-auto-hide="false" ng-show="formNewGallery.name.$touched">
+                <div ng-message when="required"><span>Please enter your gallery name.</span></div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Description</label>
+            <input id="description" label="description" name="description" type="text" ng-model="vm.gallery.description" required />
+            <div ng-messages="formNewGallery.description.$error" md-auto-hide="false" ng-show="formNewGallery.description.$touched">
+                <div ng-message when="required"><span>Please enter your description about your gallery.</span></div>
+            </div>
+        </md-input-container>
+
+
+
+        <div layout="row" layout-align="space-around center">
+            <div layout="column">
+                <md-button class="md-primary md-raised md-fab" ngf-select="vm.upload($files)" ng-disabled="vm.status != 'idle'" ngf-multiple="true" aria-label="upload">
+                    <md-icon md-font-icon ng-class="{ 'zmdi zmdi-cloud-upload': vm.status == 'idle', 'fa fa-spinner fa-pulse': vm.status == 'uploading', 'zmdi zmdi-check': vm.status == 'complete'}"></md-icon>
+                </md-button>
+                <h5>Choose image</h5>
+            </div>
+        </div>
+
+        <a href="#">Add Items &nbsp;<md-icon class="md-primary" md-font-icon="fa fa-chevron-right"></md-icon></a>
+
+        <div layout="row" layout-align="end center">
+            <md-button type="submit" class="md-primary" ng-click="submit(formNewGallery)" ng-disabled="formNewGallery.$invalid">Create</md-button>
+            <md-button href="#!/management/gallerymanagement">Cancel</md-button>
+        </div>
+    </form>
+
+</div>

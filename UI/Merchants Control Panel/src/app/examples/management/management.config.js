@@ -22,6 +22,19 @@
                 }
             }
         })
+        .state('triangular.newgallery', {
+            url: '/management/newgallery',
+            templateUrl: 'app/examples/management/newgallery/newgallery.tmpl.html',
+            controller: 'newGalleryController',
+            controllerAs: 'vm',
+            data: {
+                layout: {
+                    contentClass: 'layout-column',
+                    sideMenuSize: 'icon'
+
+                }
+            }
+        })
         ;
 
         triMenuProvider.addMenu({
@@ -32,6 +45,12 @@
             children: [{
                 name: 'Galleries Management',
                 state: 'triangular.gallerymanagement',
+                type: 'link'
+            }
+            ,
+            {
+                name: 'New Gallery',
+                state: 'triangular.newgallery',
                 type: 'link'
             }]
         });

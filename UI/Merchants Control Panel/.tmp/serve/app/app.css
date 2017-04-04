@@ -28876,3 +28876,16 @@ md-input-container ng-messages, md-input-container data-ng-messages {
     border: 1px solid rgba(0, 0, 0, 0.2);
     background-size: cover;
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3); }
+
+h3, h4 {
+  padding-left: 32px; }
+
+md-input-container.md-block {
+  max-width: 100%; }
+
+.newGallery {
+  overflow: hidden !important;
+  padding: 15px; }
+
+.pageHeader {
+  padding-bottom: 15px; }
