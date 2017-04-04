@@ -670,3 +670,9 @@ border-color:#404040
 .fancybox-skin{
     border-radius: 20px;
 }
+.main-slider .owl-slider img{
+    max-height: 350px;
+}
+.product-controls-list .top-out{
+    height: 20px;
+}
