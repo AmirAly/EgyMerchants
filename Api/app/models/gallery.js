@@ -6,10 +6,10 @@ var Gallery = new Schema({
     DisplayPicture: { type: String },
     FeaturedPhoto: { type: String },
     Status: { type: String, default: 'Active' },
-    Merchant: {
+    Store: {
         type: Schema.Types.ObjectId,
-        ref: 'Merchant',
-        required:"Please add merchant id"
+        ref: 'Store',
+        required:"Please add store id"
     }
     
 });

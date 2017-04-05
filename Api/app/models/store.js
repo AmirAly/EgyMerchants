@@ -1,6 +1,6 @@
 var Mongoose = require("mongoose");
 var Schema = Mongoose.Schema;
-var Merchant = new Schema({
+var Store = new Schema({
     Email: { type: String, required: 'Name is required' },
     Password: { type: String, min: 6 },
     StoreName: { type: String, default: '-' },
@@ -10,4 +10,4 @@ var Merchant = new Schema({
     Status: { type: String, default: 'Unconfirmed' },
     LastActivity: { type: Number }
 });
-module.exports = Mongoose.model('Merchant', Merchant);
+module.exports = Mongoose.model('Store', Store);
