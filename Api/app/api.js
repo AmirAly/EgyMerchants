@@ -39,8 +39,9 @@ module.exports = function (app, express) {
             StoreName: req.body.StoreName,
             CountryISOCode: req.body.CountryISOCode,
             Category: req.body.Category,
-            Fullname:req.body.Fullname,
-            Status: 'Active'
+            Fullname: req.body.Fullname,
+            Status: 'Active',
+            FeaturedPhoto: req.body.FeaturedPhoto
         });
         if (_newObj.Email && _newObj.Password && _newObj.StoreName && _newObj.CountryISOCode) {
             Stores.findOne({ $or: [{ 'Email': _newObj.Email }, { 'StoreName': _newObj.StoreName }] }, '', function (err, Obj) {
@@ -88,9 +89,9 @@ module.exports = function (app, express) {
                         expiresIn: 99999999 // expires in 24 hours
                     });
                     if (Obj.Status == 'Unconfirmed')
-                        return res.json({ code: '101', data: token, refresh_token: refresh });
+                        return res.json({ code: '101', data: token, refresh_token: refresh, id: Obj._id });
                     else if (Obj.Status == 'Active')
-                        return res.json({ code: '100', data: token, refresh_token: refresh });
+                        return res.json({ code: '100', data: token, refresh_token: refresh, id: Obj._id });
                     else if (Obj.Status == 'Suspended')
                         return res.json({ code: '24', data: 'This account is suspended' });
                 }
@@ -102,7 +103,7 @@ module.exports = function (app, express) {
     });
     api.get('/Stores/:Category', function (req, res) {
         if (req.params.Category == 'All') {
-            Stores.find({}, '_id StoreName CountryISOCode Category', function (err, lst) {
+            Stores.find({}, '_id StoreName CountryISOCode Category FeaturedPhoto', function (err, lst) {
                 if (err)
                     return res.json({ code: '1', data: err });
                 else {
@@ -113,21 +114,21 @@ module.exports = function (app, express) {
                     }
                 }
             });
-            }
-        else{
-            Stores.find({ 'Category': req.params.Category }, '_id StoreName CountryISOCode Category', function (err, lst) {
+        }
+        else {
+            Stores.find({ 'Category': req.params.Category }, '_id StoreName CountryISOCode Category FeaturedPhoto', function (err, lst) {
 
-            if (err)
-                return res.json({ code: '1', data: err });
-            else {
-                if (lst)
-                    return res.json({ code: '100', data: lst });
+                if (err)
+                    return res.json({ code: '1', data: err });
                 else {
-                    return res.json({ code: '102', data: 'No stores found for this country' });
+                    if (lst)
+                        return res.json({ code: '100', data: lst });
+                    else {
+                        return res.json({ code: '102', data: 'No stores found for this country' });
+                    }
                 }
-            }
-        });
-    }
+            });
+        }
     });
     api.get('/Store/:id', function (req, res) {
         Stores.findOne({ '_id': req.params.id }, {}, function (err, Obj) {
@@ -144,10 +145,11 @@ module.exports = function (app, express) {
         });
     });
     api.get('/Galleries/:CountryISOCode', function (req, res) {
-        Galleries.find({}, '_id Title Description Store', function (err, lst) {
+        Galleries.find({'Status':'Active'}, '_id Status Title Description Store', function (err, lst) {
             if (err)
                 return res.json({ code: '1', data: err });
             else {
+
                 if (lst) {
                     var _res = [];
                     for (var i = 0 ; i < lst.length; i++) {
@@ -171,7 +173,7 @@ module.exports = function (app, express) {
         })
     });
     api.get('/Galleries', function (req, res) {
-        Galleries.find({}, '', function (err, lst) {
+        Galleries.find({ 'Status': 'Active' }, '', function (err, lst) {
             if (err)
                 return res.json({ code: '1', data: err });
             else {
@@ -187,7 +189,7 @@ module.exports = function (app, express) {
         });
     });
     api.get('/Gallery/:id', function (req, res) {
-        Galleries.findOne({ '_id': req.params.id }, {}, function (err, obj) {
+        Galleries.findOne({ '_id': req.params.id, 'Status': 'Active' }, {}, function (err, obj) {
             if (err)
                 return res.json({ code: '1', data: err });
             else {
@@ -200,7 +202,7 @@ module.exports = function (app, express) {
         });
     });
     api.get('/StoreGalleries/:id', function (req, res) {
-        Galleries.find({ 'Store': req.params.id }, {}, function (err, obj) {
+        Galleries.find({ 'Store': req.params.id, 'Status': 'Active' }, {}, function (err, obj) {
             if (err)
                 return res.json({ code: '1', data: err });
             else {
@@ -253,6 +255,29 @@ module.exports = function (app, express) {
                 }
                 else {
                     return res.json({ code: '20', data: 'This gallery is disabled or not exist' });
+                }
+            }
+        });
+    });
+    api.put('/DisableGalleries/:id', function (req, res) {
+        Galleries.findOne({ _id: req.params.id }, '', {}, function (err, Obj) {
+            if (err)
+                return res.json({ code: '1', data: err });
+            else {
+                if (Obj) {
+                    Obj.Status = 'Disable';
+                    console.log(Obj.Status);
+                    Obj.save(function (err) {
+                        if (err)
+                            return res.json({ code: '1', data: err });
+                        else {
+                            return res.json({ code: '100', data: 'gallery disable' });
+                        }
+                    })
+                    return res.json({ code: '100', data: 'gallery Disabled' });
+                }
+                else {
+                    return res.json({ code: '21', data: 'This gallery is not exist' });
                 }
             }
         });

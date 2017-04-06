@@ -8,6 +8,7 @@ var Store = new Schema({
     Category: { type: String, default: 'Furniture' },
     CountryISOCode: { type: String, default: 'EG' },
     Status: { type: String, default: 'Unconfirmed' },
-    LastActivity: { type: Number }
+    LastActivity: { type: Number },
+    FeaturedPhoto: { type: String }
 });
 module.exports = Mongoose.model('Store', Store);

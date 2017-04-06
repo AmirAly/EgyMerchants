@@ -1,5 +1,5 @@
 ﻿<div ng-controller="newGalleryController as vm" class="newGallery">
-    <h2 class="pageHeader">Create new gallery</h2>
+    <h2 class="pageHeader">{{pageTitle}}</h2>
     <form name="formNewGallery">
         <md-input-container class="md-block">
             <label>Name of gallery</label>
@@ -30,7 +30,7 @@
         <a href="#">Add Items &nbsp;<md-icon class="md-primary" md-font-icon="fa fa-chevron-right"></md-icon></a>
 
         <div layout="row" layout-align="end center">
-            <md-button type="submit" class="md-primary" ng-click="vm.submit(formNewGallery)" ng-disabled="formNewGallery.$invalid">Create</md-button>
+            <md-button type="submit" class="md-primary" ng-click="vm.submit(formNewGallery)" ng-disabled="formNewGallery.$invalid">Save</md-button>
             <md-button href="#!/management/gallerymanagement">Cancel</md-button>
         </div>
     </form>
