@@ -35,6 +35,20 @@
                 }
             }
         })
+
+        .state('triangular.items', {
+            url: '/management/items',
+            templateUrl: 'app/examples/management/items/items.tmpl.html',
+            controller: 'itemsController',
+            controllerAs: 'vm',
+            data: {
+                layout: {
+                    contentClass: 'layout-column',
+                    sideMenuSize: 'icon'
+
+                }
+            }
+        })
         ;
 
         triMenuProvider.addMenu({

@@ -1,0 +1,54 @@
+﻿<div class="header" ui-view="headerView"></div>
+<div class="pageBody">
+
+
+    <!-- Filters -->
+    <section class="filters-by-category clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="text-center">
+                    <!--<ul class="option-set" data-option-key="filter">
+                        <li><a href="#filter" data-option-value="*" class="selected">all</a></li>
+                        <li><a href="#filter" data-option-value=".category1">Devices</a></li>
+                        <li><a href="#filter" data-option-value=".category2">Screens</a></li>
+                        <li><a href="#filter" data-option-value=".category3">Wears</a></li>
+                        <li><a href="#filter" data-option-value=".category4">Home Need</a></li>
+                    </ul>-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //end Filters -->
+    <!-- Isotope Products -->
+    <section class="container content slider-products">
+        <!-- Products list -->
+        <div class="row">
+            <div class="products-list-isotope">
+                <div class="row">
+                    <div class="product-preview col-sm-4 col-xs-6" ng-click="viewStore(store._id)"
+                         ng-class="store.Category" ng-repeat="store in stores">
+                        <div class="">
+
+                            <!--Start carousel -->
+                            <div class="">
+                                <img src="store.FeaturedPhoto" ng-src="{{store.FeaturedPhoto}}" alt="img">
+                            </div>
+                            <!--End carousel -->
+                        </div>
+                        <h3 class="title"><a>{{store.StoreName}}</a></h3>
+                    </div>
+
+                </div>
+
+              
+
+            </div>
+        </div>
+        <!-- //end Products list -->
+    </section>
+
+    <!-- //end Isotope Products -->
+    
+
+    <div class="footer" ui-view="footerView"></div>
+</div>

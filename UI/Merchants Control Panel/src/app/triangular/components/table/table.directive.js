@@ -40,10 +40,11 @@
             });
 
             $scope.refresh = function(resetPage) {
-                if(resetPage === true) {
+                if (resetPage === true) {
                     $scope.page = 0;
                 }
                 $scope.contents = $filter('orderBy')($scope.contents, activeSortColumn, activeSortOrder);
+                console.log($scope.contents);
             };
 
             // if we have sortable columns sort by first by default

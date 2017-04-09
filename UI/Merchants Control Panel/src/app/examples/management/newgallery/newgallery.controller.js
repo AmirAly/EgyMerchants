@@ -46,7 +46,7 @@
                         "Store": '58e6241880cc8e168039fd52',
                         "_id": $stateParams.galleryid
                     },
-                    headers: { 'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJUeXBlIjoiU3RvcmUiLCJfaWQiOiI1OGU2MjQxODgwY2M4ZTE2ODAzOWZkNTIiLCJTdG9yZU5hbWUiOiJRYW1hciIsImlhdCI6MTQ5MTQ3NzU1MCwiZXhwIjoxNDkxNjIxNTUwfQ.E97vAGtaIrZC8AsdefN29meeC4f2HOuVMDWqPs7t8rc' },
+                    headers: { 'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJUeXBlIjoiU3RvcmUiLCJfaWQiOiI1OGU5ZjZmMDEwZWNlZjE1NDhkYzYzYjUiLCJTdG9yZU5hbWUiOiJTSDFfU3RvcmUiLCJpYXQiOjE0OTE3MjgxNjQsImV4cCI6MTQ5MTg3MjE2NH0.RZ1mrsuZI63-NBKc5GqketQPLS0OR47FS42SchTBkTg' },
                     success: function (res) {
                         $state.go('triangular.gallerymanagement');
                     },
@@ -68,7 +68,7 @@
                         "Status": "Active",
                         "Store": '58e6241880cc8e168039fd52'
                     },
-                    headers: { 'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJUeXBlIjoiU3RvcmUiLCJfaWQiOiI1OGU2MjQxODgwY2M4ZTE2ODAzOWZkNTIiLCJTdG9yZU5hbWUiOiJRYW1hciIsImlhdCI6MTQ5MTQ3NzU1MCwiZXhwIjoxNDkxNjIxNTUwfQ.E97vAGtaIrZC8AsdefN29meeC4f2HOuVMDWqPs7t8rc' },
+                    headers: { 'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJUeXBlIjoiU3RvcmUiLCJfaWQiOiI1OGU5ZjZmMDEwZWNlZjE1NDhkYzYzYjUiLCJTdG9yZU5hbWUiOiJTSDFfU3RvcmUiLCJpYXQiOjE0OTE3MjgxNjQsImV4cCI6MTQ5MTg3MjE2NH0.RZ1mrsuZI63-NBKc5GqketQPLS0OR47FS42SchTBkTg' },
                     success: function (res) {
                         $state.go('triangular.gallerymanagement');
                     },

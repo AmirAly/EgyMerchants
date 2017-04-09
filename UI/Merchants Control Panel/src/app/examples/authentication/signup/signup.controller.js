@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -14,23 +14,42 @@
             name: '',
             email: '',
             password: '',
-            confirm: ''
+            confirm: '',
+            category: '',
+            fullName: ''
         };
 
         ////////////////
 
         function signupClick() {
-            $state.go('triangular.gallerymanagement');
-            //$mdToast.show(
-            //    $mdToast.simple()
-            //    //.content($filter('triTranslate')('Confirmation sent'))
-            //    .position('bottom right')
-            //    //.action($filter('triTranslate')('Login'))
-            //    .highlightAction(true)
-            //    .hideDelay(0)
-            //).then(function() {
-            //    $state.go('authentication.login');
-            //});
+            var country = $.get("https://ipinfo.io", function (response) {
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost:8007/Stores/Register",
+                    data: {
+                        "Email": vm.user.email,
+                        "Password": vm.user.password,
+                        "StoreName": vm.user.name,
+                        "CountryISOCode": response.country,                        ///ISOCODE
+                        "Category": vm.user.category,
+                        "Fullname": vm.user.fullName,
+                        "Status": 'Active',
+                        "FeaturedPhoto": "img.png"         //////LOGO
+                    },
+                    success: function (res) {
+                        if (res.code == 100) {
+                            console.log(res);
+                            $state.go('triangular.gallerymanagement');
+                        } else {
+                            console.log('This email/store name is already registered with us');
+                        }
+
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            }, "jsonp");
         }
     }
 })();

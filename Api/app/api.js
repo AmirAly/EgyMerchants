@@ -263,22 +263,21 @@ module.exports = function (app, express) {
             }
         });
     });
-    api.put('/DisableGalleries/:id', function (req, res) {
+    api.put('/Galleries/Disable/:id', function (req, res) {
         Galleries.findOne({ _id: req.params.id }, '', {}, function (err, Obj) {
             if (err)
                 return res.json({ code: '1', data: err });
             else {
                 if (Obj) {
-                    Obj.Status = 'Disable';
+                    Obj.Status = 'Disabled';
                     console.log(Obj.Status);
                     Obj.save(function (err) {
                         if (err)
                             return res.json({ code: '1', data: err });
                         else {
-                            return res.json({ code: '100', data: 'gallery disable' });
+                            return res.json({ code: '100', data: 'Gallery disable' });
                         }
                     })
-                    return res.json({ code: '100', data: 'gallery Disabled' });
                 }
                 else {
                     return res.json({ code: '21', data: 'This gallery is not exist' });
