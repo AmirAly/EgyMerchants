@@ -37,7 +37,7 @@
         })
 
         .state('triangular.items', {
-            url: '/management/items',
+            url: '/management/items/:itemid?',
             templateUrl: 'app/examples/management/items/items.tmpl.html',
             controller: 'itemsController',
             controllerAs: 'vm',

@@ -13,7 +13,7 @@
                 name: '',
                 description: ''
             };
-
+            $rootScope.itemData;
         if ($stateParams.galleryid != '') {
             //edit mode
             console.log($rootScope.galleryData);
@@ -22,13 +22,42 @@
             $scope.pageTitle = "Edit gallery";
             // show items
             //..
+            $scope.items = [];
+            $.ajax({
+                type: "get",
+                url: "http://localhost:8007/Items/" + $stateParams.galleryid,
+                data: {},
+                headers: { 'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJUeXBlIjoiU3RvcmUiLCJfaWQiOiI1OGU5ZjZmMDEwZWNlZjE1NDhkYzYzYjUiLCJTdG9yZU5hbWUiOiJTSDFfU3RvcmUiLCJpYXQiOjE0OTE3MjgxNjQsImV4cCI6MTQ5MTg3MjE2NH0.RZ1mrsuZI63-NBKc5GqketQPLS0OR47FS42SchTBkTg' },
+                success: function (res) {
+                    console.log(res);
+                    if (res.code == 100) {
+                        //$scope.items = res.data;
+                        for (var i = 0; i < res.data.length; i++) {
+                            $scope.items.push({
+                                _id:res.data[i]._id,
+                                Name: res.data[i].Name,
+                                Img: res.data[3].Pictures[0].URL
+                            });
+                        }
+                        console.log($scope.items);
+                    }
+                    else {
+                        console.log('no data found');
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
         }
         else {
             //create mode
             $scope.pageTitle = "Create new gallery";
         }
 
-
+        $scope.editItem = function (_id) {
+            console.log(_id);
+        }
 
         vm.submit = submit;
         function submit(_form) {

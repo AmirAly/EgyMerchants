@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <a href="#!/management/items">Items &nbsp;<md-icon class="md-primary" md-font-icon="fa fa-chevron-right"></md-icon></a>
+        <a href="#!/management/items/">Add items &nbsp;<md-icon class="md-primary" md-font-icon="fa fa-chevron-right"></md-icon></a>
 
         <div layout="row" layout-align="end center">
             <md-button type="submit" class="md-primary" ng-click="vm.submit(formNewGallery)" ng-disabled="formNewGallery.$invalid">Save</md-button>
@@ -35,4 +35,11 @@
         </div>
     </form>
 
+    <div class="itemsContaine row">
+        <div class="imgContainer" md-cols="6" md-cols-xs="4" ng-repeat="item in items" ng-click="editItem(item._id)">
+            <img src="item.Img" ng-src="{{item.Img}}" />
+            <span class="txtItemName">{{item.Name}}</span>
+        </div>
+       
+    </div>
 </div>

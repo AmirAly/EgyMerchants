@@ -8,6 +8,7 @@
     function itemsController($timeout, $mdToast, $scope, Upload, $state, $stateParams, $rootScope) {
         var vm = this;
 
+        $rootScope.itemData ;
         // create blank user variable for items form
         vm.item = {
             name: '',
@@ -39,7 +40,34 @@
                 }
             });
         }
+        $rootScope.itemData.Name = vm.item.Name;
+        $rootScope.itemData.Description = vm.item.Description;
+        
 
+        //if ($stateParams.itemid != '') {
+        //    //edit mode
+        //    console.log($rootScope.itemData);
+        //    vm.item.Name = $rootScope.itemData.Name;
+        //    vm.item.Description = $rootScope.itemData.description;
+        //    $scope.pageTitle = "Edit item";
+        //    // show items
+        //    //..
+        //}
+        //else {
+        //    //create mode
+        //    $scope.pageTitle = "Add new item";
+        //}
 
+        //vm.addGallery = addGallery;
+        //function addGallery() {
+        //    $rootScope.itemData = '';
+        //    $state.go('triangular.items', { itemid: '' });
+        //};
+
+        //$scope.edit = function (_content) {
+        //    console.log(_content);
+        //    $rootScope.galleryData = _content;
+        //    $state.go('triangular.newgallery', { galleryid: _content._id });
+        //};
     }
 })();
