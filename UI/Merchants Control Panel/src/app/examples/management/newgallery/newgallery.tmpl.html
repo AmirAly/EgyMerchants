@@ -1,16 +1,16 @@
 ﻿<div ng-controller="newGalleryController as vm" class="newGallery">
-    <h2 class="pageHeader">Create new gallery</h2>
+    <h2 class="pageHeader">{{pageTitle}}</h2>
     <form name="formNewGallery">
         <md-input-container class="md-block">
             <label>Name of gallery</label>
-            <input id="name" label="name" name="name" type="text" ng-model="vm.gallery.name" required />
+            <input id="name" label="name" name="name" type="text" ng-model="vm.gallery.Title" required />
             <div ng-messages="formNewGallery.name.$error" md-auto-hide="false" ng-show="formNewGallery.name.$touched">
                 <div ng-message when="required"><span>Please enter your gallery name.</span></div>
             </div>
         </md-input-container>
         <md-input-container class="md-block">
             <label>Description</label>
-            <input id="description" label="description" name="description" type="text" ng-model="vm.gallery.description" required />
+            <input id="description" label="description" name="description" type="text" ng-model="vm.gallery.Description" required />
             <div ng-messages="formNewGallery.description.$error" md-auto-hide="false" ng-show="formNewGallery.description.$touched">
                 <div ng-message when="required"><span>Please enter your description about your gallery.</span></div>
             </div>
@@ -30,7 +30,7 @@
         <a href="#">Add Items &nbsp;<md-icon class="md-primary" md-font-icon="fa fa-chevron-right"></md-icon></a>
 
         <div layout="row" layout-align="end center">
-            <md-button type="submit" class="md-primary" ng-click="submit(formNewGallery)" ng-disabled="formNewGallery.$invalid">Create</md-button>
+            <md-button type="submit" class="md-primary" ng-click="vm.submit(formNewGallery)" ng-disabled="formNewGallery.$invalid">Save</md-button>
             <md-button href="#!/management/gallerymanagement">Cancel</md-button>
         </div>
     </form>

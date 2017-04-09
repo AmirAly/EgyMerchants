@@ -23,7 +23,7 @@
             }
         })
         .state('triangular.newgallery', {
-            url: '/management/newgallery',
+            url: '/management/newgallery/:galleryid?',
             templateUrl: 'app/examples/management/newgallery/newgallery.tmpl.html',
             controller: 'newGalleryController',
             controllerAs: 'vm',
