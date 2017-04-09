@@ -15,6 +15,10 @@ module.exports = function (app, express) {
             || req.url.toLowerCase() == '/'
             || req.url.toLowerCase() == '/users/login'
             || req.url.toLowerCase() == '/admins/login'
+            || req.url.toLowerCase() == '/merchants/register'
+            || req.url.toLowerCase().indexOf('/gallery') > -1
+            || req.url.toLowerCase() == '/galleries'
+            || req.url.toLowerCase().indexOf('/items') > -1
             || req.url.toLowerCase() == '/merchants/register')
             next();
         else {

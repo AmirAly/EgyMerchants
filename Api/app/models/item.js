@@ -7,15 +7,15 @@ var Item = new Schema({
         Title: { type: String },
         URL: { type: String }
     }],
-    Merchant: {
+    Store: {
         type: Schema.Types.ObjectId,
-        ref: 'Merchant',
-        required: "Please add merchant id"
+        ref: 'Store',
+        required: "Please add store id"
     },
     Gallery: {
         type: Schema.Types.ObjectId,
-        ref: 'Merchant',
-        required: "Please add merchant id"
+        ref: 'Store',
+        required: "Please add gallery id"
     }
 
 });
