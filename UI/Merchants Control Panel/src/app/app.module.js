@@ -25,7 +25,7 @@
                     var headers = { 'Content-Type': 'application/json' };
                     _req.url = _url + _req.url;
                     _req.headers = headers;
-                    $http(_req).then(_callback(_res)).error(console.log('I have an error with API'));
+                    $http(_req).then(_callback);
                 }
             };
         }]);
