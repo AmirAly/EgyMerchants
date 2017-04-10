@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -10,22 +10,34 @@
             'md.data.table',
             //angularDragula(angular), 
             'ngFileUpload',// 'nvd3',
-            
-            //'app.translate',
-            // only need one language?  if you want to turn off translations
-            // comment out or remove the 'app.translate', line above
-            //'app.permission',
-            // dont need permissions?  if you want to turn off permissions
-            // comment out or remove the 'app.permission', line above
-            // also remove 'permission' from the first line of dependencies
-            // https://github.com/Narzerus/angular-permission see here for why
-            // uncomment above to activate the example seed module
-            // 'seed-module',
             'app.examples'
         ])
         // set a constant for the API we are connecting to
         .constant('API_CONFIG', {
-            'url':  'http://triangular-api.oxygenna.com/'
+            'url': 'http://egm-api.azurewebsites.net/'
+        })
+        .factory('API', ['$http', function ($http) {
+            //var _url = "http://localhost:8007";
+            var _url = "http://egm-api.azurewebsites.net";
+            return {
+                name: 'API',
+                execute: function (_req,_callback) {
+                    var headers = { 'Content-Type': 'application/json' };
+                    _req.url = _url + _req.url;
+                    _req.headers = headers;
+                    $http(_req).then(_callback(_res)).error(console.log('I have an error with API'));
+                }
+            };
+        }]).factory('httpRequestInterceptor', function () {
+            return {
+                request: function (config) {
+                    config.headers['Authorization'] = $rootScope.Token;
+                    config.headers['Accept'] = 'application/json;odata=verbose';
+                    return config;
+                }
+            };
+        }).config(function ($httpProvider) {
+            $httpProvider.interceptors.push('httpRequestInterceptor');
         });
 })();
 

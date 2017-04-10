@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -6,37 +6,57 @@
         .controller('LoginController', LoginController);
 
     /* @ngInject */
-    function LoginController($state, triSettings) {
+    function LoginController($state, $scope, $rootScope, $mdToast, API, triSettings, triLoaderService) {
         var vm = this;
         vm.loginClick = loginClick;
-        vm.socialLogins = [{
-            icon: 'fa fa-twitter',
-            color: '#5bc0de',
-            url: '#'
-        },{
-            icon: 'fa fa-facebook',
-            color: '#337ab7',
-            url: '#'
-        },{
-            icon: 'fa fa-google-plus',
-            color: '#e05d6f',
-            url: '#'
-        },{
-            icon: 'fa fa-linkedin',
-            color: '#337ab7',
-            url: '#'
-        }];
         vm.triSettings = triSettings;
         // create blank user variable for login form
         vm.user = {
-            email: '',
-            password: ''
+            Email: '',
+            Password: ''
         };
 
         ////////////////
 
         function loginClick() {
-            $state.go('triangular.gallerymanagement');
+            var req = {
+                method: 'POST',
+                url: '/Stores/Login',
+                data: vm.user
+            }
+            console.log(req);
+            API.execute(req, function (_res) {
+                if (_res.data.code == 20) {
+                    $mdToast.show({
+                        template: '<md-toast><span flex>' + _res.data.data + '</span></md-toast>',
+                        position: 'bottom right',
+                        hideDelay: 3000
+                    });
+                }
+                else if (_res.data.code == 24) {
+                    $mdToast.show({
+                        template: '<md-toast><span flex>' + _res.data.data + '</span></md-toast>',
+                        position: 'bottom right',
+                        hideDelay: 3000
+                    });
+                }
+                else if (_res.data.code == 100) {
+                    $mdToast.show({
+                        template: '<md-toast><span flex>Welcome back !</span></md-toast>',
+                        position: 'bottom right',
+                        hideDelay: 3000
+                    });
+                    $rootScope.Token = _res.data.data;
+                    $state.go('triangular.gallerymanagement');
+                }
+                else if (_res.data.code == 101) {
+                    $mdToast.show({
+                        template: '<md-toast><span flex>' + _res.data.data + '</span></md-toast>',
+                        position: 'bottom right',
+                        hideDelay: 3000
+                    });
+                }
+            });
         }
     }
 })();
