@@ -3,30 +3,34 @@
     'use strict';
     angular
         .module('app.examples.management')
-        .controller('galleryManagementController', galleryManagementController);
+        .controller('listitemsController', listitemsController);
 
     /* @ngInject */
 
-    function galleryManagementController($state, $scope, $rootScope) {
+    function listitemsController($state, $scope, $rootScope, $stateParams) {
         var vm = this;
 
         vm.contents = [];
         $scope.load = function () {
-            console.log('dd');
+            console.log('enter');
             //fill store data 
             $.ajax({
                 type: "get",
-                url: "http://localhost:8007/Store/" + '58e6241880cc8e168039fd52',
+                url: "http://localhost:8007/Items/" + $stateParams.galleryid,
                 data: {},
-                headers: { 'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJUeXBlIjoiU3RvcmUiLCJfaWQiOiI1OGU5ZjZmMDEwZWNlZjE1NDhkYzYzYjUiLCJTdG9yZU5hbWUiOiJTSDFfU3RvcmUiLCJpYXQiOjE0OTE3MjgxNjQsImV4cCI6MTQ5MTg3MjE2NH0.RZ1mrsuZI63-NBKc5GqketQPLS0OR47FS42SchTBkTg' },
+                headers: { 'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJUeXBlIjoiU3RvcmUiLCJfaWQiOiI1OGU5ZjZmMDEwZWNlZjE1NDhkYzYzYjUiLCJTdG9yZU5hbWUiOiJTSDFfU3RvcmUiLCJpYXQiOjE0OTE4MjA3MTgsImV4cCI6MTQ5MTk2NDcxOH0.6m89vWdME6oLGeqQ3Mhp_j_MSf2UquLCxiEcGa6GJ1w' },
                 success: function (res) {
+                    console.log(res);
                     if (res.code == 100) {
-                        var result = res.data;
-                        console.log(result);
-                        $scope.storeName = result.StoreName;
-                        $scope.storeCategory = result.Category;
-                        $scope.$apply();
-
+                        //$scope.items = res.data;
+                        for (var i = 0; i < res.data.length; i++) {
+                            $scope.contents.push({
+                                _id: res.data[i]._id,
+                                Name: res.data[i].Name,
+                                Img: res.data[3].Pictures[0].URL
+                            });
+                        }
+                        console.log($scope.items);
                     }
                     else {
                         console.log('no data found');
@@ -36,25 +40,33 @@
                     console.log(err);
                 }
             });
-
             // fill table
             vm.contents = [];
 
             $.ajax({
                 type: "get",
-                url: "http://localhost:8007/StoreGalleries/" + '58e6241880cc8e168039fd52',
+                url: "http://localhost:8007/Items/" + $stateParams.galleryid,
                 data: {},
                 headers: { 'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJUeXBlIjoiU3RvcmUiLCJfaWQiOiI1OGU5ZjZmMDEwZWNlZjE1NDhkYzYzYjUiLCJTdG9yZU5hbWUiOiJTSDFfU3RvcmUiLCJpYXQiOjE0OTE3MjgxNjQsImV4cCI6MTQ5MTg3MjE2NH0.RZ1mrsuZI63-NBKc5GqketQPLS0OR47FS42SchTBkTg' },
                 success: function (res) {
                     if (res.code == 100) {
                         var result = res.data;
-                        for (var i = 0; i < result.length; i++) {
-                            var obj = {};
-                            obj.thumb = result[i].DisplayPicture;
-                            obj.name = result[i].Title;
-                            obj.description = result[i].Description;
-                            obj._id = result[i]._id;
-                            vm.contents.push(obj);
+                        for (var i = 0; i < res.data.length; i++) {
+
+
+                            
+                                var obj = {};
+                                obj.thumb = res.data[3].Pictures[0].URL;
+                                obj.name = res.data[i].Name;
+                                obj.description = res.data[i].Description;
+                                obj._id = res.data[i]._id;
+                                vm.contents.push(obj);
+                            
+                            //$scope.contents.push({
+                            //    _id: res.data[i]._id,
+                            //    Name: res.data[i].Name,
+                            //    Img: res.data[3].Pictures[0].URL
+                            //});
                         }
                         console.log(vm.contents);
                         vm.columns = [{
@@ -159,10 +171,6 @@
         function addGallery() {
             $rootScope.galleryData = '';
             $state.go('triangular.newgallery', { galleryid: '' });
-        };
-
-        $scope.listItem = function () {
-            $state.go('triangular.listitems');
         };
 
     }

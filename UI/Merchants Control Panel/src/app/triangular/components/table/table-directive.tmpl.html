@@ -13,14 +13,16 @@
     <tbody>
         <tr ng-repeat="content in contents | filter:filters | startFrom:page * pageSize | limitTo: pageSize">
             <td ng-repeat="column in columns" ng-bind-html="cellContents(column, content)" ng-class="column.field + '-cell'"></td>
-            <td ng-click="edit(content)" ng-show="editableTble">
-                <md-button class="md-fab md-accent md-default" aria-label="fab button">
-                    <md-icon md-font-icon="zmdi zmdi-edit"></md-icon>
+            <td>
+                <md-button class=" md-fab md-accent md-default" aria-label="fab button" ng-click="edit(content)" ng-show="editableTble">
+                    <md-icon md-font-icon=" zmdi zmdi-edit">
+                </md-icon>
                 </md-button>
-            </td>
-            <td ng-click="delete(content)" ng-show="deleteableTble">
-                <md-button class="md-fab md-warn md-default" aria-label="fab button">
+                <md-button class="md-fab md-warn md-default" aria-label="fab button" ng-click="delete(content)" ng-show="deleteableTble">
                     <md-icon md-font-icon="zmdi zmdi-delete"></md-icon>
+                </md-button>
+                <md-button class="md-fab md-primary md-default" aria-label="fab button" ng-click="listItem(content)" ng-show="listItems">
+                    <md-icon md-font-icon="fa fa-th-list"></md-icon>
                 </md-button>
             </td>
         </tr>

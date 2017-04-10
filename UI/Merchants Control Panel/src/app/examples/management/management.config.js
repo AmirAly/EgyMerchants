@@ -49,6 +49,19 @@
                 }
             }
         })
+        .state('triangular.listitems', {
+            url: '/management/listitems',
+            templateUrl: 'app/examples/management/listitems/listitems.tmpl.html',
+            controller: 'listitemsController',
+            controllerAs: 'vm',
+            data: {
+                layout: {
+                    contentClass: 'layout-column',
+                    sideMenuSize: 'icon'
+
+                }
+            }
+        })
         ;
 
         triMenuProvider.addMenu({
@@ -61,12 +74,7 @@
                 state: 'triangular.gallerymanagement',
                 type: 'link'
             }
-            ,
-            {
-                name: 'New Gallery',
-                state: 'triangular.newgallery',
-                type: 'link'
-            }]
+            ]
         });
     }
 })();
