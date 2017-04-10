@@ -22,6 +22,9 @@
     <!-- Isotope Products -->
     <section class="container content slider-products">
         <!-- Products list -->
+        <div ng-show="!stores.length" class="text-center">
+            <h6>No stores yet</h6>
+        </div>
         <div class="row">
             <div class="products-list-isotope">
                 <div class="row">
@@ -31,7 +34,7 @@
 
                             <!--Start carousel -->
                             <div class="">
-                                <img src="store.FeaturedPhoto" ng-src="{{store.FeaturedPhoto}}" alt="img">
+                                <img ng-src="{{store.FeaturedPhoto}}" class="img-responsive" alt="img">
                             </div>
                             <!--End carousel -->
                         </div>

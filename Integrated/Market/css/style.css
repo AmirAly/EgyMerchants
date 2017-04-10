@@ -54,9 +54,30 @@
     cursor:pointer;
 }
 .owl-slider{
-    min-height: 160px;
+    min-height: 200px;
 }
 
 .owl-slider .owl-item .item img {
     width: auto !important;
+    min-height: 150px !important;
+}
+
+.main-slider .owl-slider .title-slide-01 .big {
+    opacity:0.7;
+    background:#121212;
+}
+ 
+.main-slider .owl-slider .title-slide-01 .middle{
+        color: #000;
+    text-shadow: 0px 0px 0px #ffffff;
+    font-size: 12px;
+}
+
+.main-slider .owl-slider .title-slide-01 .small{
+    color:#fff;
+    font-size:10px;
+}
+
+.img-responsive {
+    height: 200px;
 }

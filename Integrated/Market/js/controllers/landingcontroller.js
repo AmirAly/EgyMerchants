@@ -3,7 +3,7 @@
 
     $scope.load = function () {
         $timeout(function () {
-            $.fancybox.open([{ href: 'images/welcome1.jpg', title: 'Welcome' }]);
+            $.fancybox.open([{ href: 'images/welcome0.jpg', title: 'Welcome' }]);
         }, 1500);
         $scope.stores = [];
         var req = {

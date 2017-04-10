@@ -6,7 +6,7 @@ app.run(function ($rootScope, $state) {
 
     $http.get('views/landing.html', { cache: $templateCache });
     $http.get('views/store.html', { cache: $templateCache });
-    $http.get('views/gallery.html', { cache: $templateCache });
+    //$http.get('views/gallery.html', { cache: $templateCache });
 
 
 })

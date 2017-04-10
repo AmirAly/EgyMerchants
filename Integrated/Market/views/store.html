@@ -8,7 +8,7 @@
             <div class="owl-slider">
                 <div class="item text-center">
                     <img src="storeData.FeaturedPhoto" ng-src="{{storeData.FeaturedPhoto}}" alt="img">
-                    <a class="title-slide-03">
+                    <a class="title-slide-01">
                         <span class="big">{{storeData.Fullname}}</span>
                         <span class="middle">{{storeData.StoreName}}</span>
                         <span class="small">{{storeData.Category}}</span>
@@ -48,14 +48,16 @@
     <!-- Breadcrumbs -->
     <section class="container">
         <nav class="breadcrumbs">
-            <a href="index.html">Home</a>  <span class="divider">›</span> {{storeData.StoreName}}
+            <a href="#/landing">Home</a>  <span class="divider">›</span> {{storeData.StoreName}}
         </nav>
     </section>
     <!-- //end Breadcrumbs -->
     <!-- Isotope Products -->
     <section class="container ">
         <!-- Products list -->
-       
+        <div ng-show="!galleries.length" class="text-center">
+            <h6>No galleries yet</h6>
+        </div>
                 <div class="row">
                     <div class="product-preview col-sm-4 col-xs-6" ng-click="viewgallery(gallery._id)"
                           ng-repeat="gallery in galleries">
@@ -63,7 +65,7 @@
 
                             <!--Start carousel -->
                             <div class="">
-                                <img src="gallery.DisplayPicture" ng-src="{{gallery.FeaturedPhoto}}" alt="img">
+                                <img src="gallery.DisplayPicture" class="img-responsive" ng-src="{{gallery.FeaturedPhoto}}" alt="img">
                             </div>
                             <!--End carousel -->
                         </div>
