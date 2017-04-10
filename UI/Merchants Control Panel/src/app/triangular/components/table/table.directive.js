@@ -17,7 +17,8 @@
             link: link,
             templateUrl: 'app/triangular/components/table/table-directive.tmpl.html',
             controller: 'galleryManagementController',
-            controllerAs:'vm'
+            controllerAs: 'vm'
+
         };
         return directive;
 

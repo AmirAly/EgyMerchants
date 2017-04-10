@@ -13,7 +13,6 @@
                 name: '',
                 description: ''
             };
-            $rootScope.itemData;
         if ($stateParams.galleryid != '') {
             //edit mode
             console.log($rootScope.galleryData);
@@ -57,6 +56,9 @@
 
         $scope.editItem = function (_id) {
             console.log(_id);
+            $rootScope.itemid = _id;
+            $state.go('triangular.items', { itemid: $rootScope.itemid });
+            
         }
 
         vm.submit = submit;

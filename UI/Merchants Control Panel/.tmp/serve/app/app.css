@@ -26000,9 +26000,18 @@ body[md-theme="dark"] {
   background-color: #3a3a3a; }
 
 .md-dark-theme {
-  color: rgba(255, 255, 255, 0.7) !important; }
+  color: rgba(180, 180, 180, 0.7) !important; }
   .md-dark-theme a {
-    color: #ffffff; }
+    color: #fff; }
+
+.md-primary {
+  color: white !important; }
+
+.zmdi, .fa {
+  color: rgba(255, 255, 255, 0.8) !important; }
+
+h3, h4 {
+  color: rgba(20, 20, 20, 0.7) !important; }
 
 md-list {
   padding-top: 0px;
@@ -28883,12 +28892,61 @@ h3, h4 {
 md-input-container.md-block {
   max-width: 100%; }
 
+.md-button.md-fab {
+  z-index: 20;
+  line-height: 56px;
+  min-width: 0;
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  border-radius: 50%;
+  background-clip: padding-box;
+  overflow: hidden;
+  -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  transition-property: background-color, box-shadow, transform, -webkit-transform; }
+
 .newItem {
   overflow: hidden !important;
   padding: 15px; }
 
 .pageHeader {
-  padding-bottom: 15px; }
+  padding-bottom: 15px;
+  color: #333; }
+
+.elements-image-table-example .thumb-cell {
+  max-width: 104px;
+  width: 104px;
+  padding: 16px 32px; }
+  .elements-image-table-example .thumb-cell div {
+    overflow: hidden;
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-size: cover;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3); }
+
+h3, h4 {
+  padding-left: 32px; }
+
+md-input-container.md-block {
+  max-width: 100%; }
+
+.md-button.md-fab {
+  z-index: 20;
+  line-height: 56px;
+  min-width: 0;
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  border-radius: 50%;
+  background-clip: padding-box;
+  overflow: hidden;
+  -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  transition-property: background-color, box-shadow, transform, -webkit-transform; }
 
 .newGallery {
   overflow: hidden !important;
@@ -28898,21 +28956,5 @@ md-input-container.md-block {
 .pageHeader {
   padding-bottom: 15px; }
 
-.imgContainer {
-  float: left;
-  padding: 5px;
-  margin: 5px;
-  width: calc((100% / 3) - 10px);
-  position: relative;
-  min-height: 50px; }
-
-.txtItemName {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: calc(100% - 20px);
-  background: #555;
-  color: #fff;
-  opacity: 0.7;
-  padding: 5px;
-  margin: auto 5px; }
+.flex-70 {
+  margin-right: auto; }

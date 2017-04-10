@@ -1,32 +1,27 @@
 ﻿<div class="newItem">
     <h2 class="pageHeader">{{pageTitle}}</h2>
     <form name="formItems">
-        <md-input-container class="md-block">
-            <label>Name of item</label>
-            <input id="name" label="name" name="name" type="text" ng-model="vm.item.Name" required />
-            <div ng-messages="formItems.name.$error" md-auto-hide="false" ng-show="formItems.name.$touched">
-                <div ng-message when="required"><span>Please enter your item name.</span></div>
+        <div layout="row" justify-content="space-between">
+            <div layout="column" flex="70" class="layout-margin">
+                <md-input-container class="md-block">
+                    <label>Name of item</label>
+                    <input id="name" label="name" name="name" type="text" ng-model="vm.item.Name" required />
+                    <div ng-messages="formItems.name.$error" md-auto-hide="false" ng-show="formItems.name.$touched">
+                        <div ng-message when="required"><span>Please enter your item name.</span></div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Description</label>
+                    <input id="description" label="description" name="description" type="text" ng-model="vm.item.Description" required />
+                    <div ng-messages="formItems.description.$error" md-auto-hide="false" ng-show="formItems.description.$touched">
+                        <div ng-message when="required"><span>Please enter your description about your item.</span></div>
+                    </div>
+                </md-input-container>
             </div>
-        </md-input-container>
-        <md-input-container class="md-block">
-            <label>Description</label>
-            <input id="description" label="description" name="description" type="text" ng-model="vm.item.Description" required />
-            <div ng-messages="formItems.description.$error" md-auto-hide="false" ng-show="formItems.description.$touched">
-                <div ng-message when="required"><span>Please enter your description about your item.</span></div>
-            </div>
-        </md-input-container>
-
-
-
-        <div layout="row" layout-align="space-around center">
             <div layout="column">
-                <md-button class="md-primary md-raised md-fab" ngf-select="vm.upload($files)" ng-disabled="vm.status != 'idle'" ngf-multiple="true" aria-label="upload">
-                    <md-icon md-font-icon ng-class="{ 'zmdi zmdi-cloud-upload': vm.status == 'idle', 'fa fa-spinner fa-pulse': vm.status == 'uploading', 'zmdi zmdi-check': vm.status == 'complete'}"></md-icon>
-                </md-button>
-                <h5>Add image</h5>
+                <img src="/assets/images/logo.png" />
             </div>
         </div>
-
         <div layout="row" layout-align="end center">
             <md-button type="submit" class="md-primary" ng-click="submit(formItems)" ng-disabled="formItems.$invalid">Save</md-button>
             <md-button href="#!/management/gallerymanagement">Cancel</md-button>
