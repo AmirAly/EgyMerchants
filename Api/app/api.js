@@ -17,6 +17,7 @@ module.exports = function (app, express) {
             || req.url.toLowerCase() == '/admins/login'
             || req.url.toLowerCase() == '/merchants/register'
             || req.url.toLowerCase().indexOf('/gallery') > -1
+            || req.url.toLowerCase().indexOf('/store') > -1
             || req.url.toLowerCase() == '/galleries'
             || req.url.toLowerCase().indexOf('/items') > -1
             || req.url.toLowerCase() == '/stores/register')
@@ -149,7 +150,7 @@ module.exports = function (app, express) {
         });
     });
     api.get('/Galleries/:CountryISOCode', function (req, res) {
-        Galleries.find({'Status':'Active'}, '_id Status Title Description Store', function (err, lst) {
+        Galleries.find({ 'Status': 'Active' }, '_id Status Title Description Store', function (err, lst) {
             if (err)
                 return res.json({ code: '1', data: err });
             else {
