@@ -21,24 +21,14 @@
             var _url = "http://egm-api.azurewebsites.net";
             return {
                 name: 'API',
-                execute: function (_req,_callback) {
+                execute: function (_req, _callback) {
                     var headers = { 'Content-Type': 'application/json' };
                     _req.url = _url + _req.url;
                     _req.headers = headers;
                     $http(_req).then(_callback(_res)).error(console.log('I have an error with API'));
                 }
             };
-        }]).factory('httpRequestInterceptor', function () {
-            return {
-                request: function (config) {
-                    config.headers['Authorization'] = $rootScope.Token;
-                    config.headers['Accept'] = 'application/json;odata=verbose';
-                    return config;
-                }
-            };
-        }).config(function ($httpProvider) {
-            $httpProvider.interceptors.push('httpRequestInterceptor');
-        });
+        }]);
 })();
 
 
