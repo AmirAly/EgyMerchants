@@ -26,6 +26,7 @@
             }
             console.log(req);
             API.execute(req, function (_res) {
+                console.log(_res);
                 if (_res.data.code == 20) {
                     $mdToast.show({
                         template: '<md-toast><span flex>' + _res.data.data + '</span></md-toast>',

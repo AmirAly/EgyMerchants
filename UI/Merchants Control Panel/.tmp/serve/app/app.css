@@ -28912,7 +28912,8 @@ md-input-container.md-block {
   padding: 15px; }
 
 .pageHeader {
-  padding-bottom: 15px; }
+  padding-bottom: 15px;
+  color: #333; }
 
 .elements-image-table-example .thumb-cell {
   max-width: 104px;
@@ -28955,21 +28956,5 @@ md-input-container.md-block {
 .pageHeader {
   padding-bottom: 15px; }
 
-.imgContainer {
-  float: left;
-  padding: 5px;
-  margin: 5px;
-  width: calc((100% / 3) - 10px);
-  position: relative;
-  min-height: 50px; }
-
-.txtItemName {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: calc(100% - 20px);
-  background: #555;
-  color: #fff;
-  opacity: 0.7;
-  padding: 5px;
-  margin: auto 5px; }
+.flex-70 {
+  margin-right: auto; }

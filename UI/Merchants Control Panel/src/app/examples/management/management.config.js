@@ -50,7 +50,7 @@
             }
         })
         .state('triangular.listitems', {
-            url: '/management/listitems',
+            url: '/management/listitems/:galleryid?',
             templateUrl: 'app/examples/management/listitems/listitems.tmpl.html',
             controller: 'listitemsController',
             controllerAs: 'vm',

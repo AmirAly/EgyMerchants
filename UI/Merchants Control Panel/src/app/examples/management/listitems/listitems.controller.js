@@ -11,6 +11,9 @@
         var vm = this;
 
         vm.contents = [];
+        $scope.editableTble = false;
+        $scope.deleteableTble = false;
+        $scope.listItems = false;
         $scope.load = function () {
             //fill store data 
 
@@ -21,15 +24,22 @@
             }
             API.execute(req, function (_res) {
                 console.log(_res);
-                if (res.data.code == 100) {
-                    for (var i = 0 ; i <_res.data.data.length ; i++)
-                    {
-                        vm.contents.push({
-                            thumb: _res.data.data[i].Pictures[0].URL,
-                            name: _res.data.data[i].Name,
-                            description: _res.data.data[i].Description
-                        }
-                            );
+                if (_res.data.code == 100) {
+                    for (var i = 0 ; i < _res.data.data.length ; i++) {
+                        if (_res.data.data[i].Pictures && _res.data.data[i].Pictures[0])
+                            vm.contents.push({
+                                thumb: _res.data.data[i].Pictures[0].URL,
+                                name: _res.data.data[i].Name,
+                                description: _res.data.data[i].Description
+                            }
+                                );
+                        else
+                            vm.contents.push({
+                                thumb: '',
+                                name: _res.data.data[i].Name,
+                                description: _res.data.data[i].Description
+                            }
+                                );
                     }
                     vm.columns = [{
                         title: '',
@@ -45,12 +55,21 @@
                         field: 'description',
                         sortable: true
                     }];
-                    $scope.$apply();
+
+
                 }
                 else {
                     console.log('no data found');
                 }
             });
+        };
+        $scope.load();
+
+        vm.addItem = addItem;
+        function addItem() {
+            console.log($stateParams.galleryid);
+            $rootScope.galleryData = $stateParams.galleryid;
+            $state.go('triangular.items');
         };
     };
 })();
