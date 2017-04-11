@@ -15,7 +15,7 @@
             $scope.messageTxt = 'Welcome ...';
             $scope.messageStatus = 'success';
 
-            $state.go('clients');
+            $state.go('galleries');
         }
         else {
             $scope.loginFormError = true;

@@ -1,0 +1,107 @@
+﻿<div class="text-center pageRegister">
+    <div class="row animated fadeInRight" id="registerContainer">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <form class="form-horizontal" id="frmLogin" name="frmRegister" novalidate>
+                <div class="clear visible-xs"></div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-10 col-md-offset-3 col-sm-offset-3 col-xs-offset-1">
+                        <div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="group">
+                                        <input ng-input-effect-class is-required ng-model="txtName" ng-class="{errorBorder : loginFormError || frmRegister.txtName.$dirty == true && frmRegister.txtName.$invalid == true ,'used': txtName.length > 0}" type="text" id="txtName" name="txtName" required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label ng-class="{errorFont : loginFormError || frmRegister.txtName.$dirty == true && frmRegister.txtName.$invalid == true }">Store name</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="group">
+                                        <input ng-input-effect-class is-required ng-model="txtEmail" ng-class="{errorBorder : loginFormError || frmRegister.txtEmail.$dirty == true && frmRegister.txtEmail.$invalid == true ,'used': txtEmail.length > 0}" type="email" pattern="[a-zA-Z0-9_]+(?:\.[A-Za-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?!([a-zA-Z0-9]*\.[a-zA-Z0-9]*\.[a-zA-Z0-9]*\.))(?:[A-Za-z0-9](?:[a-zA-Z0-9-]*[A-Za-z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?" id="txtEmail" name="txtEmail" required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label ng-class="{errorFont : loginFormError || frmRegister.txtEmail.$dirty == true && frmRegister.txtEmail.$invalid == true }">Email</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="group">
+                                        <input ng-input-effect-class is-required ng-model="passData.txtPassword" ng-class="{errorBorder : loginFormError || frmRegister.txtPassword.$dirty == true && frmRegister.txtPassword.$invalid == true ,'used': txtPassword.length > 0}" type="password" pattern=".{1,80}" name="txtPassword" id="txtPassword" required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label ng-class="{errorFont : loginFormError || frmRegister.txtPassword.$dirty == true && frmRegister.txtPassword.$invalid == true }">Password</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="group">
+                                        <input ng-input-effect-class is-required ng-model="passData.txtConfirmPassword" ng-class="{errorBorder : loginFormError || frmRegister.txtConfirmPassword.$dirty == true && frmRegister.txtConfirmPassword.$invalid == true ,'used': txtConfirmPassword.length > 0}" type="password" pattern=".{1,80}" name="txtConfirmPassword" id="txtConfirmPassword" compare-to="passData.txtPassword" required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <span class="errorFont" ng-show="frmRegister.txtConfirmPassword.$error.compareTo">Passwords must match.</span>
+                                        <label ng-class="{errorFont : loginFormError || frmRegister.txtConfirmPassword.$dirty == true && frmRegister.txtConfirmPassword.$invalid == true }">Re-type your new password</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+
+                            <!--<div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="alert alert-success alert-dismissible hideMe msg" id="dvMSG" role="alert">
+                                        <span id="spTXT"></span>
+                                    </div>
+                                </div>
+                            </div>-->
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div ng-class="{'alert-success' : messageStatus == 'success' ,'alert-danger' : messageStatus == 'danger' ,'alert-warning' : messageStatus == 'warning'}" class="alert alert-dismissible text-center" ng-show="showMessage == true" id="dvMSG" role="alert">
+                                        <span>{{messageTxt}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear2"></div>
+                            <div class="clear2"></div>
+
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <button type="submit" ng-click="submit()" id="btnLogin" name="btnRegister" class="btn btn-block btn-invert">Sign Up</button>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+
+                            <div class="row">
+                                <button type="button" class="btn btn-link" ui-sref="login">Already have an account? Login here</button>
+                            </div>
+                            <div class="clear"></div>
+
+
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <img src="images/logo.png" />
+                                </div>
+                            </div>
+                            <div class="clear2"></div>
+                            <div class="clear2"></div>
+                            <div class="clear2"></div>
+
+                            <div class="row">
+                                <div class="col-xs-12 text-center"> V 0.7</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row footer" ui-view="footerView"></div>
+</div>

@@ -566,12 +566,30 @@ canvas {
     width: 75% !important;
     margin: 0 auto !important;
 }
-
 /******************************************************************************
-********************************* pageClients *********************************
+********************************* pageLogin *********************************
 *******************************************************************************
 *******************************************************************************/
-.pageClients .dvClientsContainer {
+.pageLogin .btn-link{
+    color:#fff;
+}
+
+/******************************************************************************
+********************************* pageRegister *********************************
+*******************************************************************************
+*******************************************************************************/
+ #registerContainer{
+        margin-top: 5%;
+}
+ .pageRegister .btn-link{
+    color:#fff;
+}
+
+/******************************************************************************
+********************************* pageGalleries *********************************
+*******************************************************************************
+*******************************************************************************/
+.pageGalleries .dvGalleriesContainer {
     /*display: table;
     width: 100%;
     table-layout: fixed;*/
@@ -581,7 +599,7 @@ canvas {
     width: 100%;
 }
 
-.pageClients .filterable {
+.pageGalleries .filterable {
     /*display: flex;
     position: relative;
     width: 25%;
@@ -591,7 +609,7 @@ canvas {
     padding: 10px;
 }
 
-.pageClients .dvCliensData {
+.pageGalleries .dvgalleriesData {
     margin-bottom: 18%;
     background-color: #fff;
     padding: 2px;
@@ -608,7 +626,7 @@ canvas {
     max-width: 100px;
 }
 
-    .pageClients .dvCliensData img {
+    .pageGalleries .dvgalleriesData img {
         width: 100% !important;
         max-width: 85px;
         height: 85px;
@@ -618,7 +636,7 @@ canvas {
         margin-bottom: 5px;
     }
 
-.pageClients .clientName {
+.pageGalleries .galleryName {
     font-size: 14px;
     font-weight: bold;
     /*white-space: nowrap;
@@ -631,43 +649,49 @@ canvas {
     margin-top: 2px;
 }
 
-    .pageClients .clientName span {
+    .pageGalleries .galleryName span {
         padding: 1px;
         font-weight: normal;
     }
 
-.pageClients #dvNoResult h1 {
+.pageGalleries #dvNoResult h1 {
     font-size: 30px;
     color: #fff;
 }
 
 
-.pageClients .dvSearchClient {
+.pageGalleries .dvSearchClient {
     display: flex;
 }
 
-.pageClients .pageTitle {
+.pageGalleries  .pageTitle {
     font-size: 30px;
     color: #fff;
 }
 
-    .pageClients .pageTitle a {
+    .pageGalleries  .pageTitle a {
         color: #fff;
     }
 
-        .pageClients .pageTitle a span {
+        .pageGalleries  .pageTitle a span {
             top: 5px;
         }
 
-            .pageClients .pageTitle a span:hover {
+            .pageGalleries  .pageTitle a span:hover {
                 color: white;
             }
 
 /******************************************************************************
-********************************* pageClient **********************************
+********************************* pageGallery **********************************
 *******************************************************************************
 *******************************************************************************/
-.pageClient .imgClient img {
+.pageGallery .btn-link{
+    font-size:20px;
+    color:#fff;
+    padding-left:20px;
+}
+
+.pageGallery .imgClient img {
     border: 2px solid #eee;
     max-height: 170px;
     max-width: 170px;

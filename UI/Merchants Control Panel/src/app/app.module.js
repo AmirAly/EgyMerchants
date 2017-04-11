@@ -17,8 +17,8 @@
             'url': 'http://egm-api.azurewebsites.net/'
         })
         .factory('API', ['$http', function ($http) {
-            var _url = "http://localhost:8007";
-            //var _url = "http://egm-api.azurewebsites.net";
+            //var _url = "http://localhost:8007";
+            var _url = "http://egm-api.azurewebsites.net";
             return {
                 name: 'API',
                 execute: function (_req, _callback) {
