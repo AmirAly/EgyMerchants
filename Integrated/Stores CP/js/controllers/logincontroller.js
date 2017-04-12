@@ -27,8 +27,8 @@
                 $scope.showMessage = true;
                 $scope.messageTxt = 'Welcome back!';
                 $scope.messageStatus = 'success';
-                $state.go('galleries');
-                $rootScope.storeId = $rootScope.currentUser._id;
+                //$state.go('galleries');
+                $state.go('items', { galleryid: '58eba54a45c73113604ef4cb' });
             }
             else if (_res.data.code == 101) { // Email not confirmed
                 $rootScope.currentUser = {

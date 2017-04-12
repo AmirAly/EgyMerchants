@@ -15,7 +15,7 @@
                             <div class="row">
                                 <div class=" input-group-lg col-md-6 col-sm-6 col-xs-6">
                                     <div class="group">
-                                        <input ng-input-effect-class is-required ng-model="txtGalleryName" ng-class="{errorBorder : frmAddGallery.txtGalleryName.$dirty == true && frmAddGallery.txtGalleryName.$invalid == true ,'used': txtGalleryName.length > 0}" type="text" pattern=".{1,80}" name="txtGalleryName" id="txtGalleryName" required>
+                                        <input ng-input-effect-class is-required ng-model="itemDetails.Name" ng-class="{errorBorder : frmAddGallery.txtGalleryName.$dirty == true && frmAddGallery.txtGalleryName.$invalid == true ,'used': txtGalleryName.length > 0}" type="text" pattern=".{1,80}" name="txtGalleryName" id="txtGalleryName" required>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label ng-class="{errorFont : frmAddGallery.txtGalleryName.$dirty == true && frmAddGallery.txtGalleryName.$invalid == true }">Name of item</label>
@@ -27,7 +27,7 @@
                             <div class="row">
                                 <div class="input-group-lg col-md-12 col-sm-12 col-xs-12">
                                     <div class="group">
-                                        <input ng-input-effect-class is-required ng-model="txtDescreption" ng-class="{errorBorder : frmAddGallery.txtDescreption.$dirty == true && frmAddGallery.txtDescreption.$invalid == true ,'used': txtDescreption.length > 0}" type="text" pattern=".{1,80}" name="txtDescreption" id="txtDescreption" required>
+                                        <input ng-input-effect-class is-required ng-model="itemDetails.Description" ng-class="{errorBorder : frmAddGallery.txtDescreption.$dirty == true && frmAddGallery.txtDescreption.$invalid == true ,'used': txtDescreption.length > 0}" type="text" pattern=".{1,80}" name="txtDescreption" id="txtDescreption" required>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label ng-class="{errorFont : frmAddGallery.txtDescreption.$dirty == true && frmAddGallery.txtDescreption.$invalid == true }">Descreption</label>
@@ -43,12 +43,12 @@
                         <h3>Images</h3>
                         <div class="clear2"></div>
                         <div class="dvGalleriesContainer">
-                            <div class="filterable" ng-repeat="img in itemImages | filter:searchText as filteredArray">
+                            <div class="filterable" ng-repeat="img in itemDetails.Pictures">
                                 <div class="dvgalleriesData" data-toggle="modal" data-target="#imgModal">
-                                    <div><img fallbacksrc src="{{img.img}}" /></div>
-                                    <div class="galleryName"><span>{{img.name}}</span></div>
+                                    <div><img fallbacksrc src="{{img.URL}}" /></div>
+                                    <div class="galleryName"><span>{{img.Title}}</span></div>
                                 </div>
-                                
+
                             </div>
 
                             <div class="filterable">
@@ -97,8 +97,8 @@
                 <!-- Weight Modal Header End -->
                 <div class="clear"></div>
                 <div>
-                    <img fallbacksrc id="imgClient" ng-click="ShowFileSelector()" class="img-responsive cursorPointer" src="images/noimage.jpg" />
-                    <input type="file" onchange="convertImgToBase64URL(event)" id="uploadClientImage" class="hide" />
+                    <img fallbacksrc id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer" src="images/noimage.jpg" />
+                    <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
                 </div>
                 <div class="clear"></div>
                 <div class="row">
