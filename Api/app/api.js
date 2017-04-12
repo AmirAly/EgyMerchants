@@ -28,8 +28,19 @@ module.exports = function (app, express) {
                 if (err) {
                     return res.json({ code: '401', data: 'Unathorized access' });
                 } else {
-                    //decoded
-                    next();
+                    if (decoded.Type == 'Store') {
+                        Stores.findOne({ '_id': decoded._id }, {}, function (err, Obj) {
+                            if (err)
+                                return res.json({ code: '1', data: 'Something went wrong' });
+                            else {
+                                if (Obj) {
+                                    req.currentUser = Obj;
+                                    next();
+                                }
+                            }
+                        });
+                    }
+
                 }
             });
         }
@@ -87,16 +98,29 @@ module.exports = function (app, express) {
                         else
                             console.log('Last activity updated');
                     });
-                    var token = jwt.sign({ Type: 'Store', _id: Obj._id, StoreName: Obj.StoreName }, Config.secret, {
+                    var token = jwt.sign({ Type: 'Store', _id: Obj._id }, Config.secret, {
                         expiresIn: 144000 // expires in 24 hours
                     });
-                    var refresh = jwt.sign({ Type: 'Store', _id: Obj._id, }, Config.secret, {
-                        expiresIn: 99999999 // expires in 24 hours
-                    });
                     if (Obj.Status == 'Unconfirmed')
-                        return res.json({ code: '101', data: token, refresh_token: refresh, id: Obj._id });
+                        return res.json({
+                            code: '101', data: {
+                                Username: Obj.StoreName,
+                                Email: Obj.Email,
+                                _id: Obj._id,
+                                AccountType: 'Store',
+                                Token: token
+                            }
+                        });
                     else if (Obj.Status == 'Active')
-                        return res.json({ code: '100', data: token, refresh_token: refresh, id: Obj._id });
+                        return res.json({
+                            code: '100', data: {
+                                Username: Obj.StoreName,
+                                Email: Obj.Email,
+                                _id: Obj._id,
+                                AccountType: 'Store',
+                                Token: token
+                            }
+                        });
                     else if (Obj.Status == 'Suspended')
                         return res.json({ code: '24', data: 'This account is suspended' });
                 }
