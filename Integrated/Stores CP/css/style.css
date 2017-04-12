@@ -94,6 +94,10 @@
     display: none;
 }
 
+.imgItem{
+    margin:0 auto;
+}
+
 /*scroll*/
 ::-webkit-scrollbar {
     border-radius: 20px;

@@ -33,21 +33,21 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
     .state('gallery', {
-        url: '/gallery/:galleryid?',//index.html#/client/10
+        url: '/gallery/:galleryid?',//index.html#/gallery/10
         views: {
             '': { templateUrl: 'views/gallery.html', controller: 'galleryController' },
             'headerView@gallery': { templateUrl: 'views/templates/header.temp.html' }
         }
     })
     .state('items', {
-        url: '/items',
+        url: '/items/:galleryid?',
         views: {
             '': { templateUrl: 'views/items.html', controller: 'itemsController' },
             'headerView@items': { templateUrl: 'views/templates/header.temp.html' },
         }
     })
     .state('item', {
-        url: '/item/:itemid?',
+        url: '/item/:galleryid/:itemid?',
         views: {
             '': { templateUrl: 'views/item.html', controller: 'itemController' },
             'headerView@item': { templateUrl: 'views/templates/header.temp.html' },
