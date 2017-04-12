@@ -106,6 +106,30 @@
         }
     };
 
+    //disable gallery
+    $scope.deleteGallery = function () {
+        var req = {
+            method: 'put',
+            url: '/Galleries/Disable/' + $stateParams.galleryid,
+            data: {}
+        }
+        $rootScope.loading = true;
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 100) {
+                $scope.showMessage = true;
+                $scope.messageTxt = 'Deleted';
+                $scope.messageStatus = 'success';
+                $state.go('galleries');
+            }
+            
+            else {
+                console.log(_res);
+            }
+        }).finally(function () {
+            $rootScope.loading = false;
+        });
+    };
 
     $scope.cancelClient = function () {
         $state.go('galleries');

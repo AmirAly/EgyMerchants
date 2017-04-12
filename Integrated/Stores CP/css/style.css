@@ -755,6 +755,13 @@ canvas {
     border-radius: 25px;
 }
 
+.delBtn{
+    background-color: transparent;
+    border: 2px solid #F44336;
+    color: #fff !important;
+    padding-left: 20px;
+    padding-right: 20px;
+}
 
 /******************************************************************************
 ******************************* Modals ****************************

@@ -27,13 +27,13 @@
                 $scope.showMessage = true;
                 $scope.messageTxt = 'Welcome back!';
                 $scope.messageStatus = 'success';
-                //$state.go('galleries');
-<<<<<<< HEAD
+                $state.go('galleries');
+//<<<<<<< HEAD
 
 
-=======
-                $state.go('items', { galleryid: '58eba54a45c73113604ef4cb' });
->>>>>>> 5edbe95aea091d68551d4c90667493151b2a0d8f
+//=======
+//                $state.go('items', { galleryid: '58eba54a45c73113604ef4cb' });
+//>>>>>>> 5edbe95aea091d68551d4c90667493151b2a0d8f
             }
             else if (_res.data.code == 101) { // Email not confirmed
                 $rootScope.currentUser = {
