@@ -1,6 +1,5 @@
 ﻿app.controller("LoginController", function ($scope, $state, $rootScope, API) {
     $scope.loginFormError = false;
-    console.log(API);
     $scope.submit = function () {
         angular.forEach($scope.frmLogin.$error.required, function (field) {
             field.$setDirty();
@@ -28,7 +27,9 @@
                 $scope.showMessage = true;
                 $scope.messageTxt = 'Welcome back!';
                 $scope.messageStatus = 'success';
-                $state.go('galleries');
+                //$state.go('galleries');
+
+
             }
             else if (_res.data.code == 101) { // Email not confirmed
                 $rootScope.currentUser = {
