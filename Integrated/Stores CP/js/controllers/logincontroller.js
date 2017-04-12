@@ -29,6 +29,7 @@
                 $scope.messageTxt = 'Welcome back!';
                 $scope.messageStatus = 'success';
                 $state.go('galleries');
+                $rootScope.storeId = $rootScope.currentUser._id;
             }
             else if (_res.data.code == 101) { // Email not confirmed
                 $rootScope.currentUser = {
