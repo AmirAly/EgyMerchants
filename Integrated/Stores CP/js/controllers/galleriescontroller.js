@@ -1,4 +1,4 @@
-﻿app.controller("galleriesController", function ($scope, $state, $rootScope, API) {
+﻿app.controller("galleriesController", function ($scope, $state, $rootScope, API, $stateParams) {
     $rootScope.pageHeader = '';
 
     //$scope.galleries = [{id:1, name: 'Ahmed Ali', img: 'images/user0.jpg' },
@@ -8,10 +8,10 @@
     //{ id: 5, name: 'Maged Mosa', img: 'images/user4.jpg' },
     //{ id: 6, name: 'Saad Gad', img: 'images/user5.jpg' },
     //{ id: 7, name: 'Kamel Zahran', img: 'images/user6.jpg' }];
-
+    $scope.galleries = [];
     var req = {
         method: 'get',
-        url: '/Galleries',
+        url: '/StoreGalleries/' + $rootScope.currentUser._id,
         data: {}
     }
     $rootScope.loading = true;
@@ -19,13 +19,14 @@
         console.log(_res);
         if (_res.data.code == 100) {
             console.log(_res.data.data);
-            $rootScope.txtGalleryName = _res.data.data.Title;
-            $rootScope.userImg = _res.data.data.DisplayPicture;
+            $scope.galleries = _res.data.data;
         }
+    }).finally(function () {
+        $rootScope.loading = false;
     });
+    $scope.showGalleryDetails = function (_galleryID) {
+        $state.go('gallery', { galleryid: _galleryID });
 
-    $scope.showGalleryDetails = function (_galleryId) {
-        $state.go('gallery', { galleryid: _galleryId });
     }
 });
 

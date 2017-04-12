@@ -1,79 +1,111 @@
 ﻿app.controller("galleryController", function ($scope, $state, $rootScope, $stateParams, $timeout, API) {
+    console.log($rootScope.currentUser._id);
+    console.log($stateParams.galleryid);
     var BaseImg64;
     BaseImg64 = 'data:image/jpeg;base64,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';
-    $scope.userImg = BaseImg64;
-    console.log($stateParams.galleryid);
+    $scope.galleryImg = BaseImg64;
+
     if ($stateParams.galleryid == "") {
         // Create client
         $scope.createMode = true;
         $rootScope.pageHeader = 'Create Gallery';
-        $scope.userImg = BaseImg64;
-    }
-    else {
+        $scope.galleryImg = BaseImg64;
+    } else {
         //Edit client
         $rootScope.pageHeader = 'Edit Gallery';
         $scope.createMode = false;
-        $scope.userImg = 'images/user0.jpg';
+        console.log('e1');
+        $scope.galleryImg = 'images/user0.jpg';
+        
+        var req = {
+            method: 'get',
+            url: '/Gallery/' + $stateParams.galleryid,
+            data: {}
+        }
+        $rootScope.loading = true;
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 100) {
+                console.log(_res);
+                $scope.txtGalleryName = _res.data.data.Title;
+                $scope.txtDescreption = _res.data.data.Description;
+                $scope.galleryImg = _res.data.data.DisplayPicture;
+            }
+        }).finally(function () {
+            $rootScope.loading = false;
+        });
+        
     }
 
     $scope.submit = function () {
         angular.forEach($scope.frmAddGallery.$error.required, function (field) {
             field.$setDirty();
         });
-
-        var req = {
-
-            method: 'post',
-            url: '/Galleries',
-            data: {
-                Title: $scope.txtGalleryName,
-                Description: $scope.txtDescreption,
-                DisplayPicture: $scope.userImg,
-                FeaturedPhoto: $scope.txtPassword,
-                Status: 'Active',
-                Store: $rootScope.storeId,
+        if ($stateParams.galleryid == "") {
+            var req = {
+                method: 'post',
+                url: '/Galleries',
+                data: {
+                    Title: $scope.txtGalleryName,
+                    Description: $scope.txtDescreption,
+                    DisplayPicture: $scope.galleryImg,
+                    FeaturedPhoto: $scope.txtPassword,
+                    Status: 'Active',
+                    Store: $rootScope.currentUser._id,
+                }
             }
+            $rootScope.loading = true;
+            API.execute(req).then(function (_res) {
+                console.log(_res);
+                if (_res.data.code == 100) {
+                    console.log(_res.data.data);
+                    $rootScope.Token = _res.data.data.Token;
+                    $rootScope.currentGallery = _res.data.data;
+                    //$rootScope.txtGalleryName = _res.data.data.Title,
+                    //$scope.txtDescreption = _res.data.data.Description,
+                    //$rootScope.galleryImg = _res.data.data.DisplayPicture,
+                    //$rootScope.galleryImg = _res.data.data.FeaturedPhoto,
+                    //$rootScope.galleryId = _res.data.data._id,
+                    Token = _res.data.data.Token
+                    
+                }
+                $scope.showMessage = true;
+                $scope.messageTxt = 'Saved ...';
+                $scope.messageStatus = 'success';
+                $state.go('galleries');
+            }).finally(function () {
+                $rootScope.loading = false;
+            });
+
+        } else {
+
+            var req = {
+                method: 'put',
+                url: '/Galleries' ,
+                data: {
+                    Title: $scope.txtGalleryName,
+                    Description: $scope.txtDescreption,
+                    DisplayPicture:$scope.galleryImg,
+                    _id: $stateParams.galleryid,
+                }
+            }
+            console.log('e3');
+            $rootScope.loading = true;
+            API.execute(req).then(function (_res) {
+                console.log(_res);
+                if (_res.data.code == 100) {
+                    console.log(_res.data.data);
+                    $scope.txtGalleryName = _res.data.data.Title;
+                    $scope.txtDescreption = _res.data.data.Description;
+                    $scope.galleryImg=_res.data.data.DisplayPicture
+                }
+                $state.go('galleries');
+            }).finally(function () {
+                $rootScope.loading = false;
+            });
         }
-        $rootScope.loading = true;
-        API.execute(req).then(function (_res) {
-            console.log(_res);
-            if (_res.data.code == 100) {
-                console.log(_res.data.data);
-                $rootScope.Token = _res.data.data.Token;
-                //$rootScope.currentUser = {
-                $rootScope.txtGalleryName = _res.data.data.Title,
-                $scope.txtDescreption = _res.data.data.Description,
-                $rootScope.userImg = _res.data.data.DisplayPicture,
-                $rootScope.userImg = _res.data.data.FeaturedPhoto,
-                $rootScope.galleryId = _res.data.data._id,
-                Token = _res.data.data.Token
-                //};
-            }
-            $scope.showMessage = true;
-            $scope.messageTxt = 'Saved ...';
-            $scope.messageStatus = 'success';
-            $state.go('galleries');
-        });
     };
 
-    var req = {
-        method: 'put',
-        url: '/Galleries'+ $stateParams.galleryid,
-        data: {
-            Title: $rootScope.txtGalleryName,
-            Description: $scope.txtDescreption,
-            _id: $stateParams.galleryid,
-        }
-    }
-    $rootScope.loading = true;
-    API.execute(req).then(function (_res) {
-        console.log(_res);
-        if (_res.data.code == 100) {
-            console.log(_res.data.data);
-            $scope.txtGalleryName = _res.body.Title;
-            $scope.txtDescreption = _res.body.Description;
-        }
-    });
 
     $scope.cancelClient = function () {
         $state.go('galleries');
