@@ -17,7 +17,7 @@
         <div class="dvGalleriesContainer">
             <div class="filterable" ng-repeat="item in items | filter:searchText as filteredArray">
                 <div class="dvgalleriesData" ui-sref="item">
-                    <div><img src="{{item.img}}" /></div>
+                    <div><img fallbacksrc src="{{item.img}}" /></div>
                     <div class="galleryName"><span>{{item.name}}</span></div>
                 </div>
             </div>

@@ -617,12 +617,15 @@ canvas {
     width: 75% !important;
     margin: 0 auto !important;
 }
-/******************************************************************************
-********************************* pageLogin *********************************
-*******************************************************************************
-*******************************************************************************/
-.pageLogin .btn-link{
-    color:#fff;
+.btn-link{
+        color: #fff;
+    border: none !important;
+    box-shadow: none;
+    outline-color: transparent !important;
+    text-decoration:underline !important;
+}
+.btn-link:focus, .btn-link:hover{
+    color:#fff !important;
 }
 
 /******************************************************************************
@@ -632,9 +635,7 @@ canvas {
  #registerContainer{
         margin-top: 5%;
 }
- .pageRegister .btn-link{
-    color:#fff;
-}
+ 
 
 /******************************************************************************
 ********************************* pageGalleries *********************************

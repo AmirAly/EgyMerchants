@@ -1,13 +1,13 @@
-var ehs = angular.module("ehs", ['ui.router', 'ui.bootstrap.datetimepicker', 'ngAnimate', 'ui.dateTimeInput', 'uiSwitch']);
+var app = angular.module("app", ['ui.router', 'ui.bootstrap.datetimepicker', 'ngAnimate', 'ui.dateTimeInput', 'uiSwitch']);
 
-ehs.run(function ($rootScope, $state) {
+app.run(function ($rootScope, $state) {
     $rootScope.logout = function () {
         $state.go('login');
     };
     $rootScope.DeleteConfirmed = false;
 });
 
-ehs.config(function ($stateProvider, $urlRouterProvider) {
+app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
     .state('login', {
         url: '/login',

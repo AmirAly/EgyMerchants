@@ -45,7 +45,7 @@
                         <div class="dvGalleriesContainer">
                             <div class="filterable" ng-repeat="img in itemImages | filter:searchText as filteredArray">
                                 <div class="dvgalleriesData" data-toggle="modal" data-target="#imgModal">
-                                    <div><img src="{{img.img}}" /></div>
+                                    <div><img fallbacksrc src="{{img.img}}" /></div>
                                     <div class="galleryName"><span>{{img.name}}</span></div>
                                 </div>
                                 
@@ -53,7 +53,7 @@
 
                             <div class="filterable">
                                 <div class="dvgalleriesData" data-toggle="modal" data-target="#imgModal">
-                                    <div><img src="images/add.png" /></div>
+                                    <div><img fallbacksrc src="images/add.png" /></div>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                 <!-- Weight Modal Header End -->
                 <div class="clear"></div>
                 <div>
-                    <img id="imgClient" ng-click="ShowFileSelector()" class="img-responsive cursorPointer" src="images/noimage.jpg" />
+                    <img fallbacksrc id="imgClient" ng-click="ShowFileSelector()" class="img-responsive cursorPointer" src="images/noimage.jpg" />
                     <input type="file" onchange="convertImgToBase64URL(event)" id="uploadClientImage" class="hide" />
                 </div>
                 <div class="clear"></div>

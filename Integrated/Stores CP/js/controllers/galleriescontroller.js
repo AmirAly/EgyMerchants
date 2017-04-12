@@ -1,4 +1,4 @@
-﻿ehs.controller("galleriesController", function ($scope, $state, $rootScope, API) {
+﻿app.controller("galleriesController", function ($scope, $state, $rootScope, API) {
     $rootScope.pageHeader = '';
 
     //$scope.galleries = [{id:1, name: 'Ahmed Ali', img: 'images/user0.jpg' },

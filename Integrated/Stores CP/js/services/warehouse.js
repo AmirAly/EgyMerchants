@@ -1,4 +1,4 @@
-﻿ehs.factory('API', ['$http', '$rootScope', function ($http, $rootScope) {
+﻿app.factory('API', ['$http', '$rootScope', function ($http, $rootScope) {
     var _url = "http://localhost:8007";
     var _url = "http://egm-api.azurewebsites.net";
     return {

@@ -1,6 +1,5 @@
-﻿ehs.controller("LoginController", function ($scope, $state, $rootScope, API) {
+﻿app.controller("LoginController", function ($scope, $state, $rootScope, API) {
     $scope.loginFormError = false;
-    console.log(API);
     $scope.submit = function () {
         angular.forEach($scope.frmLogin.$error.required, function (field) {
             field.$setDirty();

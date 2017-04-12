@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="text-center col-md-6 col-sm-6 col-xs-6 imgClient">
-                            <img id="imgClient" ng-click="ShowFileSelector()" class="cursorPointer" ng-src="{{userImg}}" />
+                            <img id="imgClient" fallbacksrc ng-click="ShowFileSelector()" class="cursorPointer" ng-src="{{userImg}}" />
                             <input type="file" onchange="convertImgToBase64URL(event)" id="uploadClientImage" class="hide" />
                         </div>
 
@@ -85,10 +85,10 @@
                     <div class="clear2"></div>
                     <div class="clear2"></div>
                     <div class="col-xs-5 col-xs-offset-2 text-center" ng-click="CamSource()">
-                        <img src="images/camicon.png" class="img-responsive" style="max-width:40%" />
+                        <img fallbacksrc src="images/modalcamicon.png" class="img-responsive" style="max-width:40%" />
                     </div>
                     <div class="col-xs-5 text-right" style="padding-left:7.5%" ng-click="ImgSource()">
-                        <img src="images/galleryicon.png" class="img-responsive" style="max-width:40%" />
+                        <img fallbacksrc src="images/modalgalleryicon.png" class="img-responsive" style="max-width:40%" />
                     </div>
                     <div class="col-xs-5 col-xs-offset-2" ng-click="CamSource()">
                         <h3 style="color:#333">Camera</h3>

@@ -1,4 +1,4 @@
-﻿ehs.controller("registerController", function ($scope, $state, $rootScope, API) {
+﻿app.controller("registerController", function ($scope, $state, $rootScope, API) {
     $scope.loginFormError = false;
     $scope.submit = function () {
         angular.forEach($scope.frmRegister.$error.required, function (field) {

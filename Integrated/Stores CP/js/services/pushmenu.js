@@ -1,4 +1,4 @@
-﻿ehs.factory('slidePush', function () {
+﻿app.factory('slidePush', function () {
     var spmenuHorizontalHeight, spmenuVerticalWidth;
     spmenuVerticalWidth = 250;
     spmenuHorizontalHeight = 150;

@@ -13,7 +13,7 @@
         <div class="dvGalleriesContainer">
             <div class="filterable" ng-repeat="gallery in galleries | filter:searchText as filteredArray">
                 <div class="dvgalleriesData" ng-click="showGalleryDetails($index)">
-                    <div><img src="{{userImg}}" /></div>
+                    <div><img fallbacksrc src="{{userImg}}" /></div>
                     <div class="galleryName"><span>{{txtGalleryName}}</span></div>
                 </div>
             </div>

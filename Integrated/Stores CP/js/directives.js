@@ -1,5 +1,5 @@
 ﻿// Vallidation & Input Effect Direrctives
-ehs.directive('ngInputEffectClass', function ($timeout) {
+app.directive('ngInputEffectClass', function ($timeout) {
     return ({
         restrict: 'A',
         link: function (scope, element, attr) {
@@ -24,7 +24,7 @@ ehs.directive('ngInputEffectClass', function ($timeout) {
     });
 });
 
-ehs.directive('ngSelectEffectClass', function () {
+app.directive('ngSelectEffectClass', function () {
     return ({
         restrict: 'A',
         link: function (scope, element, attr) {
@@ -40,7 +40,7 @@ ehs.directive('ngSelectEffectClass', function () {
     });
 });
 
-ehs.directive('isRequired', function () {
+app.directive('isRequired', function () {
     return {
         require: 'ngModel',
         link: function (scope, element, attr, mCtrl) {
@@ -57,7 +57,7 @@ ehs.directive('isRequired', function () {
     };
 });
 
-ehs.directive('isRequiredSelect', function () {
+app.directive('isRequiredSelect', function () {
     return {
         require: 'ngModel',
         link: function (scope, element, attr, mCtrl) {
@@ -74,7 +74,7 @@ ehs.directive('isRequiredSelect', function () {
     };
 });
 
-ehs.directive('stringToNumber', function () {
+app.directive('stringToNumber', function () {
     return {
         require: 'ngModel',
         link: function (scope, element, attrs, ngModel) {
@@ -88,7 +88,7 @@ ehs.directive('stringToNumber', function () {
     };
 });
 
-ehs.directive("compareTo", function ($timeout) {
+app.directive("compareTo", function ($timeout) {
     return {
         require: "ngModel",
         scope: {
@@ -106,7 +106,7 @@ ehs.directive("compareTo", function ($timeout) {
     };
 });
 
-ehs.directive('fallbacksrc', function () {
+app.directive('fallbacksrc', function () {
     var fallbackSrc = {
         link: function postLink(scope, iElement, iAttrs) {
             iElement.bind('error', function () {
