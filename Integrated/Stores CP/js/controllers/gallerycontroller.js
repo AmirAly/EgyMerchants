@@ -10,8 +10,10 @@
         $scope.createMode = true;
         $rootScope.pageHeader = 'Create Gallery';
         $scope.galleryImg = BaseImg64;
+        $scope.showDeleteBtn = false;
     } else {
         //Edit client
+        $scope.showDeleteBtn = true;
         $rootScope.pageHeader = 'Edit Gallery';
         $scope.createMode = false;
         console.log('e1');
@@ -34,7 +36,6 @@
         }).finally(function () {
             $rootScope.loading = false;
         });
-        
     }
 
     $scope.submit = function () {
@@ -61,11 +62,6 @@
                     console.log(_res.data.data);
                     $rootScope.Token = _res.data.data.Token;
                     $rootScope.currentGallery = _res.data.data;
-                    //$rootScope.txtGalleryName = _res.data.data.Title,
-                    //$scope.txtDescreption = _res.data.data.Description,
-                    //$rootScope.galleryImg = _res.data.data.DisplayPicture,
-                    //$rootScope.galleryImg = _res.data.data.FeaturedPhoto,
-                    //$rootScope.galleryId = _res.data.data._id,
                     Token = _res.data.data.Token
                     
                 }
@@ -76,9 +72,7 @@
             }).finally(function () {
                 $rootScope.loading = false;
             });
-
         } else {
-
             var req = {
                 method: 'put',
                 url: '/Galleries' ,
@@ -99,6 +93,9 @@
                     $scope.txtDescreption = _res.data.data.Description;
                     $scope.galleryImg=_res.data.data.DisplayPicture
                 }
+                $scope.showMessage = true;
+                $scope.messageTxt = 'Edits done ...';
+                $scope.messageStatus = 'success';
                 $state.go('galleries');
             }).finally(function () {
                 $rootScope.loading = false;
@@ -119,10 +116,9 @@
             if (_res.data.code == 100) {
                 $scope.showMessage = true;
                 $scope.messageTxt = 'Deleted';
-                $scope.messageStatus = 'success';
+                $scope.messageStatus = 'danger';
                 $state.go('galleries');
             }
-            
             else {
                 console.log(_res);
             }
@@ -134,8 +130,8 @@
     $scope.cancelClient = function () {
         $state.go('galleries');
     }
-    //img uploader
 
+    //img uploader
     $scope.ShowFileSelector = function () {
         if (navigator && navigator.camera) {
             $('#libModal').modal('show');

@@ -5,13 +5,13 @@
             <span class="pageTitle">Gallery &nbsp;<a ui-sref="gallery"><span class="glyphicon glyphicon-plus-sign"></span></a></span>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-            <input type="text" placeholder="Type to filter" class="input-form txtSearchGalleries" ng-model="searchText.name" />
+            <input type="text" placeholder="Type to filter" class="input-form txtSearchGalleries" ng-model="searchText.galleryName" />
         </div>
     </div>
     <div class="clear"></div>
     <div class="row">
         <div class="dvGalleriesContainer">
-            <div class="filterable" ng-repeat="gallery in galleries | filter:searchText as filteredArray">
+            <div class="filterable" ng-repeat="gallery in galleries | filter:searchText.galleryName as filteredArray">
                 <div class="dvgalleriesData" ng-click="showGalleryDetails(gallery._id)">
                     <div><img fallbacksrc src="{{gallery.DisplayPicture}}" /></div>
                     <div class="galleryName"><span>{{gallery.Title}}</span></div>
