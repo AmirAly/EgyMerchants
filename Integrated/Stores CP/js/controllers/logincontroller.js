@@ -14,7 +14,6 @@
         }
         $rootScope.loading = true;
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
                 $rootScope.Token = _res.data.data.Token;
                 $rootScope.currentUser = {
@@ -28,12 +27,8 @@
                 $scope.messageTxt = 'Welcome back!';
                 $scope.messageStatus = 'success';
                 $state.go('galleries');
-//<<<<<<< HEAD
+                //$state.go('items', { galleryid: '58eba54a45c73113604ef4cb' });
 
-
-//=======
-//                $state.go('items', { galleryid: '58eba54a45c73113604ef4cb' });
-//>>>>>>> 5edbe95aea091d68551d4c90667493151b2a0d8f
             }
             else if (_res.data.code == 101) { // Email not confirmed
                 $rootScope.currentUser = {
@@ -53,7 +48,7 @@
                 $scope.messageTxt = 'Sorry, your account has been suspended, please contact support';
                 $scope.messageStatus = 'warning';
             }
-            else{ // Email not confirmed
+            else { // Email not confirmed
                 $scope.showMessage = true;
                 $scope.messageTxt = 'Wrong login infromation';
                 $scope.messageStatus = 'warning';

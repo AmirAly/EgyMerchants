@@ -1,4 +1,7 @@
-﻿app.controller("itemsController", function ($scope, $state, $rootScope, $stateParams, API) {
+﻿app.controller("itemsController", function ($scope, $state, $rootScope, $stateParams, API, $location) {
+    if (typeof $rootScope.currentUser === 'undefined') {
+        $location.path("/login");
+    }
     $rootScope.pageHeader = '';
     $scope.items = [];
     if ($stateParams.galleryid !='') {
@@ -9,11 +12,10 @@
         }
         $rootScope.loading = true;
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
                 $scope.items = _res.data.data;
             }
-            else if(_res.data.code == 21) { 
+            else { 
                 $scope.showMessage = true;
                 $scope.messageTxt = _res.data.data;
                 $scope.messageStatus = 'warning';

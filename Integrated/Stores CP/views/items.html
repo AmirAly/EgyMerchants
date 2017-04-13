@@ -10,12 +10,12 @@
     </div>
     <div class="clear"></div>
 
-    <h3 class="text-center">{{}}</h3>
+    <h3 class="text-center">{{globalGalleryName}}</h3>
     <div class="clear"></div>
 
     <div class="row">
         <div class="dvGalleriesContainer">
-            <div class="filterable" ng-repeat="item in items | filter:searchText as filteredArray">
+            <div class="filterable" ng-repeat="item in items | filter:searchText.name as filteredArray">
                 <div class="dvgalleriesData" ng-click="showItemDetails(item)">
                     <div><img fallbacksrc src="{{item.Pictures[0].URL}}" /></div>
                     <div class="galleryName"><span>{{item.Name}}</span></div>

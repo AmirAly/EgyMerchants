@@ -95,7 +95,8 @@
 }
 
 .imgItem{
-    margin:0 auto;
+    margin:0 auto !important;
+    max-height: 300px !important;
 }
 
 /*scroll*/
@@ -749,19 +750,12 @@ canvas {
 
 .pageGallery .imgClient img {
     border: 2px solid #eee;
-    max-height: 170px;
-    max-width: 170px;
+    max-height: 300px;
+    max-width: 300px;
     width: 100% !important;
     border-radius: 25px;
 }
 
-.delBtn{
-    background-color: transparent;
-    border: 2px solid #F44336;
-    color: #fff !important;
-    padding-left: 20px;
-    padding-right: 20px;
-}
 
 /******************************************************************************
 ******************************* Modals ****************************

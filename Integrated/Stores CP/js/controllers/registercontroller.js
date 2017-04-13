@@ -20,7 +20,6 @@
         //})
         $rootScope.loading = true;
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
                 $rootScope.Token = _res.data.data.Token;
                 $rootScope.currentUser = {
@@ -34,7 +33,6 @@
                 $scope.showMessage = true;
                 $scope.messageTxt = 'Welcome back!';
                 $scope.messageStatus = 'success';
-                console.log($rootScope.currentUser);
                 $state.go('login');
             } else {
                 $scope.showMessage = true;

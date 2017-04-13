@@ -1,12 +1,3 @@
-var app = angular.module("app", ['ui.router', 'ui.bootstrap.datetimepicker', 'ngAnimate', 'ui.dateTimeInput', 'uiSwitch']);
-
-app.run(function ($rootScope, $state) {
-    $rootScope.logout = function () {
-        $state.go('login');
-    };
-    $rootScope.DeleteConfirmed = false;
-});
-
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
     .state('login', {

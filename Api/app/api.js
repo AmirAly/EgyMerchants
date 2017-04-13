@@ -273,7 +273,7 @@ module.exports = function (app, express) {
                 if (Obj && Obj.Status == 'Active') {
                     Obj.Title = req.body.Title;
                     Obj.Description = req.body.Description;
-
+                    Obj.DisplayPicture = req.body.DisplayPicture;
                     Obj.save(function (err) {
                         if (err)
                             return res.json({ code: '21', data: err });

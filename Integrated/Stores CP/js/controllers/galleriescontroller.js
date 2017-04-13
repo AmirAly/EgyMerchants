@@ -1,6 +1,8 @@
-﻿app.controller("galleriesController", function ($scope, $state, $rootScope, API, $stateParams) {
+﻿app.controller("galleriesController", function ($scope, $state, $rootScope, API, $stateParams, $location) {
+    if (typeof $rootScope.currentUser === 'undefined') {
+        $location.path("/login");
+    }
     $rootScope.pageHeader = '';
-
     $scope.galleries = [];
     var req = {
         method: 'get',
@@ -9,9 +11,7 @@
     }
     $rootScope.loading = true;
     API.execute(req).then(function (_res) {
-        console.log(_res);
         if (_res.data.code == 100) {
-            console.log(_res.data.data);
             $scope.galleries = _res.data.data;
         }
     }).finally(function () {
