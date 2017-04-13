@@ -7,7 +7,7 @@
             <a class="owl-slider-prev"></a> <a class="owl-slider-next"></a>
             <div class="owl-slider">
                 <div class="item text-center">
-                    <img src="storeData.FeaturedPhoto" ng-src="{{storeData.FeaturedPhoto}}" alt="img">
+                    <img fallbacksrc src="storeData.FeaturedPhoto" ng-src="{{storeData.FeaturedPhoto}}" alt="img">
                     <a class="title-slide-01">
                         <span class="big">{{storeData.Fullname}}</span>
                         <span class="middle">{{storeData.StoreName}}</span>
@@ -65,7 +65,7 @@
 
                             <!--Start carousel -->
                             <div class="">
-                                <img src="gallery.DisplayPicture" class="img-responsive" ng-src="{{gallery.DisplayPicture}}" alt="img">
+                                <img fallbacksrc src="gallery.DisplayPicture" class="img-responsive" ng-src="{{gallery.DisplayPicture}}" alt="img">
                             </div>
                             <!--End carousel -->
                         </div>

@@ -13,7 +13,7 @@
             <a class="owl-slider-prev"></a> <a class="owl-slider-next"></a>
             <div class="owl-slider">
                 <div class="item text-center">
-                    <img ng-src="{{gallery.DisplayPicture}}" alt="img">
+                    <img fallbacksrc ng-src="{{gallery.DisplayPicture}}" alt="img">
                     <a class="title-slide-01">
                         <span class="big">{{gallery.Title}}</span>
                         <span class="big">{{gallery.Description}}</span>
@@ -37,8 +37,8 @@
                 <!--Start Feature-->
                 <div class="product-preview" ng-repeat="item in items">
                     <div class="preview animate scale">
-                        <a href="images/3.jpg" class="fancybox-gallery">
-                            <img class="img-responsive animate scale" width="270" height="328" alt="" src="images/3.jpg" ng-src="images/3.jpg">
+                        <a href="{{item.Img}}" class="fancybox-gallery">
+                            <img fallbacksrc class="img-responsive animate scale" width="270" height="328" alt="" src="{{item.Img}}" ng-src="{{item.Img}}">
                         </a>
                         <ul class="product-controls-list right hide-right">
                             <li class="top-out"></li>
@@ -46,7 +46,7 @@
                             <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
                             <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
                         </ul>
-                        <a href="images/3.jpg" class="quick-view  fancybox hidden-xs">
+                        <a href="{{item.Img}}" class="quick-view  fancybox hidden-xs">
                             <span class="rating">
                                 <i class="icon-star-3"></i>
                                 <i class="icon-star-3"></i>
