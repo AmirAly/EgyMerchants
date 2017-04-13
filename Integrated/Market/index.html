@@ -36,9 +36,9 @@
 </head>
 <body ng-app="app" class="container-fluid">
     <div class="responsive">
-        <div class="loader">
+        <!--<div class="loader">
             <div class="bubblingG"> <span id="bubblingG_1"> </span> <span id="bubblingG_2"> </span> <span id="bubblingG_3"> </span> </div>
-        </div>
+        </div>-->
         <!--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
         <div id="outer">
             <div id="outer-canvas">
@@ -50,7 +50,8 @@
                 <!-- //end Footer -->
             </div>
         </div>
-
+        <div class="loaderContainer" ng-show="loading"></div>
+        <div class="loader" ng-show="loading"></div>
 
     </div>
     <!-- angular -->

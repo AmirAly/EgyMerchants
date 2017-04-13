@@ -2,8 +2,10 @@
     console.log('1111');
 
     $scope.load = function () {
+
         $timeout(function () {
             $.fancybox.open([{ href: 'images/welcome0.jpg', title: 'Welcome' }]);
+            $rootScope.loading = true;
         }, 1500);
         $scope.stores = [];
         var req = {
@@ -15,6 +17,8 @@
         API.execute(req).then(function (_res) {
             console.log(_res);
             $scope.stores = _res.data.data;
+        }).finally(function () {
+            $rootScope.loading = false;
         });
     }
     $scope.load();
