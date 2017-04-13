@@ -15,7 +15,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
 
-        /*Admin routes*/
+        /*inner routes*/
+        .state('user', {
+            url: '/user',
+            views: {
+                '': { templateUrl: 'views/user.html', controller: 'userController' },
+                'headerView@user': { templateUrl: 'views/templates/header.temp.html' }
+            }
+        })
+
     .state('galleries', {
         url: '/galleries',
         views: {

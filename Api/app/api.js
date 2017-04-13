@@ -108,6 +108,7 @@ module.exports = function (app, express) {
                                 Email: Obj.Email,
                                 _id: Obj._id,
                                 AccountType: 'Store',
+                                FeaturedPhoto: Obj.FeaturedPhoto,
                                 Token: token
                             }
                         });
@@ -118,6 +119,7 @@ module.exports = function (app, express) {
                                 Email: Obj.Email,
                                 _id: Obj._id,
                                 AccountType: 'Store',
+                                FeaturedPhoto: Obj.FeaturedPhoto,
                                 Token: token
                             }
                         });
@@ -173,6 +175,33 @@ module.exports = function (app, express) {
             }
         });
     });
+    api.get('/Store/profile/:id', function (req, res) {
+        Stores.findOne({ _id: req.params.id }, 'FeaturedPhoto StoreName', function (err, Obj) {
+            if (err)
+                return res.json({ code: '1', data: err });
+            else {
+               return res.json({ code: '100', data: Obj });
+            }
+        });
+    });
+    api.put('/Store', function (req, res) {
+        Stores.findOne({ _id: req.body._id }, {}, function (err, Obj) {
+            if (err)
+                return res.json({ code: '1', data: err });
+            else {
+                Obj.StoreName = req.body.StoreName;
+                Obj.FeaturedPhoto = req.body.FeaturedPhoto;
+                Obj.save(function (err) {
+                    if (err)
+                        return res.json({ code: '21', data: err });
+                    else
+                        return res.json({ code: '100', data: Obj });
+                });
+
+            }
+        });
+    });
+
     api.get('/Galleries/:CountryISOCode', function (req, res) {
         Galleries.find({ 'Status': 'Active' }, '_id Status Title Description Store', function (err, lst) {
             if (err)

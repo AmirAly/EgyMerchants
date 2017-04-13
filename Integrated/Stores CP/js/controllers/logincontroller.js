@@ -21,7 +21,8 @@
                     Email: _res.data.data.Email,
                     _id: _res.data.data._id,
                     AccountType: _res.data.data.AccountType,
-                    Token: _res.data.data.Token
+                    Token: _res.data.data.Token,
+                    FeaturedPhoto: _res.data.data.FeaturedPhoto
                 };
                 $scope.showMessage = true;
                 $scope.messageTxt = 'Welcome back!';
@@ -36,7 +37,8 @@
                     Email: _res.data.data.Email,
                     _id: _res.data.data._id,
                     AccountType: _res.data.data.AccountType,
-                    Token: _res.data.data.Token
+                    Token: _res.data.data.Token,
+                    FeaturedPhoto: _res.data.data.FeaturedPhoto
                 };
                 $scope.showMessage = true;
                 $scope.messageTxt = 'Welcome back, your email needs to be activated !';
