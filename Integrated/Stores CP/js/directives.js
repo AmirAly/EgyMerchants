@@ -3,7 +3,6 @@ app.directive('ngInputEffectClass', function ($timeout) {
     return ({
         restrict: 'A',
         link: function (scope, element, attr) {
-            //console.log('load');
             $timeout(function () {
                 if (element.val()) {
                     element.addClass('used');

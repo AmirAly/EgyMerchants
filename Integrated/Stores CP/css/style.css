@@ -1,13 +1,15 @@
 ﻿body {
     height: 100vh;
-    background: #000; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left, #000, rgba(8, 8, 8, 0.79)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #000, rgba(8, 8, 8, 0.79)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #000, rgba(8, 8, 8, 0.79)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #000, rgba(8, 8, 8, 0.79)); /* Standard syntax */
+    background: #fff; /* For browsers that do not support gradients */
     font-family: sans-serif;
-    color: #ffffff;
+    color: #000000;
     font-size: 14px !important;
+    background: linear-gradient(to right, #eeeeee, rgba(158, 158, 158, 0.14));
+    background: -webkit-linear-gradient(left, #eeeeee, rgba(158, 158, 158, 0.14));/* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #eeeeee, rgba(158, 158, 158, 0.14));/* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #eeeeee, rgba(158, 158, 158, 0.14)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #eeeeee, rgba(158, 158, 158, 0.14)); /* Standard syntax */
+
 }
 
 /*animation*/
@@ -120,7 +122,7 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #fff;
+    color: #000;
 }
 /*date Picker*/
 .datetimepicker {
@@ -139,7 +141,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .tblWhite td {
-    color: #fff;
+    color: #000;
 }
 
 .noPaddingLeft {
@@ -147,7 +149,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hrItem {
-    border: 2px solid #fff;
+    border: 2px solid #000;
     border-radius: 20px;
     padding: 1%;
     margin-bottom: 2%;
@@ -222,7 +224,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .blackBg {
-    background-color: #000;
+    background-color: #fff;
 }
 
 .hideMe {
@@ -262,7 +264,7 @@ label:not(.checkboxLabel) {
 input:not(#txtSMS):not(#txtSMSnotifications):not(.switchChbx):not([type="checkbox"]) {
     padding: 10px 10px 10px 5px;
     border: none;
-    border-bottom: 1px solid #757575;
+    border-bottom: 1px solid #000;
     display: inline-block;
     width: 100%;
     height: 38px;
@@ -270,10 +272,10 @@ input:not(#txtSMS):not(#txtSMSnotifications):not(.switchChbx):not([type="checkbo
     padding-left: 0px;
     border-style: none none solid;
     border-bottom-width: 1px;
-    border-bottom-color: #e6e6e6;
+    border-bottom-color: #000;
     border-radius: 0px;
     background-color: transparent;
-    color: #fff;
+    color: #000;
     font-size: 14px;
     padding: 5px;
 }
@@ -433,8 +435,8 @@ option {
 
 .btn-invert {
     background-color: transparent;
-    border: 2px solid #fff;
-    color: #fff !important;
+    border: 2px solid #000;
+    color: #000 !important;
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -447,19 +449,19 @@ option {
 .btn-dismiss {
     background-color: transparent;
     border: 2px solid #aaa;
-    color: #aaa !important;
+    color: #000 !important;
     padding-left: 20px;
     padding-right: 20px;
 }
 
     .btn-dismiss.active, .btn-dismiss:active,
     .btn-dismiss.active.focus, .btn-dismiss.active:focus, .btn-dismiss.focus, .btn-dismiss:active.focus, .btn-dismiss:active:focus, .btn-dismiss:focus {
-        color: #aaa;
+        color: #000;
     }
 
 /*Menu*/
 .spmenu {
-    background: #000;
+    background: rgba(158, 158, 158, 0.36);
     border: 0;
     max-width: 250px;
     top: 40px;
@@ -482,7 +484,7 @@ option {
         }
 
             .spmenu .sidebar-nav .sidebar-brand .txtMenuItem {
-                color: #fff;
+                color: #000;
                 font-size: 18px;
                 font-weight: normal;
                 margin-top: 20px;
@@ -566,10 +568,11 @@ option {
     left: 0;
     padding-right: 15px;
     padding-left: 15px;
-    border-top: 2px solid red;
+    border-top: 2px solid #000;
     color: #FFF;
     min-height: 45px;
-    background: url(../images/backgound.png)no-repeat center center fixed;
+    background:#fff;
+    /*background: url(../images/backgound.png)no-repeat center center fixed;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -587,7 +590,8 @@ option {
     padding-top: 5px;
     color: #FFF;
     min-height: 45px;
-    background: url(../images/backgound.png)no-repeat center center fixed;
+    background:#fff;
+    /*background: url(../images/backgound.png)no-repeat center center fixed;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -623,14 +627,14 @@ canvas {
     margin: 0 auto !important;
 }
 .btn-link{
-        color: #fff;
+        color: #000;
     border: none !important;
     box-shadow: none;
     outline-color: transparent !important;
     text-decoration:underline !important;
 }
 .btn-link:focus, .btn-link:hover{
-    color:#fff !important;
+    color:#000 !important;
 }
 
 /******************************************************************************
@@ -701,7 +705,7 @@ canvas {
     white-space: pre-line;
     overflow: visible;
     text-overflow: ellipsis;
-    color: #fff;
+    color: #000;
     text-align: center;
     margin-top: 2px;
 }
@@ -723,11 +727,11 @@ canvas {
 
 .pageGalleries  .pageTitle {
     font-size: 30px;
-    color: #fff;
+    color: #000;
 }
 
     .pageGalleries  .pageTitle a {
-        color: #fff;
+        color: #000;
     }
 
         .pageGalleries  .pageTitle a span {
@@ -735,7 +739,7 @@ canvas {
         }
 
             .pageGalleries  .pageTitle a span:hover {
-                color: white;
+                color: #000;
             }
 
 /******************************************************************************
@@ -744,7 +748,7 @@ canvas {
 *******************************************************************************/
 .pageGallery .btn-link{
     font-size:20px;
-    color:#fff;
+    color:#000;
     padding-left:20px;
 }
 

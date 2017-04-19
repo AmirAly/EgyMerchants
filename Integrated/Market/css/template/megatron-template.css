@@ -1227,7 +1227,7 @@ label {
 }
 .navbar .background {
 	background: #fff;
-	background: rgba(255, 255, 255, .9);
+	background: rgba(158, 158, 158, 0.29);
 	box-shadow: 0 1px 4px rgba(0, 0, 0, .25);
 	padding-top: 0px;
 	border-bottom: 1px solid #eee;
@@ -2049,7 +2049,7 @@ header.variant4 .navbar-compact .navbar-search {
 	text-align: right
 }
 .fullwidthbanner .title-slide-01 .big, .main-slider .owl-slider .title-slide-01 .big, .main-slider .ss-slides .title-slide-01 .big {
-	font: 10.5em/0.9em Mavenpro-black, Arial, Helvetica, sans-serif;
+	font: 7em/1.2em Mavenpro-black, Arial, Helvetica, sans-serif;
 	color: #fff;
 	opacity: .9;
 	text-transform: uppercase;

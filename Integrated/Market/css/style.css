@@ -30,6 +30,12 @@
     display: none;
 }
 
+/* Contact us section  */
+.socialNavBar{
+    background-color:rgba(158, 158, 158, 0.29) !important;
+} 
+
+
 /*scroll*/
 ::-webkit-scrollbar {
     border-radius: 20px;
@@ -62,9 +68,13 @@
     min-height: 150px !important;
 }
 
+.owl-slider .owl-item .item
+{
+    background:#777!important;
+}
 .main-slider .owl-slider .title-slide-01 .big {
     opacity:0.7;
-    background:#121212;
+    background:#000;
 }
  
 .main-slider .owl-slider .title-slide-01 .middle{
@@ -74,7 +84,7 @@
 }
 
 .main-slider .owl-slider .title-slide-01 .small{
-    color:#fff;
+    color:#333;
     font-size:10px;
 }
 

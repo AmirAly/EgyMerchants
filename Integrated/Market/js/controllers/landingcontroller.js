@@ -1,5 +1,4 @@
 ﻿app.controller("landingController", function ($scope, $state, $rootScope , $timeout,API) {
-    console.log('1111');
 
     $scope.load = function () {
 
@@ -13,9 +12,7 @@
             url: '/stores/'+'All',
             data: {},
         }
-        console.log(req);
         API.execute(req).then(function (_res) {
-            console.log(_res);
             $scope.stores = _res.data.data;
             $rootScope.loading = false;
         }).finally(function () {

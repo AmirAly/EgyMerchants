@@ -7,17 +7,6 @@
 
     //get data
     $rootScope.pageHeader = 'Edit Store';
-    //console.log($rootScope.currentUser);
-    //$scope.txtUserName = $rootScope.currentUser.Username;
-    //if ($rootScope.currentUser.FeaturedPhoto) {
-    //    console.log('FeaturedPhoto');
-    //    $scope.UserImg = $rootScope.currentUser.FeaturedPhoto;
-    //}
-    //else {
-    //    console.log('no');
-    //    $scope.UserImg = BaseImg64;
-
-    //}
     var req = {
         method: 'get',
         url: '/Store/profile/' + $rootScope.currentUser._id,
@@ -27,11 +16,9 @@
     API.execute(req).then(function (_res) {
         if (_res.data.code == 100) {
             if (_res.data.data.FeaturedPhoto) {
-                console.log('FeaturedPhoto');
                 $scope.UserImg = _res.data.data.FeaturedPhoto;
             }
             else {
-                console.log('no');
                 $scope.UserImg = BaseImg64;
 
             }
@@ -58,10 +45,8 @@
                     _id: $rootScope.currentUser._id
                 }
             }
-            console.log(req);
             $rootScope.loading = true;
             API.execute(req).then(function (_res) {
-                console.log(_res);
                 if (_res.data.code == 100) {
                     $scope.showMessage = true;
                     $scope.messageTxt = 'Saved ...';
