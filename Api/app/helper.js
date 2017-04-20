@@ -1,5 +1,5 @@
 var fileService = require('azure-storage')
-        .createBlobService('items', 'U7rnqj67eTUWBhYD5xBfSLrxc21jIpuHeRPKzr9GrOlXa485konFwcvMEnYz2Ohe1h84Vs/EPs5BxbsMPRHcAw==');
+        .createBlobService('egmpre', 'U7rnqj67eTUWBhYD5xBfSLrxc21jIpuHeRPKzr9GrOlXa485konFwcvMEnYz2Ohe1h84Vs/EPs5BxbsMPRHcAw==');
 
 module.exports = {
     sendEmail: function (email) {
