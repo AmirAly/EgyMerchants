@@ -35,6 +35,11 @@
     background-color:rgba(158, 158, 158, 0.29) !important;
 } 
 
+/*logo in footer */
+.logoImg {
+    width:235px;
+    max-width:235px;
+}
 
 /*scroll*/
 ::-webkit-scrollbar {
@@ -68,17 +73,13 @@
     min-height: 150px !important;
 }
 
-.owl-slider .owl-item .item
-{
-    background:#777!important;
-}
 .main-slider .owl-slider .title-slide-01 .big {
     opacity:0.7;
     background:#000;
 }
  
 .main-slider .owl-slider .title-slide-01 .middle{
-        color: #000;
+    color: #000;
     text-shadow: 0px 0px 0px #ffffff;
     font-size: 12px;
 }
@@ -95,7 +96,7 @@
 
 
 /*Loader*/
-.loaderContainer {
+/*.loaderContainer {
     position: fixed;
     background-color: #000;
     opacity: 0.7;
@@ -123,7 +124,7 @@
     -webkit-animation: spin 0.9s linear infinite;
     animation: spin 0.9s linear infinite;
     background-color:transparent !important;
-}
+}*/
 
 @-webkit-keyframes spin {
     0% {

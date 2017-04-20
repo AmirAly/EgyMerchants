@@ -1,7 +1,6 @@
 ﻿app.controller("galleryController", function ($scope, $state, $rootScope, $timeout, $stateParams, API) {
 
     $scope.load = function () {
-        $rootScope.loading = true;
         $scope.gallery = [];
         var req = {
             method: 'get',
@@ -24,8 +23,6 @@
                         Img: _res.data.data[i].Pictures[0].URL
                     });
                 }
-            }).finally(function () {
-                $rootScope.loading = false;
             });
         });
 

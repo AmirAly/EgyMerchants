@@ -2896,6 +2896,8 @@ _:valid\0, .contacts-form input.form-control, .contacts-form textarea.form-contr
 }
 .product-preview .preview .img-responsive {
 	width: 100%;
+    height:320px;
+    max-height:320px;
 	border-radius: 0
 }
 .product-preview h3.title {
@@ -3479,6 +3481,8 @@ _:valid\0, .contacts-form input.form-control, .contacts-form textarea.form-contr
 }
 .products-list-small .slides li img {
 	width: 100%;
+    height:120px;
+    max-height:120px;
 }
 .products-list-small .quick-view {
 	padding: 6px 0 4px
@@ -4076,6 +4080,8 @@ _:valid\0, .contacts-form input.form-control, .contacts-form textarea.form-contr
 }
 .banners-block .item img {
 	width: 100%;
+    height:156px;
+    max-height:156px;
 	max-width: 100%
 }
 .banners-block .item .banner-text {

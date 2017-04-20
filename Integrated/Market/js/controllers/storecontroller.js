@@ -2,9 +2,6 @@
 
     $scope.load = function () {
 
-        $rootScope.loading = true;
-
-
         $scope.storeData = [];
         var req = {
             method: 'get',
@@ -25,8 +22,6 @@
             }
             API.execute(req).then(function (_res) {
                 $scope.galleries = _res.data.data;
-            }).finally(function () {
-                $rootScope.loading = false;
             });
         });
 
