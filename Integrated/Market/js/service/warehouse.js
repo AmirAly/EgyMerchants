@@ -1,5 +1,5 @@
 app.factory('API',['$http', function ($http){
-    var _url = "http://10.0.0.57:8007";
+    //var _url = "http://10.0.0.57:8007";
     var _url = "http://egm-api.azurewebsites.net";
     return {
         name: 'API',

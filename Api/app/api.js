@@ -5,7 +5,7 @@ var Galleries = require('./models/gallery');
 var Items = require('./models/item');
 var CDN_App = "https://egmpre.blob.core.windows.net/";
 var jwt = require('jsonwebtoken');
-var Config = require('./config');
+var Config = require('../config/config');
 
 //====================================================================================
 module.exports = function (app, express) {
@@ -180,7 +180,7 @@ module.exports = function (app, express) {
             if (err)
                 return res.json({ code: '1', data: err });
             else {
-               return res.json({ code: '100', data: Obj });
+                return res.json({ code: '100', data: Obj });
             }
         });
     });
@@ -190,7 +190,9 @@ module.exports = function (app, express) {
                 return res.json({ code: '1', data: err });
             else {
                 Obj.StoreName = req.body.StoreName;
-                Obj.FeaturedPhoto = req.body.FeaturedPhoto;
+                if (req.body.FeaturedPhoto)
+                    var _blob_result = Helper.postFile(req.body.FeaturedPhoto, Obj._id + ".png");
+                Obj.FeaturedPhoto = CDN_App + "items/" + Obj._id + ".png";
                 Obj.save(function (err) {
                     if (err)
                         return res.json({ code: '21', data: err });
