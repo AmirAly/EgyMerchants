@@ -2896,8 +2896,8 @@ _:valid\0, .contacts-form input.form-control, .contacts-form textarea.form-contr
 }
 .product-preview .preview .img-responsive {
 	width: 100%;
-    height:320px;
-    max-height:320px;
+    height:290px;
+    max-height:290px;
 	border-radius: 0
 }
 .product-preview h3.title {
@@ -3473,14 +3473,16 @@ _:valid\0, .contacts-form input.form-control, .contacts-form textarea.form-contr
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
-	display: inline-block
+	display: inline-block;
+    height: auto;
+    padding-top: 30px;
 }
 .products-list-small .slides li {
 	display: block;
 	margin: 0 8px;
 }
 .products-list-small .slides li img {
-	width: 100%;
+	width: auto;
     height:120px;
     max-height:120px;
 }

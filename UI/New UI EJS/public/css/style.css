@@ -1,0 +1,8 @@
+﻿.cloudzoom-zoom {
+    z-index:999999 !important;
+}
+.fancybox-inner{
+        overflow: auto !important;
+}
+
+.cloudzoom-blank > div:last-child { display: none !important;}

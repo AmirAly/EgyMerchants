@@ -18,15 +18,13 @@ app.get('/', function (req, res) {
     //    { name: 'Coffee', drunkness: 10 }
     //];
     //var tagline = "Hi I'm Samar.";
-
     //var user = { name: 'samar', age: 28 };
-
-    res.render('pages/index', {
-        //drinks: drinks,
-        //tagline: tagline,
-        //user:user
-    });
-    //res.render('pages/index');
+    //res.render('pages/index', {
+    //    drinks: drinks,
+    //    tagline: tagline,
+    //    user:user
+    //});
+    res.render('pages/index');
 });
 
 // store page 
@@ -34,21 +32,21 @@ app.get('/store', function(req, res) {
     res.render('pages/store');
 });
 
-// product page 
-app.get('/product', function (req, res) {
-    res.render('pages/product');
-});
-
-
 // items page 
 app.get('/items', function (req, res) {
     res.render('pages/items');
 });
 
+// product page 
+app.get('/product', function (req, res) {
+    res.render('pages/product');
+});
 
 // contacts page 
 app.get('/contacts', function (req, res) {
     res.render('pages/contacts');
 });
+
+
 app.listen(8080);
 console.log('8080 is the magic port');

@@ -1,5 +1,5 @@
 {
-  "name": "Egy Merchants Market",
+  "name": "egy-merchants-market",
   "main": "server.js",
   "dependencies": {
     "ejs": "^1.0.0",
