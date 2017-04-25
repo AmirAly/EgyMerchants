@@ -2896,8 +2896,8 @@ _:valid\0, .contacts-form input.form-control, .contacts-form textarea.form-contr
 }
 .product-preview .preview .img-responsive {
 	width: 100%;
-    height:320px;
-    max-height:320px;
+    height:300px;
+    max-height:300px;
 	border-radius: 0
 }
 .product-preview h3.title {

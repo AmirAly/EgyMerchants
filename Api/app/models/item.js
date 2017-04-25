@@ -7,6 +7,11 @@ var Item = new Schema({
         Title: { type: String },
         URL: { type: String }
     }],
+    Price: { type: Number },
+    PriceBeforeSale: { type: Number },
+    Rate: { type: Number },
+    Tags: { type: String },
+    Badges: { type: String },
     Store: {
         type: Schema.Types.ObjectId,
         ref: 'Store',
