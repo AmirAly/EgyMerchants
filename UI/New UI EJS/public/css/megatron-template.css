@@ -2319,7 +2319,8 @@ header.variant4 .navbar-compact .navbar-search {
 }
 .services-block .icon-airplane-2 {
 	font-size: 3.5em;
-	line-height: 1em
+    padding-right: 33px;
+    line-height: 1em;
 }
 .services-block .item .text {
 	display: table-cell;
@@ -2970,7 +2971,7 @@ _:valid\0, .contacts-form input.form-control, .contacts-form textarea.form-contr
 	padding-bottom: 25px
 }
 .slider-products {
-	padding-bottom: 15px
+	padding-bottom: 0px!important;
 }
 .slider-products h3 {
 	padding-right: 40px;
