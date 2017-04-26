@@ -1,0 +1,31 @@
+﻿.cloudzoom-zoom {
+    z-index: 999999 !important;
+}
+
+.fancybox-inner {
+    overflow: auto !important;
+}
+
+.cloudzoom-blank > div:last-child {
+    display: none !important;
+}
+
+.services-block .container .row {
+    display: flex;
+}
+
+    .services-block .container .row .divider-right {
+        position: relative;
+        flex: 1;
+        align-items: center;
+        align-self: center;
+        align-content: center;
+    }
+
+        .services-block .container .row .divider-right:after {
+            display: none;
+        }
+
+        .services-block .container .row .divider-right a {
+            border-left: 1px solid #e7e7e7;
+        }
