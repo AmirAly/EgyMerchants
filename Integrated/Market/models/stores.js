@@ -18,12 +18,15 @@ module.exports = {
     },
     getStoreByPlacement: function (_placement) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Placement': _placement }, '_id StoreName FeaturedPhoto', function (err, lst) {
+            Schema.find({}, '_id StoreName Placement FeaturedPhoto', function (err, lst) {
                 if (err)
                     reject('1:' + err);
                 else {
-                    if (lst)
-                        resolve(lst)
+                    if (lst) {
+                        var _ = require('underscore');
+                        var _lst = _.groupBy(lst, 'Placement');
+                        resolve(_lst)
+                    }
                     else {
                         reject("This filteration didn't resulted in any data");
                     }

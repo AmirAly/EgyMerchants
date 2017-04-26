@@ -1,4 +1,4 @@
-var Schema = require('./models/store');
+var Schema = require('./models/item');
 var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
     getStoreFeatured: function (_storeId) {
@@ -31,7 +31,7 @@ module.exports = {
             }).sort('-Sold').limit(5);
         })
     },
-    getStoreById: function (_id) {
+    getById: function (_id) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _id }, '', function (err, Obj) {
                 if (err)
@@ -45,5 +45,21 @@ module.exports = {
                 }
             });
         })
+    },
+    getByGalleryId: function (_id) {
+        return new Promise(function (resolve, reject) {
+            Schema.find({ 'Gallery': _id }, '', function (err, lst) {
+                if (err)
+                    reject('1:' + err);
+                else {
+                    if (lst)
+                        resolve(lst)
+                    else {
+                        reject("This filteration didn't resulted in any data");
+                    }
+                }
+            });
+        })
     }
+
 }

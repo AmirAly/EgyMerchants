@@ -2,1187 +2,656 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <% include ../partials/head %>
-	<!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
-    <link rel="stylesheet" type="text/css" href="rs-plugin/css/settings.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="rs-plugin/css/extralayers.css" media="screen" />
-  </head>
-  <body class="responsive">
-   <% include ../partials/loaderandsidemenu %>
+    <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+    <link rel="stylesheet" type="text/css" href="/rs-plugin/css/settings.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/rs-plugin/css/extralayers.css" media="screen" />
+</head>
+<body class="responsive">
+    <% include ../partials/loaderandsidemenu %>
 
     <div id="outer">
-      <div id="outer-canvas">
-        <!-- Navbar -->
-        <header>
-          <% include ../partials/header %>
-        </header>
-        <!-- //end Navbar -->
-        <!-- Slider -->
-        <section id="slider">
-          <a class="scroll-down animate-move-down" href="#">
-            <span class="icon icon-arrow-down-5"></span> scroll to view content
-          </a>
+        <div id="outer-canvas">
+            <!-- Navbar -->
+            <header>
+                <% include ../partials/header %>
+            </header>
+            <!-- //end Navbar -->
 
-          <!--
-                #################################
-                    - THEMEPUNCH BANNER -
-                #################################
-                -->
-          <div class="tp-banner-container">
-            <div class="tp-banner">
-              <ul>
-                <!-- SLIDE  -->
-
-                <li data-transition="curtain-2" data-slotamount="7" data-masterspeed="300" data-saveperformance="off">
-                  <!-- MAIN IMAGE -->
-                  <img src="images/slider/slide2-bg.jpg" alt="background" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-                    <!-- LAYERS -->
-                    <!-- LAYER NR. 1 -->
-                    <div class="tp-caption fade rs-parallaxlevel-0"
-                         data-x="center" data-hoffset="0"
-                         data-y="center" data-voffset="0"
-                         data-speed="1000"
-                         data-start="850"
-                         data-easing="easeInOutQuint"
-                         data-elementdelay="2"
-                         data-endelementdelay="0.1"
-                         data-endspeed="300"
-                         style="z-index: 1;">
-                      <img src="images/slider/slide1-border.png" alt="">
-                    </div>
-
-                    <!-- LAYER NR. 2 -->
-                    <div class="tp-caption sft rs-parallaxlevel-0"
-                         data-x="center" data-hoffset="-360"
-                         data-y="center" data-voffset="-175"
-                         data-speed="900"
-                         data-start="2500"
-                         data-easing="Back.easeInOut"
-                         data-elementdelay="0.1"
-                         data-endelementdelay="0.1"
-                         data-endspeed="300"
-                         style="z-index: 3;">
-                      <img src="images/slider/slide1-text2.png" alt="">
-                    </div>
-                    <!-- LAYER NR. 3 -->
-                    <div class="tp-caption sfb rs-parallaxlevel-0"
-                         data-x="center" data-hoffset="360"
-                         data-y="center" data-voffset="-175"
-                         data-speed="900"
-                         data-start="3000"
-                         data-easing="Back.easeInOut"
-                         data-elementdelay="0.1"
-                         data-endelementdelay="0.1"
-                         data-endspeed="300"
-                         style="z-index: 4;">
-                      <img src="images/slider/slide1-text3.png" alt="">
-                    </div>
-                    <!-- LAYER NR. 4 -->
-                    <div class="tp-caption sfr rs-parallaxlevel-0"
-                         data-x="center" data-hoffset="-117"
-                         data-y="center" data-voffset="0"
-                         data-speed="600"
-                         data-start="1200"
-                         data-easing="easeInBack"
-                         data-elementdelay="2"
-                         data-endelementdelay="0.1"
-                         data-endspeed="300"
-                         style="z-index: 5;">
-                      <img src="images/slider/slide1-1.png" alt="">
-                    </div>
-
-                    <!-- LAYER NR. 5 -->
-                    <div class="tp-caption sfl rs-parallaxlevel-0"
-                         data-x="center" data-hoffset="117"
-                         data-y="center" data-voffset="0"
-                         data-speed="600"
-                         data-start="2000"
-                         data-easing="easeInBack"
-                         data-elementdelay="2"
-                         data-endelementdelay="0.1"
-                         data-endspeed="300"
-                         style="z-index: 6;">
-                      <img src="images/slider/slide1-2.png" alt="">
-                    </div>
-                    <!-- LAYER NR. 6 -->
-                    <div class="tp-caption tp-fade rs-parallaxlevel-0"
-                         data-x="center" data-hoffset="0"
-                         data-y="center" data-voffset="0"
-                         data-speed="800"
-                         data-start="2500"
-                         data-easing="Expo.easeInOut"
-                         data-elementdelay="2"
-                         data-endelementdelay="0.1"
-                         data-endspeed="300"
-                         style="z-index: 6;">
-                      <img src="images/slider/slide1-line.png" alt="">
-                    </div>
-
-                    <!-- LAYER NR. 7 -->
-                    <div class="tp-caption randomrotate rs-parallaxlevel-0"
-                         data-x="center" data-hoffset="0"
-                         data-y="center" data-voffset="100"
-                         data-speed="900"
-                         data-start="3500"
-                         data-easing="Back.easeInOut"
-                         data-elementdelay="0.1"
-                         data-endelementdelay="0.1"
-                         data-endspeed="300"
-                         style="z-index: 7;">
-                      <img src="images/slider/slide1-text1.png" alt="">
-                    </div>
-                  </li>
-              </ul>
-              <!--          <div class="tp-bannertimer"></div>
-                        -->
-            </div>
-          </div>
-        </section>
-        <!-- //end Slider -->
-        <!-- Social widgets -->
-        <% include ../partials/socialwidgets %>
-        <!-- //end Social widgets -->
-        <!-- Services -->
-        <section class="services-block hidden-xs">
-          <div class="container">
-            <div class="row">
-              <div class="col-xs-12 col-sm-4 col-lg-4">
-                <a href="/" class="item">
-                  <span class="icon icon-airplane-2"></span>
-                  <span class="title">Book your booth</span>
-                  <span class="description"> for Free</span>
+            <!-- Welcome Msg -->
+            <section id="slider">
+                <a class="scroll-down animate-move-down" href="#">
+                    <span class="icon icon-arrow-down-5"></span> scroll to view content
                 </a>
-              </div>
-              <div class="col-xs-12 col-sm-4 col-lg-4 divider-right">
-                <a href="/" class="item">
-                  <span class="icon icon-clock"></span>
-                  <span class="title">30-day</span>
-                  <span class="description">Paid ads</span>
-                </a>
-              </div>
-              <div class="col-xs-12 col-sm-4 col-lg-4 divider-right">
-                <a href="/" class="item">
-                  <span class="icon icon-umbrella "></span>
-                  <span class="title">24/7 Support </span>
-                  <span class="description">online consultations</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- //end Services -->
-        <!-- Start creative content -->
-        <section class="container content nopad-bottom">
-          <div class="row">
-            <!-- Featured Products -->
-            <section class="col-sm-12 col-md-6 col-lg-6  slider-products module">
-              <h3>Featured Stores</h3>
 
-              <!-- Products list -->
-              <div class="row">
-                <div class="product-carousel">
-                  <div class="item">
-                    <div class="product-preview">
-                      <div class="preview animate scale">
-                        <a href="/store" class="preview-image">
-                          <img class="img-responsive animate scale" src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Idea.jpg" width="350" height="425" alt="">
-                        </a>
-                        <ul class="product-controls-list right hide-right">
-                          <li class="top-out"></li>
-                          <li>
-                            <a href="#" class="circle">
-                              <span class="icon-heart"></span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" class="circle">
-                              <span class="icon-justice"></span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" class="cart">
-                              <span class="icon-basket"></span>
-                            </a>
-                          </li>
+                <!--
+                      #################################
+                          - THEMEPUNCH BANNER -
+                      #################################
+                      -->
+                <div class="tp-banner-container">
+                    <div class="tp-banner">
+                        <ul>
+                            <!-- SLIDE  -->
+
+                            <li data-transition="curtain-2" data-slotamount="7" data-masterspeed="300" data-saveperformance="off">
+                                <!-- MAIN IMAGE -->
+                                <img src="/images/slider/slide2-bg.jpg" alt="background" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                                <!-- LAYERS -->
+                                <!-- LAYER NR. 1 -->
+                                <div class="tp-caption fade rs-parallaxlevel-0"
+                                     data-x="center" data-hoffset="0"
+                                     data-y="center" data-voffset="0"
+                                     data-speed="1000"
+                                     data-start="850"
+                                     data-easing="easeInOutQuint"
+                                     data-elementdelay="2"
+                                     data-endelementdelay="0.1"
+                                     data-endspeed="300"
+                                     style="z-index: 1;">
+                                    <img src="/images/slider/slide1-border.png" alt="">
+                                </div>
+
+                                <!-- LAYER NR. 2 -->
+                                <div class="tp-caption sft rs-parallaxlevel-0"
+                                     data-x="center" data-hoffset="-360"
+                                     data-y="center" data-voffset="-175"
+                                     data-speed="900"
+                                     data-start="2500"
+                                     data-easing="Back.easeInOut"
+                                     data-elementdelay="0.1"
+                                     data-endelementdelay="0.1"
+                                     data-endspeed="300"
+                                     style="z-index: 3;">
+                                    <img src="/images/slider/slide1-text2.png" alt="">
+                                </div>
+                                <!-- LAYER NR. 3 -->
+                                <div class="tp-caption sfb rs-parallaxlevel-0"
+                                     data-x="center" data-hoffset="360"
+                                     data-y="center" data-voffset="-175"
+                                     data-speed="900"
+                                     data-start="3000"
+                                     data-easing="Back.easeInOut"
+                                     data-elementdelay="0.1"
+                                     data-endelementdelay="0.1"
+                                     data-endspeed="300"
+                                     style="z-index: 4;">
+                                    <img src="/images/slider/slide1-text3.png" alt="">
+                                </div>
+                                <!-- LAYER NR. 4 -->
+                                <div class="tp-caption sfr rs-parallaxlevel-0"
+                                     data-x="center" data-hoffset="-117"
+                                     data-y="center" data-voffset="0"
+                                     data-speed="600"
+                                     data-start="1200"
+                                     data-easing="easeInBack"
+                                     data-elementdelay="2"
+                                     data-endelementdelay="0.1"
+                                     data-endspeed="300"
+                                     style="z-index: 5;">
+                                    <img src="/images/slider/slide1-1.png" alt="">
+                                </div>
+
+                                <!-- LAYER NR. 5 -->
+                                <div class="tp-caption sfl rs-parallaxlevel-0"
+                                     data-x="center" data-hoffset="117"
+                                     data-y="center" data-voffset="0"
+                                     data-speed="600"
+                                     data-start="2000"
+                                     data-easing="easeInBack"
+                                     data-elementdelay="2"
+                                     data-endelementdelay="0.1"
+                                     data-endspeed="300"
+                                     style="z-index: 6;">
+                                    <img src="/images/slider/slide1-2.png" alt="">
+                                </div>
+                                <!-- LAYER NR. 6 -->
+                                <div class="tp-caption tp-fade rs-parallaxlevel-0"
+                                     data-x="center" data-hoffset="0"
+                                     data-y="center" data-voffset="0"
+                                     data-speed="800"
+                                     data-start="2500"
+                                     data-easing="Expo.easeInOut"
+                                     data-elementdelay="2"
+                                     data-endelementdelay="0.1"
+                                     data-endspeed="300"
+                                     style="z-index: 6;">
+                                    <img src="/images/slider/slide1-line.png" alt="">
+                                </div>
+
+                                <!-- LAYER NR. 7 -->
+                                <div class="tp-caption randomrotate rs-parallaxlevel-0"
+                                     data-x="center" data-hoffset="0"
+                                     data-y="center" data-voffset="100"
+                                     data-speed="900"
+                                     data-start="3500"
+                                     data-easing="Back.easeInOut"
+                                     data-elementdelay="0.1"
+                                     data-endelementdelay="0.1"
+                                     data-endspeed="300"
+                                     style="z-index: 7;">
+                                    <img src="/images/slider/slide1-text1.png" alt="">
+                                </div>
+                            </li>
                         </ul>
-                        <a href="productpopup.html" class="quick-view  fancybox fancybox.ajax hidden-xs">
-                          <span class="rating">
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-empty"></i>
-                          </span> <span class="icon-zoom-in-2"></span> Quick View
-                        </a>
-                        <div class="quick-view visible-xs">
-                          <span class="rating">
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-empty"></i>
-                          </span>
-                        </div>
-                      </div>
-                      <h3 class="title">
-                        <a href="#">Polly Top Notion</a>
-                      </h3>
+                        <!--          <div class="tp-bannertimer"></div>
+                                  -->
                     </div>
-                  </div>
-                  <div class="item">
-                    <div class="product-preview">
-                      <div class="preview animate scale">
-                        <a href="store" class="preview-image">
-                          <img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" width="350" height="425" alt="">
-                        </a>
-                        <ul class="product-controls-list">
-                          <li>
-                            <span class="label label-new">NEW</span>
-                          </li>
-                        </ul>
-                        <ul class="product-controls-list right hide-right">
-                          <li class="top-out"></li>
-                          <li>
-                            <a href="#" class="circle">
-                              <span class="icon-heart"></span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" class="circle">
-                              <span class="icon-justice"></span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" class="cart">
-                              <span class="icon-basket"></span>
-                            </a>
-                          </li>
-                        </ul>
-                        <a href="productpopup.html" class="quick-view  fancybox fancybox.ajax hidden-xs">
-                          <span class="rating">
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-empty"></i>
-                          </span> <span class="icon-zoom-in-2"></span> Quick View
-                        </a>
-                        <div class="quick-view visible-xs">
-                          <span class="rating">
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-empty"></i>
-                          </span>
-                        </div>
-                      </div>
-                      <h3 class="title">
-                        <a href="#">Raglan Sleeve Tee Maison Scotch</a>
-                      </h3>
-                    </div>
-                  </div>
                 </div>
-              </div>
-              <!-- //end Products list -->
+            </section>
+            <!-- //Welcome Msg -->
 
-            </section>
+            <!-- Social widgets -->
+            <% include ../partials/socialwidgets %>
+            <!-- //end Social widgets -->
 
-            <!-- //end Featured Products -->
-            <!-- On Sale -->
-            <section class="col-sm-6 col-md-3 col-lg-3  module">
-              <h3>
-                <a href="#">ON SALE STORES</a>
-              </h3>
-              <div class="products-widget jcarousel-skin-previews vertical">
-                <ul class="slides">
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">Nicole T-Shirt Issue </a>
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="http://4.bp.blogspot.com/-KOdUGQjMe9o/Uigvi-aAxxI/AAAAAAAAMKc/hWtkDnYUtrg/s1600/2014-Comfort-Modern-Living-Room-Decorating-Ideas-2.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">Los Angeles Top American Vintage</a>
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Idea.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">Season Sweater NLY Trend</a>
-                      </p>
-                      <span class="rating">
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-empty"></i>
-                      </div>
-                  </li>
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">Nicole T-Shirt Issue </a>
-                      </p>
-                      <span class="rating"> </span>
-                      <span class="price old">$24.25</span>
-                      <span class="price new">$10.95</span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="images/products/product-14-small.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">Los Angeles Top American Vintage</a>
-                      </p>
-                      <span class="rating"> </span>
-                      <span class="price old">$35.95</span>
-                      <span class="price new">$24.95</span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">Season Sweater NLY Trend</a>
-                      </p>
-                      <span class="rating">
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-empty"></i>
-                      </span>
-                      <span class="price old">$24.95</span>
-                      <span class="price new">$39.95</span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </section>
-            <!-- //end On Sale -->
-            <!-- Blog Widget Small -->
-            <section class="col-sm-6 col-md-3 col-lg-3 blog-widget-small module">
-              <h3>Editor Choise</h3>
-              <div class="posts flexslider">
-                <ul class="slides">
-                  <li>
-                    <div class="image-cell">
-                      <a href="/store">
-                        <img src="http://www.dwellingdecor.com/wp-content/uploads/2015/12/interior-living-room.jpg" class="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt="">
-                      </a>
-                    </div>
-                    <div class="offset-image">
-                      <h4>
-                        <a href="/store">Integer vel nibh sit amet turpis vulputate aliquet</a>
-                      </h4>
-                      <p>
-                        <span class="rating">
-                          <i class="icon-star-3"></i>
-                          <i class="icon-star-3"></i>
-                          <i class="icon-star-3"></i>
-                          <i class="icon-star-3"></i>
-                          <i class="icon-star-empty"></i>
-                        </span> &nbsp;&nbsp; <a href="/store">5 Comments</a>
-                      </p>
-                      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eros tellus, scelerisque nec, rhoncus eget, laoreet sit amet, nunc. Ut sit amet turpis. In est arcu, sollicitudin eu, vehicula venenatis, tempor vitae, est. </p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </section>
-            <!-- //end Blog Widjet Small -->
-          </div>
-          <div class="row">
-            <!-- Best Sellers -->
-            <section class="col-sm-6 col-md-3 col-lg-3 module">
-              <h3>
-                <a href="#">BEST Active Stores</a>
-              </h3>
-              <div class="products-widget jcarousel-skin-previews vertical">
-                <ul class="slides">
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">Raglan Sleeve Tee Maison Scotch</a>
-                      </p>
-                      <span class="rating">
-                                    </div>
-                  </li>
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">Raglan Sleeve Tee Maison Scotch</a>
-                      </p>
-                      <span class="rating">
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-empty"></i>
-                      </span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Ideas-White-Sofa.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">V Front Peplum Dress Club L</a>
-                      </p>
-                      <span class="rating"> </span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">Raglan Sleeve Tee Maison Scotch</a>
-                      </p>
-                      <span class="rating"> </span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Ideas-White-Sofa.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">Raglan Sleeve Tee Maison Scotch</a>
-                      </p>
-                      <span class="rating">
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-empty"></i>
-                      </span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">V Front Peplum Dress Club L</a>
-                      </p>
-                      <span class="rating"> </span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </section>
-            <!-- //end Best Sellers -->
-            <!-- About Us -->
-            <section class="col-sm-6 col-md-3 col-lg-3 module">
-              <h3>Top rated</h3>
-              <div class="products-widget jcarousel-skin-previews vertical">
-                <ul class="slides">
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">Raglan Sleeve Tee Maison Scotch</a>
-                      </p>
-                      <span class="rating"> </span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">Raglan Sleeve Tee Maison Scotch</a>
-                      </p>
-                      <span class="rating">
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-empty"></i>
-                      </span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">V Front Peplum Dress Club L</a>
-                      </p>
-                      <span class="rating"> </span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">Raglan Sleeve Tee Maison Scotch</a>
-                      </p>
-                      <span class="rating"> </span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="images/products/product-08-small.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">Raglan Sleeve Tee Maison Scotch</a>
-                      </p>
-                      <span class="rating">
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-3"></i>
-                        <i class="icon-star-empty"></i>
-                      </div>
-                  </li>
-                  <li>
-                    <div class="product">
-                      <a href="store" class="preview-image">
-                        <img class="img-responsive animate scale" src="images/products/product-09-small.jpg" alt="">
-                      </a>
-                      <p class="name">
-                        <a href="store" class="preview-image">V Front Peplum Dress Club L</a>
-                      </p>
-                      <span class="rating"> </span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </section>
-            <!-- //end  About Us -->
-            <!-- New Products -->
-            <section class="col-sm-12 col-md-6 col-lg-6  slider-products  module">
-              <h3>Featured Stores</h3>
 
-              <!-- Products list -->
-              <div class="row">
-                <div class="product-carousel">
-                  <div class="item">
-                    <div class="product-preview">
-                      <div class="preview animate scale">
-                        <a href="store" class="preview-image">
-                          <img class="img-responsive animate scale" src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Ideas-White-Sofa.jpg" width="350" height="425" alt="">
-                        </a>
-                        <ul class="product-controls-list">
-                          <li>
-                            <span class="label label-new">NEW</span>
-                          </li>
-                        </ul>
-                        <ul class="product-controls-list right hide-right">
-                          <li class="top-out"></li>
-                          <li>
-                            <a href="#" class="circle">
-                              <span class="icon-heart"></span>
+            <!-- Services -->
+            <section class="services-block hidden-xs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-lg-4">
+                            <a href="/eg/Home" class="item">
+                                <span class="icon icon-airplane-2"></span>
+                                <span class="title">Book your booth</span>
+                                <span class="description"> for Free</span>
                             </a>
-                          </li>
-                          <li>
-                            <a href="#" class="circle">
-                              <span class="icon-justice"></span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" class="cart">
-                              <span class="icon-basket"></span>
-                            </a>
-                          </li>
-                        </ul>
-                        <a href="productpopup.html" class="quick-view  fancybox fancybox.ajax hidden-xs">
-                          <span class="rating">
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-empty"></i>
-                          </span> <span class="icon-zoom-in-2"></span> Quick View
-                        </a>
-                        <div class="quick-view visible-xs">
-                          <span class="rating">
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-empty"></i>
-                          </span>
                         </div>
-                      </div>
-                      <h3 class="title">
-                        <a href="#">Polly Top Notion</a>
-                      </h3>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="product-preview">
-                      <div class="preview animate scale">
-                        <a href="store" class="preview-image">
-                          <img class="img-responsive animate scale" src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" width="350" height="425" alt="">
-                        </a>
-                        <ul class="product-controls-list">
-                          <li>
-                            <span class="label label-new">NEW</span>
-                          </li>
-                        </ul>
-                        <ul class="product-controls-list right hide-right">
-                          <li class="top-out"></li>
-                          <li>
-                            <a href="#" class="circle">
-                              <span class="icon-heart"></span>
+                        <div class="col-xs-12 col-sm-4 col-lg-4 divider-right">
+                            <a href="/eg/Home" class="item">
+                                <span class="icon icon-clock"></span>
+                                <span class="title">30-day</span>
+                                <span class="description">Paid ads</span>
                             </a>
-                          </li>
-                          <li>
-                            <a href="#" class="circle">
-                              <span class="icon-justice"></span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#" class="cart">
-                              <span class="icon-basket"></span>
-                            </a>
-                          </li>
-                        </ul>
-                        <a href="productpopup.html" class="quick-view  fancybox fancybox.ajax hidden-xs">
-                          <span class="rating">
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-empty"></i>
-                          </span> <span class="icon-zoom-in-2"></span> Quick View
-                        </a>
-                        <div class="quick-view visible-xs">
-                          <span class="rating">
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-3"></i>
-                            <i class="icon-star-empty"></i>
-                          </span>
                         </div>
-                      </div>
-                      <h3 class="title">
-                        <a href="#">Beyond Top NLY Trend</a>
-                      </h3>
+                        <div class="col-xs-12 col-sm-4 col-lg-4 divider-right">
+                            <a href="/eg/Home" class="item">
+                                <span class="icon icon-umbrella "></span>
+                                <span class="title">24/7 Support </span>
+                                <span class="description">online consultations</span>
+                            </a>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-
-              <!-- //end Products list -->
             </section>
-            <!-- //end New Products -->
-
-          </div>
-
-          <section class="slider-products content-box">
-
-            <!-- Products list -->
-            <div class="products-list-small">
-              <ul class="slides">
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Ideas-White-Sofa.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <br />
-
-          <section class="slider-products content-box">
-
-            <!-- Products list -->
-            <div class="products-list-small">
-              <ul class="slides">
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Ideas-White-Sofa.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="product-preview">
-                    <div class="preview animate scale">
-                      <a href="/store">
-                        <img src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt="">
-                      </a>
-                      <a href="/store" class="quick-view">
-                        <span class="icon-zoom-in-2"></span> View
-                      </a>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <!-- //end Products list -->
-            <!-- Product view compact -->
-            <div class="product-view-ajax">
-              <div class="ajax-loader progress progress-striped active">
-                <div class="progress-bar progress-bar-danger" role="progressbar"></div>
-              </div>
-              <div class="layar"></div>
-              <div class="product-view-container"> </div>
-            </div>
-            <!-- //end Product view compact -->
-
-          </section>
+            <!-- //end Services -->
 
 
-        </section>
-        <div class="line-divider divider-xxs"></div>
-        <!-- Brands -->
-        <!-- //end Brands -->
-        <!-- //end creative content -->
-        <!-- Social navbar -->
-        <section class="content content-border nopad-xs social-widget">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-6 col-md-6  col-lg-6 newsletter collapsed-block">
+            <!-- Start creative content -->
+            <section class="container content nopad-bottom">
                 <div class="row">
-                  <div class="col-lg-5  col-md-12 col-sm-12 ">
-                    <h3>
-                      Stay Tuned <a class="expander visible-xs" href="#TabBlock-1">+</a>
-                    </h3>
-                  </div>
-                  <div class="col-sm-12 col-md-12 col-lg-6 tabBlock" id="TabBlock-1">
-                    <p>Enter your email and we'll send you a coupon with 10% off your next order.</p>
-                    <form class="form-inline" role="form">
-                      <div class="form-group input-control">
-                        <button type="submit" class="button">
-                          <span class="icon-envelop"></span>
-                        </button>
-                        <input type="text" class="form-control" value="Your E-mail..." onblur="if (this.value == '') {this.value = 'Your E-mail...';}" onfocus="if(this.value == 'Your E-mail...') {this.value = '';}">
+                    <!-- Featured STORES 1 (object 1) -->
+                    <section class="col-sm-12 col-md-6 col-lg-6  slider-products module">
+                        <h3>Featured Stores</h3>
+                        <!-- Products list -->
+                        <div class="row">
+                            <div class="product-carousel">
+                                <% featuredStores1.forEach(function(store){ %>
+                                <div class="item">
+                                    <div class="product-preview">
+                                        <div class="preview animate scale">
+                                            <a href="/eg/store/<%= store.StoreName %>" class="preview-image">
+                                                <img class="img-responsive animate scale" src="<%= store.FeaturedPhoto %>" width="350" height="425" alt="">
+                                            </a>
+                                            <ul class="product-controls-list">
+                                                <li>
+                                                    <span class="label label-new">NEW</span>
+                                                </li>
+                                            </ul>
+                                            <ul class="product-controls-list right hide-right">
+                                                <li class="top-out"></li>
+                                                <li>
+                                                    <a href="#" class="circle">
+                                                        <span class="icon-heart"></span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="circle">
+                                                        <span class="icon-justice"></span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="cart">
+                                                        <span class="icon-basket"></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <a href="/productpopup.html" class="quick-view  fancybox fancybox.ajax hidden-xs">
+                                                <span class="rating">
+                                                    <i class="icon-star-3"></i>
+                                                    <i class="icon-star-3"></i>
+                                                    <i class="icon-star-3"></i>
+                                                    <i class="icon-star-3"></i>
+                                                    <i class="icon-star-empty"></i>
+                                                </span> <span class="icon-zoom-in-2"></span> Quick View
+                                            </a>
+                                            <div class="quick-view visible-xs">
+                                                <span class="rating">
+                                                    <i class="icon-star-3"></i>
+                                                    <i class="icon-star-3"></i>
+                                                    <i class="icon-star-3"></i>
+                                                    <i class="icon-star-3"></i>
+                                                    <i class="icon-star-empty"></i>
+                                                </span>
+                                            </div>
                                         </div>
-                    </form>
-                  </div>
+                                        <h3 class="title">
+                                            <a href="/eg/store/<%= store.StoreName %>"><%= store.StoreName %></a>
+                                        </h3>
+                                    </div>
+                                </div>
+                                <% }); %>
+                            </div>
+                        </div>
+                        <!-- //end Products list -->
+                    </section>
+
+                    <!-- //end Featured STORES 1 -->
+
+                    <!-- On Sale Stores (object 2) -->
+                    <section class="col-sm-6 col-md-3 col-lg-3  module">
+                        <h3>
+                            ON SALE STORES
+                        </h3>
+                        <div class="products-widget jcarousel-skin-previews vertical">
+                            <ul class="slides">
+                                <% onSaleStores.forEach(function(store){ %>
+                                <li>
+                                    <div class="product">
+                                        <a href="/eg/store/<%= store.StoreName %>" class="preview-image">
+                                            <img class="img-responsive animate scale" src="<%= store.FeaturedPhoto %>" alt="">
+                                        </a>
+                                        <p class="name">
+                                            <a href="/eg/store/<%= store.StoreName %>" class="preview-image"><%= store.StoreName %></a>
+                                        </p>
+                                        <span class="rating">
+                                            <i class="icon-star-3"></i>
+                                            <i class="icon-star-3"></i>
+                                            <i class="icon-star-3"></i>
+                                            <i class="icon-star-3"></i>
+                                            <i class="icon-star-empty"></i>
+                                        </span>
+                                    </div>
+                                </li>
+                                <% }); %>
+
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- //end On Sale Stores -->
+
+
+                    <!-- Editor Choise (object 3) -->
+                    <section class="col-sm-6 col-md-3 col-lg-3 blog-widget-small module">
+                        <h3>Editor Choise</h3>
+                        <div class="posts flexslider">
+                            <ul class="slides">
+                                <% editorChoise.forEach(function(store){ %>
+                                <li>
+                                    <div class="image-cell">
+                                        <a href="/eg/store/<%= store.StoreName %>">
+                                            <img src="<%= store.FeaturedPhoto %>" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="offset-image">
+                                        <h4>
+                                            <a href="/eg/store/<%= store.StoreName %>"><%= store.StoreName %></a>
+                                        </h4>
+                                        <p>
+                                            <span class="rating">
+                                                <i class="icon-star-3"></i>
+                                                <i class="icon-star-3"></i>
+                                                <i class="icon-star-3"></i>
+                                                <i class="icon-star-3"></i>
+                                                <i class="icon-star-empty"></i>
+                                            </span> &nbsp;&nbsp; <a href="/eg/store/<%= store.StoreName %>">5 Comments</a>
+                                        </p>
+                                        <p><%= store.descreption %></p>
+                                    </div>
+                                </li>
+                                <% }); %>
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- //end Editor Choise -->
+
                 </div>
-              </div>
-              <div class="col-sm-6 col-md-6 col-lg-6 collapsed-block">
-                <h3>
-                  FIND US ON<a class="expander visible-xs" href="#TabBlock-2">+</a>
-                </h3>
-                <div class="tabBlock" id="TabBlock-2">
-                  <ul class="find-us">
-                    <li class="divider">
-                      <a href="#" class="animate-scale">
-                        <span class="icon icon-facebook-3"></span>
-                      </a>
-                    </li>
-                    <li class="divider">
-                      <a href="#" class="animate-scale">
-                        <span class="icon icon-twitter-3"></span>
-                      </a>
-                    </li>
-                    <li class="divider">
-                      <a href="#" class="animate-scale">
-                        <span class="icon icon-linkedin-2"></span>
-                      </a>
-                    </li>
-                    <li class="divider">
-                      <a href="#" class="animate-scale">
-                        <span class="icon icon-youtube-3"></span>
-                      </a>
-                    </li>
-                    <li class="divider">
-                      <a href="#" class="animate-scale">
-                        <span class="icon icon-pinterest-2"></span>
-                      </a>
-                    </li>
-                    <li class="divider">
-                      <a href="#" class="animate-scale">
-                        <span class="icon icon-googleplus-2"></span>
-                      </a>
-                    </li>
-                  </ul>
+
+                <div class="row">
+                    <!--  BEST Active Stores (object 4) -->
+                    <section class="col-sm-6 col-md-3 col-lg-3 module">
+                        <h3>
+                            BEST Active Stores
+                        </h3>
+                        <div class="products-widget jcarousel-skin-previews vertical">
+                            <ul class="slides">
+                                <% bestActiveStores.forEach(function(store){ %>
+                                <li>
+                                    <div class="product">
+                                        <a href="/eg/store/<%= store.StoreName %>" class="preview-image">
+                                            <img class="img-responsive animate scale" src="<%= store.FeaturedPhoto %>" alt="">
+                                        </a>
+                                        <p class="name">
+                                            <a href="/eg/store/<%= store.StoreName %>" class="preview-image"><%= store.StoreName %></a>
+                                        </p>
+                                        <span class="rating">
+                                            <i class="icon-star-3"></i>
+                                            <i class="icon-star-3"></i>
+                                            <i class="icon-star-3"></i>
+                                            <i class="icon-star-3"></i>
+                                            <i class="icon-star-empty"></i>
+                                        </span>
+                                    </div>
+                                </li>
+                                <% }); %>
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- //end BEST Active Stores -->
+
+
+                    <!-- Top rated (object 5) -->
+                    <section class="col-sm-6 col-md-3 col-lg-3 module">
+                        <h3>Top rated</h3>
+                        <div class="products-widget jcarousel-skin-previews vertical">
+                            <ul class="slides">
+                                <% topRatedStores.forEach(function(store){ %>
+                                <li>
+                                    <div class="product">
+                                        <a href="/eg/store/<%= store.StoreName %>" class="preview-image">
+                                            <img class="img-responsive animate scale" src="<%= store.FeaturedPhoto %>" alt="">
+                                        </a>
+                                        <p class="name">
+                                            <a href="/eg/store/<%= store.StoreName %>" class="preview-image"><%= store.StoreName %></a>
+                                        </p>
+                                        <span class="rating">
+                                            <i class="icon-star-3"></i>
+                                            <i class="icon-star-3"></i>
+                                            <i class="icon-star-3"></i>
+                                            <i class="icon-star-3"></i>
+                                            <i class="icon-star-empty"></i>
+                                        </span>
+                                    </div>
+                                </li>
+                                <% }); %>
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- //end  Top rated -->
+
+
+                    <!-- Featured Stores 2 (object 6) -->
+                    <section class="col-sm-12 col-md-6 col-lg-6  slider-products  module">
+                        <h3>Featured Stores</h3>
+
+                        <!-- Products list -->
+                        <div class="row">
+                            <div class="product-carousel">
+                                <% featuredStores2.forEach(function(store){ %>
+                                <div class="item">
+                                    <div class="product-preview">
+                                        <div class="preview animate scale">
+                                            <a href="/eg/store/<%= store.StoreName %>" class="preview-image">
+                                                <img class="img-responsive animate scale" src="<%= store.FeaturedPhoto %>" width="350" height="425" alt="">
+                                            </a>
+                                            <ul class="product-controls-list">
+                                                <li>
+                                                    <span class="label label-new">NEW</span>
+                                                </li>
+                                            </ul>
+                                            <ul class="product-controls-list right hide-right">
+                                                <li class="top-out"></li>
+                                                <li>
+                                                    <a href="#" class="circle">
+                                                        <span class="icon-heart"></span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="circle">
+                                                        <span class="icon-justice"></span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="cart">
+                                                        <span class="icon-basket"></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <a href="/productpopup.html" class="quick-view  fancybox fancybox.ajax hidden-xs">
+                                                <span class="rating">
+                                                    <i class="icon-star-3"></i>
+                                                    <i class="icon-star-3"></i>
+                                                    <i class="icon-star-3"></i>
+                                                    <i class="icon-star-3"></i>
+                                                    <i class="icon-star-empty"></i>
+                                                </span> <span class="icon-zoom-in-2"></span> Quick View
+                                            </a>
+                                            <div class="quick-view visible-xs">
+                                                <span class="rating">
+                                                    <i class="icon-star-3"></i>
+                                                    <i class="icon-star-3"></i>
+                                                    <i class="icon-star-3"></i>
+                                                    <i class="icon-star-3"></i>
+                                                    <i class="icon-star-empty"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <h3 class="title">
+                                            <a href="/eg/store/<%= store.StoreName %>"><%= store.StoreName %></a>
+                                        </h3>
+                                    </div>
+                                </div>
+                                <% }); %>
+                            </div>
+                        </div>
+
+                        <!-- //end Products list -->
+                    </section>
+                    <!-- //end Featured Stores 2 -->
+
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- //end Social navbar -->
-        <!-- Footer -->
-        <footer>
-          <% include ../partials/footer %>
-        </footer>
-        <div id="outer-overlay"></div>
-        <!-- //end Footer -->
-      </div>
+
+                <!-- Other Stores (object 7) -->
+                <section class="slider-products content-box">
+                    <h3>Other Stores</h3>
+                    <!-- Products list -->
+                    <div class="products-list-small otherStores">
+                        <ul class="slides product-carousel">
+                            <% otherStores.forEach(function(store){ %>
+                            <li class="item">
+                                <div class="product-preview">
+                                    <div class="preview animate scale">
+                                        <a href="/eg/store/<%= store.StoreName %>">
+                                            <img src="<%= store.FeaturedPhoto %>" alt="">
+                                        </a>
+                                        <a href="/eg/store/<%= store.StoreName %>" class="quick-view">
+                                            <span class="icon-zoom-in-2"></span> View
+                                        </a>
+                                    </div>
+                                    <h6><%= store.StoreName %></h6>
+                                </div>
+                            </li>
+                            <% }); %>
+                        </ul>
+                    </div>
+
+
+                    <!-- Product view compact -->
+                    <!--<div class="product-view-ajax">
+                        <div class="ajax-loader progress progress-striped active">
+                            <div class="progress-bar progress-bar-danger" role="progressbar"></div>
+                        </div>
+                        <div class="layar"></div>
+                        <div class="product-view-container"> </div>
+                    </div>-->
+                    <!-- //end Product view compact -->
+
+                </section>
+
+                <!-- //end Other Stores -->
+
+            </section>
+            <div class="line-divider divider-xxs"></div>
+            <!-- //end creative content -->
+            <!-- index footer -->
+            <section class="content content-border nopad-xs social-widget">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6  col-lg-6 newsletter collapsed-block">
+                            <div class="row">
+                                <div class="col-lg-5  col-md-12 col-sm-12 ">
+                                    <h3>
+                                        Stay Tuned <a class="expander visible-xs" href="#TabBlock-1">+</a>
+                                    </h3>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6 tabBlock" id="TabBlock-1">
+                                    <p>Enter your email and we'll send you a coupon with 10% off your next order.</p>
+                                    <form class="form-inline" role="form">
+                                        <div class="form-group input-control">
+                                            <button type="submit" class="button">
+                                                <span class="icon-envelop"></span>
+                                            </button>
+                                            <input type="text" class="form-control" value="Your E-mail..." onblur="if (this.value == '') {this.value = 'Your E-mail...';}" onfocus="if(this.value == 'Your E-mail...') {this.value = '';}">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 collapsed-block">
+                            <h3>
+                                FIND US ON<a class="expander visible-xs" href="#TabBlock-2">+</a>
+                            </h3>
+                            <div class="tabBlock" id="TabBlock-2">
+                                <ul class="find-us">
+                                    <li class="divider">
+                                        <a href="#" class="animate-scale">
+                                            <span class="icon icon-facebook-3"></span>
+                                        </a>
+                                    </li>
+                                    <li class="divider">
+                                        <a href="#" class="animate-scale">
+                                            <span class="icon icon-twitter-3"></span>
+                                        </a>
+                                    </li>
+                                    <li class="divider">
+                                        <a href="#" class="animate-scale">
+                                            <span class="icon icon-linkedin-2"></span>
+                                        </a>
+                                    </li>
+                                    <li class="divider">
+                                        <a href="#" class="animate-scale">
+                                            <span class="icon icon-youtube-3"></span>
+                                        </a>
+                                    </li>
+                                    <li class="divider">
+                                        <a href="#" class="animate-scale">
+                                            <span class="icon icon-pinterest-2"></span>
+                                        </a>
+                                    </li>
+                                    <li class="divider">
+                                        <a href="#" class="animate-scale">
+                                            <span class="icon icon-googleplus-2"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- //end index footer -->
+            <!-- Footer -->
+            <footer>
+                <% include ../partials/footer %>
+            </footer>
+            <div id="outer-overlay"></div>
+            <!-- //end Footer -->
+        </div>
     </div>
     <% include ../partials/jsfiles %>
     <script type="text/javascript">
-      jQuery(document).ready(function () {
-      jQuery('.tp-banner').show().revolution(
-      {
-      dottedOverlay: "none",
-      delay: 16000,
-      startwidth: 1170,
-      startheight: 795,
-      hideThumbs: 200,
+        jQuery(document).ready(function () {
+            jQuery('.tp-banner').show().revolution(
+            {
+                dottedOverlay: "none",
+                delay: 16000,
+                startwidth: 1170,
+                startheight: 795,
+                hideThumbs: 200,
 
-      thumbWidth: 100,
-      thumbHeight: 50,
-      thumbAmount: 5,
+                thumbWidth: 100,
+                thumbHeight: 50,
+                thumbAmount: 5,
 
-      navigationType: "none",
-      navigationArrows: "solo",
-      navigationStyle: "none",
+                navigationType: "none",
+                navigationArrows: "solo",
+                navigationStyle: "none",
 
-      touchenabled: "on",
-      onHoverStop: "on",
+                touchenabled: "on",
+                onHoverStop: "on",
 
-      swipe_velocity: 0.7,
-      swipe_min_touches: 1,
-      swipe_max_touches: 1,
-      drag_block_vertical: false,
+                swipe_velocity: 0.7,
+                swipe_min_touches: 1,
+                swipe_max_touches: 1,
+                drag_block_vertical: false,
 
-      parallax: "mouse",
-      parallaxBgFreeze: "on",
-      parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
+                parallax: "mouse",
+                parallaxBgFreeze: "on",
+                parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
 
-      keyboardNavigation: "off",
+                keyboardNavigation: "off",
 
-      navigationHAlign: "center",
-      navigationVAlign: "bottom",
-      navigationHOffset: 0,
-      navigationVOffset: 20,
+                navigationHAlign: "center",
+                navigationVAlign: "bottom",
+                navigationHOffset: 0,
+                navigationVOffset: 20,
 
-      soloArrowLeftHalign: "left",
-      soloArrowLeftValign: "center",
-      soloArrowLeftHOffset: 20,
-      soloArrowLeftVOffset: 0,
+                soloArrowLeftHalign: "left",
+                soloArrowLeftValign: "center",
+                soloArrowLeftHOffset: 20,
+                soloArrowLeftVOffset: 0,
 
-      soloArrowRightHalign: "right",
-      soloArrowRightValign: "center",
-      soloArrowRightHOffset: 20,
-      soloArrowRightVOffset: 0,
+                soloArrowRightHalign: "right",
+                soloArrowRightValign: "center",
+                soloArrowRightHOffset: 20,
+                soloArrowRightVOffset: 0,
 
-      shadow: 0,
-      fullWidth: "off",
-      fullScreen: "on",
+                shadow: 0,
+                fullWidth: "off",
+                fullScreen: "on",
 
-      spinner: "off",
+                spinner: "off",
 
-      stopLoop: "off",
-      stopAfterLoops: -1,
-      stopAtSlide: -1,
+                stopLoop: "off",
+                stopAfterLoops: -1,
+                stopAtSlide: -1,
 
-      shuffle: "off",
+                shuffle: "off",
 
-      autoHeight: "off",
-      forceFullWidth: "off",
+                autoHeight: "off",
+                forceFullWidth: "off",
 
 
 
-      hideThumbsOnMobile: "off",
-      hideNavDelayOnMobile: 1500,
-      hideBulletsOnMobile: "off",
-      hideArrowsOnMobile: "off",
-      hideThumbsUnderResolution: 0,
-      hideTimerBar: "on",
-      hideSliderAtLimit: 0,
-      hideCaptionAtLimit: 0,
-      hideAllCaptionAtLilmit: 0,
-      startWithSlide: 0,
-      fullScreenOffsetContainer: ".navbar"
-      });
+                hideThumbsOnMobile: "off",
+                hideNavDelayOnMobile: 1500,
+                hideBulletsOnMobile: "off",
+                hideArrowsOnMobile: "off",
+                hideThumbsUnderResolution: 0,
+                hideTimerBar: "on",
+                hideSliderAtLimit: 0,
+                hideCaptionAtLimit: 0,
+                hideAllCaptionAtLilmit: 0,
+                startWithSlide: 0,
+                fullScreenOffsetContainer: ".navbar"
+            });
 
-      setTimeout(function () { $('#slider').hide(); }, 8000);
+            setTimeout(function () { $('#slider').hide(); }, 8000);
 
-      });	//ready
+        });	//ready
 
     </script>
 
-  </body>
+</body>
 </html>

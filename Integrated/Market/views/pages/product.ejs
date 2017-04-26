@@ -3,8 +3,8 @@
 <head>
     <% include ../partials/head %>
     <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
-    <link rel="stylesheet" type="text/css" href="rs-plugin/css/settings.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="rs-plugin/css/extralayers.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/rs-plugin/css/settings.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/rs-plugin/css/extralayers.css" media="screen" />
 </head>
 <body class="responsive">
    <% include ../partials/loaderandsidemenu %>
@@ -21,23 +21,15 @@
             <!-- //end Social widgets -->
             <!-- Breadcrumbs -->
             <section class="container">
-                <nav class="breadcrumbs"> <a href="index.html">Home</a>
-                    <span class="divider">›</span> Al Maksoud
-                    <span class="divider">›</span> غرف معيشة
-                    <span class="divider">›</span> غرفه نيو مودرن
+                <nav class="breadcrumbs"> 
+				    <span class="maincrumb"><a href="/eg/Home">Home</a></span>
+                    <span class="maincrumb"><span class="divider">›</span><a href="/eg/store/almaksoud"><span> Al Maksoud</span></a></span>
+                    <span class="maincrumb"><span class="divider">›</span><a href="/eg/g/home-furniture/1"><span> غرف معيشة</span></a></span>
+                    <span class="maincrumb"><span class="divider">›</span><a href="/eg/p/chair/1"><span><%= Name %></span></a></span>
                 </nav>
             </section>
             <!-- //end Breadcrumbs -->
-            <!-- Small Previews -->
-            <section class="container hidden-xs">
-                <div class="small-previews">
-                    <a href="#" class="prev"></a>
-                    <div class="small-preview prev"><img src="https://s-media-cache-ak0.pinimg.com/736x/af/5a/ac/af5aac91bc96e76bd4e05fb93ec9bec2.jpg" alt="" class="img-responsive"></div>
-                    <a href="#" class="next"></a>
-                    <div class="small-preview next"><img src="https://s-media-cache-ak0.pinimg.com/736x/69/44/a2/6944a2f143049e4d8be4ade167dbdb85.jpg" alt="" class="img-responsive"></div>
-                </div>
-            </section>
-            <!-- //end Small Previews -->
+            
             <!-- One column content -->
             <section class="container">
 
@@ -50,7 +42,7 @@
                                 <li><img class='cloudzoom-gallery' alt="#" src="https://s-media-cache-ak0.pinimg.com/736x/af/5a/ac/af5aac91bc96e76bd4e05fb93ec9bec2.jpg" data-cloudzoom="useZoom: '.cloudzoom', image: 'https://s-media-cache-ak0.pinimg.com/736x/af/5a/ac/af5aac91bc96e76bd4e05fb93ec9bec2.jpg', zoomImage: 'https://s-media-cache-ak0.pinimg.com/736x/af/5a/ac/af5aac91bc96e76bd4e05fb93ec9bec2.jpg', autoInside : 991"></li>
                                 <li><img class='cloudzoom-gallery' alt="#" src="https://s-media-cache-ak0.pinimg.com/736x/69/44/a2/6944a2f143049e4d8be4ade167dbdb85.jpg" data-cloudzoom="useZoom: '.cloudzoom', image: 'https://s-media-cache-ak0.pinimg.com/736x/69/44/a2/6944a2f143049e4d8be4ade167dbdb85.jpg', zoomImage: 'https://s-media-cache-ak0.pinimg.com/736x/69/44/a2/6944a2f143049e4d8be4ade167dbdb85.jpg' "></li>
                                 <li><img class='cloudzoom-gallery' alt="#" src="https://s-media-cache-ak0.pinimg.com/736x/96/de/b1/96deb1dae3fde9de7a05e7334a6b31f9.jpg" data-cloudzoom="useZoom: '.cloudzoom', image: 'https://s-media-cache-ak0.pinimg.com/736x/96/de/b1/96deb1dae3fde9de7a05e7334a6b31f9.jpg', zoomImage: 'https://s-media-cache-ak0.pinimg.com/736x/96/de/b1/96deb1dae3fde9de7a05e7334a6b31f9.jpg' "></li>
-                                <li><a class="various fancybox.iframe" href="http://www.youtube.com/embed/L9szn1QQfas?autoplay=1"><img alt="#" class='fancybox-video' src="images/video.png"></a></li>
+                                <li><a class="various fancybox.iframe" href="http://www.youtube.com/embed/L9szn1QQfas?autoplay=1"><img alt="#" class='fancybox-video' src="/images/video.png"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -130,92 +122,92 @@
                         <ul class="slides">
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Ideas-White-Sofa.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Ideas-White-Sofa.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Ideas-White-Sofa.jpg" alt=""></a> <a href="_ajax_view-product.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Ideas-White-Sofa.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
                             </li>
                         </ul>
