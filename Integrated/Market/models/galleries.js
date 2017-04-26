@@ -3,7 +3,7 @@ var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
     getGalleries: function (_storeId) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Store': _storeId, 'Status': 'Active' }, '_id Title Description  Badges', function (err, lst) {
+            Schema.find({ 'Store': _storeId, 'Status': 'Active' }, '_id Title Description DisplayPicture Badges', function (err, lst) {
                 if (err)
                     reject('1:' + err);
                 else {

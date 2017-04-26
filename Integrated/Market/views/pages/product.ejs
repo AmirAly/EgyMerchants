@@ -7,13 +7,13 @@
     <link rel="stylesheet" type="text/css" href="/rs-plugin/css/extralayers.css" media="screen" />
 </head>
 <body class="responsive">
-   <% include ../partials/loaderandsidemenu %>
+    <% include ../partials/loaderandsidemenu %>
 
     <div id="outer">
         <div id="outer-canvas">
             <!-- Navbar -->
             <header>
-			<% include ../partials/header %>
+                <% include ../partials/header %>
             </header>
             <!-- //end Navbar -->
             <!-- Social widgets -->
@@ -21,28 +21,26 @@
             <!-- //end Social widgets -->
             <!-- Breadcrumbs -->
             <section class="container">
-                <nav class="breadcrumbs"> 
-				    <span class="maincrumb"><a href="/eg/Home">Home</a></span>
+                <nav class="breadcrumbs">
+                    <span class="maincrumb"><a href="/eg/Home">Home</a></span>
                     <span class="maincrumb"><span class="divider">›</span><a href="/eg/store/almaksoud"><span> Al Maksoud</span></a></span>
                     <span class="maincrumb"><span class="divider">›</span><a href="/eg/g/home-furniture/1"><span> غرف معيشة</span></a></span>
-                    <span class="maincrumb"><span class="divider">›</span><a href="/eg/p/chair/1"><span><%= Name %></span></a></span>
+                    <span class="maincrumb"><span class="divider">›</span><a href="/eg/p/<%= productData.Name %>/<%= productData._id %>"><span><%= productData.Name %></span></a></span>
                 </nav>
             </section>
             <!-- //end Breadcrumbs -->
-            
             <!-- One column content -->
             <section class="container">
 
                 <!-- Product view -->
                 <div class="product-view row">
                     <div class="col-sm-6 col-md-6 col-lg-6">
-                        <div class="large-image"> <img alt="#" class="cloudzoom" src="http://0.lushome.com/wp-content/uploads/2014/04/living-room-furniture-sofas-chairs-1.jpg" data-cloudzoom="zoomImage: 'http://0.lushome.com/wp-content/uploads/2014/04/living-room-furniture-sofas-chairs-1.jpg', autoInside : 991" /> </div>
+                        <div class="large-image"> <img alt="#" class="cloudzoom" src="<%= productData.Pictures[0].URL %>', autoInside : 991" /> </div>
                         <div class="flexslider flexslider-thumb">
                             <ul class="previews-list slides">
-                                <li><img class='cloudzoom-gallery' alt="#" src="https://s-media-cache-ak0.pinimg.com/736x/af/5a/ac/af5aac91bc96e76bd4e05fb93ec9bec2.jpg" data-cloudzoom="useZoom: '.cloudzoom', image: 'https://s-media-cache-ak0.pinimg.com/736x/af/5a/ac/af5aac91bc96e76bd4e05fb93ec9bec2.jpg', zoomImage: 'https://s-media-cache-ak0.pinimg.com/736x/af/5a/ac/af5aac91bc96e76bd4e05fb93ec9bec2.jpg', autoInside : 991"></li>
-                                <li><img class='cloudzoom-gallery' alt="#" src="https://s-media-cache-ak0.pinimg.com/736x/69/44/a2/6944a2f143049e4d8be4ade167dbdb85.jpg" data-cloudzoom="useZoom: '.cloudzoom', image: 'https://s-media-cache-ak0.pinimg.com/736x/69/44/a2/6944a2f143049e4d8be4ade167dbdb85.jpg', zoomImage: 'https://s-media-cache-ak0.pinimg.com/736x/69/44/a2/6944a2f143049e4d8be4ade167dbdb85.jpg' "></li>
-                                <li><img class='cloudzoom-gallery' alt="#" src="https://s-media-cache-ak0.pinimg.com/736x/96/de/b1/96deb1dae3fde9de7a05e7334a6b31f9.jpg" data-cloudzoom="useZoom: '.cloudzoom', image: 'https://s-media-cache-ak0.pinimg.com/736x/96/de/b1/96deb1dae3fde9de7a05e7334a6b31f9.jpg', zoomImage: 'https://s-media-cache-ak0.pinimg.com/736x/96/de/b1/96deb1dae3fde9de7a05e7334a6b31f9.jpg' "></li>
-                                <li><a class="various fancybox.iframe" href="http://www.youtube.com/embed/L9szn1QQfas?autoplay=1"><img alt="#" class='fancybox-video' src="/images/video.png"></a></li>
+                                <% productData.Pictures.forEach(function(img){ %>
+                                <li><img class='cloudzoom-gallery' alt="#" src="<%= img.URL %>" data-cloudzoom="useZoom: '.cloudzoom', image: '<%= img.URL %>', autoInside : 991"></li>
+                                <% }); %>
                             </ul>
                         </div>
                     </div>
@@ -56,8 +54,8 @@
                                 <div class="box-wrap-center"></div>
                                 <div class="box">
                                     <div class="box-content">
-                                        <h2>White Fringed Chuck on Top</h2>
-                                        <span class="price old">$54.22</span> <span class="price new">$44.95</span> <br>
+                                        <h2><%= productData.Name %></h2>
+                                        <span class="price old"><%= productData.PriceBeforeSale %></span> <span class="price new"><%= productData.Price %></span> <br>
                                     </div>
                                 </div>
                             </div>
@@ -70,15 +68,10 @@
                                 <div class="panel">
                                     <div class="panel-heading"> <a data-toggle="collapse" data-parent="#product-accordion" href="#product-description"> <span class="arrow-down icon-arrow-down-4"></span> <span class="arrow-up icon-arrow-up-4"></span> Description </a> </div>
                                     <div id="product-description" class="panel-collapse collapse in">
-                                        <div class="panel-body"> Crocheted waistcoat from RIVER ISLAND. Open style with lace detailing at the shoulders. Fringes in the sides, sleeves and hem. Made of 86% Cotton and 14% Nylon. Model is 168 cm tall and is wearing a size Small. </div>
+                                        <div class="panel-body"><%= productData.Description %></div>
                                     </div>
                                 </div>
-                                <div class="panel">
-                                    <div class="panel-heading"> <a data-toggle="collapse" data-parent="#product-accordion" href="#product-size" class="collapsed"> <span class="arrow-down icon-arrow-down-4"></span> <span class="arrow-up icon-arrow-up-4"></span> Size</a> </div>
-                                    <div id="product-size" class="panel-collapse collapse">
-                                        <div class="panel-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                         <!-- //end Description -->
@@ -115,101 +108,19 @@
                 <!-- //end Services -->
                 <!-- Upsell products -->
                 <section class="slider-products content-box">
-                    <h3>ٍSimillar Products</h3>
+                    <h3>Simillar Products</h3>
 
                     <!-- Products list -->
-                    <div class="products-list-small">
+                    <div class="products-list-small otherStores">
                         <ul class="slides">
+                            <% SimilarProducts.forEach(function(product){ %>
                             <li>
                                 <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
+                                    <div class="preview animate scale"> <a href="#"><img src="<%= product.img %>" alt=""></a> <a href="#" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                                 </div>
+                            <h6><%= product.title %></h6>
                             </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Ideas-White-Sofa.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-preview">
-                                    <div class="preview animate scale"> <a href="#"><img src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Ideas-White-Sofa.jpg" alt=""></a> <a href="/productpopup.html" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
-                                </div>
-                            </li>
+                            <% }); %>
                         </ul>
                     </div>
                     <!-- //end Products list -->
@@ -229,12 +140,12 @@
             </section>
             <!-- //end Two columns content -->
             <footer>
-			<% include ../partials/footer %>
+                <% include ../partials/footer %>
             </footer>
             <div id="outer-overlay"></div>
             <!-- //end Footer -->
         </div>
     </div>
     <% include ../partials/jsfiles %>
-    
+
 </html>

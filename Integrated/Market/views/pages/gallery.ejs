@@ -7,40 +7,41 @@
     <link rel="stylesheet" type="text/css" href="/rs-plugin/css/extralayers.css" media="screen" />
 </head>
 <body class="responsive">
-   <% include ../partials/loaderandsidemenu %>
+    <% include ../partials/loaderandsidemenu %>
 
     <div id="outer">
         <div id="outer-canvas">
             <!-- Navbar -->
             <header>
-			<% include ../partials/header %>
+                <% include ../partials/header %>
             </header>
             <!-- //end Navbar -->
             <!-- Social widgets -->
-           <% include ../partials/socialwidgets %>
+            <% include ../partials/socialwidgets %>
             <!-- //end Social widgets -->
             <!-- Breadcrumbs -->
             <section class="container">
-               <nav class="breadcrumbs"> 
-				    <span class="maincrumb"><a href="/eg/Home">Home</a></span>
+                <nav class="breadcrumbs">
+                    <span class="maincrumb"><a href="/eg/Home">Home</a></span>
                     <span class="maincrumb"><span class="divider">›</span><a href="/eg/store/almaksoud"><span> Al Maksoud</span></a></span>
-                    <span class="maincrumb"><span class="divider">›</span><a href="/eg/g/home-furniture/1"><span> غرف معيشة</span></a></span>
+                    <span class="maincrumb"><span class="divider">›</span><a href="/eg/g/home-furniture/1"><span> <%= gallery.Title %></span></a></span>
                 </nav>
-		    </section>
+            </section>
             <!-- //end Breadcrumbs -->
             <!-- One column content -->
             <section class="container">
 
                 <!-- Description -->
-                <p>Vestibulum justo. Nulla mauris ipsum, convallis ut, vestibulum eu, tincidunt vel, nisi. Curabitur molestie euismod erat. Proin eros odio, mattis rutrum. et, egestas vitae, magna. Integer semper, velit ut interNam lectus nulla, bibendum pretium, dictum a, mattis nec, dolor. Nullam id justo sed diam aliquam tincidunt. Duis sollicitudin, dui ac commodo iaculis, mi risus sagittis odio, vel ultrices enim sem ut pede. Aenean quam. Nulla neque purus, ullamcorper nec, eleifend at, fermentum ut, turpis. Nullam id justo sed labore diam diam aliquam nonumy. Integer ligula magna, dictum et, pulvinar non, ultricies ac, nibh. Vivamus euismod nulla vel nunc. Fusce tincidunt, justo congue egestas molestie, tortor tortor blandit erat, et scelerisque metus metus at ipsum.</p>
+                <p><%= gallery.Description %></p>
                 <!-- //end Description -->
+
                 <!-- Products list -->
                 <div class="row products-list">
+                    <% products.forEach(function(product){ %>
                     <div class="product-preview">
                         <div class="preview animate scale">
-
-
-                            <a href="/eg/p/chair/<%= products[0]._id %>" class="preview-image"><img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" width="270" height="328" alt=""></a>
+                            <a href="/eg/p/<%= product.Name %>/<%= product._id %>" class="preview-image">
+                                <img class="img-responsive animate scale" src="<%= product.Pictures[0].URL %>" width="270" height="328" alt=""></a>
                             <ul class="product-controls-list right">
                                 <li><span class="label label-sale">SALE</span></li>
                                 <li><span class="label">-20%</span></li>
@@ -51,179 +52,14 @@
                                 <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
                                 <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
                             </ul>
-                            <a href="/productpopup.html" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
+                            <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
                             <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
                         </div>
-                        <h3 class="title"><a href="#">Polly Top Notion</a></h3>
-                        <span class="price old">$54.22</span> <span class="price new">$44.95</span>
+                        <h3 class="title"><a href="/eg/p/<%= product.Name %>/<%= product._id %>"><%= product.Name %></a></h3>
+                        <!--<span class="price old">$54.22</span> <span class="price new">$44.95</span>-->
                     </div>
-                    <div class="product-preview ">
-                        <div class="preview animate scale">
-                            <a href="/eg/p/chair/1" class="preview-image"><img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" width="270" height="328" alt=""></a>
-                            <ul class="product-controls-list right hide-right">
-                                <li class="top-out"></li>
-                                <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                                <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                                <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                            </ul>
-                            <a href="/productpopup.html" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                            <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-                        </div>
-                        <h3 class="title"><a href="#">Raglan Sleeve Tee Maison Scotch</a></h3>
-                        <span class="price">$44.95</span>
-                    </div>
-                    <div class="product-preview ">
-                        <div class="preview animate scale">
-                            <a href="/eg/p/chair/1" class="preview-image"><img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" width="270" height="328" alt=""></a>
-                            <ul class="product-controls-list">
-                                <li><span class="label label-new">NEW</span></li>
-                            </ul>
-                            <ul class="product-controls-list right hide-right">
-                                <li class="top-out"></li>
-                                <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                                <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                                <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                            </ul>
-                            <a href="/productpopup.html" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                            <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-                        </div>
-                        <h3 class="title"><a href="#">Beyond Top NLY Trend</a></h3>
-                        <span class="price">$44.95</span>
-                    </div>
-                    <div class="product-preview ">
-                        <div class="preview animate scale">
-                            <a href="/eg/p/chair/1" class="preview-image"><img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" width="270" height="328" alt=""></a>
-                            <ul class="product-controls-list">
-                                <li><span class="label label-new">NEW</span></li>
-                            </ul>
-                            <ul class="product-controls-list right hide-right">
-                                <li class="top-out"></li>
-                                <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                                <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                                <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                            </ul>
-                            <a href="/productpopup.html" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                            <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-                        </div>
-                        <h3 class="title"><a href="#">White Fringed Chuck on Top</a></h3>
-                        <span class="price">$44.95</span>
-                    </div>
-                    <div class="product-preview ">
-                        <div class="preview animate scale">
-                            <a href="/eg/p/chair/1" class="preview-image"><img class="img-responsive animate scale" src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" width="270" height="328" alt=""></a>
-                            <ul class="product-controls-list right hide-right">
-                                <li class="top-out"></li>
-                                <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                                <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                                <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                            </ul>
-                            <a href="/productpopup.html" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                            <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-                        </div>
-                        <h3 class="title"><a href="#">Vero moda Joy top</a></h3>
-                        <span class="price">$75.95</span>
-                    </div>
-                    <div class="product-preview ">
-                        <div class="preview animate scale">
-                            <a href="/eg/p/chair/1" class="preview-image"><img class="img-responsive animate scale" src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Ideas-White-Sofa.jpg" width="269" height="328" alt=""></a>
-                            <ul class="product-controls-list right hide-right">
-                                <li class="top-out"></li>
-                                <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                                <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                                <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                            </ul>
-                            <a href="/productpopup.html" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                            <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-                        </div>
-                        <h3 class="title"><a href="#">Nolita new minus blouse</a></h3>
-                        <span class="price">$74.95</span>
-                    </div>
-                    <div class="product-preview ">
-                        <div class="preview animate scale">
-                            <a href="/eg/p/chair/1" class="preview-image"><img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" width="270" height="328" alt=""></a>
-                            <ul class="product-controls-list right hide-right">
-                                <li class="top-out"></li>
-                                <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                                <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                                <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                            </ul>
-                            <a href="/productpopup.html" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                            <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-                        </div>
-                        <h3 class="title"><a href="#">Tiger of sweden Aeron t shirt</a></h3>
-                        <span class="price">$159.95</span>
-                    </div>
-                    <div class="product-preview ">
-                        <div class="preview animate scale">
-                            <a href="/eg/p/chair/1" class="preview-image"><img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" width="270" height="328" alt=""></a>
-                            <ul class="product-controls-list right">
-                                <li><span class="label label-sale">SALE</span></li>
-                                <li><span class="label">-20%</span></li>
-                            </ul>
-                            <ul class="product-controls-list right hide-right">
-                                <li class="top-out"></li>
-                                <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                                <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                                <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                            </ul>
-                            <a href="/productpopup.html" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                            <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-                        </div>
-                        <h3 class="title"><a href="#">Raglan Sleeve Tee Maison Scotch</a></h3>
-                        <span class="price old">$54.22</span> <span class="price new">$44.95</span>
-                    </div>
-                    <div class="product-preview ">
-                        <div class="preview animate scale">
-                            <a href="/eg/p/chair/1" class="preview-image"><img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" width="270" height="328" alt=""></a>
-                            <ul class="product-controls-list right">
-                                <li><span class="label label-sale">SALE</span></li>
-                                <li><span class="label">-20%</span></li>
-                            </ul>
-                            <ul class="product-controls-list right hide-right">
-                                <li class="top-out"></li>
-                                <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                                <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                                <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                            </ul>
-                            <a href="/productpopup.html" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                            <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-                        </div>
-                        <h3 class="title"><a href="#">Polly Top Notion</a></h3>
-                        <span class="price old">$54.22</span> <span class="price new">$44.95</span>
-                    </div>
-                    <div class="product-preview ">
-                        <div class="preview animate scale">
-                            <a href="/eg/p/chair/1" class="preview-image"><img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" width="270" height="328" alt=""></a>
-                            <ul class="product-controls-list">
-                                <li><span class="label label-new">NEW</span></li>
-                            </ul>
-                            <ul class="product-controls-list right hide-right">
-                                <li class="top-out"></li>
-                                <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                                <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                                <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                            </ul>
-                            <a href="/productpopup.html" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                            <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-                        </div>
-                        <h3 class="title"><a href="#">Beyond Top NLY Trend</a></h3>
-                        <span class="price">$44.95</span>
-                    </div>
-                    <div class="product-preview ">
-                        <div class="preview animate scale">
-                            <a href="/eg/p/chair/1" class="preview-image"><img class="img-responsive animate scale" src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" width="270" height="328" alt=""></a>
-                            <ul class="product-controls-list right hide-right">
-                                <li class="top-out"></li>
-                                <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                                <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                                <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                            </ul>
-                            <a href="/productpopup.html" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                            <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-                        </div>
-                        <h3 class="title"><a href="#">Raglan Sleeve Tee Maison Scotch</a></h3>
-                        <span class="price">$75.95</span>
-                    </div>
+                    <% }); %>
+                   
                 </div>
                 <!-- //end Products list -->
                 <!-- Product view compact -->
@@ -239,12 +75,12 @@
             </section>
             <!-- //end One columns content -->
             <footer>
-			<% include ../partials/footer %>
+                <% include ../partials/footer %>
             </footer>
             <div id="outer-overlay"></div>
             <!-- //end Footer -->
         </div>
     </div>
     <% include ../partials/jsfiles %>
- 
+
 </html>
