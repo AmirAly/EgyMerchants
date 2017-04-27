@@ -9,15 +9,23 @@ module.exports = function (app) {
         return res.redirect('/eg/Home');
     })
     app.get('/eg/Home', function (req, res) {
+        var featuredStores1 = [], onSaleStores = [], editorChoise = [], bestActiveStores = [], topRatedStores = [], featuredStores2 = [], otherStores = [];
         store.getStoreByPlacement(null).then(function (_data) {
             console.log(_data);
-            var featuredStores1 = _data.Featured1;
-            var onSaleStores = _data.OnSale;
-            var editorChoise = _data.EditorChoise;
-            var bestActiveStores = _data.BestActive;
-            var topRatedStores = _data.TopRated;
-            var featuredStores2 = _data.Featured2;
-            var otherStores = _data.Others;
+            if (_data.Featured1)
+                featuredStores1 = _data.Featured1;
+            if (_data.OnSale)
+                onSaleStores = _data.OnSale;
+            if (_data.EditorChoise)
+                editorChoise = _data.EditorChoise;
+            if (_data.BestActive)
+                bestActiveStores = _data.BestActive;
+            if (_data.TopRated)
+                topRatedStores = _data.TopRated;
+            if (_data.Featured2)
+                var featuredStores2 = _data.Featured2;
+            if (_data.Others)
+             otherStores = _data.Others;
             res.render('pages/index', {
                 featuredStores1: featuredStores1,
                 onSaleStores: onSaleStores,
@@ -28,7 +36,7 @@ module.exports = function (app) {
                 otherStores: otherStores
             });
         });
-        
+
     });
 
     // store page   /eg/store/almaksoud
@@ -48,10 +56,10 @@ module.exports = function (app) {
 
 
             }).catch(function (_err) { console.log(_err) })
-        }).catch(function (_err) {console.log(_err) });
-        
+        }).catch(function (_err) { console.log(_err) });
+
     });
-    
+
     // gallery page   /eg/g/home-furniture/1
     app.get('/eg/g/:galleryName/:galleryId', function (req, res) {
         var _scope = {};
@@ -66,7 +74,7 @@ module.exports = function (app) {
 
         }).catch(function (_err) { console.log(_err) })
 
-    }); 
+    });
 
     // product page 
     app.get('/eg/p/:productName/:productId', function (req, res) {
@@ -93,7 +101,7 @@ module.exports = function (app) {
 
         }).catch(function (_err) { console.log(_err) })
 
-    }); 
+    });
 
     // contacts page 
     app.get('/eg/contactus', function (req, res) {

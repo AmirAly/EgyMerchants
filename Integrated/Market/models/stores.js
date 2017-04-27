@@ -18,7 +18,7 @@ module.exports = {
     },
     getStoreByPlacement: function (_placement) {
         return new Promise(function (resolve, reject) {
-            Schema.find({}, '_id StoreName Placement FeaturedPhoto', function (err, lst) {
+            Schema.find({}, '_id StoreName Placement FeaturedPhoto Description', function (err, lst) {
                 if (err)
                     reject('1:' + err);
                 else {

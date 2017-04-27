@@ -1,5 +1,4 @@
-﻿var store = require('./models/stores');
-module.exports = function (app) {
+﻿module.exports = function (app) {
     // use res.render to load up an ejs view file
     // index page 
 
@@ -7,9 +6,7 @@ module.exports = function (app) {
         return res.redirect('/eg/Home');
     })
     app.get('/eg/Home', function (req, res) {
-        store.getStoreByPlacement('').then(function (_data) {
-            var featuredStores1 = _data;
-        });
+     
         var featuredStores1 = [
             { id: 1, img: 'http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Idea.jpg', title: 'Polly Top Notion' },
             { id: 2, img: 'https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg', title: 'Raglan Sleeve Tee Maison Scotch' },
