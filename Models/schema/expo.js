@@ -12,8 +12,7 @@ var Expo = new Schema({
         {
             Store: {
                 type: Schema.Types.ObjectId,
-                ref: 'Store',
-                required: "Please add proper id"
+                ref: 'Store'
             },
             Img: { type: String, min: 2 },
         }
