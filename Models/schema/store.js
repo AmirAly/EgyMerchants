@@ -19,5 +19,6 @@ var Store = new Schema({
         }
     ],
     City: { type: String, default: 'Cairo' },
+    Address: { type: String, default: '' },
 });
 module.exports = Mongoose.model('Store', Store);
