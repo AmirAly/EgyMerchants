@@ -1,0 +1,16 @@
+﻿<div class="welcomePage">
+    <div class="row">
+        <div class="welcomeImgContainer">
+            <img class="img-responsive" src="images/welcome.jpg" />
+            <div class="imgShadow"></div>
+        </div>
+    </div>
+    <div class="row categoryContainer animate-container">
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 singleCategory animate-repeat" ng-repeat="cat in categories">
+            <div class="imgContainer" style="background:url('{{cat.Img}}')">
+                <div class="blackLayer"></div>
+            </div>
+            <h6 class="categoryTxt">{{cat.Title}}</h6>
+        </div>
+    </div>
+</div>

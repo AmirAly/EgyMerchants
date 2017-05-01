@@ -1,0 +1,288 @@
+﻿/*animation*/
+.ng-enter:not(.animated) {
+    transition: all linear 500ms;
+    opacity: 0;
+}
+
+.ng-enter-active:not(.animated) {
+    opacity: 1;
+}
+
+.ng-leave:not(.animated) {
+    transition: all linear 500ms;
+    opacity: 0;
+}
+
+.ng-leave-active:not(.animated) {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+}
+
+
+
+.animate-repeat {
+  line-height:40px;
+  list-style:none;
+  box-sizing:border-box;
+}
+ 
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+ 
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity:0;
+  max-height:0;
+}
+ 
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity:1;
+  max-height:40px;
+}
+
+
+/*Loader*/
+.loaderContainer {
+    position: fixed;
+    background-color: #000;
+    opacity: 0.7;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 9999;
+    -webkit-animation-duration: 0.9s;
+    animation-duration: 0.9s;
+}
+
+.loader {
+    position: fixed;
+    left: 50%;
+    top: 48%;
+    z-index: 10000;
+    width: 60px;
+    height: 60px;
+    margin: -30px 0 0 -30px;
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #777;
+    border-bottom: 16px solid #777;
+    border-radius: 50%;
+    -webkit-animation: spin 0.9s linear infinite;
+    animation: spin 0.9s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/*modal*/
+.showMe {
+    display: block;
+    opacity: 1;
+    top: 100px;
+    overflow: visible;
+}
+
+.hide {
+    display: none;
+}
+
+/*scroll*/
+::-webkit-scrollbar {
+    border-radius: 20px;
+    width: 6px; /* for vertical scrollbars */
+    height: 6px; /* for horizontal scrollbars */
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #777; /*bar color*/
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 20px;
+    background: #ccc; /*background color*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+.clear {
+    float: left;
+    width: 100%;
+    height: 30px;
+}
+
+.clear2 {
+    float: left;
+    width: 100%;
+    height: 15px;
+}
+
+.noPaddingRight {
+    padding-right: 0;
+}
+
+.noPaddingLeft {
+    padding-left: 0;
+}
+
+.noMargin {
+    margin: 0;
+}
+
+
+/*Menu*/
+.spmenu {
+    background: #000;
+    border: 0;
+    max-width: 250px;
+    top: 40px;
+    -moz-box-shadow: -20px 0px 30px #fff !important;
+    -webkit-box-shadow: -20px 0px 30px white !important;
+    box-shadow: -20px 0px 30px white !important;
+}
+
+
+    .spmenu .sidebar-nav {
+        list-style: none;
+    }
+
+        .spmenu .sidebar-nav .sidebar-brand {
+            height: 65px;
+            font-size: 18px;
+            line-height: 60px;
+            list-style-type: none;
+        }
+
+            .spmenu .sidebar-nav .sidebar-brand .txtMenuItem {
+                color: #fff;
+                font-size: 18px;
+                font-weight: normal;
+                margin-top: 20px;
+            }
+
+            .spmenu .sidebar-nav .sidebar-brand .imgMenuItem {
+                border-radius: 50%;
+                max-width: 50px;
+                max-height: 50px;
+            }
+
+/*Welcome Page*/
+
+.welcomePage .welcomeImgContainer {
+    text-align: center;
+    background: #000;
+    height: 300px;
+    position: relative;
+}
+.welcomePage .welcomeImgContainer:hover .imgShadow{
+    background: transparent;
+}
+    .welcomePage .welcomeImgContainer .imgShadow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 300px;
+        background: #8a4f1a;
+        color: #d9d9d9;
+        opacity: 0.5;
+        background-size: cover;
+        z-index: 1000;
+        transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    }
+
+    .welcomePage .welcomeImgContainer img {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        left: 25%;
+        width: auto;
+        max-height: 300px;
+        z-index: 1;
+        transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    }
+
+.welcomePage .categoryContainer {
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    .welcomePage .categoryContainer .singleCategory {
+        padding: 10px;
+        transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    }
+
+
+        .welcomePage .categoryContainer .singleCategory .imgContainer {
+            border-radius: 50%;
+            height: 150px;
+            width: 150px;
+            margin: auto;
+            background: lightseagreen;
+            background-size: cover !important;
+            position: relative;
+        }
+
+        .welcomePage .categoryContainer .singleCategory .categoryTxt {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding-right: 15px;
+            text-align: center;
+            transform: translate(0, -50%);
+            display: none;
+            text-shadow: 1px 1px 1px #000;
+        }
+
+        .welcomePage .categoryContainer .singleCategory:hover .blackLayer {
+            background-color: rgba(76, 76, 73, 0.7);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+        }
+
+        .welcomePage .categoryContainer .singleCategory:hover .categoryTxt {
+            top: calc( 50% - 10px);
+            font-size: 20px;
+            display: block;
+            transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+        }
