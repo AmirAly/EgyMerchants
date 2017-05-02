@@ -7,7 +7,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         cache: false,
         url: '/',
         views: {
-            '': { templateUrl: 'views/welcome.html', controller: 'welcomeController' }
+            '': { templateUrl: 'views/welcome.html', controller: 'welcomeController' },
+            'header@welcome': { templateUrl: 'views/templates/header.html' }
         }
     })
 
