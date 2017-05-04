@@ -15,7 +15,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     .state('expo', {
         url: '/expo',
         views: {
-            '': { templateUrl: 'views/expo.html' },
+            '': { templateUrl: 'views/expo.html', controller: 'expoController' },
             'header@expo': { templateUrl: 'views/templates/header.html' },
             'footer@expo': { templateUrl: 'views/templates/footer.html' }
         }

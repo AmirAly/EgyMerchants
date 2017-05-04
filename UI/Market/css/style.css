@@ -725,9 +725,9 @@ a {
 }
 
 .image-wrapper img {
-    width: 100%;
+    width: 120px;
+    height: 120px;
     display: block;
-    height: 190px;
 }
 
 .noGutter .image-wrapper img {
@@ -785,9 +785,9 @@ a {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -20px 0 0 -20px;
-    font-size: 42px;
-    line-height: 42px;
+    margin: -16px 0 0 -12px;
+    font-size: 18px;
+    /* line-height: 24px; */
     overflow: hidden;
     color: #fff;
     opacity: 0;
@@ -796,16 +796,18 @@ a {
     transition: opacity-color .5s ease;
 }
 
-.fancybox-gallery:hover .image-hover i[class*=icon-] {
-    opacity: 1;
+.image-wrapper:hover .image-hover i[class*=icon-] {
+    opacity: 0.7;
 }
 
-.fancybox-gallery:hover .image-hover {
+.image-wrapper:hover .image-hover {
     background: rgba(0, 0, 0, .65);
 }
 
 .noGutter {
     margin: 15px 0;
+    width: 600px;
+    margin-top: 5px;
 }
 
     .noGutter .col-md-3, .noGutter .col-sm-3 {
@@ -854,10 +856,13 @@ a {
         }
 
 .col-custom5 {
-    width: 20% !important;
-    height: 190px;
+    width: 120px;
+    height: 120px;
 }
 
+.singleExpoView .container {
+    width: 600px !important;
+}
 
 .secondDiv > *, .allExposView, .singleExpoView {
     transition: all .3s ease 0s;
@@ -871,37 +876,56 @@ a {
 .secondDiv h2, .secondDiv h3, .secondDiv h4, .secondDiv a {
     color: #fff;
 }
+
+.secondDiv h2, .secondDiv h3 {
+    text-shadow: 2px 2px 1px darkorange;
+    margin: 0;
+}
+
+.secondDiv a {
+    text-decoration: underline;
+    text-shadow: 1px 1px 1px #ffa500;
+}
 /* Background colours */
-.secondDiv article:nth-child(1) {
+.secondDiv section:nth-child(1) {
     background: #c22326;
+    background-image: url(http://file.mrbool.com/mrbool/articles/RicardoArrigoni/Parallax/Parallax1.jpg);
+    background-size: cover;
 }
 
-.secondDiv article:nth-child(2) {
+.secondDiv section:nth-child(2) {
     background: #f37338;
+    background-image: url(http://www.brockmetal.com/wp-content/uploads/2014/01/parallax-section-background-03.jpg);
+    background-size: cover;
 }
 
-.secondDiv article:nth-child(3) {
+.secondDiv section:nth-child(3) {
     background: #fdb632;
+    background-image: url(http://maddam-x.com/wp-content/uploads/2015/04/orig_15953.jpg);
+    background-size: cover;
 }
 
-.secondDiv article:nth-child(4) {
+.secondDiv section:nth-child(4) {
     background: #027878;
+    background-image: url(http://www.machakosgovernment.com/Machawood/images/parallax-bg1.jpg);
+    background-size: cover;
 }
 
-.secondDiv article:nth-child(5), .secondDiv {
+.secondDiv section:nth-child(5) {
     background: #801638;
+    background-image: url(http://social-lions.ro/wp-content/uploads/revslider/home2/img-33.jpg);
+    background-size: cover;
 }
 /* Main layout */
 .secondDiv {
     width: 100%;
-    height: 70vh;
 }
 
 .secondDiv {
     list-style: none;
     position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
     align-items: stretch;
     overflow: hidden;
@@ -909,32 +933,20 @@ a {
     /* Articles */
     .secondDiv article {
         flex: initial;
-        width: 20%;
-        height: 100%;
+        /*height: 800px !important;*/
         text-align: center;
         color: #fff;
         text-decoration: none;
         vertical-align: bottom;
         box-sizing: border-box;
-        padding: 2vh 1vw;
+        /*padding: 2vh 1vw;*/
         position: relative;
-    }
-    /* Hover interaction */
-    .secondDiv:hover article {
         flex: initial;
-        width: 10%;
-    }
-
-    .secondDiv article:hover {
-        width: 60%;
+        width: 80%;
+        margin: 0 auto;
     }
 
 article > div {
-    opacity: 0;
-    transition: opacity .2s ease 0;
-}
-
-.secondDiv article:hover > div {
     opacity: 1;
     transition: opacity .3s ease .3s;
 }
@@ -947,27 +959,44 @@ article > div {
     width: 100%;
     margin: 0;
     font-size: 3vh;
+    text-shadow: 2px 2px 1px #013a56;
 }
 
 /* Article layouts */
-article div {
+article .expoData {
     text-align: left;
-    width: 58vw;
+    /*width: 100vw;*/
+    box-shadow: inset 1px 1px 1000px #000000;
+    padding: 20px;
+    padding-top: 0;
 }
 
-    article div p, article div div h2, article div h3 {
-        margin: 0 0 1em 0;
+    article .expoData h1 {
+        color: #fff;
+        text-align: left;
+        font-weight: bolder;
+        font-size: 45px;
+        padding-bottom:0;
     }
+
+    article .expoData .dvExpoFloors{
+        position:absolute;
+        top:70px;
+    }
+
+article div p, article div div h2, article div h3 {
+    margin: 0 0 1em 0;
+}
 
 article h1, article h2, article h3, article h4, article h5, article h6 {
     text-transform: uppercase;
 }
 
 article div p {
-    width: 40vw;
+    padding-left: 10px;
 }
 
-@media (max-width: 900px) {
+/*@media (max-width: 900px) {
     .secondDiv article {
         padding: 2vh 3vw;
     }
@@ -994,31 +1023,33 @@ article div p {
         max-height: calc(72%);
         overflow-y: auto;
     }
-}
+}*/
 
 
-.allExposView , .singleExpoView {
+.allExposView, .singleExpoView {
     position: relative;
     min-height: 100px;
-    -webkit-transition:top linear 0.5s;
-    transition:top linear 0.5s;
+    -webkit-transition: top linear 0.5s;
+    transition: top linear 0.5s;
     top: 0;
 }
 
-.allExposView.ng-hide,
-.singleExpoView.ng-hide  {
-	top: -300px;
-}
-.allExposView.ng-show,
-.singleExpoView.ng-show  {
-	top: 0px;
-}
-.allExposView.ng-hide-add,
- .allExposView.ng-hide-remove,
-.singleExpoView.ng-hide-add,
- .singleExpoView.ng-hide-remove {
-	display:block!important;
-}
+    .allExposView.ng-hide,
+    .singleExpoView.ng-hide {
+        top: -300px;
+    }
+
+    .allExposView.ng-show,
+    .singleExpoView.ng-show {
+        top: 0px;
+    }
+
+    .allExposView.ng-hide-add,
+    .allExposView.ng-hide-remove,
+    .singleExpoView.ng-hide-add,
+    .singleExpoView.ng-hide-remove {
+        display: block !important;
+    }
 
 
 /*animation general*/
