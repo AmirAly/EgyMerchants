@@ -3,20 +3,31 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
-    .state('welcome', {
-        cache: false,
+    .state('landing', {
         url: '/',
         views: {
-            '': { templateUrl: 'views/welcome.html', controller: 'welcomeController' },
-            'header@welcome': { templateUrl: 'views/templates/header.html' }
+            '': { templateUrl: 'views/landing.html', controller: 'landingController' },
+            'header@landing': { templateUrl: 'views/templates/header.html' },
+            'footer@landing': { templateUrl: 'views/templates/footer.html' }
         }
     })
 
-    .state('landing', {
-        cache: false,
-        url: '/landing',
+    .state('expo', {
+        url: '/expo',
         views: {
-            '': { templateUrl: 'views/landing.html', controller: 'landingController' }
+            '': { templateUrl: 'views/expo.html' },
+            'header@expo': { templateUrl: 'views/templates/header.html' },
+            'footer@expo': { templateUrl: 'views/templates/footer.html' }
+        }
+    })
+
+
+    .state('store', {
+        url: '/store',
+        views: {
+            '': { templateUrl: 'views/store.html', controller: 'storeController' },
+            'header@store': { templateUrl: 'views/templates/header.html' },
+            'footer@store': { templateUrl: 'views/templates/footer.html' }
         }
     })
     ;

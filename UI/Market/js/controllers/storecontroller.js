@@ -1,4 +1,4 @@
-﻿app.controller("welcomeController", function ($scope, $state, $rootScope, $timeout) {
+﻿app.controller("storeController", function ($scope, $state, $rootScope, $timeout) {
     $scope.categories = [];
     $timeout(function () {
         $scope.categories = [
@@ -17,4 +17,13 @@
         ];
     }, 2000);
 
+
+    $scope.next = function () {
+        $('#myCarousel').carousel('next');
+    }
+
+
+    $scope.pre = function () {
+        $('#myCarousel').carousel('prev');
+    }
 });
