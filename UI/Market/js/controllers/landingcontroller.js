@@ -1,4 +1,5 @@
 ﻿app.controller("landingController", function ($scope, $state, $rootScope, $timeout) {
+    $rootScope.loading = true;
     $scope.categories = [];
     $timeout(function () {
         $scope.categories = [
@@ -15,6 +16,7 @@
                 { Title: 'Makeup', Img: 'http://wallpaperscraft.com/image/lancome_makeup_eye_shadow_lipstick_42632_602x339.jpg' },
                 { Title: 'Bikes', Img: 'http://wallpaperscraft.com/image/yamaha_yzf_r1_yamaha_sport_bike_95773_602x339.jpg' }
         ];
+        $rootScope.loading = false;
     }, 2000);
 
 });

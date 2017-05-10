@@ -90,5 +90,19 @@ module.exports = {
                 }
             })
         })
+    },
+    get: function () {
+        return new Promise(function (resolve, reject) {
+            Schema.find({}, '', function (err, lst) {
+                if (err)
+                    reject('1:' + err);
+                else {
+                    if (lst)
+                        resolve(lst);
+                    else
+                        reject("This filteration didn't resulted in any data");
+                }
+            })
+        })
     }
 }

@@ -3,12 +3,16 @@ var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
     getByCategory: function (_categoryid) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Category': _categoryid}, '', function (err, Obj) {
+            Schema.find({ 'Category': _categoryid }, '_id Title Banner Sections').populate({
+                path: 'Sections.Store',
+                model: 'Store'
+            }).exec(function (err, Obj) {
                 if (err)
                     reject('1:' + err);
                 else {
-                    if (Obj) 
+                    if (Obj.length > 0) {
                         resolve(Obj);
+                    }
                     else {
                         reject("This filteration didn't resulted in any data");
                     }
@@ -18,12 +22,15 @@ module.exports = {
     },
     getStores: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id }).populate('Sections.Store').exec(function (err, stores) {
+            Schema.findOne({ '_id': _id }).populate({
+                path: 'Sections.Store',
+                model: 'Store'
+            }).exec(function (err, stores) {
                 if (err)
                     reject('1:' + err);
                 else {
-                    if (stores) 
-                        resolve(stores);
+                    if (stores)
+                        resolve(stores.length > 0);
                     else {
                         reject("This filteration didn't resulted in any data");
                     }
@@ -37,7 +44,7 @@ module.exports = {
             _expo.save(function (err, Obj) {
                 if (err)
                     reject('1:' + err);
-                else 
+                else
                     resolve(Obj);
             })
         })
