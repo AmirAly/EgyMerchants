@@ -86,11 +86,12 @@ h2 {
 }
 
 h3 {
-    margin: 0;
+    padding-top: 30px !important;
+    /*margin: 0;
     padding: 0 0 0.95em;
     font: 1.692em Mavenpro, Arial, Helvetica, sans-serif;
     text-transform: uppercase;
-    color: #2b2b2b;
+    color: #2b2b2b;*/
 }
 
 h4 {
@@ -538,8 +539,13 @@ h1, h2, h3, h4, h5, h6 {
     padding: 40px 0;
     text-align: center;
     color: #13757d;
+<<<<<<< HEAD
     font-size: 40px;
     font-weight: 700;
+=======
+    font-size: 40px !important;
+    font-weight: 700 !important;
+>>>>>>> 01c7e70c8d9a1b62c659f39ffbf7a96844377d94
     font-weight: bold;
     font: 2.46em Mavenpro, Arial, Helvetica, sans-serif;
     text-transform: uppercase;
@@ -652,6 +658,10 @@ h1, h2, h3, h4, h5, h6 {
         display: inherit;
     }
 
+.storePage .owl-slider-outer {
+    width: 70% !important;
+}
+
 .storePage .banners-block {
     float: right;
     margin-top: 0;
@@ -710,7 +720,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*vertical carousal*/
+<<<<<<< HEAD
 .storePage .btn-vertical-slider {
+=======
+/*.storePage .btn-vertical-slider {
+>>>>>>> 01c7e70c8d9a1b62c659f39ffbf7a96844377d94
     cursor: pointer;
     color: #969696 !important;
     font-size: 22px !important;
@@ -804,7 +818,8 @@ a {
 
 .storePage .carousel.vertical .item {
     left: 0;
-}
+}*/
+
 
 
 
@@ -1096,8 +1111,13 @@ a {
 .expoPage section:first-child article .expoData h1 {
     padding-top: 30px;
 }
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> 01c7e70c8d9a1b62c659f39ffbf7a96844377d94
 .expoPage article div p, .expoPage article div div h2, .expoPage article div h3 {
     margin: 0 0 1em 0;
 }
@@ -1134,6 +1154,20 @@ a {
     .expoPage .singleExpoView.ng-hide-remove {
         display: block !important;
     }
+
+/*product page*/
+.cloudzoom-lens {
+    height: 200px !important;
+    width: 200px !important;
+}
+
+.cloudzoom-blank div:last-child {
+    visibility: hidden !important;
+}
+
+.product-view .large-image img {
+    max-height: 500px;
+}
 
 
 /*animation general*/
@@ -1216,13 +1250,13 @@ a {
 }
 
 /*footer*/
-h3 {
+/*h3 {
     margin: 0;
     padding: 0 0 0.95em;
     font: 1.692em Mavenpro, Arial, Helvetica, sans-serif;
     text-transform: uppercase;
     color: #2b2b2b;
-}
+}*/
 
 .dvFooterContainer {
     padding: 0;

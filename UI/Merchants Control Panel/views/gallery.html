@@ -1,0 +1,77 @@
+﻿<div class="wrapper" id="main">
+    <div ui-view="menu"></div>
+    <div class="main-panel">
+        <div class="content">
+            <div class="container-fluid">
+                <!-- Start Breadcrumbs -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <ol class="breadcrumb">
+                            <li><a href="#/galleries">Galleries</a></li>
+                            <li class="active">Edit Gallery</li>
+                        </ol>
+                    </div>
+                    <!-- End Breadcrumbs -->
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header" data-background-color="orange">
+                                <h4 class="title">Edit Gallery</h4>
+                                <p class="category">Edit your Gallery</p>
+                            </div>
+                            <div class="card-content">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group label-floating is-empty is-focused">
+                                                <label class="control-label">Gallery Name</label>
+                                                <input type="text" class="form-control" ng-model="gallery.Title">
+                                                <span class="material-input"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating is-empty is-focused">
+                                                <label>About Me</label>
+                                                <textarea class="form-control" rows="3" ng-model="gallery.Description"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary pull-right">Update Gallery</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header card-chart">
+                                <img src="img/cover.jpeg">
+                            </div>
+                            <div class="card-content">
+                                <h4 class="title">{{gallery.Title}}</h4>
+                                <p class="category">{{gallery.Description}}</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <a href="#/items"><i class="fa fa-eye" aria-hidden="true"></i> View Items</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <p class="copyright pull-right">
+                    &copy;
+                    <script>document.write(new Date().getFullYear())</script> <a href="http://appout.co">AppOut.LLC</a> | Built By Craftsmen
+                </p>
+            </div>
+        </footer>
+    </div>
+</div>
