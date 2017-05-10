@@ -170,8 +170,8 @@ h6.mega {
 /*Loader*/
 .loaderContainer {
     position: fixed;
-    background-color: #000;
-    opacity: 0.7;
+    background-color: #fff;
+    opacity: 1;
     top: 0;
     bottom: 0;
     right: 0;
@@ -181,7 +181,7 @@ h6.mega {
     animation-duration: 0.9s;
 }
 
-.loader {
+/*.loader {
     position: fixed;
     left: 50%;
     top: 48%;
@@ -215,7 +215,7 @@ h6.mega {
     100% {
         transform: rotate(360deg);
     }
-}
+}*/
 
 
 /*modal*/
@@ -390,43 +390,75 @@ h1, h2, h3, h4, h5, h6 {
 .welcomePage .welcomeImgContainer {
     text-align: center;
     background: #000;
-    height: 300px;
+    height: 800px;
     width: 100%;
     display: flex;
+    transition: all linear 0.5s;
+    -moz-animation: cssAnimation 1s ease-in 5s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 1s ease-in 5s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 1s ease-in 5s forwards;
+    /* Opera */
+    animation: cssAnimation 1s ease-in 5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 }
 
-    .welcomePage .welcomeImgContainer:hover .imgShadow {
-        background: transparent;
+@keyframes cssAnimation {
+    from {
+        height: 800px;
     }
 
-    .welcomePage .welcomeImgContainer .imgShadow {
-        position: absolute;
-        /*top: 170px;*/
-        left: 0;
-        width: 100%;
+    to {
         height: 300px;
-        background: #8a4f1a;
-        color: #d9d9d9;
-        opacity: 0.5;
-        background-size: cover;
-        z-index: 999;
-        transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    }
+}
+
+@-webkit-keyframes cssAnimation {
+    from {
+        height: 800px;
     }
 
-    .welcomePage .welcomeImgContainer img {
-        vertical-align: middle;
-        max-height: 300px;
-        z-index: 1;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin: auto;
-        transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    to {
+        height: 300px;
     }
+}
+
+.welcomePage .welcomeImgContainer:hover .imgShadow {
+    background: transparent;
+}
+
+.welcomePage .welcomeImgContainer .imgShadow {
+    position: absolute;
+    /*top: 170px;*/
+    left: 0;
+    width: 100%;
+    height: 300px;
+    /*background: #8a4f1a;*/
+    color: #d9d9d9;
+    opacity: 0.5;
+    background-size: cover;
+    z-index: 999;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.welcomePage .welcomeImgContainer img {
+    vertical-align: middle;
+    /*max-height: 300px;*/
+    max-height: 100%;
+    z-index: 1;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin: auto;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
 
 .welcomePage .txtChooseCat {
-    text-shadow: 1px 1px 1px chocolate;
-    color: #643e19;
+    text-shadow: 1px 1px 1px white;
+    color: #585857;
+    padding-top: 0;
 }
 
 
@@ -507,6 +539,10 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     color: #13757d;
     font-size: 40px;
+    font-weight: 700;
+    font-weight: bold;
+    font: 2.46em Mavenpro, Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
 }
 
 .storePage .mainCarousel .carousel-inner {
@@ -662,6 +698,7 @@ h1, h2, h3, h4, h5, h6 {
         }
 
 .storePage banners-block .item:hover .banner-text {
+    color: cyan;
 }
 
 .storePage .banners-block .item:hover img {
@@ -671,71 +708,123 @@ h1, h2, h3, h4, h5, h6 {
     -ms-transform: scale(1.1, 1.1);
     transform: scale(1.1, 1.1);
 }
+
 /*vertical carousal*/
-.btn-vertical-slider {
-    margin-left: 35px;
+.storePage .btn-vertical-slider {
     cursor: pointer;
+    color: #969696 !important;
+    font-size: 22px !important;
 }
 
 a {
     cursor: pointer;
 }
 
-.carousel.vertical .carousel-inner .item {
-    -webkit-transition: 0.6s ease-in-out top;
-    -moz-transition: 0.6s ease-in-out top;
-    -ms-transition: 0.6s ease-in-out top;
-    -o-transition: 0.6s ease-in-out top;
-    transition: 0.6s ease-in-out top;
+.storePage .carousel.vertical .carousel-inner {
+    max-height: 360px;
 }
 
-.carousel.vertical .active {
+    .storePage .carousel.vertical .carousel-inner .item .row {
+        margin: 0 2px 0 0;
+        height: 118px !important;
+        padding: 0;
+        border-bottom: 1px dotted #d7d7d7;
+        overflow: hidden;
+        float: none !important;
+    }
+
+        .storePage .carousel.vertical .carousel-inner .item .row .product {
+            padding: 15px 0;
+        }
+
+            .storePage .carousel.vertical .carousel-inner .item .row .product > a {
+                display: block;
+                border-radius: 2px;
+                float: left;
+                margin-right: 17px;
+                width: 68px !important;
+                overflow: hidden;
+            }
+
+        .storePage .carousel.vertical .carousel-inner .item .row .rating {
+            display: block;
+            color: #d9d9d9;
+            height: 1.8em;
+            margin-top: -3px;
+        }
+
+        .storePage .carousel.vertical .carousel-inner .item .row .name {
+            color: #565656;
+            overflow: hidden;
+            height: 2.5em;
+            padding-right: 20%;
+            line-height: 1.2em;
+        }
+
+        .storePage .carousel.vertical .carousel-inner .item .row .price {
+            font-size: 1.14em;
+        }
+
+        .storePage .carousel.vertical .carousel-inner .item .row .flex-viewport {
+            height: 312px !important;
+        }
+
+    .storePage .carousel.vertical .carousel-inner .item {
+        -webkit-transition: 0.6s ease-in-out top;
+        -moz-transition: 0.6s ease-in-out top;
+        -ms-transition: 0.6s ease-in-out top;
+        -o-transition: 0.6s ease-in-out top;
+        transition: 0.6s ease-in-out top;
+    }
+
+.storePage .carousel.vertical .active {
     top: 0;
 }
 
-.carousel.vertical .next {
+.storePage .carousel.vertical .next {
     top: 100%;
 }
 
-.carousel.vertical .prev {
+.storePage .carousel.vertical .prev {
     top: -100%;
 }
 
-    .carousel.vertical .next.left,
-    .carousel.vertical .prev.right {
+    .storePage .carousel.vertical .next.left,
+    .storePage .carousel.vertical .prev.right {
         top: 0;
     }
 
-.carousel.vertical .active.left {
+.storePage .carousel.vertical .active.left {
     top: -100%;
 }
 
-.carousel.vertical .active.right {
+.storePage .carousel.vertical .active.right {
     top: 100%;
 }
 
-.carousel.vertical .item {
+.storePage .carousel.vertical .item {
     left: 0;
 }
 
 
+
 /*expo page*/
-.noGutter .image-wrapper {
+.expoPage .noGutter .image-wrapper {
     margin-bottom: 0;
 }
 
-.image-wrapper img {
+.expoPage .image-wrapper img {
     width: 120px;
     height: 120px;
     display: block;
 }
 
-.noGutter .image-wrapper img {
+.expoPage .noGutter .image-wrapper img {
     border: 0;
     box-shadow: none;
 }
 
-.image-title {
+.expoPage .image-title {
     position: absolute;
     bottom: 12px;
     left: 10px;
@@ -748,7 +837,7 @@ a {
     font-size: 14px;
 }
 
-.noGutter .image-title {
+.expoPage .noGutter .image-title {
     bottom: 10px;
     left: 0;
     right: 0;
@@ -758,11 +847,11 @@ a {
     background: 0 0;
 }
 
-.noGutter .image-wrapper:hover .image-title {
+.expoPage .noGutter .image-wrapper:hover .image-title {
     opacity: 1;
 }
 
-.image-hover {
+.expoPage .image-hover {
     position: absolute;
     top: 0;
     left: 0;
@@ -774,14 +863,14 @@ a {
     transition: background-color .3s ease;
 }
 
-.noGutter .image-hover {
+.expoPage .noGutter .image-hover {
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
 }
 
-.image-hover i[class*=icon-] {
+.expoPage .image-hover i[class*=icon-] {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -796,47 +885,62 @@ a {
     transition: opacity-color .5s ease;
 }
 
-.image-wrapper:hover .image-hover i[class*=icon-] {
+.expoPage .image-wrapper:hover .image-hover i[class*=icon-] {
     opacity: 0.7;
 }
 
-.image-wrapper:hover .image-hover {
+.expoPage .image-wrapper:hover .image-hover {
     background: rgba(0, 0, 0, .65);
 }
 
-.noGutter {
+.expoPage .noGutter {
     margin: 15px 0;
     width: 600px;
     margin-top: 5px;
 }
 
-    .noGutter .col-md-3, .noGutter .col-sm-3 {
+    .expoPage .noGutter .col-md-3,
+    .expoPage .noGutter .col-sm-3 {
         padding: 0 !important;
         margin: -5px 0 0 0 !important;
     }
 
-.pagination-main {
-    margin: 0 auto;
-    padding: 0 0 35px;
-    list-style-type: none;
-    text-align: center;
+.expoPage .expoDetails {
+    position: absolute;
+    top: 100px;
+    left: 150px;
 }
 
-    .pagination-main li {
-        display: inline-block;
+.expoPage .pagination-main {
+    margin: 0 auto;
+    padding: 20px 0;
+    list-style-type: none;
+    text-align: center;
+    opacity: 1;
+    transition: all linear 0.5s;
+}
+
+    .expoPage .pagination-main.ng-hide {
+        opacity: 0;
+    }
+
+    .expoPage .pagination-main li {
+        display: block;
         margin: 0;
         padding: 0 1px 0 0;
         font: 1.08em/2.3em Mavenpro-bold, Arial, Helvetica, sans-serif;
         color: #9c9c9c;
     }
 
-        .pagination-main li a {
+        .expoPage .pagination-main li a {
+            background: rgba(103, 68, 56, 0.5);
             display: inline-block;
             border: 1px solid #e5e5e5;
-            width: 30px;
+            width: 34px;
             height: 34px;
             text-align: center;
-            border-radius: 2px;
+            border-radius: 50%;
+            margin-bottom: 5px;
             -o-transition: all .3s ease;
             -moz-transition: all .3s ease;
             -webkit-transition: all .3s ease;
@@ -844,84 +948,78 @@ a {
             transition: all .3s ease;
         }
 
-            .pagination-main li a:hover, .pagination-main li.active a {
+            .expoPage .pagination-main li a:hover,
+            .expoPage .pagination-main li.active a {
                 text-decoration: none;
                 color: #fff;
                 background: #ee3b27;
                 border-color: #ee3b27;
             }
 
-        .pagination-main li.active a {
+        .expoPage .pagination-main li.active a {
             cursor: default;
         }
 
-.col-custom5 {
+
+
+.expoPage .col-custom5 {
     width: 120px;
     height: 120px;
 }
 
-.singleExpoView .container {
+.expoPage .singleExpoView .container {
     width: 600px !important;
 }
 
-.secondDiv > *, .allExposView, .singleExpoView {
+.expoPage .secondDiv > *, .expoPage .allExposView, .expoPage .singleExpoView {
     transition: all .3s ease 0s;
 }
 
-.secondDiv > * {
+.expoPage .secondDiv > * {
     font-family: 'Roboto', sans-serif;
     background: #801638;
 }
 
-.secondDiv h2, .secondDiv h3, .secondDiv h4, .secondDiv a {
+.expoPage .secondDiv h2, .expoPage .secondDiv h3, .expoPage .secondDiv h4, .expoPage .secondDiv a {
     color: #fff;
 }
 
-.secondDiv h2, .secondDiv h3 {
-    text-shadow: 2px 2px 1px darkorange;
-    margin: 0;
-}
-
-.secondDiv a {
+.expoPage .secondDiv a {
     text-decoration: underline;
-    text-shadow: 1px 1px 1px #ffa500;
+    text-shadow: 1px 1px 1px #ee3b27;
 }
 /* Background colours */
-.secondDiv section:nth-child(1) {
+.expoPage .secondDiv section:nth-child(1) {
     background: #c22326;
     background-image: url(http://file.mrbool.com/mrbool/articles/RicardoArrigoni/Parallax/Parallax1.jpg);
     background-size: cover;
 }
 
-.secondDiv section:nth-child(2) {
+.expoPage .secondDiv section:nth-child(2) {
     background: #f37338;
     background-image: url(http://www.brockmetal.com/wp-content/uploads/2014/01/parallax-section-background-03.jpg);
     background-size: cover;
 }
 
-.secondDiv section:nth-child(3) {
+.expoPage .secondDiv section:nth-child(3) {
     background: #fdb632;
     background-image: url(http://maddam-x.com/wp-content/uploads/2015/04/orig_15953.jpg);
     background-size: cover;
 }
 
-.secondDiv section:nth-child(4) {
+.expoPage .secondDiv section:nth-child(4) {
     background: #027878;
     background-image: url(http://www.machakosgovernment.com/Machawood/images/parallax-bg1.jpg);
     background-size: cover;
 }
 
-.secondDiv section:nth-child(5) {
+.expoPage .secondDiv section:nth-child(5) {
     background: #801638;
     background-image: url(http://social-lions.ro/wp-content/uploads/revslider/home2/img-33.jpg);
     background-size: cover;
 }
 /* Main layout */
-.secondDiv {
-    width: 100%;
-}
-
-.secondDiv {
+.expoPage .secondDiv {
     list-style: none;
     position: relative;
     display: flex;
@@ -929,30 +1027,32 @@ a {
     flex-wrap: nowrap;
     align-items: stretch;
     overflow: hidden;
+    width: 100%;
 }
+
+    .expoPage .secondDiv .secondExpo {
+        position: relative;
+    }
     /* Articles */
-    .secondDiv article {
+    .expoPage .secondDiv article {
         flex: initial;
-        /*height: 800px !important;*/
         text-align: center;
         color: #fff;
         text-decoration: none;
         vertical-align: bottom;
         box-sizing: border-box;
-        /*padding: 2vh 1vw;*/
-        position: relative;
         flex: initial;
         width: 80%;
         margin: 0 auto;
     }
 
-article > div {
+.expoPage article > div {
     opacity: 1;
     transition: opacity .3s ease .3s;
 }
 
 /* navigation */
-.secondDiv article > h2 {
+.expoPage .secondDiv article > h2 {
     bottom: 2vh;
     position: absolute;
     text-align: center;
@@ -963,91 +1063,75 @@ article > div {
 }
 
 /* Article layouts */
-article .expoData {
+.expoPage article .expoData {
     text-align: left;
-    /*width: 100vw;*/
-    box-shadow: inset 1px 1px 1000px #000000;
+    box-shadow: inset 3px 3px 200px #000000;
     padding: 20px;
     padding-top: 0;
 }
 
-    article .expoData h1 {
+    .expoPage article .expoData h6 {
+        width: 128px;
+        position: relative;
+        padding: 10px;
+        background: #ee3b27;
+        color: #fff;
+        font-size: 14px;
+        border: 2px dashed #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 0 4px #ee3b27, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+        text-shadow: -1px -1px #aa3030;
+        font-weight: normal;
+    }
+
+
+    .expoPage article .expoData h1 {
         color: #fff;
         text-align: left;
         font-weight: bolder;
         font-size: 45px;
-        padding-bottom:0;
+        padding-bottom: 0;
     }
 
-    article .expoData .dvExpoFloors{
-        position:absolute;
-        top:70px;
-    }
+.expoPage section:first-child article .expoData h1 {
+    padding-top: 30px;
+}
 
-article div p, article div div h2, article div h3 {
+
+.expoPage article div p, .expoPage article div div h2, .expoPage article div h3 {
     margin: 0 0 1em 0;
 }
 
-article h1, article h2, article h3, article h4, article h5, article h6 {
+.expoPage article h1, .expoPage article h2, .expoPage article h3, .expoPage article h4, .expoPage article h5, .expoPage article h6 {
     text-transform: uppercase;
 }
 
-article div p {
+.expoPage article div p {
     padding-left: 10px;
 }
 
-/*@media (max-width: 900px) {
-    .secondDiv article {
-        padding: 2vh 3vw;
-    }
 
-        .secondDiv article > h2 {
-            transform: rotate(90deg);
-            bottom: 23vh;
-            min-width: 12em;
-            text-align: left;
-            transform: rotate(-90deg);
-            transform-origin: 0 0 0;
-            opacity: 1;
-        }
-
-        .secondDiv article:hover > h2 {
-            opacity: 0;
-        }
-
-    article div p {
-        width: 50vw;
-    }
-
-    article div {
-        max-height: calc(72%);
-        overflow-y: auto;
-    }
-}*/
-
-
-.allExposView, .singleExpoView {
-    position: relative;
+.expoPage .allExposView, .singleExpoView {
     min-height: 100px;
     -webkit-transition: top linear 0.5s;
     transition: top linear 0.5s;
     top: 0;
 }
 
-    .allExposView.ng-hide,
-    .singleExpoView.ng-hide {
+    .expoPage .allExposView.ng-hide,
+    .expoPage .singleExpoView.ng-hide {
         top: -300px;
     }
 
-    .allExposView.ng-show,
-    .singleExpoView.ng-show {
+    .expoPage .allExposView.ng-show,
+    .expoPage .singleExpoView.ng-show {
         top: 0px;
     }
 
-    .allExposView.ng-hide-add,
-    .allExposView.ng-hide-remove,
-    .singleExpoView.ng-hide-add,
-    .singleExpoView.ng-hide-remove {
+    .expoPage .allExposView.ng-hide-add,
+    .expoPage .allExposView.ng-hide-remove,
+    .expoPage .singleExpoView.ng-hide-add,
+    .expoPage .singleExpoView.ng-hide-remove {
         display: block !important;
     }
 
@@ -1103,6 +1187,33 @@ article div p {
                 opacity: 1;
                 max-height: 150px;
             }
+
+/*repeated-item*/
+/*  We're using CSS transitions for when the enter and move events are triggered for the element that has the .repeated-item class*/
+.repeated-item.ng-enter, .repeated-item.ng-move {
+    transition: all 0.5s linear;
+    opacity: 0;
+}
+    /* The ng-enter-active and ng-move-active are where the transition destination properties are set so that the animation knows what to animate.*/
+    .repeated-item.ng-enter.ng-enter-active,
+    .repeated-item.ng-move.ng-move-active {
+        opacity: 1;
+    }
+
+/*We're using CSS keyframe animations for when the leave event is triggered for the element  that has the .repeated-item class*/
+.repeated-item.ng-leave {
+    animation: 0.5s my_animation;
+}
+
+@keyframes my_animation {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
 
 /*footer*/
 h3 {
