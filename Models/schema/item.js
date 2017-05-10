@@ -20,7 +20,7 @@ var Item = new Schema({
     },
     Gallery: {
         type: Schema.Types.ObjectId,
-        ref: 'Store',
+        ref: 'Gallery',
         required: "Please add gallery id"
     }
 

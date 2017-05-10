@@ -44,7 +44,7 @@ module.exports = {
         input.pipe(decoder).pipe(output);
 
         output.on('data', function (data) {
-            fileService.createBlockBlobFromText('items', _filename, data, {
+            fileService.createBlockBlobFromText('egmpre', _filename, data, {
                 contentType: 'image/png',
                 contentEncoding: 'base64'
             }, function (error, result, response) {

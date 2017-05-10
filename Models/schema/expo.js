@@ -4,7 +4,7 @@ var Expo = new Schema({
     Category: [{
         type: Schema.Types.ObjectId,
         ref: 'Category',
-        required: "Please add proper id"
+        required: "Please add category id"
     }],
     Title: { type: String, min: 2 },
     Banner: { type: String, min: 2 },
