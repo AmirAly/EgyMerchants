@@ -1,0 +1,1 @@
+﻿app.controller("registerController", function ($scope, $state, $rootScope, API, $stateParams, $location) { });
