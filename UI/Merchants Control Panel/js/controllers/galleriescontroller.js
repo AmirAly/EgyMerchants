@@ -1,5 +1,5 @@
-﻿app.controller("galleriesController", function ($scope, $state, $rootScope, API, $stateParams, $location) {
-
+﻿app.controller("galleriesController", function ($scope, $state, $rootScope, API, $stateParams, $location, Theme) {
+    Theme.init();
     $scope.galleries = [{
         DisplayPicture: "img/cover.jpeg",
         Title: "Completed Tasks",
