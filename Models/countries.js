@@ -1,7 +1,7 @@
 var Schema = require('./schema/country');
 var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
-    addCountry: function (_newcountry) {
+    add: function (_newcountry) {
         return new Promise(function (resolve, reject) {
             if (_newcountry.Imgs) {
                 {

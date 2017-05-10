@@ -31,9 +31,9 @@ module.exports = {
                 if (err)
                     reject(err);
                 else {
-                    if(Obj)
+                    if (Obj.length > 0) 
                         resolve(Obj);
-                    else 
+                    else
                         reject("This filteration didn't resulted in any data");
                 }
             })
