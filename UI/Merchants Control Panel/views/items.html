@@ -1,0 +1,125 @@
+﻿<div class="wrapper" id="main">
+    <div ui-view="menu"></div>
+    <div class="main-panel">
+        <nav class="navbar navbar-transparent navbar-absolute">
+            <div class="container-fluid top">
+                <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">Add Gallery</button>
+            </div>
+        </nav>
+        <div class="content">
+            <div class="container-fluid">
+                <!-- Start Breadcrumbs -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <ol class="breadcrumb">
+                            <li><a href="#/galleries">Galleries</a></li>
+                            <li><a href="#/gallery">Edit Gallery</a></li>
+                            <li class="active">Gallery Items</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- End Breadcrumbs -->
+                <div class="row">
+                    <div class="col-md-3" ng-repeat="item in gallery">
+                        <a href="#/item">
+                            <div class="card">
+                                <div class="card-header card-chart">
+                                    <img src="img/cover.jpeg" ng-model="item.DisplayPicture">
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="title">{{item.Title}}</h4>
+                                    <p class="category">{{item.Description}}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <a href="#/item"><i class="fa fa-cogs" aria-hidden="true"></i> Edit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <p class="copyright pull-right">
+                    &copy;
+                    <script>document.write(new Date().getFullYear())</script> <a href="http://appout.co">AppOut.LLC</a> | Built By Craftsman
+                </p>
+            </div>
+        </footer>
+    </div>
+</div>
+<!-- Start Modal -->
+<div class="modal fade bs-example-modal-lg" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Add Item</h4>
+            </div>
+            <div class="modal-body">
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="card">
+                                    <div class="card-header" data-background-color="orange">
+                                        <h4 class="title">Creat Item</h4>
+                                        <p class="category">Creat A New Item</p>
+                                    </div>
+                                    <div class="card-content">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <div class="form-group label-floating is-empty is-focused">
+                                                        <label class="control-label">Item Name</label>
+                                                        <input type="text" class="form-control" ng-model="item.Title">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <div class="form-group label-floating is-empty is-focused">
+                                                            <label class="control-label"> About Item</label>
+                                                            <textarea class="form-control" rows="3" ng-model="item.Description"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <!--upload img-->
+                                    <div class="card-header card-chart">
+                                        <img src="img/cover.jpeg">
+                                    </div>
+                                    <div class="card-content">
+                                        <h4 class="title">{{item.Title}}</h4>
+                                        <p class="category">{{item.Description}}</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="fa fa-cogs" aria-hidden="true"></i> Edit
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
