@@ -1,13 +1,14 @@
 ﻿<div ui-view="header" class="container-fluid"></div>
+<div ui-view="social" class="container-fluid"></div>
 
-<div class="storePage container-fluid">
+<div class="storePage container">
     <div class="pageBody">
         <section class="txtStoreName container">
             <h1>Al Maksoud</h1>
         </section>
 
         <div class="row">
-            <div class="col-xs-8">
+            <div class="col-xs-8 owl-slider-outer">
                 <div id="carousel-example-generic" class="carousel slide mainCarousel" data-ride="carousel">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
@@ -71,103 +72,64 @@
         <div class="clear"></div>
 
         <!-- Two columns content -->
-        <section class="container-fluid content">
+        <section class="container content">
             <div class="row">
-
                 <!-- Left column -->
                 <aside class="col-sm-4 col-md-3 col-lg-3 content-aside">
-                    <!-- Best Sellers -->
+
                     <div class="section-divider"></div>
-                    <div id="myCarousel" class="vertical-slider carousel vertical slide col-md-12" data-ride="carousel">
-                        <div class="row">
-                            <div class="col-xs-8">
-                                <!-- BEST SELLERS -->
-                                <h3><a href="listing.html">BEST SELLERS</a></h3>
-                            </div>
-                            <div class="col-xs-2">
-                                <span data-slide="next" ng-click="next()" class="btn-vertical-slider glyphicon glyphicon-menu-up"
-                                      style="font-size: 30px"></span>
-                            </div>
-                            <div class="col-xs-2">
-                                <span data-slide="prev" ng-click="pre()" class="btn-vertical-slider glyphicon glyphicon-menu-down"
-                                      style="color: Black; font-size: 30px"></span>
-                            </div>
 
-                        </div>
-                        <!-- Carousel items -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <div class="row">
-                                    <div class="col-xs-10">
-                                        <div class="product">
-                                            <a href="#/Eg/Gallery/LivingRoom/1" class="preview-image"><img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/96/de/b1/96deb1dae3fde9de7a05e7334a6b31f9.jpg" alt=""></a>
-                                            <p class="name"><a href="#/Eg/Gallery/LivingRoom/1" class="preview-image">Raglan Sleeve Tee Maison Scotch</a></p>
-                                            <span class="rating"> </span> <span class="price">$44.95</span>
-                                        </div>
-                                    </div>
-
+                    <!-- BEST SELLERS -->
+                    <h3><a href="listing.html">BEST SELLERS</a></h3>
+                    <div class="products-widget jcarousel-skin-previews vertical">
+                        <ul class="slides">
+                            <li>
+                                <div class="product">
+                                    <a href="/eg/g/home-furniture/1" class="preview-image"><img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/96/de/b1/96deb1dae3fde9de7a05e7334a6b31f9.jpg" alt=""></a>
+                                    <p class="name"><a href="/eg/g/home-furniture/1" class="preview-image">Raglan Sleeve Tee Maison Scotch</a></p>
+                                    <span class="rating"> </span> <span class="price">$44.95</span>
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-10">
-                                        <div class="product">
-                                            <a href="#/Eg/Gallery/LivingRoom/1" class="preview-image"><img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/69/44/a2/6944a2f143049e4d8be4ade167dbdb85.jpg" alt=""></a>
-                                            <p class="name"><a href="#/Eg/Gallery/LivingRoom/1" class="preview-image">Raglan Sleeve Tee Maison Scotch</a></p>
-                                            <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="price">$44.95</span>
-                                        </div>
-                                    </div>
-
+                            </li>
+                            <li>
+                                <div class="product">
+                                    <a href="/eg/g/home-furniture/1" class="preview-image"><img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/69/44/a2/6944a2f143049e4d8be4ade167dbdb85.jpg" alt=""></a>
+                                    <p class="name"><a href="/eg/g/home-furniture/1" class="preview-image">Raglan Sleeve Tee Maison Scotch</a></p>
+                                    <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="price">$44.95</span>
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-10">
-                                        <div class="product">
-                                            <a href="#/Eg/Gallery/LivingRoom/1" class="preview-image"><img class="img-responsive animate scale" src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt=""></a>
-                                            <p class="name"><a href="#/Eg/Gallery/LivingRoom/1" class="preview-image">V Front Peplum Dress Club L</a></p>
-                                            <span class="rating"> </span> <span class="price">$22.95</span>
-                                        </div>
-                                    </div>
-
+                            </li>
+                            <li>
+                                <div class="product">
+                                    <a href="/eg/g/home-furniture/1" class="preview-image"><img class="img-responsive animate scale" src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" alt=""></a>
+                                    <p class="name"><a href="/eg/g/home-furniture/1" class="preview-image">V Front Peplum Dress Club L</a></p>
+                                    <span class="rating"> </span> <span class="price">$22.95</span>
                                 </div>
-                                <!--/row-fluid-->
-                            </div>
-                            <!--/item-->
-                            <div class="item ">
-                                <div class="row">
-                                    <div class="col-xs-10">
-                                        <div class="product">
-                                            <a href="#/Eg/Gallery/LivingRoom/1" class="preview-image"><img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt=""></a>
-                                            <p class="name"><a href="#/Eg/Gallery/LivingRoom/1" class="preview-image">Raglan Sleeve Tee Maison Scotch</a></p>
-                                            <span class="rating"> </span> <span class="price">$44.95</span>
-                                        </div>
-                                    </div>
-
+                            </li>
+                            <li>
+                                <div class="product">
+                                    <a href="/eg/g/home-furniture/1" class="preview-image"><img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" alt=""></a>
+                                    <p class="name"><a href="/eg/g/home-furniture/1" class="preview-image">Raglan Sleeve Tee Maison Scotch</a></p>
+                                    <span class="rating"> </span> <span class="price">$44.95</span>
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-10">
-                                        <div class="product">
-                                            <a href="#/Eg/Gallery/LivingRoom/1" class="preview-image"><img class="img-responsive animate scale" src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Ideas-White-Sofa.jpg" alt=""></a>
-                                            <p class="name"><a href="#/Eg/Gallery/LivingRoom/1" class="preview-image">Raglan Sleeve Tee Maison Scotch</a></p>
-                                            <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="price">$44.95</span>
-                                        </div>
-                                    </div>
-
+                            </li>
+                            <li>
+                                <div class="product">
+                                    <a href="/eg/g/home-furniture/1" class="preview-image"><img class="img-responsive animate scale" src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Ideas-White-Sofa.jpg" alt=""></a>
+                                    <p class="name"><a href="/eg/g/home-furniture/1" class="preview-image">Raglan Sleeve Tee Maison Scotch</a></p>
+                                    <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="price">$44.95</span>
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-10">
-                                        <div class="product">
-                                            <a href="#/Eg/Gallery/LivingRoom/1" class="preview-image"><img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" alt=""></a>
-                                            <p class="name"><a href="#/Eg/Gallery/LivingRoom/1" class="preview-image">V Front Peplum Dress Club L</a></p>
-                                            <span class="rating"> </span> <span class="price">$22.95</span>
-                                        </div>
-                                    </div>
-
+                            </li>
+                            <li>
+                                <div class="product">
+                                    <a href="/eg/g/home-furniture/1" class="preview-image"><img class="img-responsive animate scale" src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" alt=""></a>
+                                    <p class="name"><a href="/eg/g/home-furniture/1" class="preview-image">V Front Peplum Dress Club L</a></p>
+                                    <span class="rating"> </span> <span class="price">$22.95</span>
                                 </div>
-                                <!--/row-fluid-->
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
-
                     <!-- //end Best Sellers -->
                     <div class="section-divider"></div>
+
                 </aside>
                 <!-- //end Left column -->
                 <!-- Right column -->
@@ -427,7 +389,6 @@
                     <div class="section-divider"></div>
                 </section>
                 <!-- //end Right column -->
-
             </div>
         </section>
         <!-- //end Two columns content -->
@@ -437,3 +398,6 @@
 
 <div ui-view="footer1" class="container-fluid"></div>
 <div ui-view="footer2" class="container-fluid dvFooterContainer"></div>
+
+<script src="../js/general/jquery.jcarousel.min.js"></script>
+<script src="../js/general/customjcarousel.js"></script>
