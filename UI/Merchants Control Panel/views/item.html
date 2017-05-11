@@ -1,33 +1,5 @@
 ﻿<div class="wrapper" id="main">
-    <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
-        <!--
-            Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-            Tip 2: you can also add an image using data-image tag
-        -->
-        <div class="logo">
-            <a href="http://appout.co" class="simple-text">
-                AppOut.LLC
-            </a>
-        </div>
-        <div class="sidebar-wrapper">
-            <ul class="nav">
-                <li class="active">
-                    <a href='Galleries.html'>
-                        <i class="material-icons">dashboard</i>
-                        <p>Galleries</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="user.html">
-                        <i class="material-icons">person</i>
-                        <p>User Profile</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
+    <div ui-view="menu"></div>
     <div class="main-panel">
         <nav class="navbar navbar-transparent navbar-absolute">
             <div class="container-fluid">
@@ -64,24 +36,32 @@
                                 <p class="category">Edit your Item</p>
                             </div>
                             <div class="card-content">
-                                <form>
+                                <form name="frmItem" novalidate>
                                     <div class="row">
                                         <div class="col-md-5">
-                                            <div class="form-group label-floating is-empty is-focused">
+                                            <div class="form-group label-floating is-empty ">
                                                 <label class="control-label">Item Name</label>
-                                                <input type="text" class="form-control" placeholder="Title of item" ng-model="item.Title">
+                                                <input type="text" class="form-control"  ng-model="item.Title" name="itemTitle" id="itemTitle" required pattern="^.{1,30}$">
+                                                <span ng-show="frmItem.itemTitle.$dirty && frmItem.itemTitle.$invalid">
+                                                    <span class="errorFont" ng-show="frmItem.itemTitle.$error.required">Required</span>
+                                                    <span class="errorFont" ng-show="frmItem.itemTitle.$error.pattern">Title is too long</span>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="form-group label-floating is-empty is-focused">
-                                                <label>About Me</label>
-                                                <textarea class="form-control" rows="3" ng-model="item.Description"></textarea>
+                                            <div class="form-group label-floating is-empty ">
+                                                <label class="control-label">About Me</label>
+                                                <textarea class="form-control" rows="3" ng-model="item.Description" name="itemDescription" id="itemDescription" required pattern="^.{1,150}$"></textarea>
+                                                <span ng-show="frmItem.itemDescription.$dirty && frmItem.itemDescription.$invalid">
+                                                    <span class="errorFont" ng-show="frmItem.itemDescription.$error.required">Required</span>
+                                                    <span class="errorFont" ng-show="frmItem.itemDescription.$error.pattern">Description is too long</span>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary pull-right">Update Item</button>
+                                    <button type="submit" ng-disabled="frmItem.$invalid" ng-click="updateObj()" class="btn btn-primary pull-right">Update Item</button>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
@@ -160,21 +140,29 @@
                                         <p class="category">Creat A New Picture</p>
                                     </div>
                                     <div class="card-content">
-                                        <form>
+                                        <form name="frmAddPic" novalidate>
                                             <div class="row">
                                                 <div class="col-md-5">
-                                                    <div class="form-group label-floating is-empty is-focused">
+                                                    <div class="form-group label-floating is-empty">
                                                         <label class="control-label">Picture Name</label>
-                                                        <input type="text" class="form-control" ng-model="picture.Title">
+                                                        <input type="text" class="form-control" ng-model="picture.addTitle" name="picAddTitle" id="picAddTitle" required pattern="^.{1,30}$">
+                                                        <span ng-show="frmAddPic.picAddTitle.$dirty && frmAddPic.picAddTitle.$invalid">
+                                                            <span class="errorFont" ng-show="frmAddPic.picAddTitle.$error.required">Required</span>
+                                                            <span class="errorFont" ng-show="frmAddPic.picAddTitle.$error.pattern">Title is too long</span>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <div class="form-group label-floating is-empty is-focused">
+                                                        <div class="form-group label-floating is-empty ">
                                                             <label class="control-label"> About Picture</label>
-                                                            <textarea class="form-control" rows="3" ng-model="picture.Description"></textarea>
+                                                            <textarea class="form-control" rows="3" ng-model="picture.addDescription" name="picAddDescription" id="picAddDescription" required pattern="^.{1,150}$"></textarea>
+                                                            <span ng-show="frmAddPic.picAddDescription.$dirty && frmAddPic.picAddDescription.$invalid">
+                                                                <span class="errorFont" ng-show="frmAddPic.picAddDescription.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmAddPic.picAddDescription.$error.pattern">Description is too long</span>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -190,8 +178,8 @@
                                         <img src="img/cover.jpeg">
                                     </div>
                                     <div class="card-content">
-                                        <h4 class="title">{{picture.Title}}</h4>
-                                        <p class="category">{{picture.Description}}</p>
+                                        <h4 class="title">{{picture.addTitle}}</h4>
+                                        <p class="category">{{picture.addDescription}}</p>
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
@@ -206,7 +194,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="submit" ng-disabled="frmAddPic.$invalid" ng-click="saveObj()" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
@@ -235,18 +223,26 @@
                                         <form>
                                             <div class="row">
                                                 <div class="col-md-5">
-                                                    <div class="form-group label-floating is-empty is-focused">
+                                                    <div class="form-group label-floating is-empty">
                                                         <label class="control-label">Picture Name</label>
-                                                        <input type="text" class="form-control" ng-model="picture.Title">
+                                                        <input type="text" class="form-control" ng-model="picture.Title" name="picTitle" id="picTitle" required pattern="^.{1,30}$">
+                                                        <span ng-show="frmItem.picTitle.$dirty && frmItem.picTitle.$invalid">
+                                                            <span class="errorFont" ng-show="frmItem.picTitle.$error.required">Required</span>
+                                                            <span class="errorFont" ng-show="frmItem.picTitle.$error.pattern">Title is too long</span>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <div class="form-group label-floating is-empty is-focused">
+                                                        <div class="form-group label-floating is-empty">
                                                             <label class="control-label"> About Picture</label>
-                                                            <textarea class="form-control" rows="3" ng-model="picture.Description"></textarea>
+                                                            <textarea class="form-control" rows="3" ng-model="picture.Description" name="picDescription" id="picDescription" required pattern="^.{1,150}$"></textarea>
+                                                            <span ng-show="frmPic.picDescription.$dirty && frmPic.picDescription.$invalid">
+                                                                <span class="errorFont" ng-show="frmPic.picDescription.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmPic.picDescription.$error.pattern">Description is too long</span>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -278,7 +274,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="submit" ng-disabled="frmPic.$invalid" ng-click="editeObj()" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>

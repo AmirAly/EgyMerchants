@@ -7,7 +7,7 @@ module.exports = {
                 if (err)
                     reject('1:' + err);
                 else {
-                    if (lst)
+                    if (lst.length > 0)
                         resolve(lst)
                     else {
                         reject("This filteration didn't resulted in any data");
@@ -22,7 +22,7 @@ module.exports = {
                 if (err)
                     reject('1:' + err);
                 else {
-                    if (lst)
+                    if (lst.length > 0)
                         resolve(lst)
                     else {
                         reject("This filteration didn't resulted in any data");
@@ -52,7 +52,7 @@ module.exports = {
                 if (err)
                     reject('1:' + err);
                 else {
-                    if (lst) 
+                    if (lst.length > 0)
                         resolve(lst);
                     else {
                         reject("This filteration didn't resulted in any data");
@@ -70,12 +70,6 @@ module.exports = {
                     if (Obj)
                         reject("There is item with same name in this gallery");
                     else {
-                        if (_product.Pictures) {
-                            for (i = 0; i < _product.Pictures.length; i++) {
-                                var Uploadedimg = Helper.postFile(_product.Pictures[i].URL, _product._id + i + ".png");
-                                _product.Picture.URL[i] = CDN + "egmpre/" + _product._id + i + ".png";
-                            }
-                        }
                         _product.save(function (err, Obj) {
                             if (err)
                                 reject('1:' + err);
@@ -96,12 +90,8 @@ module.exports = {
                 else {
                     Obj.Name = _name;
                     Obj.Description = _description;
-                    if (_imgs) {
-                        for (i = 0; i < _imgs; i++) {
-                            var Uploadedimg = Helper.postFile(_imgs[i].URL, _id + i + ".png");
-                            _imgs[i].URL = CDN + "egmpre/" + _id + i + ".png";
-                        }
-                    }
+                    if (_imgs) 
+                    Obj.Pictures = _imgs;
                     Obj.save(function (err, Obj) {
                         if (err)
                             reject('1:' + err);

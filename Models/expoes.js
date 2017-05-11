@@ -3,12 +3,16 @@ var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
     getByCategory: function (_categoryid) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Category': _categoryid}, '', function (err, Obj) {
+            Schema.find({ 'Categories': _categoryid }, '_id Title Banner Sections').populate({
+                path: 'Sections.Store',
+                model: 'Store'
+            }).exec(function (err, lst) {
                 if (err)
                     reject('1:' + err);
                 else {
-                    if (Obj) 
-                        resolve(Obj);
+                    if (lst.length > 0) {
+                        resolve(lst);
+                    }
                     else {
                         reject("This filteration didn't resulted in any data");
                     }
@@ -18,12 +22,19 @@ module.exports = {
     },
     getStores: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id }).populate('Sections.Store').exec(function (err, stores) {
+            Schema.findOne({ '_id': _id }).populate({
+                path: 'Sections.Store',
+                model: 'Store'
+            }).exec(function (err, Obj) {
                 if (err)
                     reject('1:' + err);
                 else {
-                    if (stores) 
-                        resolve(stores);
+                    if (Obj) {
+                        if (Obj.Sections.length> 0)
+                            resolve(Obj);
+                        else
+                            resolve("There is no stores in this expo yet");
+                    }
                     else {
                         reject("This filteration didn't resulted in any data");
                     }
@@ -31,15 +42,4 @@ module.exports = {
             })
         })
     },
-    //added for test 
-    add: function (_expo) {
-        return new Promise(function (resolve, reject) {
-            _expo.save(function (err, Obj) {
-                if (err)
-                    reject('1:' + err);
-                else 
-                    resolve(Obj);
-            })
-        })
-    }
 }

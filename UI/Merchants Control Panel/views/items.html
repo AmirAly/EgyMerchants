@@ -3,7 +3,16 @@
     <div class="main-panel">
         <nav class="navbar navbar-transparent navbar-absolute">
             <div class="container-fluid top">
-                <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">Add Gallery</button>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Items</a>
+                </div>
+                <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">Add Item</button>
             </div>
         </nav>
         <div class="content">
@@ -71,21 +80,29 @@
                                         <p class="category">Creat A New Item</p>
                                     </div>
                                     <div class="card-content">
-                                        <form>
+                                        <form name="frmItems" novalidate>
                                             <div class="row">
                                                 <div class="col-md-5">
-                                                    <div class="form-group label-floating is-empty is-focused">
+                                                    <div class="form-group label-floating is-empty">
                                                         <label class="control-label">Item Name</label>
-                                                        <input type="text" class="form-control" ng-model="item.Title">
+                                                        <input type="text" class="form-control" ng-model="item.Title" name="itemTitle" id="itemTitle" required pattern="^.{1,30}$">
+                                                        <span ng-show="frmItems.itemTitle.$dirty && frmItems.itemTitle.$invalid">
+                                                            <span class="errorFont" ng-show="frmItems.itemTitle.$error.required">Required</span>
+                                                            <span class="errorFont" ng-show="frmItems.itemTitle.$error.pattern">Title is too long</span>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <div class="form-group label-floating is-empty is-focused">
+                                                        <div class="form-group label-floating is-empty">
                                                             <label class="control-label"> About Item</label>
-                                                            <textarea class="form-control" rows="3" ng-model="item.Description"></textarea>
+                                                            <textarea class="form-control" rows="3" ng-model="item.Description" name="itemDescription" id="itemDescription" required pattern="^.{1,150}$"></textarea>
+                                                            <span ng-show="frmItems.itemDescription.$dirty && frmItems.itemDescription.$invalid">
+                                                                <span class="errorFont" ng-show="frmItems.itemDescription.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmItems.itemDescription.$error.pattern">Description is too long</span>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -118,7 +135,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="submit" ng-disabled="frmItems.$invalid" ng-click="saveObj()" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>

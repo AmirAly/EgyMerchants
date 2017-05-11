@@ -1,5 +1,3 @@
-var app = angular.module("app", ['ui.router']);
-
 app.run(function ($rootScope, $state) {
     $rootScope.logout = function () {
         $state.go('login');
@@ -59,5 +57,5 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
     ;
-    //$urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/login');
 });

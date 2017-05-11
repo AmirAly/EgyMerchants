@@ -1,4 +1,8 @@
-﻿app.controller("galleriesController", function ($scope, $state, $rootScope, API, $stateParams, $location) {
+﻿app.controller("galleriesController", function ($scope, $state, $rootScope, API, $stateParams, $location, Theme) {
+    Theme.init();
+    $("navbar-toggle").click(function () {
+        $("html").toggleClass("nav-open");
+    });
 
     $scope.galleries = [{
         DisplayPicture: "img/cover.jpeg",
@@ -14,22 +18,40 @@
         Description: "Last Campaign Performance"
     }
     ];
+    $('.form-control').on("focus", function () {
+        $(this).parent().addClass("input-group-focus");
+        $(this).parent().removeClass("is-empty");
+    }).on("blur", function () {
+        $(this).parent().removeClass("input-group-focus");
+        // no data
+        if ($(this)[0].value == "" || $(this)[0].value == null || typeof $(this)[0].value === 'undefined') {
+            $(this).parent().addClass("is-empty");
+            console.log($(this)[0].value);
+        } else {
+            $(this).parent().removeClass("is-empty");
+            console.log($(this)[0].value);
+        }
+    });
     //var img = document.getElementById("imgClient");
     //BaseImg64 = img.src;
 
     //img uploader
 
+
     $scope.ShowFileSelector = function () {
-
-        var fileuploader = angular.element("#uploadClientImage");
-        fileuploader.trigger('click');
-
+        document.getElementById('uploadItemImage').click()
     }
 
+    //$scope.saveObject = function () {
+    //    // new img from modal 
+    //    var itemImg = $('#imgItem').attr('src');
+    //    var obj = {};
+    //    obj.img = itemImg;
+    //}
 });
 
 function convertImgToBase64URL(event) {
-    var filesSelected = document.getElementById("uploadClientImage").files;
+    var filesSelected = document.getElementById("uploadItemImage").files;
     if (filesSelected.length > 0) {
         var fileToLoad = filesSelected[0];
         var fileReader = new FileReader();
@@ -42,37 +64,5 @@ function convertImgToBase64URL(event) {
 }
 
 function UploadImage(_BaseImg64) {
-    $('#imgClient').attr('src', _BaseImg64);
-    var img = document.getElementById("imgClient");
-    //console.log(img.src);
-    var newImg = imageToDataUri(img, 150, 150);
-    $('#imgClient').attr('src', newImg);
-    BaseImg64 = img.src;
-    //console.log(BaseImg64);
-}
-
-function imageToDataUri(img, width, height) {
-    // create an off-screen canvas
-    var canvas = document.createElement('canvas'),
-        ctx = canvas.getContext('2d');
-
-    // set its dimension to target size
-    canvas.width = width;
-    canvas.height = height;
-
-    // draw source image into the off-screen canvas:
-    ctx.drawImage(img, 0, 0, width, height);
-
-    // encode image to data-uri with base64 version of compressed image
-    return canvas.toDataURL();
-}
-
-function uploadPhoto(data) {
-    if (data.indexOf('base64') < 0) {
-        $('#imgClient').attr('src', 'data:image/jpeg;base64,' + data);
-    }
-    else {
-        $('#imgClient').attr('src', data);
-    }
-    BaseImg64 = data;
+    $('#imgItem').attr('src', _BaseImg64);
 }

@@ -5,7 +5,6 @@
         <div class="made-with">Made with <strong>AppOut</strong></div>
     </a>
 
-    <!--   Big container   -->
     <div class="container">
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
@@ -14,7 +13,7 @@
                 <div class="wizard-container">
 
                     <div class="card wizard-card" data-color="orange" id="wizardProfile">
-                        <form action="" method="" novalidate="novalidate">
+                        <form action="" method="" novalidate="novalidate" name="frmLogin">
                             <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
 
                             <div class="wizard-header">
@@ -38,16 +37,27 @@
                                         <h4 class="info-text"> Let's start with the basic information</h4>
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <div class="form-group">
-                                                <label>User Name <small>(required)</small></label>
-                                                <input name="username" type="text" class="form-control" placeholder="Mohamed..." required="" aria-required="true">
+                                                <label>User Name </label>
+                                                <input name="username" id="username" type="text" class="form-control" placeholder="Enter your name" aria-required="true" ng-model="loginData.userName" required pattern="^.{1,20}$">
+                                                <span ng-show="frmLogin.username.$dirty && frmLogin.username.$invalid">
+                                                    <span class="errorFont" ng-show="frmLogin.username.$error.required">Required</span>
+                                                    <span class="errorFont" ng-show="frmLogin.username.$error.pattern">User name is too long</span>
+                                                </span>
                                             </div>
                                         </div>
+
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <div class="form-group">
-                                                <label>Password <small>(required)</small></label>
-                                                <input name="password" type="password" class="form-control" placeholder="*******" required="" aria-required="true">
+                                                <label>Password </label>
+                                                <input name="password" id="password" type="password" class="form-control" placeholder="Enter your password" aria-required="true" ng-model="loginData.password" required pattern="^.{6,10}$">
+                                                <span ng-show="frmLogin.password.$dirty && frmLogin.password.$invalid">
+                                                    <span class="errorFont" ng-show="frmLogin.password.$error.required">Required</span>
+                                                    <span class="errorFont" ng-show="frmLogin.password.$error.pattern">Password must be 6 to 10 characters</span>
+                                                </span>
+
                                             </div>
                                         </div>
+
                                         <div class="link col-sm-8 col-sm-offset-2">
                                             <a href="#/register">Sign Up</a>
                                         </div>

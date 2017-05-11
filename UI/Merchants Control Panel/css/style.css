@@ -17,9 +17,9 @@
 /* ANIMATION */
 /* SHADOWS */
 /* Shadows (from mdl http://www.getmdl.io/) */
-html{
+/*html{
     overflow:hidden;
-}
+}*/
 .noUi-target,
 .noUi-target * {
   -webkit-touch-callout: none;
@@ -5136,9 +5136,10 @@ footer .btn {
     z-index: 3;
 }
 
-.pageLogin .wizard-container .tab-pane.catigories {
+.pageLogin .wizard-container .tab-pane.catigories .row {
         overflow: auto;
         max-height: 330px;
+        margin: 0;
         overflow-x: hidden;
     }
 
@@ -5553,16 +5554,16 @@ footer .btn {
     }
 
 /*             Inputs               */
-.pageLogin .form-control {
-    background-color: #FFFFFF;
-    border: 1px solid #E3E3E3;
-    border-radius: 4px;
-    box-shadow: none;
-    color: #444444;
-    height: 38px;
-    padding: 6px 16px;
+.pageLogin .form-control{
+    background-image:none;
+    background-color: #FFFFFF !important;
+    border: 1px solid #E3E3E3 !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    color: #444444 !important;
+    height: 38px !important;
+    padding: 6px 16px !important;
 }
-
     .pageLogin .form-control:focus {
         background-color: #FFFFFF;
         border: 1px solid #9A9A9A;
@@ -6250,4 +6251,10 @@ footer .btn {
 }
 .menuNav{
     width: 40px;
+}
+.errorFont{
+    color:#f44336;
+}
+.register{
+    margin-top:0px;
 }
