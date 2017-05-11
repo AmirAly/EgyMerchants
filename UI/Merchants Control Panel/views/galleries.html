@@ -115,9 +115,11 @@
 
 
                                     <div class="card-header card-chart">
-                                            <img id="imgClient" ng-click="ShowFileSelector()" class="img-responsive cursorPointer" src="img/cover.jpeg" />
-                                            <input type="file" onchange="convertImgToBase64URL(event)" id="uploadClientImage" class="hide" />
-                                        </div>
+                                        <div>
+                                            <img fallbacksrc id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="img/cover.jpeg" />
+                                            <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
+                                        </div> 
+                                                                           </div>
 
                                         <!--<div class="card-header card-chart" ng-model="gallery.DisplayPicture">
                                             <img src="img/cover.jpeg">

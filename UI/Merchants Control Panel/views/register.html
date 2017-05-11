@@ -15,7 +15,6 @@
 
                     <div class="card wizard-card" data-color="orange" id="wizardProfile">
                         <form action="" name="frmRegister" novalidate="novalidate">
-                            <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
 
                             <div class="wizard-header">
                                 <h3>
@@ -26,15 +25,15 @@
 
                             <div class="wizard-navigation">
                                 <ul class="nav nav-pills">
-                                    <li class="active focusedTab"><a href="#about" data-toggle="tab" aria-expanded="false">About</a></li>
-                                    <li class="focusedTab"><a href="#address" data-toggle="tab" aria-expanded="false">Address</a></li>
-                                    <li class="focusedTab"><a href="#type" data-toggle="tab" aria-expanded="true">Account</a></li>
+                                    <li class="focusedTab" ng-class="{'active': selsectedTab == 'about'}" ng-click="selsectedTab = 'about'"><a data-toggle="tab" aria-expanded="false">About</a></li>
+                                    <li class="focusedTab" ng-class="{'active': selsectedTab == 'address'}" ng-click="selsectedTab = 'address'"><a data-toggle="tab" aria-expanded="false">Address</a></li>
+                                    <li class="focusedTab" ng-class="{'active': selsectedTab == 'type'}" ng-click="selsectedTab = 'type'"><a data-toggle="tab" aria-expanded="true">Account</a></li>
 
                                 </ul>
                             </div>
 
                             <div class="tab-content">
-                                <div class="tab-pane active" id="about">
+                                <div class="tab-pane" id="about" ng-class="{'active': selsectedTab === 'about'}">
                                     <div class="row">
                                         <h4 class="info-text"> Let's start with the basic information</h4>
                                         <div class="col-sm-4 col-sm-offset-1">
@@ -88,7 +87,7 @@
                                     </div>
                                     <div class="wizard-footer height-wizard">
                                         <div class="pull-right">
-                                            <input type="button" class="btn btn-finish btn-fill btn-warning btn-wd btn-sm" name="next" value="Next" style="display: inline-block;">
+                                            <input type="button" ng-click="nextTab()"  class="btn btn-finish btn-fill btn-warning btn-wd btn-sm" name="next" value="Next" style="display: inline-block;">
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -96,7 +95,7 @@
 
 
 
-                                <div class="tab-pane" id="address">
+                                <div class="tab-pane" id="address" ng-class="{'active': selsectedTab === 'address'}">
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <h4 class="info-text"> Are you living in a nice area? </h4>
@@ -155,105 +154,40 @@
                                     </div>
                                     <div class="wizard-footer height-wizard">
                                         <div class="pull-right">
-                                            <input type="button" class="btn btn-finish btn-fill btn-warning btn-wd btn-sm" name="next" value="Next" style="display: inline-block;">
+                                            <input type="button" ng-click="nextFinish()" class="btn btn-finish btn-fill btn-warning btn-wd btn-sm" name="next" value="Next" style="display: inline-block;">
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
-                                
-                                    <div class="tab-pane catigories" id="type">
-                                        <h4 class="info-text">What type of location do you have? </h4>
-                                        <div class="row">
-                                            <div class="col-sm-10 col-sm-offset-1">
-                                                <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="" data-original-title="Select this option if you have a house.">
-                                                        <input type="radio" name="type" value="House">
-                                                        <div class="icon">
-                                                            <img src="img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="">
-                                                        </div>
-                                                        <h6>House</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="" data-original-title="Select this option if you have a house.">
-                                                        <input type="radio" name="type" value="House">
-                                                        <div class="icon">
-                                                            <img src="img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="">
-                                                        </div>
-                                                        <h6>House</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="" data-original-title="Select this option if you have a house.">
-                                                        <input type="radio" name="type" value="House">
-                                                        <div class="icon">
-                                                            <img src="img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="">
-                                                        </div>
-                                                        <h6>House</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="" data-original-title="Select this option if you have a house.">
-                                                        <input type="radio" name="type" value="House">
-                                                        <div class="icon">
-                                                            <img src="img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="">
-                                                        </div>
-                                                        <h6>House</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="" data-original-title="Select this option if you have a house.">
-                                                        <input type="radio" name="type" value="House">
-                                                        <div class="icon">
-                                                            <img src="img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="">
-                                                        </div>
-                                                        <h6>House</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="" data-original-title="Select this option if you have a house.">
-                                                        <input type="radio" name="type" value="House">
-                                                        <div class="icon">
-                                                            <img src="img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="">
-                                                        </div>
-                                                        <h6>House</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="" data-original-title="Select this option if you have a house.">
-                                                        <input type="radio" name="type" value="House">
-                                                        <div class="icon">
-                                                            <img src="img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="">
-                                                        </div>
-                                                        <h6>House</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="" data-original-title="Select this option if you have a house.">
-                                                        <input type="radio" name="type" value="House">
-                                                        <div class="icon">
-                                                            <img src="img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="">
-                                                        </div>
-                                                        <h6>House</h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                            <div class="wizard-footer height-wizard">
-                                                <div class="pull-right">
-                                                    <input type="button" class="btn btn-next btn-fill btn-warning btn-wd btn-sm disabled" name="next" value="Next" style="display: none;">
-                                                    <input type="button" class="btn btn-finish btn-fill btn-warning btn-wd btn-sm" name="finish" value="Finish" style="display: inline-block;">
 
+
+
+                                <div class="tab-pane catigories" id="type" ng-class="{'active': selsectedTab === 'type'}">
+                                    <h4 class="info-text">What type of location do you have? </h4>
+                                    <div class="row">
+                                        <div class="col-sm-10 col-sm-offset-1">
+
+                                            <div class="col-md-3 col-xs-6" ng-repeat="cat in categories">
+                                                <div ng-class="{'active': selsectedCat == cat.id}" ng-click="selectCat(cat.id)" class="choice" data-toggle="wizard-radio" rel="tooltip" title="" data-original-title="Select this option if you have a house.">
+                                                    <input type="radio" name="type" value="House">
+                                                    <div class="icon">
+                                                        <img src="img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="">
+                                                    </div>
+                                                    <h6>{{cat.name}}</h6>
                                                 </div>
-                                                <div class="clearfix"></div>
                                             </div>
+                                       
                                         </div>
                                     </div>
-                                
-                                    
+                                    <div class="wizard-footer height-wizard">
+                                        <div class="pull-right">
+                                            <input type="submit" ng-disabled="frmRegister.$invalid" ng-click="finish()" class="btn btn-finish btn-fill btn-warning btn-wd btn-sm" name="finish" value="Finish" style="display: inline-block;">
+
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <!--finish-->
-                            <!--previous-->
 
                         </form>
                     </div>
@@ -268,7 +202,6 @@
         </div>
     </div>
 
-</div>
-<!--<div class="pull-left">
-    <input type="button" class="btn btn-previous btn-fill btn-default btn-wd btn-sm" name="previous" value="Previous">
-</div>-->
+    <!--<div class="pull-left">
+        <input type="button" class="btn btn-previous btn-fill btn-default btn-wd btn-sm" name="previous" value="Previous">
+    </div>-->

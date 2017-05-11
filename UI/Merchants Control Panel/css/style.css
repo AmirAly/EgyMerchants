@@ -5136,9 +5136,10 @@ footer .btn {
     z-index: 3;
 }
 
-.pageLogin .wizard-container .tab-pane.catigories {
+.pageLogin .wizard-container .tab-pane.catigories .row {
         overflow: auto;
         max-height: 330px;
+        margin: 0;
         overflow-x: hidden;
     }
 
