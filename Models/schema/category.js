@@ -1,7 +1,7 @@
 var Mongoose = require("mongoose");
 var Schema = Mongoose.Schema;
 var Category = new Schema({
-    Country: [{
+    Countries: [{
         type: Schema.Types.ObjectId,
         ref: 'Country',
         required: "Please add proper id"

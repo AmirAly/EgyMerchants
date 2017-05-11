@@ -7,7 +7,7 @@ module.exports = {
                 if (err)
                     reject('1:' + err);
                 else {
-                    if (lst) 
+                    if (lst.length > 0)
                         resolve(lst);
                     else 
                         reject("This filteration didn't resulted in any data");
@@ -38,10 +38,8 @@ module.exports = {
                     if (Obj) {
                         Obj.Title=_title;
                         Obj.Description = _description;
-                        if (Obj.DisplayPicture) {
-                            var Uploadedimg = Helper.postFile(Obj.DisplayPicture, Obj._id + ".png");
-                            Obj.DisplayPicture = CDN + "egmpre/" + Obj._id + ".png";
-                        }
+                        if(_img)
+                        Obj.DisplayPicture = _img;
                         Obj.save(function(err,Obj){
                             if (err)
                                 reject('1:' + err);
@@ -62,11 +60,6 @@ module.exports = {
                     if(Obj)
                         reject("There is gallery with the same title");
                     else {
-                        if (_gallery.DisplayPicture) {
-                            var Uploadedimg = Helper.postFile(_gallery.DisplayPicture, _gallery._id + ".png");
-                            _gallery.DisplayPicture = CDN + "egmpre/" + _gallery._id + ".png";
-                        
-                        }
                         _gallery.save(function (err, gallery) {
                             if (err)
                             { reject('1:' + err); }

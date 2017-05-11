@@ -1,7 +1,7 @@
 var Mongoose = require("mongoose");
 var Schema = Mongoose.Schema;
 var Expo = new Schema({
-    Category: [{
+    Categories: [{
         type: Schema.Types.ObjectId,
         ref: 'Category',
         required: "Please add category id"

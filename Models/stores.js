@@ -11,13 +11,6 @@ module.exports = {
                     if (Obj) 
                         reject("This email or store name already exist");
                     else {
-                        if (_newstore.Imgs)
-                        {
-                            for (i = 0; i < _newstore.Imgs.length; i++) {
-                                var Uploadedimg = Helper.postFile(_newstore.Imgs[i].URL, _newstore._id+i+".png");
-                                _newstore.Imgs[i].URL = CDN + "egmpre/" + _newstore._id + i+".png";
-                            }
-                        }
                         _newstore.save(function (err, _newstore) {
                             if (err)
                                 reject('1:' + err);
@@ -36,13 +29,13 @@ module.exports = {
                 if (err)
                     reject('1:' + err);
                 else if (!Obj) 
-                    reject("this email or password incorrect");
+                    reject("This email or password incorrect");
                 else if (Obj.Status == "Unconfirmed") 
-                    reject("this account not confirmed yet");
+                    reject("This account not confirmed yet");
                 else if (Obj.Status == "Suspend") 
-                    reject("this account suspended");
+                    reject("This account suspended");
                 else if (Obj.Status == "Active") 
-                    resolve("successful login");
+                    resolve("Successful login");
             })
         })
     },
@@ -57,16 +50,12 @@ module.exports = {
                     Obj.Address = _address;
                     Obj.Country = _country;
                     Obj.Description = _description;
+                    if(_imgs)
+                    Obj.Imgs=_imgs;
                     if (_newpassword != "")
                         Obj.Password = _newpassword;
                     else
                         Obj.Password = _oldpassword;
-                    if (_imgs) {
-                        for (i = 0; i < _imgs.length; i++) {
-                            var Uploadedimg = Helper.postFile(_imgs[i].URL, _id + i + ".png");
-                            _imgs[i].URL = CDN + "egmpre/" + _id+i + ".png";
-                        }
-                    }
                     Obj.save(function (err, Obj) {
                         if (err)
                             reject('1:' + err);
@@ -91,18 +80,4 @@ module.exports = {
             })
         })
     },
-    get: function () {
-        return new Promise(function (resolve, reject) {
-            Schema.find({}, '', function (err, lst) {
-                if (err)
-                    reject('1:' + err);
-                else {
-                    if (lst)
-                        resolve(lst);
-                    else
-                        reject("This filteration didn't resulted in any data");
-                }
-            })
-        })
-    }
 }
