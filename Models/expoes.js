@@ -29,8 +29,12 @@ module.exports = {
                 if (err)
                     reject('1:' + err);
                 else {
-                    if (Obj)
-                        resolve(Obj);
+                    if (Obj) {
+                        if (Obj.Sections.length> 0)
+                            resolve(Obj);
+                        else
+                            resolve("Ther is no stores in this expo yet");
+                    }
                     else {
                         reject("This filteration didn't resulted in any data");
                     }
