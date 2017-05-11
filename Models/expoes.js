@@ -33,7 +33,7 @@ module.exports = {
                         if (Obj.Sections.length> 0)
                             resolve(Obj);
                         else
-                            resolve("Ther is no stores in this expo yet");
+                            resolve("There is no stores in this expo yet");
                     }
                     else {
                         reject("This filteration didn't resulted in any data");
