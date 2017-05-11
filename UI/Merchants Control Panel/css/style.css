@@ -17,9 +17,9 @@
 /* ANIMATION */
 /* SHADOWS */
 /* Shadows (from mdl http://www.getmdl.io/) */
-html{
+/*html{
     overflow:hidden;
-}
+}*/
 .noUi-target,
 .noUi-target * {
   -webkit-touch-callout: none;
@@ -6250,4 +6250,10 @@ footer .btn {
 }
 .menuNav{
     width: 40px;
+}
+.errorFont{
+    color:#f44336;
+}
+.register{
+    margin-top:0px;
 }
