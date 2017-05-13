@@ -6258,3 +6258,7 @@ footer .btn {
 .register{
     margin-top:0px;
 }
+.pageLogin .form-group{
+    background-image:none !important;
+    margin:10px;
+}

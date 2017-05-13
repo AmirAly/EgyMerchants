@@ -18,4 +18,6 @@
             console.log($(this)[0].value);
         }
     });
+
+
 });
