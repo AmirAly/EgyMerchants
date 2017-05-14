@@ -1,9 +1,9 @@
 var Schema = require('./schema/expo');
 var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
-    getByCategory: function (_categoryid) {
+    getByCategory: function (_categoryId) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Categories': _categoryid }, '_id Title Banner Sections').populate({
+            Schema.find({ 'Categories': _categoryId }, '_id Title Banner Sections').populate({
                 path: 'Sections.Store',
                 model: 'Store'
             }).exec(function (err, lst) {
