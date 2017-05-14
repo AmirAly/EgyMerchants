@@ -129,7 +129,7 @@
                                         </div>
 
                                         <div class="col-sm-10 col-sm-offset-1">
-                                            <div class="form-group label-floating is-empty is-focused">
+                                            <div class="form-group label-floating">
                                                 <label>Adress</label>
                                                 <input type="text" name="address" id="address" class="form-control" placeholder="Enter your Address" required ng-model="registerData.address" pattern="^.{1,40}$">
                                                 <span ng-show="frmRegister.address.$dirty && frmRegister.address.$invalid">
@@ -141,8 +141,8 @@
 
                                         <div class="col-sm-10 col-sm-offset-1">
                                             <div class="form-group">
+                                                <div class="form-group label-floating ">
                                                 <label>About Me</label>
-                                                <div class="form-group label-floating is-empty is-focused">
                                                     <textarea class="form-control" rows="3" placeholder="Descripe your store" style="resize: none;" name="description" id="description" ng-model="registerData.description" required pattern="^.{1,40}$"></textarea>
                                                     <span ng-show="frmRegister.description.$dirty && frmRegister.description.$invalid">
                                                         <span class="errorFont" ng-show="frmRegister.description.$error.required">Required</span>
