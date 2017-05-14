@@ -46,7 +46,6 @@
 
     }, 2000);
 
-    $rootScope.customNo = 'gggggggggggg';
 
 
     $scope.next = function () {

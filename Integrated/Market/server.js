@@ -29,7 +29,7 @@ mongoose.connect(db.url, function (err) {
         });
         app.listen(8080);
         app.get('*', function (req, res) {
-            res.send('msg', 404);
+            res.send('no such page ', 404);
         });
         console.log('8080 is the magic port');
     }

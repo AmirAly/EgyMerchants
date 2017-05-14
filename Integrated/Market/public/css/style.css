@@ -332,8 +332,8 @@ h1, h2, h3, h4, h5, h6 {
     padding-top: 10px;
     border-bottom: 1px solid #eee;
     border-bottom: 0 solid rgba(0, 0, 0, 0);
-    z-index: 1;
-    margin:0;
+    z-index: 11;
+    margin: 0;
 }
 
     .pageHeader .row {
@@ -547,6 +547,11 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     font: 2.46em Mavenpro, Arial, Helvetica, sans-serif;
     text-transform: uppercase;
+}
+
+#myCarousel .carousel-inner img {
+    max-height: 320px;
+    min-height: 320px;
 }
 
 .storePage .mainCarousel .carousel-inner {
