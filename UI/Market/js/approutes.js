@@ -47,16 +47,26 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
 
-        .state('product', {
-            url: '/Eg/Product/:productName/:productId',
-            views: {
-                '': { templateUrl: 'views/product.html', controller: 'productController' },
-                'header@product': { templateUrl: 'views/templates/header.html' },
-                'footer@product': { templateUrl: 'views/templates/footer1.html' },
-                'footer2@product': { templateUrl: 'views/templates/footer2.html' },
-                'social@product': { templateUrl: 'views/templates/social.html' }
-            }
-        })
+    .state('product', {
+        url: '/Eg/Product/:productName/:productId',
+        views: {
+            '': { templateUrl: 'views/product.html', controller: 'productController' },
+            'header@product': { templateUrl: 'views/templates/header.html' },
+            'footer@product': { templateUrl: 'views/templates/footer1.html' },
+            'footer2@product': { templateUrl: 'views/templates/footer2.html' },
+            'social@product': { templateUrl: 'views/templates/social.html' }
+        }
+    })
 
+    .state('contactus', {
+        url: '/Eg/contactus',
+        views: {
+            '': { templateUrl: 'views/contactus.html', controller: 'contactusController' },
+            'header@contactus': { templateUrl: 'views/templates/header.html' },
+            'footer@contactus': { templateUrl: 'views/templates/footer1.html' },
+            'footer2@contactus': { templateUrl: 'views/templates/footer2.html' },
+            'social@contactus': { templateUrl: 'views/templates/social.html' }
+        }
+    })
     ;
 });

@@ -166,7 +166,9 @@ h6.mega {
 }
 
 
-
+.navbar-search {
+    margin-bottom: 0;
+}
 
 /*Loader*/
 .loaderContainer {
@@ -719,6 +721,8 @@ h1, h2, h3, h4, h5, h6 {
     transform: scale(1.1, 1.1);
 }
 
+<<<<<<< HEAD
+=======
 /*vertical carousal*/
 <<<<<<< HEAD
 .storePage .btn-vertical-slider {
@@ -821,6 +825,7 @@ a {
 }*/
 
 
+>>>>>>> 67f1f8802ebdbce61b37cd48d7d0c80129fdf24f
 
 
 /*expo page*/

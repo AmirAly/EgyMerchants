@@ -1,5 +1,8 @@
 ﻿app.controller("storeController", function ($scope, $state, $rootScope, API, $stateParams, $location, Theme) {
     Theme.init();
+    $("navbar-toggle").click(function () {
+        $("html").toggleClass("nav-open");
+    });
     $('.form-control').on("focus", function () {
         $(this).parent().addClass("input-group-focus");
         $(this).parent().removeClass("is-empty");
@@ -14,6 +17,5 @@
             console.log($(this)[0].value);
         }
     });
-
 
 });
