@@ -1,0 +1,31 @@
+<% include ../partials/pagestart %>
+
+<div class="welcomePage container-fluid">
+    <div class="pageBody">
+        <div class="row">
+            <div class="welcomeImgContainer">
+                <img class="img-responsive" src="https://images.pond5.com/welcome-hd-footage-000717266_prevstill.jpeg" />
+                <div class="imgShadow"></div>
+            </div>
+        </div>
+
+        <div class="row categoryContainer animate-container">
+
+            <div class="col-xs-12 text-center">
+                <h3 class="txtChooseCat">Please Choose Category</h3>
+            </div>
+			<% categories.forEach(function(cat){ %>
+            <a class="col-xs-6 col-sm-4 col-md-3 col-lg-2 singleCategory animate-repeat" href="/Eg/Expos/<%= cat._id %>">
+                <div class="imgContainer"  style="background:url('<%= cat.Img %>')">
+                    <div class="blackLayer"></div>
+                </div>
+                <h6 class="categoryTxt"><%= cat.Name %></h6>
+            </a>
+			<% }); %>
+        </div>
+
+    </div>
+</div>
+
+<% include ../partials/pageend %>
+<script src="/scripts/index.js"></script>

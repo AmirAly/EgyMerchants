@@ -1,0 +1,122 @@
+<!-- Social widgets -->
+<section class="social-widgets hidden-xs" ng-hover="loadSocialData()">
+    <ul class="items">
+        <li class="item item-01 facebook">
+            <a href="/social/facebook.html" class="tab-icon"><span class="icon-facebook-3"></span></a>
+            <div class="tab-content">
+                <div class="title">FACEBOOK</div>
+                <div class="loading">
+                    <!--<img src="/images/ajax-loader.gif" class="ajaxloader" alt="loader">-->
+
+                    <div class="fb-like-box" data-href="https://www.facebook.com/envato" data-width="240" data-height="240" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="true"></div>
+
+                    <!-- Facebook Api -->
+                    <div id="fb-root"></div>
+                    <script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_EN/all.js#xfbml=1&appId=469510423153590";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+                    <!-- //end Facebook Api --> 
+                </div>
+            </div>
+        </li>
+        <li class="item item-02 twitter">
+            <a href="/social/twitter.html" class="tab-icon"><span class="icon-twitter-3"></span></a>
+            <div class="tab-content">
+                <div class="title">TWITTER FEEDS</div>
+                <div class="loading">
+                <!--<img src="/images/ajax-loader.gif" class="ajaxloader" alt="loader">-->
+                    <div class="twitter-widget">
+                        <ul>
+                            <li> Mads Mikkelsen really wants to kill #ShiaLaBeouf in #CharlieCountryman trailer <a href="#">http://t.co/8Vmbo5BLUW</a> <span class="time">15 minutes ago</span> </li>
+                            <li> Why it's disturbing that @chrisbrown lost his virginity at age 8. In case it wasn't already obvious <a href="#" class="link">http://t.co/D7UbCA8s67</a> <span class="time">22 minutes ago</span> </li>
+                            <li> Mads Mikkelsen really wants to kill #ShiaLaBeouf in #CharlieCountryman trailer <a href="#">http://t.co/8Vmbo5BLUW</a> <span class="time">15 minutes ago</span> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="item item-03 twitter">
+            <a href="/social/googlemap.html" class="tab-icon"><span class="icon-globe"></span></a>
+            <div class="tab-content">
+                <div class="title">Find Us</div>
+                <div class="loading">
+                <!--<img src="/images/ajax-loader.gif" class="ajaxloader" alt="loader">-->
+                    <div class="twitter-widget">
+                        <ul>
+                            <li>Phone : 444555866</li>
+                            <li>Mobile : 546565555</li>
+                            <li>{{customNo}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</section>
+<!-- //end Social widgets -->
+
+<script>
+
+    jQuery(function ($) {
+        "use strict";
+        var socialItems = $('.social-widgets .items .item');
+        var counter = 0;
+        socialItems.each(function () {
+            counter++;
+            var itemclass = "item-0" + counter;
+            $(this).addClass(itemclass)
+        });
+    });
+
+    jQuery(function ($) {
+        "use strict";
+        var loadmap = $(".social-widgets .item a");
+        loadmap.click(function (e) {
+            e.preventDefault()
+        });
+        loadmap.hover(function (e) {
+            if (!$(this).parent().hasClass("load")) {
+                var loadcontainer = $(this).parent().find(".loading");
+                $.ajax({
+                    url: $(this).attr("href"),
+                    cache: false,
+                    success: function (data) {
+                        setTimeout(function () {
+                            //loadcontainer.html(data)
+                        }, 1000)
+                    }
+                });
+                $(this).parent().addClass("load")
+            }
+        })
+    });
+
+    jQuery(function ($) {
+        "use strict";
+        $(".social-widgets .item").each(function () {
+            var $this = $(this),
+                timer;
+            $this.on("mouseenter", function () {
+                var $this = $(this);
+                if (timer) clearTimeout(timer);
+                timer = setTimeout(function () {
+                    $this.addClass("active")
+                }, 200)
+            }).on("mouseleave", function () {
+                var $this = $(this);
+                if (timer) clearTimeout(timer);
+                timer = setTimeout(function () {
+                    $this.removeClass("active")
+                }, 100)
+            }).on("click", function (e) {
+                e.preventDefault()
+            })
+        })
+    });
+
+</script>
