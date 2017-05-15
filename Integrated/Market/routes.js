@@ -36,7 +36,9 @@ module.exports = function (app) {
         category.getByCountry('59067579734d1d32590f51dd').then(function (_data) {
             console.log(_data);
             res.render('pages/landing', { categories: _data });
-        }).catch(function (_err) { console.log(_err) });
+        }).catch(function (_err) {
+            console.log(_err)
+        });
 
     });
 
@@ -259,25 +261,32 @@ module.exports = function (app) {
             { Id: 11, Name: 'Polly Top Notion', Img: 'https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg' },
 
         ];
-
+        var _scope = {};
         store.getById(req.params.storeId).then(function (_data) {
             console.log(req.params.storeId);
-
+            _scope.store = _data;
             gallery.getByStore(req.params.storeId).then(function (_galleriesData) {
+                _scope.Galleries = _galleriesData;
                 product.getByBestSeller(req.params.storeId).then(function (_bestSellerData) {
-                    res.render('pages/store', {
-                        store: _data,
-                        bestSeller: _bestSellerData,
-                        Galleries: _galleriesData
-                    });
+                    _scope.bestSeller = _bestSellerData;
+                    res.render('pages/store', _scope);
                 }).catch(function (_err) {
                     console.log(_err);
+                    _scope.bestSeller = [];
+                    res.render('pages/store', _scope);
                 });
             }).catch(function (_err) {
                 console.log(_err);
+                _scope.Galleries = [];
+                _scope.bestSeller = [];
+                res.render('pages/store', _scope);
             });
         }).catch(function (_err) {
             console.log(_err);
+            _scope.store = {};
+            _scope.Galleries = [];
+            _scope.bestSeller = [];
+            res.render('pages/store', _scope);
         });
     });
 
