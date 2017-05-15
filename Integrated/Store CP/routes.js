@@ -8,33 +8,8 @@ module.exports = function (app) {
         return res.redirect('/eg/Home');
     })
     app.get('/eg/Home', function (req, res) {
-        var featuredStores1 = [], onSaleStores = [], editorChoise = [], bestActiveStores = [], topRatedStores = [], featuredStores2 = [], otherStores = [];
-        store.getStoreByPlacement(null).then(function (_data) {
-            console.log(_data);
-            if (_data.Featured1)
-                featuredStores1 = _data.Featured1;
-            if (_data.OnSale)
-                onSaleStores = _data.OnSale;
-            if (_data.EditorChoise)
-                editorChoise = _data.EditorChoise;
-            if (_data.BestActive)
-                bestActiveStores = _data.BestActive;
-            if (_data.TopRated)
-                topRatedStores = _data.TopRated;
-            if (_data.Featured2)
-                var featuredStores2 = _data.Featured2;
-            if (_data.Others)
-                otherStores = _data.Others;
-            res.render('pages/login', {
-                featuredStores1: featuredStores1,
-                onSaleStores: onSaleStores,
-                editorChoise: editorChoise,
-                bestActiveStores: bestActiveStores,
-                topRatedStores: topRatedStores,
-                featuredStores2: featuredStores2,
-                otherStores: otherStores
-            });
-        });
+        var _scope = {};
+        res.render('pages/login', _scope);
     });
 
     // store page   /eg/store/Da7i
