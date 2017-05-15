@@ -36,7 +36,9 @@ module.exports = function (app) {
         category.getByCountry('59067579734d1d32590f51dd').then(function (_data) {
             console.log(_data);
             res.render('pages/landing', { categories: _data });
-        }).catch(function (_err) { console.log(_err) });
+        }).catch(function (_err) {
+            console.log(_err)
+        });
 
     });
 
@@ -270,14 +272,20 @@ module.exports = function (app) {
                     res.render('pages/store', _scope);
                 }).catch(function (_err) {
                     console.log(_err);
+                    _scope.bestSeller = [];
                     res.render('pages/store', _scope);
                 });
             }).catch(function (_err) {
                 console.log(_err);
+                _scope.Galleries = [];
+                _scope.bestSeller = [];
                 res.render('pages/store', _scope);
             });
         }).catch(function (_err) {
             console.log(_err);
+            _scope.store = {};
+            _scope.Galleries = [];
+            _scope.bestSeller = [];
             res.render('pages/store', _scope);
         });
     });
