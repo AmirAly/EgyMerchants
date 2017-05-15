@@ -6,7 +6,8 @@
     <div class="pageBody">
         <section class="txtStoreName container">
 		<div class="clear"></div>
-            <h1><%= store.StoreName %></h1>
+		<span class="hide" id="StoreId"><%= store._id %></span>
+            <h1 id="StoreName"><%= store.StoreName %></h1>
         </section>
 
         <div class="row">
@@ -73,7 +74,7 @@
         <section class="container-fluid content">
             <div class="row">
                 <!-- Left column -->
-                <aside class="col-sm-4 col-md-3 col-lg-3 content-aside">
+                <aside class="col-xs-12 col-sm-4 col-md-3 col-lg-3 content-aside">
                     <!-- Best Sellers -->
                     <div class="section-divider"></div>
 
@@ -86,8 +87,8 @@
 						 <% bestSeller.forEach(function(item){ %>
                             <li>
                                 <div class="product">
-                                    <a href="/Eg/Gallery/<%= item.Name %>/<%= item.Id %>" class="preview-image"><img class="img-responsive animate scale" src="<%= item.Img %>" alt=""></a>
-                                    <p class="name"><a href="/Eg/Gallery/<%= item.Name %>/<%= item.Id %>" class="preview-image"><%= item.Name %></a></p>
+                                    <a href="/Eg/Product/<%= item.Name %>/<%= item._id %>" class="preview-image"><img class="img-responsive animate scale" src="<%= item.Pictures[0].URL %>" alt=""></a>
+                                    <p class="name"><a href="/Eg/Product/<%= item.Name %>/<%= item._id %>" class="preview-image"><%= item.Name %></a></p>
                                     <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span>
                                     <span class="price"><%= item.Price %></span>
                                 </div>
@@ -103,7 +104,7 @@
                 </aside>
                 <!-- //end Left column -->
                 <!-- Right column -->
-                <section class="col-sm-8 col-md-9 col-lg-9 content-center">
+                <section class="col-xs-12 col-sm-8 col-md-9 col-lg-9 content-center">
                     <!-- Featured Products -->
                     <section>
                         <h3>Featured Galleries</h3>
@@ -128,7 +129,7 @@
                                     <a href="/Eg/Gallery/<%= gallery.Title %>/<%= gallery._id %>" class="quick-view hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
                                     <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
                                 </div>
-                                <h3 class="title"><a href="#"><%= gallery.Title %></a></h3>
+                                <h3 class="title"><a href="/Eg/Gallery/<%= gallery.Title %>/<%= gallery._id %>"><%= gallery.Title %></a></h3>
                             </div>
 							<% }); %>
 

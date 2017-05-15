@@ -264,10 +264,14 @@ module.exports = function (app) {
             console.log(req.params.storeId);
 
             gallery.getByStore(req.params.storeId).then(function (_galleriesData) {
-                res.render('pages/store', {
-                    store: _data,
-                    bestSeller: bestSeller,
-                    Galleries: _galleriesData
+                product.getByBestSeller(req.params.storeId).then(function (_bestSellerData) {
+                    res.render('pages/store', {
+                        store: _data,
+                        bestSeller: _bestSellerData,
+                        Galleries: _galleriesData
+                    });
+                }).catch(function (_err) {
+                    console.log(_err);
                 });
             }).catch(function (_err) {
                 console.log(_err);

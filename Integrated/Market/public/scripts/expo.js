@@ -12,7 +12,7 @@
     setTimeout(function () {
         $('.loaderContainer').addClass('hide');
         $('.loader').addClass('hide');
-    }, 500);
+    }, 2000);
 });
 
 

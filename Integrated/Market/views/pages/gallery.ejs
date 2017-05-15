@@ -4,13 +4,14 @@
 
 
 <div class="clear"></div>
-
+<span id="galleryId" class="hide"><%= gallery._id %></span>
+<span id="galleryName" class="hide"><%= gallery.Title %></span>
 <!-- Breadcrumbs -->
 <section class="container">
     <nav class="breadcrumbs">
         <span class="maincrumb"><a href="/eg/Home">Home</a></span>
-        <span class="maincrumb"><span class="divider">›</span><a href="/Eg/Store/Almaksoud/1"><span> Al Maksoud</span></a></span>
-        <span class="maincrumb"><span class="divider">›</span><a href="/Eg/Gallery/<%= gallery.Title %>/<%= gallery._id %>"><span> غرف معيشة</span></a></span>
+        <span class="maincrumb"><span class="divider">›</span><span id="StoreNameLink"><span id="StoreName"></span></span></span>
+        <span class="maincrumb"><span class="divider">›</span><a href="/Eg/Gallery/<%= gallery.Title %>/<%= gallery._id %>"><span><%= gallery.Title %></span></a></span>
     </nav>
 </section>
 <!-- //end Breadcrumbs -->
