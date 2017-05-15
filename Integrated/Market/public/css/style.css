@@ -398,13 +398,13 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     display: flex;
     transition: all linear 0.5s;
-    -moz-animation: cssAnimation 1s ease-in 5s forwards;
+    -moz-animation: cssAnimation 1s ease-in 3s forwards;
     /* Firefox */
-    -webkit-animation: cssAnimation 1s ease-in 5s forwards;
+    -webkit-animation: cssAnimation 1s ease-in 3s forwards;
     /* Safari and Chrome */
-    -o-animation: cssAnimation 1s ease-in 5s forwards;
+    -o-animation: cssAnimation 1s ease-in 3s forwards;
     /* Opera */
-    animation: cssAnimation 1s ease-in 5s forwards;
+    animation: cssAnimation 1s ease-in 3s forwards;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
 }
@@ -722,106 +722,11 @@ h1, h2, h3, h4, h5, h6 {
     transform: scale(1.1, 1.1);
 }
 
-
-/*vertical carousal*/
-
-/*.storePage .btn-vertical-slider {
->>>>>>> 01c7e70c8d9a1b62c659f39ffbf7a96844377d94
-    cursor: pointer;
-    color: #969696 !important;
-    font-size: 22px !important;
+@media (max-width: 768px){
+.storePage .col-xs-12 .products-list .product-preview{
+        width: 50% !important;
 }
-
-a {
-    cursor: pointer;
 }
-
-.storePage .carousel.vertical .carousel-inner {
-    max-height: 360px;
-}
-
-    .storePage .carousel.vertical .carousel-inner .item .row {
-        margin: 0 2px 0 0;
-        height: 118px !important;
-        padding: 0;
-        border-bottom: 1px dotted #d7d7d7;
-        overflow: hidden;
-        float: none !important;
-    }
-
-        .storePage .carousel.vertical .carousel-inner .item .row .product {
-            padding: 15px 0;
-        }
-
-            .storePage .carousel.vertical .carousel-inner .item .row .product > a {
-                display: block;
-                border-radius: 2px;
-                float: left;
-                margin-right: 17px;
-                width: 68px !important;
-                overflow: hidden;
-            }
-
-        .storePage .carousel.vertical .carousel-inner .item .row .rating {
-            display: block;
-            color: #d9d9d9;
-            height: 1.8em;
-            margin-top: -3px;
-        }
-
-        .storePage .carousel.vertical .carousel-inner .item .row .name {
-            color: #565656;
-            overflow: hidden;
-            height: 2.5em;
-            padding-right: 20%;
-            line-height: 1.2em;
-        }
-
-        .storePage .carousel.vertical .carousel-inner .item .row .price {
-            font-size: 1.14em;
-        }
-
-        .storePage .carousel.vertical .carousel-inner .item .row .flex-viewport {
-            height: 312px !important;
-        }
-
-    .storePage .carousel.vertical .carousel-inner .item {
-        -webkit-transition: 0.6s ease-in-out top;
-        -moz-transition: 0.6s ease-in-out top;
-        -ms-transition: 0.6s ease-in-out top;
-        -o-transition: 0.6s ease-in-out top;
-        transition: 0.6s ease-in-out top;
-    }
-
-.storePage .carousel.vertical .active {
-    top: 0;
-}
-
-.storePage .carousel.vertical .next {
-    top: 100%;
-}
-
-.storePage .carousel.vertical .prev {
-    top: -100%;
-}
-
-    .storePage .carousel.vertical .next.left,
-    .storePage .carousel.vertical .prev.right {
-        top: 0;
-    }
-
-.storePage .carousel.vertical .active.left {
-    top: -100%;
-}
-
-.storePage .carousel.vertical .active.right {
-    top: 100%;
-}
-
-.storePage .carousel.vertical .item {
-    left: 0;
-}*/
-
 
 
 /*expo page*/

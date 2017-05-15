@@ -4,7 +4,7 @@ module.exports = {
     getByCountry: function (_country) {
         console.log('Im right');
         return new Promise(function (resolve, reject) {
-            Schema.find({ }, '', function (err, lst) {
+            Schema.find({ 'Countries': _country }, '', function (err, lst) {
                 if (err)
                     reject(err);
                 else {
@@ -16,4 +16,5 @@ module.exports = {
             })
         })
     }
+    
 }
