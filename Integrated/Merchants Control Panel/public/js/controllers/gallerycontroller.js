@@ -1,8 +1,9 @@
-﻿app.controller("storeController", function ($scope, $state, $rootScope, API, $stateParams, $location, Theme) {
+﻿app.controller("galleryController", function ($scope, $state, $rootScope, API, $stateParams, $location, Theme) {
     Theme.init();
     $("navbar-toggle").click(function () {
         $("html").toggleClass("nav-open");
     });
+
     $('.form-control').on("focus", function () {
         $(this).parent().addClass("input-group-focus");
         $(this).parent().removeClass("is-empty");
@@ -20,8 +21,28 @@
 
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click()
-    };
+    }
 
+    $scope.ShowFileSelector = function () {
+        document.getElementById('uploadItemImage').click()
+    }
+
+
+    //$scope.updateObj = function () {
+    //    var req = {
+    //        method: 'put',
+    //        url: '/gallery',
+    //        data: {}
+    //    }
+    //    API.execute(req).then(function (_res) {
+    //        if (_res.data.code == 100) {
+    //            console.log(_res.data.data);
+    //            $scope.gallery.Title = _res.data.Title;
+    //            $scope.gallery.Description = _res.data.Description;
+    //            $scope.gallery.DisplayPicture = _res.data.DisplayPicture;
+    //        }
+    //    });
+    //};
 
 });
 function convertImgToBase64URL(event) {

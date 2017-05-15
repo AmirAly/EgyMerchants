@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body class="responsive">
+
+
+    <div class="wrapper" id="main">
+      <div ui-view="menu"></div>
+      <div class="main-panel">
+        <nav class="navbar navbar-transparent navbar-absolute">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Profile</a>
+            </div>
+          </div>
+        </nav>
+
+        <div class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="card">
+                  <div class="card-header" data-background-color="orange">
+                    <h4 class="title">Edit Profile</h4>
+                    <p class="category">Complete your profile</p>
+                  </div>
+                  <div class="card-content">
+                    <form name="frmStore" novalidate="">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <div class="form-group label-floating is-empty">
+                            <label class="control-label">Store Name (disabled)</label>
+                            <input type="text" class="form-control" disabled="">
+                                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group  label-floating is-empty">
+                            <label class="control-label">Current Password</label>
+                            <input type="password" class="form-control" name="currentPass" id="currentPass" ng-model="storeData.currentPass" required="" pattern="^.{6,10}$">
+                              <span ng-show="frmStore.currentPass.$dirty && frmStore.currentPass.$invalid">
+                                <span class="errorFont" ng-show="frmStore.currentPass.$error.required">Required</span>
+                                <span class="errorFont" ng-show="frmStore.currentPass.$error.pattern">Password must be 6 to 10 characters</span>
+                              </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group label-floating is-empty">
+                            <label class="control-label">New Password</label>
+                            <input type="password" class="form-control" name="newPass" id="newPass" required="" pattern="^.{6,10}$" ng-model="storeData.newPass">
+                              <span ng-show="frmStore.newPass.$dirty && frmStore.newPass.$invalid">
+                                <span class="errorFont" ng-show="frmStore.newPass.$error.required">Required</span>
+                                <span class="errorFont" ng-show="frmStore.newPass.$error.pattern">Password must be 6 to 10 characters</span>
+                              </span>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group label-floating is-empty">
+                            <label class="control-label">Adress</label>
+                            <input type="text" class="form-control" name="address" id="address" ng-model="storeData.address" required="" pattern="^.{1,30}$">
+                              <span ng-show="frmStore.address.$dirty && frmStore.address.$invalid">
+                                <span class="errorFont" ng-show="frmStore.address.$error.required">Required</span>
+                                <span class="errorFont" ng-show="frmStore.address.$error.pattern">Address is too long</span>
+                              </span>
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group label-floating is-empty">
+                            <label class="control-label">Email address</label>
+                            <input type="email" class="form-control" name="email" id="email" required="" ng-model="storeData.email" pattern="^.{1,20}$">
+                              <span ng-show="frmStore.email.$dirty && frmStore.email.$invalid">
+                                <span class="errorFont" ng-show="frmStore.email.$error.required">Required</span>
+                                <span class="errorFont" ng-show="frmStore.email.$error.email"> Invalid email</span>
+                              </span>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group label-floating is-empty">
+                            <label class="control-label">City</label>
+                            <input type="text" class="form-control" name="city" id="city" required="" pattern="^.{1,20}$" ng-model="storeData.city">
+                              <span ng-show="frmStore.city.$dirty && frmStore.city.$invalid">
+                                <span class="errorFont" ng-show="frmStore.city.$error.required">Required</span>
+                                <span class="errorFont" ng-show="frmStore.city.$error.pattern">City is too long</span>
+                              </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group label-floating is-empty">
+                            <label class="control-label">Country</label>
+                            <input type="text" class="form-control" name="country" id="country" required="" ng-model="storeData.country" pattern="^.{1,20}$">
+                              <span ng-show="frmStore.country.$dirty && frmStore.country.$invalid">
+                                <span class="errorFont" ng-show="frmStore.country.$error.required">Required</span>
+                                <span class="errorFont" ng-show="frmStore.country.$error.pattern">country is too long</span>
+                              </span>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group label-floating is-empty">
+                            <label class="control-label">About Me</label>
+                            <textarea class="form-control" rows="3" name="description" id="description" required="" ng-model="storeData.description" pattern="^.{1,150}$"></textarea>
+                            <span ng-show="frmStore.description.$dirty && frmStore.description.$invalid">
+                              <span class="errorFont" ng-show="frmStore.description.$error.required">Required</span>
+                              <span class="errorFont" ng-show="frmStore.description.$error.pattern">Description is too long</span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                      <div class="clearfix"></div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card card-profile">
+                  <div class="card-avatar">
+                    <a href="#pablo">
+                      <img class="img" src="/img/faces/marc.jpg" />
+                    </a>
+                  </div>
+                  <div class="content">
+                    <h6 class="category text-gray">CEO / Co-Founder</h6>
+                    <h4 class="card-title">Alec Thompson</h4>
+                    <p class="card-content">
+                      Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="footer">
+          <div class="container-fluid">
+            <p class="copyright pull-right">
+              &copy;
+              <script>document.write(new Date().getFullYear())</script> <a href="http://appout.co">AppOut.LLC</a> | Built By Craftsmen
+            </p>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+  </body>
+  
+  <% include ../partials/jsfiles %>
+
+</html>
