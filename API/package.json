@@ -1,0 +1,14 @@
+{
+  "name": "DSA-API",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "*",
+    "express": "*",
+    "mongoose": "*",
+	"nodemailer":"*",
+	"file-system":"*",
+	"azure-storage":"*",
+	"base64-stream":"*",
+	"stream":"*"
+  }
+}
