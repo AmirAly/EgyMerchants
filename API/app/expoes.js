@@ -1,4 +1,4 @@
-var Schema = require('./schema/expo');
+var Schema = require('./models/expo');
 var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
     getByCategory: function (_categoryId) {

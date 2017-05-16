@@ -1,4 +1,4 @@
-var Schema = require('./schema/store');
+var Schema = require('./models/store');
 var Helper = require('./helper');
 var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {

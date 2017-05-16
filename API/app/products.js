@@ -1,4 +1,4 @@
-var Schema = require('./schema/item');
+var Schema = require('./models/item');
 var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
     getFeatured: function (_storeId) {

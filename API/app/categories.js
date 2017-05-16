@@ -1,4 +1,4 @@
-var Schema = require('./schema/category');
+var Schema = require('./models/category');
 var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
     getByCountry: function (_country) {
