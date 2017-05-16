@@ -285,6 +285,9 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
+.contacts-widget ul li:before{
+        content: "\e031" !important;
+}
 
 /*Menu*/
 .spmenu {
@@ -345,6 +348,12 @@ h1, h2, h3, h4, h5, h6 {
         padding-left: 40px;
     }
 
+    .pageHeader .alignSearchforms {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-around;
+    }
+
     .pageHeader .navbar-form.pull-right {
         /*padding-right: 40px;*/
     }
@@ -395,6 +404,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     background: #000;
     height: 800px;
+    min-height: 50vh;
     width: 100%;
     display: flex;
     transition: all linear 0.5s;
@@ -468,6 +478,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .welcomePage .categoryContainer {
     padding: 30px;
+    min-height: 50vh;
     display: flex;
     flex-wrap: wrap;
     background-image: url("../images/paper.gif");
@@ -722,10 +733,10 @@ h1, h2, h3, h4, h5, h6 {
     transform: scale(1.1, 1.1);
 }
 
-@media (max-width: 768px){
-.storePage .col-xs-12 .products-list .product-preview{
+@media (max-width: 768px) {
+    .storePage .col-xs-12 .products-list .product-preview {
         width: 50% !important;
-}
+    }
 }
 
 
