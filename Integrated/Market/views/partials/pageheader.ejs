@@ -16,11 +16,11 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="countryDropdownMenu">
-                                <li><a href="#/Eg/Home">Account</a></li>
-                                <li><a href="#/Eg/Home">Checkout</a></li>
+                                <li><a href="/Eg/Home">Account</a></li>
+                                <li><a href="/Eg/Home">Checkout</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#/Eg/Home">Log In</a></li>
-                                <li><a href="#/Eg/Home">Sign Up</a></li>
+                                <li><a href="/Eg/Home">Log In</a></li>
+                                <li><a href="/Eg/Home">Sign Up</a></li>
                             </ul>
                         </div>
 
@@ -30,9 +30,9 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="countryDropdownMenu">
-                                <li><a href="#/Eg/Home">UK</a></li>
-                                <li><a href="#/Eg/Home">Germany</a></li>
-                                <li><a href="#/Eg/Home">France</a></li>
+                                <li><a href="/Eg/Home">UK</a></li>
+                                <li><a href="/Eg/Home">Germany</a></li>
+                                <li><a href="/Eg/Home">France</a></li>
                             </ul>
                         </div>
 
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-6">
+                <div class="col-xs-4">
 
                     <nav class="navbar navbar-default">
                         <div class="container">
@@ -68,19 +68,52 @@
                         </div><!-- /.container-fluid -->
                     </nav>
                 </div>
-                <div class="col-xs-5">
+                <div class="col-xs-7 alignSearchforms">
                     <!-- Search -->
                     <form class="navbar-search form-inline hidden-xs pull-right" role="form">
-                        <div class="form-group">
-                            <button type="submit" class="button">
-                                <span class="icon-search-2"></span>
-                            </button>
-                            <input type="text" class="form-control" value="Search" onblur="if (this.value == '') {this.value = 'Search';}" onfocus="if(this.value == 'Search') {this.value = '';}" />
-                        </div>
-                        
+                      <div class="form-group">
+                        <button type="submit" class="button">
+                          <span class="icon-search-2"></span>
+                        </button>
+                        <input type="text" class="form-control" value="" placeholder="By keyword.." />
+                      </div>
+
                     </form>
                     <!-- //end Search -->
-                </div>
+                    <!-- Search -->
+                    <form class="navbar-search form-inline hidden-xs pull-right" role="form">
+                      <div class="form-group">
+                        <button type="submit" class="button">
+                          <span class="icon-search-2"></span>
+                        </button>
+                        <input type="text" class="form-control" value="" placeholder="By expo.." onblur="if (this.value == '') {this.value = 'By expo..';}" onfocus="if(this.value == 'By expo..') {this.value = '';}" />
+                      </div>
+
+                    </form>
+                    <!-- //end Search -->
+                    <!-- Search -->
+                    <form class="navbar-search form-inline hidden-xs pull-right" role="form">
+                      <div class="form-group">
+                        <button type="submit" class="button">
+                          <span class="icon-search-2"></span>
+                        </button>
+                        <input type="text" class="form-control" value="" placeholder="By store.." />
+                      </div>
+
+                    </form>
+                    <!-- //end Search -->
+                    <!-- Search -->
+                    <form class="navbar-search form-inline hidden-xs pull-right" role="form">
+                      <div class="form-group">
+                        <button type="submit" class="button">
+                          <span class="icon-search-2"></span>
+                        </button>
+                        <input type="text" class="form-control" value="" placeholder="By product.." />
+                      </div>
+
+                    </form>
+                    <!-- //end Search -->
+                  </div>
             </div>
         </div>
     </div>

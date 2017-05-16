@@ -1458,7 +1458,7 @@ header.variant4 .navbar-secondary-menu .caret {
 	clear: both;
 	margin-bottom: -80px;
 	position: relative;
-	z-index: 1100
+	/*z-index: 1100*/
 }
 header.variant4 .navbar-search {
 	margin: 19px 0 -53px;
