@@ -46,7 +46,7 @@ mongoose.connect(db.url, function (err) {
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept , authorization");
             next();
         });
-        app.listen(8080);
+        app.listen(process.env.PORT || 8007);
         app.get('*', function (req, res) {
             return res.redirect('/eg/Home');
         });
