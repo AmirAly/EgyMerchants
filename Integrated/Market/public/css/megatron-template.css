@@ -1476,8 +1476,8 @@ header.variant4 .navbar-search {
 .navbar-search .form-control {
 	padding-right: 32px
 }
-.navbar-search .form-control:focus {
-	width: 230px
+.navbar-search.txtSearch .form-control:focus {
+	width: 200px
 }
 .navbar-search .button {
 	float: right;

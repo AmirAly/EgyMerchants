@@ -70,51 +70,93 @@
                 </div>
                 <div class="col-xs-7 alignSearchforms">
                     <!-- Search -->
-                    <form class="navbar-search form-inline hidden-xs pull-right" role="form">
+                    <form class="navbar-search txtSearch form-inline hidden-xs pull-right" role="form">
                       <div class="form-group">
                         <button type="submit" class="button">
                           <span class="icon-search-2"></span>
                         </button>
-                        <input type="text" class="form-control" value="" placeholder="By keyword.." />
+                        <input type="text" class="form-control" value="" placeholder="By keyword.." onclick="showSmallSearchDvs()" />
                       </div>
 
                     </form>
                     <!-- //end Search -->
+                  
+                  
                     <!-- Search -->
-                    <form class="navbar-search form-inline hidden-xs pull-right" role="form">
+                    <div class="navbar-search dvSearchExpo form-inline hidden-xs pull-right smallDvSearch hide" role="form">
                       <div class="form-group">
-                        <button type="submit" class="button">
+                        <!--<button type="submit" class="button">
                           <span class="icon-search-2"></span>
-                        </button>
-                        <input type="text" class="form-control" value="" placeholder="By expo.." onblur="if (this.value == '') {this.value = 'By expo..';}" onfocus="if(this.value == 'By expo..') {this.value = '';}" />
+                        </button>-->
+                        <input type="text" id="dvExpoSearch" class="form-control" value="" placeholder="By expo.." />
                       </div>
-
-                    </form>
+                      <div class="dropdown-search dropdownExpo">
+                        <ul>
+                          <li onclick="setValueSearch(expo, 'Expo 1')">
+                            <a href="#" >
+                              Expo 1 
+                            </a>
+                          </li>
+                          <li onclick="setValueSearch(expo, 'Expo 2')">
+                            <a href="#" >
+                              Expo 2
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                     <!-- //end Search -->
                     <!-- Search -->
-                    <form class="navbar-search form-inline hidden-xs pull-right" role="form">
+                    <div class="navbar-search dvSearchStore form-inline hidden-xs pull-right smallDvSearch hide" role="form">
                       <div class="form-group">
-                        <button type="submit" class="button">
+                        <!--<button type="submit" class="button">
                           <span class="icon-search-2"></span>
-                        </button>
+                        </button>-->
                         <input type="text" class="form-control" value="" placeholder="By store.." />
                       </div>
-
-                    </form>
+                      <div class="dropdown-search dropdownStore">
+                        <ul>
+                          <li>
+                            <a href="#">
+                              Store 1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              Store 2
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                     <!-- //end Search -->
                     <!-- Search -->
-                    <form class="navbar-search form-inline hidden-xs pull-right" role="form">
+                    <div class="navbar-search dvSearchProduct form-inline hidden-xs pull-right  smallDvSearch hide" role="form">
                       <div class="form-group">
-                        <button type="submit" class="button">
+                        <!--<button type="submit" class="button">
                           <span class="icon-search-2"></span>
-                        </button>
+                        </button>-->
                         <input type="text" class="form-control" value="" placeholder="By product.." />
                       </div>
-
-                    </form>
+                      <div class="dropdown-search dropdownProduct">
+                        <ul>
+                          <li>
+                            <a href="#">
+                              Product 1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              Product 2
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                     <!-- //end Search -->
                   </div>
             </div>
         </div>
     </div>
 </div>
+
