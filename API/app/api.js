@@ -27,44 +27,44 @@ module.exports = function (app, express) {
         var _newstore = new Store(req.body);
         StoreLogic.login(_newstore);
     })
-    api.put('/Store/editProfile', function (req, res) {
+    api.put('/Store/EditProfile', function (req, res) {
         StoreLogic.editProfile(req.body._id, req.body.oldpassword, req.body.newpassword, req.body.email, req.body.city, req.body.address, req.body.country, req.body.description);
     })
-    api.get('/Store/getById/:_id', function (req, res) {
+    api.get('/Store/GetById/:_id', function (req, res) {
         StoreLogic.getById(req.params._id);
     });
 
-    api.post('/Gallery/add', function (req, res) {
+    api.post('/Gallery/Add', function (req, res) {
         var _newgallery = new Gallery(req.body);
         GalleryLogic.add(_newgallery);
     });
-    api.put('/Gallery/edit', function (req, res) {
+    api.put('/Gallery/Edit', function (req, res) {
         GalleryLogic.edit(req.body._id, req.body.Title, req.body.Description, req.body.Imgs);
     });
-    api.get('/Gallery/getById/:_id', function (req, res) {
+    api.get('/Gallery/GetById/:_id', function (req, res) {
         GalleryLogic.getById(req.params._id);
     });
-    api.get('/Gallery/getByStore/:_id', function (req, res) {
+    api.get('/Gallery/GetByStore/:_id', function (req, res) {
         GalleryLogic.getByStore(req.params._id);
     });
 
-    api.post('/Item/add', function (req, res) {
+    api.post('/Item/Add', function (req, res) {
         var _newitem = new Item(req.body);
         ItemLogic.add(_newitem);
     });
-    api.put('/Item/edit', function (req, res) {
+    api.put('/Item/Edit', function (req, res) {
         ItemLogic.edit(req.body._id, req.body.Name, req.body.Description, req.body.Imgs);
     });
-    api.get('/Item/getById/:_id', function (req, res) {
+    api.get('/Item/GetById/:_id', function (req, res) {
         ItemLogic.getById(req.params._id);
     });
-    api.get('/Item/getByGalleryId/:_id', function (req, res) {
+    api.get('/Item/GetByGalleryId/:_id', function (req, res) {
         ItemLogic.getByGalleryId(req.params._id);
     });
-    api.get('/Item/getFeatured/:_id', function (req, res) {
+    api.get('/Item/GetFeatured/:_id', function (req, res) {
         ItemLogic.getFeatured(req.params._id);
     });
-    api.get('/Item/getByBestSeller/:_id', function (req, res) {
+    api.get('/Item/GetByBestSeller/:_id', function (req, res) {
         ItemLogic.getByBestSeller(req.params._id);
     });
     return api;
