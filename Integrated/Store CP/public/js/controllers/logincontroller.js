@@ -1,3 +1,4 @@
-﻿app.controller("loginController", function ($scope, $state, $rootScope, API, $stateParams, $location) {
+﻿var egm = angular.module('egm', []);
+egm.controller("loginController", function ($scope) {
 
 });

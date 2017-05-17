@@ -23,6 +23,7 @@ function toggle(_id) {
         $('.expoPagingControllerRemoval' + _id).addClass('hide');
         $('.dvPageNumbers' + _id).addClass('hide');
         $('.dvPageNumbers' + _id).animate({ opacity: '0' }, "fast");
+
     }
     else {
         $('.expoPagingController' + _id).addClass('hide');
@@ -33,5 +34,6 @@ function toggle(_id) {
 }
 function selectPage (_id,_floor) {
     $('.btnChangePage').removeClass('active');
-    $('.page'+_floor).addClass('active');
+    $('.page' + _floor).addClass('active');
+    $('#expo' + _id + ' .repeated-item').slideUp().animate({ opacity: '1' }, "fast").slideDown();
 }
