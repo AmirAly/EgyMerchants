@@ -26,9 +26,9 @@ mongoose.connect(db.url, function (err) {
             next();
         });
         app.listen(8080);
-        app.get('*', function (req, res) {
-            res.render('pages/404');
-        });
+        //app.get('*', function (req, res) {
+        //    res.render('pages/404');
+        //});
         console.log('8080 is the magic port');
     }
 });

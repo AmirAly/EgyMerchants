@@ -1,174 +1,158 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <% include ../partials/headpages %>
+<% include ../partials/headpages %>
+<div class="wrapper" ng-controller='storeController'>
+  <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
 
-    <title>Material Dashboard by Creative Tim</title>
+    <div class="logo">
+      <a href="http://appout.co" class="simple-text">
+        AppOut.LLC
+      </a>
+    </div>
 
-  </head>
-
-  <body ng-app='egm' ng-controller='storeController'>
-
-    <div class="wrapper">
-      <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
-
-        <div class="logo">
-          <a href="http://appout.co" class="simple-text">
-            AppOut.LLC
+    <div class="sidebar-wrapper">
+      <ul class="nav">
+        <li>
+          <a href='Galleries.html'>
+            <i class="material-icons">dashboard</i>
+            <p>Galleries</p>
           </a>
-        </div>
+        </li>
+        <li class="active">
+          <a href="user.html">
+            <i class="material-icons">person</i>
+            <p>User Profile</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-        <div class="sidebar-wrapper">
-          <ul class="nav">
-            <li>
-              <a href='Galleries.html'>
-                <i class="material-icons">dashboard</i>
-                <p>Galleries</p>
-              </a>
-            </li>
-            <li class="active">
-              <a href="user.html">
-                <i class="material-icons">person</i>
-                <p>User Profile</p>
-              </a>
-            </li>
-          </ul>
+  <div class="main-panel">
+    <nav class="navbar navbar-transparent navbar-absolute">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Profile</a>
         </div>
       </div>
+    </nav>
 
-      <div class="main-panel">
-        <nav class="navbar navbar-transparent navbar-absolute">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">Profile</a>
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-header" data-background-color="orange">
+                <h4 class="title">Edit Profile</h4>
+                <p class="category">Complete your profile</p>
+              </div>
+              <div class="card-content">
+                <form>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="form-group label-floating">
+                        <label class="control-label">Store Name (disabled)</label>
+                        <input type="text" class="form-control" disabled="">
+												</div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group label-floating">
+                        <label class="control-label">Current Password</label>
+                        <input type="password" class="form-control" ng-model="store.currPass">
+												</div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group label-floating">
+                        <label class="control-label">New Password</label>
+                        <input type="password" class="form-control" ng-model="store.newPass" >
+												</div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group label-floating">
+                        <label class="control-label">Adress</label>
+                        <input type="text" class="form-control" ng-model="store.address">
+												</div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group label-floating">
+                        <label class="control-label">Email address</label>
+                        <input type="email" class="form-control" ng-model="store.email">
+												</div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group label-floating">
+                        <label class="control-label">City</label>
+                        <input type="text" class="form-control" ng-model="store.city" >
+												</div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group label-floating">
+                        <label class="control-label">Country</label>
+                        <input type="text" class="form-control" >
+												</div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <div class="form-group label-floating">
+                          <label class="control-label"> About Me</label>
+                          <textarea class="form-control" rows="3" ng-model="store.Desc"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                  <div class="clearfix"></div>
+                </form>
+              </div>
             </div>
           </div>
-        </nav>
-
-        <div class="content">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-8">
-                <div class="card">
-                  <div class="card-header" data-background-color="orange">
-                    <h4 class="title">Edit Profile</h4>
-                    <p class="category">Complete your profile</p>
-                  </div>
-                  <div class="card-content">
-                    <form>
-                      <div class="row">
-                        <div class="col-md-5">
-                          <div class="form-group label-floating">
-                            <label class="control-label">Store Name (disabled)</label>
-                            <input type="text" class="form-control" disabled="">
-												</div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group label-floating">
-                            <label class="control-label">Current Password</label>
-                            <input type="password" class="form-control" ng-model="store.currPass">
-												</div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group label-floating">
-                            <label class="control-label">New Password</label>
-                            <input type="password" class="form-control" ng-model="store.newPass" >
-												</div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group label-floating">
-                            <label class="control-label">Adress</label>
-                            <input type="text" class="form-control" ng-model="store.address">
-												</div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group label-floating">
-                            <label class="control-label">Email address</label>
-                            <input type="email" class="form-control" ng-model="store.email">
-												</div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-4">
-                          <div class="form-group label-floating">
-                            <label class="control-label">City</label>
-                            <input type="text" class="form-control" ng-model="store.city" >
-												</div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="form-group label-floating">
-                            <label class="control-label">Country</label>
-                            <input type="text" class="form-control" >
-												</div>
-                        </div>
-                      </div>
-                      
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <div class="form-group label-floating">
-                              <label class="control-label"> About Me</label>
-                              <textarea class="form-control" rows="3" ng-model="store.Desc"></textarea>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
-                      <div class="clearfix"></div>
-                    </form>
-                  </div>
-                </div>
+          <div class="col-md-4">
+            <div class="card card-profile">
+              <div class="card-avatar">
+                <a href="#pablo">
+                  <!--upload img-->
+                  <img class="img" src="/img/faces/marc.jpg" />
+                </a>
               </div>
-              <div class="col-md-4">
-                <div class="card card-profile">
-                  <div class="card-avatar">
-                    <a href="#pablo">
-                      <!--upload img-->
-                      <img class="img" src="/img/faces/marc.jpg" />
-                    </a>
-                  </div>
 
-                  <div class="content">
-                    <h6 class="category text-gray">CEO / Co-Founder</h6>
-                    <h4 class="card-title">Alec Thompson</h4>
-                    <p class="card-content">
-                      Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                    </p>
-                  </div>
-                </div>
+              <div class="content">
+                <h6 class="category text-gray">CEO / Co-Founder</h6>
+                <h4 class="card-title">Alec Thompson</h4>
+                <p class="card-content">
+                  Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                </p>
               </div>
             </div>
           </div>
         </div>
-
-        <footer class="footer">
-          <% include ../partials/footerpages %>
-        </footer>
       </div>
     </div>
 
-    <!--   Core JS Files   -->
-    <% include ../partials/pagesjsfiles %>
+    <footer class="footer">
+      <% include ../partials/footerpages %>
+    </footer>
+  </div>
+</div>
 
-    <!--controller-->
-    <script src="/js/controllers/storecontroller.js"></script>
-
-  </body>
-</html>
+<!--   Core JS Files   -->
+<% include ../partials/pagesjsfiles %>

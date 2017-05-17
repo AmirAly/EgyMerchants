@@ -1,5 +1,4 @@
-﻿var egm = angular.module('egm', []);
-egm.controller("galleriesController", function ($scope) {
+﻿egm.controller("galleriesController", ['$scope', 'API', function ($scope, API) {
     $scope.galleries = [{
         Title: "Completed Tasks",
         Img: "/img/cover.jpeg",
@@ -32,5 +31,15 @@ egm.controller("galleriesController", function ($scope) {
         Title: "Completed Tasks",
         Img: "/img/cover.jpeg",
         Desc: "Last Campaign Performance"
-    }]
-});
+    }];
+
+    //console.log(API.name);
+    var req = {
+        method: 'get',
+        url: '/',
+        data: {}
+    };
+    API.execute(req).then(function (res) {
+        console.log(res);
+    });
+}]);

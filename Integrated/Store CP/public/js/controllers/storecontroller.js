@@ -1,4 +1,3 @@
-﻿var egm = angular.module('egm', []);
-egm.controller("storeController", function ($scope) {
+﻿egm.controller("storeController", function ($scope) {
     
 });

@@ -1,5 +1,4 @@
-﻿var egm = angular.module('egm', []);
-egm.controller("itemController", function ($scope) {
+﻿egm.controller("itemController", function ($scope) {
     $scope.itemPictures = [{
         Title: "Completed Tasks",
         Img: "/img/cover.jpeg",

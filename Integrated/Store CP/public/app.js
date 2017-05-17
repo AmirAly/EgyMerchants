@@ -1,3 +1,2 @@
-﻿var app = angular.module("app", ['ui.router']);
-   
-
+﻿var egm = angular.module('egm', []);
+console.log('hhhh');
