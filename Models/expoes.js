@@ -1,4 +1,4 @@
-var Schema = require('./schema/expo');
+var Schema = require('./models/expo');
 var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
     getByCategory: function (_categoryId) {
@@ -8,7 +8,10 @@ module.exports = {
                 model: 'Store'
             }).exec(function (err, lst) {
                 if (err)
-                    reject('1:' + err);
+                    reject({
+                        code: 1,
+                        data: err
+                    });
                 else {
                     if (lst.length > 0) {
                         var finalLst = [];
@@ -23,11 +26,17 @@ module.exports = {
                                 Sections: obj.Sections,
                                 Floors: obj.floors
                             });
-                            resolve(finalLst);
+                            resolve({
+                                code: 100,
+                                data: finalLst
+                            });
                         }
                     }
                     else {
-                        reject("This filteration didn't resulted in any data");
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
                     }
                 }
             })
@@ -41,10 +50,16 @@ module.exports = {
                 model: 'Store'
             }).exec(function (err, Obj) {
                 if (err)
-                    reject('1:' + err);
+                    reject({
+                        code: 1,
+                        data: err
+                    });
                 else {
                     if (Obj)
-                        resolve(Obj);
+                        resolve({
+                            code: 100,
+                            data: Obj
+                        });
                 }
             })
         })
@@ -56,16 +71,28 @@ module.exports = {
                 model: 'Store'
             }).exec(function (err, Obj) {
                 if (err)
-                    reject('1:' + err);
+                    reject({
+                        code: 1,
+                        data: err
+                    });
                 else {
                     if (Obj) {
                         if (Obj.Sections.length> 0)
-                            resolve(Obj);
+                            resolve({
+                                code: 100,
+                                data: Obj
+                            });
                         else
-                            resolve("There is no stores in this expo yet");
+                            reject({
+                                code: 21,
+                                data: "There is no stores in this expo yet"
+                            });
                     }
                     else {
-                        reject("This filteration didn't resulted in any data");
+                        reject({
+                            code: 22,
+                            data: "This filteration didn't resulted in any data"
+                        });
                     }
                 }
             })
