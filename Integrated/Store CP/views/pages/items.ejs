@@ -57,15 +57,18 @@
                     </div>
                     <!-- End Breadcrumbs -->
                     <div class="row">
-                        <div class="col-md-3" ng-repeat="item in items">
+
+					<% if(items.length > 0){ %>
+                        <% items.forEach(function(item){ %>
+                        <div class="col-xs-12 col-sm-6 col-md-4">
                             <a href="/eg/p/product">
-                                <div class="card">
+                                <div class="card item">
                                     <div class="card-header card-chart">
-                                        <img src="{{item.Img}}">
+                                        <img src="<%= item.Pictures[0].URL %>">
                                     </div>
                                     <div class="card-content">
-                                        <h4 class="title">{{item.Title}}</h4>
-                                        <p class="category">{{item.Description}}</p>
+                                        <h4 class="title"><%= item.Name %></h4>
+                                        <p class="category"><%= item.Description %></p>
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
@@ -77,7 +80,10 @@
                                 </div>
                             </a>
                         </div>
-
+                        <% }); %>
+					<% } else { %>	
+					<p class="text-center">There is no items to show</p>
+					<% } %>
                     </div>
                 </div>
             </div>

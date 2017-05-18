@@ -48,47 +48,67 @@ module.exports = function (app) {
         var _scope = {};
         res.render('pages/item', _scope);
 
- //       product.getById(req.params.productId).then(function (_product) {
- //           console.log(_product);
- //           _scope.productData = _product;
-            
- //           gallery.getGallery(_product.Gallery).then(function (_gallery) {
- //               console.log(_gallery);
- //               _scope.galleryData = _gallery;
+        //       product.getById(req.params.productId).then(function (_product) {
+        //           console.log(_product);
+        //           _scope.productData = _product;
 
- //               store.getStoreById(_product.Store).then(function (_store) {
- //                   console.log(_store);
- //                   _scope.storeData = _store;
+        //           gallery.getGallery(_product.Gallery).then(function (_gallery) {
+        //               console.log(_gallery);
+        //               _scope.galleryData = _gallery;
 
- //_scope.SimilarProducts = [
- //           { id: 1, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg' }], Name: 'Polly Top Notion' },
- //           { id: 2, Pictures: [{ URL: 'http://4.bp.blogspot.com/-KOdUGQjMe9o/Uigvi-aAxxI/AAAAAAAAMKc/hWtkDnYUtrg/s1600/2014-Comfort-Modern-Living-Room-Decorating-Ideas-2.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' },
- //           { id: 3, Pictures: [{ URL: 'http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Idea.jpg' }], Name: 'Polly Top Notion' },
- //           { id: 4, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' },
- //           { id: 5, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg' }], Name: 'Polly Top Notion' },
- //           { id: 6, Pictures: [{ URL: 'http://4.bp.blogspot.com/-KOdUGQjMe9o/Uigvi-aAxxI/AAAAAAAAMKc/hWtkDnYUtrg/s1600/2014-Comfort-Modern-Living-Room-Decorating-Ideas-2.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' },
- //           { id: 7, Pictures: [{ URL: 'http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Idea.jpg' }], Name: 'Polly Top Notion' },
- //           { id: 8, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' },
- //           { id: 9, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg' }], Name: 'Polly Top Notion' },
- //           { id: 10, Pictures: [{ URL: 'http://4.bp.blogspot.com/-KOdUGQjMe9o/Uigvi-aAxxI/AAAAAAAAMKc/hWtkDnYUtrg/s1600/2014-Comfort-Modern-Living-Room-Decorating-Ideas-2.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' },
- //           { id: 11, Pictures: [{ URL: 'http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Idea.jpg' }], Name: 'Polly Top Notion' },
- //           { id: 12, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' }
- //   ];
- //                   res.render('pages/product', _scope);
- //               }).catch(function (_err) { console.log(_err) });
+        //               store.getStoreById(_product.Store).then(function (_store) {
+        //                   console.log(_store);
+        //                   _scope.storeData = _store;
 
- //           }).catch(function (_err) { console.log(_err) });
+        //_scope.SimilarProducts = [
+        //           { id: 1, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg' }], Name: 'Polly Top Notion' },
+        //           { id: 2, Pictures: [{ URL: 'http://4.bp.blogspot.com/-KOdUGQjMe9o/Uigvi-aAxxI/AAAAAAAAMKc/hWtkDnYUtrg/s1600/2014-Comfort-Modern-Living-Room-Decorating-Ideas-2.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' },
+        //           { id: 3, Pictures: [{ URL: 'http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Idea.jpg' }], Name: 'Polly Top Notion' },
+        //           { id: 4, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' },
+        //           { id: 5, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg' }], Name: 'Polly Top Notion' },
+        //           { id: 6, Pictures: [{ URL: 'http://4.bp.blogspot.com/-KOdUGQjMe9o/Uigvi-aAxxI/AAAAAAAAMKc/hWtkDnYUtrg/s1600/2014-Comfort-Modern-Living-Room-Decorating-Ideas-2.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' },
+        //           { id: 7, Pictures: [{ URL: 'http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Idea.jpg' }], Name: 'Polly Top Notion' },
+        //           { id: 8, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' },
+        //           { id: 9, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg' }], Name: 'Polly Top Notion' },
+        //           { id: 10, Pictures: [{ URL: 'http://4.bp.blogspot.com/-KOdUGQjMe9o/Uigvi-aAxxI/AAAAAAAAMKc/hWtkDnYUtrg/s1600/2014-Comfort-Modern-Living-Room-Decorating-Ideas-2.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' },
+        //           { id: 11, Pictures: [{ URL: 'http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Idea.jpg' }], Name: 'Polly Top Notion' },
+        //           { id: 12, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' }
+        //   ];
+        //                   res.render('pages/product', _scope);
+        //               }).catch(function (_err) { console.log(_err) });
 
- //       }).catch(function (_err) { console.log(_err) });
+        //           }).catch(function (_err) { console.log(_err) });
+
+        //       }).catch(function (_err) { console.log(_err) });
     });
-    
+
     app.get('/eg/g/galleries', function (req, res) {
         var _scope = {};
-        res.render('pages/galleries', _scope);
+        gallery.getByStore('59084a09734d1d3098a82cd6').then(function (_gallery) {
+            _scope.galleries = _gallery;
+            res.render('pages/galleries', _scope);
+        }).catch(function (_err) { console.log(_err) });
     });
     app.get('/eg/p/products', function (req, res) {
         var _scope = {};
-        res.render('pages/items', _scope);
+        product.getByGalleryId('591d68b488bfb91ae01f0d24').then(function (_itemLst) {
+            
+            //59088e74734d1d3098a8563e
+            //console.log(JSON.stringify(_itemLst));
+            if (_itemLst.code == 100) {
+                _scope.items = _itemLst.data;
+                res.render('pages/items', _scope);
+            }
+            else {
+                _scope.items = [];
+                res.render('pages/items', _scope);
+            }
+
+        }).catch(function (_err) {
+            console.log(_err);
+            _scope.items = [];
+            res.render('pages/items', _scope);
+        });
     });
     app.get('/eg/register', function (req, res) {
         var _scope = {};
@@ -102,5 +122,5 @@ module.exports = function (app) {
     //    res.render('pages/contactus');
     //});
 
-   
+
 }

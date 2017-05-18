@@ -1,4 +1,4 @@
-﻿egm.controller("itemsController", function ($scope, API) {
+﻿egm.controller("itemsController", function ($scope, API, $window) {
     $scope.items = [{
         Title: "Completed Tasks",
         Img: "/img/cover.jpeg",
@@ -45,19 +45,17 @@
                     URL: ''
                 }],
                 Price: '',
-                PriceBeforeSale: '',
-                Rate: '',
-                Sold: '',       ////////
-                Tags: '',
-                Badges: '',
                 Store: '59084a09734d1d3098a82cd6',
-                Gallery: '591cd0612b99d00af8affa9f'
+                Gallery: '59088e74734d1d3098a8563e'
             }
         }
-        API.execute(req).then(function (res) {
-            var itemId = res.data._id;
-            console.log(res);
-            console.log(itemId);  //"591cd30b2b99d00af8affaa0"
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 100) {
+                window.location.reload();
+                var itemId = res.data._id;
+                console.log('id:', itemId); //"591cd30b2b99d00af8affaa0"
+            }
         });
-    }
+    };
 });

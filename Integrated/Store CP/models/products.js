@@ -48,19 +48,29 @@ module.exports = {
     },
     getByGalleryId: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Gallery': _id }, '_id Name Badges Pictures Price PriceBeforeSale', function (err, lst) {
+            Schema.find({ 'Gallery': _id }, '_id Name Badges Pictures Price PriceBeforeSale Description', function (err, lst) {
                 if (err)
-                    reject('1:' + err);
+                    reject({
+                        code: 1,
+                        data: err
+                    });
                 else {
                     if (lst.length > 0)
-                        resolve(lst);
+                        resolve({
+                            code: 100,
+                            data: lst
+                        });
                     else {
-                        reject("This filteration didn't resulted in any data");
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
                     }
                 }
             });
         })
     },
+
     add: function (_product) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ 'Name': _product.Name, 'Gallery': _product.Gallery }, '', function (err, Obj) {

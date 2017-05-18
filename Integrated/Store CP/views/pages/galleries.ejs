@@ -51,15 +51,17 @@
                     </div>
                     <!-- End Breadcrumbs -->
                     <div class="row">
-                        <div class="col-md-4" ng-repeat="gallery in galleries">
+
+                        <% galleries.forEach(function(gallery){ %>
+                        <div class="col-md-4">
                             <a href="/eg/g/gallery">
                                 <div class="card">
                                     <div class="card-header card-chart">
-                                        <img src="{{gallery.Img}}">
+                                        <img src="<%=gallery.DisplayPicture%>">
                                     </div>
                                     <div class="card-content">
-                                        <h4 class="title">{{gallery.Title}}</h4>
-                                        <p class="category">{{gallery.Description}}</p>
+                                        <h4 class="title"><%= gallery.Title %></h4>
+                                        <p class="category"><%= gallery.Description %></p>
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
@@ -71,6 +73,7 @@
                                 </div>
                             </a>
                         </div>
+                        <% }); %>
                     </div>
                 </div>
             </div>

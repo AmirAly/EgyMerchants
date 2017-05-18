@@ -1,174 +1,176 @@
 ﻿<% include ../partials/headpages %>
-<div class="wrapper" ng-controller='storeController'>
-    <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
-        <div class="logo">
-            <a href="http://appout.co" class="simple-text">
-                AppOut.LLC
-            </a>
+<div ng-controller='itemsController'>
+    <div class="wrapper">
+        <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
+            <div class="logo">
+                <a href="http://appout.co" class="simple-text">
+                    AppOut.LLC
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="active">
+                        <a href="/eg/g/galleries">
+                            <i class="material-icons">dashboard</i>
+                            <p>Galleries</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/eg/store">
+                            <i class="material-icons">person</i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="sidebar-wrapper">
-            <ul class="nav">
-                <li>
-                    <a href='/eg/g/galleries'>
-                        <i class="material-icons">dashboard</i>
-                        <p>Galleries</p>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="/eg/store">
-                        <i class="material-icons">person</i>
-                        <p>User Profile</p>
-                    </a>
-                </li>
-            </ul>
+        <div class="main-panel">
+            <nav class="navbar navbar-transparent navbar-absolute">
+                <div class="container-fluid top">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/eg/p/products">Items</a>
+                    </div>
+                    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">Add Item</button>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="container-fluid">
+                    <!-- Start Breadcrumbs -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="/eg/g/galleries">Galleries</a>
+                                </li>
+                                <li>
+                                    <a href="/eg/g/gallery">Edit Gallery</a>
+                                </li>
+                                <li class="active">Gallery Items</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!-- End Breadcrumbs -->
+                    <div class="row">
+                        <% items.forEach(function(item){ %>
+                        <%= item %>
+                        <div class="col-md-3">
+                            <a href="/eg/p/product">
+                                <div class="card item">
+                                    <div class="card-header card-chart">
+                                        <img src="<%= item.Pictures[0].URL %>">
+                                    </div>
+                                    <div class="card-content">
+                                        <h4 class="title"><%= item.Name %></h4>
+                                        <p class="category"><%= item.Description %></p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <a href="/eg/p/product">
+                                                <i class="fa fa-cogs" aria-hidden="true"></i> Edit
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <% include ../partials/footerpages %>
+            </footer>
         </div>
     </div>
-    <div class="main-panel">
-        <nav class="navbar navbar-transparent navbar-absolute">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+    <!-- Start Modal -->
+    <div class="modal fade bs-example-modal-lg" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
-                    <a class="navbar-brand" href="/eg/store">Profile</a>
+                    <h4 class="modal-title">Add Item</h4>
                 </div>
-            </div>
-        </nav>
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div class="card-header" data-background-color="orange">
-                                <h4 class="title">Edit Profile</h4>
-                                <p class="category">Complete your profile</p>
-                            </div>
-                            <div class="card-content">
-                                <form name="frmStoreData" novalidate>
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Store Name (disabled)</label>
-                                                <input type="text" class="form-control" disabled="">
-                                            </div>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="card">
+                                        <div class="card-header" data-background-color="orange">
+                                            <h4 class="title">Creat Item</h4>
+                                            <p class="category">Creat A New Item</p>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Current Password</label>
-                                                <input type="password" class="form-control" ng-model="store.currPass" required name="psw" id="psw" pattern="^.{6,10}$">
-                                                <span ng-show="frmStoreData.psw.$dirty && frmStoreData.psw.$invalid">
-                                                    <span class="errorFont" ng-show="frmStoreData.psw.$error.required">Required</span>
-                                                    <span class="errorFont" ng-show="frmStoreData.psw.$error.pattern">Password must be 6 to 10</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">New Password</label>
-                                                <input type="password" class="form-control" ng-model="store.newPass" required name="newPsw" id="newPsw" pattern="^.{6,10}$">
-                                                <span ng-show="frmStoreData.newPsw.$dirty && frmStoreData.newPsw.$invalid">
-                                                    <span class="errorFont" ng-show="frmStoreData.newPsw.$error.required">Required</span>
-                                                    <span class="errorFont" ng-show="frmStoreData.newPsw.$error.pattern">Password must be 6 to 10</span>
-                                                   <!-- <span>not matched</span>-->
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Adress</label>
-                                                <input type="text" class="form-control" ng-model="store.address" required name="address" id="address" pattern="^.{1,50}$">
-                                                <span ng-show="frmStoreData.address.$dirty && frmStoreData.address.$invalid">
-                                                    <span class="errorFont" ng-show="frmStoreData.address.$error.required">Required</span>
-                                                    <span class="errorFont" ng-show="frmStoreData.address.$error.pattern">Address is too long</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Email address</label>
-                                                <input type="email" class="form-control" ng-model="store.email" required name="email" id="email" pattern="^.{20,40}$">
-                                                <span ng-show="frmStoreData.email.$dirty && frmStoreData.email.$invalid">
-                                                    <span class="errorFont" ng-show="frmStoreData.email.$error.required">Required</span>
-                                                    <span class="errorFont" ng-show="frmStoreData.email.$error.pattern">Email is too long</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">City</label>
-                                                <input type="text" class="form-control" ng-model="store.city" required name="city" id="city" pattern="^.{1,35}">
-                                                <span ng-show="frmStoreData.city.$dirty && frmStoreData.city.$invalid">
-                                                    <span class="errorFont" ng-show="frmStoreData.city.$error.required">Required</span>
-                                                    <span class="errorFont" ng-show="frmStoreData.city.$error.pattern">City is too long</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Country</label>
-                                                <input type="text" class="form-control" ng-model="store.country" required name="country" id="country" pattern="^.{1,35}$">
-                                                <span ng-show="frmStoreData.country.$dirty && frmStoreData.country.$invalid">
-                                                    <span class="errorFont" ng-show="frmStoreData.country.$error.required">Required</span>
-                                                    <span class="errorFont" ng-show="frmStoreData.country.$error.pattern">Country is too long</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label"> About Me</label>
-                                                    <textarea class="form-control" rows="3" ng-model="store.Description" required name="Desc" id="Desc" pattern="^.{1,200}$"></textarea>
-                                                    <span ng-show="frmStoreData.Desc.$dirty && frmStoreData.Desc.$invalid">
-                                                        <span class="errorFont" ng-show="frmStoreData.Desc.$error.required">Required</span>
-                                                        <span class="errorFont" ng-show="frmStoreData.Desc.$error.pattern">Description is too long</span>
-                                                    </span>
+                                        <div class="card-content">
+                                            <form name="frmAddItem">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Item Name</label>
+                                                            <input type="text" class="form-control" ng-model="item.Title" required name="itemTitle" id="itemTitle" pattern="^.{1,35}$">
+                                                            <span ng-show="frmAddItem.itemTitle.$dirty && frmAddItem.itemTitle.$invalid">
+                                                                <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.pattern">Item name is too long</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <div class="form-group label-floating">
+                                                                <label class="control-label"> About Item</label>
+                                                                <textarea class="form-control" rows="3" ng-model="item.Description" required name="itemDesc" id="itemDesc" pattern="^.{1,200}$"></textarea>
+                                                                <span ng-show="frmAddItem.itemDesc.$dirty && frmAddItem.itemDesc.$invalid">
+                                                                    <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.required">Required</span>
+                                                                    <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.pattern">Item description is too long</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-header card-chart">
+                                            <!--upload img-->
+                                            <img src="/img/cover.jpeg">
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="title">{{item.Title}}</h4>
+                                            <p class="category">{{item.Description}}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="stats">
+                                                <i class="fa fa-cogs" aria-hidden="true"></i> Edit
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" ng-model="save()" ng-disabled="frmStoreData.$invalid" class="btn btn-primary pull-right">Update Profile</button>
-                                    <div class="clearfix"></div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card card-profile">
-                            <div class="card-avatar">
-                                <a href="#pablo">
-                                    <!--upload img-->
-                                    <img class="img" src="/img/faces/marc.jpg" />
-                                </a>
-                            </div>
-                            <div class="content">
-                                <h6 class="category text-gray">CEO / Co-Founder</h6>
-                                <h4 class="card-title">Alec Thompson</h4>
-                                <p class="card-content">
-                                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-click="addItem()" ng-disabled="frmAddItem.$invalid" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
-        <footer class="footer">
-            <% include ../partials/footerpages %>
-        </footer>
     </div>
+    <!-- End Modal -->
 </div>
 <!--   Core JS Files   -->
 <% include ../partials/pagesjsfiles %>
