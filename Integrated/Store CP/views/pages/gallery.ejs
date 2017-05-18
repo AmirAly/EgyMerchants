@@ -1,138 +1,124 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <% include ../partials/headpages %>
-    <title>Edit Gallery</title>
-</head>
-
-  <body ng-app='egm' ng-controller='galleryController'>
-
+<% include ../partials/headpages %>
+<div ng-controller='galleryController'>
     <div class="wrapper">
-      <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
-
-        <div class="logo">
-          <a href="http://appout.co" class="simple-text">
-            AppOut.LLC
-          </a>
+        <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
+            <div class="logo">
+                <a href="http://appout.co" class="simple-text">
+                    AppOut.LLC
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="active">
+                        <a href='/eg/g/galleries'>
+                            <i class="material-icons">dashboard</i>
+                            <p>Galleries</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/eg/store">
+                            <i class="material-icons">person</i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <div class="sidebar-wrapper">
-          <ul class="nav">
-            <li class="active">
-              <a href='Galleries.html'>
-                <i class="material-icons">dashboard</i>
-                <p>Galleries</p>
-              </a>
-            </li>
-            <li>
-              <a href="user.html">
-                <i class="material-icons">person</i>
-                <p>User Profile</p>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-
-      <div class="main-panel">
-        <nav class="navbar navbar-transparent navbar-absolute">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">Edit Gallery</a>
-            </div>
-          </div>
-        </nav>
-
-        <div class="content">
-          <div class="container-fluid">
-            <!-- Start Breadcrumbs -->
-            <div class="col-md-8">
-              <ol class="breadcrumb">
-                <li>
-                  <a href="Galleries.html">Galleries</a>
-                </li>
-                <li class="active">Edit Gallery</li>
-              </ol>
-            </div>
-            <!-- End Breadcrumbs -->
-            <div class="row">
-              <div class="col-md-8">
-                <div class="card">
-                  <div class="card-header" data-background-color="orange">
-                    <h4 class="title">Edit Gallery</h4>
-                    <p class="category">Edit your Gallery</p>
-                  </div>
-                  <div class="card-content">
-                    <form>
-                      <div class="row">
-                        <div class="col-md-5">
-                          <div class="form-group label-floating">
-                            <label class="control-label">Gallery Name</label>
-                            <input type="text" class="form-control" ng-model="gallery.Title">
-												</div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <div class="form-group label-floating">
-                              <label class="control-label"> About Me</label>
-                              <textarea class="form-control" rows="3" ng-model="gallery.Desc"></textarea>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <button type="submit" class="btn btn-primary pull-right">Update Gallery</button>
-                      <div class="clearfix"></div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="card">
-                  <div class="card-header card-chart">
-                    <!--upload img-->
-                    <img src="/img/cover.jpeg">
-								</div>
-                  <div class="card-content">
-                    <h4 class="title">{{gallery.Title}}</h4>
-                    <p class="category">{{gallery.Desc}}</p>
-                  </div>
-                  <div class="card-footer">
-                    <div class="stats">
-                      <a href="items.html">
-                        <i class="fa fa-eye" aria-hidden="true"></i> View Items
-                      </a>
+        <div class="main-panel">
+            <nav class="navbar navbar-transparent navbar-absolute">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/eg/g/gallery">Edit Gallery</a>
                     </div>
-                  </div>
                 </div>
-              </div>
+            </nav>
+            <div class="content">
+                <div class="container-fluid">
+                    <!-- Start Breadcrumbs -->
+                    <div class="col-md-8">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="/eg/g/galleries">Galleries</a>
+                            </li>
+                            <li class="active">Edit Gallery</li>
+                        </ol>
+                    </div>
+                    <!-- End Breadcrumbs -->
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header" data-background-color="orange">
+                                    <h4 class="title">Edit Gallery</h4>
+                                    <p class="category">Edit your Gallery</p>
+                                </div>
+                                <div class="card-content">
+                                    <form name="frmUpdateGallery">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Gallery Name</label>
+                                                    <input type="text" class="form-control" ng-model="gallery.Title" name="galleryTitle" id="galleryTitle" required pattern="^.{1,35}$">
+                                                    <span ng-show="frmUpdateGallery.galleryTitle.$dirty && frmUpdateGallery.galleryTitle.$invalid">
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.galleryTitle.$error.required">Required</span>
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.galleryTitle.$error.pattern">Gallery name is too long</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label"> About Me</label>
+                                                        <textarea class="form-control" rows="3" ng-model="gallery.Description" required name="galleryDesc" id="galleryDesc" pattern="^.{1,200}$"></textarea>
+                                                        <span ng-show="frmUpdateGallery.galleryDesc.$dirty && frmUpdateGallery.galleryDesc.$invalid">
+                                                            <span class="errorFont" ng-show="frmUpdateGallery.galleryDesc.$error.required">Required</span>
+                                                            <span class="errorFont" ng-show="frmUpdateGallery.galleryDesc.$error.pattern">Gallery description is too long</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" ng-click="updateGallery()" ng-disabled="frmUpdateGallery.$invalid" class="btn btn-primary pull-right">Update Gallery</button>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header card-chart">
+                                    <!--upload img-->
+                                    <img src="/img/cover.jpeg">
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="title">{{gallery.Title}}</h4>
+                                    <p class="category">{{gallery.Desc}}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <a href="/eg/p/products">
+                                            <i class="fa fa-eye" aria-hidden="true"></i> View Items
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <footer class="footer">
+                <% include ../partials/footerpages %>
+            </footer>
         </div>
-
-        <footer class="footer">
-          <% include ../partials/footerpages %>
-        </footer>
-      </div>
     </div>
-
-
-    <!--   Core JS Files   -->
-    <% include ../partials/pagesjsfiles %>
-
-    <!--controller-->
-    <script src="/js/controllers/gallerycontroller.js"></script>
-  </body>
-
-
-</html>
+</div>
+<!--   Core JS Files   -->
+<% include ../partials/pagesjsfiles %>

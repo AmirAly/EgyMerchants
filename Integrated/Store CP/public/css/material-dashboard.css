@@ -17,6 +17,9 @@
 /* ANIMATION */
 /* SHADOWS */
 /* Shadows (from mdl http://www.getmdl.io/) */
+.errorFont{
+    color:tomato;
+}
 .noUi-target,
 .noUi-target * {
   -webkit-touch-callout: none;
@@ -427,12 +430,13 @@ h2.title {
 .wrapper {
   position: relative;
   top: 0;
-  height: 100vh;
+  /*height: 100vh;*/
+  height: calc(100vh - 21px);
 }
 
 .sidebar,
 .off-canvas-sidebar {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
