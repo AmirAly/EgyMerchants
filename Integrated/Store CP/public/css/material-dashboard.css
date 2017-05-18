@@ -17,6 +17,9 @@
 /* ANIMATION */
 /* SHADOWS */
 /* Shadows (from mdl http://www.getmdl.io/) */
+.errorFont{
+    color:tomato;
+}
 .noUi-target,
 .noUi-target * {
   -webkit-touch-callout: none;

@@ -1,174 +1,173 @@
 <% include ../partials/headpages %>
 <div ng-controller='itemsController'>
-  <div class="wrapper">
-
-    <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
-
-      <div class="logo">
-        <a href="http://appout.co" class="simple-text">
-          AppOut.LLC
-        </a>
-      </div>
-
-      <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li class="active">
-            <a href="Galleries.html">
-              <i class="material-icons">dashboard</i>
-              <p>Galleries</p>
-            </a>
-          </li>
-          <li>
-            <a href="user.html">
-              <i class="material-icons">person</i>
-              <p>User Profile</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="main-panel">
-      <nav class="navbar navbar-transparent navbar-absolute">
-        <div class="container-fluid top">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Items</a>
-          </div>
-          <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">Add Item</button>
-        </div>
-      </nav>
-
-      <div class="content">
-        <div class="container-fluid">
-          <!-- Start Breadcrumbs -->
-          <div class="row">
-            <div class="col-md-12">
-              <ol class="breadcrumb">
-                <li>
-                  <a href="Galleries.html">Galleries</a>
-                </li>
-                <li>
-                  <a href="Edit%20Gallary.html">Edit Gallery</a>
-                </li>
-                <li class="active">Gallery Items</li>
-              </ol>
+    <div class="wrapper">
+        <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
+            <div class="logo">
+                <a href="http://appout.co" class="simple-text">
+                    AppOut.LLC
+                </a>
             </div>
-          </div>
-          <!-- End Breadcrumbs -->
-          <div class="row">
-            <div class="col-md-3" ng-repeat="item in items">
-              <a href="Edit%20items.html">
-                <div class="card">
-                  <div class="card-header card-chart">
-                    <img src="{{item.Img}}">
-								</div>
-                  <div class="card-content">
-                    <h4 class="title">{{item.Title}}</h4>
-                    <p class="category">{{item.Desc}}</p>
-                  </div>
-                  <div class="card-footer">
-                    <div class="stats">
-                      <a href="Edit%20items.html">
-                        <i class="fa fa-cogs" aria-hidden="true"></i> Edit
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </a>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="active">
+                        <a href="/eg/g/galleries">
+                            <i class="material-icons">dashboard</i>
+                            <p>Galleries</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/eg/store">
+                            <i class="material-icons">person</i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                </ul>
             </div>
-
-
-          </div>
         </div>
-      </div>
-
-      <footer class="footer">
-        <% include ../partials/footerpages %>
-      </footer>
-    </div>
-  </div>
-
-  <!-- Start Modal -->
-  <div class="modal fade bs-example-modal-lg" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title">Add Item</h4>
-        </div>
-        <div class="modal-body">
-          <div class="content">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-8">
-                  <div class="card">
-                    <div class="card-header" data-background-color="orange">
-                      <h4 class="title">Creat Item</h4>
-                      <p class="category">Creat A New Item</p>
+        <div class="main-panel">
+            <nav class="navbar navbar-transparent navbar-absolute">
+                <div class="container-fluid top">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/eg/p/products">Items</a>
                     </div>
-                    <div class="card-content">
-                      <form>
-                        <div class="row">
-                          <div class="col-md-5">
-                            <div class="form-group label-floating">
-                              <label class="control-label">Item Name</label>
-                              <input type="text" class="form-control" ng-model="item.Title">
-                                                                </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <div class="form-group label-floating">
-                                <label class="control-label"> About Item</label>
-                                <textarea class="form-control" rows="3" ng-model="item.Desc"></textarea>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="clearfix"></div>
-                      </form>
-                    </div>
-                  </div>
+                    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">Add Item</button>
                 </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-header card-chart">
-                      <!--upload img-->
-                      <img src="/img/cover.jpeg">
+            </nav>
+            <div class="content">
+                <div class="container-fluid">
+                    <!-- Start Breadcrumbs -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="/eg/g/galleries">Galleries</a>
+                                </li>
+                                <li>
+                                    <a href="/eg/g/gallery">Edit Gallery</a>
+                                </li>
+                                <li class="active">Gallery Items</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!-- End Breadcrumbs -->
+                    <div class="row">
+                        <div class="col-md-3" ng-repeat="item in items">
+                            <a href="/eg/p/product">
+                                <div class="card">
+                                    <div class="card-header card-chart">
+                                        <img src="{{item.Img}}">
+                                    </div>
+                                    <div class="card-content">
+                                        <h4 class="title">{{item.Title}}</h4>
+                                        <p class="category">{{item.Description}}</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <a href="/eg/p/product">
+                                                <i class="fa fa-cogs" aria-hidden="true"></i> Edit
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <% include ../partials/footerpages %>
+            </footer>
+        </div>
+    </div>
+    <!-- Start Modal -->
+    <div class="modal fade bs-example-modal-lg" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Add Item</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="card">
+                                        <div class="card-header" data-background-color="orange">
+                                            <h4 class="title">Creat Item</h4>
+                                            <p class="category">Creat A New Item</p>
+                                        </div>
+                                        <div class="card-content">
+                                            <form name="frmAddItem">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Item Name</label>
+                                                            <input type="text" class="form-control" ng-model="item.Title" required name="itemTitle" id="itemTitle" pattern="^.{1,35}$">
+                                                            <span ng-show="frmAddItem.itemTitle.$dirty && frmAddItem.itemTitle.$invalid">
+                                                                <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.pattern">Item name is too long</span>
+                                                            </span>
                                                         </div>
-                    <div class="card-content">
-                      <h4 class="title">{{item.Title}}</h4>
-                      <p class="category">{{item.Desc}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <div class="form-group label-floating">
+                                                                <label class="control-label"> About Item</label>
+                                                                <textarea class="form-control" rows="3" ng-model="item.Description" required name="itemDesc" id="itemDesc" pattern="^.{1,200}$"></textarea>
+                                                                <span ng-show="frmAddItem.itemDesc.$dirty && frmAddItem.itemDesc.$invalid">
+                                                                    <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.required">Required</span>
+                                                                    <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.pattern">Item description is too long</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-header card-chart">
+                                            <!--upload img-->
+                                            <img src="/img/cover.jpeg">
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="title">{{item.Title}}</h4>
+                                            <p class="category">{{item.Description}}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="stats">
+                                                <i class="fa fa-cogs" aria-hidden="true"></i> Edit
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                      <div class="stats">
-                        <i class="fa fa-cogs" aria-hidden="true"></i> Edit
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-click="addItem()" ng-disabled="frmAddItem.$invalid" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-  </div>
-  <!-- End Modal -->
+    <!-- End Modal -->
 </div>
 <!--   Core JS Files   -->
 <% include ../partials/pagesjsfiles %>
