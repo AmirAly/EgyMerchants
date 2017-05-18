@@ -1,0 +1,67 @@
+﻿<div ui-view="header" class="container-fluid"></div>
+<div ui-view="social" class="container-fluid"></div>
+
+<section class="container">
+    <nav class="breadcrumbs"> <a href="/Eg/Home">Home</a> <span class="divider">›</span> Contact Us </nav>
+</section>
+<!-- Two column content -->
+<section class="container contacts">
+    <div class="row">
+        <section class="col-md-4 col-lg-4">
+            <h3>Contact Us</h3>
+            <ul class="simple-list compressed-list address">
+                <li><span class="icon icon-house"></span> El Imam towers, Tanta, Egypt</li>
+                <li><span class="icon icon-phone-4"></span> 321321321, 321321321</li>
+                <li><span class="icon icon-envelop"></span> <a href="#">info@appout.co</a></li>
+            </ul>
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6115.684863819771!2d-82.9719195443651!3d39.96727545833253!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf3846176f3dff5ed!2sLa+Aurora!5e0!3m2!1sen!2sus!4v1416911994304" class="google-map-big"></iframe>
+            </div>
+        </section>
+        <section class="col-md-8 col-lg-8">
+
+            <!-- Contact us form -->
+            <div class="contacts-form">
+                <div class="wrap-paper">
+                    <div class="paper">
+                        <h3>Contact FORM</h3>
+
+                        <div id="success">
+                            <p>Your message was sent successfully!</p>
+                        </div>
+                        <div id="error">
+                            <p>Something went wrong, try refreshing and submitting the form again.</p>
+                        </div>
+
+                        <form id="contactform" class="boxed-form" name="contactform" method="post" novalidate="novalidate">
+                            <div class="form-group">
+                                <span class="icon icon-user"></span>
+                                <input type="text" name="name" class="form-control" value="Name:" onblur="if (this.value == '') {this.value = 'Name:';}" onfocus="if(this.value == 'Name:') {this.value = '';}">
+                            </div>
+                            <div class="form-group">
+                                <span class="icon icon-phone-4"></span>
+                                <input type="text" name="phone" class="form-control" value="Telephone:" onblur="if (this.value == '') {this.value = 'Telephone:';}" onfocus="if(this.value == 'Telephone:') {this.value = '';}">
+                            </div>
+                            <div class="form-group">
+                                <span class="icon icon-envelop"></span>
+                                <input type="text" name="email" class="form-control" value="E-Mail:" onblur="if (this.value == '') {this.value = 'E-Mail:';}" onfocus="if(this.value == 'E-Mail:') {this.value = '';}">
+                            </div>
+                            <div class="form-group">
+                                <span class="icon icon-bubbles-2"></span>
+                                <textarea class="form-control" name="message" onblur="if (this.value == '') {this.value = 'Comment';}" onfocus="if(this.value == 'Comment') {this.value = '';}">Comment</textarea>
+                            </div>
+                            <button type="submit" id="submit" ng-click="submit()" class="btn btn-mega">SEND MESSAGE</button>
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <img class="back" src="/images/contacts-back.png" alt="">
+            </div>
+            <!-- //end Contact us form -->
+
+        </section>
+    </div>
+</section>
+<!-- //end Two columns content -->
+<div ui-view="footer1" class="container-fluid"></div>
+<div ui-view="footer2" class="container-fluid dvFooterContainer"></div>

@@ -1,0 +1,73 @@
+<% include ../partials/pagestart %>
+<% include ../partials/pageheader %>
+
+<div class="expoPage">
+    <div class="allExposView" ng-hide="showSingleExpo">
+        <div class="secondDiv">
+            <% expos.forEach(function(expo){ %>
+            <section  swinch-duration="1000" data-scroll
+                     class="secondExpo repeated-item" id="expo<%= expo._id %>" swinch-offset="0" style="background-image: url(<%= expo.Banner %>)">
+                <article>
+                    <div class="expoData">
+                        <h1 class="text-center"><%= expo.Title %></h1>
+                        <div>
+                            <div class="singleExpoView" id="expo<%= expo._id %>">
+                                <div class="container">
+                                    <div class="row noGutter">
+
+									<% expo.Sections.forEach(function(section){ %>
+                                        <div class="col-xs-3 col-sm-3 col-custom5 repeated-item">
+                                            <div class="image-wrapper">
+
+                                                <a href="/Eg/Store/<%= section.Store.StoreName %>/<%= section.Store._id %>">
+                                                    <img class="animated img-responsive animate scale" src="<%= section.Img %>" >
+                                                </a>
+                                            </div>
+                                        </div>
+										<% }); %>
+
+                                    </div>
+                                    <div class="expoDetails">
+                                        <!-- Pagination -->
+                                        <h6 class="text-center light expoPagingController<%= expo._id %>"
+                                            onclick="toggle('<%= expo._id %>')">
+                                            Take me there
+                                        </h6>
+                                        <h6 class="text-center light expoPagingControllerRemoval<%= expo._id %> hide"
+                                            onclick="toggle('<%= expo._id %>')">
+                                            Back
+                                        </h6>
+                                        <ul class="pagination-main hide dvPageNumbers<%= expo._id %> " >
+                                            <li  onclick="selectPage('<%= expo._id %>',1)" class="btnChangePage page1 active"><a>1</a></li>
+                                            <li  onclick="selectPage('<%= expo._id %>',2)" class="btnChangePage page2"><a>2</a></li>
+                                            <li  onclick="selectPage('<%= expo._id %>',3)" class="btnChangePage page3"><a>3</a></li>
+                                            <li  onclick="selectPage('<%= expo._id %>',4)" class="btnChangePage page4"><a>4</a></li>
+                                            <li  onclick="selectPage('<%= expo._id %>',5)" class="btnChangePage page5"><a>5</a></li>
+                                            <li  onclick="selectPage('<%= expo._id %>',6)" class="btnChangePage page6"><a>6</a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- //end Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+            <% }); %>
+        </div>
+    </div>
+
+
+
+    
+</div>
+
+
+<% include ../partials/pagefooter %>
+<% include ../partials/pageend %>
+<script src="/scripts/expo.js"></script>
+<% include ../partials/pagesocial %>
+
+</body>
+
+</html>

@@ -1,78 +1,59 @@
+<div class="loaderContainer" ng-show="loading"></div>
+<div class="loader" ng-show="loading">
+  <div class="bubblingG">
+    <span id="bubblingG_1"> </span>
+    <span id="bubblingG_2"> </span>
+    <span id="bubblingG_3"> </span>
+  </div>
+</div>
 
-    <div class="loaderContainer" ng-show="loading"></div>
-    <div class="loader" ng-show="loading">
-        <div class="bubblingG">
-            <span id="bubblingG_1"> </span>
-            <span id="bubblingG_2"> </span>
-            <span id="bubblingG_3"> </span>
-        </div>
-    </div>
+
+<script type="text/javascript" src="/js/general/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript" src="/js/general/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/general/swinch.js"></script>
 
 
-    <script type="text/javascript" src="/js/general/jquery-1.11.1.min.js"></script>
 
-    <script type="text/javascript" src="/js/general/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/general/swinch.js"></script>
+<script src="/js/general/jquery.flexslider.js"></script>
+<script src="/js/general/cloud-zoom.js"></script>
+<script src="/js/general/cloudzoom.js"></script>
 
-    
 
-    <script src="/js/general/jquery.flexslider.js"></script>
-    <script src="/js/general/cloud-zoom.js"></script>
-    <script src="/js/general/cloudzoom.js"></script>
+<script src="/js/general/owl.carousel.js"></script>
 
-    
-    <script src="/js/general/owl.carousel.js"></script>
+<script src="/js/general/jquery-ui.js"></script>
 
-<script>
+<script type="text/javascript">
 
-  function showSmallSearchDvs(){
-  $('.smallDvSearch').removeClass('hide');
+function showSmallSearchDvs(){
+  if($('.smallDvSearch').hasClass('hide')){
+    $('.smallDvSearch').removeClass('hide');
+    $( "#dvSearchExpo" ).autocomplete({
+     source: [ "Al Masreen", "Milano", "Dobai world", "Eiffel", "Asatana", "Le Marchee" ]
+    });
+
+    $( "#dvSearchStore" ).autocomplete({
+     source: [ "Al Nagar", "B & B", "DownTown", "Cassina", "Florence", "Al Shaymaa", "Al Maksoud" ]
+  });
+
+  $( "#dvSearchProduct" ).autocomplete({
+  source: ["Modern Metropolis Sofa", "Fancy Bed Room", "Black Dinner Table", "Raymond Woven Club Chair", "Desert Modern Cocktail Ottoman", "Post and Lintel Lounge Chair" ]
+  });
+  }
+  }
+
+  function openSearchPage(){
+  window.location.href="/Eg/Search";
   }
 
 
-  var searchblock1 = $(".dvSearchExpo"),
-  searchinput1 = searchblock1.find("input"),
-  searchdropdown1 = searchblock1.find(".dropdownExpo");
-  searchinput1.bind("change paste keyup click", function () {
-  searchdropdown1.show()
-  });
-  searchinput1.bind("blur", function () {
-  searchdropdown1.hide()
-  });
 
-  var searchblock2 = $(".dvSearchStore"),
-  searchinput2 = searchblock2.find("input"),
-  searchdropdown2 = searchblock2.find(".dropdownStore");
-  searchinput2.bind("change paste keyup click", function () {
-  searchdropdown2.show()
-  });
-  searchinput2.bind("blur", function () {
-  searchdropdown2.hide()
-  });
-
-  var searchblock3 = $(".dvSearchProduct"),
-  searchinput3 = searchblock3.find("input"),
-  searchdropdown3 = searchblock3.find(".dropdownProduct");
-  searchinput3.bind("change paste keyup click", function () {
-  searchdropdown3.show()
-  });
-  searchinput3.bind("blur", function () {
-  searchdropdown3.hide()
-  });
-
-
-  function setValueSearch(_parent, _text){
-  console.log('ex');
-  if(_parent == 'expo'){
-  console.log('ex');
-  $('#dvExpoSearch').value=_text;
-  }
-  }
 
 </script>
 
-    <!--angular js-->
-    <!--
+<!--angular js-->
+<!--
 	<script type="text/javascript" src="/js/general/angular.min.js"></script>
     <script type="text/javascript" src="/js/general/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="/js/general/angular-animate.js"></script>
