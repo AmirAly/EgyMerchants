@@ -1,0 +1,168 @@
+﻿<% include ../partials/pagestart %>
+<% include ../partials/pageheader %>
+
+
+<div class="storePage container">
+    <div class="pageBody">
+        <section class="txtStoreName container">
+		<div class="clear"></div>
+		<span class="hide" id="StoreId"><%= store._id %></span>
+            <h1 id="StoreName"><%= store.StoreName %></h1>
+        </section>
+
+        <div class="row">
+
+<div class="col-xs-8 owl-slider-outer">
+
+			
+
+ <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+	<% store.Imgs.forEach(function(img){ %>
+      <div class="item ">
+        <img src="<%= img.URL %>" alt="Los Angeles" style="width:100%;">
+      </div>
+   <% }); %>
+      
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+           
+            <div class="col-xs-4 banners-block">
+
+                <div class="item">
+                    <a href="/store">
+                        <img src="http://images.naldzgraphics.net/2012/01/11-Furnicom.jpg" alt="">
+                        <div class="banner-text black">
+                            100%<br>
+                            Organic Wood
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="/store">
+                        <img src="https://images.designtrends.com/wp-content/uploads/2016/02/16100509/Royal-Furniture-Logo.jpg" alt="">
+                        <div class="banner-text">
+                            <div class="inside">
+                                Creative<br>
+                                Designs
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+
+        <!-- Two columns content -->
+        <section class="container-fluid content">
+            <div class="row">
+                <!-- Left column -->
+                <aside class="col-xs-12 col-sm-4 col-md-3 col-lg-3 content-aside">
+                    <!-- Best Sellers -->
+                    <div class="section-divider"></div>
+
+
+                    <!-- BEST SELLERS -->
+                    <h3><a href="listing.html">BEST SELLERS</a></h3>
+                    <div class="products-widget jcarousel-skin-previews vertical">
+                        <ul class="slides">
+                         
+						 <% bestSeller.forEach(function(item){ %>
+                            <li>
+                                <div class="product">
+                                    <a href="/Eg/Product/<%= item.Name %>/<%= item._id %>" class="preview-image"><img class="img-responsive animate scale" src="<%= item.Pictures[0].URL %>" alt=""></a>
+                                    <p class="name"><a href="/Eg/Product/<%= item.Name %>/<%= item._id %>" class="preview-image"><%= item.Name %></a></p>
+                                    <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span>
+                                    <span class="price"><%= item.Price %></span>
+                                </div>
+                            </li>
+						<% }); %>
+                            
+                        </ul>
+                    </div>
+                    <!-- //end Best Sellers -->
+                    <div class="section-divider"></div>
+                
+               
+                </aside>
+                <!-- //end Left column -->
+                <!-- Right column -->
+                <section class="col-xs-12 col-sm-8 col-md-9 col-lg-9 content-center">
+                    <!-- Featured Products -->
+                    <section>
+                        <h3>Featured Galleries</h3>
+
+                        <!-- Products list -->
+                        <div class="row products-list">
+                            
+							<% Galleries.forEach(function(gallery){ %>
+                            <div class="product-preview" >
+                                <div class="preview animate scale">
+                                    <a href="/Eg/Gallery/<%= gallery.Title %>/<%= gallery._id %>" class="preview-image"><img class="img-responsive animate scale" src="<%= gallery.DisplayPicture %>" width="270" height="328" alt=""></a>
+                                    <ul class="product-controls-list right">
+                                        <li><span class="label label-sale">SALE</span></li>
+                                        <li><span class="label">-20%</span></li>
+                                    </ul>
+                                    <ul class="product-controls-list right hide-right">
+                                        <li class="top-out"></li>
+                                        <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
+                                        <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
+                                        <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
+                                    </ul>
+                                    <a href="/Eg/Gallery/<%= gallery.Title %>/<%= gallery._id %>" class="quick-view hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
+                                    <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
+                                </div>
+                                <h3 class="title"><a href="/Eg/Gallery/<%= gallery.Title %>/<%= gallery._id %>"><%= gallery.Title %></a></h3>
+                            </div>
+							<% }); %>
+
+                        </div>
+                        <!-- //end Products list -->
+                        <!-- Product view compact -->
+                        <div class="product-view-ajax">
+                            <div class="ajax-loader progress progress-striped active">
+                                <div class="progress-bar progress-bar-danger" role="progressbar"></div>
+                            </div>
+                            <div class="layar"></div>
+                            <div class="product-view-container"> </div>
+                        </div>
+                        <!-- //end Product view compact -->
+                    </section>
+                    <div class="section-divider"></div>
+                </section>
+                <!-- //end Right column -->
+            </div>
+        </section>
+        <!-- //end Two columns content -->
+
+    </div>
+</div>
+
+
+<% include ../partials/pagefooter %>
+<% include ../partials/pageend %>
+<script src="/js/general/jquery.jcarousel.min.js"></script>
+<script src="/js/general/customjcarousel.js"></script>
+<script src="/scripts/store.js"></script>
+<% include ../partials/pagesocial %>
+
+</body>
+
+</html>
