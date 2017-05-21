@@ -356,6 +356,10 @@ h1, h2, h3, h4, h5, h6 {
         justify-content: flex-start;
     }
 
+        .pageHeader .alignSearchforms .smallDvSearch .form-control {
+            padding: 8px;
+        }
+
     .pageHeader .navbar-form.pull-right {
         /*padding-right: 40px;*/
     }
@@ -399,6 +403,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .pull-right {
     display: inline-flex;
+}
+
+.row.products-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
 }
 
 /*Welcome Page*/
@@ -748,8 +758,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .expoPage .image-wrapper img {
-    width: 130px;
-    height: 130px;
+    width: 12.5vw;
+    height: 12.5vw;
     display: block;
 }
 
@@ -829,7 +839,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .expoPage .noGutter {
     margin: 15px 0;
-    width: 650px;
+    /*width: 650px;*/
+    width: 100vw;
+    overflow-y: hidden;
     margin-top: 5px;
     min-height: 625px;
 }
@@ -837,7 +849,7 @@ h1, h2, h3, h4, h5, h6 {
     .expoPage .noGutter .col-md-3,
     .expoPage .noGutter .col-sm-3 {
         padding: 0 !important;
-        margin: -5px 0 0 0 !important;
+        margin: 0 !important;
     }
 
 .expoPage .expoDetails {
@@ -898,12 +910,12 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .expoPage .col-custom5 {
-    width: 130px;
-    height: 130px;
+    width: 12.5vw;
+    height: 12.5vw;
 }
 
-.expoPage .singleExpoView .container {
-    width: 650px !important;
+.expoPage .singleExpoView .container-fluid {
+    padding: 0;
 }
 
 .expoPage .secondDiv > *, .expoPage .allExposView, .expoPage .singleExpoView {
@@ -977,7 +989,7 @@ h1, h2, h3, h4, h5, h6 {
         vertical-align: bottom;
         box-sizing: border-box;
         flex: initial;
-        width: 80%;
+        width: 100%;
         margin: 0 auto;
     }
 
@@ -1001,7 +1013,7 @@ h1, h2, h3, h4, h5, h6 {
 .expoPage article .expoData {
     text-align: left;
     box-shadow: inset 3px 3px 200px #000000;
-    padding: 20px;
+    padding-bottom: 20px;
     padding-top: 0;
 }
 

@@ -1,5 +1,4 @@
-﻿var egm = angular.module('egm', []);
-egm.controller("itemController", function ($scope) {
+﻿egm.controller("itemController", function ($scope) {
     $scope.itemPictures = [{
         Title: "Completed Tasks",
         Img: "/img/cover.jpeg",
@@ -13,4 +12,7 @@ egm.controller("itemController", function ($scope) {
         Img: "/img/cover.jpeg",
         Desc: "Last Campaign Performance"
     }];
+    
+    //== there is no func to add gallery in api
+
 });

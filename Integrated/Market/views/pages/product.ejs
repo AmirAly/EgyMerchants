@@ -54,21 +54,31 @@
                 </div>
             </div>
             <!-- //end Product label -->
-            <!-- Description -->
-            <div class="product-description">
-                <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span>
-                <div class="panel-group accordion-simple" id="product-accordion">
-                    <div class="panel">
-                        <div class="panel-heading"> <a data-toggle="collapse" data-parent="#product-accordion" href="#product-description"> <span class="arrow-down icon-arrow-down-4"></span> <span class="arrow-up icon-arrow-up-4"></span> Description </a> </div>
-                        <div id="product-description" class="panel-collapse collapse in">
-                            <div class="panel-body"> <%= product.Description %></div>
-                        </div>
-                    </div>
-                   
-                </div>
-            </div>
-            <!-- //end Description -->
+			<div class="row">
+			
+				<div class="col-xs-6">
+					<!-- Description -->
+					<div class="product-description">
+						<span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span>
+						<div class="panel-group accordion-simple" id="product-accordion">
+							<div class="panel">
+								<div class="panel-heading"> <a data-toggle="collapse" data-parent="#product-accordion" href="#product-description"> <span class="arrow-down icon-arrow-down-4"></span> <span class="arrow-up icon-arrow-up-4"></span> Description </a> </div>
+								<div id="product-description" class="panel-collapse collapse in">
+									<div class="panel-body"> <%= product.Description %></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- //end Description -->
+				</div>
 
+               <div class="col-xs-6">
+				     <section class="dvAdvertise">
+                          <img class="img-responsive" src="/images/adv1.jpg" />
+                     </section>
+				</div>
+
+	        </div>
         </div>
     </div>
     <!-- //end Product view --> <!-- Services -->

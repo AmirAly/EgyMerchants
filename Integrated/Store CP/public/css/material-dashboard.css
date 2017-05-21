@@ -17,6 +17,9 @@
 /* ANIMATION */
 /* SHADOWS */
 /* Shadows (from mdl http://www.getmdl.io/) */
+.errorFont{
+    color:tomato;
+}
 .noUi-target,
 .noUi-target * {
   -webkit-touch-callout: none;
@@ -427,12 +430,13 @@ h2.title {
 .wrapper {
   position: relative;
   top: 0;
-  height: 100vh;
+  /*height: 100vh;*/
+  height: calc(100vh - 21px);
 }
 
 .sidebar,
 .off-canvas-sidebar {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -3570,6 +3574,10 @@ footer .btn {
 }
 .card .card-content .category {
   margin-bottom: 0;
+  text-overflow:ellipsis;
+  width:95%;
+  white-space:nowrap;
+  overflow:hidden;
 }
 .card .card-header {
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
@@ -3649,9 +3657,17 @@ footer .btn {
 .card .card-footer h6 {
   color: #999999;
 }
-.card img {
+.card.card-profile img{
   width: 100%;
   height: auto;
+}
+.card.item img{
+  width: 100%;
+  height: 25%;
+}
+.card img {
+  width: 100%;
+  height: 40%;
 }
 .card .category .material-icons {
   position: relative;

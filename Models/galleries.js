@@ -1,16 +1,25 @@
-var Schema = require('./schema/gallery');
+var Schema = require('./models/gallery');
 var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
     getByStore: function (_storeId) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Store': _storeId, 'Status': 'Active' }, '_id Title DisplayPicture Badges', function (err, lst) {
+            Schema.find({ 'Store': _storeId, 'Status': 'Active' }, '_id Title DisplayPicture Description Badges', function (err, lst) {
                 if (err)
-                    reject('1:' + err);
+                    reject({
+                        code: 1,
+                        data: err
+                    });
                 else {
                     if (lst.length > 0)
-                        resolve(lst);
+                    resolve({
+                        code:100,
+                        data: lst
+                    });
                     else 
-                        reject("This filteration didn't resulted in any data");
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
                 }
             });
         })
@@ -19,12 +28,21 @@ module.exports = {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
-                    reject('1:' + err);
+                    reject({
+                        code: 1,
+                        data: err
+                    });
                 else {
                     if (Obj) 
-                        resolve(Obj);
+                        resolve({
+                            code: 100,
+                            data:Obj
+                        });
                     else 
-                        reject("This filteration didn't resulted in any data");
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
                 }
             });
         })
@@ -33,7 +51,10 @@ module.exports = {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
-                    reject('1:' + err);
+                    reject({
+                        code: 1,
+                        data: err
+                    });
                 else {
                     if (Obj) {
                         Obj.Title=_title;
@@ -42,9 +63,15 @@ module.exports = {
                         Obj.DisplayPicture = _img;
                         Obj.save(function(err,Obj){
                             if (err)
-                                reject('1:' + err);
+                                reject({
+                                    code: 1,
+                                    data:err
+                                });
                             else
-                                resolve(Obj);
+                                resolve({
+                                    code: 100,
+                                    data: "This gallery updated successfully"
+                                });
                         })
                     }
                 }
@@ -55,16 +82,28 @@ module.exports = {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ $and: [{ 'Store': _gallery.Store }, { 'Title': _gallery.Title }] }, '', function (err, Obj) {
                 if (err)
-                { reject('1:' + err); }
+                    reject({
+                        code: 1,
+                        data: err
+                    });
                 else {
                     if(Obj)
-                        reject("There is gallery with the same title");
+                       reject ({
+                            code: 21,
+                            data: "There is gallery with the same title"
+                        });
                     else {
                         _gallery.save(function (err, gallery) {
                             if (err)
-                            { reject('1:' + err); }
+                                reject({
+                                    code: 1,
+                                    data: err
+                                });
                             else 
-                                resolve(gallery);
+                                resolve({
+                                    code: 100,
+                                    data: "This gallery added successfully"
+                                });
                         })
                     }
                 }
