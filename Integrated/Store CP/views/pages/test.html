@@ -72,7 +72,7 @@
                                             <div class="col-md-5">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Item Name</label>
-                                                    <input type="text" class="form-control" ng-model="item.Title" required name="itemTitle" id="itemTitle" pattern="^.{1,35}$">
+                                                    <input type="text" class="form-control" value="<%= item.Name %>" ng-init="item.Name = '<%= item.Name %>'" ng-model="item.Name" required name="itemTitle" id="itemTitle" pattern="^.{1,35}$">
                                                     <span ng-show="frmUpdateGallery.itemTitle.$dirty && frmUpdateGallery.itemTitle.$invalid">
                                                         <span class="errorFont" ng-show="frmUpdateGallery.itemTitle.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmUpdateGallery.itemTitle.$error.pattern">Item name is too long</span>
@@ -85,7 +85,7 @@
                                                 <div class="form-group">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label"> About Me</label>
-                                                        <textarea class="form-control" rows="3" ng-model="item.Desc" required name="itemDesc" id="itemDesc" pattern="^.{1,200}$"></textarea>
+                                                        <textarea class="form-control" value="<%= item.Description %>" ng-init="item.Description = '<%= item.Description %>'" rows="3" ng-model="item.Description" required name="itemDesc" id="itemDesc" pattern="^.{1,200}$"><%= item.Description %></textarea>
                                                         <span ng-show="frmUpdateGallery.itemDesc.$dirty && frmUpdateGallery.itemDesc.$invalid">
                                                             <span class="errorFont" ng-show="frmUpdateGallery.itemDesc.$error.required">Required</span>
                                                             <span class="errorFont" ng-show="frmUpdateGallery.itemDesc.$error.pattern">Item description is too long</span>
@@ -119,8 +119,8 @@
                         </div>
                     </div>
                     <!-- Start Picture Of item -->
-                    <div class="row">
-                        <div class="col-lg-2 col-md-3 col-sm-6" ng-repeat="picture in itemPictures">
+                    <div class="row">{{itemPictures}}
+                        <div class="col-lg-2 col-md-3 col-sm-6" ng-repeat="picture in itemPictures" ng-init="itemPictures = '<%= item.Imgs %>'">
                             <div class="card">
                                 <div class="card-header card-chart">
                                     <img src="{{picture.Img}}">
@@ -169,8 +169,8 @@
                                 <div class="col-md-8">
                                     <div class="card">
                                         <div class="card-header" data-background-color="orange">
-                                            <h4 class="title">Creat Picture</h4>
-                                            <p class="category">Creat A New Picture</p>
+                                            <h4 class="title">Create Picture</h4>
+                                            <p class="category">Create A New Picture</p>
                                         </div>
                                         <div class="card-content">
                                             <form name="frmAddPic" novalidate>
@@ -178,25 +178,11 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Picture Name</label>
-                                                            <input type="text" class="form-control" ng-model="addPic.Title" required name="picTitle" id="picTitle" pattern="^.{1,35}$">
+                                                            <input type="text" class="form-control" ng-model="picAddModal.Title" required name="picTitle" id="picTitle" pattern="^.{1,35}$">
                                                             <span ng-show="frmAddPic.picTitle.$dirty && frmAddPic.picTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmAddPic.picTitle.$error.required">Required</span>
                                                                 <span class="errorFont" ng-show="frmAddPic.picTitle.$error.pattern">Picture name is too long</span>
                                                             </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="form-group label-floating">
-                                                                <label class="control-label"> About Picture</label>
-                                                                <textarea class="form-control" rows="3" ng-model="addPic.Description" required name="picDesc" id="picDesc" pattern="^.{1,200}$"></textarea>
-                                                                <span ng-show="frmAddPic.picDesc.$dirty && frmAddPic.picDesc.$invalid">
-                                                                    <span class="errorFont" ng-show="frmAddPic.picDesc.$error.required">Required</span>
-                                                                    <span class="errorFont" ng-show="frmAddPic.picDesc.$error.pattern">Picture description is too long</span>
-                                                                </span>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -209,11 +195,13 @@
                                     <div class="card">
                                         <div class="card-header card-chart">
                                             <!--upload img-->
-                                            <img src="/img/cover.jpeg">
+                                            <div>
+                                                <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="/img/cover.jpeg" />
+                                                <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
+                                            </div>
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="title">{{addPic.Title}}</h4>
-                                            <p class="category">{{addPic.Desc}}</p>
+                                            <h4 class="title">{{picAddModal.Title}}</h4>
                                         </div>
                                         <div class="card-footer">
                                             <div class="stats">
@@ -319,3 +307,4 @@
 </div>
 <!--   Core JS Files   -->
 <% include ../partials/pagesjsfiles %>
+

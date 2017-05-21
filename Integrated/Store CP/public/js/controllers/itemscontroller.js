@@ -1,38 +1,7 @@
 ﻿egm.controller("itemsController", function ($scope, API, $window) {
-    $scope.items = [{
-        Title: "Completed Tasks",
-        Img: "/img/cover.jpeg",
-        Description: "Last Campaign Performance"
-    }, {
-        Title: "Completed Tasks",
-        Img: "/img/cover.jpeg",
-        Description: "Last Campaign Performance"
-    }, {
-        Title: "Completed Tasks",
-        Img: "/img/cover.jpeg",
-        Description: "Last Campaign Performance"
-    }, {
-        Title: "Completed Tasks",
-        Img: "/img/cover.jpeg",
-        Description: "Last Campaign Performance"
-    }, {
-        Title: "Completed Tasks",
-        Img: "/img/cover.jpeg",
-        Description: "Last Campaign Performance"
-    }, {
-        Title: "Completed Tasks",
-        Img: "/img/cover.jpeg",
-        Description: "Last Campaign Performance"
-    }, {
-        Title: "Completed Tasks",
-        Img: "/img/cover.jpeg",
-        Description: "Last Campaign Performance"
-    }, {
-        Title: "Completed Tasks",
-        Img: "/img/cover.jpeg",
-        Description: "Last Campaign Performance"
-    }];
-
+    $scope.ShowFileSelector = function () {
+        document.getElementById('uploadItemImage').click()
+    };
     $scope.addItem = function () {
         var req = {
             method: 'post',
@@ -41,12 +10,12 @@
                 Name: $scope.item.Title,
                 Description: $scope.item.Description,
                 Pictures: [{
-                    Title: '',
-                    URL: ''
+                    Title: $scope.item.Title,
+                    URL: $('#imgItem').attr('src')
                 }],
                 Price: '',
                 Store: '59084a09734d1d3098a82cd6',
-                Gallery: '59088e74734d1d3098a8563e'
+                Gallery: '59099416734d1d274bfd08d4'
             }
         }
         API.execute(req).then(function (_res) {

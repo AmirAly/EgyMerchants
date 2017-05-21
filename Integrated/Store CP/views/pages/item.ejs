@@ -1,37 +1,5 @@
-<<<<<<< HEAD
 <% include ../partials/headpages %>
 <div ng-controller='itemController'>
-=======
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-
-
-    <!-- Bootstrap core CSS     -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!--  Material Dashboard CSS    -->
-    <link href="/css/material-dashboard.css" rel="stylesheet"/>
-
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <!--<link href="/css/demo.css" rel="stylesheet" />-->
-
-    <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet"/>
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'/>
-    <title>Edit Item</title>
-</head>
-
-  <body ng-app='egm' ng-controller='itemController'>
-
->>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
     <div class="wrapper">
         <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
             <div class="logo">
@@ -104,7 +72,7 @@
                                             <div class="col-md-5">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Item Name</label>
-                                                    <input type="text" class="form-control" ng-model="item.Title" required name="itemTitle" id="itemTitle" pattern="^.{1,35}$">
+                                                    <input type="text" class="form-control" value="<%= item.Name %>" ng-init="item.Name = '<%= item.Name %>'" ng-model="item.Name" required name="itemTitle" id="itemTitle" pattern="^.{1,35}$">
                                                     <span ng-show="frmUpdateGallery.itemTitle.$dirty && frmUpdateGallery.itemTitle.$invalid">
                                                         <span class="errorFont" ng-show="frmUpdateGallery.itemTitle.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmUpdateGallery.itemTitle.$error.pattern">Item name is too long</span>
@@ -117,7 +85,7 @@
                                                 <div class="form-group">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label"> About Me</label>
-                                                        <textarea class="form-control" rows="3" ng-model="item.Desc" required name="itemDesc" id="itemDesc" pattern="^.{1,200}$"></textarea>
+                                                        <textarea class="form-control" value="<%= item.Description %>" ng-init="item.Description = '<%= item.Description %>'" rows="3" ng-model="item.Description" required name="itemDesc" id="itemDesc" pattern="^.{1,200}$"><%= item.Description %></textarea>
                                                         <span ng-show="frmUpdateGallery.itemDesc.$dirty && frmUpdateGallery.itemDesc.$invalid">
                                                             <span class="errorFont" ng-show="frmUpdateGallery.itemDesc.$error.required">Required</span>
                                                             <span class="errorFont" ng-show="frmUpdateGallery.itemDesc.$error.pattern">Item description is too long</span>
@@ -150,16 +118,16 @@
                             </div>
                         </div>
                     </div>
+					<span id="imgsArray" ng-model="imgsArray" ><%= item.Pictures %></span>
                     <!-- Start Picture Of item -->
                     <div class="row">
-                        <div class="col-lg-2 col-md-3 col-sm-6" ng-repeat="picture in itemPictures">
+                        <div class="col-lg-2 col-md-3 col-sm-6" ng-repeat="picture in itemPictures track by $index">
                             <div class="card">
                                 <div class="card-header card-chart">
-                                    <img src="{{picture.Img}}">
+                                    <img src="{{picture.URL}}">
                                 </div>
                                 <div class="card-content">
                                     <h4 class="title">{{picture.Title}}</h4>
-                                    <p class="category">{{picture.Desc}}</p>
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
@@ -183,22 +151,9 @@
                 <% include ../partials/footerpages %>
             </footer>
         </div>
-<<<<<<< HEAD
-=======
-        
-        <footer class="footer">
-          <div class="container-fluid">
-            <p class="copyright pull-right">
-              &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://appout.co">AppOut.LLC</a> | Built By Craftsmen
-            </p>
-          </div>
-        </footer>
-        
-      </div>
->>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
     </div>
     <!-- Start add item Modal -->
-    <div class="modal fade bs-example-modal-lg" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal fade bs-example-modal-lg" tabindex="1" my-modal role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -214,8 +169,8 @@
                                 <div class="col-md-8">
                                     <div class="card">
                                         <div class="card-header" data-background-color="orange">
-                                            <h4 class="title">Creat Picture</h4>
-                                            <p class="category">Creat A New Picture</p>
+                                            <h4 class="title">Create Picture</h4>
+                                            <p class="category">Create A New Picture</p>
                                         </div>
                                         <div class="card-content">
                                             <form name="frmAddPic" novalidate>
@@ -223,25 +178,11 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Picture Name</label>
-                                                            <input type="text" class="form-control" ng-model="addPic.Title" required name="picTitle" id="picTitle" pattern="^.{1,35}$">
+                                                            <input type="text" class="form-control" ng-model="picAddModalTitle" required name="picTitle" id="picTitle" pattern="^.{1,35}$">
                                                             <span ng-show="frmAddPic.picTitle.$dirty && frmAddPic.picTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmAddPic.picTitle.$error.required">Required</span>
                                                                 <span class="errorFont" ng-show="frmAddPic.picTitle.$error.pattern">Picture name is too long</span>
                                                             </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="form-group label-floating">
-                                                                <label class="control-label"> About Picture</label>
-                                                                <textarea class="form-control" rows="3" ng-model="addPic.Description" required name="picDesc" id="picDesc" pattern="^.{1,200}$"></textarea>
-                                                                <span ng-show="frmAddPic.picDesc.$dirty && frmAddPic.picDesc.$invalid">
-                                                                    <span class="errorFont" ng-show="frmAddPic.picDesc.$error.required">Required</span>
-                                                                    <span class="errorFont" ng-show="frmAddPic.picDesc.$error.pattern">Picture description is too long</span>
-                                                                </span>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -254,11 +195,13 @@
                                     <div class="card">
                                         <div class="card-header card-chart">
                                             <!--upload img-->
-                                            <img src="/img/cover.jpeg">
+                                            <div>
+                                                <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="/img/cover.jpeg" />
+                                                <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
+                                            </div>
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="title">{{addPic.Title}}</h4>
-                                            <p class="category">{{addPic.Desc}}</p>
+                                            <h4 class="title">{{picAddModal.Title}}</h4>
                                         </div>
                                         <div class="card-footer">
                                             <div class="stats">
@@ -361,33 +304,7 @@
         </div>
     </div>
     <!-- End Modal -->
-<<<<<<< HEAD
 </div>
 <!--   Core JS Files   -->
 <% include ../partials/pagesjsfiles %>
-=======
 
-
-    <!--   Core JS Files   -->
-    <script src="/js/general/jquery-3.1.0.min.js" type="text/javascript"></script>
-    <script src="/js/general/bootstrap.min.js" type="text/javascript"></script>
-    <script src="/js/general/material.min.js" type="text/javascript"></script>
-
-    <!--  Notifications Plugin    -->
-    <script  type="text/javascript" src="/js/general/bootstrap-notify.js"></script>
-
-    <!-- Material Dashboard javascript methods -->
-    <script  type="text/javascript" src="/js/general/material-dashboard.js"></script>
-
-    <!--angular-->
-    <script  type="text/javascript" src="/js/general/angular.min.js"></script>
-
-    <!--controller-->
-    <script  type="text/javascript" src="/js/controllers/itemcontroller.js"></script>
-
-
-
-  </body>
-
-</html>
->>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
