@@ -64,6 +64,7 @@
                                             <div class="col-md-5">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Gallery Name</label>
+													<%= gallery.Title %>
                                                     <input type="text" class="form-control" ng-model="gallery.Title" name="galleryTitle" id="galleryTitle" required pattern="^.{1,35}$">
                                                     <span ng-show="frmUpdateGallery.galleryTitle.$dirty && frmUpdateGallery.galleryTitle.$invalid">
                                                         <span class="errorFont" ng-show="frmUpdateGallery.galleryTitle.$error.required">Required</span>
@@ -77,6 +78,7 @@
                                                 <div class="form-group">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label"> About Me</label>
+														<%= gallery.Description %>
                                                         <textarea class="form-control" rows="3" ng-model="gallery.Description" required name="galleryDesc" id="galleryDesc" pattern="^.{1,200}$"></textarea>
                                                         <span ng-show="frmUpdateGallery.galleryDesc.$dirty && frmUpdateGallery.galleryDesc.$invalid">
                                                             <span class="errorFont" ng-show="frmUpdateGallery.galleryDesc.$error.required">Required</span>
@@ -96,11 +98,11 @@
                             <div class="card">
                                 <div class="card-header card-chart">
                                     <!--upload img-->
-                                    <img src="/img/cover.jpeg">
+                                    <img src="<%= gallery.DisplayPicture %>">
                                 </div>
                                 <div class="card-content">
-                                    <h4 class="title">{{gallery.Title}}</h4>
-                                    <p class="category">{{gallery.Desc}}</p>
+                                    <h4 class="title"><%= gallery.Title %></h4>
+                                    <p class="category"><%= gallery.Description %></p>
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">

@@ -51,6 +51,7 @@
                     </div>
                     <!-- End Breadcrumbs -->
                     <div class="row">
+                        <% if ( galleries.length > 0  ){ %>
 
                         <% galleries.forEach(function(gallery){ %>
                         <div class="col-md-4">
@@ -74,8 +75,12 @@
                             </a>
                         </div>
                         <% }); %>
+                        <% }else{ %>
+                        <p class="text-center">There is no galleries</p>
+                        <% } %>
                     </div>
                 </div>
+
             </div>
             <footer class="footer">
                 <% include ../partials/footerpages %>

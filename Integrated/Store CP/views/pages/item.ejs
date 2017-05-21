@@ -94,7 +94,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" ng-click="updateGallery()" ng-disabled="frmUpdateGallery.$invalid" class="btn btn-primary pull-right">Update Gallery</button>
+                                        <button type="submit" ng-click="updateItem()" ng-disabled="frmUpdateGallery.$invalid" class="btn btn-primary pull-right">Update Item</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
@@ -104,11 +104,11 @@
                             <div class="card">
                                 <div class="card-header card-chart">
                                     <!--upload img-->
-                                    <img src="/img/cover.jpeg">
+                                    <img src="<%= item.Pictures[0].URL %>">
                                 </div>
                                 <div class="card-content">
-                                    <h4 class="title">{{item.Title}}</h4>
-                                    <p class="category">{{item.Desc}}</p>
+                                    <h4 class="title"><%= item.Name %></h4>
+                                    <p class="category"><%= item.Description %></p>
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
@@ -178,7 +178,7 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Picture Name</label>
-                                                            <input type="text" class="form-control" ng-model="addPic.Title" required name="picTitle" id="picTitle" pattern="^.{1,35}$" >
+                                                            <input type="text" class="form-control" ng-model="addPic.Title" required name="picTitle" id="picTitle" pattern="^.{1,35}$">
                                                             <span ng-show="frmAddPic.picTitle.$dirty && frmAddPic.picTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmAddPic.picTitle.$error.required">Required</span>
                                                                 <span class="errorFont" ng-show="frmAddPic.picTitle.$error.pattern">Picture name is too long</span>
