@@ -48,8 +48,8 @@ mongoose.connect(db.url, function (err) {
         });
         app.listen(process.env.PORT || 8080);
         app.get('*', function (req, res) {
-            return res.redirect('/eg/Home');
-            //res.render('pages/404');
+            //return res.redirect('/eg/Home');
+            res.render('pages/404');
         });
 
         

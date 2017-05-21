@@ -5,44 +5,42 @@
 <div class="storePage container">
     <div class="pageBody">
         <section class="txtStoreName container">
-		<div class="clear"></div>
-		<span class="hide" id="StoreId"><%= store._id %></span>
+            <div class="clear"></div>
+            <span class="hide" id="StoreId"><%= store._id %></span>
             <h1 id="StoreName"><%= store.StoreName %></h1>
         </section>
 
         <div class="row">
 
-<div class="col-xs-8 owl-slider-outer">
+            <div class="col-xs-8 owl-slider-outer">
 
-			
 
- <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-	<% store.Imgs.forEach(function(img){ %>
-      <div class="item ">
-        <img src="<%= img.URL %>" alt="Los Angeles" style="width:100%;">
-      </div>
-   <% }); %>
-      
-    </div>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <% store.Imgs.forEach(function(img){ %>
+                        <div class="item ">
+                            <img src="<%= img.URL %>" alt="Los Angeles" style="width:100%;">
+                        </div>
+                        <% }); %>
 
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</div>
+                    </div>
 
-           
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+
+
             <div class="col-xs-4 banners-block">
 
                 <div class="item">
@@ -78,13 +76,12 @@
                     <!-- Best Sellers -->
                     <div class="section-divider"></div>
 
-
                     <!-- BEST SELLERS -->
                     <h3><a href="listing.html">BEST SELLERS</a></h3>
                     <div class="products-widget jcarousel-skin-previews vertical">
                         <ul class="slides">
-                         
-						 <% bestSeller.forEach(function(item){ %>
+
+                            <% bestSeller.forEach(function(item){ %>
                             <li>
                                 <div class="product">
                                     <a href="/Eg/Product/<%= item.Name %>/<%= item._id %>" class="preview-image"><img class="img-responsive animate scale" src="<%= item.Pictures[0].URL %>" alt=""></a>
@@ -93,27 +90,25 @@
                                     <span class="price"><%= item.Price %></span>
                                 </div>
                             </li>
-						<% }); %>
-                            
+                            <% }); %>
+
                         </ul>
                     </div>
                     <!-- //end Best Sellers -->
                     <div class="section-divider"></div>
-                
-               
+
                 </aside>
                 <!-- //end Left column -->
                 <!-- Right column -->
-                <section class="col-xs-12 col-sm-8 col-md-9 col-lg-9 content-center">
+                <section class="col-xs-12 col-sm-6 col-md-7 col-lg-7 content-center">
                     <!-- Featured Products -->
-                    <section>
+                    <section class="responsive">
                         <h3>Featured Galleries</h3>
-
                         <!-- Products list -->
                         <div class="row products-list">
-                            
-							<% Galleries.forEach(function(gallery){ %>
-                            <div class="product-preview" >
+
+                            <% Galleries.forEach(function(gallery){ %>
+                            <div class="product-preview">
                                 <div class="preview animate scale">
                                     <a href="/Eg/Gallery/<%= gallery.Title %>/<%= gallery._id %>" class="preview-image"><img class="img-responsive animate scale" src="<%= gallery.DisplayPicture %>" width="270" height="328" alt=""></a>
                                     <ul class="product-controls-list right">
@@ -131,7 +126,7 @@
                                 </div>
                                 <h3 class="title"><a href="/Eg/Gallery/<%= gallery.Title %>/<%= gallery._id %>"><%= gallery.Title %></a></h3>
                             </div>
-							<% }); %>
+                            <% }); %>
 
                         </div>
                         <!-- //end Products list -->
@@ -148,6 +143,11 @@
                     <div class="section-divider"></div>
                 </section>
                 <!-- //end Right column -->
+
+                <section class="hidden-xs col-sm-2 col-md-2 col-lg-2 dvAdvertise">
+                    <img class="img-responsive" src="/images/adv1.jpg" />
+                </section>
+
             </div>
         </section>
         <!-- //end Two columns content -->

@@ -9,17 +9,16 @@
                      class="secondExpo repeated-item" id="expo<%= expo._id %>" swinch-offset="0" style="background-image: url(<%= expo.Banner %>)">
                 <article>
                     <div class="expoData">
-                        <h1 class="text-center"><%= expo.Title %></h1>
                         <div>
                             <div class="singleExpoView" id="expo<%= expo._id %>">
-                                <div class="container">
+                                <div class="container-fluid">
                                     <div class="row noGutter">
 
 									<% expo.Sections.forEach(function(section){ %>
                                         <div class="col-xs-3 col-sm-3 col-custom5 repeated-item">
                                             <div class="image-wrapper">
 
-                                                <a href="/Eg/Store/<%= section.Store.StoreName %>/<%= section.Store._id %>">
+                                                <a href="/Eg/Store/<%= section.StoreName %>/<%= section._id %>">
                                                     <img class="animated img-responsive animate scale" src="<%= section.Img %>" >
                                                 </a>
                                             </div>
