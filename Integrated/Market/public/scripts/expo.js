@@ -19,18 +19,23 @@
 
 function toggle(_id) {
     if ($('.expoPagingController' + _id).hasClass('hide')) {
+        //hide paging
         $('.expoPagingController' + _id).removeClass('hide');
         $('.expoPagingControllerRemoval' + _id).addClass('hide');
-        $('.dvPageNumbers' + _id).addClass('hide');
-        $('.dvPageNumbers' + _id).animate({ opacity: '0' }, "fast");
-
+        //$('.dvPageNumbers' + _id).addClass('hide');
+        //$('.dvPageNumbers' + _id).animate({ opacity: '0' }, "fast");
     }
     else {
+        //show paging
         $('.expoPagingController' + _id).addClass('hide');
         $('.expoPagingControllerRemoval' + _id).removeClass('hide');
-        $('.dvPageNumbers' + _id).removeClass('hide');
-        $('.dvPageNumbers' + _id).animate({ opacity: '1' }, "slow");
+        //$('.dvPageNumbers' + _id).removeClass('hide');
+        //$('.dvPageNumbers' + _id).animate({ opacity: '1' }, "slow");
     }
+    //$('.box img').on('click', function () {
+    //$('.pagination-main').toggleClass('clicked');
+    $('.whiteLayerContainer').toggleClass('clicked');
+    //});
 }
 function selectPage (_id,_floor) {
     $('.btnChangePage').removeClass('active');

@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <% include ../partials/headlogin %>
 =======
@@ -26,6 +27,9 @@
 >>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
 >>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
 
+=======
+<% include ../partials/headlogin %>
+>>>>>>> e47d9df03dbe55bb1068519ad8e38873a52fcbd6
 <div ng-controller="registerController">
     <div class="image-container set-full-height" style="background-image: url(' /img/wizard.jpg')">
         <!--  Made With Get Shit Done Kit  -->
@@ -44,7 +48,7 @@
                     <!--      Wizard container        -->
                     <div class="wizard-container">
                         <div class="card wizard-card" data-color="orange" id="wizardProfile">
-                            <form action="" method="">
+                            <form action="" method="" name="frmRegister" novalidate>
                                 <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
                                 <div class="wizard-header">
                                     <h3>
@@ -83,27 +87,28 @@
                                                     <label>
                                                         User Name <small>(required)</small>
                                                     </label>
-                                                    <input name="username" type="text" class="form-control" placeholder="Enter your name.." required="">
+                                                    <input name="username" type="text" class="form-control" ng-model="register.StoreName" placeholder="Enter your name.." required="">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>
                                                         Password <small>(required)</small>
                                                     </label>
-                                                    <input name="password1" type="password" minlength="6" class="form-control" placeholder="Enter your password.." required="">
+                                                    <input name="password1" type="password" minlength="6" class="form-control" ng-model="register.Password" placeholder="Enter your password.." required="">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>
                                                         Re-enter Password <small>(required)</small>
                                                     </label>
-                                                    <input name="password2" type="password" minlength="6" class="form-control" placeholder="RE-enter your password.." required="">
+                                                    <input name="password2" type="password" minlength="6" class="form-control" ng-model="register.rePassword" placeholder="RE-enter your password.." required="">
                                                 </div>
                                             </div>
                                             <div class="col-sm-10 col-sm-offset-1">
                                                 <div class="form-group">
                                                     <label>
-                                                        Email <small>(required)</small>
+                                                        email <small>(required)</small>
                                                     </label>
-                                                    <input name="email" type="email" class="form-control" placeholder="Enter your email.." required="">
+                                                    <input name="email" id="email" type="email" class="form-control" ng-model="register.Email" placeholder="Enter your email.." required="">
+
                                                 </div>
                                             </div>
                                         </div>
@@ -116,37 +121,34 @@
                                             <div class="col-sm-5 col-sm-offset-1">
                                                 <div class="form-group">
                                                     <label>City</label>
-                                                    <input type="text" class="form-control" placeholder="Enter your city..">
+                                                    <input type="text" class="form-control" ng-model="register.City" placeholder="Enter your city..">
                                                 </div>
                                             </div>
                                             <div class="col-sm-5">
                                                 <div class="form-group">
                                                     <label>Country</label>
                                                     <br>
-                                                    <select name="country" class="form-control">
-                                                        <option value="Afghanistan"> Afghanistan </option>
-                                                        <option value="Albania"> Albania </option>
-                                                        <option value="Algeria"> Algeria </option>
-                                                        <option value="American Samoa"> American Samoa </option>
-                                                        <option value="Andorra"> Andorra </option>
-                                                        <option value="Angola"> Angola </option>
-                                                        <option value="Anguilla"> Anguilla </option>
-                                                        <option value="Antarctica"> Antarctica </option>
-                                                        <option value="...">...</option>
+                                                    <select name="country" ng-model="selectedCity" class="form-control">
+                                                        <option value="59067579734d1d32590f51dd" selected> Egypt </option>
+                                                        <option value="590676e7734d1d32590f5248"> Italy </option>
+                                                        <option value="59067906734d1d32590f529b"> Turkey </option>
+                                                        <option value="59067b18734d1d32590f531a"> Dubai </option>
+                                                        <option value="59067b96734d1d32590f5335"> France </option>
+                                                        <option value="59196d1da4d87d11d82559c4"> Estonia </option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-10 col-sm-offset-1">
                                                 <div class="form-group">
                                                     <label>Adress</label>
-                                                    <input type="text" class="form-control" placeholder="Enter your address..">
+                                                    <input type="text" class="form-control" ng-model="register.Address" placeholder="Enter your address..">
                                                 </div>
                                             </div>
                                             <div class="col-sm-10 col-sm-offset-1">
                                                 <div class="form-group">
                                                     <label>About Me</label>
                                                     <div class="form-group label-floating">
-                                                        <textarea class="form-control" rows="5" placeholder="Enter Description of your store.." style="resize: none;"></textarea>
+                                                        <textarea class="form-control" rows="5" ng-model="register.Description" placeholder="Enter Description of your store.." style="resize: none;"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -156,78 +158,22 @@
                                         <h4 class="info-text">What type of location do you have? </h4>
                                         <div class="row">
                                             <div class="col-sm-10 col-sm-offset-1">
+                                                <% if ( categories.length > 0  ){ %>
+                                                <% categories.forEach(function(category){ %>
                                                 <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a house.">
+                                                    <div class="choice" ng-click="chooseCategory('<%= category._id %>')" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a house.">
                                                         <input type="radio" name="type" value="House">
                                                         <div class="icon">
-                                                            <img src=" /img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                                            <img src=" <%= category.Img %>" class="picture-src" id="wizardPicturePreview" title="" />
                                                         </div>
-                                                        <h6>House</h6>
+                                                        <h6><%= category.Name %></h6>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a house.">
-                                                        <input type="radio" name="type" value="House">
-                                                        <div class="icon">
-                                                            <img src=" /img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                        </div>
-                                                        <h6>House</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a house.">
-                                                        <input type="radio" name="type" value="House">
-                                                        <div class="icon">
-                                                            <img src=" /img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                        </div>
-                                                        <h6>House</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a house.">
-                                                        <input type="radio" name="type" value="House">
-                                                        <div class="icon">
-                                                            <img src=" /img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                        </div>
-                                                        <h6>House</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a house.">
-                                                        <input type="radio" name="type" value="House">
-                                                        <div class="icon">
-                                                            <img src=" /img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                        </div>
-                                                        <h6>House</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a house.">
-                                                        <input type="radio" name="type" value="House">
-                                                        <div class="icon">
-                                                            <img src=" /img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                        </div>
-                                                        <h6>House</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a house.">
-                                                        <input type="radio" name="type" value="House">
-                                                        <div class="icon">
-                                                            <img src=" /img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                        </div>
-                                                        <h6>House</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a house.">
-                                                        <input type="radio" name="type" value="House">
-                                                        <div class="icon">
-                                                            <img src=" /img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                        </div>
-                                                        <h6>House</h6>
-                                                    </div>
-                                                </div>
+                                                <% }); %>
+                                                <% }else{ %>
+                                                <p class="text-center">There is no galleries</p>
+                                                <% } %>
+
                                             </div>
                                         </div>
                                     </div>
@@ -235,7 +181,7 @@
                                 <div class="wizard-footer height-wizard">
                                     <div class="pull-right">
                                         <input type='button' class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Next' />
-                                        <input type='button' class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish' value='Finish' />
+                                        <input type='button' ng-click="registerStore()" class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish' value='Finish' />
                                     </div>
                                     <div class="pull-left">
                                         <input type='button' class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous' value='Previous' />
@@ -257,6 +203,7 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -297,3 +244,8 @@
 =======
 >>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
 >>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
+=======
+</div>
+<!--   Core JS Files   -->
+<% include ../partials/loginandregisterjsfiles %>
+>>>>>>> e47d9df03dbe55bb1068519ad8e38873a52fcbd6

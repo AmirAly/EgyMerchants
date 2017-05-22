@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <% include ../partials/headlogin %>
 
@@ -54,6 +55,9 @@
 >>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
 >>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
 
+=======
+<% include ../partials/headlogin %>
+>>>>>>> e47d9df03dbe55bb1068519ad8e38873a52fcbd6
 <div ng-controller="loginController">
     <div class="image-container set-full-height" style="background-image: url(' /img/wizard.jpg')">
         <!--  Made With Get Shit Done Kit  -->
@@ -72,7 +76,7 @@
                     <!--      Wizard container        -->
                     <div class="wizard-container">
                         <div class="card wizard-card" data-color="orange" id="wizardProfile">
-                            <form action="" method="">
+                            <form action="" method="" name="frmLogin" novalidate>
                                 <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
                                 <div class="wizard-header">
                                     <h3>
@@ -96,7 +100,7 @@
                                                     <label>
                                                         User Name <small>(required)</small>
                                                     </label>
-                                                    <input name="username" type="text" class="form-control" placeholder="username..." required="">
+                                                    <input name="username" type="text"  class="form-control" ng-model="loginData.Email" placeholder="username..." required="">
                                                 </div>
                                             </div>
                                             <div class="col-sm-8 col-sm-offset-2">
@@ -104,7 +108,7 @@
                                                     <label>
                                                         Password <small>(required)</small>
                                                     </label>
-                                                    <input name="password" type="password" class="form-control" placeholder="password..." required="">
+                                                    <input name="password" type="password" class="form-control" ng-model="loginData.Password" placeholder="password..." required="">
                                                 </div>
                                             </div>
                                             <div class="link col-sm-8 col-sm-offset-2">
@@ -115,11 +119,10 @@
                                 </div>
                                 <div class="wizard-footer height-wizard">
                                     <div class="pull-right">
-                                        <input type='submit' class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='login' value='login' />
+                                        <input type='button' ng-click="login()" class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='login' value='login' />
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                                <!--<button ng-click="login()">jjjjjjjjj</button>-->
                             </form>
                         </div>
                     </div>
@@ -139,6 +142,7 @@
 <!--   Core JS Files   -->
 <% include ../partials/loginandregisterjsfiles %>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -170,3 +174,5 @@
 =======
 >>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
 >>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
+=======
+>>>>>>> e47d9df03dbe55bb1068519ad8e38873a52fcbd6

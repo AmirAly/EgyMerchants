@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <% include ../partials/headpages %>
 <div ng-controller='itemsController'>
@@ -43,6 +44,10 @@
 =======
 >>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
 >>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
+=======
+<% include ../partials/headpages %>
+<div ng-controller='itemsController'>
+>>>>>>> e47d9df03dbe55bb1068519ad8e38873a52fcbd6
     <div class="wrapper">
         <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
             <div class="logo">
@@ -136,6 +141,7 @@
         </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
@@ -154,6 +160,8 @@
 =======
 >>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
 >>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
+=======
+>>>>>>> e47d9df03dbe55bb1068519ad8e38873a52fcbd6
     </div>
     <!-- Start Modal -->
     <div class="modal fade bs-example-modal-lg" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -172,8 +180,8 @@
                                 <div class="col-md-8">
                                     <div class="card">
                                         <div class="card-header" data-background-color="orange">
-                                            <h4 class="title">Creat Item</h4>
-                                            <p class="category">Creat A New Item</p>
+                                            <h4 class="title">Create Item</h4>
+                                            <p class="category">Create A New Item</p>
                                         </div>
                                         <div class="card-content">
                                             <form name="frmAddItem">
@@ -212,17 +220,16 @@
                                     <div class="card">
                                         <div class="card-header card-chart">
                                             <!--upload img-->
-                                            <img src="/img/cover.jpeg">
+                                            <div>
+                                                <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="/img/add.gif" />
+                                                <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
+                                            </div>
                                         </div>
                                         <div class="card-content">
                                             <h4 class="title">{{item.Title}}</h4>
                                             <p class="category">{{item.Description}}</p>
                                         </div>
-                                        <div class="card-footer">
-                                            <div class="stats">
-                                                <i class="fa fa-cogs" aria-hidden="true"></i> Edit
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -237,6 +244,7 @@
         </div>
     </div>
     <!-- End Modal -->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -276,3 +284,8 @@
 =======
 >>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
 >>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
+=======
+</div>
+<!--   Core JS Files   -->
+<% include ../partials/pagesjsfiles %>
+>>>>>>> e47d9df03dbe55bb1068519ad8e38873a52fcbd6

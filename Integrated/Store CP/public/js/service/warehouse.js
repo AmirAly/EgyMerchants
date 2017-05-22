@@ -7,6 +7,7 @@
             _req.headers = { 'Content-Type': 'application/json' };
             console.log(_req);
             var result = $http(_req);
+            console.log(result);
             return result;
         }
     }

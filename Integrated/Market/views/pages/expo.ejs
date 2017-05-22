@@ -18,32 +18,33 @@
                                         <div class="col-xs-3 col-sm-3 col-custom5 repeated-item">
                                             <div class="image-wrapper">
 
-                                                <a href="/Eg/Store/<%= section.StoreName %>/<%= section._id %>">
+                                                <a href="/Eg/Store/<%= section.StoreName %>/59086c61734d1d3098a840aa">
                                                     <img class="animated img-responsive animate scale" src="<%= section.Img %>" >
                                                 </a>
                                             </div>
                                         </div>
-										<% }); %>
+									<% }); %>
 
                                     </div>
                                     <div class="expoDetails">
                                         <!-- Pagination -->
                                         <h6 class="text-center light expoPagingController<%= expo._id %>"
                                             onclick="toggle('<%= expo._id %>')">
-                                            Take me there
+                                            <img src="/images/rightarrow.png" />
                                         </h6>
-                                        <h6 class="text-center light expoPagingControllerRemoval<%= expo._id %> hide"
+                                        <h6 class="text-center light expoPagingControllerRemoval<%= expo._id %> hide opened"
                                             onclick="toggle('<%= expo._id %>')">
-                                            Back
+                                            <img src="/images/leftarrow.png" />
                                         </h6>
-                                        <ul class="pagination-main hide dvPageNumbers<%= expo._id %> " >
-                                            <li  onclick="selectPage('<%= expo._id %>',1)" class="btnChangePage page1 active"><a>1</a></li>
-                                            <li  onclick="selectPage('<%= expo._id %>',2)" class="btnChangePage page2"><a>2</a></li>
-                                            <li  onclick="selectPage('<%= expo._id %>',3)" class="btnChangePage page3"><a>3</a></li>
-                                            <li  onclick="selectPage('<%= expo._id %>',4)" class="btnChangePage page4"><a>4</a></li>
-                                            <li  onclick="selectPage('<%= expo._id %>',5)" class="btnChangePage page5"><a>5</a></li>
-                                            <li  onclick="selectPage('<%= expo._id %>',6)" class="btnChangePage page6"><a>6</a></li>
-                                        </ul>
+										<div class="whiteLayerContainer">
+											<ul class="pagination-main clicked dvPageNumbers<%= expo._id %> " >
+												<li  onclick="selectPage('<%= expo._id %>',1)" class="btnChangePage page1 active"><a>1</a></li>
+												<li  onclick="selectPage('<%= expo._id %>',2)" class="btnChangePage page2"><a>2</a></li>
+												<li  onclick="selectPage('<%= expo._id %>',3)" class="btnChangePage page3"><a>3</a></li>
+												<li  onclick="selectPage('<%= expo._id %>',4)" class="btnChangePage page4"><a>4</a></li>
+											</ul>
+											<div class="whiteLayer"></div>
+										</div>
                                     </div>
                                     <!-- //end Pagination -->
                                 </div>

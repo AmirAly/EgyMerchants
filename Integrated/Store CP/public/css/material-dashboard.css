@@ -17,6 +17,9 @@
 /* ANIMATION */
 /* SHADOWS */
 /* Shadows (from mdl http://www.getmdl.io/) */
+.cursorPointer{
+    cursor:pointer;
+}
 .errorFont{
     color:tomato;
 }
