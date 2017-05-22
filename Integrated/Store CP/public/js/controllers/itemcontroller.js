@@ -40,7 +40,7 @@ $scope.picAddModal = {};
             method: 'put',
             url: '/Item/Edit',
             data: {
-                _id: '59089186734d1d3098a85879',
+                _id: $rootScope.itemId,//'59089186734d1d3098a85879'
                 Name: $scope.item.Name,
                 Description: $scope.item.Description,
                 Imgs: $scope.itemPictures

@@ -1,4 +1,4 @@
-﻿egm.controller("loginController", function ($scope, API) {
+﻿egm.controller("loginController", function ($scope, API, $rootScope) {
     $scope.loginData = {};
     $scope.loginData.Email = '';
     $scope.loginData.Password = '';
@@ -11,6 +11,7 @@
         }
         API.execute(req).then(function (res) {
             if (res.data.code == 100) {
+                $rootScope.storeId = res.data.data._id;
                 console.log(res);
             } else {
                 console.log(res.data);

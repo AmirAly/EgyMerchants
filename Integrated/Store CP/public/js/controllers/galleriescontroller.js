@@ -1,4 +1,4 @@
-﻿egm.controller("galleriesController", ['$scope', 'API', function ($scope, API) {
+﻿egm.controller("galleriesController", ['$scope', 'API', function ($scope, API, $rootScope) {
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click()
     };
@@ -12,7 +12,7 @@
                 DisplayPicture: $('#imgItem').attr('src'),
                 Badges: 'offer',
                 Status: 'Active',
-                Store: '59084a09734d1d3098a82cd6'
+                Store: $rootScope.storeId   //'59084a09734d1d3098a82cd6'
             }
         }
         API.execute(req).then(function (_res) {
@@ -20,7 +20,7 @@
             if (_res.data.code == 100) {
                 console.log(_res);
 
-                var galleryId = _res.data._id;
+                $rootScope.galleryId = _res.data._id;
                 console.log('id:', galleryId);
                 window.location.reload();
             }

@@ -1,4 +1,4 @@
-﻿egm.controller("galleryController", function ($scope, API) {
+﻿egm.controller("galleryController", function ($scope, API,$rootScope) {
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click()
     };
@@ -8,7 +8,7 @@
             method: 'put',
             url: '/Gallery/Edit',
             data: {
-                _id: '59099416734d1d274bfd08d4',
+                _id: $rootScope.galleryId,//'59099416734d1d274bfd08d4'
                 Title: $scope.gallery.Title,
                 Description: $scope.gallery.Description,
                 Imgs: $('#imgItem').attr('src')

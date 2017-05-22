@@ -1,4 +1,4 @@
-﻿egm.controller("registerController", function ($scope, API) {
+﻿egm.controller("registerController", function ($scope, API, $rootScope) {
     $scope.categories = [];
     $scope.register = {};
 
@@ -20,7 +20,8 @@
         }
         API.execute(req).then(function (res) {
             if (res.data.code == 100) {
-                console.log(res);
+                //$rootScope.storeId = res.data.data._id;
+                //console.log($rootScope.storeId);
             } else {
                 console.log(res.data);
             }
