@@ -4,6 +4,7 @@
 <div class="expoPage">
     <div class="allExposView" ng-hide="showSingleExpo">
         <div class="secondDiv">
+		<% if (expos.length > 0) { %>
             <% expos.forEach(function(expo){ %>
             <section  swinch-duration="1000" data-scroll
                      class="secondExpo repeated-item" id="expo<%= expo._id %>" swinch-offset="0" style="background-image: url(<%= expo.Banner %>)">
@@ -53,6 +54,9 @@
                 </article>
             </section>
             <% }); %>
+			<% } else { %>
+			 <p> No Data Available </p>
+			 <% } %>
         </div>
     </div>
 

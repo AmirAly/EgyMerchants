@@ -29,12 +29,15 @@
                 <h1 class="wow slideInDown" data-wow-duration="2s">WELLCOME</h1>
                 <p>Start A tour on<br> an Expo ?</p>
 
+				<% if (categories.length > 0) { %>
 			<% categories.forEach(function(cat){ %>
 				<div class="wow bounceInRight txtCategoryContainer" data-wow-duration="2s">
                     <a href="/Eg/Expos/<%= cat._id %>"><%= cat.Name %></a>
                 </div>
 			<% }); %>
-
+				<% } else { %>
+			 <p> No Data Available </p>
+			 <% } %>
         </div>
         <div class="col-sm-1 small">
             <div class="dropdown">
