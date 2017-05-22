@@ -57,6 +57,7 @@
     };
 
     $scope.updateItem = function () {
+        $scope.loading = true;
         var req = {
             method: 'put',
             url: '/Item/Edit',
@@ -75,6 +76,8 @@
             } else {
                 console.log('err');
             }
+        }).finally(function () {
+            $scope.loading = false;
         });
     };
 });

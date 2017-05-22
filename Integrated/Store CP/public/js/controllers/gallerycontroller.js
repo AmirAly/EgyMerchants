@@ -8,10 +8,15 @@
     $scope.moveToItems = function (_galleryId) {
         window.location.href = '/eg/p/products/' + _galleryId
         localStorage.setItem('GalleryId', _galleryId);
+        
     };
 
+
+    $scope.galleryId = localStorage.getItem('GalleryOfGalleries');
+    console.log(localStorage.getItem('GalleryOfGalleries'));
+
     $scope.updateGallery = function () {
-        console.log('enter');
+        $scope.loading = true;
         var req = {
             method: 'put',
             url: '/Gallery/Edit',
@@ -30,6 +35,8 @@
             } else {
                 console.log('err');
             }
+        }).finally(function () {
+            $scope.loading = false;
         });
     };
 });
