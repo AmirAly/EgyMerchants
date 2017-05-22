@@ -180,7 +180,7 @@ h6.mega {
     bottom: 0;
     right: 0;
     left: 0;
-    z-index: 9999;
+    z-index: 999999;
     -webkit-animation-duration: 0.9s;
     animation-duration: 0.9s;
 }
@@ -410,6 +410,99 @@ h1, h2, h3, h4, h5, h6 {
     flex-wrap: wrap;
     align-items: stretch;
 }
+
+/*Landing Page*/
+@font-face {
+    font-family: "Harabara";
+    src: url("../fonts/Harabara.ttf");
+}
+
+.pageLanding .container-fluid {
+    background-image: url(../images/1.png);
+    min-height: 100vh;
+    background-size: cover;
+}
+
+    .pageLanding .container-fluid .big {
+        margin-top: 10%;
+    }
+
+    .pageLanding .container-fluid h1 {
+        font-size: 75px;
+        font-weight: bold;
+        font-family: "Harabara";
+        padding-bottom: 20px;
+    }
+
+    .pageLanding .container-fluid p {
+        font-size: 45px;
+        font-weight: 100;
+        font-family: "Century Gothic";
+        line-height: .9;
+        margin-bottom: 7vh;
+        color: #2b2b2b;
+    }
+
+    .pageLanding .container-fluid .txtCategoryContainer {
+        padding-bottom: 15px;
+    }
+
+    .pageLanding .container-fluid a {
+        font-size: 25px;
+        font-weight: bold;
+        text-decoration: none;
+        color: black;
+        padding-left: 20px;
+        font-family: "Century Gothic";
+        text-transform: capitalize;
+    }
+
+    .pageLanding .container-fluid .small {
+        margin-top: 3%;
+    }
+
+    .pageLanding .container-fluid .btn {
+        background: transparent;
+    }
+
+    .pageLanding .container-fluid ul {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+    }
+
+        .pageLanding .container-fluid ul a {
+            padding-left: 10px;
+        }
+
+    .pageLanding .container-fluid .dropdown-menu > li > a:focus,
+    .pageLanding .container-fluid .dropdown-menu > li > a:hover {
+        background: transparent;
+    }
+
+.pageLanding .row {
+    overflow: hidden;
+}
+
+.pageLanding .dropdown {
+    background-color: transparent;
+}
+
+    .pageLanding .dropdown li {
+        /*padding: 5px;
+    padding-left: 13px;*/
+    }
+
+    .pageLanding .dropdown img {
+        width: 22%;
+    }
+
+    .pageLanding .dropdown .pin {
+        width: 75%;
+    }
+
+
+
 
 /*Welcome Page*/
 .welcomePage .welcomeImgContainer {
@@ -758,7 +851,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .expoPage .image-wrapper img {
-        width: calc((100vw - 150px)/8);
+    width: calc((100vw - 150px)/8);
     height: calc((100vw - 150px)/8);
     display: block;
 }
@@ -838,7 +931,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .expoPage .noGutter {
-        margin: 15px 0;
+    margin: 15px 0;
     width: 650px;
     width: calc(100vw - 150px);
     overflow-y: hidden;
@@ -858,16 +951,18 @@ h1, h2, h3, h4, h5, h6 {
     /*top: 100px;
     left: 150px;*/
     top: 0px;
+    bottom:0px;
     left: 0px;
 }
 
     .expoPage .expoDetails .whiteLayer {
-        height: 683px;
+        /*height: 683px;*/
         width: 86px;
         opacity: 0.75;
         background: #fff;
         position: absolute;
         top: 0;
+        bottom:0;
         z-index: 1;
         box-shadow: 1px 1px 7px 2px #444;
     }
@@ -876,6 +971,7 @@ h1, h2, h3, h4, h5, h6 {
     left: -100px;
     position: absolute;
     top: 0;
+    bottom:0;
     -webkit-transition: 1s;
 }
 
@@ -935,7 +1031,7 @@ h1, h2, h3, h4, h5, h6 {
                 color: #fff;
                 background: #4cc7ba;
                 border-color: #4cc7ba;
-                    box-shadow: 0px 0px 8px 2px #fff;
+                box-shadow: 0px 0px 8px 2px #fff;
             }
 
         .expoPage .pagination-main li.active a {
@@ -945,7 +1041,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .expoPage .col-custom5 {
-        width: calc((100vw - 150px)/8);
+    width: calc((100vw - 150px)/8);
     height: calc((100vw - 150px)/8);
 }
 
@@ -1048,7 +1144,7 @@ h1, h2, h3, h4, h5, h6 {
 .expoPage article .expoData {
     text-align: left;
     box-shadow: inset 3px 3px 200px #000000;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     padding-top: 0;
 }
 
@@ -1061,8 +1157,8 @@ h1, h2, h3, h4, h5, h6 {
 
         .expoPage article .expoData h6.opened {
             left: 70px;
-            transition-delay:0.5s;
-            animation-delay:0.5s;
+            transition-delay: 0.5s;
+            animation-delay: 0.5s;
         }
 
     .expoPage article .expoData h1 {

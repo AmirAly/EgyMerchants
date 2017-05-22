@@ -1,31 +1,63 @@
-<% include ../partials/pagestart %>
 
-<div class="welcomePage container-fluid">
-    <div class="pageBody">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <title>Market</title>
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="/images/favicon.png">
+        <meta charset="utf-8"/>
+        <!-- IE Compatibility meta-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--first mobile meta-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/style.css" rel="stylesheet">
+        <link href="/css/animation/animate.min.css" rel="stylesheet">
+        <!--[if lt IE 9]>
+          <script src="/js/general/html5shiv.min.js"></script>
+          <script src="/js/general/respond.min.js"></script>
+        <![endif]-->
+    </head>
+<body class="pageLanding">      
+<div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="welcomeImgContainer">
-                <img class="img-responsive" src="https://images.pond5.com/welcome-hd-footage-000717266_prevstill.jpeg" />
-                <div class="imgShadow"></div>
+            <div class="col-sm-6 big">
+                <img src="/images/Expoeveryday.png">
             </div>
-        </div>
+            <div class="col-sm-5 big">
+                <h1 class="wow slideInDown" data-wow-duration="2s">WELLCOME</h1>
+                <p>Start A tour on<br> an Expo ?</p>
 
-        <div class="row categoryContainer animate-container">
-
-            <div class="col-xs-12 text-center">
-                <h3 class="txtChooseCat">Please Choose Category</h3>
-            </div>
 			<% categories.forEach(function(cat){ %>
-            <a class="col-xs-6 col-sm-4 col-md-3 col-lg-2 singleCategory animate-repeat" href="/Eg/Expos/<%= cat._id %>">
-                <div class="imgContainer"  style="background:url('<%= cat.Img %>')">
-                    <div class="blackLayer"></div>
+				<div class="wow bounceInRight txtCategoryContainer" data-wow-duration="2s">
+                    <a href="/Eg/Expos/<%= cat._id %>"><%= cat.Name %></a>
                 </div>
-                <h6 class="categoryTxt"><%= cat.Name %></h6>
-            </a>
 			<% }); %>
+
         </div>
-
+        <div class="col-sm-1 small">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <img class="pin" src="/images/egypt.png">
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#"><img src="/images/Saudi-Arabia.png"></a></li>
+                  <li><a href="#"><img src="/images/Jordan.png"></a></li>
+              </ul>
+            </div>  
+        </div>
     </div>
+        
+       
 </div>
-
-<% include ../partials/pageend %>
-<script src="/scripts/index.js"></script>
+<!-- JaveScript Filles-->
+    <script src="/js/general/jquery-1.11.1.min.js"></script>
+    <script src="/js/general/bootstrap/bootstrap.min.js"></script>
+    <script src="/js/general/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+  </body>
+</html>

@@ -34,7 +34,7 @@ function toggle(_id) {
     }
     //$('.box img').on('click', function () {
     //$('.pagination-main').toggleClass('clicked');
-    $('.whiteLayerContainer').toggleClass('clicked');
+    $('.whiteLayerContainer' + _id).toggleClass('clicked');
     //});
 }
 function selectPage (_id,_floor) {
