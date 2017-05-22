@@ -1,14 +1,22 @@
-﻿egm.controller("galleryController", function ($scope, API,$rootScope) {
+﻿egm.controller("galleryController", function ($scope, API) {
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click()
     };
+    console.log(localStorage.getItem('StoreId'));
+    $scope.storeId = localStorage.getItem('StoreId');
+
+    $scope.moveToItems = function (_galleryId) {
+        window.location.href = '/eg/p/products/' + _galleryId
+        localStorage.setItem('GalleryId', _galleryId);
+    };
+
     $scope.updateGallery = function () {
         console.log('enter');
         var req = {
             method: 'put',
             url: '/Gallery/Edit',
             data: {
-                _id: $rootScope.galleryId,//'59099416734d1d274bfd08d4'
+                _id: $scope.galleryId,//'59099416734d1d274bfd08d4'
                 Title: $scope.gallery.Title,
                 Description: $scope.gallery.Description,
                 Imgs: $('#imgItem').attr('src')

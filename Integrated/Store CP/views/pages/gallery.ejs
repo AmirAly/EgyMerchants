@@ -10,13 +10,13 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="active">
-                        <a href='/eg/g/galleries'>
+                        <a href='/eg/g/galleries/{{storeId}}'>
                             <i class="material-icons">dashboard</i>
                             <p>Galleries</p>
                         </a>
                     </li>
                     <li>
-                        <a href="/eg/store">
+                        <a href="/eg/store/{{storeId}}">
                             <i class="material-icons">person</i>
                             <p>User Profile</p>
                         </a>
@@ -45,7 +45,7 @@
                     <div class="col-md-8">
                         <ol class="breadcrumb">
                             <li>
-                                <a href="/eg/g/galleries">Galleries</a>
+                                <a href="/eg/g/galleries/{{storeId}}">Galleries</a>
                             </li>
                             <li class="active">Edit Gallery</li>
                         </ol>
@@ -107,8 +107,8 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
-                                        <a href="/eg/p/products">
-                                            <i class="fa fa-eye" aria-hidden="true"></i> View Items
+                                        <a ng-click="moveToItems('<%= gallery._id %>')" class="cursorPointer">
+                                            <i class="fa fa-eye" aria-hidden="true" ></i> View Items
                                         </a>
                                     </div>
                                 </div>

@@ -20,8 +20,7 @@
         }
         API.execute(req).then(function (res) {
             if (res.data.code == 100) {
-                //$rootScope.storeId = res.data.data._id;
-                //console.log($rootScope.storeId);
+                window.location.href = '/eg/Home';
             } else {
                 console.log(res.data);
             }

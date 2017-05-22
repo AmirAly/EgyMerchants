@@ -1,7 +1,16 @@
-﻿egm.controller("itemsController", function ($scope, API, $rootScope) {
+﻿egm.controller("itemsController", function ($scope, API) {
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click()
     };
+    $scope.galleryId = localStorage.getItem('GalleryId');
+    console.log(localStorage.getItem('GalleryId'));
+    $scope.storeId = localStorage.getItem('StoreId');
+
+    $scope.moveToItem = function (_itemId) {
+        localStorage.setItem('ItemId', _itemId);
+        window.location.href = '/eg/p/product/' + _itemId;
+    };
+
     $scope.addItem = function () {
         var req = {
             method: 'post',

@@ -1,4 +1,4 @@
-﻿egm.controller("loginController", function ($scope, API, $rootScope) {
+﻿egm.controller("loginController", function ($scope, API) {
     $scope.loginData = {};
     $scope.loginData.Email = '';
     $scope.loginData.Password = '';
@@ -11,12 +11,14 @@
         }
         API.execute(req).then(function (res) {
             if (res.data.code == 100) {
-                $rootScope.storeId = res.data.data._id;
+                //$rootScope.storeId = res.data.data._id;
+                localStorage.setItem('StoreId', res.data.data._id);
+                window.location.href = '/eg/g/galleries/' + res.data.data._id;
                 console.log(res);
             } else {
                 console.log(res.data);
             }
-            
+
         });
     }
 });

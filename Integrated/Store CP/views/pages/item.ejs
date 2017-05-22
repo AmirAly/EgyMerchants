@@ -1,5 +1,5 @@
 <% include ../partials/headpages %>
-<div ng-controller='itemController'>
+<div ng-controller='itemController' ng-init="init('<%=itemJSON%>')">
     <div class="wrapper">
         <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
             <div class="logo">
@@ -10,13 +10,13 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="active">
-                        <a href='/eg/g/galleries'>
+                        <a href='/eg/g/galleries/{{storeId}}'>
                             <i class="material-icons">dashboard</i>
                             <p>Galleries</p>
                         </a>
                     </li>
                     <li>
-                        <a href="/eg/store">
+                        <a href="/eg/store/{{storeId}}">
                             <i class="material-icons">person</i>
                             <p>User Profile</p>
                         </a>
@@ -46,13 +46,13 @@
                         <div class="col-md-12">
                             <ol class="breadcrumb">
                                 <li>
-                                    <a href="/eg/g/galleries">Galleries</a>
+                                    <a href="/eg/g/galleries/{{storeId}}">Galleries</a>
                                 </li>
                                 <li>
-                                    <a href="/eg/g/gallery">Edit Gallery</a>
+                                    <a href="/eg/g/gallery/{{galleryId}}">Edit Gallery</a>
                                 </li>
                                 <li>
-                                    <a href="/eg/p/products">Gallery Items</a>
+                                    <a href="/eg/p/products/{{galleryId}}">Gallery Items</a>
                                 </li>
                                 <li class="active">Edit Item</li>
                             </ol>
@@ -118,10 +118,9 @@
                             </div>
                         </div>
                     </div>
-					<span id="imgsArray" ng-model="imgsArray" ><%= item.Pictures %></span>
                     <!-- Start Picture Of item -->
                     <div class="row">
-                        <div class="col-lg-2 col-md-3 col-sm-6" ng-repeat="picture in itemPictures track by $index">
+                        <div class="col-lg-2 col-md-3 col-sm-6" ng-repeat="picture in currentItem.Pictures track by $index">
                             <div class="card">
                                 <div class="card-header card-chart">
                                     <img src="{{picture.URL}}">
@@ -131,7 +130,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
-                                        <a type="button" data-toggle="modal" data-target=".bs-example-modal-lg">
+                                        <a type="button" data-toggle="modal" data-target=".bs-example-modal-lg1" class="cursorPointer" ng-click="editItemPic(picture)">
                                             <i class="fa fa-cogs" aria-hidden="true"></i> Edit
                                         </a>
                                     </div>
@@ -201,9 +200,9 @@
                                             </div>
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="title">{{picAddModal.Title}}</h4>
+                                            <h4 class="title">{{picAddModalTitle}}</h4>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -244,25 +243,11 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Picture Name</label>
-                                                            <input type="text" class="form-control" ng-model="editPic.Title" required name="picTitle" id="picTitle" pattern="^.{1,35}$">
+                                                            <input type="text" class="form-control" value="picEditModal.Title" ng-model="picEditModal.Title"  required name="picTitle" id="picTitle" pattern="^.{1,35}$">
                                                             <span ng-show="frmEditePic.picTitle.$dirty && frmEditePic.picTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmEditePic.picTitle.$error.required">Required</span>
                                                                 <span class="errorFont" ng-show="frmEditePic.picTitle.$error.pattern">Picture name is too long</span>
                                                             </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="form-group label-floating">
-                                                                <label class="control-label"> About Picture</label>
-                                                                <textarea class="form-control" rows="3" ng-model="editPic.Desc" required name="picDesc" id="picDesc" pattern="^.{1,200}$"></textarea>
-                                                                <span ng-show="frmEditePic.picDesc.$dirty && frmEditePic.picDesc.$invalid">
-                                                                    <span class="errorFont" ng-show="frmEditePic.picDesc.$error.required">Required</span>
-                                                                    <span class="errorFont" ng-show="frmEditePic.picDesc.$error.pattern">Picture description is too long</span>
-                                                                </span>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -275,13 +260,16 @@
                                     <div class="card">
                                         <div class="card-header card-chart">
                                             <!--upload img-->
-                                            <img src="/img/add.gif">
+                                            <!--upload img-->
+                                            <div>
+                                                <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="{{picEditModal.URL}}" />
+                                                <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
+                                            </div>
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="title">{{editPic.Title}}</h4>
-                                            <p class="category">{{editPic.Desc}}</p>
+                                            <h4 class="title">{{picEditModal.Title}}</h4>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>

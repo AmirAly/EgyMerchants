@@ -2,11 +2,14 @@
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click()
     };
-  $scope.store = {};
-        $scope.store._id = '59084a09734d1d3098a82cd6';
-        $scope.store.Imgs = [];
+    $scope.store = {};
+    $scope.store._id = localStorage.getItem('StoreId');
+    $scope.store.Imgs = [];
+
+    console.log(localStorage.getItem('StoreId'));
+
     $scope.save = function () {
-      
+
         $scope.profileImg = {
             URL: $('#imgItem').attr('src')
         }
