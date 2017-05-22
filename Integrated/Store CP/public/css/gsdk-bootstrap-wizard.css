@@ -12,7 +12,10 @@
  
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  */
- 
+ .clear{
+     margin-top:10px;
+     margin-bottom:10px;
+ }
 a {
   color: #2CA8FF;
 }

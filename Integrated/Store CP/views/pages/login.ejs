@@ -41,7 +41,7 @@
                                                     <label>
                                                         User Name <small>(required)</small>
                                                     </label>
-                                                    <input name="username" type="text"  class="form-control" ng-model="loginData.Email" placeholder="username..." required="">
+                                                    <input name="username" type="text" class="form-control" ng-model="loginData.Email" placeholder="username..." required="">
                                                 </div>
                                             </div>
                                             <div class="col-sm-8 col-sm-offset-2">
@@ -52,12 +52,16 @@
                                                     <input name="password" type="password" class="form-control" ng-model="loginData.Password" placeholder="password..." required="">
                                                 </div>
                                             </div>
+                                            <div class="col-sm-8 col-sm-offset-2 alert-danger clear" ng-show="errdiv">
+                                                <span class="errorFont text-center" ng-show="errMsg"> Incorrect email or password please check your data</span>
+                                            </div>
                                             <div class="link col-sm-8 col-sm-offset-2">
                                                 <a href="/eg/register">Sign Up</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="wizard-footer height-wizard">
                                     <div class="pull-right">
                                         <input type='button' ng-click="login()" class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='login' value='login' />

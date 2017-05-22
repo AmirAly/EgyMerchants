@@ -22,6 +22,8 @@
             if (res.data.code == 100) {
                 window.location.href = '/eg/Home';
             } else {
+                $scope.errMsg = true;
+                $scope.errdiv = true;
                 console.log(res.data);
             }
         });
