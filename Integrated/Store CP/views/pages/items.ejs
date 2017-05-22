@@ -1,5 +1,7 @@
 <% include ../partials/headpages %>
 <div ng-controller='itemsController'>
+    <div class="loaderContainer" ng-show="loading"></div>
+    <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
         <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
             <div class="logo">
@@ -58,7 +60,7 @@
                     <!-- End Breadcrumbs -->
                     <div class="row">
 
-					<% if(items.length > 0){ %>
+                        <% if(items.length > 0){ %>
                         <% items.forEach(function(item){ %>
                         <div class="col-xs-12 col-sm-6 col-md-3">
                             <a href="/eg/p/product/<%= item._id %>">
@@ -81,9 +83,9 @@
                             </a>
                         </div>
                         <% }); %>
-					<% } else { %>	
-					<p class="text-center">There is no items to show</p>
-					<% } %>
+                        <% } else { %>
+                        <p class="text-center">There is no items to show</p>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -118,7 +120,7 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Item Name</label>
-                                                            <input type="text" class="form-control" ng-model="item.Title" required name="itemTitle" id="itemTitle" pattern="^.{1,35}$">
+                                                            <input type="text" class="form-control" ng-model="item.Name" required name="itemTitle" id="itemTitle" pattern="^.{1,35}$">
                                                             <span ng-show="frmAddItem.itemTitle.$dirty && frmAddItem.itemTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.required">Required</span>
                                                                 <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.pattern">Item name is too long</span>
@@ -155,10 +157,10 @@
                                             </div>
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="title">{{item.Title}}</h4>
+                                            <h4 class="title">{{item.Name}}</h4>
                                             <p class="category">{{item.Description}}</p>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>

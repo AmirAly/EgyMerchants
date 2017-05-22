@@ -1,6 +1,7 @@
 <% include ../partials/headpages %>
 <div ng-controller='galleriesController'>
-
+<div class="loaderContainer" ng-show="loading"></div>
+<div class="loader" ng-show="loading"></div>
     <div class="wrapper">
         <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
             <div class="logo">
@@ -51,34 +52,36 @@
                         </div>
                     </div>
                     <!-- End Breadcrumbs -->
-                    <div class="row">
-                        <% if ( galleries.length > 0  ){ %>
-                        <% galleries.forEach(function(gallery){ %>
-                        <div class="col-md-4">
-                            <a href="/eg/g/gallery/<%=gallery._id%>">
-                                <div class="card">
-                                    <div class="card-header card-chart">
-                                        <img src="<%=gallery.DisplayPicture%>">
-                                    </div>
-                                    <div class="card-content">
-                                        <h4 class="title"><%= gallery.Title %></h4>
-                                        <p class="category"><%= gallery.Description %></p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="stats">
-                                            <a href="/eg/g/gallery/<%=gallery._id%>">
-                                                <i class="fa fa-cogs" aria-hidden="true"></i> Edit
-                                            </a>
+                        <div class="row">
+                            <% if ( galleries.length > 0  ){ %>
+                            <% galleries.forEach(function(gallery){ %>
+                            <div class="col-md-4">
+                                <a href="/eg/g/gallery/<%=gallery._id%>">
+                                    <div class="card">
+                                        <div class="card-header card-chart">
+                                            <img src="<%=gallery.DisplayPicture%>">
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="title"><%= gallery.Title %></h4>
+                                            <p class="category"><%= gallery.Description %></p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="stats">
+                                                <a ng-click="moveToGallery('<%=gallery._id%>')" class="cursorPointer">
+                                                    <i class="fa fa-cogs" aria-hidden="true"></i> Edit
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
+                            <% }); %>
+                            <% }else{ %>
+                            <p class="text-center">There is no galleries</p>
+                            <% } %>
                         </div>
-                        <% }); %>
-                        <% }else{ %>
-                        <p class="text-center">There is no galleries</p>
-                        <% } %>
-                    </div>
+
+                    
                 </div>
 
             </div>
@@ -86,6 +89,7 @@
                 <% include ../partials/footerpages %>
             </footer>
         </div>
+        
 
     </div>
 
@@ -155,7 +159,7 @@
                                             <h4 class="title">{{gallery.Title}}</h4>
                                             <p class="category">{{gallery.Description}}</p>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>

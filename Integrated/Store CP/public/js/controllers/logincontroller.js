@@ -4,6 +4,7 @@
     $scope.loginData.Password = '';
 
     $scope.login = function () {
+        $scope.loading = true;
         var req = {
             method: 'post',
             url: '/Store/Login',
@@ -21,6 +22,8 @@
                 console.log(res.data);
             }
 
+        }).finally(function () {
+            $scope.loading = false;
         });
     }
 });

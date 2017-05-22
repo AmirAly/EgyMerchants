@@ -15,6 +15,7 @@
         }
         $scope.store.Imgs.push($scope.profileImg);
         console.log($scope.store);
+        $scope.loading = true;
         var req = {
             method: 'put',
             url: '/Store/EditProfile',
@@ -28,6 +29,8 @@
             } else {
                 console.log(res.data.data);
             }
+        }).finally(function () {
+            $scope.loading = false;
         });
     };
 });

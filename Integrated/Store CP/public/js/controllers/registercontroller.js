@@ -13,6 +13,7 @@
         console.log($scope.selectedCity);
         $scope.register.CountryISOCode = $scope.selectedCity;
         $scope.register.Category = $scope.categoryId;
+        $scope.loading = true;
         var req = {
             method: 'post',
             url: '/Store/Register',
@@ -26,6 +27,8 @@
                 $scope.errdiv = true;
                 console.log(res.data);
             }
+        }).finally(function () {
+            $scope.loading = false;
         });
     };
 
