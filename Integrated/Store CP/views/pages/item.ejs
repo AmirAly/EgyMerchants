@@ -1,4 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<% include ../partials/headpages %>
+<div ng-controller='itemController'>
+=======
+>>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -28,10 +34,14 @@
 
   <body ng-app='egm' ng-controller='itemController'>
 
+<<<<<<< HEAD
 =======
 <% include ../partials/headpages %>
 <div ng-controller='itemController'>
 >>>>>>> 02b98deeb37e188328ab0642338318af58ccf2c4
+=======
+>>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
+>>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
     <div class="wrapper">
         <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
             <div class="logo">
@@ -126,7 +136,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" ng-click="updateGallery()" ng-disabled="frmUpdateGallery.$invalid" class="btn btn-primary pull-right">Update Gallery</button>
+                                        <button type="submit" ng-click="updateItem()" ng-disabled="frmUpdateGallery.$invalid" class="btn btn-primary pull-right">Update Item</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
@@ -136,11 +146,11 @@
                             <div class="card">
                                 <div class="card-header card-chart">
                                     <!--upload img-->
-                                    <img src="/img/cover.jpeg">
+                                    <img src="<%= item.Pictures[0].URL %>">
                                 </div>
                                 <div class="card-content">
-                                    <h4 class="title">{{item.Title}}</h4>
-                                    <p class="category">{{item.Desc}}</p>
+                                    <h4 class="title"><%= item.Name %></h4>
+                                    <p class="category"><%= item.Description %></p>
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
@@ -184,6 +194,10 @@
             </footer>
         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
         
         <footer class="footer">
           <div class="container-fluid">
@@ -194,8 +208,12 @@
         </footer>
         
       </div>
+<<<<<<< HEAD
 =======
 >>>>>>> 02b98deeb37e188328ab0642338318af58ccf2c4
+=======
+>>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
+>>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
     </div>
     <!-- Start add item Modal -->
     <div class="modal fade bs-example-modal-lg" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -223,7 +241,7 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Picture Name</label>
-                                                            <input type="text" class="form-control" ng-model="addPic.Title" required name="picTitle" id="picTitle" pattern="^.{1,35}$" >
+                                                            <input type="text" class="form-control" ng-model="addPic.Title" required name="picTitle" id="picTitle" pattern="^.{1,35}$">
                                                             <span ng-show="frmAddPic.picTitle.$dirty && frmAddPic.picTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmAddPic.picTitle.$error.required">Required</span>
                                                                 <span class="errorFont" ng-show="frmAddPic.picTitle.$error.pattern">Picture name is too long</span>
@@ -362,6 +380,13 @@
     </div>
     <!-- End Modal -->
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+</div>
+<!--   Core JS Files   -->
+<% include ../partials/pagesjsfiles %>
+=======
+>>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
 
 
     <!--   Core JS Files   -->
@@ -386,8 +411,12 @@
   </body>
 
 </html>
+<<<<<<< HEAD
 =======
 </div>
 <!--   Core JS Files   -->
 <% include ../partials/pagesjsfiles %>
 >>>>>>> 02b98deeb37e188328ab0642338318af58ccf2c4
+=======
+>>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
+>>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70

@@ -28,7 +28,19 @@ module.exports = function (app) {
     //          /eg/g/:GalleryName/:GalleryId
     app.get('/eg/g/gallery', function (req, res) {
         var _scope = {};
-        res.render('pages/gallery', _scope);
+        gallery.getById('59099416734d1d274bfd08d4').then(function (_gallery) {
+            if (_gallery.code == 100) {
+                _scope.gallery = _gallery.data;
+                res.render('pages/gallery', _scope);
+            } else {
+                _scope.galleries = [];
+                res.render('pages/gallery', _scope);
+            }
+        }).catch(function (_err) {
+            console.log(_err);
+            _scope.galleries = [];
+            res.render('pages/gallery', _scope);
+        });
         //gallery.getGallery(req.params.galleryId).then(function (_gallery) {
         //    _scope.gallery = _gallery;
         //    product.getByGalleryId(req.params.galleryId).then(function (_produtsList) {
@@ -46,7 +58,20 @@ module.exports = function (app) {
     ///      /eg/p/:productName/:productId
     app.get('/eg/p/product', function (req, res) {
         var _scope = {};
-        res.render('pages/item', _scope);
+        product.getById('59089186734d1d3098a85879').then(function (_item) {
+            console.log(_item);
+            if (_item.code == 100) {
+                _scope.item = _item.data;
+                res.render('pages/item', _scope);
+            } else {
+                _scope.item = [];
+                res.render('pages/item', _scope);
+            }
+        }).catch(function (_err) {
+            console.log(_err);
+            _scope.item = [];
+            res.render('pages/item', _scope);
+        });
 
         //       product.getById(req.params.productId).then(function (_product) {
         //           console.log(_product);
@@ -60,39 +85,29 @@ module.exports = function (app) {
         //                   console.log(_store);
         //                   _scope.storeData = _store;
 
-        //_scope.SimilarProducts = [
-        //           { id: 1, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg' }], Name: 'Polly Top Notion' },
-        //           { id: 2, Pictures: [{ URL: 'http://4.bp.blogspot.com/-KOdUGQjMe9o/Uigvi-aAxxI/AAAAAAAAMKc/hWtkDnYUtrg/s1600/2014-Comfort-Modern-Living-Room-Decorating-Ideas-2.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' },
-        //           { id: 3, Pictures: [{ URL: 'http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Idea.jpg' }], Name: 'Polly Top Notion' },
-        //           { id: 4, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' },
-        //           { id: 5, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg' }], Name: 'Polly Top Notion' },
-        //           { id: 6, Pictures: [{ URL: 'http://4.bp.blogspot.com/-KOdUGQjMe9o/Uigvi-aAxxI/AAAAAAAAMKc/hWtkDnYUtrg/s1600/2014-Comfort-Modern-Living-Room-Decorating-Ideas-2.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' },
-        //           { id: 7, Pictures: [{ URL: 'http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Idea.jpg' }], Name: 'Polly Top Notion' },
-        //           { id: 8, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' },
-        //           { id: 9, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg' }], Name: 'Polly Top Notion' },
-        //           { id: 10, Pictures: [{ URL: 'http://4.bp.blogspot.com/-KOdUGQjMe9o/Uigvi-aAxxI/AAAAAAAAMKc/hWtkDnYUtrg/s1600/2014-Comfort-Modern-Living-Room-Decorating-Ideas-2.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' },
-        //           { id: 11, Pictures: [{ URL: 'http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Idea.jpg' }], Name: 'Polly Top Notion' },
-        //           { id: 12, Pictures: [{ URL: 'https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg' }], Name: 'Raglan Sleeve Tee Maison Scotch' }
-        //   ];
-        //                   res.render('pages/product', _scope);
-        //               }).catch(function (_err) { console.log(_err) });
 
-        //           }).catch(function (_err) { console.log(_err) });
-
-        //       }).catch(function (_err) { console.log(_err) });
     });
 
     app.get('/eg/g/galleries', function (req, res) {
         var _scope = {};
-        gallery.getByStore('59084a09734d1d3098a82cd6').then(function (_gallery) {
-            _scope.galleries = _gallery;
+        gallery.getByStore('59085125734d1d3098a830df').then(function (_galleryLst) {
+            if (_galleryLst.code == 100) {
+                _scope.galleries = _galleryLst.data;
+                res.render('pages/galleries', _scope);
+            } else {
+                _scope.galleries = [];
+                res.render('pages/galleries', _scope);
+            }
+        }).catch(function (_err) {
+            console.log(_err);
+            _scope.galleries = [];
             res.render('pages/galleries', _scope);
-        }).catch(function (_err) { console.log(_err) });
+        });
     });
     app.get('/eg/p/products', function (req, res) {
         var _scope = {};
-        product.getByGalleryId('591d68b488bfb91ae01f0d24').then(function (_itemLst) {
-            
+        product.getByGalleryId('59088e74734d1d3098a8563e').then(function (_itemLst) {
+            //591d68b488bfb91ae01f0d24   empty gallery
             //59088e74734d1d3098a8563e
             //console.log(JSON.stringify(_itemLst));
             if (_itemLst.code == 100) {

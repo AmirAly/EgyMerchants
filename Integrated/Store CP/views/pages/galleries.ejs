@@ -1,4 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<% include ../partials/headpages %>
+<div ng-controller='galleriesController'>
+=======
+>>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -28,10 +34,14 @@
 
   <body ng-app='egm' ng-controller='galleriesController'>
 
+<<<<<<< HEAD
 =======
 <% include ../partials/headpages %>
 <div ng-controller='galleriesController'>
 >>>>>>> 02b98deeb37e188328ab0642338318af58ccf2c4
+=======
+>>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
+>>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
     <div class="wrapper">
         <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
             <div class="logo">
@@ -83,6 +93,7 @@
                     </div>
                     <!-- End Breadcrumbs -->
                     <div class="row">
+                        <% if ( galleries.length > 0  ){ %>
 
                         <% galleries.forEach(function(gallery){ %>
                         <div class="col-md-4">
@@ -106,8 +117,12 @@
                             </a>
                         </div>
                         <% }); %>
+                        <% }else{ %>
+                        <p class="text-center">There is no galleries</p>
+                        <% } %>
                     </div>
                 </div>
+
             </div>
             <footer class="footer">
                 <% include ../partials/footerpages %>
@@ -115,6 +130,11 @@
         </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    </div>
+=======
+>>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
       <footer class="footer">
         <div class="container-fluid">
           <p class="copyright pull-right">
@@ -124,9 +144,13 @@
       </footer>
     </div>
     
+<<<<<<< HEAD
 =======
     </div>
 >>>>>>> 02b98deeb37e188328ab0642338318af58ccf2c4
+=======
+>>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
+>>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
     <!-- Start Modal -->
     <div class="modal fade bs-example-modal-lg" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document">
@@ -210,6 +234,13 @@
     </div>
     <!-- End Modal -->
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+</div>
+<!--   Core JS Files   -->
+<% include ../partials/pagesjsfiles %>
+=======
+>>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
 
 
     <!--   Core JS Files   -->
@@ -232,8 +263,12 @@
   </body>
 
 </html>
+<<<<<<< HEAD
 =======
 </div>
 <!--   Core JS Files   -->
 <% include ../partials/pagesjsfiles %>
 >>>>>>> 02b98deeb37e188328ab0642338318af58ccf2c4
+=======
+>>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
+>>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70

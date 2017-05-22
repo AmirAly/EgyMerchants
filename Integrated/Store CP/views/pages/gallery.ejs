@@ -1,4 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<% include ../partials/headpages %>
+<div ng-controller='galleryController'>
+=======
+>>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -28,10 +34,14 @@
 
   <body ng-app='egm' ng-controller='galleryController'>
 
+<<<<<<< HEAD
 =======
 <% include ../partials/headpages %>
 <div ng-controller='galleryController'>
 >>>>>>> 02b98deeb37e188328ab0642338318af58ccf2c4
+=======
+>>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
+>>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
     <div class="wrapper">
         <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
             <div class="logo">
@@ -96,6 +106,7 @@
                                             <div class="col-md-5">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Gallery Name</label>
+													<%= gallery.Title %>
                                                     <input type="text" class="form-control" ng-model="gallery.Title" name="galleryTitle" id="galleryTitle" required pattern="^.{1,35}$">
                                                     <span ng-show="frmUpdateGallery.galleryTitle.$dirty && frmUpdateGallery.galleryTitle.$invalid">
                                                         <span class="errorFont" ng-show="frmUpdateGallery.galleryTitle.$error.required">Required</span>
@@ -109,6 +120,7 @@
                                                 <div class="form-group">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label"> About Me</label>
+														<%= gallery.Description %>
                                                         <textarea class="form-control" rows="3" ng-model="gallery.Description" required name="galleryDesc" id="galleryDesc" pattern="^.{1,200}$"></textarea>
                                                         <span ng-show="frmUpdateGallery.galleryDesc.$dirty && frmUpdateGallery.galleryDesc.$invalid">
                                                             <span class="errorFont" ng-show="frmUpdateGallery.galleryDesc.$error.required">Required</span>
@@ -128,11 +140,11 @@
                             <div class="card">
                                 <div class="card-header card-chart">
                                     <!--upload img-->
-                                    <img src="/img/cover.jpeg">
+                                    <img src="<%= gallery.DisplayPicture %>">
                                 </div>
                                 <div class="card-content">
-                                    <h4 class="title">{{gallery.Title}}</h4>
-                                    <p class="category">{{gallery.Desc}}</p>
+                                    <h4 class="title"><%= gallery.Title %></h4>
+                                    <p class="category"><%= gallery.Description %></p>
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
@@ -151,6 +163,14 @@
             </footer>
         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    </div>
+</div>
+<!--   Core JS Files   -->
+<% include ../partials/pagesjsfiles %>
+=======
+>>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
 
         <footer class="footer">
           <div class="container-fluid">
@@ -182,9 +202,13 @@
 
 
 </html>
+<<<<<<< HEAD
 =======
     </div>
 </div>
 <!--   Core JS Files   -->
 <% include ../partials/pagesjsfiles %>
 >>>>>>> 02b98deeb37e188328ab0642338318af58ccf2c4
+=======
+>>>>>>> 744660954fa06ee2b1002a44fe7504f696c5eb2a
+>>>>>>> 6f418e3e39460de5d1eaa1c8b2752f04a2c8fb70
