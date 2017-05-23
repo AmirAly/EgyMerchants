@@ -80,7 +80,7 @@
                     <h3><a href="listing.html">BEST SELLERS</a></h3>
                     <div class="products-widget jcarousel-skin-previews vertical">
                         <ul class="slides">
-
+						<% if (bestSeller.length > 0) { %>
                             <% bestSeller.forEach(function(item){ %>
                             <li>
                                 <div class="product">
@@ -91,7 +91,9 @@
                                 </div>
                             </li>
                             <% }); %>
-
+										   <% } else { %>
+		<p> No Data Available </p>
+		<% } %>
                         </ul>
                     </div>
                     <!-- //end Best Sellers -->
@@ -106,7 +108,7 @@
                         <h3>Featured Galleries</h3>
                         <!-- Products list -->
                         <div class="row products-list">
-
+						<% if (Galleries.length > 0) { %>
                             <% Galleries.forEach(function(gallery){ %>
                             <div class="product-preview">
                                 <div class="preview animate scale">
@@ -127,7 +129,9 @@
                                 <h3 class="title"><a href="/Eg/Gallery/<%= gallery.Title %>/<%= gallery._id %>"><%= gallery.Title %></a></h3>
                             </div>
                             <% }); %>
-
+										   <% } else { %>
+		<p> No Data Available </p>
+		<% } %>
                         </div>
                         <!-- //end Products list -->
                         <!-- Product view compact -->
