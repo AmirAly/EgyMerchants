@@ -23,7 +23,7 @@
                     Title: $scope.item.Title,
                     URL: $('#imgItem').attr('src')
                 }],
-                Price: '',
+                Price: $scope.item.Price,
                 Store: $scope.storeId,
                 Gallery: $scope.galleryId
             }

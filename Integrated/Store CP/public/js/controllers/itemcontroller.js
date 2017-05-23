@@ -84,13 +84,13 @@
                 _id: $scope.itemId,//'59089186734d1d3098a85879'
                 Name: $scope.item.Name,
                 Description: $scope.item.Description,
+                Price: $scope.item.Price,
                 Imgs: $scope.currentItem.Pictures
             }
         }
         API.execute(req).then(function (res) {
-            console.log('1');
             if (res.data.code == 100) {
-                console.log(res);
+                console.log(res.data.data);
                 window.location.reload();
             } else {
                 console.log('err');

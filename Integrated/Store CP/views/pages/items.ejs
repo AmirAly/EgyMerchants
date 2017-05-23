@@ -70,6 +70,7 @@
                                     </div>
                                     <div class="card-content">
                                         <h4 class="title"><%= item.Name %></h4>
+										<h4 class="title"><%= item.Price %></h4>
                                         <p class="category"><%= item.Description %></p>
                                     </div>
                                     <div class="card-footer">
@@ -127,6 +128,16 @@
                                                             </span>
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Price</label>
+                                                            <input type="text" class="form-control" ng-model="item.Price" required name="itemPrice" id="itemPrice" pattern="^[0-9]{2,7}$">
+                                                            <span ng-show="frmAddItem.itemPrice.$dirty && frmAddItem.itemPrice.$invalid">
+                                                                <span class="errorFont" ng-show="frmAddItem.itemPrice.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmAddItem.itemPrice.$error.pattern">Price min 2 number and max 7 number</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -142,6 +153,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="clearfix"></div>
                                             </form>
                                         </div>
@@ -158,6 +170,7 @@
                                         </div>
                                         <div class="card-content">
                                             <h4 class="title">{{item.Name}}</h4>
+                                            <h4 class="title">{{item.Price}}</h4>
                                             <p class="category">{{item.Description}}</p>
                                         </div>
 

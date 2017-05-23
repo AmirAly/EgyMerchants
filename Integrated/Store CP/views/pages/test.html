@@ -81,6 +81,16 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Price</label>
+                                                    <input type="text" class="form-control" value="<%= item.Price %>" ng-init="item.Price = '<%= item.Price %>'" ng-model="item.Price" required name="itemPrice" id="itemPrice" pattern="^[0-9]{2,7}$">
+                                                    <span ng-show="frmUpdateGallery.itemPrice.$dirty && frmUpdateGallery.itemPrice.$invalid">
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.itemPrice.$error.required">Required</span>
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.itemPrice.$error.pattern">Price min 2 number and max 7 number</span>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
@@ -108,8 +118,9 @@
                                     <img src="<%= item.Pictures[0].URL %>" />
                                 </div>
                                 <div class="card-content">
-                                    <h4 class="title"><%= item.Name %></h4>
-                                    <p class="category"><%= item.Description %></p>
+                                    <h4 class="title" ng-bind="item.Name"><%= item.Name %></h4>
+                                    <h4 class="title" ng-bind="item.Price"><%= item.Price %></h4>
+                                    <p class="category" ng-bind="item.Description"><%= item.Description %></p>
                                 </div>
                             </div>
                         </div>
@@ -215,7 +226,7 @@
     </div>
     <!-- End Modal -->
     <!-- Start  edit item Modal -->
-    <div class="modal fade bs-example-modal-lg1" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div my-modal class="modal fade bs-example-modal-lg1" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
