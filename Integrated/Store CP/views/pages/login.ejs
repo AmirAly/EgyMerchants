@@ -54,9 +54,11 @@
                                                     <input name="password" type="password" class="form-control" ng-model="loginData.Password" placeholder="password..." required="">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-8 col-sm-offset-2 alert-danger clear" ng-show="errdiv">
-                                                <span class="errorFont text-center" ng-show="errMsg"> Incorrect email or password please check your data</span>
+											<div class="col-sm-8 col-sm-offset-2">
+                                            <div class=" alert-danger clear text-center" ng-show="errdiv">
+                                                <span class="errorFont " ng-show="errMsg"> Incorrect email or password please check your data</span>
                                             </div>
+											</div>
                                             <div class="link col-sm-8 col-sm-offset-2">
                                                 <a href="/eg/register">Sign Up</a>
                                             </div>
