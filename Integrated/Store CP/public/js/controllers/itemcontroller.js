@@ -26,33 +26,52 @@
 
 
     $scope.ShowFileSelector = function () {
-        document.getElementById('uploadItemImage').click()
+        document.getElementById('uploadItemImage').click();
+    };
+    $scope.ShowFileSelectorAdd = function () {
+        document.getElementById('uploadNewItemImage').click();
     };
     $scope.picAddModal = {};
 
+    //add pic
     $scope.addPic = function () {
         $scope.picAddModal.Title = $scope.picAddModalTitle;
-        $scope.picAddModal.URL = $('#imgItem').attr('src');
+        $scope.picAddModal.URL = $('#imgAddItem').attr('src');
         $scope.currentItem.Pictures.push($scope.picAddModal);
         $scope.dismiss();
+        $scope.picAddModal = {};
+        $scope.picAddModalTitle = '';
+        $('#imgAddItem').attr('src', '/img/add.gif');
+        console.log($scope.picAddModal);
     };
 
+    //edit pic
     $scope.picEditModal = {};
     $scope.editItemPic = function (_item) {
         //open modal edit
         console.log(_item);
         $scope.picEditModal.Title = _item.Title;
         $scope.picEditModal._id = _item._id;
-        $scope.picEditModal.URL = $('#imgItem').attr('src');
+        $scope.picEditModal.URL = _item.URL;
+
+
+
+        //$('#imgItem').attr('src', _item.URL);
     };
 
     $scope.editePic = function () {
-        //sava modal edit
+        //save modal edit
+        $scope.picEditModal.URL = $('#imgItem').attr('src');
+
         for (var i = 0; i < $scope.currentItem.Pictures.length; i++) {
             if ($scope.currentItem.Pictures[i]._id == $scope.picEditModal._id) {
-                $scope.currentItem.Pictures[i] = $scope.picEditModal;
+                console.log($scope.picEditModal);
+                console.log($scope.currentItem.Pictures[i]);
+                $scope.currentItem.Pictures[i].Title = $scope.picEditModal.Title;
+                $scope.currentItem.Pictures[i].URL = $scope.picEditModal.URL;
             }
         }
+
         $scope.dismiss();
     };
 
@@ -82,6 +101,25 @@
     };
 });
 
+//////add new pic
+function convertImgToBase64URLInAdd(event) {
+    var filesSelected = document.getElementById("uploadNewItemImage").files;
+    if (filesSelected.length > 0) {
+        var fileToLoad = filesSelected[0];
+        var fileReader = new FileReader();
+        fileReader.onload = function (fileLoadedEvent) {
+            BaseImg64 = fileLoadedEvent.target.result;
+            UploadImageAdd(BaseImg64);
+        };
+        fileReader.readAsDataURL(fileToLoad);
+    }
+};
+
+function UploadImageAdd(_BaseImg64) {
+    $('#imgAddItem').attr('src', _BaseImg64);
+};
+
+///////edit pic
 function convertImgToBase64URL(event) {
     var filesSelected = document.getElementById("uploadItemImage").files;
     if (filesSelected.length > 0) {

@@ -1,5 +1,5 @@
 ﻿egm.factory('API', function ($http) {
-    var _url = 'http://localhost:8007';
+    var _url = 'http://egm-app.azurewebsites.net';
     return {
         name: 'API',
         execute: function (_req) {
@@ -12,21 +12,4 @@
         }
     }
 });
-//egm.factory('Loader', function ($rootScope, $element) {
-//    return {
-//        show: function () {
-//            $rootScope.loading = $element.show({
-//                content: 'Loading',
-//                animation: 'fade-in',
-//                showBackdrop: true,
-//                maxWidth: 200,
-//                showDelay: 0,
-//                template: '<img src="img/loader.png" width="30px" height="30px" class="loaderImg" />'
-//            });
-//        },
-//        hide: function () {
-//            $element.hide();
-//        }
-//    }
-//});
 
