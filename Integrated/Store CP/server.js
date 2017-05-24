@@ -1,4 +1,4 @@
-﻿// server.js
+// server.js
 // load the things we need
 var express = require('express');
 var app = express();
@@ -25,7 +25,7 @@ mongoose.connect(db.url, function (err) {
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept , authorization");
             next();
         });
-        app.listen(8080);
+        app.listen(process.env.PORT || 8080);
         //app.get('*', function (req, res) {
         //    res.render('pages/404');
         //});

@@ -13,6 +13,7 @@
         console.log($scope.selectedCity);
         $scope.register.CountryISOCode = $scope.selectedCity;
         $scope.register.Category = $scope.categoryId;
+        $scope.loading = true;
         var req = {
             method: 'post',
             url: '/Store/Register',
@@ -20,11 +21,14 @@
         }
         API.execute(req).then(function (res) {
             if (res.data.code == 100) {
-                //$rootScope.storeId = res.data.data._id;
-                //console.log($rootScope.storeId);
+                window.location.href = '/eg/Home';
             } else {
+                $scope.errMsg = true;
+                $scope.errdiv = true;
                 console.log(res.data);
             }
+        }).finally(function () {
+            $scope.loading = false;
         });
     };
 

@@ -4,6 +4,7 @@
 <div class="expoPage">
     <div class="allExposView" ng-hide="showSingleExpo">
         <div class="secondDiv">
+		<% if (expos.length > 0) { %>
             <% expos.forEach(function(expo){ %>
             <section  swinch-duration="1000" data-scroll
                      class="secondExpo repeated-item" id="expo<%= expo._id %>" swinch-offset="0" style="background-image: url(<%= expo.Banner %>)">
@@ -17,8 +18,7 @@
 									<% expo.Sections.forEach(function(section){ %>
                                         <div class="col-xs-3 col-sm-3 col-custom5 repeated-item">
                                             <div class="image-wrapper">
-
-                                                <a href="/Eg/Store/<%= section.StoreName %>/59086c61734d1d3098a840aa">
+                                                <a href="/Eg/Store/<%= section.Store.StoreName %>/<%= section.Store._id %>">
                                                     <img class="animated img-responsive animate scale" src="<%= section.Img %>" >
                                                 </a>
                                             </div>
@@ -36,7 +36,7 @@
                                             onclick="toggle('<%= expo._id %>')">
                                             <img src="/images/leftarrow.png" />
                                         </h6>
-										<div class="whiteLayerContainer">
+										<div class="whiteLayerContainer whiteLayerContainer<%= expo._id %>">
 											<ul class="pagination-main clicked dvPageNumbers<%= expo._id %> " >
 												<li  onclick="selectPage('<%= expo._id %>',1)" class="btnChangePage page1 active"><a>1</a></li>
 												<li  onclick="selectPage('<%= expo._id %>',2)" class="btnChangePage page2"><a>2</a></li>
@@ -54,6 +54,9 @@
                 </article>
             </section>
             <% }); %>
+			<% } else { %>
+			 <p> No Data Available </p>
+			 <% } %>
         </div>
     </div>
 

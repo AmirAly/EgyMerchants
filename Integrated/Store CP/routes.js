@@ -10,9 +10,9 @@ module.exports = function (app) {
     });
 
 
-    app.get('/eg/store/:categoryId', function (req, res) {
+    app.get('/eg/store/:storeId', function (req, res) {
         var _scope = {};
-        store.getById(req.params.categoryId).then(function (_store) {
+        store.getById(req.params.storeId).then(function (_store) {
             if (_store.code == 100) {
                 _scope.store = _store.data;
                 res.render('pages/store', _scope);
@@ -49,11 +49,12 @@ module.exports = function (app) {
         product.getById(req.params.itemId).then(function (_item) {
             if (_item.code == 100) {
                 _scope.item = _item.data;
-                console.log(_scope.item.Pictures[0]);
+                _scope.itemJSON = JSON.stringify(_item.data);
+                console.log(_scope.itemJSON);
                 res.render('pages/item', _scope);
             } else {
                 _scope.item = [];
-                res.render('pages/item', _scope);
+                //res.render('pages/item', _scope);
             }
         }).catch(function (_err) {
             console.log(_err);

@@ -23,7 +23,7 @@
     <!-- //end Description -->
     <!-- Products list -->
     <div class="row products-list">
-        
+       <% if (products.length > 0) { %>
         <% products.forEach(function(product){ %>
         <div class="product-preview ">
             <div class="preview animate scale">
@@ -41,6 +41,10 @@
             <span class="price"><%= product.Price %></span>
         </div>
         <% }); %>
+		<% } else { %>
+		<p> No Data Available </p>
+		<% } %>
+
     </div>
     <!-- //end Products list -->
     <!-- Product view compact -->

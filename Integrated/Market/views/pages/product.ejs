@@ -116,6 +116,7 @@
         <!-- Products list -->
         <div class="products-list-small">
             <ul class="slides">
+			<% if (similarProducts.length > 0) { %>
 			<% similarProducts.forEach(function(product){ %>
                 <li>
                     <div class="product-preview">
@@ -125,6 +126,10 @@
                     </div>
                 </li>
                <% }); %>
+			   <% } else { %>
+		<p> No Data Available </p>
+		<% } %>
+
             </ul>
         </div>
         <!-- //end Products list -->

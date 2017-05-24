@@ -1,12 +1,16 @@
 init
 
 PRE-EGM-Api
-**https://AppoutAdminLive@egm-api.scm.azurewebsites.net:443/EGM-Api.git
-**http://egm-api.azurewebsites.net
-
-
-PRE-EGM-APP
 **http://egm-app.azurewebsites.net
 **https://AppoutAdminLive@egm-app.scm.azurewebsites.net:443/EGM-App.git
 
-Egy Merchants
+PRE-EGM-market samar
+**http://egm-pre.azurewebsites.net
+**https://AppoutAdminLive@egm-pre.scm.azurewebsites.net:443/EGM-pre.git
+
+PRE-EGM-merchant
+**http://egm-merchants.azurewebsites.net
+**https://AppoutAdminLive@egm-merchants.scm.azurewebsites.net:443/EGM-merchants.git
+
+
+
