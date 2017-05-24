@@ -130,7 +130,7 @@ module.exports = {
 
         })
     },
-    edit: function (_id, _name, _description, _imgs) {
+        edit: function (_id, _name, _description, _imgs,_price,_pricebefore,_badges,_tags) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _id }, '', function (err, Obj) {
                 if (err)
@@ -139,17 +139,23 @@ module.exports = {
                         data: err
                     });
                 else {
+                    console.log('enter');
                     Obj.Name = _name;
                     Obj.Description = _description;
-                    if (_imgs) 
-                    Obj.Pictures = _imgs;
+                    Obj.Price = _price;
+                    Obj.PriceBeforeSale = _pricebefore;
+                    Obj.Badges = _badges;
+                    Obj.Tags = _tags;
+                    if (_imgs)
+                        Obj.Pictures = _imgs;
                     Obj.save(function (err, Obj) {
+                        console.log(Obj);
                         if (err)
                             reject({
                                 code: 1,
                                 data: err
                             });
-                        else 
+                        else
                             resolve({
                                 code: 100,
                                 data: "This item updated successfully"
