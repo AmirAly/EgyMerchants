@@ -5,7 +5,8 @@ module.exports = {
         return new Promise(function (resolve, reject) {
             Schema.find({ 'Categories': _categoryId }, '_id Title Banner Sections').populate({
                 path: 'Sections.Store',
-                model: 'Store'
+                model: 'Store',
+                select: { _id: 1, StoreName: 1 }
             }).exec(function (err, lst) {
                 if (err)
                     reject({
@@ -17,8 +18,8 @@ module.exports = {
                         var finalLst = [];
                         for (var i = 0 ; i < lst.length; i++) {
                             var obj = lst[i];
-                            obj.floors = lst[i].Sections.length / 25;
-                            obj.Sections = obj.Sections.splice(0, 25);
+                            obj.floors = lst[i].Sections.length / 32;
+                            obj.Sections = obj.Sections.splice(0, 32);
                             finalLst.push({
                                 _id: obj._id,
                                 Title: obj.Title,
@@ -44,10 +45,11 @@ module.exports = {
     },
     getSectionsByFloor: function (_storeId, _floor) {
         return new Promise(function (resolve, reject) {
-            var skippedSections = (_floor - 1) * 25;
-            Schema.findOne({ '_id': _storeId }, { _id: 1, Title: 1, Banner: 1, Sections: { $slice: [skippedSections, 25] } }).populate({
+            var skippedSections = (_floor - 1) * 32;
+            Schema.findOne({ '_id': _storeId }, { _id: 1, Title: 1, Banner: 1, Sections: { $slice: [skippedSections, 32] } }).populate({
                 path: 'Sections.Store',
-                model: 'Store'
+                model: 'Store',
+                select: { _id: 1, StoreName: 1 }
             }).exec(function (err, Obj) {
                 if (err)
                     reject({
@@ -68,7 +70,8 @@ module.exports = {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _id }).populate({
                 path: 'Sections.Store',
-                model: 'Store'
+                model: 'Store',
+                select: { _id: 1, StoreName: 1 }
             }).exec(function (err, Obj) {
                 if (err)
                     reject({
@@ -77,7 +80,7 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        if (Obj.Sections.length> 0)
+                        if (Obj.Sections.length > 0)
                             resolve({
                                 code: 100,
                                 data: Obj
