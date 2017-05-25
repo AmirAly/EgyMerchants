@@ -38,11 +38,12 @@
         $scope.picAddModal.Title = $scope.picAddModalTitle;
         $scope.picAddModal.URL = $('#imgAddItem').attr('src');
         $scope.currentItem.Pictures.push($scope.picAddModal);
-        $scope.dismiss();
         $scope.picAddModal = {};
         $scope.picAddModalTitle = '';
         $('#imgAddItem').attr('src', '/img/add.gif');
         console.log($scope.picAddModal);
+        $scope.dismiss();
+
     };
 
     //edit pic

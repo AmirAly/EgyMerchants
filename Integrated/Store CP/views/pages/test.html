@@ -23,6 +23,12 @@
                             <p>User Profile</p>
                         </a>
                     </li>
+                    <li>
+                        <a href="/eg/Home">
+                            <i class="material-icons">person</i>
+                            <p>Sign Out</p>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -37,7 +43,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="/eg/p/product">Edit Item</a>
+                        <a class="navbar-brand" href="/eg/p/product/{{itemId}}">Edit Item</a>
                     </div>
                 </div>
             </nav>
@@ -154,7 +160,7 @@
                                     <img src="<%= item.Pictures[0].URL %>" />
                                 </div>
                                 <div class="card-content">
-                                    <h4 class="title" ng-bind="item.Name"><%= item.Name %></h4>
+                                    <h4 class="title itemTitle" ng-bind="item.Name"><%= item.Name %></h4>
                                     <h4 class="title" ng-bind="item.Price"><%= item.Price %></h4>
                                     <p class="category" ng-bind="item.Description"><%= item.Description %></p>
                                 </div>
@@ -169,7 +175,7 @@
                                     <img src="{{picture.URL}}">
                                 </div>
                                 <div class="card-content">
-                                    <h4 class="title">{{picture.Title}}</h4>
+                                    <h4 class="title itemTitle">{{picture.Title}}</h4>
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
@@ -244,7 +250,7 @@
 
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="title">{{picAddModalTitle}}</h4>
+                                            <h4 class="title itemTitle">{{picAddModalTitle}}</h4>
                                         </div>
 
                                     </div>
@@ -310,7 +316,7 @@
                                             </div>
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="title">{{picEditModal.Title}}</h4>
+                                            <h4 class="title itemTitle">{{picEditModal.Title}}</h4>
                                         </div>
 
                                     </div>
