@@ -8,6 +8,7 @@ var Expo = new Schema({
     }],
     Title: { type: String, min: 2 },
     Banner: { type: String, min: 2 },
+    Status: { type: String, default: 'Active' },
     Sections: [
         {
             Store: {
