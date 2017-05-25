@@ -107,12 +107,12 @@ module.exports = function (app) {
                 _scope.categories = _category.data;
                 res.render('pages/register', _scope);
             } else {
-                _scope.store = [];
+                _scope.categories = [];
                 res.render('pages/register', _scope);
             }
         }).catch(function (_err) {
             console.log(_err);
-            _scope.store = [];
+            _scope.categories = [];
             res.render('pages/register', _scope);
         });
     });

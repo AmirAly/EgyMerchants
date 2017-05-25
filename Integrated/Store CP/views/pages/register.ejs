@@ -1,7 +1,7 @@
 <% include ../partials/headlogin %>
 <div ng-controller="registerController">
-<div class="loaderContainer" ng-show="loading"></div>
-<div class="loader" ng-show="loading"></div>
+    <div class="loaderContainer" ng-show="loading"></div>
+    <div class="loader" ng-show="loading"></div>
     <div class="image-container set-full-height" style="background-image: url(' /img/wizard.jpg')">
         <!--  Made With Get Shit Done Kit  -->
         <a class="made-with-mk hidden-xs">
@@ -142,7 +142,7 @@
                                                 </div>
                                                 <% }); %>
                                                 <% }else{ %>
-                                                <p class="text-center">There is no galleries</p>
+                                                <p class="text-center">There is no categories</p>
                                                 <% } %>
 
                                             </div>
@@ -152,6 +152,9 @@
                                 <div class="wizard-footer height-wizard">
                                     <div class="col-sm-8 col-sm-offset-2 alert-danger clear" ng-show="errdiv">
                                         <span class="errorFont text-center" ng-show="errMsg"> Incorrect data user name or email it can be registered before please check your data</span>
+                                    </div>
+                                    <div class="col-sm-8 col-sm-offset-2 text-center clear" ng-show="errdiv">
+                                        <a class="text-center" href="/eg/Home"> Already have an account to login </a>
                                     </div>
                                     <div class="pull-right">
                                         <input type='button' class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Next' />
