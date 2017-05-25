@@ -74,6 +74,11 @@ module.exports = {
                                 });
                         })
                     }
+                    else
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
                 }
             })
         })

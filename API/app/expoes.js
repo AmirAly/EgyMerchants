@@ -62,6 +62,11 @@ module.exports = {
                             code: 100,
                             data: Obj
                         });
+                    else
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
                 }
             })
         })
