@@ -1,4 +1,5 @@
-﻿egm.factory('API', function ($http) {
+egm.factory('API', function ($http) {
+    //var _url = 'http://localhost:8007';
     var _url = 'http://egm-app.azurewebsites.net';
     return {
         name: 'API',

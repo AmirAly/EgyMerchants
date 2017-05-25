@@ -75,6 +75,10 @@
         $scope.dismiss();
     };
 
+    $("Badges").tagsinput('items');
+    $("Tags").tagsinput('items');
+
+
     $scope.updateItem = function () {
         $scope.loading = true;
         var req = {
@@ -85,7 +89,10 @@
                 Name: $scope.item.Name,
                 Description: $scope.item.Description,
                 Price: $scope.item.Price,
-                Imgs: $scope.currentItem.Pictures
+                Imgs: $scope.currentItem.Pictures,
+                Tags: $scope.item.Tags,
+                Badges: $scope.item.Badges,
+                PriceBeforeSale: $scope.item.PriceBeforeSale
             }
         }
         API.execute(req).then(function (res) {

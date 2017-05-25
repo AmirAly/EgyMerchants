@@ -71,7 +71,7 @@
                                 <div class="card-content">
                                     <form name="frmUpdateGallery">
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <div class="col-md-12">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Item Name</label>
                                                     <input type="text" class="form-control" value="<%= item.Name %>" ng-init="item.Name = '<%= item.Name %>'" ng-model="item.Name" required name="itemTitle" id="itemTitle" pattern="^.{1,35}$">
@@ -81,6 +81,8 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-md-5">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Price</label>
@@ -88,6 +90,16 @@
                                                     <span ng-show="frmUpdateGallery.itemPrice.$dirty && frmUpdateGallery.itemPrice.$invalid">
                                                         <span class="errorFont" ng-show="frmUpdateGallery.itemPrice.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmUpdateGallery.itemPrice.$error.pattern">Price min 2 number and max 7 number</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Price Before Sale</label>
+                                                    <input type="text" class="form-control" value="<%= item.PriceBeforeSale %>" ng-init="item.PriceBeforeSale = '<%= item.PriceBeforeSale %>'" ng-model="item.PriceBeforeSale" name="PriceBeforeSale" id="PriceBeforeSale" pattern="^[0-9]{2,7}$">
+                                                    <span ng-show="frmUpdateGallery.PriceBeforeSale.$dirty && frmUpdateGallery.PriceBeforeSale.$invalid">
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.PriceBeforeSale.$error.required">Required</span>
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.PriceBeforeSale.$error.pattern">Price min 2 number and max 7 number</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -106,7 +118,31 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" ng-click="updateItem()" ng-disabled="frmUpdateGallery.$invalid" class="btn btn-primary pull-right">Update Item</button>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Badges</label>
+                                                    <input type="text" class="form-control Badges" value="<%= item.Badges %>" ng-init="item.Badges = '<%= item.Badges %>'" ng-model="item.Badges" name="Badges" id="Badges" pattern="^.{1,35}$" data-role="tagsinput">
+                                                    <span ng-show="frmUpdateGallery.Badges.$dirty && frmUpdateGallery.Badges.$invalid">
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.Badges.$error.required">Required</span>
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.Badges.$error.pattern">Item badges is too long</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Tags</label>
+                                                    <input type="text" class="form-control Tags" value="<%= item.Tags %>" ng-init="item.Tags = '<%= item.Tags %>'" ng-model="item.Tags" name="Tags" id="Tags" pattern="^.{1,35}$" data-role="tagsinput">
+                                                    <span ng-show="frmUpdateGallery.Tags.$dirty && frmUpdateGallery.Tags.$invalid">
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.Tags.$error.required">Required</span>
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.Tags.$error.pattern">Item tags is too long</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" value="submit" ng-click="updateItem()" ng-disabled="frmUpdateGallery.$invalid" class="btn btn-primary pull-right">Update Item</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>

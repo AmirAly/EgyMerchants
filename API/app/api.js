@@ -89,7 +89,7 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Item/Edit', function (req, res) {
-        ItemLogic.edit(req.body._id, req.body.Name, req.body.Description, req.body.Imgs).then(function (result) {
+        ItemLogic.edit(req.body._id, req.body.Name, req.body.Description, req.body.Imgs, req.body.Price, req.body.PriceBeforeSale, req.body.Badges,req.body.Tags).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);

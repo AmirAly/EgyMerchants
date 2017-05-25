@@ -70,7 +70,7 @@
                                     </div>
                                     <div class="card-content">
                                         <h4 class="title"><%= item.Name %></h4>
-										<h4 class="title"><%= item.Price %></h4>
+                                        <h4 class="title"><%= item.Price %></h4>
                                         <p class="category"><%= item.Description %></p>
                                     </div>
                                     <div class="card-footer">
@@ -118,7 +118,7 @@
                                         <div class="card-content">
                                             <form name="frmAddItem">
                                                 <div class="row">
-                                                    <div class="col-md-5">
+                                                    <div class="col-md-12">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Item Name</label>
                                                             <input type="text" class="form-control" ng-model="item.Name" required name="itemTitle" id="itemTitle" pattern="^.{1,35}$">
@@ -128,6 +128,8 @@
                                                             </span>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="row">
                                                     <div class="col-md-5">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Price</label>
