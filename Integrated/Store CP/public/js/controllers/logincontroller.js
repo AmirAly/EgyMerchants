@@ -20,10 +20,10 @@
                 $scope.errMsg = true;
                 $scope.errdiv = true;
                 console.log(res.data);
+                $scope.loading = false;
+
             }
 
-        }).finally(function () {
-            $scope.loading = false;
         });
     }
 });
