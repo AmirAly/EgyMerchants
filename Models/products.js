@@ -3,7 +3,7 @@ var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
     getFeatured: function (_storeId) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Store': _storeId, "Badges": { "$regex": "#Featured", "$options": "i" } }, '_id Name Rate Pictures Price', function (err, lst) {
+            Schema.find({ 'Store': _storeId, "Badges": { "$regex": "#Featured", "$options": "i" },'Status':'Active' }, '_id Name Rate Pictures Price', function (err, lst) {
                 if (err)
                     reject({
                         code: 1,
@@ -27,7 +27,7 @@ module.exports = {
     },
     getByBestSeller: function (_storeId) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Store': _storeId }, '_id Name Rate Pictures Price', function (err, lst) {
+            Schema.find({ 'Store': _storeId,'Status':'Active' }, '_id Name Rate Pictures Price', function (err, lst) {
                 if (err)
                     reject({
                         code: 1,

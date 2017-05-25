@@ -7,7 +7,7 @@ module.exports = {
             Schema.findOne({ $or: [{ 'Email': _newStore.Email }, { 'StoreName': _newStore.StoreName }] }, '', function (err, Obj) {
                 if (err)
                     reject({
-                        code:1,
+                        code: 1,
                         data: err
                     });
                 else {
@@ -17,17 +17,19 @@ module.exports = {
                             data: "This email or store name already exist"
                         });
                     else {
-                        _newStore.save(function (err, _newstore) {
-                            if (err)
-                                reject({
-                                    code: 1,
-                                    data: err
-                                });
-                            else
-                                resolve({
-                                    code: 100,
-                                    data: { _id: _newstore._id, StoreName: _newstore.StoreName}
-                                });
+                        Category.findOneAndUpdate({ '_id': _newStore.Category }, { $addToSet: { 'Countries': _newStore.CountryISOCode } }, { new: true }, function (err, Obj) {
+                            _newStore.save(function (err, _newstore) {
+                                if (err)
+                                    reject({
+                                        code: 1,
+                                        data: err
+                                    });
+                                else
+                                    resolve({
+                                        code: 100,
+                                        data: { _id: _newstore._id, StoreName: _newstore.StoreName }
+                                    });
+                            })
                         })
                     }
                 }
@@ -75,29 +77,37 @@ module.exports = {
                         data: err
                     });
                 else {
-                    Obj.Email = _email;
-                    Obj.City = _city;
-                    Obj.Address = _address;
-                    Obj.Country = _country;
-                    Obj.Description = _description;
-                    if(_imgs)
-                    Obj.Imgs=_imgs;
-                    if (_newPassword != "")
-                        Obj.Password = _newPassword;
-                    else
-                        Obj.Password = _oldPassword;
-                    Obj.save(function (err, Obj) {
-                        if (err)
-                            reject({
-                                code: 1,
-                                data: err
-                            });
+                    if (Obj) {
+                        Obj.Email = _email;
+                        Obj.City = _city;
+                        Obj.Address = _address;
+                        Obj.Country = _country;
+                        Obj.Description = _description;
+                        if (_imgs)
+                            Obj.Imgs = _imgs;
+                        if (_newPassword != "")
+                            Obj.Password = _newPassword;
                         else
-                            resolve({
-                                code: 100,
-                                data: "Your profile updated successfully"
-                            });
-                    })
+                            Obj.Password = _oldPassword;
+                        Obj.save(function (err, Obj) {
+                            if (err)
+                                reject({
+                                    code: 1,
+                                    data: err
+                                });
+                            else
+                                resolve({
+                                    code: 100,
+                                    data: "Your profile updated successfully"
+                                });
+                        })
+                    }
+                    else {
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
+                    }
                 }
             });
         })
