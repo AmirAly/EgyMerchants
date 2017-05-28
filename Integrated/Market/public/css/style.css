@@ -360,9 +360,6 @@ h1, h2, h3, h4, h5, h6 {
             padding: 8px;
         }
 
-    .pageHeader .navbar-form.pull-right {
-        /*padding-right: 40px;*/
-    }
 
     .pageHeader .btn-default {
         border: none !important;
@@ -396,7 +393,6 @@ h1, h2, h3, h4, h5, h6 {
 
         .pageHeader .navbar li:not(.active):hover {
             background-color: transparent !important;
-            /*border-bottom: 5px solid red;*/
             color: #000;
         }
 
@@ -1018,9 +1014,9 @@ h1, h2, h3, h4, h5, h6 {
         .expoPage .pagination-main li a {
             font-size: 24px;
             padding: 5px;
-            background: #1e5852;
+            background: #636161;
             display: inline-block;
-            border: 1px solid #1e5852;
+            border: 1px solid #636161;
             width: 44px;
             height: 44px;
             text-align: center;
@@ -1037,8 +1033,8 @@ h1, h2, h3, h4, h5, h6 {
             .expoPage .pagination-main li.active a {
                 text-decoration: none;
                 color: #fff;
-                background: #4cc7ba;
-                border-color: #4cc7ba;
+                background: #bbb;
+                border-color: #bbb;
                 box-shadow: 0px 0px 8px 2px #fff;
             }
 
@@ -1063,7 +1059,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .expoPage .secondDiv > * {
     font-family: 'Roboto', sans-serif;
-    background: #801638;
+    /*background: #801638;*/
 }
 
 .expoPage .secondDiv h2, .expoPage .secondDiv h3, .expoPage .secondDiv h4, .expoPage .secondDiv a {
@@ -1075,7 +1071,14 @@ h1, h2, h3, h4, h5, h6 {
     text-shadow: 1px 1px 1px #ee3b27;*/
 }
 /* Background colours */
-.expoPage .secondDiv section:nth-child(1) {
+.expoPage .secondDiv section:nth-child(odd) {
+    background: #f4f4f4;
+}
+
+.expoPage .secondDiv section:nth-child(even) {
+    background: #fff;
+}
+/*.expoPage .secondDiv section:nth-child(1) {
     background: #c22326;
     background-image: url(http://file.mrbool.com/mrbool/articles/RicardoArrigoni/Parallax/Parallax1.jpg);
     background-size: cover;
@@ -1103,7 +1106,7 @@ h1, h2, h3, h4, h5, h6 {
     background: #801638;
     background-image: url(http://social-lions.ro/wp-content/uploads/revslider/home2/img-33.jpg);
     background-size: cover;
-}
+}*/
 /* Main layout */
 .expoPage .secondDiv {
     list-style: none;
@@ -1150,10 +1153,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Article layouts */
 .expoPage article .expoData {
-    text-align: left;
-    box-shadow: inset 3px 3px 200px #000000;
+       text-align: left;
+    box-shadow: inset 0px 1px 1px #b9b9b9;
+    padding-top: 10px;
     padding-bottom: 10px;
-    padding-top: 0;
+    border-bottom: 1px solid #bbb;
 }
 
     .expoPage article .expoData h6 {

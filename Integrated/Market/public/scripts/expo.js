@@ -40,5 +40,5 @@ function toggle(_id) {
 function selectPage (_id,_floor) {
     $('.btnChangePage').removeClass('active');
     $('.page' + _floor).addClass('active');
-    $('#expo' + _id + ' .repeated-item').slideUp().animate({ opacity: '1' }, "fast").slideDown();
+    $('#expo' + _id + ' .repeated-item').fadeOut('50', 'linear').fadeIn('50', 'linear').animate({ opacity: '1' }, "50");
 }
