@@ -21,7 +21,6 @@
                 $scope.errdiv = true;
                 console.log(res.data);
                 $scope.loading = false;
-
             }
 
         });

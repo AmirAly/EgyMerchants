@@ -34,9 +34,9 @@
                 $scope.itemId = _res.data.data._id;
                 console.log('id:', $scope.itemId); //"591cd30b2b99d00af8affaa0"
                 window.location.reload();
+            } else {
+                $scope.loading = false;
             }
-        }).finally(function () {
-            $scope.loading = false;
         });
     };
 });

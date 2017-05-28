@@ -28,9 +28,8 @@
                 window.location.reload();
             } else {
                 console.log(res.data.data);
+                $scope.loading = false;
             }
-        }).finally(function () {
-            $scope.loading = false;
         });
     };
 });

@@ -33,10 +33,9 @@
                 console.log(res);
                 window.location.reload();
             } else {
-                console.log('err');$scope.loading = false;
+                console.log('err');
+                $scope.loading = false;
             }
-        }).finally(function () {
-            
         });
     };
 });
