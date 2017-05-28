@@ -82,6 +82,10 @@
     $("Badges").tagsinput('items');
     $("Tags").tagsinput('items');
 
+    $scope.signOut = function () {
+        window.location.href = '/eg/Home';
+        localStorage.clear();
+    };
 
     $scope.updateItem = function () {
         $scope.loading = true;

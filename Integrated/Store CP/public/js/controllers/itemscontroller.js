@@ -11,6 +11,11 @@
         window.location.href = '/eg/p/product/' + _itemId;
     };
 
+    $scope.signOut = function () {
+        window.location.href = '/eg/Home';
+        localStorage.clear();
+    };
+
     $scope.addItem = function () {
         $scope.loading = true;
         var req = {
