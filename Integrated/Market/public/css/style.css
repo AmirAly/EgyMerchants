@@ -502,7 +502,15 @@ h1, h2, h3, h4, h5, h6 {
     }
 
 
+.txtNoData {
+    background: #fff;
+    text-align: center;
+    padding: 15px;
+}
 
+.pin{
+    max-width:20px;
+}
 
 /*Welcome Page*/
 .welcomePage .welcomeImgContainer {
@@ -951,7 +959,7 @@ h1, h2, h3, h4, h5, h6 {
     /*top: 100px;
     left: 150px;*/
     top: 0px;
-    bottom:0px;
+    bottom: 0px;
     left: 0px;
 }
 
@@ -962,7 +970,7 @@ h1, h2, h3, h4, h5, h6 {
         background: #fff;
         position: absolute;
         top: 0;
-        bottom:0;
+        bottom: 0;
         z-index: 1;
         box-shadow: 1px 1px 7px 2px #444;
     }
@@ -971,7 +979,7 @@ h1, h2, h3, h4, h5, h6 {
     left: -100px;
     position: absolute;
     top: 0;
-    bottom:0;
+    bottom: 0;
     -webkit-transition: 1s;
 }
 
@@ -1166,7 +1174,8 @@ h1, h2, h3, h4, h5, h6 {
         text-align: left;
         font-weight: bolder;
         font-size: 45px;
-        padding-bottom: 0;
+            padding-bottom: 5px;
+    text-align: center;
     }
 
 .expoPage section:first-child article .expoData h1 {
