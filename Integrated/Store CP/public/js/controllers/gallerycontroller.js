@@ -15,6 +15,11 @@
     $scope.galleryId = localStorage.getItem('GalleryOfGalleries');
     console.log(localStorage.getItem('GalleryOfGalleries'));
 
+    $scope.signOut = function () {
+        window.location.href = '/eg/Home';
+        localStorage.clear();
+    };
+
     $scope.updateGallery = function () {
         $scope.loading = true;
         var req = {

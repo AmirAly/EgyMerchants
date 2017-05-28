@@ -8,6 +8,10 @@
         $scope.categoryId = _id;
     };
 
+    $scope.signOut = function () {
+        window.location.href = '/eg/Home';
+        localStorage.clear();
+    };
 
     $scope.registerStore = function () {
         console.log($scope.selectedCity);

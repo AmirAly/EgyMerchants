@@ -8,6 +8,11 @@
 
     console.log(localStorage.getItem('StoreId'));
 
+    $scope.signOut = function () {
+        window.location.href = '/eg/Home';
+        localStorage.clear();
+    };
+
     $scope.save = function () {
 
         $scope.profileImg = {
