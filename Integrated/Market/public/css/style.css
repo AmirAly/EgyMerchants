@@ -350,10 +350,10 @@ h1, h2, h3, h4, h5, h6 {
         height: 175px;
     }
 
-    @media (max-width:767px) {
-        .header .navbar {
+@media (max-width:767px) {
+    .header .navbar {
         min-height: 35px !important;
-        height:auto !important;
+        height: auto !important;
     }
 }
 
@@ -1267,7 +1267,7 @@ h1, h2, h3, h4, h5, h6 {
     width: calc(100vw - 150px);
     overflow-y: hidden;
     margin-top: 0px;
-    min-height: 625px;
+    /*min-height: 625px;*/
     margin: auto;
 }
 
@@ -1446,6 +1446,74 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
 }
 
+    .expoPage .secondDiv .homepage-bar {
+        background-color: #2f3946;
+        border: 0;
+        padding: 11px 0;
+    }
+
+        .expoPage .secondDiv .homepage-bar .col-md-4 {
+            border: none;
+            padding-top: 20px;
+            padding-bottom: 21px;
+            text-align: left;
+        }
+
+        .expoPage .secondDiv .homepage-bar i {
+            color: #9fa4af;
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 35px;
+        }
+
+            .expoPage .secondDiv .homepage-bar i:before {
+                font-style: normal;
+                font-weight: normal;
+                speak: none;
+                display: inline-block;
+                text-decoration: inherit;
+                width: 1em;
+                margin-right: .2em;
+                text-align: center;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1em;
+                margin-left: .2em;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                width: auto;
+            }
+
+        .expoPage .secondDiv .homepage-bar .text-area {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: left;
+            margin-left: 5px;
+        }
+
+        .expoPage .secondDiv .homepage-bar h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            line-height: 19px;
+            margin: 0;
+            padding: 0 !important;
+        }
+
+        .expoPage .secondDiv .homepage-bar p {
+            font-size: 13px;
+            font-weight: 300;
+            color: #c8cdcf;
+            line-height: 19px;
+            margin: 0;
+        }
+
+
+
+
+
+
+
     .expoPage .secondDiv .secondExpo {
         position: relative;
     }
@@ -1482,8 +1550,8 @@ h1, h2, h3, h4, h5, h6 {
 .expoPage article .expoData {
     text-align: left;
     box-shadow: inset 0px 1px 1px #b9b9b9;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 20px 0;
+    background-color: #f4f4f4;
     border-bottom: 1px solid #bbb;
 }
 
