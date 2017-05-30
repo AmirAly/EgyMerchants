@@ -1978,3 +1978,8 @@ dl#narrow-by-list {
 }
 
 
+.product-preview .preview .img-responsive {
+    height:auto !important;
+    max-height:220px !important;
+    min-height:220px !important;
+}
