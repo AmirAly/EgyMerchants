@@ -5146,3 +5146,18 @@ footer .btn {
 .container-fluid.top{
     padding-right: 30px;
 }
+.smallPic{
+    width:100%;
+    height:20% !important;
+}
+.alert-warning.alertWarning{
+    background-color: #fff6a9;
+    color: #b93636;
+    border-radius: 3px;
+    box-shadow: 0 12px 20px -10px rgba(255, 152, 0, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 152, 0, 0.2);
+    padding: 5px 15px;
+    font-size: 11px;
+}
+.tagslabel{
+    top: -38px !important;
+}

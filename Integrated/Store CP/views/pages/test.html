@@ -49,7 +49,7 @@
                                                         <!--<img src=" /img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
                                                         <input type="file" id="wizard-picture">-->
                                                         <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="/img/default-avatar.png" />
-                                                        <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
+                                                        <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" />
 
                                                     </div>
                                                     <h6>Choose Picture</h6>
@@ -58,7 +58,7 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>
-                                                        User Name <small>(required)</small>
+                                                        Store Name <small>(required)</small>
                                                     </label>
                                                     <input name="username" type="text" class="form-control" ng-model="register.StoreName" placeholder="Enter your name.." required="">
                                                 </div>
@@ -86,6 +86,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="tab-pane" id="address">
                                         <div class="row">
                                             <div class="col-sm-12">
@@ -94,7 +95,7 @@
                                             <div class="col-sm-5 col-sm-offset-1">
                                                 <div class="form-group">
                                                     <label>City</label>
-                                                    <input type="text" class="form-control" ng-model="register.City" placeholder="Enter your city..">
+                                                    <input type="text" class="form-control" ng-model="register.City" placeholder="Enter your city.." required name="txtCity">
                                                 </div>
                                             </div>
                                             <div class="col-sm-5">
@@ -102,7 +103,7 @@
                                                     <label>Country</label>
                                                     <br>
                                                     <select name="country" ng-model="selectedCity" class="form-control">
-                                                        <option value="59067579734d1d32590f51dd" selected> Egypt </option>
+                                                        <option value="59067579734d1d32590f51dd" ng-selected="selected"> Egypt </option>
                                                         <option value="590676e7734d1d32590f5248"> Italy </option>
                                                         <option value="59067906734d1d32590f529b"> Turkey </option>
                                                         <option value="59067b18734d1d32590f531a"> Dubai </option>
@@ -114,19 +115,20 @@
                                             <div class="col-sm-10 col-sm-offset-1">
                                                 <div class="form-group">
                                                     <label>Adress</label>
-                                                    <input type="text" class="form-control" ng-model="register.Address" placeholder="Enter your address..">
+                                                    <input type="text" class="form-control" ng-model="register.Address" name="txtAddress" required placeholder="Enter your address..">
                                                 </div>
                                             </div>
                                             <div class="col-sm-10 col-sm-offset-1">
                                                 <div class="form-group">
                                                     <label>About Me</label>
                                                     <div class="form-group label-floating">
-                                                        <textarea class="form-control" rows="5" ng-model="register.Description" placeholder="Enter Description of your store.." style="resize: none;"></textarea>
+                                                        <textarea class="form-control" rows="5" ng-model="register.Description" placeholder="Enter Description of your store.." name="txtDescription" required style="resize: none;"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="tab-pane catigories" id="type">
                                         <h4 class="info-text">What type of location do you have? </h4>
                                         <div class="row">
@@ -135,7 +137,7 @@
                                                 <% categories.forEach(function(category){ %>
                                                 <div class="col-md-3 col-xs-6">
                                                     <div class="choice" ng-click="chooseCategory('<%= category._id %>')" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a house.">
-                                                        <input type="radio" name="type" value="House">
+                                                        <input type="radio" name="type" value="House" checked="checked">
                                                         <div class="icon">
                                                             <img src=" <%= category.Img %>" class="picture-src" id="wizardPicturePreview" title="" />
                                                         </div>
@@ -155,11 +157,11 @@
                                     <div class="col-sm-8 col-sm-offset-2 alert-danger clear" ng-show="errdiv">
                                         <span class="errorFont text-center" ng-show="errMsg"> Incorrect data user name or email it can be registered before please check your data</span>
                                     </div>
-                                    <div class="col-sm-8 col-sm-offset-2 text-center clear" ng-show="errdiv">
+                                    <div class="col-sm-8 col-sm-offset-2 text-center clear">
                                         <a class="text-center" href="/eg/Home"> Already have an account to login </a>
                                     </div>
                                     <div class="pull-right">
-                                        <input type='button' class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Next' />
+                                        <input type='button' ng-click="next()" class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Next' />
                                         <input type='button' ng-click="registerStore()" class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish' value='Finish' />
                                     </div>
                                     <div class="pull-left">

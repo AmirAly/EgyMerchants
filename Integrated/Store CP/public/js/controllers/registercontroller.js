@@ -7,6 +7,12 @@
         console.log(_id);
         $scope.categoryId = _id;
     };
+    $scope.selectedCity = '59067579734d1d32590f51dd';
+    $scope.next = function () {
+        $scope.frmRegister.txtCity.$validate();
+        $scope.frmRegister.txtAddress.$validate();
+        $scope.frmRegister.txtDescription.$validate();
+    }
 
     $scope.signOut = function () {
         window.location.href = '/eg/Home';
