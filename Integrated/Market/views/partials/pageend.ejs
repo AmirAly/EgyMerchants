@@ -24,40 +24,34 @@
 
 <script src="/js/general/jquery-ui.js"></script>
 
+<script src="/js/general/wow.min.js"></script>
+<script>
+  new WOW().init();
+</script>
+
 <script type="text/javascript">
-
-function showSmallSearchDvs(){
-  if($('.smallDvSearch').hasClass('hide')){
-    $('.smallDvSearch').removeClass('hide');
-    $( "#dvSearchExpo" ).autocomplete({
-     source: [ "Al Masreen", "Milano", "Dobai world", "Eiffel", "Asatana", "Le Marchee" ]
-    });
-
-    $( "#dvSearchStore" ).autocomplete({
-     source: [ "Al Nagar", "B & B", "DownTown", "Cassina", "Florence", "Al Shaymaa", "Al Maksoud" ]
+  jQuery(function ($) {
+      $(document).ready(function () {
+          checkScrollTop();
+          $(window).scroll(function () {
+              checkScrollTop();
+          });
+          function checkScrollTop() {
+              if ($(window).scrollTop() < 100) {
+                  $('.header-wrapper').attr('style', 'position: static !important;'); // .removeClass('isScrolled');
+              }
+              else {
+                  $('.header-wrapper').attr('style', 'position: fixed !important;').addClass('isScrolled');
+              }
+          }
+          
+      });
   });
-
-  $( "#dvSearchProduct" ).autocomplete({
-  source: ["Modern Metropolis Sofa", "Fancy Bed Room", "Black Dinner Table", "Raymond Woven Club Chair", "Desert Modern Cocktail Ottoman", "Post and Lintel Lounge Chair" ]
-  });
-  }
-  }
-
-  function openSearchPage(){
-  window.location.href="/Eg/Search";
-  }
-
-
-
-
 </script>
 
 <!--angular js-->
 <!--
 	<script type="text/javascript" src="/js/general/angular.min.js"></script>
-    <script type="text/javascript" src="/js/general/angular-ui-router.min.js"></script>
-    <script type="text/javascript" src="/js/general/angular-animate.js"></script>
-
 
     <script type="text/javascript" src="/js/app.js"></script>
     <script type="text/javascript" src="/js/approutes.js"></script>

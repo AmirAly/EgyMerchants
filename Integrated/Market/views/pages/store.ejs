@@ -84,7 +84,8 @@
                             <% bestSeller.forEach(function(item){ %>
                             <li>
                                 <div class="product">
-                                    <a href="/Eg/Product/<%= item.Name %>/<%= item._id %>" class="preview-image"><img class="img-responsive animate scale" src="<%= item.Pictures[0].URL %>" alt=""></a>
+                                    <a href="/Eg/Product/<%= item.Name %>/<%= item._id %>" class="preview-image">
+									<img class="img-responsive animate scale" src="<%= item.Pictures[0].URL %>" alt=""></a>
                                     <p class="name"><a href="/Eg/Product/<%= item.Name %>/<%= item._id %>" class="preview-image"><%= item.Name %></a></p>
                                     <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span>
                                     <span class="price"><%= item.Price %></span>
@@ -111,8 +112,9 @@
 						<% if (Galleries.length > 0) { %>
                             <% Galleries.forEach(function(gallery){ %>
                             <div class="product-preview">
-                                <div class="preview animate scale">
-                                    <a href="/Eg/Gallery/<%= gallery.Title %>/<%= gallery._id %>" class="preview-image"><img class="img-responsive animate scale" src="<%= gallery.DisplayPicture %>" width="270" height="328" alt=""></a>
+                                <div class="preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
+                                    <a href="/Eg/Gallery/<%= gallery.Title %>/<%= gallery._id %>" class="preview-image">
+									<img class="img-responsive wow zoomIn"  data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= gallery.DisplayPicture %>" width="270" height="328" alt=""></a>
                                     <ul class="product-controls-list right">
                                         <li><span class="label label-sale">SALE</span></li>
                                         <li><span class="label">-20%</span></li>
