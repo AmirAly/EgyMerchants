@@ -111,7 +111,7 @@
     <!-- //end Services -->
     <!-- Upsell products -->
     <section class="slider-products content-box">
-        <h3>ٍSimillar Products</h3>
+        <h3>Simillar Products</h3>
 
         <!-- Products list -->
         <div class="products-list-small">
@@ -120,14 +120,14 @@
 			<% similarProducts.forEach(function(product){ %>
                 <li>
                     <div class="product-preview">
-                        <div class="preview animate scale"> <a href="/Eg/Product/tabel/<%= product.id %>">
-						<img src="<%= product.img %>" alt=""></a> 
+                        <div class="preview  wow zoomIn"  data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s"> 
+						<a href="/Eg/Product/tabel/<%= product.id %>"><img class=" wow zoomIn"  data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= product.img %>" alt=""></a> 
 						<a href="/Eg/Product/tabel/<%= product.id %>" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a> </div>
                     </div>
                 </li>
                <% }); %>
 			   <% } else { %>
-		<p> No Data Available </p>
+		<p class="txtNoData"> No Data Available </p>
 		<% } %>
 
             </ul>

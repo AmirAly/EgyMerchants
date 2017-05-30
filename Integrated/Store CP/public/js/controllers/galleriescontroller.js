@@ -32,12 +32,16 @@
                 $scope.galleryId = _res.data._id;
                 console.log('id:', $scope.galleryId);
                 window.location.reload();
+            } else {
+                $scope.loading = false;
             }
-        }).finally(function () {
-            $scope.loading = false;
         });
     };
 
+    $scope.signOut = function () {
+        window.location.href = '/eg/Home';
+        localStorage.clear();
+    };
 
 }]);
 function convertImgToBase64URL(event) {

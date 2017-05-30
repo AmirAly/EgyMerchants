@@ -44,7 +44,7 @@
             <div class="col-xs-4 banners-block">
 
                 <div class="item">
-                    <a href="/store">
+                    <a href="#">
                         <img src="http://images.naldzgraphics.net/2012/01/11-Furnicom.jpg" alt="">
                         <div class="banner-text black">
                             100%<br>
@@ -53,7 +53,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/store">
+                    <a href="#">
                         <img src="https://images.designtrends.com/wp-content/uploads/2016/02/16100509/Royal-Furniture-Logo.jpg" alt="">
                         <div class="banner-text">
                             <div class="inside">
@@ -77,14 +77,15 @@
                     <div class="section-divider"></div>
 
                     <!-- BEST SELLERS -->
-                    <h3><a href="listing.html">BEST SELLERS</a></h3>
+                    <h3><a href="#">BEST SELLERS</a></h3>
                     <div class="products-widget jcarousel-skin-previews vertical">
                         <ul class="slides">
 						<% if (bestSeller.length > 0) { %>
                             <% bestSeller.forEach(function(item){ %>
                             <li>
                                 <div class="product">
-                                    <a href="/Eg/Product/<%= item.Name %>/<%= item._id %>" class="preview-image"><img class="img-responsive animate scale" src="<%= item.Pictures[0].URL %>" alt=""></a>
+                                    <a href="/Eg/Product/<%= item.Name %>/<%= item._id %>" class="preview-image">
+									<img class="img-responsive animate scale" src="<%= item.Pictures[0].URL %>" alt=""></a>
                                     <p class="name"><a href="/Eg/Product/<%= item.Name %>/<%= item._id %>" class="preview-image"><%= item.Name %></a></p>
                                     <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span>
                                     <span class="price"><%= item.Price %></span>
@@ -92,7 +93,7 @@
                             </li>
                             <% }); %>
 										   <% } else { %>
-		<p> No Data Available </p>
+		<p  class="txtNoData"> No Data Available </p>
 		<% } %>
                         </ul>
                     </div>
@@ -111,8 +112,9 @@
 						<% if (Galleries.length > 0) { %>
                             <% Galleries.forEach(function(gallery){ %>
                             <div class="product-preview">
-                                <div class="preview animate scale">
-                                    <a href="/Eg/Gallery/<%= gallery.Title %>/<%= gallery._id %>" class="preview-image"><img class="img-responsive animate scale" src="<%= gallery.DisplayPicture %>" width="270" height="328" alt=""></a>
+                                <div class="preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
+                                    <a href="/Eg/Gallery/<%= gallery.Title %>/<%= gallery._id %>" class="preview-image">
+									<img class="img-responsive wow zoomIn"  data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= gallery.DisplayPicture %>" width="270" height="328" alt=""></a>
                                     <ul class="product-controls-list right">
                                         <li><span class="label label-sale">SALE</span></li>
                                         <li><span class="label">-20%</span></li>
@@ -130,7 +132,7 @@
                             </div>
                             <% }); %>
 										   <% } else { %>
-		<p> No Data Available </p>
+		<p class="txtNoData"> No Data Available </p>
 		<% } %>
                         </div>
                         <!-- //end Products list -->

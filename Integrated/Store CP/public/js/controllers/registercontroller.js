@@ -8,11 +8,20 @@
         $scope.categoryId = _id;
     };
 
+    $scope.signOut = function () {
+        window.location.href = '/eg/Home';
+        localStorage.clear();
+    };
 
     $scope.registerStore = function () {
         console.log($scope.selectedCity);
         $scope.register.CountryISOCode = $scope.selectedCity;
         $scope.register.Category = $scope.categoryId;
+        $scope.image = {
+            URL:$('#imgItem').attr('src')
+        }
+        $scope.register.Imgs = [];
+        $scope.register.Imgs.push($scope.image);
         $scope.loading = true;
         var req = {
             method: 'post',
@@ -21,16 +30,30 @@
         }
         API.execute(req).then(function (res) {
             if (res.data.code == 100) {
+                console.log(res.data.data);
                 window.location.href = '/eg/Home';
             } else {
                 $scope.errMsg = true;
                 $scope.errdiv = true;
                 console.log(res.data);
+                $scope.loading = false;
             }
-        }).finally(function () {
-            $scope.loading = false;
         });
     };
-
-
 });
+function convertImgToBase64URL(event) {
+    var filesSelected = document.getElementById("uploadItemImage").files;
+    if (filesSelected.length > 0) {
+        var fileToLoad = filesSelected[0];
+        var fileReader = new FileReader();
+        fileReader.onload = function (fileLoadedEvent) {
+            BaseImg64 = fileLoadedEvent.target.result;
+            UploadImage(BaseImg64);
+        };
+        fileReader.readAsDataURL(fileToLoad);
+    }
+};
+
+function UploadImage(_BaseImg64) {
+    $('#imgItem').attr('src', _BaseImg64);
+};

@@ -42,7 +42,8 @@
         $scope.picAddModalTitle = '';
         $('#imgAddItem').attr('src', '/img/add.gif');
         console.log($scope.picAddModal);
-        $scope.dismiss();
+        console.log(000);
+        $scope.dismiss2();
 
     };
 
@@ -70,15 +71,21 @@
                 console.log($scope.currentItem.Pictures[i]);
                 $scope.currentItem.Pictures[i].Title = $scope.picEditModal.Title;
                 $scope.currentItem.Pictures[i].URL = $scope.picEditModal.URL;
+                console.log(111);
+                $scope.dismiss();
+                return;
             }
         }
-
-        $scope.dismiss();
+        
     };
 
     $("Badges").tagsinput('items');
     $("Tags").tagsinput('items');
 
+    $scope.signOut = function () {
+        window.location.href = '/eg/Home';
+        localStorage.clear();
+    };
 
     $scope.updateItem = function () {
         $scope.loading = true;
@@ -102,9 +109,8 @@
                 window.location.reload();
             } else {
                 console.log('err');
+                $scope.loading = false;
             }
-        }).finally(function () {
-            $scope.loading = false;
         });
     };
 });

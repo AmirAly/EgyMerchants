@@ -32,22 +32,23 @@
 				<% if (categories.length > 0) { %>
 			<% categories.forEach(function(cat){ %>
 				<div class="wow bounceInRight txtCategoryContainer" data-wow-duration="2s">
-                    <a href="/Eg/Expos/<%= cat._id %>"><%= cat.Name %></a>
+                    <a href="/Eg/Expos/59072775f36d286835cb21c9"><%= cat.Name %></a>
                 </div>
 			<% }); %>
 				<% } else { %>
-			 <p> No Data Available </p>
+			 <p class="txtNoData"> No Data Available </p>
 			 <% } %>
         </div>
         <div class="col-sm-1 small">
             <div class="dropdown">
               <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <img class="pin" src="/images/egypt.png">
+                <img class="pin" src="/images/egypt.png"/> 
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                  <li><a href="#"><img src="/images/Saudi-Arabia.png"></a></li>
-                  <li><a href="#"><img src="/images/Jordan.png"></a></li>
+			      <li><a href="#"><img src="/images/egypt.png"/> </a></li>
+                  <li><a href="#"><img src="/images/Saudi-Arabia.png"/> </a></li>
+                  <li><a href="#"><img src="/images/Jordan.png"/> </a></li>
               </ul>
             </div>  
         </div>

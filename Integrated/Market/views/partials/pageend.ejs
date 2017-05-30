@@ -24,33 +24,32 @@
 
 <script src="/js/general/jquery-ui.js"></script>
 
-<script type="text/javascript">
+<script src="/js/general/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
 
-function showSmallSearchDvs(){
-  if($('.smallDvSearch').hasClass('hide')){
-    $('.smallDvSearch').removeClass('hide');
-    $( "#dvSearchExpo" ).autocomplete({
-     source: [ "Al Masreen", "Milano", "Dobai world", "Eiffel", "Asatana", "Le Marchee" ]
-    });
+<!--<script type="text/javascript">
+  var SW_MENU_POPUP_WIDTH = 0;
+  jQuery(function($){
+  $(document).ready(function(){
+  checkScrollTop();
 
-    $( "#dvSearchStore" ).autocomplete({
-     source: [ "Al Nagar", "B & B", "DownTown", "Cassina", "Florence", "Al Shaymaa", "Al Maksoud" ]
+  $(window).scroll(function(){
+  checkScrollTop();
   });
 
-  $( "#dvSearchProduct" ).autocomplete({
-  source: ["Modern Metropolis Sofa", "Fancy Bed Room", "Black Dinner Table", "Raymond Woven Club Chair", "Desert Modern Cocktail Ottoman", "Post and Lintel Lounge Chair" ]
-  });
-  }
-  }
-
-  function openSearchPage(){
-  window.location.href="/Eg/Search";
-  }
-
-
-
-
-</script>
+  function checkScrollTop(){
+  if ($(window).scrollTop()< 150){
+                                    $('.header-wrapper').attr('style','position: static !important;');
+                                }
+                                else{
+                                    $('.header-wrapper').attr('style','position: fixed !important;');   
+                                }
+                            }
+                        });
+                    });
+</script>-->
 
 <!--angular js-->
 <!--

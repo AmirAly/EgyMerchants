@@ -27,7 +27,8 @@
         <% products.forEach(function(product){ %>
         <div class="product-preview ">
             <div class="preview animate scale">
-                <a href="/Eg/Product/<%= product.Name %>/<%= product._id %>" class="preview-image"><img class="img-responsive animate scale" src="<%= product.Pictures[0].URL %>" width="270" height="328" alt=""></a>
+                <a href="/Eg/Product/<%= product.Name %>/<%= product._id %>" class="preview-image">
+				<img class="img-responsive wow zoomIn"  data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= product.Pictures[0].URL %>" width="270" height="328" alt=""></a>
                 <ul class="product-controls-list right hide-right">
                     <li class="top-out"></li>
                     <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
@@ -42,7 +43,7 @@
         </div>
         <% }); %>
 		<% } else { %>
-		<p> No Data Available </p>
+		<p class="txtNoData"> No Data Available </p>
 		<% } %>
 
     </div>

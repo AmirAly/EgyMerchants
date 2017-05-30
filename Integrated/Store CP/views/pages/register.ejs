@@ -47,8 +47,11 @@
                                             <div class="col-sm-4 col-sm-offset-1">
                                                 <div class="picture-container">
                                                     <div class="picture">
-                                                        <img src=" /img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                        <input type="file" id="wizard-picture">
+                                                        <!--<img src=" /img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                                        <input type="file" id="wizard-picture">-->
+                                                        <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="/img/default-avatar.png" />
+                                                        <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" />
+
                                                     </div>
                                                     <h6>Choose Picture</h6>
                                                 </div>
@@ -153,7 +156,7 @@
                                     <div class="col-sm-8 col-sm-offset-2 alert-danger clear" ng-show="errdiv">
                                         <span class="errorFont text-center" ng-show="errMsg"> Incorrect data user name or email it can be registered before please check your data</span>
                                     </div>
-                                    <div class="col-sm-8 col-sm-offset-2 text-center clear" ng-show="errdiv">
+                                    <div class="col-sm-8 col-sm-offset-2 text-center clear">
                                         <a class="text-center" href="/eg/Home"> Already have an account to login </a>
                                     </div>
                                     <div class="pull-right">

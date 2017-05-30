@@ -9,3 +9,13 @@ egm.directive('myModal', function () {
         }
     }
 });
+egm.directive('myModal2', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            scope.dismiss2 = function () {
+                element.modal('hide');
+            };
+        }
+    }
+});
