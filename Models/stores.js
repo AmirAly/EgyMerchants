@@ -79,7 +79,7 @@ module.exports = {
             })
         })
     },
-    editProfile: function (_id,_oldPassword,_newPassword,_email,_city,_address,_country,_description,_imgs) {
+    editProfile: function (_id,_email,_city,_address,_country,_description,_imgs) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _id }, '', function (err, Obj) {
                 if (err)
@@ -97,10 +97,6 @@ module.exports = {
                             Obj.Description = _description;
                             if (_imgs)
                                 Obj.Imgs = _imgs;
-                            if (_newPassword != "")
-                                Obj.Password = _newPassword;
-                            else
-                                Obj.Password = _oldPassword;
                             Obj.save(function (err, Obj) {
                                 if (err)
                                     reject({
