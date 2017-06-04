@@ -16,7 +16,7 @@ var Item = new Schema({
     Status: { type: String, default: 'Active' },
     Store: {
         type: Schema.Types.ObjectId,
-        ref: 'Store',
+        ref: 'User',
         required: "Please add store id"
     },
     Gallery: {
