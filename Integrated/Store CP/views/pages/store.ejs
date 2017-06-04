@@ -41,7 +41,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/eg/store/{{store._id}}">Profile</a>
+                    <h4>Profile</h4>
                 </div>
             </div>
         </nav>
@@ -88,19 +88,8 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating is-empty">
-                                                <label class="control-label">Country</label>
-                                                <input type="text" class="form-control" name="country" id="country" required="" ng-model="storeData.country" pattern="^.{1,20}$">
-                                                <span ng-show="frmStore.country.$dirty && frmStore.country.$invalid">
-                                                    <span class="errorFont" ng-show="frmStore.country.$error.required">Required</span>
-                                                    <span class="errorFont" ng-show="frmStore.country.$error.pattern">country is too long</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-12">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">City</label>
                                                 <input type="text" class="form-control" value="<%= store.City%>" ng-init="store.City='<%= store.City%>'" ng-model="store.City" required name="City" id="City" pattern="^.{1,35}">
@@ -134,13 +123,11 @@
                     <div class="col-md-4">
                         <div class="card card-profile">
                             <div class="card-avatar">
-                                <a>
                                     <!--upload img-->
                                     <div>
                                         <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="<%= store.Imgs[0].URL %>" />
-                                        <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
+                                        <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" />
                                     </div>
-                                </a>
                             </div>
                             <div class="content">
                                 <h4 class="card-title itemTitle"><%= store.StoreName %></h4>

@@ -2,6 +2,15 @@
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click()
     };
+
+    $scope.preload = function () {
+        if (localStorage.getItem('StoreId') == null || localStorage.getItem('StoreId') == '') {
+            window.location.href = '/eg/Home';
+        }
+    };
+
+    $scope.preload();
+
     $scope.galleryId = localStorage.getItem('GalleryId');
     console.log(localStorage.getItem('GalleryId'));
     $scope.storeId = localStorage.getItem('StoreId');

@@ -347,7 +347,8 @@ h1, h2, h3, h4, h5, h6 {
         position: relative;
         left: 0;
         right: 0;
-        height: 175px;
+        max-height: 185px;
+        border: 0;
     }
 
 @media (max-width:767px) {
@@ -555,11 +556,19 @@ h1, h2, h3, h4, h5, h6 {
 .header-wrapper {
     background-color: #282d3b;
     height: 47px;
+    z-index: 999;
+    width: 100%;
+    top: 0;
 }
+
+    .header-wrapper.isScrolled .sticky-logo {
+        display: block;
+    }
 
     .header-wrapper .main-nav {
         margin: 0 auto;
         background-color: transparent;
+        height: 100%;
     }
 
         .header-wrapper .main-nav.container .menu-wrapper {
@@ -570,16 +579,15 @@ h1, h2, h3, h4, h5, h6 {
 .sticky-logo {
     float: left;
     margin-right: 20px;
+    display: none;
+    transition: color 0.1s,background-color .1s;
 }
 
-    .sticky-logo .logo {
-        padding: 0px;
-        margin: 0 !important;
-    }
+
 
     .sticky-logo img {
-        max-height: 32px;
-        padding-bottom: 8px;
+        max-height: 46px;
+        padding: 6px 10px 6px 40px;
     }
 
 .header-container.sticky-header .main-nav .menu {
@@ -603,7 +611,8 @@ h1, h2, h3, h4, h5, h6 {
     /*padding: 4px 15px;*/
     text-transform: uppercase;
     line-height: 19px;
-    padding: 10px 15px;
+    padding: 14px 20px;
+    transition: color 0.1s,background-color .1s;
 }
 
     .main-nav ul.menu > li > a {
@@ -612,6 +621,7 @@ h1, h2, h3, h4, h5, h6 {
         letter-spacing: 0.025em;
         font-weight: 400;
         color: #fff;
+        transition: color 0.1s,background-color .1s;
     }
 
 
@@ -740,8 +750,18 @@ h1, h2, h3, h4, h5, h6 {
     src: url("../fonts/Harabara.ttf");
 }
 
+.pageLanding .colordLayer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    background: white;
+    left: 0;
+    right: 0;
+    opacity: 0.5;
+}
+
 .pageLanding .container-fluid {
-    background-image: url(../images/1.png);
+    background-image: url(../images/2.jpg);
     min-height: 100vh;
     background-size: cover;
 }
@@ -1508,8 +1528,26 @@ h1, h2, h3, h4, h5, h6 {
             margin: 0;
         }
 
+    .expoPage .secondDiv .brands-slide {
+        background-color: #ffffff;
+        padding: 30px 0;
+        margin-top: 170px;
+    }
 
+        .expoPage .secondDiv .brands-slide .container {
+            display: flex;
+            display: none;
+        }
 
+            .expoPage .secondDiv .brands-slide .container div {
+                margin: auto;
+            }
+
+                .expoPage .secondDiv .brands-slide .container div img {
+                    display: inline;
+                    width: 160px;
+                    height: 60px;
+                }
 
 
 
@@ -1550,7 +1588,7 @@ h1, h2, h3, h4, h5, h6 {
 .expoPage article .expoData {
     text-align: left;
     box-shadow: inset 0px 1px 1px #b9b9b9;
-    padding: 20px 0;
+    padding: 12px 0;
     background-color: #f4f4f4;
     border-bottom: 1px solid #bbb;
 }
@@ -1881,3 +1919,67 @@ h1, h2, h3, h4, h5, h6 {
             padding: 0 5px 0 0;
             float: left;
         }
+
+/*search page*/
+dl#narrow-by-list {
+    margin: 0;
+}
+
+.block-layered-nav dt {
+    padding: 10px 15px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    color: #777;
+    position: relative;
+    cursor: pointer;
+    border-radius: 7px 7px 0 0;
+    margin-top: 14px;
+    border: 0;
+    background-color: transparent;
+    border-bottom: 2px solid #ccc;
+    padding-left: 0;
+    padding-right: 0;
+    font-family: "Oswald";
+    color: #000;
+    letter-spacing: 1px;
+    font-size: 12px;
+}
+
+    .block-layered-nav dt:before {
+        content: '\e060';
+        font: 1.23em icomoon;
+        border: 0;
+        color: #000;
+        position: absolute;
+        right: 0;
+        font-size: 12px;
+        background-color: transparent;
+    }
+
+.block-layered-nav dd {
+    font-size: 13px;
+    border-radius: 0 !important;
+    border: none;
+    background-color: transparent;
+    padding: 20px 15px;
+}
+
+
+.block.block-layered-nav .block-content ol {
+    margin: 0;
+    list-style: none;
+}
+
+.block-content {
+    padding-bottom: 50px;
+}
+
+
+.product-preview .preview .img-responsive {
+    height:auto !important;
+    max-height:220px !important;
+    min-height:220px !important;
+}

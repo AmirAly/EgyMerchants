@@ -3,9 +3,17 @@
         document.getElementById('uploadItemImage').click()
     };
 
+    $scope.preload = function () {
+        if (localStorage.getItem('StoreId') == null || localStorage.getItem('StoreId') == '') {
+            window.location.href = '/eg/Home';
+        }
+    };
+
+    $scope.preload();
+
     console.log(localStorage.getItem('StoreId'));
     $scope.storeId = localStorage.getItem('StoreId');
-    
+
     $scope.moveToGallery = function (_galleryOfGalleries) {
         localStorage.setItem('GalleryOfGalleries', _galleryOfGalleries);
         window.location.href = '/eg/g/gallery/' + _galleryOfGalleries;
