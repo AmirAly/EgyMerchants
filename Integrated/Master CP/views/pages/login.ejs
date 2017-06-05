@@ -1,0 +1,93 @@
+<% include ../partials/headlogin %>
+<div ng-controller="loginController">
+    <div class="loaderContainer" ng-show="loading"></div>
+    <div class="loader" ng-show="loading"></div>
+    <div class="image-container set-full-height" style="background-image: url(' /img/wizard.jpg')">
+        <!--  Made With Get Shit Done Kit  -->
+        <a class="made-with-mk">
+            <div class="brand">
+                <i class="fa fa-mobile" aria-hidden="true"></i>
+            </div>
+            <div class="made-with">
+                Made with <strong>AppOut</strong>
+            </div>
+        </a>
+        <!--   Big container   -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <!--      Wizard container        -->
+                    <div class="wizard-container">
+                        <div class="card wizard-card" data-color="orange" id="wizardProfile">
+                            <form action="" method="" name="frmLogin" novalidate>
+                                <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
+                                <div class="wizard-header">
+                                    <h3>
+                                        <b>LOGIN</b> PAGE <br>
+                                        <small>This information will let us know more about you.</small>
+                                    </h3>
+                                </div>
+                                <div class="wizard-navigation">
+                                    <ul>
+                                        <li>
+                                            <a href="#login" data-toggle="tab">Log in</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane" id="login">
+                                        <div class="row">
+                                            <h4 class="info-text"> Let's start with the basic information</h4>
+                                            <div class="col-sm-8 col-sm-offset-2">
+                                                <div class="form-group">
+                                                    <label>
+                                                        Email <small>(required)</small>
+                                                    </label>
+                                                    <input name="username" type="text" class="form-control" ng-model="loginData.Email" placeholder="Email..." required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8 col-sm-offset-2">
+                                                <div class="form-group">
+                                                    <label>
+                                                        Password <small>(required)</small>
+                                                    </label>
+                                                    <input name="password" type="password" class="form-control" ng-model="loginData.Password" placeholder="password..." required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8 col-sm-offset-2">
+                                                <div class=" alert-danger clear text-center" ng-show="errdiv">
+                                                    <span class="errorFont " ng-show="errMsg"> Incorrect email or password please check your data</span>
+                                                </div>
+                                            </div>
+                                            <div class="link col-sm-8 col-sm-offset-2">
+                                                <a href="/eg/register">Sign Up</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="wizard-footer height-wizard">
+                                    <div class="pull-right">
+                                        <input type='button' ng-click="login()" class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='login' value='login' />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- wizard container -->
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!--  big container -->
+        <div class="footer">
+            <div class="container">
+                Made with <i class="fa fa-heart heart"></i><a href="http://appout.co">AppOut.LLC</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--   Core JS Files   -->
+<% include ../partials/loginandregisterjsfiles %>
+

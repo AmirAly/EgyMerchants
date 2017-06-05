@@ -1,0 +1,339 @@
+<% include ../partials/headpages %>
+<div ng-controller='itemController' ng-init="init('<%= itemJSON %>')">
+    <div class="loaderContainer" ng-show="loading"></div>
+    <div class="loader" ng-show="loading"></div>
+    <div class="wrapper">
+        <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
+            <div class="logo">
+                <a href="http://appout.co" class="simple-text">
+                    AppOut.LLC
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="active">
+                        <a href='/eg/g/galleries/{{storeId}}'>
+                            <i class="material-icons">dashboard</i>
+                            <p>Galleries</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/eg/store/{{storeId}}">
+                            <i class="material-icons">person</i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                    <li ng-click="signOut()" class="cursorPointer">
+                        <a>
+                            <i class="material-icons">person</i>
+                            <p>Sign Out</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-panel">
+            <nav class="navbar navbar-transparent navbar-absolute">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <h4>Edit Item</h4>
+                    </div>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="container-fluid">
+                    <!-- Start Breadcrumbs -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="/eg/g/galleries/{{storeId}}">Galleries</a>
+                                </li>
+                                <li>
+                                    <a href="/eg/g/gallery/{{galleryId}}">Edit Gallery</a>
+                                </li>
+                                <li>
+                                    <a href="/eg/p/products/{{galleryId}}">Gallery Items</a>
+                                </li>
+                                <li class="active">Edit Item</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!-- End Breadcrumbs -->
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header" data-background-color="orange">
+                                    <h4 class="title">Edit Item</h4>
+                                    <p class="category">Edit your Item</p>
+                                </div>
+                                <div class="card-content">
+                                    <form name="frmUpdateGallery">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Item Name</label>
+                                                    <input type="text" class="form-control" value="<%= item.Name %>" ng-init="item.Name = '<%= item.Name %>'" ng-model="item.Name" required name="itemTitle" id="itemTitle" pattern="^.{1,35}$">
+                                                    <span ng-show="frmUpdateGallery.itemTitle.$dirty && frmUpdateGallery.itemTitle.$invalid">
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.itemTitle.$error.required">Required</span>
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.itemTitle.$error.pattern">Item name is too long</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Price</label>
+                                                    <input type="text" class="form-control" value="<%= item.Price %>" ng-init="item.Price = '<%= item.Price %>'" ng-model="item.Price" required name="itemPrice" id="itemPrice" pattern="^[0-9]{2,7}$">
+                                                    <span ng-show="frmUpdateGallery.itemPrice.$dirty && frmUpdateGallery.itemPrice.$invalid">
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.itemPrice.$error.required">Required</span>
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.itemPrice.$error.pattern">Price min 2 number and max 7 number</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Price Before Sale</label>
+                                                    <input type="text" class="form-control" value="<%= item.Price %>" ng-init="item.PriceBeforeSale = '<%= item.Price %>'" ng-model="item.Price" ng-model="item.PriceBeforeSale" name="PriceBeforeSale" id="PriceBeforeSale" pattern="^[0-9]{2,7}$">
+                                                    <span ng-show="frmUpdateGallery.PriceBeforeSale.$dirty && frmUpdateGallery.PriceBeforeSale.$invalid">
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.PriceBeforeSale.$error.required">Required</span>
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.PriceBeforeSale.$error.pattern">Price min 2 number and max 7 number</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label"> About Me</label>
+                                                        <textarea class="form-control" value="<%= item.Description %>" ng-init="item.Description = '<%= item.Description %>'" rows="3" ng-model="item.Description" required name="itemDesc" id="itemDesc" pattern="^.{1,200}$"><%= item.Description %></textarea>
+                                                        <span ng-show="frmUpdateGallery.itemDesc.$dirty && frmUpdateGallery.itemDesc.$invalid">
+                                                            <span class="errorFont" ng-show="frmUpdateGallery.itemDesc.$error.required">Required</span>
+                                                            <span class="errorFont" ng-show="frmUpdateGallery.itemDesc.$error.pattern">Item description is too long</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label tagslabel is-empty is-focused">Badges</label>
+                                                    <input type="text" class="form-control Badges" value="<%= item.Badges %>" ng-init="item.Badges = '<%= item.Badges %>'" ng-model="item.Badges" name="Badges" id="BadgesInput" data-role="tagsinput">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group label-floating is-empty is-focused">
+                                                    <label class="control-label tagslabel">Tags</label>
+                                                    <input type="text" class="form-control Tags" value="<%= item.Tags %>" ng-init="item.Tags = '<%= item.Tags %>'" ng-model="item.Tags" name="Tags" id="TagsInput" data-role="tagsinput">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" value="submit" ng-click="updateItem()" ng-disabled="frmUpdateGallery.$invalid" class="btn btn-primary pull-right">Update Item</button>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header card-chart">
+                                    <img src="<%= item.Pictures[0].URL %>" />
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="title itemTitle" ng-bind="item.Name"><%= item.Name %></h4>
+                                    <h4 class="title" ng-bind="item.Price"><%= item.Price %></h4>
+                                    <p class="category" ng-bind="item.Description"><%= item.Description %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start Picture Of item -->
+                    <div class="row">
+                        <div class="col-lg-2 col-md-3 col-sm-6" ng-repeat="picture in currentItem.Pictures track by $index">
+                            <div class="card">
+                                <div class="card-header card-chart">
+                                    <img class="smallPic" src="{{picture.URL}}">
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="title itemTitle">{{picture.Title}}</h4>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <a type="button" data-toggle="modal" data-target=".bs-example-modal-lg1" class="cursorPointer" ng-click="editItemPic(picture)">
+                                            <i class="fa fa-cogs" aria-hidden="true"></i> Edit
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-6">
+                            <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">
+                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Start Picture Of item -->
+                </div>
+            </div>
+            <footer class="footer">
+                <% include ../partials/footerpages %>
+            </footer>
+        </div>
+    </div>
+    <!-- Start add item Modal -->
+    <div class="modal fade bs-example-modal-lg" tabindex="1" my-modal2 role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Add New Picture</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="card">
+                                        <div class="card-header" data-background-color="orange">
+                                            <h4 class="title">Create Picture</h4>
+                                            <p class="category">Create A New Picture</p>
+                                        </div>
+                                        <div class="card-content">
+                                            <form name="frmAddPic" novalidate>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Picture Name</label>
+                                                            <input type="text" class="form-control" ng-model="picAddModalTitle" required name="picTitle" id="picTitle" pattern="^.{1,35}$">
+                                                            <span ng-show="frmAddPic.picTitle.$dirty && frmAddPic.picTitle.$invalid">
+                                                                <span class="errorFont" ng-show="frmAddPic.picTitle.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmAddPic.picTitle.$error.pattern">Picture name is too long</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="alert alert-warning alertWarning" ng-show="alertWarning">
+                                                    <strong>Warning!</strong> You have to click the update item button to save your changes.
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-header card-chart">
+                                            <!--upload img-->
+                                            <div>
+                                                <img fallbacksrc="" id="imgAddItem" ng-click="ShowFileSelectorAdd()" class="img-responsive cursorPointer imgAddItem" src="/img/add.gif" />
+                                                <input type="file" onchange="convertImgToBase64URLInAdd(event)" id="uploadNewItemImage" class="hide" />
+                                            </div>
+
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="title itemTitle">{{picAddModalTitle}}</h4>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-click="addPic(frmAddPic)" ng-disabled="frmAddPic.$invalid" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+    <!-- Start  edit item Modal -->
+    <div my-modal class="modal fade bs-example-modal-lg1" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Edit Picture</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="card">
+                                        <div class="card-header" data-background-color="orange">
+                                            <h4 class="title">Edit Picture</h4>
+                                            <p class="category">Add A New Picture Details</p>
+                                        </div>
+                                        <div class="card-content">
+                                            <form name="frmEditePic" novalidate>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Picture Name</label>
+                                                            <input type="text" class="form-control" value="picEditModal.Title" ng-model="picEditModal.Title" required name="picTitle" id="picTitle" pattern="^.{1,35}$">
+                                                            <span ng-show="frmEditePic.picTitle.$dirty && frmEditePic.picTitle.$invalid">
+                                                                <span class="errorFont" ng-show="frmEditePic.picTitle.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmEditePic.picTitle.$error.pattern">Picture name is too long</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="alert alert-warning alertWarning" ng-show="alertWarningEdite">
+                                                    <strong>Warning!</strong> You have to click the update item button to save your changes.
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-header card-chart">
+                                            <!--upload img-->
+                                            <div>
+                                                <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="{{picEditModal.URL}}" />
+                                                <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
+                                            </div>
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="title itemTitle">{{picEditModal.Title}}</h4>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-click="editePic()" ng-disabled="frmEditePic.$invalid" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+</div>
+<!--   Core JS Files   -->
+<% include ../partials/pagesjsfiles %>
+

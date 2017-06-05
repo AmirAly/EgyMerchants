@@ -1,0 +1,11 @@
+{
+  "name": "egy-merchants-market",
+  "main": "server.js",
+  "dependencies": {
+    "azure-storage": "^2.1.0",
+    "ejs": "^1.0.0",
+    "express": "^4.6.1",
+    "mongoose": "^4.9.6",
+    "underscore": "*"
+  }
+}
