@@ -3,372 +3,155 @@
 
 <div class="clear"></div>
 <section class="container">
-    <nav class="breadcrumbs"> <a href="/Eg/Home">Home</a> <span class="divider">›</span> Search results </nav>
+    <nav class="breadcrumbs"> <a href="/Eg/Home">Home</a> <span class="divider">›</span> Search results for ' <%= searchTxt %> ' </nav>
 </section>
 
 <!-- One column content -->
-<section class="container responsive">
-    <!-- <h3>Products</h3> -->
-    <!-- Products list -->
-    <div class="row products-list  products-list-small">
-        <!-- <div class="col-sm-3">
-            <div class="block block-layered-nav">
-                <div class="block-content">
-                    <dl id="narrow-by-list">
-                        <dt class="odd">Category</dt>
-                        <dd class="odd">
-                            <ol>
-                                <li>
-                                    <a href="#">Fashion</a>
-                                </li>
-                                <li>
-                                    <a href="#">Mobile</a>
-                                </li>
-                                <li>
-                                    <a href="#">Shoses</a>
-                                </li>
-                                <li>
-                                    <a href="">Clothes</a>
-                                </li>
-                            </ol>
-                        </dd>
-                        
-                        <dt class="last even">Store</dt>
-                        <dd class="last even">
-                            <ol>
-                                <li>
-                                    <a href="#">Adidas</a>
-                                </li>
-                                <li>
-                                    <a href="#">Camel</a>
-                                </li>
-                                <li>
-                                    <a href="#">Motorola</a>
-                                </li>
-                                <li>
-                                    <a href="#">Rolex</a>
-                                </li>
-                                <li>
-                                    <a href="#">Samsung Galaxy</a>
-                                </li>
-                                <li>
-                                    <a href="#">Seiko</a>
-                                </li>
-                                <li>
-                                    <a href="#">Sony</a>
-                                </li>
-                            </ol>
-                        </dd>
-						<dt class="last odd">Expos</dt>
-                                        <dd class="last odd">
-                                            <ol>
-                                                <li>
-                                                    <a href="#">Le Marchee</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">El Masreen</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Asatana</a>
-                                                </li>
-                                                
-                                            </ol>
-                                        </dd>
-                    </dl>
-                    
+<section class="container responsive pageSearch ">
+
+    <div class="row dvMiddlePart">
+<select>
+  <option value="volvo">Le Marchee </option>
+  <option value="saab">El masreen </option>
+</select>
+
+	<select>
+  <option value="volvo">Dior </option>
+  <option value="saab">Channel </option>
+</select>
+
+<select>
+  <option value="volvo">Rolex</option>
+  <option value="saab">Golden Watch</option>
+</select>
+<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	
+	<div class="search-area">
+                  <a class="search-icon visible-xs">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </a>
+                  <form id="search_mini_form" class="hidden-xs" >
+                    <div class="form-search ">
+                      <input id="search" type="text" name="txtSearch" placeholder="Search" ng-model="txtSearch" class="input-text" autocomplete="off"/>
+                      <button type="submit" ng-click="search()" title="Search" class="button">
+                          <i class="glyphicon glyphicon-search"></i>
+                      </button>
+                      <div id="search_autocomplete" class="search-autocomplete" style="display: none;"></div>
+                      <div class="clearer"></div>
+                    </div>
+                  </form>
+
                 </div>
-            </div>
+</div>
 
 
-        </div>-->
+    <% if (searchResult.length > 0) { %>
 
-        <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
-        <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-            <div class="preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                <a href="#" class="preview-image">
-                    <img class="img-responsive wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" width="270" height="328" alt="">
-                </a>
-                <ul class="product-controls-list right">
-                    <li><span class="label label-sale">SALE</span></li>
-                    <li><span class="label">-20%</span></li>
-                </ul>
-                <ul class="product-controls-list right hide-right">
-                    <li class="top-out"></li>
-                    <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                    <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                    <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                </ul>
-                <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-            </div>
-            <h3 class="title"><a href="#">Polly Top Notion</a></h3>
-            <span class="price old">$54.22</span> <span class="price new">$44.95</span>
-        </div>
 
-        <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-            <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                <a href="#" class="preview-image">
-                    <img class="img-responsive  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" width="270" height="328" alt="">
-                </a>
-                <ul class="product-controls-list right hide-right">
-                    <li class="top-out"></li>
-                    <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                    <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                    <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                </ul>
-                <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
+    <div class="resultExpos">
+        <h2>Expos</h2>
+        <hr>
+
+        <div class="row products-list  products-list-small">
+            <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
+                <% searchResult[0].resultExpos.forEach(function(result){ %>
+                <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
+                    <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <a href="#" class="preview-image">
+                            <img class="img-responsive  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= result.Img %>" width="270" height="328" alt="">
+                        </a>
+                        <ul class="product-controls-list right hide-right">
+                            <li class="top-out"></li>
+                            <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
+                            <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
+                            <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
+                        </ul>
+                        <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
+                        <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
+                    </div>
+                    <h3 class="title"><a href="#"><%= result.Title %></a></h3>
+                </div>
+                <% }); %>
             </div>
-            <h3 class="title"><a href="#">Raglan Sleeve Tee Maison Scotch</a></h3>
-            <span class="price">$44.95</span>
         </div>
 
-        <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-            <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                <a href="#" class="preview-image"><img class="img-responsive  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" width="270" height="328" alt=""></a>
-                <ul class="product-controls-list">
-                    <li><span class="label label-new">NEW</span></li>
-                </ul>
-                <ul class="product-controls-list right hide-right">
-                    <li class="top-out"></li>
-                    <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                    <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                    <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                </ul>
-                <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-            </div>
-            <h3 class="title"><a href="#">Beyond Top NLY Trend</a></h3>
-            <span class="price">$44.95</span>
-        </div>
-        <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-            <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                <a href="#" class="preview-image"><img class="img-responsive  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" width="270" height="328" alt=""></a>
-                <ul class="product-controls-list">
-                    <li><span class="label label-new">NEW</span></li>
-                </ul>
-                <ul class="product-controls-list right hide-right">
-                    <li class="top-out"></li>
-                    <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                    <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                    <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                </ul>
-                <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-            </div>
-            <h3 class="title"><a href="#">White Fringed Chuck on Top</a></h3>
-            <span class="price">$44.95</span>
-        </div>
-        <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-            <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                <a href="#" class="preview-image"><img class="img-responsive  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" width="270" height="328" alt=""></a>
-                <ul class="product-controls-list right hide-right">
-                    <li class="top-out"></li>
-                    <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                    <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                    <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                </ul>
-                <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-            </div>
-            <h3 class="title"><a href="#">Vero moda Joy top</a></h3>
-            <span class="price">$75.95</span>
-        </div>
-        <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-            <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                <a href="#" class="preview-image"><img class="img-responsive  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="http://residencestyle.com/wp-content/uploads/2014/12/Contemporary-Living-Room-Designs-Ideas-White-Sofa.jpg" width="269" height="328" alt=""></a>
-                <ul class="product-controls-list right hide-right">
-                    <li class="top-out"></li>
-                    <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                    <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                    <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                </ul>
-                <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-            </div>
-            <h3 class="title"><a href="#">Nolita new minus blouse</a></h3>
-            <span class="price">$74.95</span>
-        </div>
-        <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-            <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                <a href="#" class="preview-image"><img class="img-responsive  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg" width="270" height="328" alt=""></a>
-                <ul class="product-controls-list right hide-right">
-                    <li class="top-out"></li>
-                    <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                    <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                    <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                </ul>
-                <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-            </div>
-            <h3 class="title"><a href="#">Tiger of sweden Aeron t shirt</a></h3>
-            <span class="price">$159.95</span>
-        </div>
-        <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-            <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                <a href="#" class="preview-image"><img class="img-responsive  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg" width="270" height="328" alt=""></a>
-                <ul class="product-controls-list right">
-                    <li><span class="label label-sale">SALE</span></li>
-                    <li><span class="label">-20%</span></li>
-                </ul>
-                <ul class="product-controls-list right hide-right">
-                    <li class="top-out"></li>
-                    <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                    <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                    <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                </ul>
-                <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-            </div>
-            <h3 class="title"><a href="#">Raglan Sleeve Tee Maison Scotch</a></h3>
-            <span class="price old">$54.22</span> <span class="price new">$44.95</span>
-        </div>
-        <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-            <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                <a href="#" class="preview-image">
-                    <img class="img-responsive wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="https://s-media-cache-ak0.pinimg.com/736x/a6/c5/4e/a6c54e1a6eaf7550072850aadc862893.jpg" width="270" height="328" alt="">
-                </a>
-                <ul class="product-controls-list right">
-                    <li><span class="label label-sale">SALE</span></li>
-                    <li><span class="label">-20%</span></li>
-                </ul>
-                <ul class="product-controls-list right hide-right">
-                    <li class="top-out"></li>
-                    <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                    <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                    <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                </ul>
-                <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-            </div>
-            <h3 class="title"><a href="#">Polly Top Notion</a></h3>
-            <span class="price old">$54.22</span> <span class="price new">$44.95</span>
-        </div>
-        <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-            <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                <a href="#" class="preview-image">
-                    <img class="img-responsive wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg" width="270" height="328" alt="">
-                </a>
-                <ul class="product-controls-list">
-                    <li><span class="label label-new">NEW</span></li>
-                </ul>
-                <ul class="product-controls-list right hide-right">
-                    <li class="top-out"></li>
-                    <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                    <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                    <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                </ul>
-                <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-            </div>
-            <h3 class="title"><a href="#">Beyond Top NLY Trend</a></h3>
-            <span class="price">$44.95</span>
-        </div>
-        <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-            <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                <a href="#" class="preview-image">
-                    <img class="img-responsive wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg" width="270" height="328" alt="">
-                </a>
-                <ul class="product-controls-list right hide-right">
-                    <li class="top-out"></li>
-                    <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                    <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                    <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                </ul>
-                <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> <span class="icon-zoom-in-2"></span> Quick View </a>
-                <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-            </div>
-            <h3 class="title"><a href="#">Raglan Sleeve Tee Maison Scotch</a></h3>
-            <span class="price">$75.95</span>
-        </div>
     </div>
-    </div>
-    <!-- //end Products list -->
-    <!-- Product view compact -->
-    <div class="product-view-ajax">
-        <div class="ajax-loader progress progress-striped active">
-            <div class="progress-bar progress-bar-danger" role="progressbar"></div>
+
+
+    <div class="resultStores">
+        <h2>Stores</h2>
+        <hr>
+
+        <div class="row products-list  products-list-small">
+            <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
+                <% searchResult[0].resultStores.forEach(function(result){ %>
+                <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
+                    <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <a href="#" class="preview-image">
+                            <img class="img-responsive  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= result.Img %>" width="270" height="328" alt="">
+                        </a>
+                        <ul class="product-controls-list right hide-right">
+                            <li class="top-out"></li>
+                            <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
+                            <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
+                            <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
+                        </ul>
+                        <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
+                        <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
+                    </div>
+                    <h3 class="title"><a href="#"><%= result.Title %></a></h3>
+                </div>
+                <% }); %>
+            </div>
         </div>
-        <div class="layar"></div>
-        <div class="product-view-container"> </div>
+
     </div>
-    <!-- //end Product view compact -->
+
+
+
+    <div class="resultProducts">
+        <h2>Products</h2>
+        <hr>
+
+        <div class="row products-list  products-list-small">
+            <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
+                <% searchResult[0].resultProducts.forEach(function(result){ %>
+                <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
+                    <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <a href="#" class="preview-image">
+                            <img class="img-responsive  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= result.Img %>" width="270" height="328" alt="">
+                        </a>
+                        <ul class="product-controls-list right hide-right">
+                            <li class="top-out"></li>
+                            <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
+                            <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
+                            <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
+                        </ul>
+                        <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
+                        <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
+                    </div>
+                    <h3 class="title"><a href="#"><%= result.Title %></a></h3>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <% } else { %>
+    <p class="txtNoData"> No Data Available </p>
+    <% } %>
+
+
 
 </section>
 <!-- //end One columns content -->
+
 <% include ../partials/pagefooter %>
 <% include ../partials/pageend %>
 <script src="/scripts/contactus.js"></script>
-
-<script>
-
-function decorateGeneric(elements, decorateParams)
-{
-    var allSupportedParams = ['odd', 'even', 'first', 'last'];
-    var _decorateParams = {};
-    var total = elements.length;
-
-    if (total) {
-        // determine params called
-        if (typeof(decorateParams) == 'undefined') {
-            decorateParams = allSupportedParams;
-        }
-        if (!decorateParams.length) {
-            return;
-        }
-        for (var k in allSupportedParams) {
-            _decorateParams[allSupportedParams[k]] = false;
-        }
-        for (var k in decorateParams) {
-            _decorateParams[decorateParams[k]] = true;
-        }
-
-        // decorate elements
-        // elements[0].addClassName('first'); // will cause bug in IE (#5587)
-        if (_decorateParams.first) {
-            Element.addClassName(elements[0], 'first');
-        }
-        if (_decorateParams.last) {
-            Element.addClassName(elements[total-1], 'last');
-        }
-        for (var i = 0; i < total; i++) {
-            if ((i + 1) % 2 == 0) {
-                if (_decorateParams.even) {
-                    Element.addClassName(elements[i], 'even');
-                }
-            }
-            else {
-                if (_decorateParams.odd) {
-                    Element.addClassName(elements[i], 'odd');
-                }
-            }
-        }
-    }
-}
-
-function decorateDataList(list) {
-    list = $(list);
-    if (list) {
-        decorateGeneric(list.select('dt'), ['odd', 'even', 'last']);
-        decorateGeneric(list.select('dd'), ['odd', 'even', 'last']);
-    }
-}
-
-decorateDataList('narrow-by-list');
-</script>
-                    <script type="text/javascript">
-                        jQuery(function ($) {
-                            $(".block-layered-nav dt").click(function () {
-                                if ($(this).next("dd").css("display") == "none") {
-                                    $(this).next("dd").slideDown(200);
-                                    $(this).removeClass("closed");
-                                } else {
-                                    $(this).next("dd").slideUp(200);
-                                    $(this).addClass("closed");
-                                }
-                            });
-                        });
-                    </script>
 <% include ../partials/pagesocial %>
 
 </body>
