@@ -31,6 +31,14 @@ module.exports = function (app) {
         var _scope = {};
         res.render('pages/exposlist', _scope);
     });
+    app.get('/eg/categorieslist', function (req, res) {
+        var _scope = {};
+        res.render('pages/categorieslist', _scope);
+    });
+    app.get('/eg/expo', function (req, res) {
+        var _scope = {};
+        res.render('pages/expo', _scope);
+    });
 
     app.get('/eg/g/gallery/:galleryId', function (req, res) {
         var _scope = {};
