@@ -27,6 +27,10 @@ module.exports = function (app) {
             res.render('pages/store', _scope);
         });
     });
+    app.get('/eg/exposlist', function (req, res) {
+        var _scope = {};
+        res.render('pages/exposlist', _scope);
+    });
 
     app.get('/eg/g/gallery/:galleryId', function (req, res) {
         var _scope = {};

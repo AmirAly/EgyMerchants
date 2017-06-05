@@ -1,0 +1,1 @@
+﻿egm.controller("exposListController", function ($scope, API) { });
