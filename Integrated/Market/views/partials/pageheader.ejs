@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="headerController">
   <div class="pageHeader">
     <div class="header">
       <nav class="navbar navbar-default normal" role="navigation">
@@ -62,48 +62,43 @@
         </div>
         <div class="dvMiddlePart  hidden-xs" >
           <div class="container">
-            <h1 class="logo">
-              <a href="/Eg/Home">
-                <img src="/images/Expoeveryday.png" alt="Expo" />
-              </a>
-            </h1>
-            <div class="cart-area hidden-sm hidden-xs">
-              <div class="custom-block">
-                <span style="margin-top:4px;color:#787d7f;display:block;">
-                  CALL US NOW<br/>
-                  <b style="color:#606669;font-size:18px;font-weight:600;display:block;line-height:27px;">+123 5678 890</b>
-                </span>
+            <div class="row">
+              <div class="col-sm-3">
+                <h1 class="logo">
+                  <a href="/Eg/Home">
+                    <img src="/images/Expoeveryday.png" alt="Expo" />
+                  </a>
+                </h1>
+              </div>
+              <div class="col-sm-6">
+                <div class="search-area">
+                  <a class="search-icon visible-xs">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </a>
+                  <form id="search_mini_form" class="hidden-xs" >
+                    <div class="form-search ">
+                      <input id="search" type="text" name="txtSearch" placeholder="Search" ng-model="txtSearch" class="input-text" autocomplete="off"/>
+                      <button type="submit" ng-click="search()" title="Search" class="button">
+                          <i class="glyphicon glyphicon-search"></i>
+                      </button>
+                      <div id="search_autocomplete" class="search-autocomplete" style="display: none;"></div>
+                      <div class="clearer"></div>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="cart-area hidden-xs">
+                    <span>
+                      CALL US NOW<br/>
+                      <b>+123 5678 890</b>
+                    </span>
+                </div>
               </div>
 
+              <!--<div class="menu-icon"><a  title="Menu"><i class="fa fa-bars"></i></a></div>-->
             </div>
-            <div class="search-area">
-              <a class="search-icon visible-xs">
-                <i class="glyphicon glyphicon-search"></i>
-              </a>
-              <form id="search_mini_form hidden-xs" >
-                <div class="form-search ">
-                  <input id="search" type="text" name="q" placeholder="Search" class="input-text" autocomplete="off"/>
-                  <select id="cat" name="cat">
-                    <option value="">All Categories</option>
-                    <option value="276">Furniture</option>
-                    <option value="280">Mobiles</option>
-                    <option value="281">Clothes</option>
-                    <option value="280">Shoses</option>
-
-
-                  </select>
-                  <button type="button" title="Search" class="button">
-                    <a href="/EG/Search">
-                      <i class="glyphicon glyphicon-search"></i>
-                    </a>
-                  </button>
-                  <div id="search_autocomplete" class="search-autocomplete" style="display: none;"></div>
-                  <div class="clearer"></div>
-                </div>
-              </form>
-
-            </div>
-            <!--<div class="menu-icon"><a  title="Menu"><i class="fa fa-bars"></i></a></div>-->
           </div>
         </div>
         <div class="header-wrapper">
