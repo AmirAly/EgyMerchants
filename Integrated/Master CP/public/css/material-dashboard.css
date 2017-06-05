@@ -35,7 +35,16 @@
     height: 60px !important;
     border-radius: 50%;
 }
-
+.light{
+    color: #414e54;
+    font-size: 11px;
+    font-weight: 400;
+}
+.divstoreTable  .content{
+    margin-top: 30px !important;
+    padding: 5px 15px 30px 15px;
+    min-height: calc(100% - 123px);
+}
 .defaultColor {
     box-shadow: 0 10px 30px -12px rgb(255, 149, 0), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2) !important;
     margin: -20px 15px 0 !important;
@@ -2682,6 +2691,17 @@ fieldset[disabled] .form-group.is-focused .checkbox label {
     position: relative;
     top: 3px;
     padding-right: 5px;
+}
+.checkbox .checkbox-material{
+    vertical-align: middle;
+    position: relative;
+    top: 3px;
+    padding-right: 5px;
+    white-space: nowrap;
+    float: left;
+}
+.checkBoxSpan {
+    float: left;
 }
 
     .checkbox .checkbox-material:before {
