@@ -32,7 +32,21 @@
                 </ul>
             </div>
         </div>
-        <div class="main-panel divstoreTable">
+        <div class="main-panel">
+
+            <nav class="navbar navbar-transparent navbar-absolute">
+                <div class="container-fluid top">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">Add Expo</button>
+                </div>
+            </nav>
 
             <div class="content">
                 <div class="container-fluid">
@@ -40,14 +54,14 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header defaultColor">
-                                    <h4 class="title">Stores List</h4>
-                                    <p class="category">List of stores</p>
+                                    <h4 class="title">Expos List</h4>
+                                    <p class="category">List of expos</p>
                                 </div>
                                 <div class="card-content table-responsive">
                                     <table class="table">
                                         <thead class="text-primary">
                                             <tr>
-                                                <th>Counter</th>
+                                                <th></th>
                                                 <th></th>
                                                 <th>Expo name</th>
                                                 <th>Category</th>
@@ -64,7 +78,7 @@
                                                 <td>Dakota Rice</td>
                                                 <td class="light">Furniture</td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-original-title="Edit Task">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editExpo()" data-original-title="Edit Expo" >
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -84,7 +98,7 @@
                                                 <td>B&B</td>
                                                 <td class="light">Clothes</td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-original-title="Edit Task">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editExpo()" data-original-title="Edit Expo">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -104,7 +118,7 @@
                                                 <td>Le Marchee</td>
                                                 <td class="light">Furniture</td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-original-title="Edit Task">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editExpo()" data-original-title="Edit Expo">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -124,7 +138,7 @@
                                                 <td>Dakota</td>
                                                 <td class="light">Perfume</td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-original-title="Edit Task">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editExpo()" data-original-title="Edit Expo">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -144,7 +158,7 @@
                                                 <td>Premume</td>
                                                 <td class="light">Clothes</td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-original-title="Edit Task">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editExpo()" data-original-title="Edit Expo">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -169,9 +183,90 @@
                 <% include ../partials/footerpages %>
             </footer>
         </div>
-
-
     </div>
+
+    <!-- Start Modal -->
+    <div class="modal fade bs-example-modal-lg" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Add Expo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="card">
+                                        <div class="card-header" data-background-color="orange">
+                                            <h4 class="title">Creat Expo</h4>
+                                            <p class="category">Creat A New Expo</p>
+                                        </div>
+                                        <div class="card-content">
+                                            <form name="frmAddExpo">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Expo Name</label>
+                                                            <input type="text" class="form-control" ng-model="expo.Title" required pattern="^.{1,35}$" name="expoTitle" id="expoTitle">
+                                                            <span ng-show="frmAddExpo.expoTitle.$dirty && frmAddExpo.expoTitle.$invalid">
+                                                                <span class="errorFont" ng-show="frmAddExpo.expoTitle.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmAddExpo.expoTitle.$error.pattern">Expo name is too long</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <div class="form-group label-floating">
+                                                                <label class="control-label"> About Expo</label>
+                                                                <textarea class="form-control" rows="3" ng-model="expo.Description" required pattern="^.{1,200}$" name="expoDesc" id="expoDesc"></textarea>
+                                                                <span ng-show="frmAddExpo.expoDesc.$dirty && frmAddExpo.expoDesc.$invalid">
+                                                                    <span class="errorFont" ng-show="frmAddExpo.expoDesc.$error.required">Required</span>
+                                                                    <span class="errorFont" ng-show="frmAddExpo.expoDesc.$error.pattern">Expo description is too long</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-header card-chart">
+                                            <!--upload img-->
+                                            <div>
+                                                <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="/img/add.gif" />
+                                                <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
+                                            </div>
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="title itemTitle">{{expo.Title}}</h4>
+                                            <p class="category">{{expo.Description}}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-click="addExpo()" ng-disabled="frmAddExpo.$invalid" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+
 </div>
 <!--   Core JS Files   -->
-<% include ../partials/pagesjsfiles %>
+<% include ../partials/pagesjsfiles %>/partials/pagesjsfiles %>

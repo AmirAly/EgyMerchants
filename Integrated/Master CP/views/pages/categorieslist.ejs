@@ -54,8 +54,8 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header defaultColor">
-                                    <h4 class="title">Categorys List</h4>
-                                    <p class="category">List of categorys</p>
+                                    <h4 class="title">Categories List</h4>
+                                    <p class="category">List of categories</p>
                                 </div>
                                 <div class="card-content table-responsive">
                                     <table class="table">
@@ -70,7 +70,7 @@
                                             <tr>
                                                 <td>Furniture</td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCategory()" data-original-title="Edit Category">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg2" data-original-title="Edit Category">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -85,7 +85,7 @@
                                             <tr>
                                                 <td>Clothes</td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCategory()" data-original-title="Edit Category">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg2" data-original-title="Edit Category">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -100,7 +100,7 @@
                                             <tr>
                                                 <td>Furniture</td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCategory()" data-original-title="Edit Category">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg2" data-original-title="Edit Category">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -115,7 +115,7 @@
                                             <tr>
                                                 <td>Perfume</td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCategory()" data-original-title="Edit Category">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg2" data-original-title="Edit Category">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -130,7 +130,7 @@
                                             <tr>
                                                 <td>Clothes</td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCategory()" data-original-title="Edit Category">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg2" data-original-title="Edit Category">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -157,7 +157,7 @@
         </div>
     </div>
 
-    <!-- Start Modal -->
+    <!-- Start Modal  ((add))-->
     <div class="modal fade bs-example-modal-lg" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -171,7 +171,7 @@
                     <div class="content">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header" data-background-color="orange">
                                             <h4 class="title">Creat Category</h4>
@@ -180,7 +180,7 @@
                                         <div class="card-content">
                                             <form name="frmAddCategory">
                                                 <div class="row">
-                                                    <div class="col-md-5">
+                                                    <div class="col-md-8">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Category</label>
                                                             <input type="text" class="form-control" ng-model="category.Title" required pattern="^.{1,35}$" name="categoryTitle" id="categoryTitle">
@@ -203,6 +203,58 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit" ng-click="addCategory()" ng-disabled="frmAddCategory.$invalid" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+
+	<!-- Start Modal  ((edit))-->
+    <div class="modal fade bs-example-modal-lg2" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Edit Category</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header" data-background-color="orange">
+                                            <h4 class="title">Edit Category</h4>
+                                            <p class="category">Edit your category</p>
+                                        </div>
+                                        <div class="card-content">
+                                            <form name="frmEditCategory">
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Category</label>
+                                                            <input type="text" class="form-control" ng-model="category.Title" required pattern="^.{1,35}$" name="categoryTitle" id="categoryTitle">
+                                                            <span ng-show="frmEditCategory.categoryTitle.$dirty && frmEditCategory.categoryTitle.$invalid">
+                                                                <span class="errorFont" ng-show="frmEditCategory.categoryTitle.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmEditCategory.categoryTitle.$error.pattern">Category name is too long</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-click="EditCategory()" ng-disabled="frmEditCategory.$invalid" class="btn btn-primary">Update Category</button>
                 </div>
             </div>
         </div>
