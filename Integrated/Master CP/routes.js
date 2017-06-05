@@ -35,9 +35,17 @@ module.exports = function (app) {
         var _scope = {};
         res.render('pages/categorieslist', _scope);
     });
+    app.get('/eg/countrieslist', function (req, res) {
+        var _scope = {};
+        res.render('pages/countrieslist', _scope);
+    });
     app.get('/eg/expo', function (req, res) {
         var _scope = {};
         res.render('pages/expo', _scope);
+    });
+    app.get('/eg/country', function (req, res) {
+        var _scope = {};
+        res.render('pages/country', _scope);
     });
 
     app.get('/eg/g/gallery/:galleryId', function (req, res) {
