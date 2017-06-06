@@ -46,6 +46,7 @@ module.exports = function (app) {
         console.log(req.query);
        
         var _scope = {};
+        //res.render('pages/store', _scope);
         store.getById(req.params.storeId).then(function (_data) {
             console.log(req.params.storeId);
             _scope.store = _data;
