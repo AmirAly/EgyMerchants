@@ -1,5 +1,5 @@
-﻿<% include ../partials/headpages %>
-<div ng-controller='storeController' class="divController">
+<% include ../partials/headpages %>
+<div ng-controller='storeController'>
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -10,7 +10,7 @@
                 </a>
             </div>
             <div class="sidebar-wrapper">
-                <ul class="nav">
+                <ul class="nav nav-mobile-menu"></ul><ul class="nav">
                     <li>
                         <a href="/eg/countrieslist">
                             <i class="material-icons">person</i>
@@ -24,7 +24,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href='/eg/exposlist'>
+                        <a href="/eg/exposlist">
                             <i class="material-icons">dashboard</i>
                             <p>Expos</p>
                         </a>
@@ -43,9 +43,21 @@
                     </li>
                 </ul>
             </div>
+            <div class="sidebar-background" style="background-image: url(/img/sidebar-1.jpg) "></div>
         </div>
-        <div class="main-panel divstoreTable">
-
+        <div class="main-panel">
+            <nav class="navbar navbar-transparent navbar-absolute">
+                <div class="container-fluid top">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -74,22 +86,22 @@
                                                     <img class="divImgTable" src="/img/cover.jpeg" />
                                                 </td>
                                                 <td>Dakota Rice</td>
-                                                <td class="light">Niger</td>
-                                                <td>
+                                                <td class="light"><span class="tableSpan">Niger</span></td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
@@ -102,22 +114,22 @@
                                                     <img class="divImgTable" src="/img/cover.jpeg" />
                                                 </td>
                                                 <td>Minerva Hooper</td>
-                                                <td class="light">Oud-Turnhout</td>
-                                                <td>
+                                                <td class="light"><span class="tableSpan">Oud-Turnhout</span></td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
@@ -130,22 +142,22 @@
                                                     <img class="divImgTable" src="/img/cover.jpeg" />
                                                 </td>
                                                 <td>Sage Rodriguez</td>
-                                                <td class="light">Feldkirchen in Kärnten</td>
-                                                <td>
+                                                <td class="light"><span class="tableSpan">Feldkirchen in Kärnten</span></td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
@@ -158,22 +170,22 @@
                                                     <img class="divImgTable" src="/img/cover.jpeg" />
                                                 </td>
                                                 <td>Philip Chaney</td>
-                                                <td class="light">Table on Plain Background</td>
-                                                <td>
+                                                <td class="light"><span class="tableSpan">Table on Plain Background</span></td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
@@ -186,22 +198,22 @@
                                                     <img class="divImgTable" src="/img/cover.jpeg" />
                                                 </td>
                                                 <td>Doris Greene</td>
-                                                <td class="light">This is a plain notification</td>
-                                                <td>
+                                                <td class="light"><span class="tableSpan">This is a plain notification</span></td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
@@ -217,21 +229,21 @@
                                                 <td class="light">
                                                     <span class="tableSpan">INFO - This is a regular aaaaaaaaaaaaaaaaaaaaaaa</span>
                                                 </td>
-                                                <td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
@@ -241,9 +253,9 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <button type="button" class="btn btn-primary pull-right">Save</button>
                                 </div>
                             </div>
+							  <button type="button" class="btn btn-primary pull-right">Save</button>
                         </div>
                     </div>
                 </div>
@@ -254,9 +266,7 @@
                 <% include ../partials/footerpages %>
             </footer>
         </div>
-
-
     </div>
 </div>
 <!--   Core JS Files   -->
-<% include ../partials/pagesjsfiles %>
+    <% include ../partials/pagesjsfiles %>

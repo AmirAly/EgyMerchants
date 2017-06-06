@@ -19,9 +19,8 @@
 /* Shadows (from mdl http://www.getmdl.io/) */
 
 
-
-.divController {
-    margin-bottom: -22px;
+html{
+                            overflow-y:hidden !important;
 }
 .tagsInputTable{
     vertical-align: middle;
@@ -41,6 +40,12 @@
     font-size: 11px;
     font-weight: 400;
     width:30%;
+}
+.tableSpan{
+    white-space:initial;
+}
+.checkBoxWidth{
+    min-width:80px;
 }
 .divstoreTable  .content{
     margin-top: 30px !important;
@@ -534,7 +539,7 @@ h2.title {
     position: relative;
     top: 0;
     /*height: 100vh;*/
-    height: calc(100vh - 21px);
+    /*height: calc(100vh - 21px);*/
 }
 
 .sidebar,
@@ -789,6 +794,7 @@ h2.title {
     transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
 }
 
+
     .main-panel > .content {
         margin-top: 70px;
         padding: 5px 15px 30px 15px;
@@ -817,6 +823,7 @@ h2.title {
     -webkit-transition-timing-function: linear,linear;
     transition-timing-function: linear,linear;
     -webkit-overflow-scrolling: touch;
+
 }
 
 .btn,
@@ -2704,6 +2711,8 @@ fieldset[disabled] .form-group.is-focused .checkbox label {
 }
 .checkBoxSpan {
     float: left;
+    color:#a9afbb;
+    font-weight: inherit;
 }
 
     .checkbox .checkbox-material:before {
@@ -4094,6 +4103,7 @@ footer {
 
     .card .card-content {
         padding: 15px 20px;
+        margin-bottom: 0px;
     }
 
         .card .card-content .category {
