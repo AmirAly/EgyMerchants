@@ -11,20 +11,32 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
+                    <li>
+                        <a href="/eg/countrieslist">
+                            <i class="material-icons">person</i>
+                            <p>Countries</p>
+                        </a>
+                    </li>
                     <li class="active">
-                        <a href='/eg/g/galleries/{{storeId}}'>
-                            <i class="material-icons">dashboard</i>
-                            <p>Galleries</p>
+                        <a href="/eg/categorieslist">
+                            <i class="material-icons">person</i>
+                            <p>Categories</p>
                         </a>
                     </li>
                     <li>
-                        <a href="/eg/store/{{storeId}}">
+                        <a href='/eg/exposlist'>
+                            <i class="material-icons">dashboard</i>
+                            <p>Expos</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/eg/store">
                             <i class="material-icons">person</i>
-                            <p>User Profile</p>
+                            <p>Stores</p>
                         </a>
                     </li>
                     <li ng-click="signOut()" class="cursorPointer">
-                        <a>
+                        <a href="/eg/Home">
                             <i class="material-icons">person</i>
                             <p>Sign Out</p>
                         </a>
@@ -208,8 +220,7 @@
         </div>
     </div>
     <!-- End Modal -->
-
-	<!-- Start Modal  ((edit))-->
+    <!-- Start Modal  ((edit))-->
     <div class="modal fade bs-example-modal-lg2" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">

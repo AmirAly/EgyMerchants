@@ -4,7 +4,7 @@
     $scope.loginData.Password = '';
 
     $scope.login = function () {
-        window.location.href = '/eg/store'
+        window.location.href = '/eg/store';
     };
     //$scope.login = function () {
     //    $scope.loading = true;

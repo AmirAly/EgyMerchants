@@ -11,20 +11,32 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="active">
-                        <a href='/eg/g/galleries/{{storeId}}'>
-                            <i class="material-icons">dashboard</i>
-                            <p>Galleries</p>
+                    <li>
+                        <a href="/eg/countrieslist">
+                            <i class="material-icons">person</i>
+                            <p>Countries</p>
                         </a>
                     </li>
                     <li>
-                        <a href="/eg/store/{{storeId}}">
+                        <a href="/eg/categorieslist">
                             <i class="material-icons">person</i>
-                            <p>User Profile</p>
+                            <p>Categories</p>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href='/eg/exposlist'>
+                            <i class="material-icons">dashboard</i>
+                            <p>Expos</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/eg/store">
+                            <i class="material-icons">person</i>
+                            <p>Stores</p>
                         </a>
                     </li>
                     <li ng-click="signOut()" class="cursorPointer">
-                        <a>
+                        <a href="/eg/Home">
                             <i class="material-icons">person</i>
                             <p>Sign Out</p>
                         </a>
@@ -78,7 +90,7 @@
                                                 <td>Dakota Rice</td>
                                                 <td class="light">Furniture</td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editExpo()" data-original-title="Edit Expo" >
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editExpo()" data-original-title="Edit Expo">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>

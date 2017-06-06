@@ -12,25 +12,38 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="active">
-                        <a href='/eg/g/galleries/{{storeId}}'>
-                            <i class="material-icons">dashboard</i>
-                            <p>Galleries</p>
+                        <a href="/eg/countrieslist">
+                            <i class="material-icons">person</i>
+                            <p>Countries</p>
                         </a>
                     </li>
                     <li>
-                        <a href="/eg/store/{{storeId}}">
+                        <a href="/eg/categorieslist">
                             <i class="material-icons">person</i>
-                            <p>User Profile</p>
+                            <p>Categories</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='/eg/exposlist'>
+                            <i class="material-icons">dashboard</i>
+                            <p>Expos</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/eg/store">
+                            <i class="material-icons">person</i>
+                            <p>Stores</p>
                         </a>
                     </li>
                     <li ng-click="signOut()" class="cursorPointer">
-                        <a>
+                        <a href="/eg/Home">
                             <i class="material-icons">person</i>
                             <p>Sign Out</p>
                         </a>
                     </li>
                 </ul>
             </div>
+
         </div>
         <div class="main-panel">
 
@@ -64,7 +77,7 @@
                                                 <th></th>
                                                 <th>Country</th>
                                                 <th>Iso code</th>
-												<th>Welcome message</th>
+                                                <th>Welcome message</th>
                                                 <th></th>
                                                 <th></th>
                                             </tr>
@@ -75,10 +88,10 @@
                                                     <img class="divImgTable" src="/img/cover.jpeg" />
                                                 </td>
                                                 <td>Egypt</td>
-												<td>EG</td>
+                                                <td>EG</td>
                                                 <td class="light">مرحبا</td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country" >
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -95,7 +108,7 @@
                                                     <img class="divImgTable" src="/img/cover.jpeg" />
                                                 </td>
                                                 <td>Turky</td>
-												<td>TR</td>
+                                                <td>TR</td>
                                                 <td class="light">Hoşgeldiniz</td>
                                                 <td>
                                                     <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country">
@@ -115,7 +128,7 @@
                                                     <img class="divImgTable" src="/img/cover.jpeg" />
                                                 </td>
                                                 <td>France</td>
-												<td>FR</td>
+                                                <td>FR</td>
                                                 <td class="light">Bienvenue</td>
                                                 <td>
                                                     <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country">
@@ -135,7 +148,7 @@
                                                     <img class="divImgTable" src="/img/cover.jpeg" />
                                                 </td>
                                                 <td>Dubai</td>
-												<td>AU</td>
+                                                <td>AU</td>
                                                 <td class="light">أهلا بك</td>
                                                 <td>
                                                     <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country">
@@ -155,7 +168,7 @@
                                                     <img class="divImgTable" src="/img/cover.jpeg" />
                                                 </td>
                                                 <td>Italy</td>
-												<td>IT</td>
+                                                <td>IT</td>
                                                 <td class="light">benvenuto</td>
                                                 <td>
                                                     <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country">
@@ -219,7 +232,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-												<div class="row">
+                                                <div class="row">
                                                     <div class="col-md-5">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Country iso code</label>
@@ -231,7 +244,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-												<div class="row">
+                                                <div class="row">
                                                     <div class="col-md-8">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Welcome message</label>
@@ -243,7 +256,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="clearfix"></div>
                                             </form>
                                         </div>
@@ -280,4 +293,4 @@
 
 </div>
 <!--   Core JS Files   -->
-<% include ../partials/pagesjsfiles %>/partials/pagesjsfiles %>
+<% include ../partials/pagesjsfiles %>

@@ -1,5 +1,5 @@
 ﻿<% include ../partials/headpages %>
-<div ng-controller='countryController'>
+<div ng-controller='storeController' class="divController">
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -11,20 +11,32 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="active">
-                        <a href='/eg/countrieslist'>
-                            <i class="material-icons">dashboard</i>
-                            <p>Countries List</p>
+                    <li>
+                        <a href="/eg/countrieslist">
+                            <i class="material-icons">person</i>
+                            <p>Countries</p>
                         </a>
                     </li>
                     <li>
-                        <a href="/eg/store/{{storeId}}">
+                        <a href="/eg/categorieslist">
                             <i class="material-icons">person</i>
-                            <p>User Profile</p>
+                            <p>Categories</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='/eg/exposlist'>
+                            <i class="material-icons">dashboard</i>
+                            <p>Expos</p>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="/eg/store">
+                            <i class="material-icons">person</i>
+                            <p>Stores</p>
                         </a>
                     </li>
                     <li ng-click="signOut()" class="cursorPointer">
-                        <a>
+                        <a href="/eg/Home">
                             <i class="material-icons">person</i>
                             <p>Sign Out</p>
                         </a>
@@ -33,118 +45,218 @@
             </div>
         </div>
         <div class="main-panel divstoreTable">
+
             <div class="content">
                 <div class="container-fluid">
-                    <!-- Start Breadcrumbs -->
-                    <div class="col-md-8">
-                        <ol class="breadcrumb">
-                            <li>
-                                <a href='/eg/countrieslist'>Countries List</a>
-                            </li>
-                            <li class="active">Edit Country</li>
-                        </ol>
-                    </div>
-                    <!-- End Breadcrumbs -->
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="card">
-                                <div class="card-header" data-background-color="orange">
-                                    <h4 class="title">Edit Country</h4>
-                                    <p class="category">Edit your Country</p>
+                                <div class="card-header defaultColor">
+                                    <h4 class="title">Stores List</h4>
+                                    <p class="category">List of stores</p>
                                 </div>
-                                <div class="card-content">
-                                    <form name="frmUpdateCountry">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-group label-floating is-focused ">
-                                                    <label class="control-label">Country name</label>
-                                                    <input type="text" class="form-control" ng-model="country.Title" name="countryTitle" id="countryTitle" required pattern="^.{1,35}$">
-                                                    <span ng-show="frmUpdateCountry.countryTitle.$dirty && frmUpdateCountry.countryTitle.$invalid">
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryTitle.$error.required">Required</span>
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryTitle.$error.pattern">Country name is too long</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-group label-floating is-focused ">
-                                                    <label class="control-label">Country iso code</label>
-                                                    <input type="text" class="form-control" ng-model="country.Iso" name="countryIso" id="countryIso" required pattern="^.{1,3}$">
-                                                    <span ng-show="frmUpdateCountry.countryIso.$dirty && frmUpdateCountry.countryIso.$invalid">
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryIso.$error.required">Required</span>
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryIso.$error.pattern">Country iso code is too long</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <div class="form-group label-floating is-focused ">
-                                                    <label class="control-label">Country welcome message</label>
-                                                    <input type="text" class="form-control" ng-model="country.Msg" name="countryMsg" id="countryMsg" required pattern="^.{1,35}$">
-                                                    <span ng-show="frmUpdateCountry.countryMsg.$dirty && frmUpdateCountry.countryMsg.$invalid">
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryMsg.$error.required">Required</span>
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryMsg.$error.pattern">Country welcome message is too long</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button type="submit" ng-click="updateCountry()" ng-disabled="frmUpdateCountry.$invalid" class="btn btn-primary pull-right">Update Country</button>
-                                        <div class="clearfix"></div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header card-chart">
-                                    <!--upload img-->
-                                    <div>
-                                        <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="/img/add.gif" />
-                                        <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <h4 class="title itemTitle"></h4>
-                                    <p class="category"></p>
-                                </div>
+                                <div class="card-content table-responsive">
+                                    <table class="table">
+                                        <thead class="text-primary">
+                                            <tr>
+                                                <th></th>
+                                                <th>Store name</th>
+                                                <th>Description</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
 
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="card">
-                                <div class="card-header" data-background-color="orange">
-                                    <h4 class="title">List of categories</h4>
-                                </div>
-                                <div class="card-content">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
-                                        </label>
-                                    </div>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                </td>
+                                                <td>Dakota Rice</td>
+                                                <td class="light">Niger</td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                </td>
+                                                <td>Minerva Hooper</td>
+                                                <td class="light">Oud-Turnhout</td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                </td>
+                                                <td>Sage Rodriguez</td>
+                                                <td class="light">Feldkirchen in Kärnten</td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                </td>
+                                                <td>Philip Chaney</td>
+                                                <td class="light">Table on Plain Background</td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                </td>
+                                                <td>Doris Greene</td>
+                                                <td class="light">This is a plain notification</td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                </td>
+                                                <td>Mason Porter</td>
+                                                <td class="light">
+                                                    <span class="tableSpan">INFO - This is a regular aaaaaaaaaaaaaaaaaaaaaaa</span>
+                                                </td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <button type="button" class="btn btn-primary pull-right">Save</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
+
             <footer class="footer">
-    <% include ../partials/footerpages %>
-</footer>
-
-
-
+                <% include ../partials/footerpages %>
+            </footer>
         </div>
+
+
     </div>
-    <!--   Core JS Files   -->
-    <% include ../partials/pagesjsfiles %>
+</div>
+<!--   Core JS Files   -->
+<% include ../partials/pagesjsfiles %>

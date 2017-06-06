@@ -3,13 +3,13 @@
         document.getElementById('uploadItemImage').click()
     };
 
-    $scope.preload = function () {
-        if (localStorage.getItem('StoreId') == null || localStorage.getItem('StoreId') == '') {
-            window.location.href = '/eg/Home';
-        }
-    };
+    //$scope.preload = function () {
+    //    if (localStorage.getItem('StoreId') == null || localStorage.getItem('StoreId') == '') {
+    //        window.location.href = '/eg/Home';
+    //    }
+    //};
 
-    $scope.preload();
+    //$scope.preload();
 
     $scope.store = {};
     $scope.store._id = localStorage.getItem('StoreId');
