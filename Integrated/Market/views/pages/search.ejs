@@ -7,45 +7,42 @@
 </section>
 
 <!-- One column content -->
-<section class="container responsive pageSearch ">
+<section class="container responsive pageSearch">
+    <div class="dvOptionsContainer">
+        <div class="row">
+            <div class="col-sm-9 col-md-6">
+                <select>
+                    <option value="" selected disabled>All Expos</option>
+                    <option value="">Le Marchee </option>
+                    <option value="">El masreen </option>
+                </select>
 
-    <div class="row dvMiddlePart">
-<select>
-  <option value="volvo">Le Marchee </option>
-  <option value="saab">El masreen </option>
-</select>
+                <select>
+                    <option value="" selected disabled>All Stores</option>
+                    <option value="">Dior </option>
+                    <option value="">Channel </option>
+                </select>
 
-	<select>
-  <option value="volvo">Dior </option>
-  <option value="saab">Channel </option>
-</select>
-
-<select>
-  <option value="volvo">Rolex</option>
-  <option value="saab">Golden Watch</option>
-</select>
-<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	
-	<div class="search-area">
-                  <a class="search-icon visible-xs">
-                    <i class="glyphicon glyphicon-search"></i>
-                  </a>
-                  <form id="search_mini_form" class="hidden-xs" >
-                    <div class="form-search ">
-                      <input id="search" type="text" name="txtSearch" placeholder="Search" ng-model="txtSearch" class="input-text" autocomplete="off"/>
-                      <button type="submit" ng-click="search()" title="Search" class="button">
-                          <i class="glyphicon glyphicon-search"></i>
-                      </button>
-                      <div id="search_autocomplete" class="search-autocomplete" style="display: none;"></div>
-                      <div class="clearer"></div>
-                    </div>
-                  </form>
-
-                </div>
-</div>
-
+                <select>
+                    <option value="" selected disabled>All Products</option>
+                    <option value="">Rolex </option>
+                    <option value="">Golden Watch </option>
+                </select>
+            </div>
+            <div class="col-sm-3 col-md-6">
+                <input id="search" type="text" name="txtSearch" value="<%= searchTxt %>" placeholder="Search" class="input-text form-control" autocomplete="off" />
+            </div>
+        </div>
+        <div class="spacer2"></div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-6 text-right">
+                <a href="#" class="text-muted"><i class="fa fa-close"></i> Reset Filter </a> &nbsp;
+                <button type="submit" ng-click="refineSearch()" title="Search" class="btn btn-primary"> Refine Search Result <i class="glyphicon glyphicon-search"></i> </button>
+            </div>
+        </div>
+    </div>
 
     <% if (searchResult.length > 0) { %>
-
 
     <div class="resultExpos">
         <h2>Expos</h2>
@@ -148,7 +145,6 @@
 
 </section>
 <!-- //end One columns content -->
-
 <% include ../partials/pagefooter %>
 <% include ../partials/pageend %>
 <script src="/scripts/contactus.js"></script>
