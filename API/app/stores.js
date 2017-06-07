@@ -120,6 +120,20 @@ module.exports = {
             });
         })
     },
+    editBadges: function (_id, _verified, _hasFactory, _featured) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Badges.Verified': _verified, 'Badges.HasFactory': _hasFactory, 'Badges.Featured': _featured } }, { new: true }, function (err, Obj) {
+                if (err)
+                    reject({ code: 1, data: err })
+                else {
+                    if (Obj)
+                        resolve({ code: 100, data: "Store badges edited successfully" })
+                    else
+                        reject({ code: 21, data: "This filteration didn't resulted in any data" })
+                }
+            })
+        })
+    },
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _id}, { "Password": 0 }, function (err, Obj) {

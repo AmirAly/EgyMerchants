@@ -27,7 +27,7 @@ module.exports = {
                             else {
                                 resolve({
                                     code: 100,
-                                     data: { _id: _newMaster._id, Name: _newMaster.Name, Type: _newMaster.Type }
+                                    data: { _id: _newMaster._id, Name: _newMaster.Name, Type: _newMaster.Type }
                                 });
                             }
                         })

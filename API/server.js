@@ -77,7 +77,35 @@ var newmaster = new userschema({ "Email": "newmaster@gmail.com", "Password": "12
 //}, function (err) {
 //    console.log(err);
 //});
+var newexpo = new exposchema({ "Title": "nofloorsexpopush2", "Banner": "bnner", "Category": "59143976a6adb01098ef50b8"});
+//expo.add(newexpo).then(function (result) {
+//    console.log(result); 
+//}, function(err) {
+//    console.log(err); 
+//});
 
+//expo.setFloor("5937d2d1031af07813392b06", { "Name": "addedfloorpush", "Stores": [{ "Store": "59366953c2bf034812df1954", "Width": "1", "High": "2", "Position": "3", "Img": "img" }] }).then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+
+//expo.edit("5937d2d1031af07813392b06", "editpush", "banneredit", "59143976a6adb01098ef50b8", [{ "Name": "editedfloor", "Stores": [{ "Store": "59366953c2bf034812df1954", "Width": "1", "High": "2", "Position": "3", "Img": "img" }] }, { "Name": "2ndfloor", "Stores": [{ "Store": "59366953c2bf034812df1954", "Width": "1", "High": "2", "Position": "3", "Img": "img" }] }]).then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//expo.suspend("5937d2d1031af07813392b06").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+
+//store.editBadges("59366953c2bf034812df1954", "true", "false", "true").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 var newuser = new userschema({ "Email": "newuser@gmail.com", "Password": "123456", "Name": "ali" });
 //user.register(newuser).then(function (result) {
 //    console.log(result); 
@@ -91,29 +119,39 @@ var newuser = new userschema({ "Email": "newuser@gmail.com", "Password": "123456
 //    console.log(err);
 //});
 //5936b0501fc9883c1193f7fb
-var newexpo = new exposchema({ "Title": "not exist","Banner":"bnner", "Category": "59143976a6adb01098ef50b8", "Floors": [{ "Name": "2young", "Stores": [{ "Store": "59366953c2bf034812df1954", "Width": "1", "High": "2", "Position": "3", "Img": "img" }, { "Store": "59366953c2bf034812df1954", "Width": "5", "High": "6", "Position": "7", "Img": "img" }] } ]});
-//expo.add(newexpo).then(function (result) {
-//    console.log(result); 
-//}, function(err) {
-//    console.log(err); 
-//});
+
 //expo.getAll().then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//var newcountry = new countryschema({ "Name": "italy", "WelcomeMsg": "welcome in italy", "IsoCode": "445","Flag":"red/green" });
+var newcountry = new countryschema({ "Name": "Greece", "WelcomeMsg": "welcome in Greece", "IsoCode": "445","Flag":"white/green" });
 //country.add(newcountry).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
-country.getAll().then(function (result) {
-    console.log(result);
-}, function (err) {
-    console.log(err);
-});
+//country.edit("5937e5801cf86e0c0b23c9e5","greek","yellow","666","welcome").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//country.suspend("5937e5801cf86e0c0b23c9e5").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//country.getAll().then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//expo.getAll().then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 //expo.getByCategory("59143976a6adb01098ef50b8").then(function (result) {
 //    console.log(result.data[0].Floors[0].Stores[0].Store);
 //}, function (err) {
@@ -124,6 +162,22 @@ country.getAll().then(function (result) {
 //}, function (err) {
 //    console.log(err);
 //});
+var newcategory = new categoryschema({ "Name": "clothes", "Countries": ["5937e5801cf86e0c0b23c9e5"] });
+//category.add(newcategory).then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//category.edit("5937eb44d1347c080751cf67", "clothes2", ["5937e5801cf86e0c0b23c9e5"]).then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+category.suspend("5937eb44d1347c080751cf67").then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
 //category.getAll().then(function (result) {
 //    console.log(result);
 //}, function (err) {

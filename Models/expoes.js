@@ -1,15 +1,96 @@
 var Schema = require('./models/expo');
 module.exports = {
-    //added for test
     add: function (_newExpo) {
-        console.log(_newExpo);
         return new Promise(function (resolve, reject) {
-                    _newExpo.save(function (err, _newExpo) {
-                        if (err)
-                            reject(err);
-                        else
-                            resolve(_newExpo);
-                    })
+            Schema.findOne({ 'Status': 'Active', 'Title': _newExpo.Title }, '', function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if (Obj) {
+                        reject({
+                            code: 21,
+                            data: "There is another expo with this title"
+                        });
+                    }
+                    else {
+                        _newExpo.save(function (err, _newExpo) {
+                            if (err)
+                                reject({
+                                    code: 1,
+                                    data: err
+                                });
+                            else
+                                resolve({
+                                    code: 100,
+                                    data: "This expo added successfully"
+                                });
+                        })
+                    }
+                }
+            })
+        })
+    },
+    setFloor: function (_id, _floor) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOneAndUpdate({ '_id': _id }, { $addToSet: { 'Floors': _floor } }, { new: 'true' }).exec(function (err, expo) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if (expo) {
+                        resolve({
+                            code: 100,
+                            data: "This floor added successfully"
+                        })
+                    }
+                    else
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
+                }
+            })
+        })
+    },
+    edit: function (_id, _title, _banner, _category, _floors) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOne({ '_id': _id }, '', function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if (Obj) {
+                        Obj.Title = _title;
+                        Obj.Banner = _banner;
+                        Obj.Category = _category;
+                        Obj.Floors = _floors;
+                        Obj.save(function (err, expo) {
+                            if (err)
+                                reject({
+                                    code: 1,
+                                    data: err
+                                });
+                            else
+                                resolve({
+                                    code: 100,
+                                    data: "Expo data edited successfully"
+                                })
+                        })
+                    }
+                    else
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
+                }
+            })
         })
     },
     getAll: function () {
@@ -58,7 +139,6 @@ module.exports = {
             })
         })
     },
-   
     getStores: function (_id) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _id, 'Status': 'Active' }).populate( 'Floors.Stores.Store','_id Name Type Badges').exec(function (err, Obj) {
@@ -97,11 +177,12 @@ module.exports = {
                     reject({ code: 1, data: err })
                 else {
                     if (Obj)
-                        resolve({ code: 100, data: "This expo deleted successfuylly" })
+                        resolve({ code: 100, data: "This expo deleted successfully" })
                     else
                         reject({ code: 21, data: "This filteration didn't resulted in any data" })
                 }
             })
         })
     },
+    
 }
