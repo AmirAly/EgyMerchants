@@ -1,20 +1,23 @@
 var Schema = require('./models/item');
-var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
     getFeatured: function (_storeId) {
+        var underscore = require("underscore");
+        var finalLst=[];
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Store': _storeId, "Badges": { "$regex": "#Featured", "$options": "i" }, 'Status': 'Active' }, '_id Name Rate Pictures Price', function (err, lst) {
+            Schema.find({ "Badges": { "$regex": "#Featured", "$options": "i" }, 'Status': 'Active' }, '_id Name Rate Pictures Price Gallery').populate('Gallery','Store').exec(function (err, lst) {
                 if (err)
                     reject({
                         code: 1,
                         data: err
                     });
                 else {
-                    if (lst.length > 0)
+                    if (lst.length > 0) {
+                        underscore.filter(lst, function (item) { if (item.Gallery.Store == _storeId) finalLst.push(item); })
                         resolve({
                             code: 100,
-                            data: lst
+                            data: finalLst
                         });
+                    }
                     else {
                         reject({
                             code: 21,
@@ -27,18 +30,23 @@ module.exports = {
     },
     getByBestSeller: function (_storeId) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Store': _storeId, 'Status': 'Active' }, '_id Name Rate Pictures Price', function (err, lst) {
+            var underscore = require("underscore");
+            var finalLst = [];
+            Schema.find({ 'Status': 'Active' }, '_id Name Rate Pictures Price Gallery').populate('Gallery', 'Store').exec(function (err, lst) {
                 if (err)
                     reject({
                         code: 1,
                         data: err
                     });
                 else {
-                    if (lst.length > 0)
+                    if (lst.length > 0) {
+                        underscore.filter(lst, function (item) { if (item.Gallery.Store == _storeId) finalLst.push(item); });
+                        underscore.sortBy(finalLst, 'Sold');
                         resolve({
                             code: 100,
-                            data: lst
+                            data: finalLst
                         });
+                    }
                     else {
                         reject({
                             code: 21,
@@ -46,12 +54,12 @@ module.exports = {
                         });
                     }
                 }
-            }).sort('-Sold').limit(5);
+            })
         })
     },
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
+            Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate({ path: 'Gallery',select:'Store _id', populate: { path: 'Store', model: 'User', select: 'Name' } }).exec(function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -121,7 +129,8 @@ module.exports = {
                             else
                                 resolve({
                                     code: 100,
-                                    data: "This item added successfully"
+                                   data: "This item added successfully"
+                                   // data:Obj
                                 });
                         })
                     }
@@ -130,7 +139,7 @@ module.exports = {
 
         })
     },
-    edit: function (_id, _name, _description, _imgs) {
+    edit: function (_id, _name, _description, _imgs, _price, _priceBeforeSale, _badges,_tags) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
@@ -142,6 +151,10 @@ module.exports = {
                     if (Obj) {
                         Obj.Name = _name;
                         Obj.Description = _description;
+                        Obj.Price = _price;
+                        Obj.PriceBeforeSale = _priceBeforeSale;
+                        Obj.Badges = _badges;
+                        Obj.Tags = _tags;
                         if (_imgs)
                             Obj.Pictures = _imgs;
                         Obj.save(function (err, Obj) {
@@ -176,60 +189,6 @@ module.exports = {
                         resolve({ code: 100, data: "This item deleted successfuylly" })
                     else
                         reject({ code: 21, data: "This filteration didn't resulted in any data" })
-                }
-            })
-        })
-    },
-    getByCountry: function (_countryId) {
-        return new Promise(function (resolve, reject) {
-            Schema.find({ 'Store.$CountryISOCode': _countryId }, '_id Name', function (err, lst) {
-                if (err)
-                    reject({ code: 1, data: err })
-                else {
-                    if (lst.length > 0)
-                        resolve({ code: 100, data: lst })
-                    else
-                        reject({ code: 21, data: "This filteration didn't resulted in any data" })
-                }
-            })
-        })
-    },
-    getByCountry: function (_countryId) {
-        var finalList = [];
-        return new Promise(function (resolve, reject) {
-            Schema.find({ 'Status': 'Active' }, '_id Name Store').populate({
-                path: 'Store',
-                model: 'Store',
-                select: { CountryISOCode: 1 }
-            }).exec(function (err, lst) {
-                if (err)
-                    reject({
-                        code: 1,
-                        data: err
-                    });
-                else {
-                    if (lst.length > 0) {
-                        for (i = 0; i < lst.length; i++) {
-                            if (lst[i].Store.CountryISOCode == _countryId) {
-                                finalList.push({ "_id": lst[i]._id, "Name": lst[i].Name });
-                            }
-                        }
-                        if (finalList.length > 0)
-                            resolve({
-                                code: 100,
-                                data: finalList
-                            })
-                        else
-                            reject({
-                                code: 21,
-                                data: "This filteration didn't resulted in any data"
-                            });
-                    }
-                    else
-                        reject({
-                            code: 22,
-                            data: "There is no active stores in this country"
-                        });
                 }
             })
         })

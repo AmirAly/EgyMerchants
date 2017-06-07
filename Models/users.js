@@ -4,7 +4,7 @@ var Helper = require('./helper');
 module.exports = {
     register: function (_newUser) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Email': _newUser.Email }, '', function (err, Obj) {
+            Schema.findOne({ $or: [{ 'Email': _newUser.Email }, { 'Name': _newUser.Name }] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -14,10 +14,11 @@ module.exports = {
                     if (Obj) {
                         reject({
                             code: 21,
-                            data: "This email already exist"
+                            data: "This email or name already exist"
                         });
                     }
                     else {
+                        _newUser.Type = 'user';
                         _newUser.save(function (err, Obj) {
                             if (err)
                                 reject({
@@ -25,45 +26,14 @@ module.exports = {
                                     data: err
                                 })
                             else {
-                                var email = {
-                                    to: _newUser.Email,
-                                    subject: "confirm your email",
-                                    html: '<a href="http://localhost:8007/User/Confirm/"+_newUser._id>"please click this link to confirm your email"</a>'
-                                };
-                                Helper.sendEmail(email);
                                 resolve({
                                     code: 100,
-                                    data: { _id: _newUser._id }
+                                    data: { _id: _newUser._id, Name: Obj.Name, Type: Obj.Type }
                                 })
                             }
                         });
                     }
                 }
-            })
-        })
-    },
-    ConfirmMail: function (_id) {
-        return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id }, function (err, Obj) {
-                if (err)
-                    reject({
-                        code: 1,
-                        data: err
-                    });
-                else
-                    Obj.Status = "Active";
-                Obj.save(function (err, Obj) {
-                    if (err)
-                        reject({
-                            code: 1,
-                            data: err
-                        });
-                    else
-                        resolve({
-                            code: 100,
-                            data: "your account activated successfully"
-                        });
-                });
             })
         })
     },
@@ -93,12 +63,12 @@ module.exports = {
                 else if (Obj.Status == "Active")
                     resolve({
                         code: 100,
-                        data: { _id: Obj._id }
+                        data: { _id: Obj._id,Name:Obj.Name,Type:Obj.Type }
                     });
             })
         })
     },
-    editProfile: function (_id, _oldPassword, _newPassword, _email, _displayName, _profilePicture) {
+    editProfile: function (_id, _email, _displayName, _profilePicture) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
@@ -112,10 +82,6 @@ module.exports = {
                         Obj.DisplayName = _displayName;
                         if (_profilePicture)
                             Obj.ProfilePicture = _profilePicture;
-                        if (_newPassword != "")
-                            Obj.Password = _newPassword;
-                        else
-                            Obj.Password = _oldPassword;
                         Obj.save(function (err, Obj) {
                             if (err)
                                 reject({

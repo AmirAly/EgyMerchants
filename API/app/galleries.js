@@ -107,7 +107,8 @@ module.exports = {
                             else 
                                 resolve({
                                     code: 100,
-                                    data: "This gallery added successfully"
+                                    //data: "This gallery added successfully"
+                                    data:gallery
                                 });
                         })
                     }

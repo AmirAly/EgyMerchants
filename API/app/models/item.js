@@ -14,11 +14,6 @@ var Item = new Schema({
     Tags: { type: String },
     Badges: { type: String },
     Status: { type: String, default: 'Active' },
-    Store: {
-        type: Schema.Types.ObjectId,
-        ref: 'Store',
-        required: "Please add store id"
-    },
     Gallery: {
         type: Schema.Types.ObjectId,
         ref: 'Gallery',

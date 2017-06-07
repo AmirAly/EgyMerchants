@@ -1,54 +1,8 @@
-var Schema = require('./models/category');
+var Schema = require('./models/country');
 module.exports = {
-    getByCountry: function (_country) {
+    add: function (_newCountry) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Countries': _country }, '', function (err, lst) {
-                if (err)
-                    reject({
-                        code: 1,
-                        data: err
-                    });
-                else {
-                    if (lst.length > 0)
-                        resolve({
-                            code: 100,
-                            data: lst
-                        });
-                    else
-                        reject({
-                            code: 21,
-                            data: "This filteration didn't resulted in any data"
-                        });
-                }
-            })
-        })
-    },
-    getAll: function () {
-        return new Promise(function (resolve, reject) {
-            Schema.find({}, '', function (err, lst) {
-                if (err)
-                    reject({
-                        code: 1,
-                        data: err
-                    });
-                else {
-                    if (lst.length > 0)
-                        resolve({
-                            code: 100,
-                            data: lst
-                        });
-                    else
-                        reject({
-                            code: 21,
-                            data: "This filteration didn't resulted in any data"
-                        });
-                }
-            })
-        })
-    },
-    add: function (_newCategory) {
-        return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Status': 'Active', 'Name': _newCategory.Name }, '', function (err, Obj) {
+            Schema.findOne({ 'Status': 'Active', 'Name': _newCountry.Name }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -58,11 +12,11 @@ module.exports = {
                     if (Obj) {
                         reject({
                             code: 21,
-                            data: "This category already exist"
+                            data: "This country already exist"
                         });
                     }
                     else {
-                        _newCategory.save(function (err, Obj) {
+                        _newCountry.save(function (err, _newcountry) {
                             if (err)
                                 reject({
                                     code: 1,
@@ -71,7 +25,7 @@ module.exports = {
                             else
                                 resolve({
                                     code: 100,
-                                    data: Obj
+                                    data: _newcountry
                                 });
                         })
                     }
@@ -79,7 +33,30 @@ module.exports = {
             })
         })
     },
-    edit: function (_id, _name, _countries) {
+    getAll: function () {
+        return new Promise(function (resolve, reject) {
+            Schema.find({ 'Status': 'Active' }, 'Name', function (err, lst) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if (lst.length > 0)
+                        resolve({
+                            code: 100,
+                            data: lst
+                        });
+                    else
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
+                }
+            })
+        })
+    },
+    edit: function (_id, _name, _flag, _isoCode, _welcomeMsg) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _id }, '', function (err, Obj) {
                 if (err)
@@ -90,7 +67,9 @@ module.exports = {
                 else {
                     if (Obj) {
                         Obj.Name = _name;
-                        Obj.Countries = _countries;
+                        Obj.Flag = _flag;
+                        Obj.IsoCode = _isoCode;
+                        Obj.WelcomeMsg = _welcomeMsg;
                         Obj.save(function (err, Obj) {
                             if (err)
                                 reject({
@@ -100,7 +79,7 @@ module.exports = {
                             else
                                 resolve({
                                     code: 100,
-                                    data:"Category data edited successfully"
+                                    data:"Country data edited successfully"
                                 })
                         })
 
@@ -122,7 +101,7 @@ module.exports = {
                 else {
                     if (Obj)
                         resolve({
-                            code: 100, data: "This category deleted successfuylly"
+                            code: 100, data:"This country deleted successfuylly"
                         })
                     else
                         reject({ code: 21, data: "This filteration didn't resulted in any data" })
