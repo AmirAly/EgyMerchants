@@ -143,18 +143,18 @@ module.exports = function (app) {
         var searchResult =[
             {
                 'resultExpos': [
-                    { _id: 1, Img: 'https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg', Title: 'Le Marchee' },
-                    { _id: 2, Img: 'https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg', Title: 'Dubai International Expo' }
+                    { _id: 1, Img: '/images/expo0.png', Title: 'Le Marchee' },
+                    { _id: 2, Img: '/images/expo1.png', Title: 'Dubai International Expo' }
                 ],
                 'resultStores': [
-                    { _id: 3, Img: 'https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg', Title: 'Dior' },
-                    { _id: 4, Img: 'http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg', Title: 'Channel' }
+                    { _id: 3, Img: '/images/dior.jpg', Title: 'Dior' },
+                    { _id: 4, Img: '/images/chanel.jpg', Title: 'Chanel' }
                 ],
                 'resultProducts': [
-                    { _id: 1, Img: 'https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg', Title: 'Blue Watch' },
-                    { _id: 2, Img: 'https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg', Title: 'Golden Watch' },
-                    { _id: 3, Img: 'https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg', Title: 'Rolex' },
-                    { _id: 4, Img: 'http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg', Title: 'Stop Watch' }
+                    { _id: 1, Img: 'http://uploads.tapatalk-cdn.com/20150518/7eb179f322533ce313ad587987f75914.jpg', Title: 'Blue Watch' },
+                    { _id: 2, Img: 'http://g01.a.alicdn.com/kf/HTB1AX3oLpXXXXbraXXXq6xXFXXXW/CHENXI-Gold-Watch-Men-Watches-Top-Brand-Luxury-Famous-2016-Male-Clock-Golden-Quartz-Analog-Wristwatch.jpg', Title: 'Golden Watch' },
+                    { _id: 3, Img: 'https://s-media-cache-ak0.pinimg.com/736x/e2/69/24/e26924a315df6b0d6f6d8ba5488a168c.jpg', Title: 'Rolex Watch' },
+                    { _id: 4, Img: 'https://s-media-cache-ak0.pinimg.com/originals/4e/35/6b/4e356bed54fd89f966c2df43bdcc4bf2.jpg', Title: 'Pincky Watch' }
                 ]
             }
         ];
