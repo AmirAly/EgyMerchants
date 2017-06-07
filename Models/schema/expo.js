@@ -9,7 +9,7 @@ var Expo = new Schema({
     Title: { type: String, min: 2,required:"please enter title" },
     Banner: { type: String, min: 2 },
     Status: { type: String, default: 'Active' },
-    Floors: {
+    Floors:[{
         Name: { type: String },
         Stores: [
     {
@@ -23,6 +23,6 @@ var Expo = new Schema({
         Img: { type: String, min: 2 },
     }
         ]
-    }
+    }]
 });
 module.exports = Mongoose.model('Expo', Expo);

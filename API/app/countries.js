@@ -1,25 +1,18 @@
-var Schema = require('./models/comment');
+var Schema = require('./models/country');
 module.exports = {
-    add: function (_comment) {
+    add: function (_newcountry) {
         return new Promise(function (resolve, reject) {
-            var newComment = new Schema(_comment);
-            newComment.save(function (err, Obj) {
+            _newcountry.save(function (err, _newcountry) {
                 if (err)
-                    reject({
-                        code: 1,
-                        data: err
-                    });
+                    reject(err);
                 else
-                    resolve({
-                        code: 100,
-                        data: "This comment added successfully"
-                    });
+                    resolve(_newcountry);
             })
         })
     },
-    getByItem: function (_itemId) {
+    getAll: function () {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Item': _itemId }, '').populate('User', 'DisplayName').populate('Item', 'Name').exec(function (err, lst) {
+            Schema.find({ 'Status': 'Active' }, 'Name', function (err, lst) {
                 if (err)
                     reject({
                         code: 1,
@@ -39,5 +32,5 @@ module.exports = {
                 }
             })
         })
-    }
+    },
 }

@@ -1,4 +1,4 @@
-var Schema = require('./models/store');
+var Schema = require('./models/user');
 var Product = require('./models/item');
 var Gallery = require('./models/gallery');
 var Expo = require('./models/expo');
@@ -8,7 +8,7 @@ var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
     register: function (_newStore) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $or: [{ 'Email': _newStore.Email }, { 'StoreName': _newStore.StoreName }] }, '', function (err, Obj) {
+            Schema.findOne({ $or: [{ 'Email': _newStore.Email }, {'Name':_newStore.Name}]}, '', function (err, Obj) {
                 if (err)
                     reject({
                         code:1,
@@ -18,10 +18,10 @@ module.exports = {
                     if (Obj)
                         reject({
                             code: 21,
-                            data: "This email or store name already exist"
+                             data: "This email or store name already exist"
                         });
                     else {
-                        Category.findOneAndUpdate({ '_id': _newStore.Category }, { $addToSet: { 'Countries': _newStore.CountryISOCode } }, { new: true }, function (err, Obj) { 
+                        _newStore.Type = 'store';
                             _newStore.save(function (err, _newstore) {
                                 if (err)
                                     reject({
@@ -29,19 +29,12 @@ module.exports = {
                                         data: err
                                     });
                                 else {
-                                    var email = {
-                                        to: _newstore.Email,
-                                        subject: "confirm your email",
-                                        html: '<a href="http://localhost:8007/Store/Confirm/"+_newStore._id>"please click this link to confirm your email"</a>'
-                                    };
-                                    Helper.sendEmail(email);
                                     resolve({
                                         code: 100,
-                                        data: { _id: _newstore._id, StoreName: _newstore.StoreName }
+                                        data: { _id: _newstore._id, Name: _newstore.Name,Type:_newstore.Type }
                                     });
                                 }
                             })
-                        })
                     }
                 }
             })
@@ -50,7 +43,7 @@ module.exports = {
     },
     login: function (_store) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ 'Email': _store.Email }, { 'Password': _store.Password }] }, '', function (err, Obj) {
+            Schema.findOne({ $and: [{ 'Email': _store.Email }, { 'Password': _store.Password }, {'Type':'store'}] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -74,7 +67,7 @@ module.exports = {
                 else if (Obj.Status == "Active")
                     resolve({
                         code: 100,
-                        data: { _id: Obj._id, StoreName: Obj.StoreName }
+                        data: { _id: Obj._id, Name: Obj.Name,Type:Obj.Type }
                     });
             })
         })
@@ -171,34 +164,9 @@ module.exports = {
             })
         })
     },
-    confirmMail: function (_id) {
+    getAll: function () {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id }, function (err, Obj) {
-                if (err)
-                    reject({
-                        code: 1,
-                        data: err
-                    });
-                else
-                    Obj.Status = "Active";
-                Obj.save(function (err, Obj) {
-                    if (err)
-                        reject({
-                            code: 1,
-                            data: err
-                        });
-                    else
-                        resolve({
-                            code: 100,
-                            data: "your account activated successfully"
-                        });
-                });
-            })
-        })
-    },
-    getByCountry: function (_countryId) {
-        return new Promise(function (resolve, reject) {
-            Schema.find({ 'CountryISOCode': _countryId }, '_id StoreName', function (err, lst) {
+            Schema.find({ 'Status':'Active','Type':'store' }, 'Name', function (err, lst) {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
@@ -209,6 +177,67 @@ module.exports = {
                 }
             })
         })
-    }
+    },
+    search: function (_store, _expo, _keyWord, _country) {
+        var finalList = [],
+             itemsLst = [],
+        storesLst = [];
+         var underscore = require("underscore");
+        return new Promise(function (resolve, reject) {
+            if (_country != "") {
+                Schema.find({ 'Status': 'Active', 'CountryISOCode': _country }, 'StoreName Imgs', function (err, lst) {
+                    if (err)
+                        reject({
+                            code: 1,
+                            data: err
+                        });
+                    else {
+                        if (lst.length > 0) {
+                            storesLst.push(lst);
+                        }
+                        if (_expo != "") {
+                            Expo.find({ 'Title': { "$regex": _expo, "$options": "i" } }, 'Sections').populate({
+                                path: 'Sections.Store',
+                                model: 'Store',
+                                match: { Status: 'Active' },
+                                select: { _id: 1, StoreName: 1, Imgs: 1, Type: 1 }
+                            }).exec(function (err, lst) {
+                                if (err)
+                                    reject({
+                                        code: 1,
+                                        data: err
+                                    });
+                                else {
+                                    if (lst.length > 0) {
+                                        underscore.each(lst, function (expo) {
+                                            underscore.each(expo.Sections, function (store) {
+                                                storesLst.push({ _id: store.Store._id, StoreName: store.Store.StoreName, Imgs: store.Store.Imgs, Type: 'store' })
+                                                //underscore.groupBy(finalList, 'Type');
+                                                //console.log((underscore.groupBy(finalList, 'Type')).store);
+                                            })
+                                        })
+                                    }
+                                    if (_store != "") {
+                                        underscore.filter(storesLst, function (store) {
+                                            if (store.StoreName.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Badges.indexOf(_store) !== -1) {
+                                                finalList.push({ _id: store._id, StoreName: store.StoreName, Imgs: store.Imgs, Type: 'store' });
+                                            }
+                                        })
+                                    }
+                                    if (_keyWord != "") {
+                                        underscore.filter(storesLst, function (store) {
+                                            if (store.StoreName.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Badges.indexOf(_store) !== -1) {
+                                                finalList.push({ _id: store._id, StoreName: store.StoreName, Imgs: store.Imgs, Type: 'store' });
+                                            }
+                                        })
+                                    }
+                                }
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    },
 
 }

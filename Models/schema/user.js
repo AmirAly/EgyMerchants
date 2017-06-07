@@ -9,22 +9,18 @@ var User = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
+    CoverPhoto: { type: String, min: 2 },
     Description: { type: String, default: '-' },
     Badges: {
         Verified: { type: String, default: "False" },
-        Flag: { type: String, default:"False" },
         HasFactory: { type: String, default: "False" },
         Featured:{type:String,default:"False"}
     },
     Category: {
-        type: Schema.Types.ObjectId,
-        ref: 'Category',
-        required: "Please select category"
+        type: String
     },
     Country: {
-        type: Schema.Types.ObjectId,
-        ref: 'Country',
-        required: "Please select country"
+        type: String
     },
     LastActivity: { type: Number },
     Imgs: [{ URL: { type: String } }],

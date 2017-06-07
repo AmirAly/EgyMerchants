@@ -1,10 +1,10 @@
 var GalleryLogic = require('./galleries');
-var ItemLogic = require('./products');
+var ItemLogic = require('./items');
 var StoreLogic = require('./stores');
 var Gallery = require('./models/gallery');
 var Item = require('./models/item');
 var Expo = require('./models/expo');
-var Store = require('./models/store');
+var Store = require('./models/user');
 var Country = require('./models/country');
 var Category = require('./models/category');
 
