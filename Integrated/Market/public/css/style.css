@@ -70,6 +70,17 @@ p {
         padding: 1px 0;
     }
 
+.spacer1 {
+    float: left;
+    width: 100%;
+    height: 30px;
+}
+
+.spacer2 {
+    float: left;
+    width: 100%;
+    height: 15px;
+}
 h1 {
     margin: 0;
     padding: 0 0 1.3em;
@@ -400,6 +411,11 @@ h1, h2, h3, h4, h5, h6 {
     max-height: 130px;
 }
 
+    .dvMiddlePart .row {
+        display: flex;
+        align-items: center;
+    }
+
     .dvMiddlePart .logo {
         margin: 10px 20px 10px 0;
         text-decoration: none !important;
@@ -415,34 +431,30 @@ h1, h2, h3, h4, h5, h6 {
 
         .dvMiddlePart .logo img {
             max-width: 150px;
+            margin-right: 20px;
         }
 
 
     .dvMiddlePart .cart-area {
-        position: absolute;
-        top: 50%;
-        margin-top: -20px;
-        z-index: 1;
-        display: inline-block;
-        height: 40px;
-        right: 0px;
-        text-align: right;
-        vertical-align: middle;
+        float: right;
     }
 
-    .dvMiddlePart .custom-block {
-        display: inline-block;
-        text-align: left;
-        font-size: 11px;
-        height: 42px;
-        line-height: 1;
-        padding-right: 100px;
-        margin-right: 0;
-        font-size: 14px;
-        font-weight: 400;
-        display: inline-block;
-        vertical-align: middle;
-    }
+        .dvMiddlePart .cart-area span {
+            margin-top: 4px;
+            color: #787d7f;
+            display: block;
+            font-size: 14px;
+        }
+
+        .dvMiddlePart .cart-area b {
+            color: #606669;
+            font-size: 18px;
+            display: block;
+            line-height: 27px;
+        }
+
+
+
 
     .dvMiddlePart .search-area {
         position: static;
@@ -452,18 +464,21 @@ h1, h2, h3, h4, h5, h6 {
         margin-top: -20px;
         z-index: 1;
         display: inline-block;
-        height: 40px;
-        left: 30%;
+        /*height: 40px;*/
+        left: 0;
+        right: 0;
         vertical-align: middle;
     }
 
     .dvMiddlePart #search_mini_form {
-        width: 447px;
-        margin-left: 114px;
-        margin-right: 0;
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: 35px;
+        background: rgb(238, 238, 238);
+        padding: 5px;
+        -webkit-border-radius: 200px;
+        -khtml-border-radius: 200px;
+        -moz-border-radius: 200px;
+        -ms-border-radius: 200px;
+        -o-border-radius: 200px;
+        border-radius: 200px;
     }
 
     .dvMiddlePart .form-search {
@@ -471,87 +486,71 @@ h1, h2, h3, h4, h5, h6 {
         border-color: #dbe0e2;
         border-radius: 20px !important;
         overflow: visible;
-        border: 1px solid #ccc;
+        border: 0;
         position: relative;
         width: 100%;
         min-width: 250px;
-        padding-right: 170px;
+        padding-right: 80px;
         height: 39px;
     }
 
         .dvMiddlePart .form-search #search {
-            color: #8d8d8d;
-            background-color: transparent;
-            border: 0;
             height: 38px;
-            background-color: transparent;
-            padding: 10px 15px;
-            color: #999;
+            padding: 10px 25px;
             font-family: Arial;
             width: 100%;
             margin: 0;
             font-size: 13px;
             line-height: 20px;
-            border-radius: 20px 0 0 20px;
             float: left;
             margin-right: 2px;
+            border: 0;
+            /*text-transform: uppercase;*/
+            box-shadow: none;
+            color: #999;
+            -webkit-border-radius: 200px 0 0 200px;
+            -khtml-border-radius: 200px 0 0 200px;
+            -moz-border-radius: 200px 0 0 200px;
+            -ms-border-radius: 200px 0 0 200px;
+            -o-border-radius: 200px 0 0 200px;
+            border-radius: 200px 0 0 200px;
+            -webkit-transition: background-color 0.3s ease-in-out;
+            -khtml-transition: background-color 0.3s ease-in-out;
+            -moz-transition: background-color 0.3s ease-in-out;
+            -ms-transition: background-color 0.3s ease-in-out;
+            -o-transition: background-color 0.3s ease-in-out;
+            transition: background-color 0.3s ease-in-out;
+            background: #f9f8f8;
         }
 
-        .dvMiddlePart .form-search #cat {
-            color: #333333;
-            border-color: #ffffff;
-            border-color: #dbe0e2;
-            color: #8d8d8d;
-            background-color: transparent;
-            right: 50px;
-            background: none;
-            margin: 0;
-            width: 130px;
-            height: 38px;
-            background-color: transparent;
-            border: 1px solid #ccc;
-            border-top: 0;
-            border-bottom: 0;
-            font-family: Arial;
-            font-size: 13px;
-            line-height: 34px;
-            color: #777;
-            padding: 2px 0;
-            padding-left: 10px;
-            position: absolute;
-            right: 40px;
-            border-radius: 0;
-            -moz-appearance: none;
-            -webkit-appearance: none;
-            width: 118px;
-            float: left;
-            margin-right: 2px;
-        }
 
-            .dvMiddlePart .form-search #cat option {
-                color: #000;
-                background: #fff;
-                padding-right: 10px;
-            }
-
-        .dvMiddlePart .form-search button.button {
-            font-size: 16px;
-            background-color: transparent;
-            width: 50px;
-            width: 40px;
+        .dvMiddlePart .form-search button {
             height: 38px;
             color: #777;
             position: absolute;
             right: 0;
             top: 0;
-            border-radius: 0 20px 20px 0;
-            webkit-border-fit: lines;
             overflow: visible;
             border: 0;
             padding: 0;
             margin: 0;
             cursor: pointer;
+            background-color: #c3c3c3 !important;
+            font-size: 18px;
+            border: 0;
+            padding-right: 0px;
+            width: 80px;
+            -webkit-border-radius: 0 200px 200px 0;
+            -khtml-border-radius: 0 200px 200px 0;
+            -moz-border-radius: 0 200px 200px 0;
+            -ms-border-radius: 0 200px 200px 0;
+            -o-border-radius: 0 200px 200px 0;
+            border-radius: 0 200px 200px 0;
         }
+
+            .dvMiddlePart .form-search button i {
+                color: whitesmoke;
+            }
 
 .header-wrapper {
     background-color: #282d3b;
@@ -665,75 +664,6 @@ h1, h2, h3, h4, h5, h6 {
     }
 
 
-
-/*.pageHeader {
-    background: #fff;
-    background: rgba(255, 255, 255, .9);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, .25);
-    padding-top: 10px;
-    border-bottom: 1px solid #eee;
-    border-bottom: 0 solid rgba(0, 0, 0, 0);
-    z-index: 11;
-    margin: 0;
-}
-
-    .pageHeader .row {
-        display: flex;
-        align-items: center;
-    }
-
-    .pageHeader .logo {
-        padding-left: 40px;
-    }
-
-    .pageHeader .alignSearchforms {
-        display: flex;
-        flex-flow: row;
-        flex-direction: row-reverse;
-        justify-content: flex-start;
-    }
-
-        .pageHeader .alignSearchforms .smallDvSearch .form-control {
-            padding: 8px;
-        }
-
-
-    .pageHeader .btn-default {
-        border: none !important;
-        background: transparent !important;
-        margin-bottom: 0;
-    }
-
-    .pageHeader .dropdown {
-        border-left: 1px solid #ccc;
-    }
-
-    .pageHeader .navbar {
-        background: transparent !important;
-        border: none !important;
-        padding: 0px 15px;
-    }
-
-        .pageHeader .navbar li a {
-            font-size: 16px;
-            font: 1.23em Mavenpro-medium, Arial, Helvetica, sans-serif;
-            -o-transition: border .1s ease;
-            -moz-transition: border .1s ease;
-            -webkit-transition: border .1s ease;
-            transition: border .1s ease;
-        }
-
-        .pageHeader .navbar li.active a {
-            background-color: transparent !important;
-            border-bottom: 5px solid red;
-        }
-
-        .pageHeader .navbar li:not(.active):hover {
-            background-color: transparent !important;
-            color: #000;
-        }*/
-
-
 .pull-right {
     display: inline-flex;
 }
@@ -742,6 +672,11 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
+}
+
+.cloudzoom-zoom {
+    max-height: 400px !important;
+    max-width: 400px !important;
 }
 
 /*Landing Page*/
@@ -1921,65 +1856,53 @@ h1, h2, h3, h4, h5, h6 {
         }
 
 /*search page*/
-dl#narrow-by-list {
-    margin: 0;
+.pageSearch h2 {
+    padding-bottom: 0;
+    color: #337ab7;
+    text-shadow: 1px 1px 1px #ccc;
 }
 
-.block-layered-nav dt {
-    padding: 10px 15px;
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    border: 1px solid #ddd;
-    background-color: #f5f5f5;
+
+
+.pageSearch .dvOptionsContainer {
+    padding: 15px 10px;
+    background: #f9f8f8;
+    border: 7px solid #eee;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.pageSearch .dvOptionsContainer .btn {
+    padding: 10px 12px;
+}
+
+.pageSearch .dvOptionsContainer .form-control {
+    box-shadow: none;
+    border-radius: 0px;
+    border: 2px solid #e9e9e9;
+    height: 40px;
     color: #777;
-    position: relative;
-    cursor: pointer;
-    border-radius: 7px 7px 0 0;
-    margin-top: 14px;
-    border: 0;
-    background-color: transparent;
-    border-bottom: 2px solid #ccc;
-    padding-left: 0;
-    padding-right: 0;
-    font-family: "Oswald";
-    color: #000;
-    letter-spacing: 1px;
-    font-size: 12px;
+    line-height: 20px;
 }
 
-    .block-layered-nav dt:before {
-        content: '\e060';
-        font: 1.23em icomoon;
-        border: 0;
-        color: #000;
-        position: absolute;
-        right: 0;
-        font-size: 12px;
-        background-color: transparent;
-    }
-
-.block-layered-nav dd {
+.pageSearch .dvOptionsContainer select {
+    border-color: #dbe0e2;
+    width: 130px;
+    height: 38px;
+    border: 1px solid #ccc;
+    font-family: Arial;
     font-size: 13px;
-    border-radius: 0 !important;
-    border: none;
-    background-color: transparent;
-    padding: 20px 15px;
+    line-height: 34px;
+    color: #777;
+    padding: 2px 0;
+    padding-left: 10px;
+    border-radius: 0;
+    -moz-appearance: none;
+    margin-right: 2px;
 }
 
-
-.block.block-layered-nav .block-content ol {
-    margin: 0;
-    list-style: none;
-}
-
-.block-content {
-    padding-bottom: 50px;
-}
-
-
-.product-preview .preview .img-responsive {
-    height:auto !important;
-    max-height:220px !important;
-    min-height:220px !important;
-}
+    .pageSearch .dvOptionsContainer select option {
+        color: #000;
+        background: #fff;
+        padding-right: 10px;
+    }

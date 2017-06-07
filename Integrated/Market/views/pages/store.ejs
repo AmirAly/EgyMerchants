@@ -2,9 +2,19 @@
 <% include ../partials/pageheader %>
 
 
-<div class="storePage container">
-    <div class="pageBody">
-        <section class="txtStoreName container">
+<div class="storePage">
+    <div class="container">
+        <div class="pageCover" style="background: url(/images/cover.jpg);height: 300px;position: absolute;left: 0;right: 0;">
+            
+        </div>
+		<div class="pageBody" style=" background: #f9f8f8; z-index: 999999999; position: sticky; margin-top: 130px; border: 1px solid #eee;">
+		<div style="position:relative">
+		<div style="position: absolute;top: -25px;">
+		<img src="/images/nbclogo.png" />
+		</div>
+		</div>
+
+                    <section class="txtStoreName container">
             <div class="clear"></div>
             <span class="hide" id="StoreId"><%= store._id %></span>
             <h1 id="StoreName"><%= store.StoreName %></h1>
@@ -80,21 +90,22 @@
                     <h3><a href="#">BEST SELLERS</a></h3>
                     <div class="products-widget jcarousel-skin-previews vertical">
                         <ul class="slides">
-						<% if (bestSeller.length > 0) { %>
+                            <% if (bestSeller.length > 0) { %>
                             <% bestSeller.forEach(function(item){ %>
                             <li>
                                 <div class="product">
                                     <a href="/Eg/Product/<%= item.Name %>/<%= item._id %>" class="preview-image">
-									<img class="img-responsive animate scale" src="<%= item.Pictures[0].URL %>" alt=""></a>
+                                        <img class="img-responsive animate scale" src="<%= item.Pictures[0].URL %>" alt="">
+                                    </a>
                                     <p class="name"><a href="/Eg/Product/<%= item.Name %>/<%= item._id %>" class="preview-image"><%= item.Name %></a></p>
                                     <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span>
                                     <span class="price"><%= item.Price %></span>
                                 </div>
                             </li>
                             <% }); %>
-										   <% } else { %>
-		<p  class="txtNoData"> No Data Available </p>
-		<% } %>
+                            <% } else { %>
+                            <p class="txtNoData"> No Data Available </p>
+                            <% } %>
                         </ul>
                     </div>
                     <!-- //end Best Sellers -->
@@ -109,12 +120,13 @@
                         <h3>Featured Galleries</h3>
                         <!-- Products list -->
                         <div class="row products-list">
-						<% if (Galleries.length > 0) { %>
+                            <% if (Galleries.length > 0) { %>
                             <% Galleries.forEach(function(gallery){ %>
                             <div class="product-preview">
                                 <div class="preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
                                     <a href="/Eg/Gallery/<%= gallery.Title %>/<%= gallery._id %>" class="preview-image">
-									<img class="img-responsive wow zoomIn"  data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= gallery.DisplayPicture %>" width="270" height="328" alt=""></a>
+                                        <img class="img-responsive wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= gallery.DisplayPicture %>" width="270" height="328" alt="">
+                                    </a>
                                     <ul class="product-controls-list right">
                                         <li><span class="label label-sale">SALE</span></li>
                                         <li><span class="label">-20%</span></li>
@@ -131,9 +143,9 @@
                                 <h3 class="title"><a href="/Eg/Gallery/<%= gallery.Title %>/<%= gallery._id %>"><%= gallery.Title %></a></h3>
                             </div>
                             <% }); %>
-										   <% } else { %>
-		<p class="txtNoData"> No Data Available </p>
-		<% } %>
+                            <% } else { %>
+                            <p class="txtNoData"> No Data Available </p>
+                            <% } %>
                         </div>
                         <!-- //end Products list -->
                         <!-- Product view compact -->
@@ -157,15 +169,13 @@
             </div>
         </section>
         <!-- //end Two columns content -->
-
-    </div>
+        </div>
+	</div>
 </div>
 
 
 <% include ../partials/pagefooter %>
 <% include ../partials/pageend %>
-<script src="/js/general/jquery.jcarousel.min.js"></script>
-<script src="/js/general/customjcarousel.js"></script>
 <script src="/scripts/store.js"></script>
 <% include ../partials/pagesocial %>
 

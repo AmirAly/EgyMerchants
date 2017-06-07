@@ -1,0 +1,272 @@
+<% include ../partials/headpages %>
+<div ng-controller='storeController'>
+    <div class="loaderContainer" ng-show="loading"></div>
+    <div class="loader" ng-show="loading"></div>
+    <div class="wrapper">
+        <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
+            <div class="logo">
+                <a href="http://appout.co" class="simple-text">
+                    AppOut.LLC
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav nav-mobile-menu"></ul><ul class="nav">
+                    <li>
+                        <a href="/eg/countrieslist">
+                            <i class="material-icons">person</i>
+                            <p>Countries</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/eg/categorieslist">
+                            <i class="material-icons">person</i>
+                            <p>Categories</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/eg/exposlist">
+                            <i class="material-icons">dashboard</i>
+                            <p>Expos</p>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="/eg/store">
+                            <i class="material-icons">person</i>
+                            <p>Stores</p>
+                        </a>
+                    </li>
+                    <li ng-click="signOut()" class="cursorPointer">
+                        <a href="/eg/Home">
+                            <i class="material-icons">person</i>
+                            <p>Sign Out</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar-background" style="background-image: url(/img/sidebar-1.jpg) "></div>
+        </div>
+        <div class="main-panel">
+            <nav class="navbar navbar-transparent navbar-absolute">
+                <div class="container-fluid top">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header defaultColor">
+                                    <h4 class="title">Stores List</h4>
+                                    <p class="category">List of stores</p>
+                                </div>
+                                <div class="card-content table-responsive">
+                                    <table class="table">
+                                        <thead class="text-primary">
+                                            <tr>
+                                                <th></th>
+                                                <th>Store name</th>
+                                                <th>Description</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                </td>
+                                                <td>Dakota Rice</td>
+                                                <td class="light"><span class="tableSpan">Niger</span></td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                </td>
+                                                <td>Minerva Hooper</td>
+                                                <td class="light"><span class="tableSpan">Oud-Turnhout</span></td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                </td>
+                                                <td>Sage Rodriguez</td>
+                                                <td class="light"><span class="tableSpan">Feldkirchen in Kärnten</span></td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                </td>
+                                                <td>Philip Chaney</td>
+                                                <td class="light"><span class="tableSpan">Table on Plain Background</span></td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                </td>
+                                                <td>Doris Greene</td>
+                                                <td class="light"><span class="tableSpan">This is a plain notification</span></td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                </td>
+                                                <td>Mason Porter</td>
+                                                <td class="light">
+                                                    <span class="tableSpan">INFO - This is a regular aaaaaaaaaaaaaaaaaaaaaaa</span>
+                                                </td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td class="checkBoxWidth">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+							  <button type="button" class="btn btn-primary pull-right">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <footer class="footer">
+                <% include ../partials/footerpages %>
+            </footer>
+        </div>
+    </div>
+</div>
+<!--   Core JS Files   -->
+    <% include ../partials/pagesjsfiles %>

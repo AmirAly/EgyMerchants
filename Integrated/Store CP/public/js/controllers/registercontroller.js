@@ -5,7 +5,17 @@
 
     $scope.chooseCategory = function (_id) {
         console.log(_id);
+        _id = '590726b2f36d286835cb21a3';
         $scope.categoryId = _id;
+
+        //$scope.categoryId = '590726b2f36d286835cb21a3';
+        //if ($scope.categoryId == '590726b2f36d286835cb21a3') {
+        //    $scope.furniture = true;
+        //    console.log($scope.furniture);
+        //} else {
+        //    console.log('dismiss');
+        //}
+        //590726b2f36d286835cb21a3
     };
     $scope.selectedCity = '59067579734d1d32590f51dd';
     $scope.next = function () {

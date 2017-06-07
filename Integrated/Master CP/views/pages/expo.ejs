@@ -1,0 +1,129 @@
+<% include ../partials/headpages %>
+<div ng-controller='expoController'>
+    <div class="loaderContainer" ng-show="loading"></div>
+    <div class="loader" ng-show="loading"></div>
+    <div class="wrapper">
+        <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
+            <div class="logo">
+                <a href="http://appout.co" class="simple-text">
+                    AppOut.LLC
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li>
+                        <a href="/eg/countrieslist">
+                            <i class="material-icons">person</i>
+                            <p>Countries</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/eg/categorieslist">
+                            <i class="material-icons">person</i>
+                            <p>Categories</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='/eg/exposlist'>
+                            <i class="material-icons">dashboard</i>
+                            <p>Expos</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/eg/store">
+                            <i class="material-icons">person</i>
+                            <p>Stores</p>
+                        </a>
+                    </li>
+                    <li ng-click="signOut()" class="cursorPointer">
+                        <a href="/eg/Home">
+                            <i class="material-icons">person</i>
+                            <p>Sign Out</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <div class="content">
+                <div class="container-fluid">
+                    <!-- Start Breadcrumbs -->
+                    <div class="col-md-8">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="/eg/exposlist">Expos List</a>
+                            </li>
+                            <li class="active">Edit Expo</li>
+                        </ol>
+                    </div>
+                    <!-- End Breadcrumbs -->
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header" data-background-color="orange">
+                                    <h4 class="title">Edit Expo</h4>
+                                    <p class="category">Edit your Expo</p>
+                                </div>
+                                <div class="card-content">
+                                    <form name="frmUpdateExpo">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group label-floating is-focused ">
+                                                    <label class="control-label">Expo Name</label>
+                                                    <input type="text" class="form-control" ng-model="expo.Title" name="expoTitle" id="expoTitle" required pattern="^.{1,35}$">
+                                                    <span ng-show="frmUpdateExpo.expoTitle.$dirty && frmUpdateExpo.expoTitle.$invalid">
+                                                        <span class="errorFont" ng-show="frmUpdateExpo.expoTitle.$error.required">Required</span>
+                                                        <span class="errorFont" ng-show="frmUpdateExpo.expoTitle.$error.pattern">Expo name is too long</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="form-group label-floating is-focused ">
+                                                        <label class="control-label"> About Expo</label>
+                                                        <textarea class="form-control" rows="3" ng-model="expo.Description" required name="expoDesc" id="expoDesc" pattern="^.{1,200}$"></textarea>
+                                                        <span ng-show="frmUpdateExpo.expoDesc.$dirty && frmUpdateExpo.expoDesc.$invalid">
+                                                            <span class="errorFont" ng-show="frmUpdateExpo.expoDesc.$error.required">Required</span>
+                                                            <span class="errorFont" ng-show="frmUpdateExpo.expoDesc.$error.pattern">Expo description is too long</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" ng-click="updateExpo()" ng-disabled="frmUpdateExpo.$invalid" class="btn btn-primary pull-right">Update Expo</button>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header card-chart">
+                                    <!--upload img-->
+                                    <div>
+                                        <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="/img/add.gif" />
+                                        <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="title itemTitle"></h4>
+                                    <p class="category"></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <% include ../partials/footerpages %>
+            </footer>
+        </div>
+
+
+    </div>
+</div>
+<!--   Core JS Files   -->
+<% include ../partials/pagesjsfiles %>
