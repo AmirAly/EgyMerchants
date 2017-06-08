@@ -1,5 +1,5 @@
 ﻿<% include ../partials/headpages %>
-<div ng-controller='storeController'>
+<div ng-controller='countriesListController'>
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -10,8 +10,8 @@
                 </a>
             </div>
             <div class="sidebar-wrapper">
-                <ul class="nav nav-mobile-menu"></ul><ul class="nav">
-                    <li>
+                <ul class="nav">
+                    <li class="active">
                         <a href="/eg/countrieslist">
                             <i class="material-icons">person</i>
                             <p>Countries</p>
@@ -24,12 +24,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/eg/exposlist">
+                        <a href='/eg/exposlist'>
                             <i class="material-icons">dashboard</i>
                             <p>Expos</p>
                         </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="/eg/store">
                             <i class="material-icons">person</i>
                             <p>Stores</p>
@@ -43,9 +43,10 @@
                     </li>
                 </ul>
             </div>
-            <div class="sidebar-background" style="background-image: url(/img/sidebar-1.jpg) "></div>
+
         </div>
         <div class="main-panel">
+
             <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid top">
                     <div class="navbar-header">
@@ -56,28 +57,29 @@
                             <span class="icon-bar"></span>
                         </button>
                     </div>
+                    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">Add Country</button>
                 </div>
             </nav>
+
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header defaultColor">
-                                    <h4 class="title">Stores List</h4>
-                                    <p class="category">List of stores</p>
+                                    <h4 class="title">Countries List</h4>
+                                    <p class="category">List of countries</p>
                                 </div>
                                 <div class="card-content table-responsive">
                                     <table class="table">
                                         <thead class="text-primary">
                                             <tr>
                                                 <th></th>
-                                                <th>Store name</th>
-                                                <th>Description</th>
+                                                <th>Country</th>
+                                                <th>IsoCode code</th>
+                                                <th>Welcome message</th>
                                                 <th></th>
                                                 <th></th>
-                                                <th></th>
-
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -85,188 +87,211 @@
                                                 <td>
                                                     <img class="divImgTable" src="/img/cover.jpeg" />
                                                 </td>
-                                                <td>Dakota Rice</td>
-                                                <td class="light"><span class="tableSpan">Niger</span></td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
-                                                        </label>
-                                                    </div>
+                                                <td>Egypt</td>
+                                                <td>EG</td>
+                                                <td class="light">مرحبا</td>
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country">
+                                                        <i class="material-icons">edit</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
                                                 </td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
-                                                        </label>
-                                                    </div>
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                        <i class="material-icons">close</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <img class="divImgTable" src="/img/cover.jpeg" />
                                                 </td>
-                                                <td>Minerva Hooper</td>
-                                                <td class="light"><span class="tableSpan">Oud-Turnhout</span></td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
-                                                        </label>
-                                                    </div>
+                                                <td>Turky</td>
+                                                <td>TR</td>
+                                                <td class="light">Hoşgeldiniz</td>
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country">
+                                                        <i class="material-icons">edit</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
                                                 </td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
-                                                        </label>
-                                                    </div>
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                        <i class="material-icons">close</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <img class="divImgTable" src="/img/cover.jpeg" />
                                                 </td>
-                                                <td>Sage Rodriguez</td>
-                                                <td class="light"><span class="tableSpan">Feldkirchen in Kärnten</span></td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
-                                                        </label>
-                                                    </div>
+                                                <td>France</td>
+                                                <td>FR</td>
+                                                <td class="light">Bienvenue</td>
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country">
+                                                        <i class="material-icons">edit</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
                                                 </td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
-                                                        </label>
-                                                    </div>
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                        <i class="material-icons">close</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <img class="divImgTable" src="/img/cover.jpeg" />
                                                 </td>
-                                                <td>Philip Chaney</td>
-                                                <td class="light"><span class="tableSpan">Table on Plain Background</span></td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
-                                                        </label>
-                                                    </div>
+                                                <td>Dubai</td>
+                                                <td>AU</td>
+                                                <td class="light">أهلا بك</td>
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country">
+                                                        <i class="material-icons">edit</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
                                                 </td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
-                                                        </label>
-                                                    </div>
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                        <i class="material-icons">close</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <img class="divImgTable" src="/img/cover.jpeg" />
                                                 </td>
-                                                <td>Doris Greene</td>
-                                                <td class="light"><span class="tableSpan">This is a plain notification</span></td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
+                                                <td>Italy</td>
+                                                <td>IT</td>
+                                                <td class="light">benvenuto</td>
                                                 <td>
-                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country">
+                                                        <i class="material-icons">edit</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
                                                 </td>
-                                                <td>Mason Porter</td>
-                                                <td class="light">
-                                                    <span class="tableSpan">INFO - This is a regular aaaaaaaaaaaaaaaaaaaaaaa</span>
-                                                </td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Activated</span></span>
-                                                        </label>
-                                                    </div>
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                        <i class="material-icons">close</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                <button type="button" class="btn btn-primary pull-right">Save</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-
             <footer class="footer">
                 <% include ../partials/footerpages %>
             </footer>
         </div>
     </div>
+
+    <!-- Start Modal -->
+    <div class="modal fade bs-example-modal-lg" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Add Country</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="card">
+                                        <div class="card-header" data-background-color="orange">
+                                            <h4 class="title">Creat Country</h4>
+                                            <p class="category">Creat A New Country</p>
+                                        </div>
+                                        <div class="card-content">
+                                            <form name="frmAddCountry">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Country name</label>
+                                                            <input type="text" class="form-control" ng-model="country.Name" required pattern="^.{1,35}$" name="countryName" id="countryName">
+                                                            <span ng-show="frmAddCountry.countryName.$dirty && frmAddCountry.countryName.$invalid">
+                                                                <span class="errorFont" ng-show="frmAddCountry.countryName.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmAddCountry.countryName.$error.pattern">Country name is too long</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Country iso code</label>
+                                                            <input type="text" class="form-control" ng-model="country.IsoCode" required pattern="^.{1,3}$" name="countryIsoCode" id="countryIsoCode">
+                                                            <span ng-show="frmAddCountry.countryIsoCode.$dirty && frmAddCountry.countryIsoCode.$invalid">
+                                                                <span class="errorFont" ng-show="frmAddCountry.countryIsoCode.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmAddCountry.countryIsoCode.$error.pattern">Country IsoCode is too long</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Welcome message</label>
+                                                            <input type="text" class="form-control" ng-model="country.WelcomeMsg" required pattern="^.{1,35}$" name="countryWelcomeMsg" id="countryWelcomeMsg">
+                                                            <span ng-show="frmAddCountry.countryWelcomeMsg.$dirty && frmAddCountry.countryWelcomeMsg.$invalid">
+                                                                <span class="errorFont" ng-show="frmAddCountry.countryWelcomeMsg.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmAddCountry.countryWelcomeMsg.$error.pattern">Country welcome message is too long</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-header card-chart">
+                                            <!--upload img-->
+                                            <div>
+                                                <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="/img/add.gif" />
+                                                <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
+                                            </div>
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="title itemName">{{country.Name}}</h4>
+                                            <p class="category">{{country.IsoCode}}</p>
+                                            <p class="category">{{country.WelcomeMsg}}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-click="addCountry()" ng-disabled="frmAddCountry.$invalid" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+
 </div>
 <!--   Core JS Files   -->
-    <% include ../partials/pagesjsfiles %>
+<% include ../partials/pagesjsfiles %>
