@@ -76,20 +76,23 @@
                                             <tr>
                                                 <th></th>
                                                 <th>Country</th>
-                                                <th>Iso code</th>
+                                                <th>IsoCode code</th>
                                                 <th>Welcome message</th>
                                                 <th></th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <% if ( countrieslst.length > 0  ){ %>
+                                            <% countrieslst.forEach(function(country){ %>
                                             <tr>
                                                 <td>
-                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                    <img class="divImgTable" src="<%= country.Flag %>" />
+                                                    <!--<img class="divImgTable" src="/img/cover.jpeg" />-->
                                                 </td>
-                                                <td>Egypt</td>
-                                                <td>EG</td>
-                                                <td class="light">مرحبا</td>
+                                                <td><%= country.Name %></td>
+                                                <td><%= country.IsoCode %></td>
+                                                <td class="light"><%= country.WelcomeMsg %></td>
                                                 <td>
                                                     <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country">
                                                         <i class="material-icons">edit</i>
@@ -103,7 +106,11 @@
                                                     </button>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <% }); %>
+                                            <% }else{ %>
+                                            <p class="text-center">There is no countries</p>
+                                            <% } %>
+                                            <!--<tr>
                                                 <td>
                                                     <img class="divImgTable" src="/img/cover.jpeg" />
                                                 </td>
@@ -182,7 +189,7 @@
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
-                                            </tr>
+                                            </tr>-->
                                         </tbody>
                                     </table>
                                 </div>
@@ -224,10 +231,10 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Country name</label>
-                                                            <input type="text" class="form-control" ng-model="country.Title" required pattern="^.{1,35}$" name="countryTitle" id="countryTitle">
-                                                            <span ng-show="frmAddCountry.countryTitle.$dirty && frmAddCountry.countryTitle.$invalid">
-                                                                <span class="errorFont" ng-show="frmAddCountry.countryTitle.$error.required">Required</span>
-                                                                <span class="errorFont" ng-show="frmAddCountry.countryTitle.$error.pattern">Country name is too long</span>
+                                                            <input type="text" class="form-control" ng-model="country.Name" required pattern="^.{1,35}$" name="countryName" id="countryName">
+                                                            <span ng-show="frmAddCountry.countryName.$dirty && frmAddCountry.countryName.$invalid">
+                                                                <span class="errorFont" ng-show="frmAddCountry.countryName.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmAddCountry.countryName.$error.pattern">Country name is too long</span>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -236,10 +243,10 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Country iso code</label>
-                                                            <input type="text" class="form-control" ng-model="country.Iso" required pattern="^.{1,3}$" name="countryIso" id="countryIso">
-                                                            <span ng-show="frmAddCountry.countryIso.$dirty && frmAddCountry.countryIso.$invalid">
-                                                                <span class="errorFont" ng-show="frmAddCountry.countryIso.$error.required">Required</span>
-                                                                <span class="errorFont" ng-show="frmAddCountry.countryIso.$error.pattern">Country IsoCode is too long</span>
+                                                            <input type="text" class="form-control" ng-model="country.IsoCode" required pattern="^.{1,3}$" name="countryIsoCode" id="countryIsoCode">
+                                                            <span ng-show="frmAddCountry.countryIsoCode.$dirty && frmAddCountry.countryIsoCode.$invalid">
+                                                                <span class="errorFont" ng-show="frmAddCountry.countryIsoCode.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmAddCountry.countryIsoCode.$error.pattern">Country IsoCode is too long</span>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -248,10 +255,10 @@
                                                     <div class="col-md-8">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Welcome message</label>
-                                                            <input type="text" class="form-control" ng-model="country.Msg" required pattern="^.{1,35}$" name="countryMsg" id="countryMsg">
-                                                            <span ng-show="frmAddCountry.countryMsg.$dirty && frmAddCountry.countryMsg.$invalid">
-                                                                <span class="errorFont" ng-show="frmAddCountry.countryMsg.$error.required">Required</span>
-                                                                <span class="errorFont" ng-show="frmAddCountry.countryMsg.$error.pattern">Country welcome message is too long</span>
+                                                            <input type="text" class="form-control" ng-model="country.WelcomeMsg" required pattern="^.{1,35}$" name="countryWelcomeMsg" id="countryWelcomeMsg">
+                                                            <span ng-show="frmAddCountry.countryWelcomeMsg.$dirty && frmAddCountry.countryWelcomeMsg.$invalid">
+                                                                <span class="errorFont" ng-show="frmAddCountry.countryWelcomeMsg.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmAddCountry.countryWelcomeMsg.$error.pattern">Country welcome message is too long</span>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -272,8 +279,9 @@
                                             </div>
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="title itemTitle">{{country.Title}}</h4>
-                                            <p class="category">{{country.Description}}</p>
+                                            <h4 class="title itemName">{{country.Name}}</h4>
+                                            <p class="category">{{country.IsoCode}}</p>
+                                            <p class="category">{{country.WelcomeMsg}}</p>
                                         </div>
 
                                     </div>

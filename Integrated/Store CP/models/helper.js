@@ -5,19 +5,19 @@ module.exports = {
     sendEmail: function (email) {
         var smtpTransport = nodemailer.createTransport({
             transport: "SMTP",
-            host: 'appout.co',
+            host: "smtp.gmail.com",
             secureConnection: false,
-            port: 110,
+            port: 587,
             requiresAuth: true,
             auth: {
-                user: 'ucare@appout.co',
-                pass: 'uc12uc'
+                user: 'aali.ibtekar@gmail.com',
+                pass: '2682013AmirAmira'
             }
         });
         var mailOptions = {
             to: email.to,
             subject: email.subject,
-            html: email.text
+            html: email.html
         }
         smtpTransport.sendMail(mailOptions, function (err, response) {
             if (err) {
@@ -25,7 +25,8 @@ module.exports = {
                 return err;
             }
             else
-                return 100;
+                console.log("mail sent");
+            return 100;
         });
     },
     addDays: function (_date, _days) {

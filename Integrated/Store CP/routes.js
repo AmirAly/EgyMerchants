@@ -1,5 +1,5 @@
 ﻿var store = require('./models/stores');
-var product = require('./models/products');
+var product = require('./models/items');
 var gallery = require('./models/galleries');
 var category = require('./models/categories');
 module.exports = function (app) {
