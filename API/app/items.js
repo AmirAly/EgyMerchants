@@ -140,7 +140,7 @@ module.exports = {
     },
     edit: function (_id, _name, _description, _imgs, _price, _priceBeforeSale, _badges,_tags) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Name': _product.Name, 'Gallery': _product.Gallery,'_id':{$ne:_id} }, '', function (err, Obj) {
+            Schema.findOne({ 'Name': _name,'_id':{$ne:_id} }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,

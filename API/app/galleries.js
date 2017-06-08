@@ -49,7 +49,7 @@ module.exports = {
     },
     edit: function (_id, _title, _description, _img) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ 'Store': _gallery.Store }, { 'Title': _gallery.Title },{'_id':{$ne:_id}}] }, '', function (err, Obj) {
+            Schema.findOne({ 'Title': _title ,'_id':{$ne:_id} }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -123,7 +123,7 @@ module.exports = {
                             else 
                                 resolve({
                                     code: 100,
-                                    data: "This gallery added successfully"
+                                    data: gallery//"This gallery added successfully"
                                 });
                         })
                     }

@@ -112,7 +112,7 @@ var newexpo = new exposchema({ "Title": "nofloorsexpopush2", "Banner": "bnner", 
 //}, function (err) {
 //    console.log(err);
 //});
-var newuser = new userschema({ "Email": "newuser@gmail.com", "Password": "123456", "Name": "ali" });
+var newuser = new userschema({ "Email": "newuser2@gmail.com", "Password": "123456", "Name": "ali ibrahim" });
 //user.register(newuser).then(function (result) {
 //    console.log(result); 
 //}, function(err) {
@@ -125,6 +125,12 @@ var newuser = new userschema({ "Email": "newuser@gmail.com", "Password": "123456
 //    console.log(err);
 //});
 //5936b0501fc9883c1193f7fb
+
+//user.editProfile("59391220b13235c80c97ee1a", "newuser2@gmail.com", "ali", "img").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 
 var newcountry = new countryschema({ "Name": "Greece", "WelcomeMsg": "welcome in Greece", "IsoCode": "445","Flag":"white/green" });
 //country.add(newcountry).then(function (result) {
@@ -213,8 +219,13 @@ var newitem = new itemschema({ "Name": "newitem3", "Description": "desconlytodo"
 //}, function (err) {
 //    console.log(err);
 //    });
-//var newgallery = new galleryschema({ "Title": "gallery67", "Badges": "mostvisited2", "Store": "59366953c2bf034812df1954", "Description": "display all you dream of furniture2", "DisplayPicture": "dsp" });
+var newgallery = new galleryschema({ "Title": "galleryoctober3", "Badges": "mostvisited2", "Store": "59366953c2bf034812df1954", "Description": "display all you dream of furniture2", "DisplayPicture": "dsp" });
 //gallery.add(newgallery).then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//gallery.edit("593913e352c7bc5019ce805b", "galleryoctober", "des", "img").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);

@@ -49,6 +49,19 @@ module.exports = {
     },
     edit: function (_id, _title, _description, _img) {
         return new Promise(function (resolve, reject) {
+            Schema.findOne({ 'Title': _title ,'_id':{$ne:_id} }, '', function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if(Obj)
+                        reject ({
+                            code: 21,
+                            data: "There is gallery with the same title"
+                        });
+                    else {
             Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
@@ -81,6 +94,9 @@ module.exports = {
                         });
                 }
             })
+                    }
+                }
+            })
         })
     },
     add: function (_gallery) {
@@ -107,8 +123,7 @@ module.exports = {
                             else 
                                 resolve({
                                     code: 100,
-                                    //data: "This gallery added successfully"
-                                    data:gallery
+                                    data: gallery//"This gallery added successfully"
                                 });
                         })
                     }

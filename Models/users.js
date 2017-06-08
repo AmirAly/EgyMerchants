@@ -70,6 +70,20 @@ module.exports = {
     },
     editProfile: function (_id, _email, _displayName, _profilePicture) {
         return new Promise(function (resolve, reject) {
+            Schema.findOne({ $or: [{ 'Email': _email }, { 'Name': _displayName }] , '_id': { $ne: _id }}, '', function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    })
+                else {
+                    if (Obj) {
+                        reject({
+                            code: 21,
+                            data: "This email or name already exist"
+                        });
+                    }
+                    else {
             Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
@@ -95,14 +109,16 @@ module.exports = {
                                 });
                         })
                     }
-                    else {
+                    else 
                         reject({
                             code: 21,
                             data: "This filteration didn't resulted in any data"
                         });
                     }
+                })
                 }
-            });
+            }
+    })
         })
-    },
+        },
 }

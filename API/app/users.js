@@ -70,7 +70,7 @@ module.exports = {
     },
     editProfile: function (_id, _email, _displayName, _profilePicture) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({$and:[{ $or: [{ 'Email': _newUser.Email }, { 'Name': _newUser.Name }]},{'_id':{$ne:_id}}] }, '', function (err, Obj) {
+            Schema.findOne({ $or: [{ 'Email': _email }, { 'Name': _displayName }] , '_id': { $ne: _id }}, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,

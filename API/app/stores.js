@@ -74,7 +74,7 @@ module.exports = {
     },
     editProfile: function (_id,_email,_city,_address,_country,_description,_imgs) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({'Email': _newStore.Email ,'_id':{$ne:_id}}, '', function (err, Obj) {
+            Schema.findOne({'Email': _email ,'_id':{$ne:_id}}, '', function (err, Obj) {
                 if (err)
                     reject({
                         code:1,
