@@ -1,4 +1,4 @@
-var Schema = require('./models/item');
+var Schema = require('./schema/item');
 module.exports = {
     getFeatured: function (_storeId) {
         var underscore = require("underscore");

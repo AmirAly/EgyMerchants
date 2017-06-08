@@ -1,8 +1,8 @@
-var Schema = require('./models/user');
-var Product = require('./models/item');
-var Gallery = require('./models/gallery');
-var Expo = require('./models/expo');
-var Category = require('./models/category');
+var Schema = require('./schema/user');
+var Product = require('./schema/item');
+var Gallery = require('./schema/gallery');
+var Expo = require('./schema/expo');
+var Category = require('./schema/category');
 var Helper = require('./helper');
 var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {

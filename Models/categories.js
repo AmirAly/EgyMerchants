@@ -1,4 +1,4 @@
-var Schema = require('./models/category');
+var Schema = require('./schema/category');
 module.exports = {
     getByCountry: function (_country) {
         return new Promise(function (resolve, reject) {

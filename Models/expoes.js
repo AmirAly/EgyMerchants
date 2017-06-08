@@ -1,4 +1,4 @@
-var Schema = require('./models/expo');
+var Schema = require('./schema/expo');
 module.exports = {
     add: function (_newExpo) {
         return new Promise(function (resolve, reject) {

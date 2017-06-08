@@ -1,4 +1,4 @@
-var Schema = require('./models/user');
+var Schema = require('./schema/user');
 var Helper = require('./helper');
 
 module.exports = {
