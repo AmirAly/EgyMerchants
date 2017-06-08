@@ -13,11 +13,7 @@ var Item = new Schema({
     Sold: { type: Number },
     Tags: { type: String },
     Badges: { type: String },
-    Store: {
-        type: Schema.Types.ObjectId,
-        ref: 'Store',
-        required: "Please add store id"
-    },
+    Status: { type: String, default: 'Active' },
     Gallery: {
         type: Schema.Types.ObjectId,
         ref: 'Gallery',
