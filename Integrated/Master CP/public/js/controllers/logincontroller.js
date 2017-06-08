@@ -10,7 +10,7 @@
         $scope.loading = true;
         var req = {
             method: 'post',
-            url: '/Store/Login',
+            url: '/Master/Login',
             data: $scope.loginData
         }
         API.execute(req).then(function (res) {

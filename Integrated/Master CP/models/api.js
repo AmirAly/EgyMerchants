@@ -1,12 +1,16 @@
 var GalleryLogic = require('./galleries');
 var ItemLogic = require('./items');
 var StoreLogic = require('./stores');
+var MasterLogic = require('./masters');
+var CountryLogic = require('./countries');
+var CategoryLogic = require('./categories');
 var Gallery = require('./models/gallery');
 var Item = require('./models/item');
 var Expo = require('./models/expo');
 var Store = require('./models/user');
 var Country = require('./models/country');
 var Category = require('./models/category');
+var Master = require('./models/user');
 
 var Helper = require('./helper');
 
@@ -28,8 +32,8 @@ module.exports = function (app, express) {
         });
     })
     api.post('/Store/Login', function (req, res) {
-        var _newstore = new Store(req.body);
-        StoreLogic.login(_newstore).then(function (result) {
+        var _newStore = new Store(req.body);
+        StoreLogic.login(_newStore).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -51,8 +55,8 @@ module.exports = function (app, express) {
     })
 
     api.post('/Gallery/Add', function (req, res) {
-        var _newgallery = new Gallery(req.body);
-        GalleryLogic.add(_newgallery).then(function (result) {
+        var _newGallery = new Gallery(req.body);
+        GalleryLogic.add(_newGallery).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -91,7 +95,6 @@ module.exports = function (app, express) {
     api.put('/Item/Edit', function (req, res) {
         ItemLogic.edit(req.body._id, req.body.Name, req.body.Description, req.body.Imgs, req.body.Price, req.body.PriceBeforeSale, req.body.Badges,req.body.Tags).then(function (result) {
             res.json(result);
-            console.log(res);
         }, function (err) {
             res.json(err);
         });
@@ -105,6 +108,60 @@ module.exports = function (app, express) {
     })
     api.get('/Item/GetByGalleryId/:_id', function (req, res) {
         ItemLogic.getByGalleryId(req.params._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+
+    api.post('/Master/Login', function (req, res) {
+        var _newMaster = new Master(req.body);
+        MasterLogic.login(_newMaster).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.post('/Country/Add', function (req, res) {
+        var _newCountry = new Country(req.body);
+        CountryLogic.add(_newCountry).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Country/Edit', function (req, res) {
+        CountryLogic.edit(req.body._id, req.body.Nane, req.body.Flag, req.body.IsoCode,req.body.WelcomeMsg).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Country/Suspend', function (req, res) {
+        CountryLogic.suspend(req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+
+    api.post('/Category/Add', function (req, res) {
+        var _newCategory = new Category(req.body);
+        CategoryLogic.add(_newCategory).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Category/Edit', function (req, res) {
+        CategoryLogic.edit(req.body._id, req.body.Nane, req.body.Countries).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Category/Suspend', function (req, res) {
+        CategoryLogic.suspend(req.body._id).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
