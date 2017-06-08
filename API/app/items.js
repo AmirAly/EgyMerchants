@@ -130,7 +130,6 @@ module.exports = {
                                 resolve({
                                     code: 100,
                                    data: "This item added successfully"
-                                   // data:Obj
                                 });
                         })
                     }
@@ -141,6 +140,19 @@ module.exports = {
     },
     edit: function (_id, _name, _description, _imgs, _price, _priceBeforeSale, _badges,_tags) {
         return new Promise(function (resolve, reject) {
+            Schema.findOne({ 'Name': _product.Name, 'Gallery': _product.Gallery,'_id':{$ne:_id} }, '', function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if (Obj)
+                        reject({
+                            code: 21,
+                            data: "There is item with same name in this gallery"
+                        });
+                    else {
             Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
@@ -177,8 +189,11 @@ module.exports = {
                         });
                 }
             })
-        })
-    },
+                    }
+                }
+            })
+    })
+},
     suspend: function (_id) {
         return new Promise(function (resolve, reject) {
             Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "Suspended" } }, { new: true }, function (err, Obj) {

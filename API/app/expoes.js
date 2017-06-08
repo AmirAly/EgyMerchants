@@ -2,7 +2,7 @@ var Schema = require('./models/expo');
 module.exports = {
     add: function (_newExpo) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Status': 'Active', 'Title': _newExpo.Title }, '', function (err, Obj) {
+            Schema.findOne({'Title': _newExpo.Title }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -35,7 +35,7 @@ module.exports = {
     },
     setFloor: function (_id, _floor) {
         return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ '_id': _id }, { $addToSet: { 'Floors': _floor } }, { new: 'true' }).exec(function (err, expo) {
+            Schema.findOneAndUpdate({ '_id': _id, 'Status': 'Active' }, { $addToSet: { 'Floors': _floor } }, { new: 'true' }).exec(function (err, expo) {
                 if (err)
                     reject({
                         code: 1,
@@ -59,7 +59,21 @@ module.exports = {
     },
     edit: function (_id, _title, _banner, _category, _floors) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id }, '', function (err, Obj) {
+            Schema.findOne({'Title': _title, '_id': { $ne: _id } }, '', function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if (Obj) {
+                        reject({
+                            code: 21,
+                            data: "There is another expo with this title"
+                        });
+                    }
+                    else {
+                        Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -89,6 +103,9 @@ module.exports = {
                             code: 21,
                             data: "This filteration didn't resulted in any data"
                         });
+                }
+            })
+                    }
                 }
             })
         })

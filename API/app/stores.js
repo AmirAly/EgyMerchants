@@ -74,7 +74,20 @@ module.exports = {
     },
     editProfile: function (_id,_email,_city,_address,_country,_description,_imgs) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id }, '', function (err, Obj) {
+            Schema.findOne({'Email': _newStore.Email ,'_id':{$ne:_id}}, '', function (err, Obj) {
+                if (err)
+                    reject({
+                        code:1,
+                        data: err
+                    });
+                else {
+                    if (Obj)
+                        reject({
+                            code: 21,
+                            data: "This email already exist"
+                        });
+                    else {
+                        Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -110,19 +123,21 @@ module.exports = {
                             });
                         }
                     }
-                    else {
+                    else 
                         reject({
                             code: 21,
                             data: "There is no such store"
                         });
                     }
+                })
                 }
-            });
+            }
+    })
         })
-    },
+        },
     editBadges: function (_id, _verified, _hasFactory, _featured) {
         return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Badges.Verified': _verified, 'Badges.HasFactory': _hasFactory, 'Badges.Featured': _featured } }, { new: true }, function (err, Obj) {
+            Schema.findOneAndUpdate({ '_id': _id, 'Status': 'Active' }, { $set: { 'Badges.Verified': _verified, 'Badges.HasFactory': _hasFactory, 'Badges.Featured': _featured } }, { new: true }, function (err, Obj) {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
@@ -136,7 +151,7 @@ module.exports = {
     },
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id}, { "Password": 0 }, function (err, Obj) {
+            Schema.findOne({ '_id': _id, 'Status': 'Active' }, { "Password": 0 }, function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,

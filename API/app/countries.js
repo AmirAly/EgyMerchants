@@ -2,7 +2,7 @@ var Schema = require('./models/country');
 module.exports = {
     add: function (_newCountry) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Status': 'Active', 'Name': _newCountry.Name }, '', function (err, Obj) {
+            Schema.findOne({'Name': _newCountry.Name }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -58,7 +58,21 @@ module.exports = {
     },
     edit: function (_id, _name, _flag, _isoCode, _welcomeMsg) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id }, '', function (err, Obj) {
+            Schema.findOne({'Name': _name, '_id': { $ne: _id } }, '', function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if (Obj) {
+                        reject({
+                            code: 21,
+                            data: "This country already exist"
+                        });
+                    }
+                    else {
+                        Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -89,6 +103,9 @@ module.exports = {
                             code: 21,
                             data: "This filteration didn't resulted in any data"
                         });
+                }
+            })
+                    }
                 }
             })
         })
