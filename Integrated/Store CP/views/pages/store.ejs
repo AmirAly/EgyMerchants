@@ -60,7 +60,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Store Name (disabled)</label>
-                                                <input type="text" class="form-control" value="<%= store.StoreName%>" ng-init=" store.StoreName = '<%= store.StoreName%>' " ng-model="store.StoreName" disabled="">
+                                                <input type="text" class="form-control" value="<%= store.Name%>" ng-init=" store.Name = '<%= store.Name%>' " ng-model="store.Name" disabled="">
                                             </div>
                                         </div>
                                     </div>
@@ -130,7 +130,7 @@
                                     </div>
                             </div>
                             <div class="content">
-                                <h4 class="card-title itemTitle"><%= store.StoreName %></h4>
+                                <h4 class="card-title itemTitle"><%= store.Name %></h4>
                                 <p class="card-content category text-gray"><%= store.Description %></p>
                             </div>
                         </div>

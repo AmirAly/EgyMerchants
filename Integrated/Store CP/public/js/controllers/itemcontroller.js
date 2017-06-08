@@ -34,8 +34,6 @@
         $scope.currentItem = JSON.parse(_s);
     };
 
-    //$scope.item.PriceBeforeSale = 000;
-
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click();
     };

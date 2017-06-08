@@ -1,4 +1,4 @@
-var Schema = require('./schema/gallery');
+var Schema = require('./models/gallery');
 var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
     getByStore: function (_storeId) {
@@ -11,11 +11,11 @@ module.exports = {
                     });
                 else {
                     if (lst.length > 0)
-                        resolve({
-                            code: 100,
-                            data: lst
-                        });
-                    else
+                    resolve({
+                        code:100,
+                        data: lst
+                    });
+                    else 
                         reject({
                             code: 21,
                             data: "This filteration didn't resulted in any data"
@@ -33,12 +33,12 @@ module.exports = {
                         data: err
                     });
                 else {
-                    if (Obj)
+                    if (Obj) 
                         resolve({
                             code: 100,
-                            data: Obj
+                            data:Obj
                         });
-                    else
+                    else 
                         reject({
                             code: 21,
                             data: "This filteration didn't resulted in any data"
@@ -49,6 +49,19 @@ module.exports = {
     },
     edit: function (_id, _title, _description, _img) {
         return new Promise(function (resolve, reject) {
+            Schema.findOne({ 'Title': _title ,'_id':{$ne:_id} }, '', function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if(Obj)
+                        reject ({
+                            code: 21,
+                            data: "There is gallery with the same title"
+                        });
+                    else {
             Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
@@ -57,15 +70,15 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        Obj.Title = _title;
+                        Obj.Title=_title;
                         Obj.Description = _description;
-                        if (_img)
-                            Obj.DisplayPicture = _img;
-                        Obj.save(function (err, Obj) {
+                        if(_img)
+                        Obj.DisplayPicture = _img;
+                        Obj.save(function(err,Obj){
                             if (err)
                                 reject({
                                     code: 1,
-                                    data: err
+                                    data:err
                                 });
                             else
                                 resolve({
@@ -73,6 +86,14 @@ module.exports = {
                                     data: "This gallery updated successfully"
                                 });
                         })
+                    }
+                    else
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
+                }
+            })
                     }
                 }
             })
@@ -87,8 +108,8 @@ module.exports = {
                         data: err
                     });
                 else {
-                    if (Obj)
-                        reject({
+                    if(Obj)
+                       reject ({
                             code: 21,
                             data: "There is gallery with the same title"
                         });
@@ -99,16 +120,29 @@ module.exports = {
                                     code: 1,
                                     data: err
                                 });
-                            else
+                            else 
                                 resolve({
                                     code: 100,
-                                    data: "This gallery added successfully"
+                                    data: gallery//"This gallery added successfully"
                                 });
                         })
                     }
                 }
             })
         })
-
+    },
+    suspend: function (_id) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "Suspended" } }, { new: true }, function (err, Obj) {
+                if (err)
+                    reject({ code: 1, data: err })
+                else {
+                    if (Obj)
+                        resolve({ code: 100, data: "This gallery deleted successfuylly" })
+                    else
+                        reject({ code: 21, data: "This filteration didn't resulted in any data" })
+                }
+            })
+        })
     }
 }
