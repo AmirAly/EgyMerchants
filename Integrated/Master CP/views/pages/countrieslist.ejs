@@ -87,9 +87,10 @@
                                             <% countrieslst.forEach(function(country){ %>
                                             <tr>
                                                 <td>
-                                                    <img class="divImgTable" src="<%= country.Flag %>" />/>
+                                                    <img class="divImgTable" src="<%= country.Flag %>" />
                                                     <!--<img class="divImgTable" src="/img/cover.jpeg" />-->
                                                 </td>
+                                                <td><%= country %></td>
                                                 <td><%= country.Name %></td>
                                                 <td><%= country.IsoCode %></td>
                                                 <td class="light"><%= country.WelcomeMsg %></td>

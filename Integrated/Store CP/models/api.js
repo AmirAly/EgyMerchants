@@ -113,7 +113,14 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-
+    api.post('/Master/Register', function (req, res) {
+        var _newMaster = new Store(req.body);
+        MasterLogic.register(_newMaster).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     api.post('/Master/Login', function (req, res) {
         var _newMaster = new Master(req.body);
         MasterLogic.login(_newMaster).then(function (result) {

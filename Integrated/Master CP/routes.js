@@ -2,7 +2,7 @@
 var product = require('./models/items');
 var gallery = require('./models/galleries');
 var category = require('./models/categories');
-var country = require('./models/countries')
+var country = require('./models/countries');
 module.exports = function (app) {
     // use res.render to load up an ejs view file
     // index page 
@@ -54,7 +54,6 @@ module.exports = function (app) {
             _scope.countrieslst = [];
             res.render('pages/countrieslist', _scope);
         });
-        res.render('pages/countrieslist', _scope);
     });
 
     app.get('/eg/expo', function (req, res) {
