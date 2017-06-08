@@ -1,4 +1,4 @@
-var Schema = require('./models/country');
+var Schema = require('./schema/country');
 module.exports = {
     add: function (_newCountry) {
         return new Promise(function (resolve, reject) {
