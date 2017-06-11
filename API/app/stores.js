@@ -225,8 +225,8 @@ module.exports = {
                     });
                 else {
                     if (lst.length > 0) {
-                        underscore.each(lst, function (store) { storesLst.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" }); console.log("res" + JSON.stringify(storesLst) )})
-                        //console.log("res" +storesLst);
+                        underscore.each(lst, function (store) { storesLst.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" });})
+                        console.log("res" + JSON.stringify(storesLst[0]))
                     }
                     Expo.find(expoFilter, { Sections: 1 }).populate({
                         path: 'Sections.Store',

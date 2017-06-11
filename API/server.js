@@ -86,11 +86,11 @@ var newstore = new userschema({ "Email": "mynewmail@gmail.com", "Password": "nad
 //    console.log(err);
 //});
 //"","","","egypt"
-store.search("", "", "", "egypt").then(function (result) {
-    console.log(result);
-}, function (err) {
-    console.log(err);
-});
+//store.search("", "", "", "egypt").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 var newmaster = new userschema({ "Email": "newmaster@gmail.com", "Password": "123456", "Name": "anisa"});
 //master.register(newmaster).then(function (result) {
 //    console.log(result); 
@@ -124,18 +124,18 @@ var newuser = new userschema({ "Email": "anisa123@gmail.com", "Password": "12345
 //    console.log(err);
 //});
 
-var newcountry = new countryschema({ "Name": "Greece", "WelcomeMsg": "welcome in Greece", "IsoCode": "445","Flag":"white/green" });
+var newcountry = new countryschema({ "Name": "U.S.A", "WelcomeMsg": "welcome in U.S.A", "IsoCode": "123","Flag":"white/green"});
 //country.add(newcountry).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
-//country.edit("593d06591f0fafcc047e2388", "greeco", "yellow", "666", "welcome").then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
+country.edit("593d38aab81b891415bf6fe0", "U.S.A", "yellow", "123", "welcome", ["593d3878535ef028135b7217"]).then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
 //country.suspend("5937e5801cf86e0c0b23c9e5").then(function (result) {
 //    console.log(result);
 //}, function (err) {
@@ -192,7 +192,7 @@ var newexpo = new exposchema({ "Title": "newgodexpo", "Banner": "bnner", "Catego
 //}, function (err) {
 //    console.log(err);
 //});
-var newcategory = new categoryschema({ "Name": "gellewry4", "Countries": ["5937e5801cf86e0c0b23c9e5","593d06591f0fafcc047e2388"] });
+//var newcategory = new categoryschema({ "Name": "newcategoryy" });
 //category.add(newcategory).then(function (result) {
 //    console.log(result);
 //}, function (err) {
