@@ -131,18 +131,18 @@ var newcountry = new countryschema({ "Name": "U.S.A", "WelcomeMsg": "welcome in 
 //    console.log(err);
 //});
 
-country.edit("593d38aab81b891415bf6fe0", "U.S.A", "yellow", "123", "welcome", ["593d3878535ef028135b7217"]).then(function (result) {
-    console.log(result);
-}, function (err) {
-    console.log(err);
-});
+//country.edit("593d38aab81b891415bf6fe0", "U.S.A", "yellow", "123", "welcome", ["593d3878535ef028135b7217"]).then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 //country.suspend("5937e5801cf86e0c0b23c9e5").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
-//country.getById("593d06591f0fafcc047e2388").then(function (result) {
+//country.getById("593d38aab81b891415bf6fe0").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);

@@ -156,7 +156,7 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Country/Edit', function (req, res) {
-        CountryLogic.edit(req.body._id, req.body.Name, req.body.Flag, req.body.IsoCode,req.body.WelcomeMsg).then(function (result) {
+        CountryLogic.edit(req.body._id, req.body.Name, req.body.Flag, req.body.IsoCode,req.body.WelcomeMsg,req.body.Categories).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -179,7 +179,7 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Category/Edit', function (req, res) {
-        CategoryLogic.edit(req.body._id, req.body.Name, req.body.Countries).then(function (result) {
+        CategoryLogic.edit(req.body._id, req.body.Name).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
