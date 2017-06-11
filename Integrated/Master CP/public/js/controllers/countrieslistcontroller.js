@@ -27,9 +27,21 @@
         });
     };
 
-    $scope.editCountry = function () {
-        window.location.href = '/eg/country';
-    }
+    $scope.editCountry = function (_id) {
+        window.location.href = '/eg/country/' + _id;
+        console.log(_id);
+    };
+
+    //$scope.removeCountry=function(_id){
+    //    var req = {
+    //        method: 'put',
+    //        url: '/Country/Suspend',
+    //        data: {}
+    //    }
+    //    API.execute(req).then(function () {
+    //        $scope.patients.splice($index, 1);
+    //    });
+    //}
 });
 function convertImgToBase64URL(event) {
     var filesSelected = document.getElementById("uploadItemImage").files;

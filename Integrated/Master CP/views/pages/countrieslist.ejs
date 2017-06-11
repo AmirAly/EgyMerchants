@@ -76,7 +76,7 @@
                                             <tr>
                                                 <th></th>
                                                 <th>Country</th>
-                                                <th>IsoCode code</th>
+                                                <th>Iso code</th>
                                                 <th>Welcome message</th>
                                                 <th></th>
                                                 <th></th>
@@ -94,13 +94,13 @@
                                                 <td><%= country.IsoCode %></td>
                                                 <td class="light"><%= country.WelcomeMsg %></td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry('<%= country._id %>')" data-original-title="Edit Country">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" ng-click="removeCountry('<%= country._id %>')" data-original-title="Remove" aria-describedby="tooltip451158">
                                                         <i class="material-icons">close</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -110,86 +110,6 @@
                                             <% }else{ %>
                                             <p class="text-center">There is no countries</p>
                                             <% } %>
-                                            <!--<tr>
-                                                <td>
-                                                    <img class="divImgTable" src="/img/cover.jpeg" />
-                                                </td>
-                                                <td>Turky</td>
-                                                <td>TR</td>
-                                                <td class="light">Hoşgeldiniz</td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country">
-                                                        <i class="material-icons">edit</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
-                                                        <i class="material-icons">close</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img class="divImgTable" src="/img/cover.jpeg" />
-                                                </td>
-                                                <td>France</td>
-                                                <td>FR</td>
-                                                <td class="light">Bienvenue</td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country">
-                                                        <i class="material-icons">edit</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
-                                                        <i class="material-icons">close</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img class="divImgTable" src="/img/cover.jpeg" />
-                                                </td>
-                                                <td>Dubai</td>
-                                                <td>AU</td>
-                                                <td class="light">أهلا بك</td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country">
-                                                        <i class="material-icons">edit</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
-                                                        <i class="material-icons">close</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img class="divImgTable" src="/img/cover.jpeg" />
-                                                </td>
-                                                <td>Italy</td>
-                                                <td>IT</td>
-                                                <td class="light">benvenuto</td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry()" data-original-title="Edit Country">
-                                                        <i class="material-icons">edit</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
-                                                        <i class="material-icons">close</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                            </tr>-->
                                         </tbody>
                                     </table>
                                 </div>

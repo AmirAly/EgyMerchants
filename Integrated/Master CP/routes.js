@@ -61,9 +61,21 @@ module.exports = function (app) {
         res.render('pages/expo', _scope);
     });
 
-    app.get('/eg/country', function (req, res) {
+    app.get('/eg/country/:countryId', function (req, res) {
         var _scope = {};
-        res.render('pages/country', _scope);
+        country.getById(req.params.countryId).then(function (_country) {
+            if (_country.code == 100) {
+                _scope.country = _country.data;
+                res.render('pages/country', _scope);
+            } else {
+                _scope.country = {};
+                res.render('pages/country', _scope);
+            }
+            }).catch(function (_err) {
+                console.log(_err);
+                _scope.galleries = [];
+                res.render('pages/gallery', _scope);
+            });
     });
 
     app.get('/eg/Home', function (req, res) {
