@@ -955,6 +955,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 130px;
     border: 1px solid #f9f9f9;
     box-shadow: 0px 0px 2px 0px;
+    padding: 0 15px;
 }
 
     .storePage .pageBody .dvStoreHeader {
@@ -1025,7 +1026,7 @@ h1, h2, h3, h4, h5, h6 {
         .storePage .pageBody .dvStoreHeader .dvStoreDescription h3 {
             padding: 10px !important;
             padding-left: 240px !important;
-                font-size: 16px;
+            font-size: 16px;
         }
 
         .storePage .pageBody .dvStoreHeader .dvStoreIcons {
@@ -1065,7 +1066,24 @@ h1, h2, h3, h4, h5, h6 {
         .storePage .pageBody .dvProductsBlock .col-md-2.col-sm-3 {
             padding: 5px;
             padding-bottom: 10px;
+            -o-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -webkit-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            transition: all .3s ease;
         }
+
+            .storePage .pageBody .dvProductsBlock .col-md-2.col-sm-3:hover {
+                -o-transform: scale(1.1, 1.1);
+                -moz-transform: scale(1.1, 1.1);
+                -webkit-transform: scale(1.1, 1.1);
+                -ms-transform: scale(1.1, 1.1);
+                transform: scale(1.1, 1.1);
+                background: #ddd;
+                z-index: 999;
+                box-shadow: 0px 0px 8px 1px #949393;
+                cursor: pointer;
+            }
 
         .storePage .pageBody .dvProductsBlock .dvItemContainer {
             padding: 10px;
@@ -1081,7 +1099,7 @@ h1, h2, h3, h4, h5, h6 {
 
             .storePage .pageBody .dvProductsBlock .dvItemContainer .dvItemDescription {
                 background: #fff;
-                padding: 10px 0;
+                padding: 10px 0 0 0;
             }
 
                 .storePage .pageBody .dvProductsBlock .dvItemContainer .dvItemDescription h1 {
@@ -1101,6 +1119,15 @@ h1, h2, h3, h4, h5, h6 {
                     padding: 10px 0;
                     font-weight: bold;
                     font-size: 14px;
+                }
+
+                .storePage .pageBody .dvProductsBlock .dvItemContainer .dvItemDescription h5 {
+                    background: #000;
+                    color: #fff;
+                    width: 100%;
+                    text-transform: uppercase;
+                    font-size: 12px;
+                    padding: 10px 0;
                 }
 
     .storePage .pageBody .dvAdvcontainer {
@@ -1890,3 +1917,227 @@ h1, h2, h3, h4, h5, h6 {
             background: #fff;
             padding-right: 10px;
         }
+
+.pageSearch .product-preview .preview {
+    background: #ffffff;
+    border: 1px solid #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 290px;
+}
+
+    .pageSearch .product-preview .preview .img-responsive {
+        height: auto;
+    }
+
+
+/***** Modal *****/
+
+.modal-content {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border: 0;
+    text-align: left;
+}
+
+.modal-header {
+    padding: 25px 25px 15px 25px;
+    background: #fff;
+    border: 0;
+    border-bottom: 1px solid #ddd;
+    -moz-border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+}
+
+    .modal-header .close {
+        font-size: 36px;
+        color: #888;
+        font-weight: 300;
+        text-shadow: none;
+        opacity: 1;
+    }
+
+.modal-title {
+    margin-bottom: 10px;
+    line-height: 30px;
+    font-size: 22px;
+    font-weight: 300;
+    color: #555;
+    padding: 0 !important;
+    text-transform: capitalize;
+}
+
+.modal p {
+    font-weight: 300;
+    color: #888;
+    line-height: 30px;
+}
+
+.modal-body {
+    padding: 25px 25px 30px 25px;
+    background: #eee;
+    text-align: left;
+    -moz-border-radius: 0 0 4px 4px;
+    -webkit-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;
+}
+
+    .modal-body img {
+        margin-bottom: 15px;
+    }
+
+    .modal-body form textarea {
+        height: 100px;
+    }
+
+    .modal-body form .input-error {
+        border-color: #399599;
+    }
+
+
+.modal input[type="text"],
+.modal input[type="email"],
+.modal input[type="password"],
+.modal textarea,
+.modal textarea.form-control {
+    width: 100% !important;
+    height: 50px;
+    margin: 0;
+    padding: 0 20px;
+    vertical-align: middle;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 50px;
+    color: #888;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -o-transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    -ms-transition: all .3s;
+    transition: all .3s;
+}
+
+    .modal textarea,
+    .modal textarea.form-control {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        line-height: 30px;
+    }
+
+        .modal input[type="text"]:focus,
+        .modal input[type="email"]:focus,
+        .modal input[type="password"]:focus,
+        .modal textarea:focus,
+        .modal textarea.form-control:focus {
+            outline: 0;
+            background: #fff;
+            border: 3px solid #ccc;
+            -moz-box-shadow: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        .modal input[type="text"]:-moz-placeholder,
+        .modal input[type="email"]:-moz-placeholder,
+        .modal input[type="password"]:-moz-placeholder,
+        .modal textarea:-moz-placeholder,
+        .modal textarea.form-control:-moz-placeholder {
+            color: #888;
+        }
+
+        .modal input[type="text"]:-ms-input-placeholder,
+        .modal input[type="email"]:-ms-input-placeholder,
+        .modal input[type="password"]:-ms-input-placeholder,
+        .modal textarea:-ms-input-placeholder,
+        .modal textarea.form-control:-ms-input-placeholder {
+            color: #888;
+        }
+
+        .modal input[type="text"]::-webkit-input-placeholder,
+        .modal input[type="email"]::-webkit-input-placeholder,
+        .modal input[type="password"]::-webkit-input-placeholder,
+        .modal textarea::-webkit-input-placeholder,
+        .modal textarea.form-control::-webkit-input-placeholder {
+            color: #888;
+        }
+
+
+
+.modal button.btn {
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    padding: 0 20px;
+    vertical-align: middle;
+    /*background: #399599;*/
+    border: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 50px;
+    color: #fff;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    text-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -o-transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    -ms-transition: all .3s;
+    transition: all .3s;
+}
+
+    .modal button.btn:hover {
+        opacity: 0.6;
+        color: #fff;
+    }
+
+    .modal button.btn:active {
+        outline: 0;
+        opacity: 0.6;
+        color: #fff;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .modal button.btn:focus {
+        outline: 0;
+        opacity: 0.6;
+        background: #399599;
+        color: #fff;
+    }
+
+    .modal button.btn:active:focus,
+    .modal button.btn.active:focus {
+        outline: 0;
+        opacity: 0.6;
+        background: #399599;
+        color: #fff;
+    }
+
+.modal h6 {
+    font-size: 16px;
+    text-decoration: underline;
+}
+
+.modal .error {
+    display: block;
+    /*text-align: center;*/
+    color: #e40808;
+    padding: 10px;
+}

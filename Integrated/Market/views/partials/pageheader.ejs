@@ -52,7 +52,7 @@
                   <a href="#">MY INBOX</a>
                 </li>
                 <li>
-                  <a href="#">LOG IN</a>
+                  <a href="#" data-toggle="modal" data-target="#modal-login">LOG IN</a>
                 </li>
               </ul>
 
@@ -79,7 +79,7 @@
                     <div class="form-search ">
                       <input id="search" type="text" name="txtSearch" placeholder="Search" ng-model="txtSearch" class="input-text" autocomplete="off"/>
                       <button type="submit" ng-click="search()" title="Search" class="button">
-                          <i class="glyphicon glyphicon-search"></i>
+                        <i class="glyphicon glyphicon-search"></i>
                       </button>
                       <div id="search_autocomplete" class="search-autocomplete" style="display: none;"></div>
                       <div class="clearer"></div>
@@ -90,10 +90,10 @@
               </div>
               <div class="col-sm-3">
                 <div class="cart-area hidden-xs">
-                    <span>
-                      CALL US NOW<br/>
-                      <b>+123 5678 890</b>
-                    </span>
+                  <span>
+                    CALL US NOW<br/>
+                    <b>+123 5678 890</b>
+                  </span>
                 </div>
               </div>
 
@@ -135,5 +135,58 @@
       </nav>
     </div>
   </div>
+
+  <!-- MODAL -->
+  <div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h3 class="modal-title" id="modal-login-label">Login to our site</h3>
+          <p>Enter your email and password to log on:</p>
+        </div>
+
+        <div class="modal-body">
+
+          <form role="form" name="frmLogin" class="login-form">
+            <div class="form-group">
+              <label class="sr-only" for="form-email">Email</label>
+              <input type="email" name="email" ng-model="email" required="" placeholder="Email..." class="form-email form-control" id="form-email"/>
+              <span ng-show="frmLogin.email.$dirty  && frmLogin.email.$invalid">
+                <span class="error" ng-show="frmLogin.email.$error.required">Email is required</span>
+                <span class="error" ng-show="frmLogin.email.$error.email">Invalid email</span>
+              </span>
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="form-password">Password</label>
+              <input type="password" name="password"  ng-model="password" required="" placeholder="Password..." class="form-password form-control" id="form-password"/>
+              <span ng-show="frmLogin.Password.$touched && frmLogin.Password.$invalid">
+                <span class="error" ng-show="frmLogin.Password.$error.required">Password is required</span>
+              </span>
+            </div>
+            <button type="submit" ng-disabled="frmLogin.$invalid" class="btn btn-primary">
+              <span class="icon-checkmark-3"></span>&nbsp; Log in
+            </button>
+          </form>
+
+
+          <div class="clear"></div>
+          <div class="text-center">
+            <a>
+              <h6>... or Sign up now </h6>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
 </div>
 
