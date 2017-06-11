@@ -9,21 +9,6 @@ require('./routes')(app);
 var db = require('./config/config');
 
 
-
-// test ===========================================
-var expo = require('./models/expoes');
-var exposchema = require('./models/schema/expo');
-var country = require('./models/countries');
-var countryschema = require('./models/schema/country');
-var store = require('./models/stores');
-var storeschema = require('./models/schema/store');
-var gallery = require('./models/galleries');
-var galleryschema = require('./models/schema/gallery');
-var item = require('./models/products');
-var itemschema = require('./models/schema/item');
-var category = require('./models/categories');
-var categoryschema = require('./models/schema/category');
-
 // configuration ===========================================
 
 

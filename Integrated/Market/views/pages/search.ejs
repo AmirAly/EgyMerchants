@@ -12,6 +12,12 @@
         <div class="row">
             <div class="col-sm-9 col-md-6">
                 <select>
+                    <option value="" selected disabled>All Countries</option>
+                    <option value="">Egypt</option>
+                    <option value="">Saudi Arabia</option>
+					<option value="">Jordan</option>
+                </select>
+                <select>
                     <option value="" selected disabled>All Expos</option>
                     <option value="">Le Marchee </option>
                     <option value="">El Masreen </option>
@@ -23,11 +29,6 @@
                     <option value="">Channel </option>
                 </select>
 
-                <select>
-                    <option value="" selected disabled>All Products</option>
-                    <option value="">Rolex </option>
-                    <option value="">Golden Watch </option>
-                </select>
             </div>
             <div class="col-sm-3 col-md-6">
                 <input id="search" type="text" name="txtSearch" value="<%= searchTxt %>" placeholder="Search" class="input-text form-control" autocomplete="off" />

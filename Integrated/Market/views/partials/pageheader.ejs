@@ -52,7 +52,10 @@
                   <a href="#">MY INBOX</a>
                 </li>
                 <li>
-                  <a href="#" data-toggle="modal" data-target="#modal-login">LOG IN</a>
+                  <a href="#" data-toggle="modal" data-target="#modal-login" ng-init="loggedUser = false" ng-hide="loggedUser">LOG IN</a>
+                </li>
+                <li>
+                  <a href="#" ng-show="loggedUser" ng-click="logout()">Welcome {{userName}} | LOG OUT</a>
                 </li>
               </ul>
 
@@ -156,7 +159,7 @@
           <form role="form" name="frmLogin" class="login-form">
             <div class="form-group">
               <label class="sr-only" for="form-email">Email</label>
-              <input type="email" name="email" ng-model="loginObj.email" required="" placeholder="Email..." class="form-email form-control" id="form-email"/>
+              <input type="email" name="email" ng-model="loginObj.Email" required="" placeholder="Email..." class="form-email form-control" id="form-email"/>
               <span ng-show="frmLogin.email.$dirty  && frmLogin.email.$invalid">
                 <span class="errorFont" ng-show="frmLogin.email.$error.required">Email is required</span>
                 <span class="errorFont" ng-show="frmLogin.email.$error.email">Invalid email</span>
@@ -164,7 +167,7 @@
             </div>
             <div class="form-group">
               <label class="sr-only" for="form-password">Password</label>
-              <input type="password" name="Password"  ng-model="loginObj.password" required="" placeholder="Password..." class="form-password form-control" id="form-password"/>
+              <input type="password" name="Password"  ng-model="loginObj.Password" required="" placeholder="Password..." class="form-password form-control" id="form-password"/>
               <span ng-show="frmLogin.Password.$touched && frmLogin.Password.$invalid">
                 <span class="errorFont" ng-show="frmLogin.Password.$error.required">Password is required</span>
               </span>
