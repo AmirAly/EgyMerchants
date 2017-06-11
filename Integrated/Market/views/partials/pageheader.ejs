@@ -52,7 +52,10 @@
                   <a href="#">MY INBOX</a>
                 </li>
                 <li>
-                  <a href="#" data-toggle="modal" data-target="#modal-login">LOG IN</a>
+                  <a href="#" data-toggle="modal" data-target="#modal-login" ng-init="loggedUser = false" ng-hide="loggedUser">LOG IN</a>
+                </li>
+                <li>
+                  <a href="#" ng-show="loggedUser" ng-click="logout()">Welcome {{userName}} | LOG OUT</a>
                 </li>
               </ul>
 
@@ -137,17 +140,18 @@
   </div>
 
   <!-- MODAL -->
-  <div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
+  <div class="modal fade" my-modal id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-
+      <div class="modal-content fadeInDown animated" data-wow-duration="1s" data-wow-delay="0.5s" ng-show="loginForm">
+        <!--login-->
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
           </button>
           <h3 class="modal-title" id="modal-login-label">Login to our site</h3>
-          <p>Enter your email and password to log on:</p>
+           <span class="fa fa-key frmIcon"></span>
+          <p>Enter your email and password to log in:</p>
         </div>
 
         <div class="modal-body">
@@ -155,35 +159,105 @@
           <form role="form" name="frmLogin" class="login-form">
             <div class="form-group">
               <label class="sr-only" for="form-email">Email</label>
-              <input type="email" name="email" ng-model="email" required="" placeholder="Email..." class="form-email form-control" id="form-email"/>
+              <input type="email" name="email" ng-model="loginObj.Email" required="" placeholder="Email..." class="form-email form-control" id="form-email"/>
               <span ng-show="frmLogin.email.$dirty  && frmLogin.email.$invalid">
-                <span class="error" ng-show="frmLogin.email.$error.required">Email is required</span>
-                <span class="error" ng-show="frmLogin.email.$error.email">Invalid email</span>
+                <span class="errorFont" ng-show="frmLogin.email.$error.required">Email is required</span>
+                <span class="errorFont" ng-show="frmLogin.email.$error.email">Invalid email</span>
               </span>
             </div>
             <div class="form-group">
               <label class="sr-only" for="form-password">Password</label>
-              <input type="password" name="password"  ng-model="password" required="" placeholder="Password..." class="form-password form-control" id="form-password"/>
+              <input type="password" name="Password"  ng-model="loginObj.Password" required="" placeholder="Password..." class="form-password form-control" id="form-password"/>
               <span ng-show="frmLogin.Password.$touched && frmLogin.Password.$invalid">
-                <span class="error" ng-show="frmLogin.Password.$error.required">Password is required</span>
+                <span class="errorFont" ng-show="frmLogin.Password.$error.required">Password is required</span>
               </span>
             </div>
-            <button type="submit" ng-disabled="frmLogin.$invalid" class="btn btn-primary">
-              <span class="icon-checkmark-3"></span>&nbsp; Log in
+            <button type="submit" ng-disabled="frmLogin.$invalid || dataLoading" ng-click="submitLogin(frmLogin)" class="btn btn-primary">
+              <span class="fa fa-key"></span>&nbsp; Log in
+              <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
             </button>
+          
+          <span class="errorFont text-center">{{afterLoginError}}</span>
           </form>
 
 
-          <div class="clear"></div>
+          <div class="clear2"></div>
           <div class="text-center">
             <a>
-              <h6>... or Sign up now </h6>
+              <h6 ng-click="loginForm = false">... or Sign up now </h6>
             </a>
           </div>
 
         </div>
 
       </div>
+
+      <div class="modal-content fadeInDown animated" data-wow-duration="1s" data-wow-delay="0.5s" ng-show="!loginForm">
+        <!--register-->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h3 class="modal-title" id="modal-login-label">Register to our site</h3>
+          <span class="fa fa-pencil frmIcon"></span>
+          <p>Fill the following data to register:</p>
+        </div>
+
+        <div class="modal-body">
+
+          <form role="form" name="frmRegister" class="register-form">
+            <div class="form-group">
+              <label class="sr-only" for="form-email">Email</label>
+              <input type="email" name="email" ng-model="registerObj.email" required="" placeholder="Email..." class="form-email form-control" id="form-email"/>
+              <span ng-show="frmRegister.email.$dirty  && frmRegister.email.$invalid">
+                <span class="errorFont" ng-show="frmRegister.email.$error.required">Email is required</span>
+                <span class="errorFont" ng-show="frmRegister.email.$error.email">Invalid email</span>
+              </span>
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="form-displayName">Display Name</label>
+              <input type="text" name="displayName"  ng-model="registerObj.displayName" required="" placeholder="Display Name..." class="form-displayName form-control" id="form-displayName"/>
+              <span ng-show="frmRegister.displayName.$touched && frmRegister.displayName.$invalid">
+                <span class="errorFont" ng-show="frmRegister.displayName.$error.required">Display name is required</span>
+              </span>
+            </div>            
+            <div class="form-group">
+              <label class="sr-only" for="form-password">Password</label>
+              <input type="password" name="Password" ng-model="registerObj.password" required="" placeholder="Password..." class="form-password form-control" id="form-password"/>
+              <span ng-show="frmRegister.Password.$touched && frmRegister.Password.$invalid">
+                <span class="errorFont" ng-show="frmRegister.Password.$error.required">Password is required</span>
+              </span>
+            </div>
+            
+            <div class="form-group">
+              <label class="sr-only" for="form-password">Confirm Password</label>
+              <input type="password" name="confirmPassword" compare-to="registerObj.password"  ng-model="registerObj.confirmPassword" required="" placeholder="Confirm Password..." class="form-confirmpassword form-control" id="form-confirmpassword"/>
+              <span ng-show="frmRegister.confirmPassword.$touched && frmRegister.confirmPassword.$invalid">
+                <span class="errorFont" ng-show="frmRegister.confirmPassword.$error.required || frmRegister.confirmPassword.$error.compareTo">Passwords must match.</span>
+              </span>
+            </div>
+              
+            <button type="submit" ng-disabled="frmRegister.$invalid || dataLoading" ng-click="submitRegister(frmRegister)" class="btn btn-primary">
+              <span class="fa fa-pencil"></span>&nbsp; Sign up
+              <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </button>
+
+            <span class="errorFont text-center">{{afterRegisterError}}</span>
+          </form>
+
+
+          <div class="clear2"></div>
+          <div class="text-center">
+            <a>
+              <h6 ng-click="loginForm = true">... or Log in now </h6>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
   </div>
 

@@ -2,13 +2,14 @@
   "name": "DSA-API",
   "main": "server.js",
   "dependencies": {
+    "azure-storage": "*",
+    "base64-stream": "*",
     "body-parser": "*",
     "express": "*",
+    "file-system": "*",
     "mongoose": "*",
-	"nodemailer":"*",
-	"file-system":"*",
-	"azure-storage":"*",
-	"base64-stream":"*",
-	"stream":"*"
+    "nodemailer": "*",
+    "stream": "*",
+    "underscore": "^1.8.3"
   }
 }
