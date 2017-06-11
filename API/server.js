@@ -149,6 +149,12 @@ var newcountry = new countryschema({ "Name": "Greece", "WelcomeMsg": "welcome in
 //}, function (err) {
 //    console.log(err);
 //});
+
+country.getById("5937bec1143040f8114f8036").then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
 //country.getAll().then(function (result) {
 //    console.log(result);
 //}, function (err) {
@@ -191,15 +197,23 @@ var newcategory = new categoryschema({ "Name": "gellewry", "Countries": ["5937e5
 //    console.log(err);
 //});
 
-var newitem = new itemschema({ "Name": "newitem3", "Description": "desconlytodo", "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "5937b00f02b0ba080fe089fe" });
+var newitem = new itemschema({ "Name": "newitem34", "Description": "desconlytodo", "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "59369940b656ca6c03f909e7" });
 //item.add(newitem).then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//item.edit("593699ae283e176016f402b3", "newitem34", "desc", {
+//    "Title": "t5it",
+//"URL":"url"
+//},"334","444","badg","tags").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
 //item.getById("593699ae283e176016f402b3").then(function (result) {
-//    console.log(result.data.Gallery._id);
+//    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
@@ -219,13 +233,24 @@ var newitem = new itemschema({ "Name": "newitem3", "Description": "desconlytodo"
 //}, function (err) {
 //    console.log(err);
 //    });
-var newgallery = new galleryschema({ "Title": "galleryoctober3", "Badges": "mostvisited2", "Store": "59366953c2bf034812df1954", "Description": "display all you dream of furniture2", "DisplayPicture": "dsp" });
+var newgallery = new galleryschema({ "Title": "godgall", "Badges": "mostvisited2", "Store": "5936692ee2e8258c0c9b1206", "Description": "display all you dream of furniture2", "DisplayPicture": "dsp" });
 //gallery.add(newgallery).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//gallery.edit("593913e352c7bc5019ce805b", "galleryoctober", "des", "img").then(function (result) {
+//gallery.edit("593913e352c7bc5019ce805b", "godgall", "des", "img").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//gallery.getById("593913e352c7bc5019ce805b").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+
+//gallery.getByStore("59366953c2bf034812df1954").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);

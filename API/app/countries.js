@@ -126,4 +126,28 @@ module.exports = {
             })
         })
     },
+    getById: function (_id) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOne({ '_id': _id, 'Status': 'Active' }, '',function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if (Obj)
+                        resolve({
+                            code: 100,
+                            data: Obj
+                        });
+                    else {
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
+                    }
+                }
+            });
+        })
+    },
 }
