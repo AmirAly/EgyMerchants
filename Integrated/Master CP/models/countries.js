@@ -2,7 +2,7 @@ var Schema = require('./models/country');
 module.exports = {
     add: function (_newCountry) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({'Name': _newCountry.Name }, '', function (err, Obj) {
+            Schema.findOne({'Name': _newCountry.Name,'Status':'Active'}, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -58,7 +58,7 @@ module.exports = {
     },
     edit: function (_id, _name, _flag, _isoCode, _welcomeMsg) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({'Name': _name, '_id': { $ne: _id } }, '', function (err, Obj) {
+            Schema.findOne({'Name': _name,'Status':'Active', '_id': { $ne: _id } }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -68,7 +68,7 @@ module.exports = {
                     if (Obj) {
                         reject({
                             code: 21,
-                            data: "This country already exist"
+                            data: "This country name already exist"
                         });
                     }
                     else {

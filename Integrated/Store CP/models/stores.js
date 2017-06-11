@@ -8,7 +8,7 @@ var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
     register: function (_newStore) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $or: [{ 'Email': _newStore.Email }, {'Name':_newStore.Name}]}, '', function (err, Obj) {
+            Schema.findOne({$and:[{ $or: [{ 'Email': _newStore.Email }, {'Name':_newStore.Name}]},{'Status':'Active'}]}, '', function (err, Obj) {
                 if (err)
                     reject({
                         code:1,
@@ -74,7 +74,7 @@ module.exports = {
     },
     editProfile: function (_id,_email,_city,_address,_country,_description,_imgs) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({'Email': _email ,'_id':{$ne:_id}}, '', function (err, Obj) {
+            Schema.findOne({ 'Email': _email, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code:1,
@@ -159,15 +159,9 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        if(Obj.Status=="Active")
                             resolve({
                                 code: 100,
                                 data: Obj
-                            });
-                        else
-                            reject({
-                                code: 22,
-                                data: "This store not active"
                             });
                     }
                     else
@@ -195,7 +189,7 @@ module.exports = {
     },
     getAll: function () {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Status':'Active','Type':'store' }, 'Name', function (err, lst) {
+            Schema.find({ 'Status': 'Active', 'Type': 'store' }, 'Name', function (err, lst) {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
@@ -207,50 +201,58 @@ module.exports = {
             })
         })
     },
-    search: function (_store, _expo, _keyWord, _country) {
+    search:function (_store, _expo, _keyWord, _country) {
         var finalList = [],
              itemsLst = [],
         storesLst = [];
-         var underscore = require("underscore");
+        var underscore = require("underscore");
         return new Promise(function (resolve, reject) {
-            if (_country != "") {
-                Schema.find({ 'Status': 'Active', 'CountryISOCode': _country }, 'StoreName Imgs', function (err, lst) {
-                    if (err)
-                        reject({
-                            code: 1,
-                            data: err
-                        });
-                    else {
-                        if (lst.length > 0) {
-                            storesLst.push(lst);
-                        }
-                        if (_expo != "") {
-                            Expo.find({ 'Title': { "$regex": _expo, "$options": "i" } }, 'Sections').populate({
-                                path: 'Sections.Store',
-                                model: 'Store',
-                                match: { Status: 'Active' },
-                                select: { _id: 1, StoreName: 1, Imgs: 1, Type: 1 }
-                            }).exec(function (err, lst) {
-                                if (err)
-                                    reject({
-                                        code: 1,
-                                        data: err
-                                    });
-                                else {
-                                    if (lst.length > 0) {
-                                        underscore.each(lst, function (expo) {
-                                            underscore.each(expo.Sections, function (store) {
-                                                storesLst.push({ _id: store.Store._id, StoreName: store.Store.StoreName, Imgs: store.Store.Imgs, Type: 'store' })
-                                                //underscore.groupBy(finalList, 'Type');
-                                                //console.log((underscore.groupBy(finalList, 'Type')).store);
-                                            })
-                                        })
-                                    }
+            //console.log("country" + _country);
+            var filter = { 'CountryISOCode': _country, 'Status': 'Active','Type':'store' };
+            if (_country == "")
+                filter = { 'Status': 'Active' };
+            var expoFilter = { 'Title': { "$regex": _expo, "$options": "i" } ,'Status':'Active'};
+            if (_expo == "")
+                expoFilter = { 'Status': 'Active' };
+            Schema.find(filter, 'StoreName', function (err, lst) {
+                //console.log("result"+lst);
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if (lst.length > 0) {
+                        underscore.each(lst, function (store) { storesLst.push({"_id":store._id,"Name":store.Name,"Type":"store"}); })
+                    }
+                    // console.log("go expo");
+                    //console.log("expo"+_expo);
+                    Expo.find(expoFilter, { Sections: 1 }).populate({
+                        path: 'Sections.Store',
+                        model: 'Store',
+                        select: { _id: 1, StoreName: 1}
+                    }).exec(function (err, lst) {
+                        //console.log(lst);
+                        if (err)
+                            reject({
+                                code: 1,
+                                data: err
+                            });
+                        else {
+                            if (lst.length > 0) {
+                                underscore.each(lst, function (expo) {
+                                    underscore.each(expo.Sections, function (store) {
+                                        storesLst.push({ "_id": store.Store._id, "Name": store.Store.Name, "Type": "store" })
+                                        //underscore.groupBy(finalList, 'Type');
+                                        //console.log((underscore.groupBy(finalList, 'Type')).store);
+                                    })
                                     if (_store != "") {
                                         underscore.filter(storesLst, function (store) {
-                                            if (store.StoreName.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Badges.indexOf(_store) !== -1) {
-                                                finalList.push({ _id: store._id, StoreName: store.StoreName, Imgs: store.Imgs, Type: 'store' });
+                                            console.log(store);
+                                            if (store.StoreName.includes(_store)  || store.Description.includes(_store)  || store.Badges.includes(_store) ) {
+                                                finalList.push({ _id: store._id, StoreName: store.StoreName });
                                             }
+                                            console.log(finalList);
                                         })
                                     }
                                     if (_keyWord != "") {
@@ -260,12 +262,14 @@ module.exports = {
                                             }
                                         })
                                     }
-                                }
-                            })
+
+                                })
+                            }
                         }
-                    }
-                })
-            }
+                    })
+                }
+            })
+            resolve(storesLst);
         })
     },
 

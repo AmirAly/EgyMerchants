@@ -57,7 +57,7 @@ module.exports = {
                     });
                 else {
                     if (gallery) {
-                        Schema.findOne({ 'Title': _title, 'Store': gallery.Store, '_id': { $ne: _id } }, '', function (err, Obj) {
+                        Schema.findOne({ 'Title': _title, 'Store': gallery.Store, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
                             if (err)
                                 reject({
                                     code: 1,
@@ -99,7 +99,7 @@ module.exports = {
     },
     add: function (_gallery) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ 'Store': _gallery.Store }, { 'Title': _gallery.Title }] }, '', function (err, Obj) {
+            Schema.findOne({ $and: [{ 'Store': _gallery.Store }, { 'Title': _gallery.Title }, {'Status':'Active'}] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
