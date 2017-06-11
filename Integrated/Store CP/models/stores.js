@@ -217,7 +217,7 @@ module.exports = {
                 expoFilter = { 'Status': 'Active' };
             //console.log(_country);
             Schema.find(filter, '', function (err, lst) {//Pictures
-               //  console.log(lst.length);
+                // console.log(lst.length);
                 if (err)
                     reject({
                         code: 1,
@@ -226,7 +226,7 @@ module.exports = {
                 else {
                     if (lst.length > 0) {
                         underscore.each(lst, function (store) { storesLst.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" });})
-                        console.log("res" + JSON.stringify(storesLst[0]))
+                        //console.log("res" + JSON.stringify(storesLst[6]))
                     }
                     Expo.find(expoFilter, { Sections: 1 }).populate({
                         path: 'Sections.Store',
@@ -240,7 +240,8 @@ module.exports = {
                             });
                         else {
                             if (lst.length > 0) {
-                                if (_expo == "") { underscore.each(lst, function (expo) { expoLst.push({ "_id": expo._id, "Title": expo.Title, "Banner": expo.banner, "Type": "expo" }) }) }
+                                console.log(lst.length);
+                                if (_expo == "") { underscore.each(lst, function (expo) { expoLst.push({ "_id": expo._id, "Title": expo.Title, "Banner": expo.banner, "Type": "expo" })}) }
                                 else{
                                     underscore.each(lst, function (expo) {
                                         underscore.each(expo.Sections, function (store) {
@@ -248,6 +249,8 @@ module.exports = {
                                             //underscore.groupBy(finalList, 'Type');
                                             //console.log((underscore.groupBy(finalList, 'Type')).store);
                                         })
+                                        console.log(lst.length);
+                                        console.log("res" + JSON.stringify(storesLst))
                                     })
                                     if (_store != "") {
                                         underscore.filter(storesLst, function (store) {

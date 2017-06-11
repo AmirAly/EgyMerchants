@@ -36,6 +36,7 @@
             if (_res.data.code == 100) {
                 console.log(_res);
                 console.log('updated');
+                window.location.reload();
             } else {
                 console.log('err');
             }
@@ -43,6 +44,20 @@
     };
 
     $scope.removeCategory = function (_id) {
-
+        var req = {
+            method: 'put',
+            url: '/Category/Suspend',
+            data: {
+                _id:_id
+            }
+        }
+        API.execute(req).then(function (_res) {
+            if (_res.data.code == 100) {
+                console.log('deleted');
+                window.location.reload();
+            } else {
+                console.log('err');
+            }
+        });
     }
 });
