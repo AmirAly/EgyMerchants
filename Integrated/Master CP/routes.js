@@ -36,7 +36,19 @@ module.exports = function (app) {
 
     app.get('/eg/categorieslist', function (req, res) {
         var _scope = {};
-        res.render('pages/categorieslist', _scope);
+        country.getAll().then(function (_category) {
+            if (_category.code == 100) {
+                _scope.categorieslst = _category.data;
+                res.render('pages/categorieslist', _scope);
+            } else {
+                _scope.categorieslst = {};
+                res.render('pages/categorieslist', _scope);
+            }
+        }).catch(function (_err) {
+            console.log(_err);
+            _scope.categorieslst = {};
+            res.render('pages/categorieslist', _scope);
+        });
     });
 
     app.get('/eg/countrieslist', function (req, res) {
@@ -73,8 +85,8 @@ module.exports = function (app) {
             }
             }).catch(function (_err) {
                 console.log(_err);
-                _scope.galleries = [];
-                res.render('pages/gallery', _scope);
+                _scope.country = {};
+                res.render('pages/country', _scope);
             });
     });
 

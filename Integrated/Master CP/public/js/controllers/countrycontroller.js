@@ -3,22 +3,34 @@
         document.getElementById('uploadItemImage').click()
     };
 
-    //$scope.updateCountry = function () {
-    //    var req = {
-    //        method: 'put',
-    //        url: '/Country/Edit',
-    //        data: {
-    //            Name: $scope.country.Name,
-    //            IsoCode: $scope.country.IsoCode,
-    //            Flag: $('#imgItem').attr('src'),
-    //            WelcomeMsg: $scope.country.WelcomeMsg,
-    //            Status: "Active"
-    //        }
-    //    }
-    //    API.execute(req).then(function (_res) {
-    //        console.log(_res);
-    //    });
-    //}
+    console.log(localStorage.getItem('countryId'));
+    $scope.countryId = localStorage.getItem('countryId');
+
+    $scope.updateCountry = function () {
+        $scope.loading = true;
+        var req = {
+            method: 'put',
+            url: '/Country/Edit',
+            data: {
+                _id: $scope.countryId,
+                Name: $scope.country.Name,
+                IsoCode: $scope.country.IsoCode,
+                Flag: $('#imgItem').attr('src'),
+                WelcomeMsg: $scope.country.WelcomeMsg,
+                Status: "Active"
+            }
+        }
+        API.execute(req).then(function (_res) {
+            if (_res.data.code == 100) {
+                console.log(_res);
+                window.location.reload();
+                window.location.href = '/eg/countrieslist'
+
+            } else {
+                $scope.loading = false;
+            }
+        });
+    }
 
 });
 function convertImgToBase64URL(event) {
