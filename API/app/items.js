@@ -178,7 +178,7 @@ module.exports = {
                                         else
                                             resolve({
                                                 code: 100,
-                                                data: Obj//"This item updated successfully"
+                                                data: "This item updated successfully"
                                             });
                                     })
                                 }

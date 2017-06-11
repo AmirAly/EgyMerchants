@@ -159,15 +159,9 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        if(Obj.Status=="Active")
                             resolve({
                                 code: 100,
                                 data: Obj
-                            });
-                        else
-                            reject({
-                                code: 22,
-                                data: "This store not active"
                             });
                     }
                     else
@@ -195,7 +189,7 @@ module.exports = {
     },
     getAll: function () {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Status':'Active','Type':'store' }, 'Name', function (err, lst) {
+            Schema.find({ 'Status': 'Active', 'Type': 'store' }, 'Name', function (err, lst) {
                 if (err)
                     reject({ code: 1, data: err })
                 else {

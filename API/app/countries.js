@@ -68,7 +68,7 @@ module.exports = {
                     if (Obj) {
                         reject({
                             code: 21,
-                            data: "This country already exist"
+                            data: "This country name already exist"
                         });
                     }
                     else {
