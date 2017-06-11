@@ -2,7 +2,7 @@ var Schema = require('./models/expo');
 module.exports = {
     add: function (_newExpo) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({'Title': _newExpo.Title }, '', function (err, Obj) {
+            Schema.findOne({ 'Title': _newExpo.Title, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -59,7 +59,7 @@ module.exports = {
     },
     edit: function (_id, _title, _banner, _category, _floors) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({'Title': _title, '_id': { $ne: _id } }, '', function (err, Obj) {
+            Schema.findOne({ 'Title': _title, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,

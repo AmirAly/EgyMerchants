@@ -48,7 +48,7 @@ module.exports = {
     },
     add: function (_newCategory) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({'Name': _newCategory.Name }, '', function (err, Obj) {
+            Schema.findOne({'Name': _newCategory.Name ,'Status':'Active'}, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -81,7 +81,7 @@ module.exports = {
     },
     edit: function (_id, _name, _countries) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Name': _name ,'_id':{$ne:_id}}, '', function (err, Obj) {
+            Schema.findOne({ 'Name': _name,'Status': 'Active','_id': { $ne: _id } }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,

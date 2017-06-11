@@ -107,7 +107,7 @@ module.exports = {
     },
     add: function (_product) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Name': _product.Name, 'Gallery': _product.Gallery }, '', function (err, Obj) {
+            Schema.findOne({ 'Name': _product.Name, 'Gallery': _product.Gallery, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -148,7 +148,7 @@ module.exports = {
                     });
                 else {
                     if (item) {
-                        Schema.findOne({ 'Name': _name, 'Gallery': item.Gallery, '_id': { $ne: _id } }, '', function (err, Obj) {
+                        Schema.findOne({ 'Name': _name, 'Gallery': item.Gallery, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
                             if (err)
                                 reject({
                                     code: 1,

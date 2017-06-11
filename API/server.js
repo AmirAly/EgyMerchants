@@ -48,7 +48,7 @@ mongoose.connect(db.url, function (err) {
     }
 });
  
-var newstore = new userschema({ "Email": "mynewmail4@gmail.com", "Password": "nada", "Name": "my new store4", "Country": "egypt", "Category": "furniture" });
+var newstore = new userschema({ "Email": "mynewmail@gmail.com", "Password": "nada", "Name": "my new store", "Country": "egypt", "Category": "furniture" });
 //store.register(newstore).then(function (result) {
 //    console.log(result); 
 //}, function(err) {
@@ -75,12 +75,12 @@ var newstore = new userschema({ "Email": "mynewmail4@gmail.com", "Password": "na
 //}, function (err) {
 //    console.log(err);
 //});
-//store.getById("593d10430a55c750117f07f5").then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
-//store.suspend("593d10430a55c750117f07f5").then(function (result) {
+store.getById("593668fd8cc4b54c0ccfaeae").then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
+//store.suspend("593668fd8cc4b54c0ccfaeae").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
