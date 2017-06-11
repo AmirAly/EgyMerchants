@@ -5,6 +5,10 @@ var Country = new Schema({
     IsoCode: { type: String, min: 2, required: "please enter Isocode" },
     Flag: { type: String, min: 2, required: "please enter flag" },
     WelcomeMsg: { type: String, min: 2, required: "please enter welcome message" },
+    Categories: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Category'
+    }],
     Status: { type: String, default: "Active" }
 });
 module.exports = Mongoose.model('Country', Country);

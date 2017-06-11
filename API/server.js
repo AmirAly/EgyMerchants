@@ -7,19 +7,19 @@ var mongoose = require('mongoose');
 var api = require('./app/api')(app, express);
 var db = require('./config/config');
 // test ===========================================
+var user = require('./app/users');
+var userschema = require('./app/models/user');
+var store = require('./app/stores');
 var expo = require('./app/expoes');
 var exposchema = require('./app/models/expo');
 var country = require('./app/countries');
 var countryschema = require('./app/models/country');
-var store = require('./app/stores');
 var gallery = require('./app/galleries');
 var galleryschema = require('./app/models/gallery');
 var item = require('./app/items');
 var itemschema = require('./app/models/item');
 var category = require('./app/categories');
 var categoryschema = require('./app/models/category');
-var userschema = require('./app/models/user');
-var user = require('./app/users');
 var master = require('./app/masters');
 // configuration ===========================================
 // config files
@@ -48,7 +48,7 @@ mongoose.connect(db.url, function (err) {
     }
 });
  
-var newstore = new userschema({ "Email": "mynewmail3@gmail.com", "Password": "nada", "Name": "my new store3", "Country": "egypt", "Category": "furniture" });
+var newstore = new userschema({ "Email": "mynewmail@gmail.com", "Password": "nada", "Name": "my new store", "Country": "egypt", "Category": "furniture" });
 //store.register(newstore).then(function (result) {
 //    console.log(result); 
 //}, function(err) {
@@ -65,7 +65,32 @@ var newstore = new userschema({ "Email": "mynewmail3@gmail.com", "Password": "na
 //    }, function (err) {
 //        console.log(err);
 //    });
-
+//store.editBadges("593d10430a55c750117f07f5", "true", "false", "true").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//store.editProfile("593d10430a55c750117f07f5", "mynewmail4@gmail.com", "cairoo", "addr", "italy", "desc", "").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//store.getById("593668fd8cc4b54c0ccfaeae").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//store.suspend("593668fd8cc4b54c0ccfaeae").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//"","","","egypt"
+//store.search("", "", "", "egypt").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 var newmaster = new userschema({ "Email": "newmaster@gmail.com", "Password": "123456", "Name": "anisa"});
 //master.register(newmaster).then(function (result) {
 //    console.log(result); 
@@ -77,74 +102,47 @@ var newmaster = new userschema({ "Email": "newmaster@gmail.com", "Password": "12
 //}, function (err) {
 //    console.log(err);
 //});
-var newexpo = new exposchema({ "Title": "nofloorsexpopush2", "Banner": "bnner", "Category": "59143976a6adb01098ef50b8"});
-//expo.add(newexpo).then(function (result) {
-//    console.log(result); 
-//}, function(err) {
-//    console.log(err); 
-//});
 
-//expo.setFloor("5937d2d1031af07813392b06", { "Name": "addedfloorpush", "Stores": [{ "Store": "59366953c2bf034812df1954", "Width": "1", "High": "2", "Position": "3", "Img": "img" }] }).then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
 
-//expo.edit("5936b579d3b2169811b198c4", "editnoexist", "banneredit", "59143976a6adb01098ef50b8", [{ "Name": "editedfloor", "Stores": [{ "Store": "59366953c2bf034812df1954", "Width": "1", "High": "2", "Position": "3", "Img": "img" }] }, { "Name": "2ndfloor", "Stores": [{ "Store": "59366953c2bf034812df1954", "Width": "1", "High": "2", "Position": "3", "Img": "img" }] }]).then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
-//expo.getAll().then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
-
-//expo.suspend("5937d2d1031af07813392b06").then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
-
-//store.editBadges("59366953c2bf034812df1954", "true", "false", "true").then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
-var newuser = new userschema({ "Email": "newuser2@gmail.com", "Password": "123456", "Name": "ali ibrahim" });
+var newuser = new userschema({ "Email": "anisa123@gmail.com", "Password": "123456", "Name": "anisa123" });
 //user.register(newuser).then(function (result) {
 //    console.log(result); 
 //}, function(err) {
 //    console.log(err); 
 //});
 
-//user.login({ 'Email': 'newmaster@gmail.com', 'Password': '123456' }).then(function (result) {
+//user.login({ 'Email': 'anisa1234@gmail.com', 'Password': '123456' }).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 //5936b0501fc9883c1193f7fb
 
-//user.editProfile("59391220b13235c80c97ee1a", "newuser2@gmail.com", "ali", "img").then(function (result) {
+//user.editProfile("593d0d8797d4f2440b6a470f", "anisa1234@gmail.com", "anisaibrahim", "img").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
-var newcountry = new countryschema({ "Name": "Greece", "WelcomeMsg": "welcome in Greece", "IsoCode": "445","Flag":"white/green" });
+var newcountry = new countryschema({ "Name": "U.S.A", "WelcomeMsg": "welcome in U.S.A", "IsoCode": "123","Flag":"white/green"});
 //country.add(newcountry).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
-//country.edit("5937e5801cf86e0c0b23c9e5","italy","yellow","666","welcome").then(function (result) {
+country.edit("593d38aab81b891415bf6fe0", "U.S.A", "yellow", "123", "welcome", ["593d3878535ef028135b7217"]).then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
+//country.suspend("5937e5801cf86e0c0b23c9e5").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//country.suspend("5937e5801cf86e0c0b23c9e5").then(function (result) {
+
+//country.getById("593d06591f0fafcc047e2388").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -154,33 +152,58 @@ var newcountry = new countryschema({ "Name": "Greece", "WelcomeMsg": "welcome in
 //}, function (err) {
 //    console.log(err);
 //});
+var newexpo = new exposchema({ "Title": "newgodexpo", "Banner": "bnner", "Category": "59143976a6adb01098ef50b8" });
+//expo.add(newexpo).then(function (result) {
+//    console.log(result); 
+//}, function(err) {
+//    console.log(err); 
+//});
+
+//expo.setFloor("593d09ed43aeb8e8157f181d", { "Name": "the lastflooradded", "Stores": [{ "Store": "59366953c2bf034812df1954", "Width": "1", "High": "2", "Position": "3", "Img": "img" }] }).then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+
+//expo.edit("5936b579d3b2169811b198c4", "editnoexistno", "banneredit", "59143976a6adb01098ef50b8", [{ "Name": "editedfloor", "Stores": [{ "Store": "59366953c2bf034812df1954", "Width": "1", "High": "2", "Position": "3", "Img": "img" }] }, { "Name": "2ndfloor", "Stores": [{ "Store": "59366953c2bf034812df1954", "Width": "1", "High": "2", "Position": "3", "Img": "img" }] }]).then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 //expo.getAll().then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
+
+//expo.suspend("5936b0501fc9883c1193f7fa").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+
 //expo.getByCategory("59143976a6adb01098ef50b8").then(function (result) {
-//    console.log(result.data[0].Floors[0].Stores[0].Store);
+//    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//expo.getStores("5936b1273e8986b400b0fe3f").then(function (result) {
-//    console.log(result.data.Floors[0].Stores[0].Store);
+//expo.getStores("593d09ed43aeb8e8157f181d").then(function (result) {
+//    console.log(result.data.Floors[1].Stores[0].Store);
 //}, function (err) {
 //    console.log(err);
 //});
-var newcategory = new categoryschema({ "Name": "gellewry", "Countries": ["5937e5801cf86e0c0b23c9e5"] });
+//var newcategory = new categoryschema({ "Name": "newcategoryy" });
 //category.add(newcategory).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//category.edit("5937eac6a0bdebb00ab1713f", "Furniture", ["5937e5801cf86e0c0b23c9e5"]).then(function (result) {
+//category.edit("5937eac6a0bdebb00ab1713f", "Furnitureno", ["5937e5801cf86e0c0b23c9e5","593d06591f0fafcc047e2388"]).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//category.suspend("5937eb44d1347c080751cf67").then(function (result) {
+//category.suspend("5937eac6a0bdebb00ab1713f").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -190,21 +213,34 @@ var newcategory = new categoryschema({ "Name": "gellewry", "Countries": ["5937e5
 //}, function (err) {
 //    console.log(err);
 //});
+//category.getByCountry("593d06591f0fafcc047e2388").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 
-var newitem = new itemschema({ "Name": "newitem3", "Description": "desconlytodo", "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "5937b00f02b0ba080fe089fe" });
+var newitem = new itemschema({ "Name": "newitem34", "Description": "desconlytodo", "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "59369940b656ca6c03f909e7" });
 //item.add(newitem).then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//item.edit("593699ae283e176016f402b3", "newitem34", "desc", {
+//    "Title": "t5it",
+//"URL":"url"
+//},"334","444","badg","tags").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
 //item.getById("593699ae283e176016f402b3").then(function (result) {
-//    console.log(result.data.Gallery._id);
+//    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
-//item.getByGalleryId("5937b00f02b0ba080fe089fe").then(function (result) {
+//item.getByGalleryId("59369940b656ca6c03f909e7").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -219,13 +255,24 @@ var newitem = new itemschema({ "Name": "newitem3", "Description": "desconlytodo"
 //}, function (err) {
 //    console.log(err);
 //    });
-var newgallery = new galleryschema({ "Title": "galleryoctober3", "Badges": "mostvisited2", "Store": "59366953c2bf034812df1954", "Description": "display all you dream of furniture2", "DisplayPicture": "dsp" });
+var newgallery = new galleryschema({ "Title": "godgall", "Badges": "mostvisited2", "Store": "5936692ee2e8258c0c9b1206", "Description": "display all you dream of furniture2", "DisplayPicture": "dsp" });
 //gallery.add(newgallery).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//gallery.edit("593913e352c7bc5019ce805b", "galleryoctober", "des", "img").then(function (result) {
+//gallery.edit("593913e352c7bc5019ce805b", "godgall", "des", "img").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//gallery.getById("593913e352c7bc5019ce805b").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+
+//gallery.getByStore("59366953c2bf034812df1954").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);

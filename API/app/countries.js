@@ -2,7 +2,7 @@ var Schema = require('./models/country');
 module.exports = {
     add: function (_newCountry) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({'Name': _newCountry.Name }, '', function (err, Obj) {
+            Schema.findOne({'Name': _newCountry.Name,'Status':'Active'}, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -56,9 +56,9 @@ module.exports = {
             })
         })
     },
-    edit: function (_id, _name, _flag, _isoCode, _welcomeMsg) {
+    edit: function (_id, _name, _flag, _isoCode, _welcomeMsg,_categories) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({'Name': _name, '_id': { $ne: _id } }, '', function (err, Obj) {
+            Schema.findOne({'Name': _name,'Status':'Active', '_id': { $ne: _id } }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -68,7 +68,7 @@ module.exports = {
                     if (Obj) {
                         reject({
                             code: 21,
-                            data: "This country already exist"
+                            data: "This country name already exist"
                         });
                     }
                     else {
@@ -84,6 +84,7 @@ module.exports = {
                         Obj.Flag = _flag;
                         Obj.IsoCode = _isoCode;
                         Obj.WelcomeMsg = _welcomeMsg;
+                        Obj.Categories = _categories;
                         Obj.save(function (err, Obj) {
                             if (err)
                                 reject({
@@ -93,7 +94,7 @@ module.exports = {
                             else
                                 resolve({
                                     code: 100,
-                                    data:"Country data edited successfully"
+                                    data:Obj//"Country data edited successfully"
                                 })
                         })
 
@@ -126,4 +127,51 @@ module.exports = {
             })
         })
     },
+    getById: function (_id) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOne({ '_id': _id, 'Status': 'Active' }, '',function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if (Obj)
+                        resolve({
+                            code: 100,
+                            data: Obj
+                        });
+                    else {
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
+                    }
+                }
+            });
+        })
+    },
+    //getCategories: function (_id) {
+    //    return new Promise(function (resolve, reject) {
+    //        Schema.find({'_id':_id,'Status': 'Active' }, 'Categories', function (err, lst) {
+    //            if (err)
+    //                reject({
+    //                    code: 1,
+    //                    data: err
+    //                });
+    //            else {
+    //                if (lst.length > 0)
+    //                    resolve({
+    //                        code: 100,
+    //                        data: lst
+    //                    });
+    //                else
+    //                    reject({
+    //                        code: 21,
+    //                        data: "This filteration didn't resulted in any data"
+    //                    });
+    //            }
+    //        })
+    //    })
+    //},
 }

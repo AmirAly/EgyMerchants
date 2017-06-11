@@ -1,28 +1,6 @@
 var Schema = require('./models/category');
 module.exports = {
-    getByCountry: function (_country) {
-        return new Promise(function (resolve, reject) {
-            Schema.find({ 'Countries': _country, 'Status': 'Active' }, '', function (err, lst) {
-                if (err)
-                    reject({
-                        code: 1,
-                        data: err
-                    });
-                else {
-                    if (lst.length > 0)
-                        resolve({
-                            code: 100,
-                            data: lst
-                        });
-                    else
-                        reject({
-                            code: 21,
-                            data: "This filteration didn't resulted in any data"
-                        });
-                }
-            })
-        })
-    },
+  
     getAll: function () {
         return new Promise(function (resolve, reject) {
             Schema.find({'Status': 'Active'}, '', function (err, lst) {
@@ -48,7 +26,7 @@ module.exports = {
     },
     add: function (_newCategory) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({'Name': _newCategory.Name }, '', function (err, Obj) {
+            Schema.findOne({'Name': _newCategory.Name ,'Status':'Active'}, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -79,9 +57,9 @@ module.exports = {
             })
         })
     },
-    edit: function (_id, _name, _countries) {
+    edit: function (_id, _name) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Name': _name ,'_id':{$ne:_id}}, '', function (err, Obj) {
+            Schema.findOne({ 'Name': _name,'Status': 'Active','_id': { $ne: _id } }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -104,7 +82,6 @@ module.exports = {
                             else {
                                 if (Obj) {
                                     Obj.Name = _name;
-                                    Obj.Countries = _countries;
                                     Obj.save(function (err, Obj) {
                                         if (err)
                                             reject({
