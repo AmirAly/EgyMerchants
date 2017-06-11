@@ -86,7 +86,7 @@ var newstore = new userschema({ "Email": "mynewmail@gmail.com", "Password": "nad
 //    console.log(err);
 //});
 //"","","","egypt"
-store.search("", "my new store", "", "").then(function (result) {
+store.search("", "masterexpo", "", "").then(function (result) {
     console.log(result);
 }, function (err) {
     console.log(err);
@@ -198,7 +198,7 @@ var newexpo = new exposchema({ "Title": "newgodexpo", "Banner": "bnner", "Catego
 //}, function (err) {
 //    console.log(err);
 //});
-//category.edit("5937eac6a0bdebb00ab1713f", "Furnitureno", ["5937e5801cf86e0c0b23c9e5","593d06591f0fafcc047e2388"]).then(function (result) {
+//category.edit("593d3878535ef028135b7217", "okcar").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
