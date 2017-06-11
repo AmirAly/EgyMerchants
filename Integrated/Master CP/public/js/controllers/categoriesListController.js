@@ -30,7 +30,6 @@
             data: {
                 _id:$scope.categoryId,
                 Name: $scope.categoryName,
-                Status: "Active"
             }
         }
         API.execute(req).then(function (_res) {
@@ -43,5 +42,7 @@
         })
     };
 
+    $scope.removeCategory = function (_id) {
 
+    }
 });

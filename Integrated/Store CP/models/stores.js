@@ -204,18 +204,20 @@ module.exports = {
     search:function (_store, _expo, _keyWord, _country) {
         var finalList = [],
              itemsLst = [],
+             expoLst=[],
         storesLst = [];
         var underscore = require("underscore");
         return new Promise(function (resolve, reject) {
             //console.log("country" + _country);
-            var filter = { 'CountryISOCode': _country, 'Status': 'Active','Type':'store' };
+            var filter = {'Country': { "$regex": _country, "$options": "i" }, 'Status': 'Active','Type':'store' };
             if (_country == "")
                 filter = { 'Status': 'Active' };
             var expoFilter = { 'Title': { "$regex": _expo, "$options": "i" } ,'Status':'Active'};
             if (_expo == "")
                 expoFilter = { 'Status': 'Active' };
-            Schema.find(filter, 'StoreName', function (err, lst) {
-                //console.log("result"+lst);
+            //console.log(_country);
+            Schema.find(filter, '', function (err, lst) {//Pictures
+               //  console.log(lst.length);
                 if (err)
                     reject({
                         code: 1,
@@ -223,16 +225,14 @@ module.exports = {
                     });
                 else {
                     if (lst.length > 0) {
-                        underscore.each(lst, function (store) { storesLst.push({"_id":store._id,"Name":store.Name,"Type":"store"}); })
+                        underscore.each(lst, function (store) { storesLst.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" });})
+                        console.log("res" + JSON.stringify(storesLst[0]))
                     }
-                    // console.log("go expo");
-                    //console.log("expo"+_expo);
                     Expo.find(expoFilter, { Sections: 1 }).populate({
                         path: 'Sections.Store',
                         model: 'Store',
                         select: { _id: 1, StoreName: 1}
                     }).exec(function (err, lst) {
-                        //console.log(lst);
                         if (err)
                             reject({
                                 code: 1,
@@ -240,11 +240,14 @@ module.exports = {
                             });
                         else {
                             if (lst.length > 0) {
-                                underscore.each(lst, function (expo) {
-                                    underscore.each(expo.Sections, function (store) {
-                                        storesLst.push({ "_id": store.Store._id, "Name": store.Store.Name, "Type": "store" })
-                                        //underscore.groupBy(finalList, 'Type');
-                                        //console.log((underscore.groupBy(finalList, 'Type')).store);
+                                if (_expo == "") { underscore.each(lst, function (expo) { expoLst.push({ "_id": expo._id, "Title": expo.Title, "Banner": expo.banner, "Type": "expo" }) }) }
+                                else{
+                                    underscore.each(lst, function (expo) {
+                                        underscore.each(expo.Sections, function (store) {
+                                            storesLst.push({ "_id": store.Store._id, "Name": store.Store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" })
+                                            //underscore.groupBy(finalList, 'Type');
+                                            //console.log((underscore.groupBy(finalList, 'Type')).store);
+                                        })
                                     })
                                     if (_store != "") {
                                         underscore.filter(storesLst, function (store) {
@@ -263,13 +266,14 @@ module.exports = {
                                         })
                                     }
 
-                                })
+                                    //})
+                                }
                             }
-                        }
+                            }
                     })
                 }
             })
-            resolve(storesLst);
+           // resolve(storesLst);
         })
     },
 

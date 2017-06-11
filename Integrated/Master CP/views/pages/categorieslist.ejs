@@ -90,7 +90,7 @@
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" ng-click="removeCategory('<%= category._id %>')" data-original-title="Remove" aria-describedby="tooltip451158">
                                                         <i class="material-icons">close</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -200,11 +200,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
                                         </div>
-
-
                                         <div class="clearfix"></div>
                                         </form>
                                     </div>
@@ -213,15 +209,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" ng-click="updateCategory()" ng-disabled="frmEditCategory.$invalid" class="btn btn-primary">Update Category</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-click="updateCategory()" ng-disabled="frmEditCategory.$invalid" class="btn btn-primary">Update Category</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <!-- End Modal -->
-</div>
 <!--   Core JS Files   -->
 <% include ../partials/pagesjsfiles %>/partials/pagesjsfiles %>
