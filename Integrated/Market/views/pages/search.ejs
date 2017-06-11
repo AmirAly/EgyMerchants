@@ -14,7 +14,7 @@
                 <select>
                     <option value="" selected disabled>All Expos</option>
                     <option value="">Le Marchee </option>
-                    <option value="">El masreen </option>
+                    <option value="">El Masreen </option>
                 </select>
 
                 <select>
@@ -44,110 +44,133 @@
 
     <% if (searchResult.length > 0) { %>
 
-    <div class="resultExpos">
-        <h2>Expos</h2>
-        <hr>
+    <div class="panel-group" id="accordion">
 
-        <div class="row products-list  products-list-small">
-            <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
-                <% searchResult[0].resultExpos.forEach(function(result){ %>
-                <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                    <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <a href="#" class="preview-image">
-                            <img class="img-responsive  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= result.Img %>" width="270" height="328" alt="">
-                        </a>
-                        <ul class="product-controls-list right hide-right">
-                            <li class="top-out"></li>
-                            <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                            <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                            <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                        </ul>
-                        <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
-                        <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#dvExpos">Expos <i class="more-less glyphicon glyphicon-minus"></i></a>
+                </h2>
+            </div>
+            <div id="dvExpos" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="row products-list  products-list-small">
+                        <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
+                            <% searchResult[0].resultExpos.forEach(function(result){ %>
+                            <div class="product-preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
+                                <div class="preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
+                                    <a href="#" class="preview-image">
+                                        <img class="img-responsive wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s"  src="<%= result.Img %>" width="270" height="328" alt="">
+                                    </a>
+                                    <ul class="product-controls-list right hide-right">
+                                        <li class="top-out"></li>
+                                        <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
+                                        <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
+                                        <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
+                                    </ul>
+                                    <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
+                                    <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
+                                </div>
+                                <h3 class="title"><a href="#"><%= result.Title %></a></h3>
+                            </div>
+                            <% }); %>
+                        </div>
                     </div>
-                    <h3 class="title"><a href="#"><%= result.Title %></a></h3>
                 </div>
-                <% }); %>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#dvStores">Stores <i class="more-less glyphicon glyphicon-plus"></i></a>
+                </h2>
+            </div>
+            <div id="dvStores" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    <div class="row products-list  products-list-small">
+                        <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
+                            <% searchResult[0].resultStores.forEach(function(result){ %>
+                            <div class="product-preview zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
+                                <div class="preview  zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
+                                    <a href="#" class="preview-image">
+                                        <img class="img-responsive  zoomIn animated" data-wow-offset="0" data-wow-duration="1s"  src="<%= result.Img %>" width="270" height="328" alt="">
+                                    </a>
+                                    <ul class="product-controls-list right hide-right">
+                                        <li class="top-out"></li>
+                                        <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
+                                        <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
+                                        <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
+                                    </ul>
+                                    <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
+                                    <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
+                                </div>
+                                <h3 class="title"><a href="#"><%= result.Title %></a></h3>
+                            </div>
+                            <% }); %>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#dvProducts">Products <i class="more-less glyphicon glyphicon-plus"></i></a>
+                </h2>
+            </div>
+            <div id="dvProducts" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    <div class="row products-list  products-list-small">
+                        <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
+                            <% searchResult[0].resultProducts.forEach(function(result){ %>
+                            <div class="product-preview zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
+                                <div class="preview  zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
+                                    <a href="#" class="preview-image">
+                                        <img class="img-responsive  zoomIn animated" data-wow-offset="0" data-wow-duration="1s"  src="<%= result.Img %>" width="270" height="328" alt="">
+                                    </a>
+                                    <ul class="product-controls-list right hide-right">
+                                        <li class="top-out"></li>
+                                        <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
+                                        <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
+                                        <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
+                                    </ul>
+                                    <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
+                                    <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
+                                </div>
+                                <h3 class="title"><a href="#"><%= result.Title %></a></h3>
+                            </div>
+                            <% }); %>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
     </div>
-
-
-    <div class="resultStores">
-        <h2>Stores</h2>
-        <hr>
-
-        <div class="row products-list  products-list-small">
-            <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
-                <% searchResult[0].resultStores.forEach(function(result){ %>
-                <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                    <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <a href="#" class="preview-image">
-                            <img class="img-responsive  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= result.Img %>" width="270" height="328" alt="">
-                        </a>
-                        <ul class="product-controls-list right hide-right">
-                            <li class="top-out"></li>
-                            <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                            <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                            <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                        </ul>
-                        <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
-                        <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-                    </div>
-                    <h3 class="title"><a href="#"><%= result.Title %></a></h3>
-                </div>
-                <% }); %>
-            </div>
-        </div>
-
-    </div>
-
-
-
-    <div class="resultProducts">
-        <h2>Products</h2>
-        <hr>
-
-        <div class="row products-list  products-list-small">
-            <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
-                <% searchResult[0].resultProducts.forEach(function(result){ %>
-                <div class="product-preview wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                    <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <a href="#" class="preview-image">
-                            <img class="img-responsive  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= result.Img %>" width="270" height="328" alt="">
-                        </a>
-                        <ul class="product-controls-list right hide-right">
-                            <li class="top-out"></li>
-                            <li><a href="#" class="circle"><span class="icon-heart"></span></a></li>
-                            <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
-                            <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
-                        </ul>
-                        <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
-                        <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
-                    </div>
-                    <h3 class="title"><a href="#"><%= result.Title %></a></h3>
-                </div>
-                <% }); %>
-            </div>
-        </div>
-
-    </div>
-
-
 
 
     <% } else { %>
     <p class="txtNoData"> No Data Available </p>
     <% } %>
 
-
-
 </section>
 <!-- //end One columns content -->
 <% include ../partials/pagefooter %>
 <% include ../partials/pageend %>
 <script src="/scripts/contactus.js"></script>
+<script>
+function toggleIcon(e) {
+    $(e.target)
+        .prev('.panel-heading')
+        .find(".more-less")
+        .toggleClass('glyphicon-plus glyphicon-minus');
+}
+$('.panel-group').on('hidden.bs.collapse', toggleIcon);
+$('.panel-group').on('shown.bs.collapse', toggleIcon);
+</script>
 <% include ../partials/pagesocial %>
 
 </body>
