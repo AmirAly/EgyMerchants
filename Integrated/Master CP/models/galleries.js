@@ -69,7 +69,21 @@ module.exports = {
                         data: err
                     });
                 else {
+                    Schema.findOne({ 'Title': _title,'Store':Obj.Store ,'_id':{$ne:_id} }, '', function (err, Obj) {
+                        if (err)
+                            reject({
+                                code: 1,
+                                data: err
+                            });
+                        else {
+                            if(Obj)
+                                reject ({
+                                    code: 21,
+                                    data: "There is gallery with the same title"
+                                });
+                            else {}
                     if (Obj) {
+
                         Obj.Title=_title;
                         Obj.Description = _description;
                         if(_img)
