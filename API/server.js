@@ -7,19 +7,19 @@ var mongoose = require('mongoose');
 var api = require('./app/api')(app, express);
 var db = require('./config/config');
 // test ===========================================
+var user = require('./app/users');
+var userschema = require('./app/models/user');
+var store = require('./app/stores');
 var expo = require('./app/expoes');
 var exposchema = require('./app/models/expo');
 var country = require('./app/countries');
 var countryschema = require('./app/models/country');
-var store = require('./app/stores');
 var gallery = require('./app/galleries');
 var galleryschema = require('./app/models/gallery');
 var item = require('./app/items');
 var itemschema = require('./app/models/item');
 var category = require('./app/categories');
 var categoryschema = require('./app/models/category');
-var userschema = require('./app/models/user');
-var user = require('./app/users');
 var master = require('./app/masters');
 // configuration ===========================================
 // config files
@@ -75,16 +75,22 @@ var newstore = new userschema({ "Email": "mynewmail@gmail.com", "Password": "nad
 //}, function (err) {
 //    console.log(err);
 //});
-store.getById("593668fd8cc4b54c0ccfaeae").then(function (result) {
-    console.log(result);
-}, function (err) {
-    console.log(err);
-});
+//store.getById("593668fd8cc4b54c0ccfaeae").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 //store.suspend("593668fd8cc4b54c0ccfaeae").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
+//"","","","egypt"
+store.search("", "", "", "egypt").then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
 var newmaster = new userschema({ "Email": "newmaster@gmail.com", "Password": "123456", "Name": "anisa"});
 //master.register(newmaster).then(function (result) {
 //    console.log(result); 

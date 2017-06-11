@@ -161,7 +161,7 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Category/Edit', function (req, res) {
-        CategoryLogic.edit(req.body._id, req.body.Nane, req.body.Countries).then(function (result) {
+        CategoryLogic.edit(req.body._id, req.body.Name, req.body.Countries).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
