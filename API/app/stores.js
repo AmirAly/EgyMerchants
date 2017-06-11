@@ -228,11 +228,9 @@ module.exports = {
                         underscore.each(lst, function (store) { storesLst.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" });})
                         //console.log("res" + JSON.stringify(storesLst[6]))
                     }
-                    Expo.find(expoFilter, { Sections: 1 }).populate({
-                        path: 'Sections.Store',
-                        model: 'Store',
-                        select: { _id: 1, StoreName: 1}
-                    }).exec(function (err, lst) {
+                    //console.log(_expo);
+                    Expo.find(expoFilter, 'Floors Title Banner').populate('Floors.Stores.Store', '_id Name ProfilePicture').exec(function (err, lst) {
+                        console.log(lst.length);
                         if (err)
                             reject({
                                 code: 1,
@@ -240,18 +238,19 @@ module.exports = {
                             });
                         else {
                             if (lst.length > 0) {
-                                console.log(lst.length);
+                              //  console.log(lst.length);
                                 if (_expo == "") { underscore.each(lst, function (expo) { expoLst.push({ "_id": expo._id, "Title": expo.Title, "Banner": expo.banner, "Type": "expo" })}) }
                                 else{
                                     underscore.each(lst, function (expo) {
                                         underscore.each(expo.Sections, function (store) {
-                                            storesLst.push({ "_id": store.Store._id, "Name": store.Store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" })
+                                            storesLst.push({ "_id": store.Store._id, "Name": store.Store.Name, "ProfilePicture": store.Store.ProfilePicture, "Type": "store" })
                                             //underscore.groupBy(finalList, 'Type');
                                             //console.log((underscore.groupBy(finalList, 'Type')).store);
                                         })
-                                        console.log(lst.length);
+                                        //console.log(storesLst.length);
                                         console.log("res" + JSON.stringify(storesLst))
                                     })
+                                    console.log(storesLst.length);
                                     if (_store != "") {
                                         underscore.filter(storesLst, function (store) {
                                             console.log(store);
@@ -279,5 +278,4 @@ module.exports = {
            // resolve(storesLst);
         })
     },
-
 }

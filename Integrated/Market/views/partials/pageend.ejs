@@ -18,35 +18,14 @@
 <script src="/js/general/jquery-ui.js"></script>
 
 <script src="/js/general/wow.min.js"></script>
-<script>
-  new WOW().init();
-</script>
 
-<script type="text/javascript">
-  jQuery(function ($) {
-      $(document).ready(function () {
-          checkScrollTop();
-          $(window).scroll(function () {
-              checkScrollTop();
-          });
-          function checkScrollTop() {
-              if ($(window).scrollTop() < 100) {
-                  $('.header-wrapper').attr('style', 'position: static !important;'); // .removeClass('isScrolled');
-              }
-              else {
-                  $('.header-wrapper').attr('style', 'position: fixed !important;').addClass('isScrolled');
-              }
-          }
-          
-      });
-  });
-</script>
 
 <!--angular js-->
 
 	 <script type="text/javascript" src="/js/general/angular.min.js"></script>
    <script type="text/javascript" src="/js/app.js"></script>
    <script type="text/javascript" src="/js/directives.js"></script>
+<script type="text/javascript" src="/js/warehouse.js"></script>
 
 <script src="/js/controllers/headercontroller.js"></script>
     <!--<script src="/js/controllers/landingcontroller.js"></script>

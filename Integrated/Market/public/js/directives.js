@@ -9,3 +9,34 @@
     }
     return fallbackSrc;
 });
+
+//directive with function to close the modal
+app.directive('myModal', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            scope.dismiss = function () {
+                console.log('here');
+                element.modal('hide');
+            };
+        }
+    }
+});
+
+app.directive("compareTo", function () {
+    return {
+        require: "ngModel",
+        scope: {
+            otherModelValue: "=compareTo"
+        },
+        link: function (scope, element, attributes, ngModel) {
+            ngModel.$validators.compareTo = function (modelValue) {
+                return modelValue == scope.otherModelValue;
+            };
+
+            scope.$watch("otherModelValue", function () {
+                ngModel.$validate();
+            });
+        }
+    };
+});
