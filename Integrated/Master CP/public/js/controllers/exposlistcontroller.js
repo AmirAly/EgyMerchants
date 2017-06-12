@@ -31,10 +31,10 @@
         });
     };
 
-    //$scope.editExpo = function (_id) {
-    //    localStorage.setItem('expoId', _id);
-    //    window.location.href = '/eg/expo' + _id;
-    //}
+    $scope.editExpo = function (_id) {
+        localStorage.setItem('expoId', _id);
+        window.location.href = '/eg/expo/' + _id;
+    }
 
     $scope.removeExpo = function (_id) {
         var req = {

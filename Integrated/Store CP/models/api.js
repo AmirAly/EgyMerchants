@@ -231,6 +231,13 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.get('/Expo/GetById/:_id', function (req, res) {
+        ExpoLogic.getById(req.params._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
 
 
     return api;

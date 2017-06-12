@@ -61,22 +61,20 @@ module.exports = function (app) {
         });
     });
 
-    //app.get('/eg/expo/:expoId', function (req, res) {
-    //    var _scope = {};
-    //    country.getById(req.params.countryId).then(function (_country) {
-    //        if (_country.code == 100) {
-    //            _scope.country = _country.data;
-    //            res.render('pages/country', _scope);
-    //        } else {
-    //            _scope.country = {};
-    //            res.render('pages/country', _scope);
-    //        }
-    //    }).catch(function (_err) {
-    //        console.log(_err);
-    //        _scope.country = {};
-    //        res.render('pages/country', _scope);
-    //    });
-    //});
+    app.get('/eg/expo/:expoId', function (req, res) {
+        var _scope = {};
+        expo.getById(req.params.expoId).then(function (_expo) {
+            console.log(_expo);
+            if (_expo.code == 100) {
+                _scope.expo = _expo.data;
+                res.render('pages/expo', _scope);
+            } else {
+                console.log('else');
+                _scope.expo = {};
+                res.render('pages/expo', _scope);
+            }
+        });
+    });
 
     app.get('/eg/categorieslist', function (req, res) {
         var _scope = {};
