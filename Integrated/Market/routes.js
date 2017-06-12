@@ -3,6 +3,7 @@ var product = require('./models/items');
 var gallery = require('./models/galleries');
 var expo = require('./models/expoes');
 var category = require('./models/categories');
+var country = require('./models/countries');
 module.exports = function (app) {
     // use res.render to load up an ejs view file
     // index page 
@@ -14,13 +15,20 @@ module.exports = function (app) {
     // index page welcome + categories
     app.get('/Eg/Home', function (req, res) {
         var _scope = {};
-        category.getByCountry('59067579734d1d32590f51dd').then(function (_data) {
-            console.log(_data);
-            _scope.categories = _data;
-            res.render('pages/landing', _scope);
-        }).catch(function (_err) {
+        country.getById('593e5533ff9df41628e4693c').then(function (_data) {
+            if (_data.code == 100) {
+                console.log(_data.data);
+                _scope.categoriesData = _data.data;
+                res.render('pages/landing', _scope);
+            }
+            else {
+                _scope.categoriesData = [];
+                res.render('pages/landing', _scope);
+            }
+        }
+        ).catch(function (_err) {
             console.log(_err);
-            _scope.categories = [];
+            _scope.categoriesData = [];
             res.render('pages/landing', _scope);
         });
 
@@ -44,7 +52,7 @@ module.exports = function (app) {
     // store page   /eg/store/almaksoud
     app.get('/Eg/Store/:storeName/:storeId', function (req, res) {
         console.log(req.query);
-       
+
         var _scope = {};
         //res.render('pages/store', _scope);
         store.getById(req.params.storeId).then(function (_data) {
@@ -140,7 +148,7 @@ module.exports = function (app) {
         var _scope = {};
         _scope.searchTxt = req.params.searchTxt;
 
-        var searchResult =[
+        var searchResult = [
             {
                 'resultExpos': [
                     { _id: 1, Img: '/images/expo0.png', Title: 'Le Marchee' },

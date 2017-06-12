@@ -23,17 +23,18 @@
 <div class="container-fluid">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 big">
+            <div class="col-md-6 big">
                 <img src="/images/Expoeveryday.png">
             </div>
-            <div class="col-sm-5 big">
+            <div class="col-md-5 big">
                 <h1 class="wow slideInDown" data-wow-duration="2s">WELLCOME</h1>
-                <p>Start A tour on<br> an Expo ?</p>
-
-				<% if (categories.length > 0) { %>
-			<% categories.forEach(function(cat){ %>
+				<h5 class="wow flipInX" data-wow-duration="2s"><%= categoriesData.WelcomeMsg %></h5>
+                <p class="wow slideInUp" data-wow-duration="2s">Start A tour on<br> an Expo ?</p>
+				
+				<% if (categoriesData.Categories.length > 0) { %>
+			<% categoriesData.Categories.forEach(function(cat){ %>
 				<div class="wow bounceInRight txtCategoryContainer" data-wow-duration="2s">
-                    <a href="/Eg/Expos/59072775f36d286835cb21c9"><%= cat.Name %></a>
+                    <a href="/Eg/Expos/<%= cat._id %>"><%= cat.Name %></a>
                 </div>
 			<% }); %>
 				<% } else { %>
