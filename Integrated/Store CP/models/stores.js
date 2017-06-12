@@ -9,54 +9,54 @@ var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
     register: function (_newStore) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({$and:[{ $or: [{ 'Email': _newStore.Email }, {'Name':_newStore.Name}]},{'Status':'Active'}]}, '', function (err, Obj) {
+            Schema.findOne({ $and: [{ $or: [{ 'Email': _newStore.Email }, { 'Name': _newStore.Name }] }, { 'Status': 'Active' }] }, '', function (err, Obj) {
                 if (err)
                     reject({
-                        code:1,
+                        code: 1,
                         data: err
                     });
                 else {
                     if (Obj)
                         reject({
                             code: 21,
-                             data: "This email or store name already exist"
+                            data: "This email or store name already exist"
                         });
                     else {
                         _newStore.Type = 'store';
-                            _newStore.save(function (err, _newstore) {
-                                if (err)
-                                    reject({
-                                        code: 1,
-                                        data: err
-                                    });
-                                else {
-                                    resolve({
-                                        code: 100,
-                                        data: { _id: _newstore._id, Name: _newstore.Name,Type:_newstore.Type }
-                                    });
-                                }
-                            })
+                        _newStore.save(function (err, _newstore) {
+                            if (err)
+                                reject({
+                                    code: 1,
+                                    data: err
+                                });
+                            else {
+                                resolve({
+                                    code: 100,
+                                    data: { _id: _newstore._id, Name: _newstore.Name, Type: _newstore.Type }
+                                });
+                            }
+                        })
                     }
                 }
             })
-               
+
         })
     },
     login: function (_store) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ 'Email': _store.Email }, { 'Password': _store.Password }, {'Type':'store'}] }, '', function (err, Obj) {
+            Schema.findOne({ $and: [{ 'Email': _store.Email }, { 'Password': _store.Password }, { 'Type': 'store' }] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
                         data: err
                     });
                 else if (!Obj)
-                    reject ({
+                    reject({
                         code: 21,
                         data: "This email or password incorrect"
                     });
                 else if (Obj.Status == "Unconfirmed")
-                    reject ({
+                    reject({
                         code: 22,
                         data: "This account not confirmed yet"
                     });
@@ -68,17 +68,17 @@ module.exports = {
                 else if (Obj.Status == "Active")
                     resolve({
                         code: 100,
-                        data: { _id: Obj._id, Name: Obj.Name,Type:Obj.Type }
+                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type }
                     });
             })
         })
     },
-    editProfile: function (_id,_email,_city,_address,_country,_description,_imgs) {
+    editProfile: function (_id, _email, _city, _address, _country, _description, _imgs) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ 'Email': _email, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
-                        code:1,
+                        code: 1,
                         data: err
                     });
                 else {
@@ -89,53 +89,53 @@ module.exports = {
                         });
                     else {
                         Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
-                if (err)
-                    reject({
-                        code: 1,
-                        data: err
-                    });
-                else {
-                    if (Obj) {
-                        if (Obj.Status == "Active") {
-                            Obj.Email = _email;
-                            Obj.City = _city;
-                            Obj.Address = _address;
-                            Obj.Country = _country;
-                            Obj.Description = _description;
-                            if (_imgs)
-                                Obj.Imgs = _imgs;
-                            Obj.save(function (err, Obj) {
-                                if (err)
-                                    reject({
-                                        code: 1,
-                                        data: err
-                                    });
+                            if (err)
+                                reject({
+                                    code: 1,
+                                    data: err
+                                });
+                            else {
+                                if (Obj) {
+                                    if (Obj.Status == "Active") {
+                                        Obj.Email = _email;
+                                        Obj.City = _city;
+                                        Obj.Address = _address;
+                                        Obj.Country = _country;
+                                        Obj.Description = _description;
+                                        if (_imgs)
+                                            Obj.Imgs = _imgs;
+                                        Obj.save(function (err, Obj) {
+                                            if (err)
+                                                reject({
+                                                    code: 1,
+                                                    data: err
+                                                });
+                                            else
+                                                resolve({
+                                                    code: 100,
+                                                    data: "Your profile updated successfully"
+                                                });
+                                        })
+                                    }
+                                    else {
+                                        reject({
+                                            code: 22,
+                                            data: "This store is suspended"
+                                        });
+                                    }
+                                }
                                 else
-                                    resolve({
-                                        code: 100,
-                                        data: "Your profile updated successfully"
+                                    reject({
+                                        code: 21,
+                                        data: "There is no such store"
                                     });
-                            })
-                        }
-                        else {
-                            reject({
-                                code: 22,
-                                data: "This store is suspended"
-                            });
-                        }
+                            }
+                        })
                     }
-                    else 
-                        reject({
-                            code: 21,
-                            data: "There is no such store"
-                        });
-                    }
-                })
                 }
-            }
-    })
+            })
         })
-        },
+    },
     editBadges: function (_id, _verified, _hasFactory, _featured) {
         return new Promise(function (resolve, reject) {
             Schema.findOneAndUpdate({ '_id': _id, 'Status': 'Active' }, { $set: { 'Badges.Verified': _verified, 'Badges.HasFactory': _hasFactory, 'Badges.Featured': _featured } }, { new: true }, function (err, Obj) {
@@ -160,10 +160,10 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                            resolve({
-                                code: 100,
-                                data: Obj
-                            });
+                        resolve({
+                            code: 100,
+                            data: Obj
+                        });
                     }
                     else
                         reject({
@@ -180,10 +180,10 @@ module.exports = {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
-                    if(Obj)
+                    if (Obj)
                         resolve({ code: 100, data: "This store deleted successfuylly" })
-                    else 
-                        reject({code:21,data:"This filteration didn't resulted in any data"})
+                    else
+                        reject({ code: 21, data: "This filteration didn't resulted in any data" })
                 }
             })
         })
@@ -202,19 +202,19 @@ module.exports = {
             })
         })
     },
-    search:function (_store, _expo, _keyWord, _country) {
+    search: function (_store, _expo, _keyWord, _country) {
         var finalList = [],
              itemsLst = [],
              expoLst = [],
-         arrayOfIds=[],
+         arrayOfIds = [],
          storesOfItems = [];
         storesLst = [];
         var underscore = require("underscore");
         return new Promise(function (resolve, reject) {
-            var filter = {'Country': { "$regex": _country, "$options": "i" }, 'Status': 'Active','Type':'store' };
+            var filter = { 'Country': { "$regex": _country, "$options": "i" }, 'Status': 'Active', 'Type': 'store' };
             if (_country == "")
-                filter = { 'Status': 'Active','Type':'store' };
-            var expoFilter = { 'Title': { "$regex": _expo, "$options": "i" } ,'Status':'Active'};
+                filter = { 'Status': 'Active', 'Type': 'store' };
+            var expoFilter = { 'Title': { "$regex": _expo, "$options": "i" }, 'Status': 'Active' };
             if (_expo == "")
                 expoFilter = { 'Status': 'Active' };
             Schema.find(filter, '_id Name ProfilePicture Description Address Status', function (err, lst) {//Pictures
@@ -236,95 +236,66 @@ module.exports = {
                         else {
                             if (lst.length > 0) {
                                 underscore.each(lst, function (expo) { expoLst.push({ "_id": expo._id, "Title": expo.Title, "Banner": expo.banner, "Type": "expo" }) });
-                                    underscore.each(lst, function (expo) {
-                                        underscore.each(expo.Floors, function (floor) {
-                                            underscore.each(floor.Stores, function (store) {
-                                                if (store.Store.Status == "Active") {
-                                                    storesLst.push(store.Store);
-                                                }
-                                            })
+                                underscore.each(lst, function (expo) {
+                                    underscore.each(expo.Floors, function (floor) {
+                                        underscore.each(floor.Stores, function (store) {
+                                            if (store.Store.Status == "Active") {
+                                                storesLst.push(store.Store);
+                                            }
                                         })
                                     })
-                                    var destArray = underscore.uniq(storesLst, function (x) {
+                                })
+                                var destArray = underscore.uniq(storesLst, function (x) {
+                                    return x.Name;
+                                });
+                                storesLst = destArray;
+                                
+                                if (_store != "") {
+                                    underscore.filter(storesLst, function (store) {
+                                        if (store.Name.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Address.indexOf(_store) !== -1) {
+                                            finalList.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" });
+                                            storesOfItems.push({ "_id": store._id });
+                                        }
+                                    })
+                                    var destArray = underscore.uniq(finalList, function (x) {
                                         return x.Name;
                                     });
-                                    storesLst = destArray;
-                                    if (_store != "") {
-                                        underscore.filter(storesLst, function (store) {
-                                            if (store.Name.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Address.indexOf(_store) !== -1) {
-                                                finalList.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" });
-                                                storesOfItems.push({ "_id": store._id});
-                                            }
-                                        })
-                                        var destArray = underscore.uniq(finalList, function (x) {
-                                            return x.Name;
-                                        });
-                                        finalList = destArray;
-                                    }
-                                    console.log(storesLst);
-                                    console.log(storesOfItems.length);
-                                        if (storesOfItems.length > 0) {
-                                            underscore.each(storesOfItems,function(store){
-                                                arrayOfIds.push(store._id);
-                                                console.log(arrayOfIds);
-                                            })
+                                    finalList = destArray;
+                                }
+                                
+                                
+
+                                if (_keyWord != "") {
+                                    underscore.filter(storesLst, function (store) {
+                                        if (store.Name.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Address.indexOf(_store) !== -1) {
+                                            finalList.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" });
                                         }
-                                        else{underscore.each(storesLst,function(store){
-                                            arrayOfIds.push(store._id);
-                                            console.log(arrayOfIds);
-                                        })
+                                    })
+                                    underscore.filter(expoLst, function (expo) {
+                                        if (expo.Title.indexOf(_expo) !== -1) {
+                                            finalList.push({ "_id": expo._id, "Title": expo.Title, "Banner": expo.Banner, "Type": "expo" });
                                         }
-
-                                        Item.find({'Status': 'Active' }, '_id Name Pictures Gallery').populate('Gallery','Store').exec(function (err, lst) {
-                                            if (err)
-                                                reject({
-                                                    code: 1,
-                                                    data: err
-                                                });
-                                            else {
-                                                if (lst.length > 0)
-                                                {
-                                                    underscore.filter(lst, function (item) {
-                                                        console.log("itemssss"+item.Gallery.Store);
-
-                                                        if (arrayOfIds.includes(item.Gallery.Store)) itemsLst.push(item);
-                                                    })
-                                                }
-                                                console.log(itemsLst);
-                                            }
-                                        })
-
-                                    if (_keyWord != "") {
-                                        underscore.filter(storesLst, function (store) {
-                                            if (store.Name.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Address.indexOf(_store) !== -1) {
-                                                finalList.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" });
-                                            }
-                                        })
-                                        underscore.filter(expoLst, function (expo) {
-                                            if (expo.Title.indexOf(_expo) !== -1) {
-                                                finalList.push({ "_id": expo._id, "Title": expo.Title, "Banner": expo.Banner, "Type": "expo" });
-                                            }
-                                        })
-                                        var destArray = underscore.uniq(finalList, function (x) {
-                                            return x.Name;
-                                        });
-                                        finalList = destArray;
-                                        console.log("final2" + JSON.stringify(finalList));
-                                    }
-                                    
-
-                                    //underscore.groupBy(finalList, 'Type');
-                                    //console.log((underscore.groupBy(finalList, 'Type')).store);
+                                    })
+                                    var destArray = underscore.uniq(finalList, function (x) {
+                                        return x.Name;
+                                    });
+                                    finalList = destArray;
+                                    console.log("final2" + JSON.stringify(finalList));
+                                }
 
 
-                                    //})
-                               // }
+                                //underscore.groupBy(finalList, 'Type');
+                                //console.log((underscore.groupBy(finalList, 'Type')).store);
+
+
+                                //})
+                                // }
                             }
-                            }
+                        }
                     })
                 }
             })
-           // resolve(storesLst);
+            // resolve(storesLst);
         })
     },
 }

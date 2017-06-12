@@ -67,12 +67,28 @@ module.exports = function (app) {
             console.log(_expo);
             if (_expo.code == 100) {
                 _scope.expo = _expo.data;
-                res.render('pages/expo', _scope);
+                category.getAll().then(function (_category) {
+                    if (_category.code == 100) {
+                        _scope.categorieslst = _category.data;
+                        res.render('pages/expo', _scope);
+                    } else {
+                        _scope.categorieslst = {};
+                        res.render('pages/expo', _scope);
+                    }
+                }).catch(function (_err) {
+                    console.log(_err);
+                    _scope.categorieslst = {};
+                    res.render('pages/expo', _scope);
+                });
             } else {
                 console.log('else');
                 _scope.expo = {};
                 res.render('pages/expo', _scope);
             }
+        }).catch(function (_err) {
+            console.log(_err);
+            _scope.expo = {};
+            res.render('pages/expo', _scope);
         });
     });
 

@@ -70,18 +70,22 @@
                                             <div class="col-md-5">
                                                 <div class="form-group label-floating is-focused ">
                                                     <label class="control-label">Expo Name</label>
-
-													                                                    <%= expo %>
-																										 <%= expo[0]._id %>
-                                                    <input type="text" class="form-control" value="<%= expo.Title %>"  name="expoTitle" id="expoTitle" required pattern="^.{1,35}$">
+                                                    <input type="text" class="form-control" value="<%= expo.Title %>" name="expoTitle" id="expoTitle" required pattern="^.{1,35}$">
                                                     <span ng-show="frmUpdateExpo.expoTitle.$dirty && frmUpdateExpo.expoTitle.$invalid">
                                                         <span class="errorFont" ng-show="frmUpdateExpo.expoTitle.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmUpdateExpo.expoTitle.$error.pattern">Expo name is too long</span>
                                                     </span>
                                                 </div>
                                             </div>
+                                            <div class="col-md-8">
+                                                <select name="country" ng-model="expo.selectedCategory" class="form-control">
+                                                    <% categorieslst.forEach(function(category){ %>
+                                                    <option value="<%= category._id %>" selected> <%= category.Name %> </option>
+                                                    <% }); %>
+                                                </select>
+                                            </div>
                                         </div>
-                                        
+
                                         <button type="submit" ng-click="updateExpo()" ng-disabled="frmUpdateExpo.$invalid" class="btn btn-primary pull-right">Update Expo</button>
                                         <div class="clearfix"></div>
                                     </form>
