@@ -87,11 +87,11 @@ var newstore = new userschema({ "Email": "mynewmail12@gmail.com", "Password": "n
 //    console.log(err);
 //});
 //"my new","masterexpo","","egypt"
-//store.search("", "masterexpo", "", "egypt").then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
+store.search("", "masterexpo", "", "egypt").then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
 var newmaster = new userschema({ "Email": "newmaster@gmail.com", "Password": "123456", "Name": "anisa"});
 //master.register(newmaster).then(function (result) {
 //    console.log(result); 
@@ -159,11 +159,11 @@ var newexpo = new exposchema({ "Title": "newgodexpo", "Banner": "bnner", "Catego
 //}, function(err) {
 //    console.log(err); 
 //});
-expo.getById("593d09ed43aeb8e8157f181d").then(function (result) {
-    console.log(result);
-}, function (err) {
-    console.log(err);
-});
+//expo.getById("593d09ed43aeb8e8157f181d").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 //expo.setFloor("593d09ed43aeb8e8157f181d", { "Name": "the lastflooradded", "Stores": [{ "Store": "59366953c2bf034812df1954", "Width": "1", "High": "2", "Position": "3", "Img": "img" }] }).then(function (result) {
 //    console.log(result);
 //}, function (err) {

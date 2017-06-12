@@ -267,8 +267,39 @@ module.exports = {
 
                                 if (_keyWord != "") {
                                     underscore.filter(storesLst, function (store) {
-                                        if (store.Name.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Address.indexOf(_store) !== -1) {
+                                        if (store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1) {
                                             finalList.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" });
+                                            Item.find({ 'Status': 'Active' }, { 'Name': { "$regex": _keyWord, "$options": "i" } }, { 'Description': { "$regex": _keyWord, "$options": "i" } }, '_id Name Pictures Gallery').populate('Gallery', 'Store').exec(function (err, lst) {
+                                                if (err)
+                                                    reject({
+                                                        code: 1,
+                                                        data: err
+                                                    });
+                                                else {
+                                                    if (lst.length > 0) {
+                                                        underscore.filter(lst, function (item) {
+                                                            console.log(item.Gallery.Store);
+                                                            if (item.Gallery.Store == store._id)
+                                                                finalList.push({ "_id": item._id, "Name": item.Name, "Pictures": item.Pictures, "Type": "item" });
+                                                        })
+
+
+
+
+                                                        //underscore.filter(lst, function (item) {
+                                                        //    console.log(item.Gallery.Store);
+
+                                                        //    if (arrayOfIds.includes(item.Gallery.Store)) {
+                                                        //        itemsLst.push(item);
+                                                        //    }
+                                                        //    console.log(itemsLst);
+                                                        //})
+                                                    }
+                                                    console.log(itemsLst);
+                                                }
+                                            })
+
+
                                         }
                                     })
                                     underscore.filter(expoLst, function (expo) {
