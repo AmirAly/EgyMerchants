@@ -203,17 +203,17 @@ module.exports = {
     },
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.find({'_id':_id, 'Status': 'Active' }, 'Title Banner Category').populate('Category', '_id Name').exec(function (err, lst) {
+            Schema.findOne({'_id':_id, 'Status': 'Active' }, 'Title Banner Category').populate('Category', '_id Name').exec(function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
                         data: err
                     });
                 else {
-                    if (lst.length > 0)
+                    if (Obj)
                         resolve({
                             code: 100,
-                            data: lst
+                            data: Obj
                         });
                     else
                         reject({
