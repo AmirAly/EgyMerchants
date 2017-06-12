@@ -201,5 +201,27 @@ module.exports = {
             })
         })
     },
-    
+    getById: function (_id) {
+        return new Promise(function (resolve, reject) {
+            Schema.find({'_id':_id, 'Status': 'Active' }, 'Title Banner Category').populate('Category', '_id Name').exec(function (err, lst) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if (lst.length > 0)
+                        resolve({
+                            code: 100,
+                            data: lst
+                        });
+                    else
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
+                }
+            })
+        })
+    },
 }
