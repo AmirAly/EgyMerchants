@@ -48,8 +48,9 @@ mongoose.connect(db.url, function (err) {
     }
 });
  
-var newstore = new userschema({ "Email": "mynewmail@gmail.com", "Password": "nada", "Name": "my new store", "Country": "egypt", "Category": "furniture" });
-//store.register(newstore).then(function (result) {
+var newstore = new userschema({ "Email": "mynewmail12@gmail.com", "Password": "nada", "Name": "my new store12", "Country": "italy", "Category": "furniture" });
+//store.register(newstore).
+//    then(function (result) {
 //    console.log(result); 
 //}, function(err) {
 //    console.log(err); 
@@ -75,7 +76,7 @@ var newstore = new userschema({ "Email": "mynewmail@gmail.com", "Password": "nad
 //}, function (err) {
 //    console.log(err);
 //});
-//store.getById("593668fd8cc4b54c0ccfaeae").then(function (result) {
+//store.getById("5937c36103c5b66c050ffa9c").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -85,12 +86,12 @@ var newstore = new userschema({ "Email": "mynewmail@gmail.com", "Password": "nad
 //}, function (err) {
 //    console.log(err);
 //});
-//"","","","egypt"
-store.search("", "masterexpo", "", "").then(function (result) {
-    console.log(result);
-}, function (err) {
-    console.log(err);
-});
+//"my new","masterexpo","","egypt"
+//store.search("", "masterexpo", "", "egypt").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 var newmaster = new userschema({ "Email": "newmaster@gmail.com", "Password": "123456", "Name": "anisa"});
 //master.register(newmaster).then(function (result) {
 //    console.log(result); 
@@ -158,7 +159,11 @@ var newexpo = new exposchema({ "Title": "newgodexpo", "Banner": "bnner", "Catego
 //}, function(err) {
 //    console.log(err); 
 //});
-
+expo.getById("593d09ed43aeb8e8157f181d").then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
 //expo.setFloor("593d09ed43aeb8e8157f181d", { "Name": "the lastflooradded", "Stores": [{ "Store": "59366953c2bf034812df1954", "Width": "1", "High": "2", "Position": "3", "Img": "img" }] }).then(function (result) {
 //    console.log(result);
 //}, function (err) {
