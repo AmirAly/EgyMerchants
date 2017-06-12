@@ -92,10 +92,10 @@
                     <div class="row products-list  products-list-small">
                         <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
                             <% searchResult[0].resultStores.forEach(function(result){ %>
-                            <div class="product-preview zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
-                                <div class="preview  zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
-                                    <a href="#" class="preview-image">
-                                        <img class="img-responsive  zoomIn animated" data-wow-offset="0" data-wow-duration="1s"  src="<%= result.Img %>" width="270" height="328" alt="">
+                            <div class="product-preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
+                                <div class="preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
+                                    <a href="/eg/Store/<%= result.Title %>/<%= result._id %>" class="preview-image">
+                                        <img class="img-responsive wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s"  src="<%= result.Img %>" width="270" height="328" alt="">
                                     </a>
                                     <ul class="product-controls-list right hide-right">
                                         <li class="top-out"></li>
@@ -103,10 +103,10 @@
                                         <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
                                         <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
                                     </ul>
-                                    <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
+                                    <a href="/eg/Store/<%= result.Title %>/<%= result._id %>" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
                                     <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
                                 </div>
-                                <h3 class="title"><a href="#"><%= result.Title %></a></h3>
+                                <h3 class="title"><a href="/eg/Store/<%= result.Title %>/<%= result._id %>"><%= result.Title %></a></h3>
                             </div>
                             <% }); %>
                         </div>
@@ -127,10 +127,10 @@
                     <div class="row products-list  products-list-small">
                         <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
                             <% searchResult[0].resultProducts.forEach(function(result){ %>
-                            <div class="product-preview zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
-                                <div class="preview  zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
-                                    <a href="#" class="preview-image">
-                                        <img class="img-responsive  zoomIn animated" data-wow-offset="0" data-wow-duration="1s"  src="<%= result.Img %>" width="270" height="328" alt="">
+                            <div class="product-preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
+                                <div class="preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
+                                    <a href="/eg/Product/<%= result.Title %>/<%= result._id %>" class="preview-image">
+                                        <img class="img-responsive wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s"  src="<%= result.Img %>" width="270" height="328" alt="">
                                     </a>
                                     <ul class="product-controls-list right hide-right">
                                         <li class="top-out"></li>
@@ -138,10 +138,10 @@
                                         <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
                                         <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
                                     </ul>
-                                    <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
+                                    <a href="/eg/Product/<%= result.Title %>/<%= result._id %>" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
                                     <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
                                 </div>
-                                <h3 class="title"><a href="#"><%= result.Title %></a></h3>
+                                <h3 class="title"><a href="/eg/Product/<%= result.Title %>/<%= result._id %>"><%= result.Title %></a></h3>
                             </div>
                             <% }); %>
                         </div>

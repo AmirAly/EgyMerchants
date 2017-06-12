@@ -26,7 +26,7 @@
 
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
-
+        console.log('enteeeeeeeeeer');
     }
     $scope.load();
 
@@ -62,15 +62,6 @@
                 }
 
             });
-            //$timeout(function () {
-            //    $scope.dataLoading = false;
-            //    $scope.frmLogin.$setPristine();
-            //    $scope.frmLogin.$setUntouched();
-            //    $scope.loginObj = {};
-            //    $scope.loggedUser = true;
-            //    $scope.userName = "Samar";
-            //    $scope.dismiss();
-            //}, 500);
         }
     }
 
@@ -82,15 +73,25 @@
             // call loader , Register , hide modal & add user name
             $scope.dataLoading = true;
             console.log($scope.registerObj);
-            $timeout(function () {
-                $scope.dataLoading = false;
-                form.$setPristine();
-                form.$setUntouched();
-                $scope.registerObj = {};
-                $scope.loggedUser = true;
-                $scope.userName = "Samar";
-                $scope.dismiss();
-            }, 500);
+            var req = {
+                method: 'post',
+                url: '/User/Register',
+                data: $scope.registerObj
+            }
+            API.execute(req).then(function (_res) {
+                if (_res.data.code == 100) {
+                    $scope.dataLoading = false;
+                    $scope.frmRegister.$setPristine();
+                    $scope.frmRegister.$setUntouched();
+                    $scope.registerObj = {};
+                    $scope.loggedUser = true;
+                    $scope.userName = _res.data.data.Name;
+                    $scope.dismiss();
+                } else {
+                    $scope.dataLoading = false;
+                    $scope.afterRegisterError = _res.data.data;
+                }
+            });
         }
     }
 

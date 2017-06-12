@@ -51,11 +51,11 @@
                 <li>
                   <a href="#">MY INBOX</a>
                 </li>
-                <li>
-                  <a href="#" data-toggle="modal" data-target="#modal-login" ng-init="loggedUser = false" ng-hide="loggedUser">LOG IN</a>
+                <li data-toggle="modal" data-target="#modal-login" ng-init="loggedUser = false" ng-hide="loggedUser">
+                  <a href="#">LOG IN</a>
                 </li>
-                <li>
-                  <a href="#" ng-show="loggedUser" ng-click="logout()">Welcome {{userName}} | LOG OUT</a>
+                <li ng-show="loggedUser" ng-click="logout()">
+                  <a href="#">Welcome {{userName}} | LOG OUT</a>
                 </li>
               </ul>
 
@@ -209,7 +209,7 @@
           <form role="form" name="frmRegister" class="register-form">
             <div class="form-group">
               <label class="sr-only" for="form-email">Email</label>
-              <input type="email" name="email" ng-model="registerObj.email" required="" placeholder="Email..." class="form-email form-control" id="form-email"/>
+              <input type="email" name="email" ng-model="registerObj.Email" required="" placeholder="Email..." class="form-email form-control" id="form-email"/>
               <span ng-show="frmRegister.email.$dirty  && frmRegister.email.$invalid">
                 <span class="errorFont" ng-show="frmRegister.email.$error.required">Email is required</span>
                 <span class="errorFont" ng-show="frmRegister.email.$error.email">Invalid email</span>
@@ -217,14 +217,14 @@
             </div>
             <div class="form-group">
               <label class="sr-only" for="form-displayName">Display Name</label>
-              <input type="text" name="displayName"  ng-model="registerObj.displayName" required="" placeholder="Display Name..." class="form-displayName form-control" id="form-displayName"/>
+              <input type="text" name="displayName"  ng-model="registerObj.Name" required="" placeholder="Display Name..." class="form-displayName form-control" id="form-displayName"/>
               <span ng-show="frmRegister.displayName.$touched && frmRegister.displayName.$invalid">
                 <span class="errorFont" ng-show="frmRegister.displayName.$error.required">Display name is required</span>
               </span>
             </div>            
             <div class="form-group">
               <label class="sr-only" for="form-password">Password</label>
-              <input type="password" name="Password" ng-model="registerObj.password" required="" placeholder="Password..." class="form-password form-control" id="form-password"/>
+              <input type="password" name="Password" ng-model="registerObj.Password" required="" placeholder="Password..." class="form-password form-control" id="form-password"/>
               <span ng-show="frmRegister.Password.$touched && frmRegister.Password.$invalid">
                 <span class="errorFont" ng-show="frmRegister.Password.$error.required">Password is required</span>
               </span>
@@ -232,7 +232,7 @@
             
             <div class="form-group">
               <label class="sr-only" for="form-password">Confirm Password</label>
-              <input type="password" name="confirmPassword" compare-to="registerObj.password"  ng-model="registerObj.confirmPassword" required="" placeholder="Confirm Password..." class="form-confirmpassword form-control" id="form-confirmpassword"/>
+              <input type="password" name="confirmPassword" compare-to="registerObj.Password"  ng-model="registerObj.confirmPassword" required="" placeholder="Confirm Password..." class="form-confirmpassword form-control" id="form-confirmpassword"/>
               <span ng-show="frmRegister.confirmPassword.$touched && frmRegister.confirmPassword.$invalid">
                 <span class="errorFont" ng-show="frmRegister.confirmPassword.$error.required || frmRegister.confirmPassword.$error.compareTo">Passwords must match.</span>
               </span>
