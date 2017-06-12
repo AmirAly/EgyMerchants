@@ -107,7 +107,7 @@ module.exports = {
     },
     add: function (_product) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Name': _product.Name, 'Gallery': _product.Gallery }, '', function (err, Obj) {
+            Schema.findOne({ 'Name': _product.Name, 'Gallery': _product.Gallery, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -138,62 +138,60 @@ module.exports = {
 
         })
     },
-    edit: function (_id, _name, _description, _imgs, _price, _priceBeforeSale, _badges,_tags) {
+    edit: function (_id, _name, _description, _imgs, _price, _priceBeforeSale, _badges, _tags) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Name': _name,'_id':{$ne:_id} }, '', function (err, Obj) {
+            Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, item) {
                 if (err)
                     reject({
                         code: 1,
                         data: err
                     });
                 else {
-                    if (Obj)
-                        reject({
-                            code: 21,
-                            data: "There is item with same name in this gallery"
-                        });
-                    else {
-            Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
-                if (err)
-                    reject({
-                        code: 1,
-                        data: err
-                    });
-                else {
-                    if (Obj) {
-                        Obj.Name = _name;
-                        Obj.Description = _description;
-                        Obj.Price = _price;
-                        Obj.PriceBeforeSale = _priceBeforeSale;
-                        Obj.Badges = _badges;
-                        Obj.Tags = _tags;
-                        if (_imgs)
-                            Obj.Pictures = _imgs;
-                        Obj.save(function (err, Obj) {
+                    if (item) {
+                        Schema.findOne({ 'Name': _name, 'Gallery': item.Gallery, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
                             if (err)
                                 reject({
                                     code: 1,
                                     data: err
                                 });
-                            else
-                                resolve({
-                                    code: 100,
-                                    data: "This item updated successfully"
-                                });
+                            else {
+                                if (Obj)
+                                    reject({
+                                        code: 21,
+                                        data: "There is item with the same name in this gallery"
+                                    });
+                                else {
+                                    item.Name = _name;
+                                    item.Description = _description;
+                                    item.Price = _price;
+                                    item.PriceBeforeSale = _priceBeforeSale;
+                                    item.Badges = _badges;
+                                    item.Tags = _tags;
+                                    if (_imgs)
+                                        item.Pictures = _imgs;
+                                    item.save(function (err, Obj) {
+                                        if (err)
+                                            reject({
+                                                code: 1,
+                                                data: err
+                                            });
+                                        else
+                                            resolve({
+                                                code: 100,
+                                                data: "This item updated successfully"
+                                            });
+                                    })
+                                }
+                            }
                         })
                     }
-                    else
-                        reject({
-                            code: 21,
-                            data: "This filteration didn't resulted in any data"
-                        });
-                }
-            })
+                    else {
+                        reject({ code: 21, data: "This filteration didn't resulted in any data" })
                     }
                 }
             })
-    })
-},
+        })
+    },
     suspend: function (_id) {
         return new Promise(function (resolve, reject) {
             Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "Suspended" } }, { new: true }, function (err, Obj) {
@@ -208,4 +206,5 @@ module.exports = {
             })
         })
     },
+   
 }

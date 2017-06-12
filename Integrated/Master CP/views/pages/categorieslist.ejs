@@ -79,81 +79,27 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <% if ( categorieslst.length > 0  ){ %>
+                                            <% categorieslst.forEach(function(category){ %>
                                             <tr>
-                                                <td>Furniture</td>
+                                                <td><%= category.Name%></td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg2" data-original-title="Edit Category">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" ng-click="editCategory('<%= category._id %>','<%= category.Name %>')" data-target=".bs-example-modal-lg2" data-original-title="Edit Category">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" ng-click="removeCategory('<%= category._id %>')" data-original-title="Remove" aria-describedby="tooltip451158">
                                                         <i class="material-icons">close</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Clothes</td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg2" data-original-title="Edit Category">
-                                                        <i class="material-icons">edit</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
-                                                        <i class="material-icons">close</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Furniture</td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg2" data-original-title="Edit Category">
-                                                        <i class="material-icons">edit</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
-                                                        <i class="material-icons">close</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Perfume</td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg2" data-original-title="Edit Category">
-                                                        <i class="material-icons">edit</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
-                                                        <i class="material-icons">close</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Clothes</td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg2" data-original-title="Edit Category">
-                                                        <i class="material-icons">edit</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
-                                                        <i class="material-icons">close</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                            <% }); %>
+                                            <% }else{ %>
+                                            <p class="text-center"> There is no categories</p>
+                                            <% } %>
                                         </tbody>
                                     </table>
                                 </div>
@@ -195,7 +141,7 @@
                                                     <div class="col-md-8">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Category</label>
-                                                            <input type="text" class="form-control" ng-model="category.Title" required pattern="^.{1,35}$" name="categoryTitle" id="categoryTitle">
+                                                            <input type="text" class="form-control" ng-model="category.Name" required pattern="^.{1,35}$" name="categoryTitle" id="categoryTitle">
                                                             <span ng-show="frmAddCategory.categoryTitle.$dirty && frmAddCategory.categoryTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmAddCategory.categoryTitle.$error.required">Required</span>
                                                                 <span class="errorFont" ng-show="frmAddCategory.categoryTitle.$error.pattern">Category name is too long</span>
@@ -243,10 +189,10 @@
                                         <div class="card-content">
                                             <form name="frmEditCategory">
                                                 <div class="row">
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-12">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Category</label>
-                                                            <input type="text" class="form-control" ng-model="category.Title" required pattern="^.{1,35}$" name="categoryTitle" id="categoryTitle">
+                                                            <input type="text" class="form-control" ng-model="categoryName" value="categoryName" required pattern="^.{1,35}$" name="categoryTitle" id="categoryTitle">
                                                             <span ng-show="frmEditCategory.categoryTitle.$dirty && frmEditCategory.categoryTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmEditCategory.categoryTitle.$error.required">Required</span>
                                                                 <span class="errorFont" ng-show="frmEditCategory.categoryTitle.$error.pattern">Category name is too long</span>
@@ -254,9 +200,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="clearfix"></div>
-                                            </form>
                                         </div>
+                                        <div class="clearfix"></div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -265,13 +211,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" ng-click="EditCategory()" ng-disabled="frmEditCategory.$invalid" class="btn btn-primary">Update Category</button>
+                    <button type="submit" ng-click="updateCategory()" ng-disabled="frmEditCategory.$invalid" class="btn btn-primary">Update Category</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Modal -->
-
 </div>
+<!-- End Modal -->
 <!--   Core JS Files   -->
 <% include ../partials/pagesjsfiles %>/partials/pagesjsfiles %>

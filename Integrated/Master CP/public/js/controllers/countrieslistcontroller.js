@@ -20,15 +20,40 @@
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
                 window.location.reload();
-                localStorage.setItem('countryId', _res.data.data._id);
             } else {
-                $scope.loading = false;
+                if (_res.data.code == 21) {
+                    console.log('Already Exist');
+                    $scope.loading = false;
+                } else {
+                    $scope.loading = false;
+                }
             }
         });
     };
 
-    $scope.editCountry = function () {
-        window.location.href = '/eg/country';
+    $scope.editCountry = function (_id) {
+        window.location.href = '/eg/country/' + _id;
+        console.log(_id);
+        localStorage.setItem('countryId', _id);
+    };
+
+    $scope.removeCountry = function (_id) {
+        var req = {
+            method: 'put',
+            url: '/Country/Suspend',
+            data: {
+                _id: _id
+            }
+        }
+        API.execute(req).then(function (_res) {
+            if (_res.data.code == 100) {
+                console.log('deleted');
+                window.location.reload();
+            } else {
+                console.log('err');
+            }
+
+        });
     }
 });
 function convertImgToBase64URL(event) {

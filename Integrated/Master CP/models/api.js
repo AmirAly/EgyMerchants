@@ -4,6 +4,7 @@ var StoreLogic = require('./stores');
 var MasterLogic = require('./masters');
 var CountryLogic = require('./countries');
 var CategoryLogic = require('./categories');
+var UserLogic = require('./users');
 var Gallery = require('./models/gallery');
 var Item = require('./models/item');
 var Expo = require('./models/expo');
@@ -11,6 +12,7 @@ var Store = require('./models/user');
 var Country = require('./models/country');
 var Category = require('./models/category');
 var Master = require('./models/user');
+var User = require('./models/user');
 
 var Helper = require('./helper');
 
@@ -34,6 +36,38 @@ module.exports = function (app, express) {
     api.post('/Store/Login', function (req, res) {
         var _newStore = new Store(req.body);
         StoreLogic.login(_newStore).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.post('/Master/Register', function (req, res) {
+        var _newMaster = new Store(req.body);
+        MasterLogic.register(_newMaster).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.post('/Master/Login', function (req, res) {
+        var _newMaster = new Store(req.body);
+        MasterLogic.login(_newMaster).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.post('/User/Register', function (req, res) {
+        var _newUser = new Store(req.body);
+        UserLogic.register(_newUser).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.post('/User/Login', function (req, res) {
+        var _newUser = new Store(req.body);
+        UserLogic.login(_newUser).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -138,7 +172,7 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Country/Edit', function (req, res) {
-        CountryLogic.edit(req.body._id, req.body.Nane, req.body.Flag, req.body.IsoCode,req.body.WelcomeMsg).then(function (result) {
+        CountryLogic.edit(req.body._id, req.body.Name, req.body.Flag, req.body.IsoCode,req.body.WelcomeMsg,req.body.Categories).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -161,7 +195,7 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Category/Edit', function (req, res) {
-        CategoryLogic.edit(req.body._id, req.body.Nane, req.body.Countries).then(function (result) {
+        CategoryLogic.edit(req.body._id, req.body.Name).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
