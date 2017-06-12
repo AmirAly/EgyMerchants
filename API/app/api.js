@@ -4,6 +4,7 @@ var StoreLogic = require('./stores');
 var MasterLogic = require('./masters');
 var CountryLogic = require('./countries');
 var CategoryLogic = require('./categories');
+var ExpoLogic = require('./expoes');
 var UserLogic = require('./users');
 var Gallery = require('./models/gallery');
 var Item = require('./models/item');
@@ -11,7 +12,7 @@ var Expo = require('./models/expo');
 var Country = require('./models/country');
 var Category = require('./models/category');
 var User = require('./models/user');
-
+var Expo = require('./models/expo');
 var Helper = require('./helper');
 
 
@@ -48,6 +49,13 @@ module.exports = function (app, express) {
     })
     api.get('/Store/GetById/:_id', function (req, res) {
         StoreLogic.getById(req.params._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Store/EditBadges', function (req, res) {
+        StoreLogic.editBadges(req.body._id, req.body.Verified, req.body.HasFactory, req.body.Featured).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -199,5 +207,31 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+
+    //expo API calls
+    api.post('/Expo/Add', function (req, res) {
+        var _newExpo = new Expo(req.body);
+        ExpoLogic.add(_newExpo).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Expo/Edit', function (req, res) {
+        ExpoLogic.edit(req.body._id, req.body.Title,req.body.Banner,req.body.Category,req.body.Floors).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Expo/Suspend', function (req, res) {
+        ExpoLogic.suspend(req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+
+
     return api;
 };

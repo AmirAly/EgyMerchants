@@ -86,12 +86,12 @@ var newstore = new userschema({ "Email": "mynewmail12@gmail.com", "Password": "n
 //}, function (err) {
 //    console.log(err);
 //});
-//"","masterexpo","","egypt"
-store.search("", "masterexpo", "", "egypt").then(function (result) {
-    console.log(result);
-}, function (err) {
-    console.log(err);
-});
+//"my new","masterexpo","","egypt"
+//store.search("", "masterexpo", "re2", "egypt").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 var newmaster = new userschema({ "Email": "newmaster@gmail.com", "Password": "123456", "Name": "anisa"});
 //master.register(newmaster).then(function (result) {
 //    console.log(result); 
@@ -171,11 +171,11 @@ var newexpo = new exposchema({ "Title": "newgodexpo", "Banner": "bnner", "Catego
 //}, function (err) {
 //    console.log(err);
 //});
-//expo.getAll().then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
+expo.getAll().then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
 
 //expo.suspend("5936b0501fc9883c1193f7fa").then(function (result) {
 //    console.log(result);
