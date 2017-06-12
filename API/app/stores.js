@@ -189,7 +189,7 @@ module.exports = {
     },
     getAll: function () {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Status': 'Active', 'Type': 'store' }, 'Name', function (err, lst) {
+            Schema.find({ 'Status': 'Active', 'Type': 'store' }, 'Name Description ProfilePicture Badges Category', function (err, lst) {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
@@ -211,13 +211,13 @@ module.exports = {
             //console.log("country" + _country);
             var filter = {'Country': { "$regex": _country, "$options": "i" }, 'Status': 'Active','Type':'store' };
             if (_country == "")
-                filter = { 'Status': 'Active' };
+                filter = { 'Status': 'Active','Type':'store' };
             var expoFilter = { 'Title': { "$regex": _expo, "$options": "i" } ,'Status':'Active'};
             if (_expo == "")
                 expoFilter = { 'Status': 'Active' };
             //console.log(_country);
             Schema.find(filter, '', function (err, lst) {//Pictures
-                // console.log(lst.length);
+                 //console.log("frncountry"+lst.length);
                 if (err)
                     reject({
                         code: 1,
@@ -226,11 +226,11 @@ module.exports = {
                 else {
                     if (lst.length > 0) {
                         underscore.each(lst, function (store) { storesLst.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" });})
-                        //console.log("res" + JSON.stringify(storesLst[6]))
+                       // console.log("res" + JSON.stringify(storesLst))
                     }
                     //console.log(_expo);
                     Expo.find(expoFilter, 'Floors Title Banner').populate('Floors.Stores.Store', '_id Name ProfilePicture').exec(function (err, lst) {
-                        console.log(lst.length);
+                      //  console.log("frmexpo"+lst.length);
                         if (err)
                             reject({
                                 code: 1,
@@ -239,22 +239,32 @@ module.exports = {
                         else {
                             if (lst.length > 0) {
                               //  console.log(lst.length);
-                                if (_expo == "") { underscore.each(lst, function (expo) { expoLst.push({ "_id": expo._id, "Title": expo.Title, "Banner": expo.banner, "Type": "expo" })}) }
-                                else{
+                                if (_expo == "") {
+                                    underscore.each(lst, function (expo) { expoLst.push({ "_id": expo._id, "Title": expo.Title, "Banner": expo.banner, "Type": "expo" }) })
+                                    console.log("expolst" + expoLst.length);
+                                    console.log("res" + JSON.stringify(expoLst))
+                                }
+                                else {
                                     underscore.each(lst, function (expo) {
-                                        underscore.each(expo.Sections, function (store) {
-                                            storesLst.push({ "_id": store.Store._id, "Name": store.Store.Name, "ProfilePicture": store.Store.ProfilePicture, "Type": "store" })
+                                        underscore.each(expo.Floors, function (floor) {
+                                            underscore.each(floor.Stores, function (store) {
+                                                if(store.Status=='Active')
+                                                storesLst.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" });
+                                            })
+                                          //  console.log(store);
+                                            //storesLst.push({ "_id": store.Store._id, "Name": store.Store.Name, "ProfilePicture": store.Store.ProfilePicture, "Type": "store" })
                                             //underscore.groupBy(finalList, 'Type');
                                             //console.log((underscore.groupBy(finalList, 'Type')).store);
                                         })
-                                        //console.log(storesLst.length);
-                                        console.log("res" + JSON.stringify(storesLst))
+                                       // console.log("frmexpo"+storesLst.length);
+                                       // console.log("res" + JSON.stringify(storesLst))
                                     })
                                     console.log(storesLst.length);
+                                    console.log(JSON.stringify(storesLst[3]));
                                     if (_store != "") {
                                         underscore.filter(storesLst, function (store) {
                                             console.log(store);
-                                            if (store.StoreName.includes(_store)  || store.Description.includes(_store)  || store.Badges.includes(_store) ) {
+                                            if (store.StoreName.includes(_store) || store.Description.includes(_store) || store.Badges.includes(_store)) {
                                                 finalList.push({ _id: store._id, StoreName: store.StoreName });
                                             }
                                             console.log(finalList);
