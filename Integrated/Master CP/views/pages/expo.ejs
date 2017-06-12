@@ -80,16 +80,11 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <div class="form-group label-floating is-focused ">
-                                                        <label class="control-label"> About Expo</label>
-                                                        <textarea class="form-control" rows="3" ng-model="expo.Description" required name="expoDesc" id="expoDesc" pattern="^.{1,200}$"></textarea>
-                                                        <span ng-show="frmUpdateExpo.expoDesc.$dirty && frmUpdateExpo.expoDesc.$invalid">
-                                                            <span class="errorFont" ng-show="frmUpdateExpo.expoDesc.$error.required">Required</span>
-                                                            <span class="errorFont" ng-show="frmUpdateExpo.expoDesc.$error.pattern">Expo description is too long</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
+                                                <select name="country" ng-model="expo.selectedCategory" class="form-control">
+                                                    <% categorieslst.forEach(function(category){ %>
+                                                       <option value="<%= category._id %>" selected> <%= category.Name %> </option>
+                                                    <% }); %>
+                                                 </select>
                                             </div>
                                         </div>
                                         <button type="submit" ng-click="updateExpo()" ng-disabled="frmUpdateExpo.$invalid" class="btn btn-primary pull-right">Update Expo</button>

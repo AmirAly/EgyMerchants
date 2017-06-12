@@ -112,7 +112,7 @@ module.exports = {
     },
     getAll: function () {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Status': 'Active' }, 'Title', function (err, lst) {
+            Schema.find({ 'Status': 'Active' }, 'Title Banner Category').populate('Category', '_id Name').exec(function (err, lst) {
                 if (err)
                     reject({
                         code: 1,

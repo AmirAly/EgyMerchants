@@ -216,8 +216,7 @@ module.exports = {
             if (_expo == "")
                 expoFilter = { 'Status': 'Active' };
             //console.log(_country);
-            Schema.find(filter, '', function (err, lst) {//Pictures
-                 //console.log("frncountry"+lst.length);
+            Schema.find(filter, '_id Name ProfilePicture Description Address Status', function (err, lst) {//Pictures
                 if (err)
                     reject({
                         code: 1,
@@ -225,12 +224,11 @@ module.exports = {
                     });
                 else {
                     if (lst.length > 0) {
-                        underscore.each(lst, function (store) { storesLst.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" });})
-                       // console.log("res" + JSON.stringify(storesLst))
+                        // underscore.each(lst, function (store) { storesLst.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store", "Description": store.Description, "Address": store.Address }); })
+                        underscore.each(lst, function (store) { storesLst.push(store) });
                     }
-                    //console.log(_expo);
-                    Expo.find(expoFilter, 'Floors Title Banner').populate('Floors.Stores.Store', '_id Name ProfilePicture').exec(function (err, lst) {
-                      //  console.log("frmexpo"+lst.length);
+                   // console.log("bycountry"+ JSON.stringify(storesLst));
+                    Expo.find(expoFilter, 'Floors Title Banner').populate('Floors.Stores.Store', '_id Name ProfilePicture Description Address Status').exec(function (err, lst) {
                         if (err)
                             reject({
                                 code: 1,
@@ -238,7 +236,6 @@ module.exports = {
                             });
                         else {
                             if (lst.length > 0) {
-                              //  console.log(lst.length);
                                 if (_expo == "") {
                                     underscore.each(lst, function (expo) { expoLst.push({ "_id": expo._id, "Title": expo.Title, "Banner": expo.banner, "Type": "expo" }) })
                                     console.log("expolst" + expoLst.length);
@@ -248,35 +245,47 @@ module.exports = {
                                     underscore.each(lst, function (expo) {
                                         underscore.each(expo.Floors, function (floor) {
                                             underscore.each(floor.Stores, function (store) {
-                                                if(store.Status=='Active')
-                                                storesLst.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" });
+                                                if (store.Store.Status == "Active") {
+                                                    //storesLst.push({ "_id": store.Store._id, "Name": store.Store.Name, "ProfilePicture": store.Store.ProfilePicture, "Type": "store", "Description": store.Description, "Address": store.Address });
+                                                    storesLst.push(store.Store);
+                                                }
                                             })
-                                          //  console.log(store);
-                                            //storesLst.push({ "_id": store.Store._id, "Name": store.Store.Name, "ProfilePicture": store.Store.ProfilePicture, "Type": "store" })
                                             //underscore.groupBy(finalList, 'Type');
                                             //console.log((underscore.groupBy(finalList, 'Type')).store);
                                         })
-                                       // console.log("frmexpo"+storesLst.length);
-                                       // console.log("res" + JSON.stringify(storesLst))
                                     })
-                                    console.log(storesLst.length);
-                                    console.log(JSON.stringify(storesLst[3]));
+                                    // console.log("bycountry&expo" + JSON.stringify(storesLst));
+                                    var destArray = underscore.uniq(storesLst, function (x) {
+                                        return x.Name;
+                                    });
+                                    storesLst = destArray;
+                                    //console.log(storesLst);
                                     if (_store != "") {
+                                       // console.log(_store);
+                                       // console.log("lst"+storesLst);
                                         underscore.filter(storesLst, function (store) {
-                                            console.log(store);
-                                            if (store.StoreName.includes(_store) || store.Description.includes(_store) || store.Badges.includes(_store)) {
-                                                finalList.push({ _id: store._id, StoreName: store.StoreName });
+                                           // console.log(store);
+                                            if (~store.Name.indexOf(_store) || ~store.Description.indexOf(_store) || ~store.Address.indexOf(_store)) {
+                                                finalList.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store"});
                                             }
-                                            console.log(finalList);
+                                            
                                         })
                                     }
+                                    //console.log("final" + JSON.stringify(finalList));
                                     if (_keyWord != "") {
+                                        
                                         underscore.filter(storesLst, function (store) {
-                                            if (store.StoreName.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Badges.indexOf(_store) !== -1) {
-                                                finalList.push({ _id: store._id, StoreName: store.StoreName, Imgs: store.Imgs, Type: 'store' });
+                                            console.log(store.Name.contains(_store));
+                                            console.log(store.Description.contains(_store));
+                                            console.log(store.Address.contains(_store));
+                                            // if (~store.Name.indexOf(_store) || ~store.Description.indexOf(_store) || ~store.Address.indexOf(_store)) {
+                                            if (store.Name.contains(_store) || store.Description.contains(_store) || store.Address.contains(_store)) {
+                                                finalList.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" });
+                                                console.log("final" + JSON.stringify(finalList));
                                             }
                                         })
                                     }
+                                    
 
                                     //})
                                 }
