@@ -8,10 +8,8 @@ var UserLogic = require('./users');
 var Gallery = require('./models/gallery');
 var Item = require('./models/item');
 var Expo = require('./models/expo');
-var Store = require('./models/user');
 var Country = require('./models/country');
 var Category = require('./models/category');
-var Master = require('./models/user');
 var User = require('./models/user');
 
 var Helper = require('./helper');
@@ -24,9 +22,9 @@ module.exports = function (app, express) {
         return res.json({ code: '100', data: 'This api is working great, howver further calls to other endpoints require a token' });
     });
 
-
+    //store API calls
     api.post('/Store/Register', function (req, res) {
-        var _newstore = new Store(req.body);
+        var _newstore = new User(req.body);
         StoreLogic.register(_newstore).then(function (result) {
             res.json(result);
         }, function (err) {
@@ -34,40 +32,8 @@ module.exports = function (app, express) {
         });
     })
     api.post('/Store/Login', function (req, res) {
-        var _newStore = new Store(req.body);
+        var _newStore = new User(req.body);
         StoreLogic.login(_newStore).then(function (result) {
-            res.json(result);
-        }, function (err) {
-            res.json(err);
-        });
-    })
-    api.post('/Master/Register', function (req, res) {
-        var _newMaster = new Store(req.body);
-        MasterLogic.register(_newMaster).then(function (result) {
-            res.json(result);
-        }, function (err) {
-            res.json(err);
-        });
-    })
-    api.post('/Master/Login', function (req, res) {
-        var _newMaster = new Store(req.body);
-        MasterLogic.login(_newMaster).then(function (result) {
-            res.json(result);
-        }, function (err) {
-            res.json(err);
-        });
-    })
-    api.post('/User/Register', function (req, res) {
-        var _newUser = new Store(req.body);
-        UserLogic.register(_newUser).then(function (result) {
-            res.json(result);
-        }, function (err) {
-            res.json(err);
-        });
-    })
-    api.post('/User/Login', function (req, res) {
-        var _newUser = new Store(req.body);
-        UserLogic.login(_newUser).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -88,6 +54,7 @@ module.exports = function (app, express) {
         });
     })
 
+    //gallery API calls
     api.post('/Gallery/Add', function (req, res) {
         var _newGallery = new Gallery(req.body);
         GalleryLogic.add(_newGallery).then(function (result) {
@@ -118,6 +85,7 @@ module.exports = function (app, express) {
         });
     })
 
+    //item API calls
     api.post('/Item/Add', function (req, res) {
         var _newitem = new Item(req.body);
         ItemLogic.add(_newitem).then(function (result) {
@@ -147,22 +115,8 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-    api.post('/Master/Register', function (req, res) {
-        var _newMaster = new Store(req.body);
-        MasterLogic.register(_newMaster).then(function (result) {
-            res.json(result);
-        }, function (err) {
-            res.json(err);
-        });
-    })
-    api.post('/Master/Login', function (req, res) {
-        var _newMaster = new Master(req.body);
-        MasterLogic.login(_newMaster).then(function (result) {
-            res.json(result);
-        }, function (err) {
-            res.json(err);
-        });
-    })
+
+    //country API calls
     api.post('/Country/Add', function (req, res) {
         var _newCountry = new Country(req.body);
         CountryLogic.add(_newCountry).then(function (result) {
@@ -186,6 +140,7 @@ module.exports = function (app, express) {
         });
     })
 
+   //category API calls
     api.post('/Category/Add', function (req, res) {
         var _newCategory = new Category(req.body);
         CategoryLogic.add(_newCategory).then(function (result) {
@@ -203,6 +158,42 @@ module.exports = function (app, express) {
     })
     api.put('/Category/Suspend', function (req, res) {
         CategoryLogic.suspend(req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+
+    //master API calls
+    api.post('/Master/Register', function (req, res) {
+        var _newMaster = new User(req.body);
+        MasterLogic.register(_newMaster).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.post('/Master/Login', function (req, res) {
+        var _newMaster = new User(req.body);
+        MasterLogic.login(_newMaster).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+
+    //user API calls
+    api.post('/User/Register', function (req, res) {
+        var _newUser = new User(req.body);
+        UserLogic.register(_newUser).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.post('/User/Login', function (req, res) {
+        var _newUser = new User(req.body);
+        UserLogic.login(_newUser).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);

@@ -10,23 +10,41 @@ module.exports = function (app) {
         return res.redirect('/eg/Home');
     });
 
+    //app.get('/eg/store', function (req, res) {
+    //    var _scope = {};
+    //    store.getById(req.params.storeId).then(function (_store) {
+    //        console.log(_store);
+    //        if (_store.code == 100) {
+    //            _scope.store = _store.data;
+    //            res.render('pages/store', _scope);
+    //        } else {
+    //            _scope.store = [];
+    //            res.render('pages/store', _scope);
+    //        }
+    //    }).catch(function (_err) {
+    //        console.log(_err);
+    //        _scope.store = [];
+    //        res.render('pages/store', _scope);
+    //    });
+    //});
+
     app.get('/eg/store', function (req, res) {
         var _scope = {};
-        store.getById(req.params.storeId).then(function (_store) {
-            console.log(_store);
+        store.getAll().then(function (_store) {
             if (_store.code == 100) {
-                _scope.store = _store.data;
+                _scope.storeslst = _store.data;
                 res.render('pages/store', _scope);
             } else {
-                _scope.store = [];
+                _scope.storeslst = [];
                 res.render('pages/store', _scope);
             }
         }).catch(function (_err) {
             console.log(_err);
-            _scope.store = [];
+            _scope.storeslst = [];
             res.render('pages/store', _scope);
         });
     });
+
 
     app.get('/eg/exposlist', function (req, res) {
         var _scope = {};

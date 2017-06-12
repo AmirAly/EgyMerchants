@@ -1,5 +1,5 @@
 ﻿<% include ../partials/headpages %>
-<div ng-controller='storeController'>
+<div ng-controller='exposListController'>
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -10,7 +10,7 @@
                 </a>
             </div>
             <div class="sidebar-wrapper">
-                <ul class="nav nav-mobile-menu"></ul><ul class="nav">
+                <ul class="nav">
                     <li>
                         <a href="/eg/countrieslist">
                             <i class="material-icons">person</i>
@@ -23,13 +23,13 @@
                             <p>Categories</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="/eg/exposlist">
+                    <li class="active">
+                        <a href='/eg/exposlist'>
                             <i class="material-icons">dashboard</i>
                             <p>Expos</p>
                         </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="/eg/store">
                             <i class="material-icons">person</i>
                             <p>Stores</p>
@@ -43,9 +43,9 @@
                     </li>
                 </ul>
             </div>
-            <div class="sidebar-background" style="background-image: url(/img/sidebar-1.jpg) "></div>
         </div>
         <div class="main-panel">
+
             <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid top">
                     <div class="navbar-header">
@@ -56,71 +56,57 @@
                             <span class="icon-bar"></span>
                         </button>
                     </div>
+                    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">Add Expo</button>
                 </div>
             </nav>
+
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header defaultColor">
-                                    <h4 class="title">Stores List</h4>
-                                    <p class="category">List of stores</p>
+                                    <h4 class="title">Expos List</h4>
+                                    <p class="category">List of expos</p>
                                 </div>
                                 <div class="card-content table-responsive">
                                     <table class="table">
                                         <thead class="text-primary">
                                             <tr>
                                                 <th></th>
-                                                <th>Store name</th>
-                                                <th>Description</th>
+                                                <th></th>
+                                                <th>Expo name</th>
+                                                <th>Category</th>
                                                 <th></th>
                                                 <th></th>
-                                                <th></th>
-                                                <th></th>
-
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <%  if( storeslst.length > 0  ){ %>
-                                            <% storeslst.forEach(function(store){ %>
+                                            <% if( expolist.length > 0){%>
+                                            <% expolist.forEach(function(expo){ %>
                                             <tr>
+                                                <td>{{counter}}</td>
                                                 <td>
-                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                    <img class="divImgTable" src="<%= expo.Img %>" />
                                                 </td>
-                                                <td>Dakota Rice</td>
-                                                <td class="light"><span class="tableSpan">Niger</span></td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes" ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes" ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td class="checkBoxWidth">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="optionsCheckboxes" ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Verification</span></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
+                                                <td><%= expo.Title %></td>
+                                                <td class="light"><%= expo.Category %></td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editStore()" data-target=".bs-example-modal-lg" data-toggle="modal" data-original-title="Edit store">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editExpo()" data-original-title="Edit Expo">
                                                         <i class="material-icons">edit</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                        <i class="material-icons">close</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
                                             </tr>
                                             <% }); %>
-                                            <% }else{ %>
-                                            <p class="text-center">There is no stores to show</p>
+                                           <%}else{%>
+                                            <p>There is no expos to show</p>
                                             <% } %>
                                         </tbody>
                                     </table>
@@ -130,7 +116,6 @@
                     </div>
                 </div>
             </div>
-
 
             <footer class="footer">
                 <% include ../partials/footerpages %>
@@ -146,7 +131,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Edit Store</h4>
+                    <h4 class="modal-title">Add Expo</h4>
                 </div>
                 <div class="modal-body">
                     <div class="content">
@@ -155,26 +140,56 @@
                                 <div class="col-md-8">
                                     <div class="card">
                                         <div class="card-header" data-background-color="orange">
-                                            <h4 class="title">Edit Store</h4>
-                                            <p class="category">Store Name</p>
+                                            <h4 class="title">Creat Expo</h4>
+                                            <p class="category">Creat A New Expo</p>
                                         </div>
-                                        <div class="col-md-12">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Verification</span></span>
-                                                </label>
+                                        <div class="card-content">
+                                            <form name="frmAddExpo">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Expo Name</label>
+                                                            <input type="text" class="form-control" ng-model="expo.Title" required pattern="^.{1,35}$" name="expoTitle" id="expoTitle">
+                                                            <span ng-show="frmAddExpo.expoTitle.$dirty && frmAddExpo.expoTitle.$invalid">
+                                                                <span class="errorFont" ng-show="frmAddExpo.expoTitle.$error.required">Required</span>
+                                                                <span class="errorFont" ng-show="frmAddExpo.expoTitle.$error.pattern">Expo name is too long</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <div class="form-group label-floating">
+                                                                <label class="control-label"> About Expo</label>
+                                                                <textarea class="form-control" rows="3" ng-model="expo.Description" required pattern="^.{1,200}$" name="expoDesc" id="expoDesc"></textarea>
+                                                                <span ng-show="frmAddExpo.expoDesc.$dirty && frmAddExpo.expoDesc.$invalid">
+                                                                    <span class="errorFont" ng-show="frmAddExpo.expoDesc.$error.required">Required</span>
+                                                                    <span class="errorFont" ng-show="frmAddExpo.expoDesc.$error.pattern">Expo description is too long</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-header card-chart">
+                                            <!--upload img-->
+                                            <div>
+                                                <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="/img/add.gif" />
+                                                <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
                                             </div>
                                         </div>
+                                        <div class="card-content">
+                                            <h4 class="title itemTitle">{{expo.Title}}</h4>
+                                            <p class="category">{{expo.Description}}</p>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -192,4 +207,4 @@
 
 </div>
 <!--   Core JS Files   -->
-    <% include ../partials/pagesjsfiles %>
+<% include ../partials/pagesjsfiles %>/partials/pagesjsfiles %>

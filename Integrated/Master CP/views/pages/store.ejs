@@ -86,28 +86,28 @@
                                             <% storeslst.forEach(function(store){ %>
                                             <tr>
                                                 <td>
-                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                    <img class="divImgTable" src="<%= store.ProfilePicture %>" />
                                                 </td>
-                                                <td>Dakota Rice</td>
-                                                <td class="light"><span class="tableSpan">Niger</span></td>
+                                                <td><%= store.Name %></td>
+                                                <td class="light"><span class="tableSpan"><%= store.Description %></span></td>
                                                 <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox" name="optionsCheckboxes" ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                            <input type="checkbox"  ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
                                                 <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox" name="optionsCheckboxes" ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                            <input type="checkbox"  ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
                                                 <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox" name="optionsCheckboxes" ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Verification</span></span>
+                                                            <input type="checkbox"  ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Verified</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
@@ -146,7 +146,6 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Edit Store</h4>
                 </div>
                 <div class="modal-body">
                     <div class="content">
@@ -161,17 +160,17 @@
                                         <div class="col-md-12">
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                    <input type="checkbox" name="optionsCheckboxes" value="1"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                    <input type="checkbox" name="optionsCheckboxes" value="2"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Verification</span></span>
+                                                    <input type="checkbox" name="optionsCheckboxes" value="3"><span class="checkbox-material"><span class="checkBoxSpan">Verified</span></span>
                                                 </label>
                                             </div>
                                         </div>
@@ -183,7 +182,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" ng-click="addExpo()" ng-disabled="frmAddExpo.$invalid" class="btn btn-primary">Save changes</button>
+                    <button type="submit" ng-click="getCheckedBoxes('optionsCheckboxes')" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
