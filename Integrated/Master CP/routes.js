@@ -28,7 +28,6 @@ module.exports = function (app) {
         });
     });
 
-
     app.get('/eg/exposlist', function (req, res) {
         var _scope = {};
         expo.getAll().then(function (_expo) {
@@ -64,7 +63,6 @@ module.exports = function (app) {
     app.get('/eg/expo/:expoId', function (req, res) {
         var _scope = {};
         expo.getById(req.params.expoId).then(function (_expo) {
-            console.log(_expo);
             if (_expo.code == 100) {
                 _scope.expo = _expo.data;
                 category.getAll().then(function (_category) {
@@ -114,7 +112,21 @@ module.exports = function (app) {
         country.getAll().then(function (_country) {
             if (_country.code == 100) {
                 _scope.countrieslst = _country.data;
-                res.render('pages/countrieslist', _scope);
+                
+                category.getAll().then(function (_category) {
+                    if (_category.code == 100) {
+                        _scope.categorieslst = _category.data;
+                        res.render('pages/countrieslist', _scope);
+                    } else {
+                        _scope.categorieslst = {};
+                        res.render('pages/countrieslist', _scope);
+                    }
+                }).catch(function (_err) {
+                    console.log(_err);
+                    _scope.categorieslst = {};
+                    res.render('pages/countrieslist', _scope);
+                });
+
             } else {
                 _scope.countrieslst = [];
                 res.render('pages/countrieslist', _scope);
@@ -124,11 +136,6 @@ module.exports = function (app) {
             _scope.countrieslst = [];
             res.render('pages/countrieslist', _scope);
         });
-    });
-
-    app.get('/eg/expo', function (req, res) {
-        var _scope = {};
-        res.render('pages/expo', _scope);
     });
 
     app.get('/eg/country/:countryId', function (req, res) {
@@ -141,11 +148,11 @@ module.exports = function (app) {
                 _scope.country = {};
                 res.render('pages/country', _scope);
             }
-            }).catch(function (_err) {
-                console.log(_err);
-                _scope.country = {};
-                res.render('pages/country', _scope);
-            });
+        }).catch(function (_err) {
+            console.log(_err);
+            _scope.country = {};
+            res.render('pages/country', _scope);
+        });
     });
 
     app.get('/eg/Home', function (req, res) {

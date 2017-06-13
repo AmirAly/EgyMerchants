@@ -1,13 +1,11 @@
 ﻿egm.controller("exposListController", function ($scope, API) {
 
-    $scope.counter = 1;
 
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click()
     };
 
     $scope.addExpo = function () {
-        $scope.counter++;
         var req = {
             method: 'post',
             url: '/Expo/Add',
@@ -19,11 +17,9 @@
                 Floors:['']
             }
         }
-        $scope.counter++;
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
                 console.log(_res);
-                $scope.counter++;
                 window.location.reload();
             } else {
                 console.log('something went wrong');

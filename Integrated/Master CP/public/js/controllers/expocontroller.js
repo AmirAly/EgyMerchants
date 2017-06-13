@@ -2,6 +2,30 @@
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click();
     };
+    
+    $scope.updateExpo = function (_id) {
+        var req = {
+            method: 'put',
+            url: '/Expo/Edit',
+            data: {
+                _id: _id,
+                Title: $scope.expo.Title,
+                Category: $scope.expo.selectedCategory,
+                Floors: '',
+                Banner: $('#imgItem').attr('src')
+            }
+        }
+        API.execute(req).then(function (_res) {
+            if (_res.data.code == 100) {
+                console.log(_res);
+                window.location.reload();
+                window.location.href = '/eg/exposlist'
+            } else {
+                console.log('Something went error');
+            }
+        });
+    };
+
 });
 function convertImgToBase64URL(event) {
     var filesSelected = document.getElementById("uploadItemImage").files;

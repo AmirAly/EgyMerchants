@@ -93,26 +93,26 @@
                                                 <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"  ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                            <input type="checkbox" ng-model="featured" ng-checked="<%= store.Badges.Featured%>" ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
                                                 <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"  ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                            <input type="checkbox" ng-model="hasFactory" ng-checked="<%= store.Badges.HasFactory %>"  ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
                                                 <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"  ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Verified</span></span>
+                                                            <input type="checkbox" ng-model="verified" ng-checked="<%= store.Badges.Verified %>" ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Verified</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editStore()" data-target=".bs-example-modal-lg" data-toggle="modal" data-original-title="Edit store">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click='editStore("<%= store._id %>","<%= store.Name %>", "<%= store.Badges.Featured %>","<%= store.Badges.HasFactory %>","<%= store.Badges.Verified %>")' data-target=".bs-example-modal-lg" data-toggle="modal" data-original-title="Edit store">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -155,22 +155,22 @@
                                     <div class="card">
                                         <div class="card-header" data-background-color="orange">
                                             <h4 class="title">Edit Store</h4>
-                                            <p class="category">Store Name</p>
+                                            <p class="category">{{storeName}}</p>
                                         </div>
                                         <div class="col-md-12">
-                                            <div class="checkbox">
+										<div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="optionsCheckboxes" value="1"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                    <input type="checkbox" name="optionsCheckboxes" value="1" ng-model="featured" ng-checked="featured"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="optionsCheckboxes" value="2"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                    <input type="checkbox" name="optionsCheckboxes" value="2" ng-model="hasFactory" ng-checked="hasFactory"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="optionsCheckboxes" value="3"><span class="checkbox-material"><span class="checkBoxSpan">Verified</span></span>
+                                                    <input type="checkbox" name="optionsCheckboxes" value="3" ng-model="verified" ng-checked="verified"><span class="checkbox-material"><span class="checkBoxSpan">Verified</span></span>
                                                 </label>
                                             </div>
                                         </div>
@@ -182,7 +182,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" ng-click="getCheckedBoxes('optionsCheckboxes')" class="btn btn-primary">Save changes</button>
+                    <button type="submit" ng-click="getCheckedBoxes()" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

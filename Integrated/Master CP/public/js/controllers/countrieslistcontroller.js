@@ -3,8 +3,27 @@
         document.getElementById('uploadItemImage').click()
     };
 
+    //var checkboxesChecked = [];
+    //function getCheckedBoxes(optionsCheckboxes) {
+    //    var checkboxes = document.getElementsByName(optionsCheckboxes);
+    //    // loop over them all
+    //    for (var i = 0; i < checkboxes.length; i++) {
+    //        // And stick the checked ones onto an array...
+    //        console.log(checkboxes[i].checked)
+    //        if (checkboxes[i].checked) {
+    //            checkboxesChecked.push(checkboxes[i].value);
+    //        }
+    //    }
+    //    console.log(checkboxesChecked);
+    //    // Return the array if it is non-empty, or null
+    //    return checkboxesChecked.length > 0 ? checkboxesChecked : null;
+    //};
+    //var checkedBoxes = getCheckedBoxes("optionsCheckboxes");
+    //console.log(checkedBoxes);
+
+    
     $scope.addCountry = function () {
-        $scope.loading = true;
+        //$scope.loading = true;
         console.log('entered');
         var req = {
             method: 'post',
@@ -19,7 +38,11 @@
         }
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
-                window.location.reload();
+                //getCheckedBoxes
+                console.log($scope.checkedCategory);
+                //var checkedBoxes = getCheckedBoxes("optionsCheckboxes");
+                console.log(checkedBoxes);
+                //window.location.reload();
             } else {
                 if (_res.data.code == 21) {
                     console.log('Already Exist');
