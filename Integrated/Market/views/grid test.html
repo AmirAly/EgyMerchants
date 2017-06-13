@@ -16,96 +16,39 @@
             height: 100px;
             padding: 40px;
         }
-
+        .busy {
+            background: #cbcbcc;
+        }
         .active {
             background: green;
         }
-
         .imagesContainer {
             background: #f3f3f1;
-            height: 600px;
-            width: 1000px;
-            position:relative;
+            height: 100vh;
+            /*width: 100vw;*/
+            /*width: 1600px;*/
+            overflow:hidden;
+            position: relative;
         }
     </style>
 </head>
 <body class="container-fluid" ng-controller="TestController">
-    <!--<div class="row" ng-repeat="section in floor" ng-if="$index % 6 === 0">
-        <div class="col col-sm-2 text-center">
-            <div id="active{{section.sectionId}}">{{floor[$index].sectionId}} <br /> {{floor[$index]}}</div>
-        </div>
-        <div class="col col-sm-2 text-center">
-            <div id="active{{floor[$index+1].sectionId}}">{{floor[$index+1].sectionId}} <br /> {{floor[$index+1]}}</div>
-        </div>
-        <div class="col col-sm-2 text-center">
-            <div id="active{{floor[$index+2].sectionId}}">{{floor[$index+2].sectionId}} <br /> {{floor[$index+2]}}</div>
-        </div>
-        <div class="col col-sm-2 text-center">
-            <div id="active{{floor[$index+3].sectionId}}">{{floor[$index+3].sectionId}} <br /> {{floor[$index+3]}}</div>
-        </div>
-        <div class="col col-sm-2 text-center">
-            <div id="active{{floor[$index+4].sectionId}}">{{floor[$index+4].sectionId}} <br /> {{floor[$index+4]}}</div>
-        </div>
-        <div class="col col-sm-2 text-center">
-            <div id="active{{floor[$index+5].sectionId}}">{{floor[$index+5].sectionId}} <br /> {{floor[$index+5]}}</div>
-        </div>
-    </div>-->
 
     <div class="row">
         <div class="col-sm-2 text-center"
              ng-repeat="section in floor track by section.sectionId"
              id="active{{section.sectionId}}"
              ng-init="this['active'+this.section.sectionId] = false;section.status = false"
-             ng-click="this['active'+this.section.sectionId] =! this['active'+this.section.sectionId] ; section.status =! section.status"
+             ng-click="this['active'+this.section.sectionId] =! this['active'+this.section.sectionId] ; section.status =! section.status;"
              ng-class="{'active': this['active'+this.section.sectionId]}">
-            <div>{{section.sectionCoordinateXrow}} x {{section.sectionCoordinateYcoulmn}}</div>
+            <div>{{section.data}}</div>
         </div>
     </div>
-    <br/><br/>
-    <input ng-model="imgLink" placeholder="img Link" />   <button ng-click="getSelected()">select</button>
+    <br /><br />
+    <input ng-model="imgLink" placeholder="img Link" />   <button ng-click="getSelected()">Save Selected</button>
 
-        <br /><hr /><br />
+    <br /><hr /><br />
 
-        <!--<div class="row">
-            <div class="col-sm-2" id="active1" ng-init="active1 = false" ng-click="active1 =! active1" ng-class="{'active': active1}">.col-sm-2</div>
-            <div class="col-sm-2" id="active2" ng-init="active2 = false" ng-click="active2 =! active2" ng-class="{'active': active2}">.col-sm-2</div>
-            <div class="col-sm-2" id="active3" ng-init="active3 = false" ng-click="active3 =! active3" ng-class="{'active': active3}">.col-sm-2</div>
-            <div class="col-sm-2" id="active4" ng-init="active4 = false" ng-click="active4 =! active4" ng-class="{'active': active4}">.col-sm-2</div>
-            <div class="col-sm-2" id="active5" ng-init="active5 = false" ng-click="active5 =! active5" ng-class="{'active': active5}">.col-sm-2</div>
-            <div class="col-sm-2" id="active6" ng-init="active6 = false" ng-click="active6 =! active6" ng-class="{'active': active6}">.col-sm-2</div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2" id="active7" ng-init="active7 = false" ng-click="active7 =! active7" ng-class="{'active': active7}">.col-sm-2</div>
-            <div class="col-sm-2" id="active8" ng-init="active8 = false" ng-click="active8 =! active8" ng-class="{'active': active8}">.col-sm-2</div>
-            <div class="col-sm-2" id="active9" ng-init="active9 = false" ng-click="active9 =! active9" ng-class="{'active': active9}">.col-sm-2</div>
-            <div class="col-sm-2" id="active10" ng-init="active10 = false" ng-click="active10 =! active10" ng-class="{'active': active10}">.col-sm-2</div>
-            <div class="col-sm-2" id="active11" ng-init="active11 = false" ng-click="active11 =! active11" ng-class="{'active': active11}">.col-sm-2</div>
-            <div class="col-sm-2" id="active12" ng-init="active12 = false" ng-click="active12 =! active12" ng-class="{'active': active12}">.col-sm-2</div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2" id="active13" ng-init="active13 = false" ng-click="active13 =! active13" ng-class="{'active': active13}">.col-sm-2</div>
-            <div class="col-sm-2" id="active14" ng-init="active14 = false" ng-click="active14 =! active14" ng-class="{'active': active14}">.col-sm-2</div>
-            <div class="col-sm-2" id="active15" ng-init="active15 = false" ng-click="active15 =! active15" ng-class="{'active': active15}">.col-sm-2</div>
-            <div class="col-sm-2" id="active16" ng-init="active16 = false" ng-click="active16 =! active16" ng-class="{'active': active16}">.col-sm-2</div>
-            <div class="col-sm-2" id="active17" ng-init="active17 = false" ng-click="active17 =! active17" ng-class="{'active': active17}">.col-sm-2</div>
-            <div class="col-sm-2" id="active18" ng-init="active18 = false" ng-click="active18 =! active18" ng-class="{'active': active18}">.col-sm-2</div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2" id="active19" ng-init="active19 = false" ng-click="active19 =! active19" ng-class="{'active': active19}">.col-sm-2</div>
-            <div class="col-sm-2" id="active20" ng-init="active20 = false" ng-click="active20 =! active20" ng-class="{'active': active20}">.col-sm-2</div>
-            <div class="col-sm-2" id="active21" ng-init="active21 = false" ng-click="active21 =! active21" ng-class="{'active': active21}">.col-sm-2</div>
-            <div class="col-sm-2" id="active22" ng-init="active22 = false" ng-click="active22 =! active22" ng-class="{'active': active22}">.col-sm-2</div>
-            <div class="col-sm-2" id="active23" ng-init="active23 = false" ng-click="active23 =! active23" ng-class="{'active': active23}">.col-sm-2</div>
-            <div class="col-sm-2" id="active24" ng-init="active24 = false" ng-click="active24 =! active24" ng-class="{'active': active24}">.col-sm-2</div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2" id="active25" ng-init="active25 = false" ng-click="active25 =! active25" ng-class="{'active': active25}">.col-sm-2</div>
-            <div class="col-sm-2" id="active26" ng-init="active26 = false" ng-click="active26 =! active26" ng-class="{'active': active26}">.col-sm-2</div>
-            <div class="col-sm-2" id="active27" ng-init="active27 = false" ng-click="active27 =! active27" ng-class="{'active': active27}">.col-sm-2</div>
-            <div class="col-sm-2" id="active28" ng-init="active28 = false" ng-click="active28 =! active28" ng-class="{'active': active28}">.col-sm-2</div>
-            <div class="col-sm-2" id="active29" ng-init="active29 = false" ng-click="active29 =! active29" ng-class="{'active': active29}">.col-sm-2</div>
-            <div class="col-sm-2" id="active30" ng-init="active30 = false" ng-click="active30 =! active30" ng-class="{'active': active30}">.col-sm-2</div>
-        </div>-->
 
     <button ng-click="loadArray()">Load in Grid</button>
     <br />
@@ -115,150 +58,162 @@
 
     </div>
 
-        <script>
-            angular.module('app', [])
-            .controller('TestController', function ($scope, $filter) {
-                $scope.floor = [
-                    { sectionId: 1, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "1",  data:'' },
-                    { sectionId: 2, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "2",  data:'' },
-                    { sectionId: 3, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "3",  data:'' },
-                    { sectionId: 4, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "4",  data:'' },
-                    { sectionId: 5, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "5",  data:'' },
-                    { sectionId: 6, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "6",  data:'' },
+    <script>
+        angular.module('app', [])
+        .controller('TestController', function ($scope, $filter) {
+            $scope.floor = [
+                { sectionId: 1, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "1", data: '1x1' },
+                { sectionId: 2, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "2", data: '1x2' },
+                { sectionId: 3, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "3", data: '1x3' },
+                { sectionId: 4, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "4", data: '1x4' },
+                { sectionId: 5, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "5", data: '1x5' },
+                { sectionId: 6, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "6", data: '1x6' },
 
-                    { sectionId: 7, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "1",  data:'' },
-                    { sectionId: 8, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "2",  data:'' },
-                    { sectionId: 9, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "3",  data:'' },
-                    { sectionId: 10, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "4",  data:'' },
-                    { sectionId: 11, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "5",  data:'' },
-                    { sectionId: 12, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "6",  data:'' },
+                { sectionId: 7, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "1", data: '2x1' },
+                { sectionId: 8, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "2", data: '2x2' },
+                { sectionId: 9, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "3", data: '2x3' },
+                { sectionId: 10, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "4", data: '2x4' },
+                { sectionId: 11, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "5", data: '2x5' },
+                { sectionId: 12, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "6", data: '2x6' },
 
-                    { sectionId: 13, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "1",  data:'' },
-                    { sectionId: 14, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "2",  data:'' },
-                    { sectionId: 15, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "3",  data:'' },
-                    { sectionId: 16, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "4",  data:'' },
-                    { sectionId: 17, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "5",  data:'' },
-                    { sectionId: 18, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "6",  data:'' },
+                { sectionId: 13, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "1", data: '3x1' },
+                { sectionId: 14, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "2", data: '3x2' },
+                { sectionId: 15, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "3", data: '3x3' },
+                { sectionId: 16, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "4", data: '3x4' },
+                { sectionId: 17, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "5", data: '3x5' },
+                { sectionId: 18, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "6", data: '3x6' },
 
-                    { sectionId: 19, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "1",  data:'' },
-                    { sectionId: 20, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "2",  data:'' },
-                    { sectionId: 21, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "3",  data:'' },
-                    { sectionId: 22, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "4",  data:'' },
-                    { sectionId: 23, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "5",  data:'' },
-                    { sectionId: 24, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "6",  data:'' },
+                { sectionId: 19, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "1", data: '4x1' },
+                { sectionId: 20, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "2", data: '4x2' },
+                { sectionId: 21, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "3", data: '4x3' },
+                { sectionId: 22, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "4", data: '4x4' },
+                { sectionId: 23, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "5", data: '4x5' },
+                { sectionId: 24, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "6", data: '4x6' },
 
-                    { sectionId: 25, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "1",  data:'' },
-                    { sectionId: 26, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "2",  data:'' },
-                    { sectionId: 27, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "3",  data:'' },
-                    { sectionId: 28, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "4",  data:'' },
-                    { sectionId: 29, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "5",  data:'' },
-                    { sectionId: 30, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "6",  data:'' },
-                ];
-                $scope.coordinates = [];
-                $scope.getSelected = function () {
-                    $scope.oneStoreCoordinates = {};
-                    // filter array by status to get selected sections
-                    $scope.selectedSections = $filter('filter')($scope.floor, { status: true });
-                    console.log($scope.selectedSections);
-                    // get lowest & highest values
-                    // width
-                    function findMinCoordinateYcoulmn() {
-                        var result = null;
-                        for (var i = 0; i < $scope.selectedSections.length; i++) {
-                            var account = $scope.selectedSections[i];
-                            if (result == null || account.sectionCoordinateYcoulmn < result.sectionCoordinateYcoulmn) {
-                                result = account;
-                            }
+                { sectionId: 25, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "1", data: '5x1' },
+                { sectionId: 26, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "2", data: '5x2' },
+                { sectionId: 27, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "3", data: '5x3' },
+                { sectionId: 28, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "4", data: '5x4' },
+                { sectionId: 29, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "5", data: '5x5' },
+                { sectionId: 30, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "6", data: '5x6' },
+            ];
+            $scope.coordinates = [];
+            $scope.getSelected = function () {
+                $scope.oneStoreCoordinates = {};
+                // filter array by status to get selected sections
+                $scope.selectedSections = $filter('filter')($scope.floor, { status: true });
+                console.log($scope.selectedSections);
+                // get lowest & highest values
+                // width
+                function findMinCoordinateYcoulmn() {
+                    var result = null;
+                    for (var i = 0; i < $scope.selectedSections.length; i++) {
+                        var account = $scope.selectedSections[i];
+                        if (result == null || account.sectionCoordinateYcoulmn < result.sectionCoordinateYcoulmn) {
+                            result = account;
                         }
-                        return result;
                     }
-                    var minW = findMinCoordinateYcoulmn().sectionCoordinateYcoulmn;
-                    function findMaxCoordinateYcoulmn() {
-                        var result = null;
-                        for (var i = 0; i < $scope.selectedSections.length; i++) {
-                            var account = $scope.selectedSections[i];
-                            if (result == null || account.sectionCoordinateYcoulmn > result.sectionCoordinateYcoulmn) {
-                                result = account;
-                            }
+                    return result;
+                }
+                var minW = findMinCoordinateYcoulmn().sectionCoordinateYcoulmn;
+                function findMaxCoordinateYcoulmn() {
+                    var result = null;
+                    for (var i = 0; i < $scope.selectedSections.length; i++) {
+                        var account = $scope.selectedSections[i];
+                        if (result == null || account.sectionCoordinateYcoulmn > result.sectionCoordinateYcoulmn) {
+                            result = account;
                         }
-                        return result;
                     }
-                    var maxW = findMaxCoordinateYcoulmn().sectionCoordinateYcoulmn;
-                    sectionWidth = (maxW - minW) + 1;
-                    console.log("sectionWidth : " + sectionWidth);
-                    // height
-                    function findMinCoordinateXrow() {
-                        var result = null;
-                        for (var i = 0; i < $scope.selectedSections.length; i++) {
-                            var account = $scope.selectedSections[i];
-                            if (result == null || account.sectionCoordinateXrow < result.sectionCoordinateXrow) {
-                                result = account;
-                            }
+                    return result;
+                }
+                var maxW = findMaxCoordinateYcoulmn().sectionCoordinateYcoulmn;
+                sectionWidth = (maxW - minW) + 1;
+                console.log("sectionWidth : " + sectionWidth);
+                // height
+                function findMinCoordinateXrow() {
+                    var result = null;
+                    for (var i = 0; i < $scope.selectedSections.length; i++) {
+                        var account = $scope.selectedSections[i];
+                        if (result == null || account.sectionCoordinateXrow < result.sectionCoordinateXrow) {
+                            result = account;
                         }
-                        return result;
                     }
-                    var minH = findMinCoordinateXrow().sectionCoordinateXrow;
-                    function findMaxCoordinateXrow() {
-                        var result = null;
-                        for (var i = 0; i < $scope.selectedSections.length; i++) {
-                            var account = $scope.selectedSections[i];
-                            if (result == null || account.sectionCoordinateXrow > result.sectionCoordinateXrow) {
-                                result = account;
-                            }
+                    return result;
+                }
+                var minH = findMinCoordinateXrow().sectionCoordinateXrow;
+                function findMaxCoordinateXrow() {
+                    var result = null;
+                    for (var i = 0; i < $scope.selectedSections.length; i++) {
+                        var account = $scope.selectedSections[i];
+                        if (result == null || account.sectionCoordinateXrow > result.sectionCoordinateXrow) {
+                            result = account;
                         }
-                        return result;
                     }
-                    var maxH = findMaxCoordinateXrow().sectionCoordinateXrow;
-                    sectionHeight = (maxH - minH) + 1;
+                    return result;
+                }
+                var maxH = findMaxCoordinateXrow().sectionCoordinateXrow;
+                sectionHeight = (maxH - minH) + 1;
 
-                    console.log("sectionHeight : " + sectionHeight);
-                    console.log("Top : " + (minH - 1) + " Left : " + (minW - 1));
-                    // add data to coordinates array
-                    $scope.oneStoreCoordinates = {
-                        Top: (minH - 1),
-                        Left: (minW - 1),
-                        Width: sectionWidth,
-                        Height: sectionHeight,
-                        Img: $scope.imgLink,
-                        StoreId: 1
-                    };
-                    $scope.coordinates.push($scope.oneStoreCoordinates);
-                    $scope.imgLink = '';
+                console.log("sectionHeight : " + sectionHeight);
+                console.log("Top : " + (minH - 1) + " Left : " + (minW - 1));
+                // add data to coordinates array
+                $scope.oneStoreCoordinates = {
+                    Top: (minH - 1),
+                    Left: (minW - 1),
+                    Width: sectionWidth,
+                    Height: sectionHeight,
+                    Img: $scope.imgLink,
+                    StoreId: 1
+                };
+                $scope.coordinates.push($scope.oneStoreCoordinates);
+                $scope.imgLink = '';
+                //add class busy
+                $('.active').addClass('busy').removeClass('active');
+                // clear array from active status
+                for (var i = 0; i < $scope.floor.length; i++) {
+                    if ($scope.floor[i].status != false) {
+                        $scope.floor[i].status = false;
+                        $scope.floor[i].data = '';
+                    }
+                    
                 }
 
-                //load from coordinates array
-                $scope.loadArray = function () {
-                    var oneSectionHeight = 600 / 5;
-                    var oneSectionWidth = 1000 / 6;
+            }
 
-                    for (var i = 0; i < $scope.coordinates.length; i++) {
-                        var top = $scope.coordinates[i].Top * oneSectionHeight;
-                        var left = $scope.coordinates[i].Left * oneSectionWidth;
-                        var height = $scope.coordinates[i].Height * oneSectionHeight;
-                        var width = $scope.coordinates[i].Width * oneSectionWidth;
+            //load from coordinates array
+            $scope.loadArray = function () {
+                //empty container dv
+                document.getElementById('imagesContainer').innerHTML = "";
 
-                        var div = document.createElement('div');
-                        div.innerHTML = '<div style="background-image:url(' + $scope.coordinates[i].Img + ');position:absolute;top:' + top + ';left:' + left + ';height:' + height + ';width:' + width + ';background-size: cover;background-repeat: no-repeat;"></div>';
-                        document.getElementById('imagesContainer').appendChild(div);
-                    }
+                // get window height & width
+                var containerHeight = document.getElementById('imagesContainer').offsetHeight;
+                var containerWidth = document.getElementById('imagesContainer').offsetWidth;
+                var oneSectionHeight = containerHeight / 5;
+                var oneSectionWidth = containerWidth / 6;
 
+                for (var i = 0; i < $scope.coordinates.length; i++) {
+                    var top = $scope.coordinates[i].Top * oneSectionHeight;
+                    var left = $scope.coordinates[i].Left * oneSectionWidth;
+                    var height = $scope.coordinates[i].Height * oneSectionHeight;
+                    var width = $scope.coordinates[i].Width * oneSectionWidth;
+
+                    var div = document.createElement('div');
+                    div.innerHTML = '<div style="background-image:url(' + $scope.coordinates[i].Img + ');position:absolute;top:' + top + ';left:' + left + ';height:' + height + ';width:' + width + ';background-size: cover;background-repeat: no-repeat;"></div>';
+                    document.getElementById('imagesContainer').appendChild(div);
                 }
 
-            });
-        </script>
-        <script>
-            //function getSelected() {
-            //    //var x = $(".active").position();
-            //    //var y = $(".active").innerHeight();
-            //    //var w = $(".active").innerWidth();
-            //    //alert("Last Node Top position: " + x.top + ",  Left position: " + x.left + ",  height: " + y + ",  width: " + w);
+            }
 
-
-
-            //    //var p = $(".col-sm-2 .active");
-            //    //console.log(p);
-
+            //$scope.selectSection = function (_section) {
+            //    console.log(_section);
+            //    if (_section.data != "") {
+            //        _section.status = !_section.status;
+            //        $scope['active' + _section.sectionId] = !$scope['active' + _section.sectionId];
+            //        console.log($scope['active' + _section.sectionId]);
+            //    }
             //}
-        </script>
+
+        });
+    </script>
 </body>
 </html>
