@@ -70,29 +70,23 @@
                                             <div class="col-md-5">
                                                 <div class="form-group label-floating is-focused ">
                                                     <label class="control-label">Expo Name</label>
-                                                    <input type="text" class="form-control" ng-model="expo.Title" name="expoTitle" id="expoTitle" required pattern="^.{1,35}$">
+                                                    <input type="text" class="form-control" ng-model="expo.Title" value="<%= expo.Title %>" ng-init="expo.Title = '<%= expo.Title %>'" name="expoTitle" id="expoTitle" required pattern="^.{1,35}$">
                                                     <span ng-show="frmUpdateExpo.expoTitle.$dirty && frmUpdateExpo.expoTitle.$invalid">
                                                         <span class="errorFont" ng-show="frmUpdateExpo.expoTitle.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmUpdateExpo.expoTitle.$error.pattern">Expo name is too long</span>
                                                     </span>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <div class="form-group label-floating is-focused ">
-                                                        <label class="control-label"> About Expo</label>
-                                                        <textarea class="form-control" rows="3" ng-model="expo.Description" required name="expoDesc" id="expoDesc" pattern="^.{1,200}$"></textarea>
-                                                        <span ng-show="frmUpdateExpo.expoDesc.$dirty && frmUpdateExpo.expoDesc.$invalid">
-                                                            <span class="errorFont" ng-show="frmUpdateExpo.expoDesc.$error.required">Required</span>
-                                                            <span class="errorFont" ng-show="frmUpdateExpo.expoDesc.$error.pattern">Expo description is too long</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
+                                            <div class="col-md-8">
+                                                <select name="country" ng-model="expo.selectedCategory" value="<%= expo.Category._id %>" ng-init="expo.selectedCategory = '<%= expo.Category._id %>'" class="form-control">
+                                                    <% categorieslst.forEach(function(category){ %>
+                                                    <option value="<%= category._id %>" selected="<%= category._id %>"> <%= category.Name %> </option>
+                                                    <% }); %>
+                                                </select>
                                             </div>
                                         </div>
-                                        <button type="submit" ng-click="updateExpo()" ng-disabled="frmUpdateExpo.$invalid" class="btn btn-primary pull-right">Update Expo</button>
+
+                                        <button type="submit" ng-click="updateExpo('<%= expo._id %>')" class="btn btn-primary pull-right">Update Expo</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
@@ -103,15 +97,10 @@
                                 <div class="card-header card-chart">
                                     <!--upload img-->
                                     <div>
-                                        <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="/img/add.gif" />
+                                        <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="<%= expo.Banner %>" />
                                         <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
                                     </div>
                                 </div>
-                                <div class="card-content">
-                                    <h4 class="title itemTitle"></h4>
-                                    <p class="category"></p>
-                                </div>
-
                             </div>
                         </div>
                     </div>

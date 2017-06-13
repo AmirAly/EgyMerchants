@@ -213,31 +213,18 @@
                                             <h4 class="title">Choose categories</h4>
                                         </div>
                                         <div class="card-content">
+                                            
+
+                                            <% categorieslst.forEach(function(category){ %>
+											<%= category %>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Furniture</span></span>
+                                                    <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan"><%= category.Name %></span></span>
                                                 </label>
                                             </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Clothes</span></span>
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Perfume</span></span>
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Cars</span></span>
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Watches</span></span>
-                                                </label>
-                                            </div>
+                                            <%});%>
+
+
                                         </div>
                                     </div>
                                 </div>

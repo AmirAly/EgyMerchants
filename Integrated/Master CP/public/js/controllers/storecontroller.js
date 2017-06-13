@@ -1,67 +1,46 @@
 ﻿egm.controller("storeController", function ($scope, API) {
-    $scope.ShowFileSelector = function () {
-        document.getElementById('uploadItemImage').click()
+
+    $scope.editStore = function (_id, store, Featured, HasFactory, Verified) {
+        console.log(_id, store);
+        $scope.storeId = _id;
+        $scope.storeName = store;
+        if (Verified == 'true')
+            $scope.verified = true;
+        else
+            $scope.verified = false;
+
+        if (HasFactory == 'true')
+            $scope.hasFactory = true;
+        else
+            $scope.hasFactory = false;
+
+        if (Featured == 'true')
+            $scope.featured = true;
+        else
+            $scope.featured = false;
+
+        console.log(" Featured " + $scope.featured + ",HasFactory " + $scope.hasFactory + " , Verified " + $scope.verified);
     };
 
-    //$scope.preload = function () {
-    //    if (localStorage.getItem('StoreId') == null || localStorage.getItem('StoreId') == '') {
-    //        window.location.href = '/eg/Home';
-    //    }
-    //};
-
-    //$scope.preload();
-
-    $scope.store = {};
-    $scope.store._id = localStorage.getItem('StoreId');
-    $scope.store.Imgs = [];
-
-    console.log(localStorage.getItem('StoreId'));
-
-    $scope.signOut = function () {
-        window.location.href = '/eg/Home';
-        localStorage.clear();
-    };
-
-    
-
-    $scope.save = function () {
-        $scope.profileImg = {
-            URL: $('#imgItem').attr('src')
-        }
-        $scope.store.Imgs.push($scope.profileImg);
-        console.log($scope.store);
-        $scope.loading = true;
+    $scope.getCheckedBoxes = function () {
         var req = {
             method: 'put',
-            url: '/Store/EditProfile',
-            data: $scope.store
+            url: '/Store/EditBadges',
+            data: {
+                _id: $scope.storeId,
+                Verified: $scope.verified,
+                HasFactory: $scope.hasFactory,
+                Featured: $scope.featured
+            }
         }
-        console.log($scope.store);
-        API.execute(req).then(function (res) {
-            if (res.data.code == 100) {
-                console.log(res);
+        API.execute(req).then(function (_res) {
+            if (_res.data.code == 100) {
+                console.log(_res);
                 window.location.reload();
             } else {
-                console.log(res.data.data);
-                console.log('canot edit');
-                $scope.loading = false;
+                console.log(_res);
             }
         });
     };
-});
-function convertImgToBase64URL(event) {
-    var filesSelected = document.getElementById("uploadItemImage").files;
-    if (filesSelected.length > 0) {
-        var fileToLoad = filesSelected[0];
-        var fileReader = new FileReader();
-        fileReader.onload = function (fileLoadedEvent) {
-            BaseImg64 = fileLoadedEvent.target.result;
-            UploadImage(BaseImg64);
-        };
-        fileReader.readAsDataURL(fileToLoad);
-    }
-};
 
-function UploadImage(_BaseImg64) {
-    $('#imgItem').attr('src', _BaseImg64);
-};
+});

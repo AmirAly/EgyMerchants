@@ -74,7 +74,6 @@
                                         <thead class="text-primary">
                                             <tr>
                                                 <th></th>
-                                                <th></th>
                                                 <th>Expo name</th>
                                                 <th>Category</th>
                                                 <th></th>
@@ -82,106 +81,31 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <% if( expolist.length > 0){%>
+                                            <% expolist.forEach(function(expo){ %>
                                             <tr>
-                                                <td>1</td>
                                                 <td>
-                                                    <img class="divImgTable" src="/img/cover.jpeg" />
+                                                    <img class="divImgTable" src="<%= expo.Banner %>" />
                                                 </td>
-                                                <td>Dakota Rice</td>
-                                                <td class="light">Furniture</td>
+                                                <td><%= expo.Title %></td>
+                                                <td class="light"><%= expo.Category.Name %></td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editExpo()" data-original-title="Edit Expo">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editExpo('<%= expo._id %>')" data-original-title="Edit Expo">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" ng-click="removeExpo('<%= expo._id %>')" data-original-title="Remove" aria-describedby="tooltip451158">
                                                         <i class="material-icons">close</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>
-                                                    <img class="divImgTable" src="/img/cover.jpeg" />
-                                                </td>
-                                                <td>B&B</td>
-                                                <td class="light">Clothes</td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editExpo()" data-original-title="Edit Expo">
-                                                        <i class="material-icons">edit</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
-                                                        <i class="material-icons">close</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>
-                                                    <img class="divImgTable" src="/img/cover.jpeg" />
-                                                </td>
-                                                <td>Le Marchee</td>
-                                                <td class="light">Furniture</td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editExpo()" data-original-title="Edit Expo">
-                                                        <i class="material-icons">edit</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
-                                                        <i class="material-icons">close</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>
-                                                    <img class="divImgTable" src="/img/cover.jpeg" />
-                                                </td>
-                                                <td>Dakota</td>
-                                                <td class="light">Perfume</td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editExpo()" data-original-title="Edit Expo">
-                                                        <i class="material-icons">edit</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
-                                                        <i class="material-icons">close</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>
-                                                    <img class="divImgTable" src="/img/cover.jpeg" />
-                                                </td>
-                                                <td>Premume</td>
-                                                <td class="light">Clothes</td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editExpo()" data-original-title="Edit Expo">
-                                                        <i class="material-icons">edit</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove" aria-describedby="tooltip451158">
-                                                        <i class="material-icons">close</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                            <% }); %>
+                                            <%}else{%>
+                                            <p class="text-center">There is no expos to show</p>
+                                            <% } %>
                                         </tbody>
                                     </table>
                                 </div>
@@ -214,8 +138,8 @@
                                 <div class="col-md-8">
                                     <div class="card">
                                         <div class="card-header" data-background-color="orange">
-                                            <h4 class="title">Creat Expo</h4>
-                                            <p class="category">Creat A New Expo</p>
+                                            <h4 class="title">Create Expo</h4>
+                                            <p class="category">Create A New Expo</p>
                                         </div>
                                         <div class="card-content">
                                             <form name="frmAddExpo">
@@ -232,16 +156,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-8">
                                                         <div class="form-group">
-                                                            <div class="form-group label-floating">
-                                                                <label class="control-label"> About Expo</label>
-                                                                <textarea class="form-control" rows="3" ng-model="expo.Description" required pattern="^.{1,200}$" name="expoDesc" id="expoDesc"></textarea>
-                                                                <span ng-show="frmAddExpo.expoDesc.$dirty && frmAddExpo.expoDesc.$invalid">
-                                                                    <span class="errorFont" ng-show="frmAddExpo.expoDesc.$error.required">Required</span>
-                                                                    <span class="errorFont" ng-show="frmAddExpo.expoDesc.$error.pattern">Expo description is too long</span>
-                                                                </span>
-                                                            </div>
+                                                            <label>Category</label>
+                                                            <br>
+                                                            <select name="country" ng-model="expo.selectedCategory" class="form-control">
+                                                                <% categorieslst.forEach(function(category){ %>
+                                                                <option value="<%= category._id %>" selected> <%= category.Name %> </option>
+                                                                <% }); %>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -261,7 +184,7 @@
                                         </div>
                                         <div class="card-content">
                                             <h4 class="title itemTitle">{{expo.Title}}</h4>
-                                            <p class="category">{{expo.Description}}</p>
+                                            <p class="category">{{expo.Category}}</p>
                                         </div>
 
                                     </div>
