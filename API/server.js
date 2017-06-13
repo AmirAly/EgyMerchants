@@ -86,8 +86,8 @@ var newstore = new userschema({ "Email": "mynewmail12@gmail.com", "Password": "n
 //}, function (err) {
 //    console.log(err);
 //});
-//"my new","masterexpo","","egypt"
-store.search("", "masterexpo", "", "egypt").then(function (result) {
+//"my new","masterexpo","new","egypt"
+store.search("", "", "new", "").then(function (result) {
     console.log(result);
 }, function (err) {
     console.log(err);
@@ -159,7 +159,7 @@ var newexpo = new exposchema({ "Title": "newgodexpo", "Banner": "bnner", "Catego
 //}, function(err) {
 //    console.log(err); 
 //});
-//expo.getById("593d09ed43aeb8e8157f181d").then(function (result) {
+//expo.getById("5937c322687959c415d4b715").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -192,7 +192,7 @@ var newexpo = new exposchema({ "Title": "newgodexpo", "Banner": "bnner", "Catego
 //}, function (err) {
 //    console.log(err);
 //});
-//expo.getStores("593d09ed43aeb8e8157f181d").then(function (result) {
+//expo.getStores("5937c322687959c415d4b715").then(function (result) {
 //    console.log(result.data.Floors[1].Stores[0].Store);
 //}, function (err) {
 //    console.log(err);
@@ -238,13 +238,17 @@ var newitem = new itemschema({ "Name": "newitem34", "Description": "desconlytodo
 //}, function (err) {
 //    console.log(err);
 //});
-
-//item.getById("593699ae283e176016f402b3").then(function (result) {
+//593d003bd28c8f3c127c7d38,5937b674a93c5a001176be9c,5937b5d1f10b7eb003b7ce07 ok
+//item.getById("593d003bd28c8f3c127c7d38").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-
+//item.suspend("593d003bd28c8f3c127c7d38").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 //item.getByGalleryId("59369940b656ca6c03f909e7").then(function (result) {
 //    console.log(result);
 //}, function (err) {

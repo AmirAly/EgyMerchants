@@ -204,11 +204,8 @@ module.exports = {
     },
     search: function (_store, _expo, _keyWord, _country) {
         var finalList = [],
-             itemsLst = [],
-             expoLst = [],
-         arrayOfIds = [],
-         storesOfItems = [];
-        storesLst = [];
+            storesList=[],
+            expoList = [];
         var underscore = require("underscore");
         return new Promise(function (resolve, reject) {
             var filter = { 'Country': { "$regex": _country, "$options": "i" }, 'Status': 'Active', 'Type': 'store' };
@@ -217,7 +214,7 @@ module.exports = {
             var expoFilter = { 'Title': { "$regex": _expo, "$options": "i" }, 'Status': 'Active' };
             if (_expo == "")
                 expoFilter = { 'Status': 'Active' };
-            Schema.find(filter, '_id Name ProfilePicture Description Address Status', function (err, lst) {//Pictures
+            Schema.find(filter, '_id Name ProfilePicture Description Address Status Type', function (err, lst) {
                 if (err)
                     reject({
                         code: 1,
@@ -225,9 +222,9 @@ module.exports = {
                     });
                 else {
                     if (lst.length > 0) {
-                        underscore.each(lst, function (store) { storesLst.push(store) });
+                        storesList = storesList.concat(lst);
                     }
-                    Expo.find(expoFilter, 'Floors Title Banner').populate('Floors.Stores.Store', '_id Name ProfilePicture Description Address Status').exec(function (err, lst) {
+                    Expo.find(expoFilter, 'Floors Title Banner').populate('Floors.Stores.Store', '_id Name ProfilePicture Description Address Status Type').exec(function (err, lst) {
                         if (err)
                             reject({
                                 code: 1,
@@ -235,98 +232,80 @@ module.exports = {
                             });
                         else {
                             if (lst.length > 0) {
-                                underscore.each(lst, function (expo) { expoLst.push({ "_id": expo._id, "Title": expo.Title, "Banner": expo.banner, "Type": "expo" }) });
                                 underscore.each(lst, function (expo) {
-                                    underscore.each(expo.Floors, function (floor) {
-                                        underscore.each(floor.Stores, function (store) {
-                                            if (store.Store.Status == "Active") {
-                                                storesLst.push(store.Store);
-                                            }
-                                        })
-                                    })
+                                    expoList.push({ "_id": expo._id, "Title": expo.Title, "Banner": expo.banner, "Type": "expo" });
                                 })
-                                var destArray = underscore.uniq(storesLst, function (x) {
-                                    return x.Name;
-                                });
-                                storesLst = destArray;
-                                
-                                if (_store != "") {
-                                    underscore.filter(storesLst, function (store) {
-                                        if (store.Name.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Address.indexOf(_store) !== -1) {
-                                            finalList.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" });
-                                            storesOfItems.push({ "_id": store._id });
-                                        }
-                                    })
-                                    var destArray = underscore.uniq(finalList, function (x) {
-                                        return x.Name;
-                                    });
-                                    finalList = destArray;
-                                }
-                                
-                                
-
-                                if (_keyWord != "") {
-                                    underscore.filter(storesLst, function (store) {
-                                        if (store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1) {
-                                            finalList.push({ "_id": store._id, "Name": store.Name, "ProfilePicture": store.ProfilePicture, "Type": "store" });
-                                            Item.find({ 'Status': 'Active' }, { 'Name': { "$regex": _keyWord, "$options": "i" } }, { 'Description': { "$regex": _keyWord, "$options": "i" } }, '_id Name Pictures Gallery').populate('Gallery', 'Store').exec(function (err, lst) {
-                                                if (err)
-                                                    reject({
-                                                        code: 1,
-                                                        data: err
-                                                    });
-                                                else {
-                                                    if (lst.length > 0) {
-                                                        underscore.filter(lst, function (item) {
-                                                            console.log(item.Gallery.Store);
-                                                            if (item.Gallery.Store == store._id)
-                                                                finalList.push({ "_id": item._id, "Name": item.Name, "Pictures": item.Pictures, "Type": "item" });
-                                                        })
-
-
-
-
-                                                        //underscore.filter(lst, function (item) {
-                                                        //    console.log(item.Gallery.Store);
-
-                                                        //    if (arrayOfIds.includes(item.Gallery.Store)) {
-                                                        //        itemsLst.push(item);
-                                                        //    }
-                                                        //    console.log(itemsLst);
-                                                        //})
-                                                    }
-                                                    console.log(itemsLst);
+                                if (_expo !== "") {
+                                    underscore.each(lst, function (expo) {
+                                        underscore.each(expo.Floors, function (floor) {
+                                            underscore.each(floor.Stores, function (store) {
+                                                if (store.Store.Status == "Active") {
+                                                    storesList.push(store.Store);
                                                 }
                                             })
-
-
-                                        }
+                                        })
                                     })
-                                    underscore.filter(expoLst, function (expo) {
-                                        if (expo.Title.indexOf(_expo) !== -1) {
-                                            finalList.push({ "_id": expo._id, "Title": expo.Title, "Banner": expo.Banner, "Type": "expo" });
-                                        }
-                                    })
-                                    var destArray = underscore.uniq(finalList, function (x) {
-                                        return x.Name;
-                                    });
-                                    finalList = destArray;
-                                    console.log("final2" + JSON.stringify(finalList));
                                 }
-
-
-                                //underscore.groupBy(finalList, 'Type');
-                                //console.log((underscore.groupBy(finalList, 'Type')).store);
-
-
-                                //})
-                                // }
+                                var destinctArray = underscore.uniq(storesList, function (x) {
+                                    return (x._id).toString();
+                                });
+                                storesList = destinctArray;
+                               // console.log(finalList);
+                                //console.log(expoList);
+                                if (_store != "") {
+                                    underscore.filter(storesList, function (store) {
+                                        if (store.Type == "store") {
+                                           // console.log(store.Name+store.Name.indexOf(_store));
+                                            if ((store.Name.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Address.indexOf(_store) !== -1)) {
+                                                finalList.push(store);
+                                            }
+                                        }
+                                    })
+                                   // console.log(finalList);
+                                }
+                                if (_keyWord != "") {
+                                   // console.log(storesList);
+                                    // console.log(expoList);
+                                    underscore.filter(expoList, function (expo) {
+                                        if (expo.Title.indexOf(_keyWord) !== -1) {
+                                            finalList.push(expo);
+                                        }
+                                    })
+                                    console.log(finalList);
+                                    underscore.filter(storesList, function (store) {
+                                        if (store.Type == "store") {
+                                            if ((store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1)) {
+                                                Item.find({ $and: [{ $or: [{ 'Name': { "$regex": _keyWord, "$options": "i" } }, { 'Description': { "$regex": _keyWord, "$options": "i" } }] }, { 'Status': 'Active' }] }, '_id Name Pictures Gallery').populate('Gallery', 'Store').exec(function (err, itemLst) {
+                                                    if (err)
+                                                        reject({
+                                                            code: 1,
+                                                            data: err
+                                                        });
+                                                    else {
+                                                        if (itemLst.length > 0) {
+                                                            underscore.each(itemLst, function (item) {
+                                                                if (item.Gallery.Store.toString() == (store._id).toString()) {
+                                                                    finalList.push({ "_id": item._id, "Name": item.Name, "Pictures": item.Pictures, "Type": "item" });
+                                                                   // console.log(finalList);
+                                                                }
+                                                            })
+                                                            
+                                                        }
+                                                    }
+                                                   // console.log(finalList);
+                                                })
+                                            }
+                                        }
+                                        
+                                    })
+                                    
+                                }
+                                
                             }
                         }
                     })
                 }
             })
-            // resolve(storesLst);
         })
     },
 }
