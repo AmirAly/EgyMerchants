@@ -1,7 +1,7 @@
 <% include ../partials/pagestart %>
 <% include ../partials/pageheader %>
 
-<div class="expoPage">
+<div class="expoPage" ng-controller="expoController">
     <div class="allExposView" ng-hide="showSingleExpo">
         <div class="secondDiv">
 		<% if (expos.length > 0) { %>
@@ -14,19 +14,13 @@
                         <div>
                             <div class="singleExpoView" id="expo<%= expo._id %>">
                                 <div class="container-fluid">
-                                    <div class="row noGutter">
+                                   
+									<div class="row" ng-init="loadArray(<%= JsonFloor %>)">
 
-									<% expo.Sections.forEach(function(section){ %>
-                                        <div class="col-xs-3 col-sm-3 col-custom5 repeated-item">
-                                            <div class="image-wrapper">
-                                                <a href="/Eg/Store/<%= section.Store.StoreName %>/<%= section.Store._id %>">
-                                                    <img class="animated img-responsive animate scale wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="<%= section.Img %>" >
-                                                </a>
-                                            </div>
-                                        </div>
-									<% }); %>
+									<div class="row imagesContainer" id="imagesContainer"></div>
 
                                     </div>
+
                                     <div class="expoDetails">
                                         <!-- Pagination -->
                                         <h6 class="text-center light expoPagingController<%= expo._id %>"

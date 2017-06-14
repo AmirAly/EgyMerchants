@@ -112,7 +112,7 @@ module.exports = {
     },
     getAll: function () {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Status': 'Active' }, 'Title', function (err, lst) {
+            Schema.find({ 'Status': 'Active' }, 'Title Banner Category').populate('Category', '_id Name').exec(function (err, lst) {
                 if (err)
                     reject({
                         code: 1,
@@ -186,7 +186,7 @@ module.exports = {
                 }
             })
         })
-    },
+    },//edit on floors
     suspend: function (_id) {
         return new Promise(function (resolve, reject) {
             Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "Suspended" } }, { new: true }, function (err, Obj) {
@@ -201,5 +201,27 @@ module.exports = {
             })
         })
     },
-    
+    getById: function (_id) { 
+        return new Promise(function (resolve, reject) {
+            Schema.findOne({'_id':_id, 'Status': 'Active' }, '').populate('Category', '_id Name').exec(function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if (Obj)
+                        resolve({
+                            code: 100,
+                            data: Obj
+                        });
+                    else
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
+                }
+            })
+        })
+    },
 }
