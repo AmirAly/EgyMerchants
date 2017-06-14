@@ -86,7 +86,7 @@ var newstore = new userschema({ "Email": "mynewmail12@gmail.com", "Password": "n
 //}, function (err) {
 //    console.log(err);
 //});
-//"my new","masterexpo","new","egypt"
+//"new","masterexpo/newgod","new","egypt"
 store.search("", "", "new", "").then(function (result) {
     console.log(result);
 }, function (err) {
@@ -164,7 +164,7 @@ var newexpo = new exposchema({ "Title": "newgodexpo", "Banner": "bnner", "Catego
 //}, function (err) {
 //    console.log(err);
 //});
-//expo.setFloor("593d09ed43aeb8e8157f181d", { "Name": "the lastflooradded", "Stores": [{ "Store": "59366953c2bf034812df1954", "Width": "1", "High": "2", "Position": "3", "Img": "img" }] }).then(function (result) {
+//expo.setFloor("593d09ed43aeb8e8157f181d", { "Name": "the lastflooradded", "Stores": [{ "Store": "593e4af011b740e8163beb2d", "Width": "1", "High": "2", "Position": "3", "Img": "img" }] }).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -192,7 +192,7 @@ var newexpo = new exposchema({ "Title": "newgodexpo", "Banner": "bnner", "Catego
 //}, function (err) {
 //    console.log(err);
 //});
-//expo.getStores("5937c322687959c415d4b715").then(function (result) {
+//expo.getStores("593d09ed43aeb8e8157f181d").then(function (result) {
 //    console.log(result.data.Floors[1].Stores[0].Store);
 //}, function (err) {
 //    console.log(err);
@@ -230,7 +230,7 @@ var newitem = new itemschema({ "Name": "newitem34", "Description": "desconlytodo
 //}, function (err) {
 //    console.log(err);
 //});
-//item.edit("593699ae283e176016f402b3", "newitem34", "desc", {
+//item.edit("5937b5d1f10b7eb003b7ce07", "newitem34", "desc", {
 //    "Title": "t5it",
 //"URL":"url"
 //},"334","444","badg","tags").then(function (result) {
