@@ -206,6 +206,7 @@ module.exports = {
         var finalList = [],
             storesList=[],
             expoList = [];
+        itemsList = [];
         var underscore = require("underscore");
         return new Promise(function (resolve, reject) {
             var filter = { 'Country': { "$regex": _country, "$options": "i" }, 'Status': 'Active', 'Type': 'store' };
@@ -223,6 +224,7 @@ module.exports = {
                 else {
                     if (lst.length > 0) {
                         storesList = storesList.concat(lst);
+                        //console.log(storesList);
                     }
                     Expo.find(expoFilter, 'Floors Title Banner').populate('Floors.Stores.Store', '_id Name ProfilePicture Description Address Status Type').exec(function (err, lst) {
                         if (err)
@@ -236,6 +238,9 @@ module.exports = {
                                     expoList.push({ "_id": expo._id, "Title": expo.Title, "Banner": expo.banner, "Type": "expo" });
                                 })
                                 if (_expo !== "") {
+                                    if (_country == "") {
+                                        storesList.length=0;  //console.log(storesList);
+                                    }
                                     underscore.each(lst, function (expo) {
                                         underscore.each(expo.Floors, function (floor) {
                                             underscore.each(floor.Stores, function (store) {
@@ -250,7 +255,7 @@ module.exports = {
                                     return (x._id).toString();
                                 });
                                 storesList = destinctArray;
-                               // console.log(finalList);
+                                //console.log(storesList);
                                 //console.log(expoList);
                                 if (_store != "") {
                                     underscore.filter(storesList, function (store) {
@@ -261,21 +266,20 @@ module.exports = {
                                             }
                                         }
                                     })
-                                   // console.log(finalList);
+                                    //console.log(finalList);
+                                    //console.log(expoList);
                                 }
                                 if (_keyWord != "") {
-                                   // console.log(storesList);
-                                    // console.log(expoList);
                                     underscore.filter(expoList, function (expo) {
                                         if (expo.Title.indexOf(_keyWord) !== -1) {
                                             finalList.push(expo);
                                         }
                                     })
-                                    console.log(finalList);
+                                   // console.log(finalList);
                                     underscore.filter(storesList, function (store) {
-                                        if (store.Type == "store") {
-                                            if ((store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1)) {
-                                                Item.find({ $and: [{ $or: [{ 'Name': { "$regex": _keyWord, "$options": "i" } }, { 'Description': { "$regex": _keyWord, "$options": "i" } }] }, { 'Status': 'Active' }] }, '_id Name Pictures Gallery').populate('Gallery', 'Store').exec(function (err, itemLst) {
+                                        if ((store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1)) {
+                                            finalList.push(store);
+                                    Item.find({ $and: [{ $or: [{ 'Name': { "$regex": _keyWord, "$options": "i" } }, { 'Description': { "$regex": _keyWord, "$options": "i" } }] }, { 'Status': 'Active' }, {'Store':store._id}] }, '_id Name Pictures',function (err, itemLst) {
                                                     if (err)
                                                         reject({
                                                             code: 1,
@@ -283,22 +287,16 @@ module.exports = {
                                                         });
                                                     else {
                                                         if (itemLst.length > 0) {
-                                                            underscore.each(itemLst, function (item) {
-                                                                if (item.Gallery.Store.toString() == (store._id).toString()) {
-                                                                    finalList.push({ "_id": item._id, "Name": item.Name, "Pictures": item.Pictures, "Type": "item" });
-                                                                   // console.log(finalList);
-                                                                }
+                                                            console.log("push");
+                                                            underscore.each(itemLst,function(item){
+                                                                finalList.push({ "_id": item._id, "Name": item.Name, "Pictures": item.Pictures, "Type": "item" });
                                                             })
-                                                            
                                                         }
+                                                        console.log(finalList);
                                                     }
-                                                   // console.log(finalList);
                                                 })
                                             }
-                                        }
-                                        
                                     })
-                                    
                                 }
                                 
                             }

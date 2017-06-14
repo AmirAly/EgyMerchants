@@ -12,9 +12,9 @@ var User = new Schema({
     CoverPhoto: { type: String, min: 2 },
     Description: { type: String, default: '-' },
     Badges: {
-        Verified: { type: String, default: "False" },
-        HasFactory: { type: String, default: "False" },
-        Featured:{type:String,default:"False"}
+        Verified: { type: Boolean, default: false },
+        HasFactory: { type: Boolean, default: false },
+        Featured: { type: Boolean, default: false }
     },
     Category: {
         type: String

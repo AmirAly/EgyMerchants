@@ -224,6 +224,13 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.put('/Expo/SetFloor', function (req, res) {
+        ExpoLogic.setFloor(req.body._id,req.body.Floor).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     api.put('/Expo/Suspend', function (req, res) {
         ExpoLogic.suspend(req.body._id).then(function (result) {
             res.json(result);

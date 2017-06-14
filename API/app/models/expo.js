@@ -11,18 +11,8 @@ var Expo = new Schema({
     Status: { type: String, default: 'Active' },
     Floors:[{
         Name: { type: String },
-        Stores: [
-    {
-        Store: {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        },
-        Width: { type: Number },
-        High: { type: Number },
-        Position: { type: Number },
-        Img: { type: String, min: 2 },
-    }
-        ]
+        Sections: [{}],
+        Coordinates:[{}],//this contain store id 
     }]
 });
 module.exports = Mongoose.model('Expo', Expo);
