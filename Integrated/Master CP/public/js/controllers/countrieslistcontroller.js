@@ -20,39 +20,52 @@
     //};
     //var checkedBoxes = getCheckedBoxes("optionsCheckboxes");
     //console.log(checkedBoxes);
+    $scope.init = function (_categories) {
+        $scope.categories = JSON.parse(_categories);
+    };
 
-    
-    $scope.addCountry = function () {
-        //$scope.loading = true;
-        console.log('entered');
-        var req = {
-            method: 'post',
-            url: '/Country/Add',
-            data: {
-                Name: $scope.country.Name,
-                IsoCode: $scope.country.IsoCode,
-                Flag: $('#imgItem').attr('src'),
-                WelcomeMsg: $scope.country.WelcomeMsg,
-                Status: "Active"
-            }
-        }
-        API.execute(req).then(function (_res) {
-            if (_res.data.code == 100) {
-                //getCheckedBoxes
-                console.log($scope.checkedCategory);
-                //var checkedBoxes = getCheckedBoxes("optionsCheckboxes");
-                console.log(checkedBoxes);
-                //window.location.reload();
-            } else {
-                if (_res.data.code == 21) {
-                    console.log('Already Exist');
-                    $scope.loading = false;
-                } else {
-                    $scope.loading = false;
+    var checkboxesChecked = [];
+    $scope.addCountry = function (optionsCheckboxes) {
+            for (var i = 0; i < $scope.categories.length; i++) {
+                console.log($scope.categories[i]);
+                if ($scope.categories[i].checked) {
+                    checkboxesChecked.push($scope.categories[i].Name);
                 }
             }
-        });
-    };
+            console.log(checkboxesChecked);
+    }
+
+    //$scope.addCountry = function () {
+    //    //$scope.loading = true;
+    //    console.log('entered');
+    //    var req = {
+    //        method: 'post',
+    //        url: '/Country/Add',
+    //        data: {
+    //            Name: $scope.country.Name,
+    //            IsoCode: $scope.country.IsoCode,
+    //            Flag: $('#imgItem').attr('src'),
+    //            WelcomeMsg: $scope.country.WelcomeMsg,
+    //            Status: "Active"
+    //        }
+    //    }
+    //    API.execute(req).then(function (_res) {
+    //        if (_res.data.code == 100) {
+    //            //getCheckedBoxes
+    //            console.log($scope.checkedCategory);
+    //            //var checkedBoxes = getCheckedBoxes("optionsCheckboxes");
+    //            console.log(checkedBoxes);
+    //            //window.location.reload();
+    //        } else {
+    //            if (_res.data.code == 21) {
+    //                console.log('Already Exist');
+    //                $scope.loading = false;
+    //            } else {
+    //                $scope.loading = false;
+    //            }
+    //        }
+    //    });
+    //};
 
     $scope.editCountry = function (_id) {
         window.location.href = '/eg/country/' + _id;

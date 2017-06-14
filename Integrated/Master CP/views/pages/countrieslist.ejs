@@ -1,5 +1,5 @@
 <% include ../partials/headpages %>
-<div ng-controller='countriesListController'>
+<div ng-controller='countriesListController' ng-init="init('<%= categorieslstJSON %>')">
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -215,14 +215,13 @@
                                         <div class="card-content">
                                             
 
-                                            <% categorieslst.forEach(function(category){ %>
-											<%= category %>
-                                            <div class="checkbox">
+                                            
+                                            <div class="checkbox" ng-repeat="category in categories">
                                                 <label>
-                                                    <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan"><%= category.Name %></span></span>
+                                                    <input id="chbox" type="checkbox" name="optionsCheckboxes" ng-model="category.checked" ng-checked="category.checked"><span class="checkbox-material"><span class="checkBoxSpan">{{category.Name}}</span></span>
                                                 </label>
                                             </div>
-                                            <%});%>
+                                            
 
 
                                         </div>
@@ -234,7 +233,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" ng-click="addCountry()" ng-disabled="frmAddCountry.$invalid" class="btn btn-primary">Save changes</button>
+                    <button type="submit" ng-click="addCountry(optionsCheckboxes)" ng-disabled="frmAddCountry.$invalid" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
