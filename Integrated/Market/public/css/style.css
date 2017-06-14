@@ -1616,6 +1616,32 @@ h1, h2, h3, h4, h5, h6 {
     .expoPage .singleExpoView.ng-hide-remove {
         display: block !important;
     }
+    /*new floor*/
+    .expoPage .col-sm-2 {
+            background: beige;
+            border: 1px dashed #cbcbcc;
+            text-align: center;
+            height: 100px;
+            padding: 40px;
+        }
+
+          .expoPage .busy {
+            background: #cbcbcc;
+        }
+
+        .expoPage  .active {
+            background: green;
+        }
+
+         .expoPage .imagesContainer {
+            background: #f3f3f1;
+            height: 100vh;
+            /*width: 100vw;*/
+            /*width: 1600px;*/
+            overflow: hidden;
+            position: relative;
+        }
+
 
 /*product page*/
 .cloudzoom-lens {
