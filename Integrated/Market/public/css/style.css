@@ -1108,8 +1108,8 @@ h1, h2, h3, h4, h5, h6 {
             .storePage .pageBody .dvProductsBlock .dvItemContainer .img-responsive {
                 margin: auto;
                 width: auto;
-                min-height: 170px;
-                max-height: 170px;
+                min-height: 150px;
+                max-height: 150px;
             }
 
             .storePage .pageBody .dvProductsBlock .dvItemContainer .dvItemDescription {
@@ -1126,7 +1126,7 @@ h1, h2, h3, h4, h5, h6 {
                 }
 
                 .storePage .pageBody .dvProductsBlock .dvItemContainer .dvItemDescription h6 {
-                    padding: 10px 0;
+                    padding: 0;
                     font-size: 11px;
                 }
 
@@ -1896,7 +1896,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
     .pageSearch h2 a, .pageSearch h2 a:active, .pageSearch h2 a:focus, .pageSearch h2 a:hover, .pageSearch h2 a:visited {
-        color: #337ab7;
+        /*color: #337ab7;*/
+        color: #000;
         outline: 0;
         width: 100%;
         display: inline-block;
