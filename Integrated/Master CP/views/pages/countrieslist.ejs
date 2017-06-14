@@ -1,5 +1,5 @@
 <% include ../partials/headpages %>
-<div ng-controller='countriesListController' ng-init="init('<%= categorieslstJSON %>')">
+<div ng-controller='countriesListController' ng-init="init('<%= categorieslstJSON %>','<%= countrieslstJSON %>')">
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -83,33 +83,30 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <% if ( countrieslst.length > 0  ){ %>
-                                            <% countrieslst.forEach(function(country){ %>
-                                            <tr>
+                                            
+                                            <tr ng-repeat="country in countries">
                                                 <td>
-                                                    <img class="divImgTable" src="<%= country.Flag %>" />
+                                                    <img class="divImgTable" src="{{country.Flag}}" />
                                                     <!--<img class="divImgTable" src="/img/cover.jpeg" />-->
                                                 </td>
-                                                <td><%= country.Name %></td>
-                                                <td><%= country.IsoCode %></td>
-                                                <td class="light"><%= country.WelcomeMsg %></td>
+                                                <td>{{country.Name}}</td>
+                                                <td>{{country.IsoCode}}</td>
+                                                <td class="light">{{country.WelcomeMsg}}</td>
+
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry('<%= country._id %>')" data-original-title="Edit Country">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry(country._id,country.Categories)" data-original-title="Edit Country">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" ng-click="removeCountry('<%= country._id %>')" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" ng-click="removeCountry(country._id)" data-original-title="Remove" aria-describedby="tooltip451158">
                                                         <i class="material-icons">close</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
                                             </tr>
-                                            <% }); %>
-                                            <% }else{ %>
-                                            <p class="text-center">There is no countries</p>
-                                            <% } %>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -213,15 +210,15 @@
                                             <h4 class="title">Choose categories</h4>
                                         </div>
                                         <div class="card-content">
-                                            
 
-                                            
+
+
                                             <div class="checkbox" ng-repeat="category in categories">
                                                 <label>
                                                     <input id="chbox" type="checkbox" name="optionsCheckboxes" ng-model="category.checked" ng-checked="category.checked"><span class="checkbox-material"><span class="checkBoxSpan">{{category.Name}}</span></span>
                                                 </label>
                                             </div>
-                                            
+
 
 
                                         </div>

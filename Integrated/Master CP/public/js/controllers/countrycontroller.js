@@ -2,9 +2,30 @@
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click()
     };
-
-    console.log(localStorage.getItem('countryId'));
+    //console.log(localStorage.getItem('CheckedCategories'));
+    //console.log(localStorage.getItem('countryId'));
     $scope.countryId = localStorage.getItem('countryId');
+    $scope.CheckedCategoriesId = localStorage.getItem('CheckedCategories');
+
+    $scope.init = function (_categorieslst) {
+        $scope.categories = JSON.parse(_categorieslst);
+        //console.log('entered');
+        for (var i = 0; i < $scope.categories.length; i++) {
+            console.log($scope.categories[i]._id);
+            for (var j = 0; j < $scope.CheckedCategoriesId.length; j++) {
+                //console.log('entered');
+                console.log($scope.CheckedCategoriesId[j]);
+                if ($scope.categories[i]._id == $scope.CheckedCategoriesId[j]) {
+                    console.log($scope.categories[i]._id);
+                    console.log($scope.CheckedCategoriesId[j]);
+                    $scope.category[i].checked = true;
+                }
+            }
+        }
+    };
+    
+    
+
 
     $scope.updateCountry = function () {
         $scope.loading = true;

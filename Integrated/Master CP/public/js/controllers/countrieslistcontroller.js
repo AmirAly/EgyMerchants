@@ -3,73 +3,57 @@
         document.getElementById('uploadItemImage').click()
     };
 
-    //var checkboxesChecked = [];
-    //function getCheckedBoxes(optionsCheckboxes) {
-    //    var checkboxes = document.getElementsByName(optionsCheckboxes);
-    //    // loop over them all
-    //    for (var i = 0; i < checkboxes.length; i++) {
-    //        // And stick the checked ones onto an array...
-    //        console.log(checkboxes[i].checked)
-    //        if (checkboxes[i].checked) {
-    //            checkboxesChecked.push(checkboxes[i].value);
-    //        }
-    //    }
-    //    console.log(checkboxesChecked);
-    //    // Return the array if it is non-empty, or null
-    //    return checkboxesChecked.length > 0 ? checkboxesChecked : null;
-    //};
-    //var checkedBoxes = getCheckedBoxes("optionsCheckboxes");
-    //console.log(checkedBoxes);
-    $scope.init = function (_categories) {
+    $scope.init = function (_categories , _countries) {
         $scope.categories = JSON.parse(_categories);
+        $scope.countries = JSON.parse(_countries);
+        console.log($scope.countries);
     };
 
     var checkboxesChecked = [];
     $scope.addCountry = function (optionsCheckboxes) {
-            for (var i = 0; i < $scope.categories.length; i++) {
-                console.log($scope.categories[i]);
-                if ($scope.categories[i].checked) {
-                    checkboxesChecked.push($scope.categories[i].Name);
+        //$scope.loading = true;
+        console.log('entered');
+        for (var i = 0; i < $scope.categories.length; i++) {
+            if ($scope.categories[i].checked) {
+                JSON.parse(checkboxesChecked.push($scope.categories[i]._id));
+            }
+        }
+        console.log(checkboxesChecked);
+
+        var req = {
+            method: 'post',
+            url: '/Country/Add',
+            data: {
+                Name: $scope.country.Name,
+                IsoCode: $scope.country.IsoCode,
+                Flag: $('#imgItem').attr('src'),
+                WelcomeMsg: $scope.country.WelcomeMsg,
+                Status: "Active",
+                Categories: checkboxesChecked
+            }
+        }
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+
+            if (_res.data.code == 100) {
+                 window.location.reload();
+            } else {
+                if (_res.data.code == 21) {
+                    console.log('Already Exist');
+                    $scope.loading = false;
+                } else {
+                    $scope.loading = false;
                 }
             }
-            console.log(checkboxesChecked);
-    }
+        });
+        console.log(checkboxesChecked);
+    };
 
-    //$scope.addCountry = function () {
-    //    //$scope.loading = true;
-    //    console.log('entered');
-    //    var req = {
-    //        method: 'post',
-    //        url: '/Country/Add',
-    //        data: {
-    //            Name: $scope.country.Name,
-    //            IsoCode: $scope.country.IsoCode,
-    //            Flag: $('#imgItem').attr('src'),
-    //            WelcomeMsg: $scope.country.WelcomeMsg,
-    //            Status: "Active"
-    //        }
-    //    }
-    //    API.execute(req).then(function (_res) {
-    //        if (_res.data.code == 100) {
-    //            //getCheckedBoxes
-    //            console.log($scope.checkedCategory);
-    //            //var checkedBoxes = getCheckedBoxes("optionsCheckboxes");
-    //            console.log(checkedBoxes);
-    //            //window.location.reload();
-    //        } else {
-    //            if (_res.data.code == 21) {
-    //                console.log('Already Exist');
-    //                $scope.loading = false;
-    //            } else {
-    //                $scope.loading = false;
-    //            }
-    //        }
-    //    });
-    //};
-
-    $scope.editCountry = function (_id) {
-        window.location.href = '/eg/country/' + _id;
+    $scope.editCountry = function (_id , categories) {
+       window.location.href = '/eg/country/' + _id;
         console.log(_id);
+        console.log(categories);
+        localStorage.setItem('CheckedCategories', JSON.parse(categories));
         localStorage.setItem('countryId', _id);
     };
 

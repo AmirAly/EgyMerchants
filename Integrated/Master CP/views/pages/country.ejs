@@ -1,5 +1,5 @@
 <% include ../partials/headpages %>
-<div ng-controller='countryController'>
+<div ng-controller='countryController' ng-init="init('<%= categorieslstJSON %>')">
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -133,31 +133,13 @@
                                     <h4 class="title">List of categories</h4>
                                 </div>
                                 <div class="card-content">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Furniture</span></span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Clothes</span></span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Perfume</span></span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Cars</span></span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="checkBoxSpan">Watches</span></span>
-                                        </label>
-                                    </div>
+                                    
+									<div class="checkbox" ng-repeat="category in categories">
+                                                <label>
+                                                    <input id="chbox" type="checkbox" name="optionsCheckboxes" ng-model="category.checked" ng-checked="category.checked"><span class="checkbox-material"><span class="checkBoxSpan">{{category.Name}}</span></span>
+                                                </label>
+                                            </div>
+                                            
                                 </div>
                             </div>
                         </div>
