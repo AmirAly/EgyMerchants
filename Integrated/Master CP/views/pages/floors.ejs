@@ -1,4 +1,4 @@
-﻿<% include ../partials/headpages %>
+<% include ../partials/headpages %>
 <div ng-controller='floorsController' class="pageFloors">
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
@@ -50,7 +50,7 @@
 
                     <div class="row">
                         <div class="col-sm-2 text-center"
-                             ng-repeat="section in floor.sections track by section.sectionId"
+                             ng-repeat="section in floor.Sections track by section.sectionId"
                              id="active{{section.sectionId}}"
                              ng-init="this['active'+this.section.sectionId] = false;section.isBusy = false"
                              ng-click="this['active'+this.section.sectionId] =! this['active'+this.section.sectionId] ; section.isBusy =! section.isBusy;"
