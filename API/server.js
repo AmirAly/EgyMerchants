@@ -87,7 +87,7 @@ var newstore = new userschema({ "Email": "mynewmail12@gmail.com", "Password": "n
 //    console.log(err);
 //});
 //"new","masterexpo/newgod/test2","new","egypt"
-store.search("", "mastewr", "", "").then(function (result) {
+store.search("", "", "new", "").then(function (result) {
     console.log(result);
 }, function (err) {
     console.log(err);
@@ -164,7 +164,7 @@ var newexpo = new exposchema({ "Title": "new master", "Banner": "bnner", "Catego
 //}, function (err) {
 //    console.log(err);
 //});
-//expo.setFloor("59413435f9989b6412a3e100", { "Name": "testcoordinates2", "Coordinates": [{ "Store": "593e4af011b740e8163beb2d"}] }).then(function (result) {
+//expo.setFloor("59423d1a45c945c40bb26e72", { "Name": "testcoordinates2", "Coordinates": [{ "Store": "593e4af011b740e8163beb2d"}] }).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -191,12 +191,12 @@ var newexpo = new exposchema({ "Title": "new master", "Banner": "bnner", "Catego
 //}, function (err) {
 //    console.log(err);
 //});
-//expo.getStores("59413435f9989b6412a3e100").then(function (result) {
+//expo.getStores("59423d1a45c945c40bb26e72").then(function (result) {
 //    console.log(result.data.Floors[0].Coordinates[0].Store);
 //}, function (err) {
 //    console.log(err);
 //});
-//var newcategory = new categoryschema({ "Name": "newcategoryy" });
+var newcategory = new categoryschema({ "Name": "newcategoryy" });
 //category.add(newcategory).then(function (result) {
 //    console.log(result);
 //}, function (err) {

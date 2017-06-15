@@ -224,7 +224,7 @@ module.exports = {
                 else {
                     if (lst.length > 0) {
                         storesList = storesList.concat(lst);
-                        //console.log(storesList);
+                       // console.log(storesList);
                     }
                     Expo.find(expoFilter, 'Floors Title Banner').populate('Floors.Coordinates.Store', '_id Name ProfilePicture Description Address Status Type').exec(function (err, lst) {
                         if (err)
@@ -255,18 +255,16 @@ module.exports = {
                                     return (x._id).toString();
                                 });
                                 storesList = destinctArray;
-                                console.log(storesList);
-                                console.log(expoList);
+                                //console.log(storesList);
+                               //console.log(expoList);
                                 if (_store != "") {
                                     underscore.filter(storesList, function (store) {
-                                       // if (store.Type == "store") {
                                            // console.log(store.Name+store.Name.indexOf(_store));
                                             if ((store.Name.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Address.indexOf(_store) !== -1)) {
                                                 finalList.push(store);
                                             }
-                                       // }
                                     })
-                                    //console.log(finalList);
+                                   // console.log(finalList);
                                     //console.log(expoList);
                                 }
                                 if (_keyWord != "") {
@@ -299,7 +297,7 @@ module.exports = {
                                     })
                                     //console.log(finalList);
                                 }
-                              
+                                console.log("final"+finalList[0].Name);
                             }
                         }
                     })
