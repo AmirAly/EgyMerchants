@@ -14,7 +14,7 @@ var User = new Schema({
     Badges: {
         Verified: { type: Boolean, default: false },
         HasFactory: { type: Boolean, default: false },
-        Featured:{type:Boolean,default:false}
+        Featured: { type: Boolean, default: false }
     },
     Category: {
         type: String

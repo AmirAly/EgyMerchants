@@ -17,23 +17,39 @@ module.exports = function (app) {
         
         var _scope = {};
 
-        //country.getById('593e5533ff9df41628e4693c').then(function (_data) {
-        //    if (_data.code == 100) {
-        //        console.log(_data.data);
-        //        _scope.categoriesData = _data.data;
+        country.getAll().then(function (_countriesData) {
+            console.log(_countriesData);
+            if (_countriesData.code == 100) {
+                console.log(_countriesData.data);
+                _scope.allCountries = _countriesData.data;
+                
+                country.getById(_scope.allCountries[0]._id).then(function (_data) {
+                    if (_data.code == 100) {
+                        console.log(_data.data);
+                        _scope.categoriesData = _data.data;
+                        res.render('pages/landing', _scope);
+                    }
+                    else {
+                        _scope.categoriesData = [];
+                        res.render('pages/landing', _scope);
+                    }
+                }).catch(function (_err) {
+                    console.log(_err);
+                    _scope.categoriesData = [];
+                    res.render('pages/landing', _scope);
+                });
+            }
+            else {
+                _scope.categoriesData = [];
+                _scope.allCountries = [];
                 res.render('pages/landing', _scope);
-        //    }
-        //    else {
-        //        _scope.categoriesData = [];
-        //        res.render('pages/landing', _scope);
-        //    }
-        //}
-        //).catch(function (_err) {
-        //    console.log(_err);
-        //    _scope.categoriesData = [];
-        //    res.render('pages/landing', _scope);
-        //});
-
+            }
+        }).catch(function (_err) {
+            console.log(_err);
+            _scope.categoriesData = [];
+            _scope.allCountries = [];
+            res.render('pages/landing', _scope);
+        });
     });
 
     // expo page expos
@@ -46,25 +62,49 @@ module.exports = function (app) {
                 {
                     "Name": 'Men Floor',
                     Coordinates: [
-                        { "Top": 0, "Left": 2, "Width": 4, "Height": 2, "Img": "http://www.beststylo.com/wp-content/uploads/2014/08/Al-Karam-Eid-Luxurious-Latha-Men-Collection-2016-2017-Coming-Soon.png", "Store": 1 },
-                        { "Top": 0, "Left": 0, "Width": 2, "Height": 5, "Img": "http://fashionsbizz.com/wp-content/uploads/2014/06/Charcoal-Summer-Jeans-Pants-and-Shirts-for-Smart-Men-2014-2.jpg", "Store": 1 },
-                        { "Top": 2, "Left": 4, "Width": 2, "Height": 3, "Img": "http://www.latestsummerfashion.com/wp-content/uploads/2015/12/Bonanza-Garments-Sweaters-Collection-2016-Women-Men-9.jpg", "Store": 1 },
-                        { "Top": 2, "Left": 2, "Width": 2, "Height": 3, "Img": "http://www.elleman.vn/wp-content/uploads/2016/11/02/cardigan-475x475.jpg", "Store": 1 }
+                        { "Top": 0, "Left": 2, "Width": 4, "Height": 2, "Img": "http://www.beststylo.com/wp-content/uploads/2014/08/Al-Karam-Eid-Luxurious-Latha-Men-Collection-2016-2017-Coming-Soon.png", "Store": 5, "StoreName": 'Kalkaram' },
+                        { "Top": 0, "Left": 0, "Width": 2, "Height": 5, "Img": "http://fashionsbizz.com/wp-content/uploads/2014/06/Charcoal-Summer-Jeans-Pants-and-Shirts-for-Smart-Men-2014-2.jpg", "Store": 6, "StoreName": 'Charcoal' },
+                        { "Top": 2, "Left": 4, "Width": 2, "Height": 3, "Img": "http://www.latestsummerfashion.com/wp-content/uploads/2015/12/Bonanza-Garments-Sweaters-Collection-2016-Women-Men-9.jpg", "Store": 7, "StoreName": 'Bonanza' },
+                        { "Top": 2, "Left": 2, "Width": 2, "Height": 3, "Img": "http://www.elleman.vn/wp-content/uploads/2016/11/02/cardigan-475x475.jpg", "Store": 8, "StoreName": 'Simwood' }
                     ]
                 },
                 {
                     "Name": 'Women Floor',
                     Coordinates: [
-                        { "Top": 0, "Left": 4, "Width": 2, "Height": 5, "Img": "http://www.styling.pk/wp-content/uploads/2017/02/Mausummery-Pre-Summer-Collection-2017-for-women.jpg", "Store": 1 },
-                        { "Top": 3, "Left": 0, "Width": 4, "Height": 2, "Img": "http://styloplanet.com/wp-content/uploads/2017/04/Borjan-Shoes-Latest-Summer-Collection-for-Women-2017-2018-3-1.png", "Store": 1 },
-                        { "Top": 0, "Left": 0, "Width": 2, "Height": 3, "Img": "http://3.bp.blogspot.com/-iCXOp3A-BH4/VXWGjdRKIBI/AAAAAAAAALg/uzN4MtS_CRI/s640/borjan-shoes.jpg", "Store": 1 },
-                        { "Top": 0, "Left": 2, "Width": 2, "Height": 3, "Img": "https://fashion360.pk/wp-content/uploads/2017/02/Baroque-Festive-Edition-Luxury-Chiffon-collection-2017-for-women-7.jpg", "Store": 1 }
+                        { "Top": 0, "Left": 4, "Width": 2, "Height": 5, "Img": "http://www.styling.pk/wp-content/uploads/2017/02/Mausummery-Pre-Summer-Collection-2017-for-women.jpg", "Store": 1, "StoreName": 'Spring' },
+                        { "Top": 3, "Left": 0, "Width": 4, "Height": 2, "Img": "http://styloplanet.com/wp-content/uploads/2017/04/Borjan-Shoes-Latest-Summer-Collection-for-Women-2017-2018-3-1.png", "Store": 2, "StoreName": 'The Fashion' },
+                        { "Top": 0, "Left": 0, "Width": 2, "Height": 3, "Img": "http://3.bp.blogspot.com/-iCXOp3A-BH4/VXWGjdRKIBI/AAAAAAAAALg/uzN4MtS_CRI/s640/borjan-shoes.jpg", "Store": 3, "StoreName": 'Borjan' },
+                        { "Top": 0, "Left": 2, "Width": 2, "Height": 3, "Img": "https://fashion360.pk/wp-content/uploads/2017/02/Baroque-Festive-Edition-Luxury-Chiffon-collection-2017-for-women-7.jpg", "Store": 4, "StoreName": 'Luxury Chiffon' }
                     ]
-
+                }
+            ]
+        },
+        {
+            "_id": 2,
+            "Title": 'Dubai International',
+            "floors": [
+                {
+                    "Name": 'Women Floor',
+                    Coordinates: [
+                        { "Top": 0, "Left": 4, "Width": 2, "Height": 5, "Img": "http://www.styling.pk/wp-content/uploads/2017/02/Mausummery-Pre-Summer-Collection-2017-for-women.jpg", "Store": 1 ,"StoreName":'Spring'},
+                        { "Top": 3, "Left": 0, "Width": 4, "Height": 2, "Img": "http://styloplanet.com/wp-content/uploads/2017/04/Borjan-Shoes-Latest-Summer-Collection-for-Women-2017-2018-3-1.png", "Store": 2, "StoreName": 'The Fashion' },
+                        { "Top": 0, "Left": 0, "Width": 2, "Height": 3, "Img": "http://3.bp.blogspot.com/-iCXOp3A-BH4/VXWGjdRKIBI/AAAAAAAAALg/uzN4MtS_CRI/s640/borjan-shoes.jpg", "Store": 3, "StoreName": 'Borjan' },
+                        { "Top": 0, "Left": 2, "Width": 2, "Height": 3, "Img": "https://fashion360.pk/wp-content/uploads/2017/02/Baroque-Festive-Edition-Luxury-Chiffon-collection-2017-for-women-7.jpg", "Store": 4, "StoreName": 'Luxury Chiffon' }
+                    ]
+                },
+                {
+                    "Name": 'Men Floor',
+                    Coordinates: [
+                        { "Top": 0, "Left": 2, "Width": 4, "Height": 2, "Img": "http://www.beststylo.com/wp-content/uploads/2014/08/Al-Karam-Eid-Luxurious-Latha-Men-Collection-2016-2017-Coming-Soon.png", "Store": 5, "StoreName": 'Kalkaram' },
+                        { "Top": 0, "Left": 0, "Width": 2, "Height": 5, "Img": "http://fashionsbizz.com/wp-content/uploads/2014/06/Charcoal-Summer-Jeans-Pants-and-Shirts-for-Smart-Men-2014-2.jpg", "Store": 6, "StoreName": 'Charcoal' },
+                        { "Top": 2, "Left": 4, "Width": 2, "Height": 3, "Img": "http://www.latestsummerfashion.com/wp-content/uploads/2015/12/Bonanza-Garments-Sweaters-Collection-2016-Women-Men-9.jpg", "Store": 7, "StoreName": 'Bonanza' },
+                        { "Top": 2, "Left": 2, "Width": 2, "Height": 3, "Img": "http://www.elleman.vn/wp-content/uploads/2016/11/02/cardigan-475x475.jpg", "Store": 8, "StoreName": 'Simwood' }
+                    ]
                 }
             ]
         }];
-        _scope.JsonFloor = JSON.stringify(expos[0].floors[0].Coordinates);
+
+        _scope.JsonFloor = JSON.stringify(expos);
         console.log(_scope.JsonFloor);
         _scope.expos = expos;
         res.render('pages/expo', _scope);

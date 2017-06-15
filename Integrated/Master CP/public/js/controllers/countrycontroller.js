@@ -2,23 +2,17 @@
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click()
     };
-    console.log(localStorage.getItem('CheckedCategoriesId'));
-    //console.log(localStorage.getItem('countryId'));
+
     $scope.countryId = localStorage.getItem('countryId');
     $scope.CheckedCategoriesId = JSON.parse(localStorage.getItem('CheckedCategories'));
     console.log($scope.CheckedCategoriesId);
 
     $scope.init = function (_categorieslst) {
         $scope.categories = JSON.parse(_categorieslst);
-        //console.log('entered');
         for (var i = 0; i < $scope.categories.length; i++) {
-            console.log($scope.categories[i]._id);
             for (var j = 0; j < $scope.CheckedCategoriesId.length; j++) {
-                //console.log('entered');
-                console.log($scope.CheckedCategoriesId[j]);
+                
                 if ($scope.categories[i]._id == $scope.CheckedCategoriesId[j]) {
-                    console.log($scope.categories[i]._id);
-                    console.log($scope.CheckedCategoriesId[j]);
                     $scope.categories[i].checked = true;
                 }
             }
@@ -57,7 +51,13 @@
                 $scope.loading = false;
             }
         });
-    }
+    };
+
+    $scope.signOut = function () {
+        window.location.href = '/eg/Home';
+        localStorage.clear();
+    };
+
 
 });
 function convertImgToBase64URL(event) {

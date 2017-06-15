@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li ng-click="signOut()" class="cursorPointer">
-                        <a href="/eg/Home">
+                        <a>
                             <i class="material-icons">person</i>
                             <p>Sign Out</p>
                         </a>
@@ -78,7 +78,6 @@
                                                 <th></th>
                                                 <th></th>
                                                 <th></th>
-
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -93,21 +92,21 @@
                                                 <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox" ng-model="featured" ng-checked="<%= store.Badges.Featured%>" ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
+                                                            <input type="checkbox"   ng-checked="<%= store.Badges.Featured %>" ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Featured</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
                                                 <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox" ng-model="hasFactory" ng-checked="<%= store.Badges.HasFactory %>"  ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
+                                                            <input type="checkbox" ng-checked="<%= store.Badges.HasFactory %>"  ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Has factory</span></span>
                                                         </label>
                                                     </div>
                                                 </td>
                                                 <td class="checkBoxWidth">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox" ng-model="verified" ng-checked="<%= store.Badges.Verified %>" ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Verified</span></span>
+                                                            <input type="checkbox"  ng-checked="<%= store.Badges.Verified %>" ng-disabled="true"><span class="checkbox-material"><span class="checkBoxSpan">Verified</span></span>
                                                         </label>
                                                     </div>
                                                 </td>

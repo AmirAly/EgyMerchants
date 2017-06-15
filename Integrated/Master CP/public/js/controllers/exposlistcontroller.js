@@ -30,7 +30,7 @@
     $scope.editExpo = function (_id) {
         localStorage.setItem('expoId', _id);
         window.location.href = '/eg/expo/' + _id;
-    }
+    };
 
     $scope.removeExpo = function (_id) {
         var req = {
@@ -48,7 +48,13 @@
                 console.log('Something went wrong');
             }
         });
-    }
+    };
+
+    $scope.signOut = function () {
+        window.location.href = '/eg/Home';
+        localStorage.clear();
+    };
+
 });
 function convertImgToBase64URL(event) {
     var filesSelected = document.getElementById("uploadItemImage").files;

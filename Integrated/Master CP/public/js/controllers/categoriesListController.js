@@ -48,7 +48,7 @@
             method: 'put',
             url: '/Category/Suspend',
             data: {
-                _id:_id
+                _id: _id
             }
         }
         API.execute(req).then(function (_res) {
@@ -59,5 +59,10 @@
                 console.log('err');
             }
         });
-    }
+    };
+
+    $scope.signOut = function () {
+        window.location.href = '/eg/Home';
+        localStorage.clear();
+    };
 });

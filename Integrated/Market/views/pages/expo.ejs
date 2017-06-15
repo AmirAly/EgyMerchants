@@ -7,7 +7,7 @@
 		<% if (expos.length > 0) { %>
             <% expos.forEach(function(expo){ %>
             <section  swinch-duration="1000" data-scroll
-                     class="secondExpo repeated-item" id="expo<%= expo._id %>" swinch-offset="0" >
+                     class="secondExpo repeated-item" id="expo<%= expo._id %>" swinch-offset="-50" >
                 <article>
                     <div class="expoData">
 					 
@@ -15,9 +15,9 @@
                             <div class="singleExpoView" id="expo<%= expo._id %>">
                                 <div class="container-fluid">
                                    
-									<div class="row" ng-init="loadArray(<%= JsonFloor %>)">
+									<div class="row" ng-init="loadArray(<%= expo._id %>, <%= JsonFloor %>)">
 
-									<div class="row imagesContainer" id="imagesContainer"></div>
+									<div class="row imagesContainer" id="imagesContainer<%= expo._id %>"></div>
 
                                     </div>
 
@@ -33,10 +33,10 @@
                                         </h6>
 										<div class="whiteLayerContainer whiteLayerContainer<%= expo._id %>">
 											<ul class="pagination-main clicked dvPageNumbers<%= expo._id %> " >
-												<li  onclick="selectPage('<%= expo._id %>',1)" class="btnChangePage page1 active"><a>1</a></li>
-												<li  onclick="selectPage('<%= expo._id %>',2)" class="btnChangePage page2"><a>2</a></li>
-												<li  onclick="selectPage('<%= expo._id %>',3)" class="btnChangePage page3"><a>3</a></li>
-												<li  onclick="selectPage('<%= expo._id %>',4)" class="btnChangePage page4"><a>4</a></li>
+												<li onclick="selectPage('<%= expo._id %>',1)" class="btnChangePage page1 active"><a>1</a></li>
+												<li onclick="selectPage('<%= expo._id %>',2)" class="btnChangePage page2"><a>2</a></li>
+												<li onclick="selectPage('<%= expo._id %>',3)" class="btnChangePage page3"><a>3</a></li>
+												<li onclick="selectPage('<%= expo._id %>',4)" class="btnChangePage page4"><a>4</a></li>
 											</ul>
 											<div class="whiteLayer"></div>
 										</div>
