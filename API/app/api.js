@@ -147,6 +147,13 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.get('/Country/GetById/:_id', function (req, res) {
+        CountryLogic.getById(req.params._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
 
    //category API calls
     api.post('/Category/Add', function (req, res) {
