@@ -34,7 +34,7 @@ module.exports = function (app) {
         expo.getAll().then(function (_expo) {
             if (_expo.code == 100) {
                 _scope.expolist = _expo.data;
-
+                console.log(_expo.data);
                 category.getAll().then(function (_category) {
                     if (_category.code == 100) {
                         _scope.categorieslst = _category.data;
@@ -58,6 +58,23 @@ module.exports = function (app) {
             console.log(_err);
             _scope.expolist = {};
             res.render('pages/exposlist', _scope);
+        });
+    });
+
+    app.get('/eg/floors/:expoid', function (req, res) {
+        var _scope = {};
+        store.getAll().then(function (_store) {
+            if (_store.code == 100) {
+                _scope.storeslst = _store.data;
+                res.render('pages/floors', _scope);
+            } else {
+                _scope.storeslst = [];
+                res.render('pages/floors', _scope);
+            }
+        }).catch(function (_err) {
+            console.log(_err);
+            _scope.storeslst = [];
+            res.render('pages/floors', _scope);
         });
     });
 

@@ -2,6 +2,10 @@
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click();
     };
+
+    $scope.floors = function (_id) {
+        window.location.href = '/eg/floors/'+_id;
+    }
     
     $scope.updateExpo = function (_id) {
         var req = {
