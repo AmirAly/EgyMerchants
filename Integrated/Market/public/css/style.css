@@ -1108,8 +1108,8 @@ h1, h2, h3, h4, h5, h6 {
             .storePage .pageBody .dvProductsBlock .dvItemContainer .img-responsive {
                 margin: auto;
                 width: auto;
-                min-height: 170px;
-                max-height: 170px;
+                min-height: 150px;
+                max-height: 150px;
             }
 
             .storePage .pageBody .dvProductsBlock .dvItemContainer .dvItemDescription {
@@ -1126,7 +1126,7 @@ h1, h2, h3, h4, h5, h6 {
                 }
 
                 .storePage .pageBody .dvProductsBlock .dvItemContainer .dvItemDescription h6 {
-                    padding: 10px 0;
+                    padding: 0;
                     font-size: 11px;
                 }
 
@@ -1616,6 +1616,32 @@ h1, h2, h3, h4, h5, h6 {
     .expoPage .singleExpoView.ng-hide-remove {
         display: block !important;
     }
+    /*new floor*/
+    .expoPage .col-sm-2 {
+            background: beige;
+            border: 1px dashed #cbcbcc;
+            text-align: center;
+            height: 100px;
+            padding: 40px;
+        }
+
+          .expoPage .busy {
+            background: #cbcbcc;
+        }
+
+        .expoPage  .active {
+            background: green;
+        }
+
+         .expoPage .imagesContainer {
+            background: #f3f3f1;
+            height: 100vh;
+            /*width: 100vw;*/
+            /*width: 1600px;*/
+            overflow: hidden;
+            position: relative;
+        }
+
 
 /*product page*/
 .cloudzoom-lens {
@@ -1896,7 +1922,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
     .pageSearch h2 a, .pageSearch h2 a:active, .pageSearch h2 a:focus, .pageSearch h2 a:hover, .pageSearch h2 a:visited {
-        color: #337ab7;
+        /*color: #337ab7;*/
+        color: #000;
         outline: 0;
         width: 100%;
         display: inline-block;

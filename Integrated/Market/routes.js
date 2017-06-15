@@ -14,38 +14,70 @@ module.exports = function (app) {
 
     // index page welcome + categories
     app.get('/Eg/Home', function (req, res) {
+        
         var _scope = {};
-        country.getById('593e5533ff9df41628e4693c').then(function (_data) {
-            if (_data.code == 100) {
-                console.log(_data.data);
-                _scope.categoriesData = _data.data;
+
+        //country.getById('593e5533ff9df41628e4693c').then(function (_data) {
+        //    if (_data.code == 100) {
+        //        console.log(_data.data);
+        //        _scope.categoriesData = _data.data;
                 res.render('pages/landing', _scope);
-            }
-            else {
-                _scope.categoriesData = [];
-                res.render('pages/landing', _scope);
-            }
-        }
-        ).catch(function (_err) {
-            console.log(_err);
-            _scope.categoriesData = [];
-            res.render('pages/landing', _scope);
-        });
+        //    }
+        //    else {
+        //        _scope.categoriesData = [];
+        //        res.render('pages/landing', _scope);
+        //    }
+        //}
+        //).catch(function (_err) {
+        //    console.log(_err);
+        //    _scope.categoriesData = [];
+        //    res.render('pages/landing', _scope);
+        //});
 
     });
 
     // expo page expos
     app.get('/Eg/Expos/:catId', function (req, res) {
         var _scope = {};
-        expo.getByCategory(req.params.catId).then(function (_data) {
-            _scope.expos = _data;
-            console.log(_data);
-            res.render('pages/expo', _scope);
-        }).catch(function (_err) {
-            console.log(_err);
-            _scope.expos = [];
-            res.render('pages/expo', _scope);
-        });
+        var expos = [{
+            "_id": 1,
+            "Title": 'Le Marchee',
+            "floors": [
+                {
+                    "Name": 'Men Floor',
+                    Coordinates: [
+                        { "Top": 0, "Left": 2, "Width": 4, "Height": 2, "Img": "http://www.beststylo.com/wp-content/uploads/2014/08/Al-Karam-Eid-Luxurious-Latha-Men-Collection-2016-2017-Coming-Soon.png", "Store": 1 },
+                        { "Top": 0, "Left": 0, "Width": 2, "Height": 5, "Img": "http://fashionsbizz.com/wp-content/uploads/2014/06/Charcoal-Summer-Jeans-Pants-and-Shirts-for-Smart-Men-2014-2.jpg", "Store": 1 },
+                        { "Top": 2, "Left": 4, "Width": 2, "Height": 3, "Img": "http://www.latestsummerfashion.com/wp-content/uploads/2015/12/Bonanza-Garments-Sweaters-Collection-2016-Women-Men-9.jpg", "Store": 1 },
+                        { "Top": 2, "Left": 2, "Width": 2, "Height": 3, "Img": "http://www.elleman.vn/wp-content/uploads/2016/11/02/cardigan-475x475.jpg", "Store": 1 }
+                    ]
+                },
+                {
+                    "Name": 'Women Floor',
+                    Coordinates: [
+                        { "Top": 0, "Left": 4, "Width": 2, "Height": 5, "Img": "http://www.styling.pk/wp-content/uploads/2017/02/Mausummery-Pre-Summer-Collection-2017-for-women.jpg", "Store": 1 },
+                        { "Top": 3, "Left": 0, "Width": 4, "Height": 2, "Img": "http://styloplanet.com/wp-content/uploads/2017/04/Borjan-Shoes-Latest-Summer-Collection-for-Women-2017-2018-3-1.png", "Store": 1 },
+                        { "Top": 0, "Left": 0, "Width": 2, "Height": 3, "Img": "http://3.bp.blogspot.com/-iCXOp3A-BH4/VXWGjdRKIBI/AAAAAAAAALg/uzN4MtS_CRI/s640/borjan-shoes.jpg", "Store": 1 },
+                        { "Top": 0, "Left": 2, "Width": 2, "Height": 3, "Img": "https://fashion360.pk/wp-content/uploads/2017/02/Baroque-Festive-Edition-Luxury-Chiffon-collection-2017-for-women-7.jpg", "Store": 1 }
+                    ]
+
+                }
+            ]
+        }];
+        _scope.JsonFloor = JSON.stringify(expos[0].floors[0].Coordinates);
+        console.log(_scope.JsonFloor);
+        _scope.expos = expos;
+        res.render('pages/expo', _scope);
+        //var _scope = {};
+        //expo.getByCategory(req.params.catId).then(function (_data) {
+        //    _scope.expos = _data;
+        //    console.log(_data);
+        //    res.render('pages/expo', _scope);
+        //}).catch(function (_err) {
+        //    console.log(_err);
+        //    _scope.expos = [];
+        //    res.render('pages/expo', _scope);
+        //});
 
     });
 

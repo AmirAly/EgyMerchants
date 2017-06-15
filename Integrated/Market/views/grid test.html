@@ -16,18 +16,21 @@
             height: 100px;
             padding: 40px;
         }
+
         .busy {
             background: #cbcbcc;
         }
+
         .active {
             background: green;
         }
+
         .imagesContainer {
             background: #f3f3f1;
             height: 100vh;
             /*width: 100vw;*/
             /*width: 1600px;*/
-            overflow:hidden;
+            overflow: hidden;
             position: relative;
         }
     </style>
@@ -36,10 +39,10 @@
 
     <div class="row">
         <div class="col-sm-2 text-center"
-             ng-repeat="section in floor track by section.sectionId"
+             ng-repeat="section in floor.sections track by section.sectionId"
              id="active{{section.sectionId}}"
-             ng-init="this['active'+this.section.sectionId] = false;section.status = false"
-             ng-click="this['active'+this.section.sectionId] =! this['active'+this.section.sectionId] ; section.status =! section.status;"
+             ng-init="this['active'+this.section.sectionId] = false;section.isBusy = false"
+             ng-click="this['active'+this.section.sectionId] =! this['active'+this.section.sectionId] ; section.isBusy =! section.isBusy;"
              ng-class="{'active': this['active'+this.section.sectionId]}">
             <div>{{section.data}}</div>
         </div>
@@ -50,7 +53,7 @@
     <br /><hr /><br />
 
 
-    <button ng-click="loadArray()">Load in Grid</button>
+    <button ng-click="loadArray()">Load in Grid</button>  {{coordinates}}
     <br />
 
     <div class="row imagesContainer" id="imagesContainer">
@@ -61,47 +64,53 @@
     <script>
         angular.module('app', [])
         .controller('TestController', function ($scope, $filter) {
-            $scope.floor = [
-                { sectionId: 1, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "1", data: '1x1' },
-                { sectionId: 2, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "2", data: '1x2' },
-                { sectionId: 3, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "3", data: '1x3' },
-                { sectionId: 4, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "4", data: '1x4' },
-                { sectionId: 5, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "5", data: '1x5' },
-                { sectionId: 6, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "6", data: '1x6' },
+            $scope.floor = {
+                "sections": [
+                                { sectionId: 1, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "1", data: '1x1', isBusy: false },
+                                { sectionId: 2, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "2", data: '1x2', isBusy: false },
+                                { sectionId: 3, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "3", data: '1x3', isBusy: false },
+                                { sectionId: 4, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "4", data: '1x4', isBusy: false },
+                                { sectionId: 5, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "5", data: '1x5', isBusy: false },
+                                { sectionId: 6, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "6", data: '1x6', isBusy: false },
 
-                { sectionId: 7, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "1", data: '2x1' },
-                { sectionId: 8, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "2", data: '2x2' },
-                { sectionId: 9, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "3", data: '2x3' },
-                { sectionId: 10, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "4", data: '2x4' },
-                { sectionId: 11, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "5", data: '2x5' },
-                { sectionId: 12, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "6", data: '2x6' },
+                                { sectionId: 7, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "1", data: '2x1', isBusy: false },
+                                { sectionId: 8, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "2", data: '2x2', isBusy: false },
+                                { sectionId: 9, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "3", data: '2x3', isBusy: false },
+                                { sectionId: 10, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "4", data: '2x4', isBusy: false },
+                                { sectionId: 11, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "5", data: '2x5', isBusy: false },
+                                { sectionId: 12, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "6", data: '2x6', isBusy: false },
 
-                { sectionId: 13, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "1", data: '3x1' },
-                { sectionId: 14, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "2", data: '3x2' },
-                { sectionId: 15, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "3", data: '3x3' },
-                { sectionId: 16, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "4", data: '3x4' },
-                { sectionId: 17, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "5", data: '3x5' },
-                { sectionId: 18, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "6", data: '3x6' },
+                                { sectionId: 13, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "1", data: '3x1', isBusy: false },
+                                { sectionId: 14, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "2", data: '3x2', isBusy: false },
+                                { sectionId: 15, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "3", data: '3x3', isBusy: false },
+                                { sectionId: 16, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "4", data: '3x4', isBusy: false },
+                                { sectionId: 17, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "5", data: '3x5', isBusy: false },
+                                { sectionId: 18, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "6", data: '3x6', isBusy: false },
 
-                { sectionId: 19, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "1", data: '4x1' },
-                { sectionId: 20, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "2", data: '4x2' },
-                { sectionId: 21, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "3", data: '4x3' },
-                { sectionId: 22, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "4", data: '4x4' },
-                { sectionId: 23, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "5", data: '4x5' },
-                { sectionId: 24, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "6", data: '4x6' },
+                                { sectionId: 19, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "1", data: '4x1', isBusy: false },
+                                { sectionId: 20, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "2", data: '4x2', isBusy: false },
+                                { sectionId: 21, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "3", data: '4x3', isBusy: false },
+                                { sectionId: 22, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "4", data: '4x4', isBusy: false },
+                                { sectionId: 23, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "5", data: '4x5', isBusy: false },
+                                { sectionId: 24, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "6", data: '4x6', isBusy: false },
 
-                { sectionId: 25, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "1", data: '5x1' },
-                { sectionId: 26, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "2", data: '5x2' },
-                { sectionId: 27, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "3", data: '5x3' },
-                { sectionId: 28, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "4", data: '5x4' },
-                { sectionId: 29, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "5", data: '5x5' },
-                { sectionId: 30, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "6", data: '5x6' },
-            ];
+                                { sectionId: 25, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "1", data: '5x1', isBusy: false },
+                                { sectionId: 26, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "2", data: '5x2', isBusy: false },
+                                { sectionId: 27, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "3", data: '5x3', isBusy: false },
+                                { sectionId: 28, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "4", data: '5x4', isBusy: false },
+                                { sectionId: 29, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "5", data: '5x5', isBusy: false },
+                                { sectionId: 30, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "6", data: '5x6', isBusy: false },
+                ],
+                "coordinatesArray": [{}],
+                "Name": "first floor"
+            }
+
+
             $scope.coordinates = [];
             $scope.getSelected = function () {
                 $scope.oneStoreCoordinates = {};
-                // filter array by status to get selected sections
-                $scope.selectedSections = $filter('filter')($scope.floor, { status: true });
+                // filter array by isBusy status to get selected sections
+                $scope.selectedSections = $filter('filter')($scope.floor.sections, { isBusy: true });
                 console.log($scope.selectedSections);
                 // get lowest & highest values
                 // width
@@ -163,19 +172,19 @@
                     Width: sectionWidth,
                     Height: sectionHeight,
                     Img: $scope.imgLink,
-                    StoreId: 1
+                    Store: 1
                 };
                 $scope.coordinates.push($scope.oneStoreCoordinates);
                 $scope.imgLink = '';
                 //add class busy
                 $('.active').addClass('busy').removeClass('active');
-                // clear array from active status
-                for (var i = 0; i < $scope.floor.length; i++) {
-                    if ($scope.floor[i].status != false) {
-                        $scope.floor[i].status = false;
-                        $scope.floor[i].data = '';
+                // clear array from active , isBusy status
+                for (var i = 0; i < $scope.floor.sections.length; i++) {
+                    if ($scope.floor.sections[i].isBusy != false) {
+                        $scope.floor.sections[i].isBusy = false;
+                        $scope.floor.sections[i].data = '';
                     }
-                    
+
                 }
 
             }
@@ -207,7 +216,7 @@
             //$scope.selectSection = function (_section) {
             //    console.log(_section);
             //    if (_section.data != "") {
-            //        _section.status = !_section.status;
+            //        _section.isBusy = !_section.isBusy;
             //        $scope['active' + _section.sectionId] = !$scope['active' + _section.sectionId];
             //        console.log($scope['active' + _section.sectionId]);
             //    }

@@ -2,12 +2,38 @@
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click()
     };
-
-    console.log(localStorage.getItem('countryId'));
+    console.log(localStorage.getItem('CheckedCategoriesId'));
+    //console.log(localStorage.getItem('countryId'));
     $scope.countryId = localStorage.getItem('countryId');
+    $scope.CheckedCategoriesId = JSON.parse(localStorage.getItem('CheckedCategories'));
+    console.log($scope.CheckedCategoriesId);
 
+    $scope.init = function (_categorieslst) {
+        $scope.categories = JSON.parse(_categorieslst);
+        //console.log('entered');
+        for (var i = 0; i < $scope.categories.length; i++) {
+            console.log($scope.categories[i]._id);
+            for (var j = 0; j < $scope.CheckedCategoriesId.length; j++) {
+                //console.log('entered');
+                console.log($scope.CheckedCategoriesId[j]);
+                if ($scope.categories[i]._id == $scope.CheckedCategoriesId[j]) {
+                    console.log($scope.categories[i]._id);
+                    console.log($scope.CheckedCategoriesId[j]);
+                    $scope.categories[i].checked = true;
+                }
+            }
+        }
+    };
+    
+    var checkboxesChecked = [];
     $scope.updateCountry = function () {
         $scope.loading = true;
+        for (var i = 0; i < $scope.categories.length; i++) {
+            if ($scope.categories[i].checked) {
+                JSON.parse(checkboxesChecked.push($scope.categories[i]._id));
+            }
+        }
+        console.log(checkboxesChecked);
         var req = {
             method: 'put',
             url: '/Country/Edit',
@@ -17,7 +43,8 @@
                 IsoCode: $scope.country.IsoCode,
                 Flag: $('#imgItem').attr('src'),
                 WelcomeMsg: $scope.country.WelcomeMsg,
-                Status: "Active"
+                Status: "Active",
+                Categories: checkboxesChecked
             }
         }
         API.execute(req).then(function (_res) {

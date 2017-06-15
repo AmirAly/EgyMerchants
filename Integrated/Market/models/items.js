@@ -12,7 +12,9 @@ module.exports = {
                     });
                 else {
                     if (lst.length > 0) {
-                        underscore.filter(lst, function (item) { if (item.Gallery.Store == _storeId) finalLst.push(item); })
+                        underscore.filter(lst, function (item) {
+                            if (item.Gallery.Store == _storeId) finalLst.push(item);
+                        })
                         resolve({
                             code: 100,
                             data: finalLst

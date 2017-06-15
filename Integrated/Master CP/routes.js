@@ -112,10 +112,11 @@ module.exports = function (app) {
         country.getAll().then(function (_country) {
             if (_country.code == 100) {
                 _scope.countrieslst = _country.data;
-                
+                _scope.countrieslstJSON = JSON.stringify(_country.data);
                 category.getAll().then(function (_category) {
                     if (_category.code == 100) {
                         _scope.categorieslst = _category.data;
+                        _scope.categorieslstJSON = JSON.stringify(_category.data);
                         res.render('pages/countrieslist', _scope);
                     } else {
                         _scope.categorieslst = {};
@@ -143,7 +144,21 @@ module.exports = function (app) {
         country.getById(req.params.countryId).then(function (_country) {
             if (_country.code == 100) {
                 _scope.country = _country.data;
-                res.render('pages/country', _scope);
+                category.getAll().then(function (_category) {
+                    if (_category.code == 100) {
+                        _scope.categorieslst = _category.data;
+                        _scope.categorieslstJSON = JSON.stringify(_category.data);
+                        res.render('pages/country', _scope);
+                    } else {
+                        _scope.categorieslst = {};
+                        res.render('pages/country', _scope);
+                    }
+                }).catch(function (_err) {
+                    console.log(_err);
+                    _scope.categorieslst = {};
+                    res.render('pages/country', _scope);
+                });
+
             } else {
                 _scope.country = {};
                 res.render('pages/country', _scope);
