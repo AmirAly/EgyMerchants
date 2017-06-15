@@ -86,8 +86,8 @@ var newstore = new userschema({ "Email": "mynewmail12@gmail.com", "Password": "n
 //}, function (err) {
 //    console.log(err);
 //});
-//"new","masterexpo/newgod","new","egypt"
-store.search("", "", "new", "").then(function (result) {
+//"new","masterexpo/newgod/test2","new","egypt"
+store.search("", "mastewr", "", "").then(function (result) {
     console.log(result);
 }, function (err) {
     console.log(err);
@@ -153,18 +153,18 @@ var newcountry = new countryschema({ "Name": "U.S.A", "WelcomeMsg": "welcome in 
 //}, function (err) {
 //    console.log(err);
 //});
-var newexpo = new exposchema({ "Title": "newgodexpo", "Banner": "bnner", "Category": "59143976a6adb01098ef50b8" });
+var newexpo = new exposchema({ "Title": "new master", "Banner": "bnner", "Category": "59143976a6adb01098ef50b8" });
 //expo.add(newexpo).then(function (result) {
 //    console.log(result); 
 //}, function(err) {
 //    console.log(err); 
 //});
-//expo.getById("5937c322687959c415d4b715").then(function (result) {
-//    console.log(result);
+//expo.getById("59412db17237639c0349bbb8").then(function (result) {
+//    console.log(result.data.Floors);
 //}, function (err) {
 //    console.log(err);
 //});
-//expo.setFloor("593d09ed43aeb8e8157f181d", { "Name": "the lastflooradded", "Stores": [{ "Store": "593e4af011b740e8163beb2d", "Width": "1", "High": "2", "Position": "3", "Img": "img" }] }).then(function (result) {
+//expo.setFloor("59413435f9989b6412a3e100", { "Name": "testcoordinates2", "Coordinates": [{ "Store": "593e4af011b740e8163beb2d"}] }).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -180,20 +180,19 @@ var newexpo = new exposchema({ "Title": "newgodexpo", "Banner": "bnner", "Catego
 //}, function (err) {
 //    console.log(err);
 //});
-
-//expo.suspend("5936b0501fc9883c1193f7fa").then(function (result) {
+//expo.suspend("594131a74fd79b0c088b13d2").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
 //expo.getByCategory("59143976a6adb01098ef50b8").then(function (result) {
-//    console.log(result);
+//    console.log(result.data[0].Floors[0].Coordinates[0].Store);
 //}, function (err) {
 //    console.log(err);
 //});
-//expo.getStores("593d09ed43aeb8e8157f181d").then(function (result) {
-//    console.log(result.data.Floors[1].Stores[0].Store);
+//expo.getStores("59413435f9989b6412a3e100").then(function (result) {
+//    console.log(result.data.Floors[0].Coordinates[0].Store);
 //}, function (err) {
 //    console.log(err);
 //});

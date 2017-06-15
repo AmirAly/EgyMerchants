@@ -204,9 +204,9 @@ module.exports = {
     },
     search: function (_store, _expo, _keyWord, _country) {
         var finalList = [],
-            storesList=[],
+            storesList = [],
+            result=[],
             expoList = [];
-        itemsList = [];
         var underscore = require("underscore");
         return new Promise(function (resolve, reject) {
             var filter = { 'Country': { "$regex": _country, "$options": "i" }, 'Status': 'Active', 'Type': 'store' };
@@ -226,7 +226,7 @@ module.exports = {
                         storesList = storesList.concat(lst);
                         //console.log(storesList);
                     }
-                    Expo.find(expoFilter, 'Floors Title Banner').populate('Floors.Stores.Store', '_id Name ProfilePicture Description Address Status Type').exec(function (err, lst) {
+                    Expo.find(expoFilter, 'Floors Title Banner').populate('Floors.Coordinates.Store', '_id Name ProfilePicture Description Address Status Type').exec(function (err, lst) {
                         if (err)
                             reject({
                                 code: 1,
@@ -243,7 +243,7 @@ module.exports = {
                                     }
                                     underscore.each(lst, function (expo) {
                                         underscore.each(expo.Floors, function (floor) {
-                                            underscore.each(floor.Stores, function (store) {
+                                            underscore.each(floor.Coordinates, function (store) {
                                                 if (store.Store.Status == "Active") {
                                                     storesList.push(store.Store);
                                                 }
@@ -255,16 +255,16 @@ module.exports = {
                                     return (x._id).toString();
                                 });
                                 storesList = destinctArray;
-                                //console.log(storesList);
-                                //console.log(expoList);
+                                console.log(storesList);
+                                console.log(expoList);
                                 if (_store != "") {
                                     underscore.filter(storesList, function (store) {
-                                        if (store.Type == "store") {
+                                       // if (store.Type == "store") {
                                            // console.log(store.Name+store.Name.indexOf(_store));
                                             if ((store.Name.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Address.indexOf(_store) !== -1)) {
                                                 finalList.push(store);
                                             }
-                                        }
+                                       // }
                                     })
                                     //console.log(finalList);
                                     //console.log(expoList);
@@ -287,23 +287,46 @@ module.exports = {
                                                         });
                                                     else {
                                                         if (itemLst.length > 0) {
-                                                            console.log("push");
+                                                            //console.log("push");
                                                             underscore.each(itemLst,function(item){
                                                                 finalList.push({ "_id": item._id, "Name": item.Name, "Pictures": item.Pictures, "Type": "item" });
                                                             })
                                                         }
-                                                        console.log(finalList);
+                                                        //console.log(finalList);
                                                     }
                                                 })
                                             }
                                     })
+                                    //console.log(finalList);
                                 }
-                                
+                              
                             }
                         }
                     })
                 }
             })
         })
+        ////after we get the finallist
+        //if ((_store !== "" && _keyWord !== "") || _keyWord !== "")
+    //    {underscore.uniq(finalList, function (x) {
+    //    return (x._id).toString();
+    //}); 
+    //   result = finalList }
+        //else if (_store !== "") {
+        //    if (_expo !== "") {
+        //        result = finalList.concat(expoList)
+        //    }
+        //    res = finalList
+        //}
+        //else {
+        //    if (_expo !== "") result = storesList.concat(expoList);
+        //    result = storesList;
+        //}
+        ////after we get final result
+        //if (result.length > 0) {
+        //    underscore.groupBy(result, 'Type');
+        //    resolve({ code: 100, data: res });
+        //}
+        //else { reject({ code: 21, data: "This filteration didn't result in any data" }) }
     },
 }
