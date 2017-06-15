@@ -7,7 +7,7 @@
 		<% if (expos.length > 0) { %>
             <% expos.forEach(function(expo){ %>
             <section  swinch-duration="1000" data-scroll
-                     class="secondExpo repeated-item" id="expo<%= expo._id %>" swinch-offset="0" >
+                     class="secondExpo repeated-item" id="expo<%= expo._id %>" swinch-offset="-50" >
                 <article>
                     <div class="expoData">
 					 
@@ -15,9 +15,9 @@
                             <div class="singleExpoView" id="expo<%= expo._id %>">
                                 <div class="container-fluid">
                                    
-									<div class="row" ng-init="loadArray(<%= JsonFloor %>)">
+									<div class="row" ng-init="loadArray(<%= expo._id %>, <%= JsonFloor %>)">
 
-									<div class="row imagesContainer" id="imagesContainer"></div>
+									<div class="row imagesContainer" id="imagesContainer<%= expo._id %>"></div>
 
                                     </div>
 
