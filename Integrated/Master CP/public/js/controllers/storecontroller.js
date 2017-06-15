@@ -5,10 +5,9 @@
         $scope.storeId = _id;
         $scope.storeName = store;
         if (Verified == 'true')
-            $scope.verified = true;
-        else
+            $scope.verified = true;            
+        else 
             $scope.verified = false;
-
         if (HasFactory == 'true')
             $scope.hasFactory = true;
         else

@@ -87,11 +87,11 @@ var newstore = new userschema({ "Email": "mynewmail12@gmail.com", "Password": "n
 //    console.log(err);
 //});
 //"new","masterexpo/newgod/test2","new","egypt"
-store.search("", "", "new", "").then(function (result) {
-    console.log(result);
-}, function (err) {
-    console.log(err);
-});
+//store.search("", "", "new", "").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 var newmaster = new userschema({ "Email": "newmaster@gmail.com", "Password": "123456", "Name": "anisa"});
 //master.register(newmaster).then(function (result) {
 //    console.log(result); 

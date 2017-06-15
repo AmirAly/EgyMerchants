@@ -18,6 +18,11 @@ var Item = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Gallery',
         required: "Please add gallery id"
+    },
+    Store: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: "Please add store id"
     }
 
 });

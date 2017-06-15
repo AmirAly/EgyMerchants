@@ -147,6 +147,13 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.get('/Country/GetById/:_id', function (req, res) {
+        CountryLogic.getById(req.params._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
 
    //category API calls
     api.post('/Category/Add', function (req, res) {
@@ -219,6 +226,13 @@ module.exports = function (app, express) {
     })
     api.put('/Expo/Edit', function (req, res) {
         ExpoLogic.edit(req.body._id, req.body.Title,req.body.Banner,req.body.Category,req.body.Floors).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Expo/SetFloor', function (req, res) {
+        ExpoLogic.setFloor(req.body._id,req.body.Floor).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
