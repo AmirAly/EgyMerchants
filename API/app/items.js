@@ -1,25 +1,19 @@
 var Schema = require('./models/item');
 module.exports = {
     getFeatured: function (_storeId) {
-        var underscore = require("underscore");
-        var finalLst=[];
         return new Promise(function (resolve, reject) {
-            Schema.find({ "Badges": { "$regex": "#Featured", "$options": "i" }, 'Status': 'Active' }, '_id Name Rate Pictures Price Gallery').populate('Gallery','Store').exec(function (err, lst) {
+            Schema.find({ 'Store': _storeId, "Badges": { "$regex": "#Featured", "$options": "i" }, 'Status': 'Active' }, '_id Name Rate Pictures Price', function (err, lst) {
                 if (err)
                     reject({
                         code: 1,
                         data: err
                     });
                 else {
-                    if (lst.length > 0) {
-                        underscore.filter(lst, function (item) {
-                            if (item.Gallery.Store == _storeId) finalLst.push(item);
-                        })
+                    if (lst.length > 0)
                         resolve({
                             code: 100,
-                            data: finalLst
+                            data: lst
                         });
-                    }
                     else {
                         reject({
                             code: 21,
@@ -32,23 +26,18 @@ module.exports = {
     },
     getByBestSeller: function (_storeId) {
         return new Promise(function (resolve, reject) {
-            var underscore = require("underscore");
-            var finalLst = [];
-            Schema.find({ 'Status': 'Active' }, '_id Name Rate Pictures Price Gallery').populate('Gallery', 'Store').exec(function (err, lst) {
+            Schema.find({ 'Store': _storeId, 'Status': 'Active' }, '_id Name Rate Pictures Price', function (err, lst) {
                 if (err)
                     reject({
                         code: 1,
                         data: err
                     });
                 else {
-                    if (lst.length > 0) {
-                        underscore.filter(lst, function (item) { if (item.Gallery.Store == _storeId) finalLst.push(item); });
-                        underscore.sortBy(finalLst, 'Sold');
+                    if (lst.length > 0)
                         resolve({
                             code: 100,
-                            data: finalLst
+                            data: lst
                         });
-                    }
                     else {
                         reject({
                             code: 21,
@@ -56,7 +45,7 @@ module.exports = {
                         });
                     }
                 }
-            })
+            }).sort('-Sold').limit(5);
         })
     },
     getById: function (_id) {

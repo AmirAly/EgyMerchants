@@ -43,4 +43,10 @@
         });
     };
 
+    $scope.signOut = function () {
+        window.location.href = '/eg/Home';
+        localStorage.clear();
+    };
+
+
 });

@@ -3,9 +3,6 @@
     $scope.loginData.Email = '';
     $scope.loginData.Password = '';
 
-    //$scope.login = function () {
-    //    window.location.href = '/eg/store';
-    //};
     $scope.login = function () {
         $scope.loading = true;
         var req = {
@@ -15,10 +12,9 @@
         }
         API.execute(req).then(function (res) {
             if (res.data.code == 100) {
-                //$rootScope.storeId = res.data.data._id;
-                //localStorage.setItem('StoreId', res.data.data._id);
-                window.location.href = '/eg/store';
                 console.log(res);
+                window.location.href = '/eg/store';
+                localStorage.setItem('storeId', res.data._id);
             } else {
                 $scope.errMsg = true;
                 $scope.errdiv = true;
