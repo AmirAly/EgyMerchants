@@ -45,7 +45,7 @@ module.exports = {
                     if (expo) {
                         resolve({
                             code: 100,
-                            data: "This floor added successfully"
+                            data:"This floor added successfully"
                         })
                     }
                     else
@@ -136,7 +136,7 @@ module.exports = {
     getByCategory: function (_categoryId) {
         var finalLst = [];
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Category': _categoryId, 'Status': 'Active' }, '_id Title Banner Floors').populate('Floors.Stores.Store','_id Name Type Badges').exec(function (err, lst) {
+            Schema.find({ 'Category': _categoryId, 'Status': 'Active' }, '_id Title Banner Floors').populate('Floors.Coordinates.Store', '_id Name Type Badges').exec(function (err, lst) {
                 if (err)
                     reject({
                         code: 1,
@@ -158,7 +158,7 @@ module.exports = {
     },
     getStores: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id, 'Status': 'Active' }).populate( 'Floors.Stores.Store','_id Name Type Badges').exec(function (err, Obj) {
+            Schema.findOne({ '_id': _id, 'Status': 'Active' }).populate('Floors.Coordinates.Store', '_id Name Type Badges').exec(function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -186,7 +186,7 @@ module.exports = {
                 }
             })
         })
-    },
+    },//edit on floors
     suspend: function (_id) {
         return new Promise(function (resolve, reject) {
             Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "Suspended" } }, { new: true }, function (err, Obj) {
@@ -201,9 +201,9 @@ module.exports = {
             })
         })
     },
-    getById: function (_id) {
+    getById: function (_id) { 
         return new Promise(function (resolve, reject) {
-            Schema.findOne({'_id':_id, 'Status': 'Active' }, 'Title Banner Category').populate('Category', '_id Name').exec(function (err, Obj) {
+            Schema.findOne({'_id':_id, 'Status': 'Active' }, '').populate('Category', '_id Name').exec(function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
