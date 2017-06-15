@@ -11,7 +11,7 @@
 
     var checkboxesChecked = [];
     $scope.addCountry = function (optionsCheckboxes) {
-        //$scope.loading = true;
+        $scope.loading = true;
         console.log('entered');
         for (var i = 0; i < $scope.categories.length; i++) {
             if ($scope.categories[i].checked) {
@@ -53,7 +53,7 @@
        window.location.href = '/eg/country/' + _id;
         console.log(_id);
         console.log(categories);
-        localStorage.setItem('CheckedCategories', JSON.parse(categories));
+        localStorage.setItem('CheckedCategories', JSON.stringify(categories));
         localStorage.setItem('countryId', _id);
     };
 

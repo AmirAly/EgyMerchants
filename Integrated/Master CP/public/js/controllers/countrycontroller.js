@@ -2,10 +2,11 @@
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click()
     };
-    //console.log(localStorage.getItem('CheckedCategories'));
+    console.log(localStorage.getItem('CheckedCategoriesId'));
     //console.log(localStorage.getItem('countryId'));
     $scope.countryId = localStorage.getItem('countryId');
-    $scope.CheckedCategoriesId = localStorage.getItem('CheckedCategories');
+    $scope.CheckedCategoriesId = JSON.parse(localStorage.getItem('CheckedCategories'));
+    console.log($scope.CheckedCategoriesId);
 
     $scope.init = function (_categorieslst) {
         $scope.categories = JSON.parse(_categorieslst);
@@ -18,17 +19,21 @@
                 if ($scope.categories[i]._id == $scope.CheckedCategoriesId[j]) {
                     console.log($scope.categories[i]._id);
                     console.log($scope.CheckedCategoriesId[j]);
-                    $scope.category[i].checked = true;
+                    $scope.categories[i].checked = true;
                 }
             }
         }
     };
     
-    
-
-
+    var checkboxesChecked = [];
     $scope.updateCountry = function () {
         $scope.loading = true;
+        for (var i = 0; i < $scope.categories.length; i++) {
+            if ($scope.categories[i].checked) {
+                JSON.parse(checkboxesChecked.push($scope.categories[i]._id));
+            }
+        }
+        console.log(checkboxesChecked);
         var req = {
             method: 'put',
             url: '/Country/Edit',
@@ -38,7 +43,8 @@
                 IsoCode: $scope.country.IsoCode,
                 Flag: $('#imgItem').attr('src'),
                 WelcomeMsg: $scope.country.WelcomeMsg,
-                Status: "Active"
+                Status: "Active",
+                Categories: checkboxesChecked
             }
         }
         API.execute(req).then(function (_res) {
