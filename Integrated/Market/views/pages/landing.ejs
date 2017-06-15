@@ -32,25 +32,29 @@
                 <p class="wow slideInUp" data-wow-duration="2s"><%= categoriesData.WelcomeMsg %></p>
 				
 				<% if (categoriesData.Categories.length > 0) { %>
-			<% categoriesData.Categories.forEach(function(cat){ %>
-				<div class="wow bounceInRight txtCategoryContainer" data-wow-duration="2s">
-                    <a href="/Eg/Expos/<%= cat._id %>"><%= cat.Name %></a>
-                </div>
-			<% }); %>
+					<% categoriesData.Categories.forEach(function(cat){ %>
+						<div class="wow bounceInRight txtCategoryContainer" data-wow-duration="2s">
+							<a href="/Eg/Expos/<%= cat._id %>"><%= cat.Name %></a>
+						</div>
+					<% }); %>
 				<% } else { %>
-			 <p class="txtNoData"> No Data Available </p>
-			 <% } %>
-        </div>
+					 <p class="txtNoData"> No Data Available </p>
+			    <% } %>
+           </div>
         <div class="col-sm-1 small">
             <div class="dropdown">
+			<% if (allCountries.length > 0) { %>
               <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <img class="pin" src="/images/egypt.png"/> <span class="caret"></span>
+                <img class="pin" src="<%= allCountries[0].Flag %>"/> <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-			      <li><a href="#"><img src="/images/egypt.png"/> </a></li>
-                  <li><a href="#"><img src="/images/Saudi-Arabia.png"/> </a></li>
-                  <li><a href="#"><img src="/images/Jordan.png"/> </a></li>
+					<% allCountries.forEach(function(country){ %>
+						<li><a href="#"><img src="<%= country.Flag %>"/> </a></li>
+					<% }); %>
               </ul>
+			 <% } else { %>
+				 <p class="txtNoData"> No Categories Available </p>
+			 <% } %>
             </div>  
         </div>
     </div>

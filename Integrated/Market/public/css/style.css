@@ -700,6 +700,7 @@ h1, h2, h3, h4, h5, h6 {
     background-image: url(../images/2.jpg);
     min-height: 100vh;
     background-size: cover;
+    overflow: auto;
 }
 
     .pageLanding .container-fluid .big {
@@ -764,9 +765,11 @@ h1, h2, h3, h4, h5, h6 {
 
         .pageLanding .container-fluid ul a {
             padding-left: 10px;
-    color: #999;
-    font-size: 12px;
-    font-weight: normal;
+            padding-right: 10px;
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            font-weight: normal;
         }
 
     .pageLanding .container-fluid .dropdown-menu > li > a:focus,
@@ -1212,34 +1215,38 @@ h1, h2, h3, h4, h5, h6 {
     transition: background-color .3s ease;
 }
 
-.expoPage .noGutter .image-hover {
+.expoPage .image-hover {
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
 }
 
-.expoPage .image-hover i[class*=icon-] {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -16px 0 0 -12px;
-    font-size: 18px;
-    /* line-height: 24px; */
-    overflow: hidden;
-    color: #fff;
-    opacity: 0;
-    -webkit-transition: opacity-color .5s ease;
-    -moz-transition: opacity-color .5s ease;
-    transition: opacity-color .5s ease;
+    .expoPage .image-hover i[class*=icon-] {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: 0;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        padding: 5px;
+        font-size: 26px;
+        line-height: 24px;
+        overflow: auto;
+        color: #fff;
+        opacity: 0;
+        -webkit-transition: opacity-color .5s ease;
+        -moz-transition: opacity-color .5s ease;
+        transition: opacity-color .5s ease;
+    }
+
+.expoPage .wow:hover .image-hover i[class*=icon-] {
+    opacity: 0.9;
 }
 
-.expoPage .image-wrapper:hover .image-hover i[class*=icon-] {
-    opacity: 0.7;
-}
-
-.expoPage .image-wrapper:hover .image-hover {
-    background: rgba(0, 0, 0, .65);
+.expoPage .wow:hover .image-hover {
+    background: rgba(0, 0, 0, 0.74);
+    cursor:pointer;
 }
 
 .expoPage .noGutter {
@@ -1294,6 +1301,7 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
     margin: 0 auto;
     padding: 20px 0;
+    padding-top: 50px;
     list-style-type: none;
     text-align: center;
     opacity: 1;
@@ -1358,7 +1366,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .expoPage .singleExpoView .container-fluid {
-    padding: 0;
+    /*padding: 0;*/
 }
 
 .expoPage .secondDiv > *, .expoPage .allExposView, .expoPage .singleExpoView {
@@ -1549,7 +1557,7 @@ h1, h2, h3, h4, h5, h6 {
 .expoPage article .expoData {
     text-align: left;
     box-shadow: inset 0px 1px 1px #b9b9b9;
-    padding: 12px 0;
+    /*padding: 12px 0;*/
     background-color: #f4f4f4;
     border-bottom: 1px solid #bbb;
 }
@@ -1559,6 +1567,7 @@ h1, h2, h3, h4, h5, h6 {
         position: relative;
         z-index: 100;
         cursor: pointer;
+        top: 30px;
     }
 
         .expoPage article .expoData h6.opened {
@@ -1616,31 +1625,31 @@ h1, h2, h3, h4, h5, h6 {
     .expoPage .singleExpoView.ng-hide-remove {
         display: block !important;
     }
-    /*new floor*/
-    .expoPage .col-sm-2 {
-            background: beige;
-            border: 1px dashed #cbcbcc;
-            text-align: center;
-            height: 100px;
-            padding: 40px;
-        }
+/*new floor*/
+.expoPage .col-sm-2 {
+    background: beige;
+    border: 1px dashed #cbcbcc;
+    text-align: center;
+    height: 100px;
+    padding: 40px;
+}
 
-          .expoPage .busy {
-            background: #cbcbcc;
-        }
+/*.expoPage .busy {
+    background: #cbcbcc;
+}
 
-        .expoPage  .active {
-            background: green;
-        }
+.expoPage .active {
+    background: green;
+}*/
 
-         .expoPage .imagesContainer {
-            background: #f3f3f1;
-            height: 100vh;
-            /*width: 100vw;*/
-            /*width: 1600px;*/
-            overflow: hidden;
-            position: relative;
-        }
+.expoPage .imagesContainer {
+    background: #f3f3f1;
+    height: 100vh;
+    /*width: 100vw;*/
+    /*width: 1600px;*/
+    overflow: hidden;
+    position: relative;
+}
 
 
 /*product page*/
