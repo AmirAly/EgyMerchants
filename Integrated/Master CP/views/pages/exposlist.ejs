@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li ng-click="signOut()" class="cursorPointer">
-                        <a href="/eg/Home">
+                        <a>
                             <i class="material-icons">person</i>
                             <p>Sign Out</p>
                         </a>
@@ -147,10 +147,10 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Expo Name</label>
-                                                            <input type="text" class="form-control" ng-model="expo.Title" required pattern="^.{1,35}$" name="expoTitle" id="expoTitle">
+                                                            <input type="text" class="form-control" ng-model="expo.Title" required pattern="^.{2,25}$" name="expoTitle" id="expoTitle">
                                                             <span ng-show="frmAddExpo.expoTitle.$dirty && frmAddExpo.expoTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmAddExpo.expoTitle.$error.required">Required</span>
-                                                                <span class="errorFont" ng-show="frmAddExpo.expoTitle.$error.pattern">Expo name is too long</span>
+                                                                <span class="errorFont" ng-show="frmAddExpo.expoTitle.$error.pattern">Expo name is too short or too long</span>
                                                             </span>
                                                         </div>
                                                     </div>

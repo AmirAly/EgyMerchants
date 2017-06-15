@@ -74,7 +74,13 @@
             }
 
         });
-    }
+    };
+
+    $scope.signOut = function () {
+        window.location.href = '/eg/Home';
+        localStorage.clear();
+    };
+
 });
 function convertImgToBase64URL(event) {
     var filesSelected = document.getElementById("uploadItemImage").files;

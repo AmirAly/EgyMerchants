@@ -4,6 +4,7 @@ var gallery = require('./models/galleries');
 var category = require('./models/categories');
 var country = require('./models/countries');
 var expo = require('./models/expoes');
+var master = require('./models/masters');
 module.exports = function (app) {
     // use res.render to load up an ejs view file
     // index page 
@@ -172,9 +173,9 @@ module.exports = function (app) {
 
     app.get('/eg/Home', function (req, res) {
         var _scope = {};
-        store.login().then(function (_user) {
-            if (_user.code == 100) {
-                _scope.loginData = _user.data;
+        master.login().then(function (_master) {
+            if (_master.code == 100) {
+                _scope.loginData = _master.data;
                 res.render('pages/login', _scope);
             } else {
                 _scope.loginData = [];
