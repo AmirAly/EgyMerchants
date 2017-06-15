@@ -205,7 +205,8 @@ module.exports = {
     search: function (_store, _expo, _keyWord, _country) {
         var finalList = [],
             storesList = [],
-            result=[],
+            result = [],
+         filteredList = [],
             expoList = [];
         var underscore = require("underscore");
         return new Promise(function (resolve, reject) {
@@ -257,24 +258,26 @@ module.exports = {
                                 if (_store != "") {
                                     underscore.filter(storesList, function (store) {
                                             if ((store.Name.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Address.indexOf(_store) !== -1)) {
-                                                finalList.push(store);
+                                                filteredList.push(store);
                                             }
                                     })
                                 }
                                 if (_keyWord != "") {
-                                    //if (_store != "") {
-                                    //  underscore.filter(storesList, function (store) {
-                                    //        if ((store.Name.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Address.indexOf(_store) !== -1)) {
-                                    //            finalList.push(store);
-                                    //        }
-                                    //    })
-                                    //}
+                                    if (_store != "") {
+                                        underscore.filter(storesList, function (store) {
+                                            if ((store.Name.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Address.indexOf(_store) !== -1)) {
+                                                filteredList.push(store);
+                                            }
+                                         })
+                                    }
+                                    else { filteredList = storesList; }
                                     underscore.filter(expoList, function (expo) {
                                         if (expo.Title.indexOf(_keyWord) !== -1) {
                                             finalList.push(expo);
                                         }
                                     })
-                                    underscore.filter(storesList, function (store) {
+                                    underscore.filter(filteredList, function (store) {
+                                        
                                         if ((store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1)) {
                                             finalList.push(store);
                                     Item.find({ $and: [{ $or: [{ 'Name': { "$regex": _keyWord, "$options": "i" } }, { 'Description': { "$regex": _keyWord, "$options": "i" } }] }, { 'Status': 'Active' }, {'Store':store._id}] }, '_id Name Pictures',function (err, itemLst) {
@@ -316,13 +319,14 @@ module.exports = {
                             if (_expo !== "") result = storesList.concat(expoList);
                             result = storesList;
                         }
-                    }, 59);
+                    }, 99);
                     underscore.delay(function () {
                         if (result.length > 0) {
                               resolve({ code: 100, data: underscore.groupBy(result, 'Type') });
                         }
-                        else { reject({ code: 21, data: "This filteration didn't result in any data" }) }
-                    }, 60);
+                        else { reject({ code: 21, data: "This filteration didn't result in any data" }) 
+                        }
+                    }, 100);
                 }
             })
         })
