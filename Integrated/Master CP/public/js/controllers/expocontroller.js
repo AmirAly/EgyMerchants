@@ -3,11 +3,19 @@
         document.getElementById('uploadItemImage').click();
     };
 
+    $scope.init = function (_floors, _expo) {
+        $scope.lstfloors = JSON.parse(_floors);
+        $scope.expoData = JSON.parse(_expo);
+        console.log($scope.lstfloors);
+        console.log($scope.expoData);
+    }
+
     $scope.floors = function (_id) {
         window.location.href = '/eg/floors/'+_id;
     }
     
     $scope.updateExpo = function (_id) {
+        $scope.loading = true;
         var req = {
             method: 'put',
             url: '/Expo/Edit',
@@ -15,17 +23,18 @@
                 _id: _id,
                 Title: $scope.expo.Title,
                 Category: $scope.expo.selectedCategory,
-                Floors: '',
+                Floors: $scope.lstfloors,
                 Banner: $('#imgItem').attr('src')
             }
         }
         API.execute(req).then(function (_res) {
+            console.log(_res);
             if (_res.data.code == 100) {
-                console.log(_res);
                 window.location.reload();
                 window.location.href = '/eg/exposlist'
             } else {
                 console.log('Something went error');
+                $scope.loading = false;
             }
         });
     };
@@ -35,8 +44,46 @@
         localStorage.clear();
     };
 
+    $scope.deleteFloor = function (_floorId, _expoId) {
+        $scope.loading = true;
+        for (var i = 0; i < $scope.lstfloors.length; i++) {
+            if ($scope.lstfloors[i]._id == _floorId) {
+                $scope.lstfloors.splice(i, 1);
+            }
+        }
+        console.log($scope.lstfloors);
+        var req = {
+            method: 'put',
+            url: '/Expo/Edit',
+            data: {
+                _id: _expoId,
+                Title: $scope.expo.Title,
+                Category: $scope.expo.selectedCategory,
+                Floors: $scope.lstfloors,
+                Banner: $('#imgItem').attr('src')
+            }
+        }
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 100) {
+                console.log('deleted');
+            } else {
+                console.log('Something went error');
+            }
+            $scope.loading = false;
+        });
+    }
+
+    $scope.editFloor = function (_floor, _expo) {
+        localStorage.setItem('EditedFloor', JSON.stringify(_floor));
+        localStorage.setItem('EditedExpo', JSON.stringify(_expo));
+
+        window.location.href = "/eg/editfloor";
+    }
+
 
 });
+
 function convertImgToBase64URL(event) {
     var filesSelected = document.getElementById("uploadItemImage").files;
     if (filesSelected.length > 0) {

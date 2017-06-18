@@ -1,5 +1,5 @@
 <% include ../partials/headpages %>
-<div ng-controller='floorsController' class="pageFloors">
+<div ng-controller='floorController' class="pageFloors">
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -50,8 +50,8 @@
 
                     <div class="card">
                         <div class="card-header" data-background-color="orange">
-                            <h4 class="title">New Floor</h4>
-                            <p class="category">Set new floor sections</p>
+                            <h4 class="title">Edit Floor</h4>
+                            <p class="category">Edit floor sections</p>
                         </div>
                         <div class="card-content">
 
@@ -59,7 +59,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group label-floating is-focused ">
                                         <label class="control-label">Floor Name</label>
-                                        <input type="text" class="form-control" ng-model="floorName" value=" floorName " ng-init="floorName = 'Floor'" name="floorName" id="floorName" required pattern="^.{2,25}$">
+                                        <input type="text" class="form-control" ng-model="floor.Name"  ng-init="floorName = 'Floor'" name="floorName" id="floorName" required pattern="^.{2,25}$">
                                         <span ng-show="frmUpdateFloor.floorName.$dirty && frmUpdateFloor.floorName.$invalid">
                                             <span class="errorFont" ng-show="frmUpdateFloor.floorName.$error.required">Required</span>
                                         </span>
