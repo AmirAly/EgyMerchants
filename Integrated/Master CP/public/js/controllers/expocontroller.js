@@ -3,6 +3,11 @@
         document.getElementById('uploadItemImage').click();
     };
 
+    $scope.init = function (_floors) {
+        $scope.lstfloors = JSON.parse(_floors);
+        console.log($scope.lstfloors);
+    }
+
     $scope.floors = function (_id) {
         window.location.href = '/eg/floors/'+_id;
     }
@@ -35,8 +40,8 @@
         localStorage.clear();
     };
 
-
 });
+
 function convertImgToBase64URL(event) {
     var filesSelected = document.getElementById("uploadItemImage").files;
     if (filesSelected.length > 0) {

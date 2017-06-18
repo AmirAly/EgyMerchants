@@ -48,6 +48,8 @@
     $scope.addSection = function () {
         $scope.getSelected();
         $('#modal').modal('toggle');
+        // clear modal
+        //..
     }
 
     $scope.getSelected = function () {
@@ -125,7 +127,7 @@
         // clear array from active , isBusy status
         for (var i = 0; i < $scope.floor.Sections.length; i++) {
             if ($scope.floor.Sections[i].isBusy != false) {
-                //$scope.floor.Sections[i].isBusy = false;
+                $scope.floor.Sections[i].isBusy = false;
                 $scope.floor.Sections[i].data = '';
             }
         }
@@ -159,8 +161,31 @@
     //}
 
     $scope.saveFloor = function () {
+        var pathArray = window.location.pathname.split('/');
         $scope.floor.Coordinates = $scope.coordinates;
         console.log($scope.floor);
+        $scope.loading = true;
+        var req = {
+            method: 'put',
+            url: '/Expo/SetFloor',
+            data: {
+                _id: pathArray[pathArray.length - 1],
+                Floor: $scope.floor
+            }
+        }
+        API.execute(req).then(function (res) {
+            if (res.data.code == 100) {
+                console.log(res);
+                window.location.href = '/eg/store';
+                localStorage.setItem('storeId', res.data._id);
+            } else {
+                $scope.errMsg = res.data;
+                $scope.errdiv = true;
+                console.log(res.data);
+                $scope.loading = false;
+            }
+
+        });
     }
 
     $scope.ShowFileSelector = function () {

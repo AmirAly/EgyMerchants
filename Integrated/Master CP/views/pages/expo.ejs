@@ -101,11 +101,57 @@
                                         <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="<%= expo.Banner %>" />
                                         <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
                                     </div>
-									<button type="submit" ng-click="floors('<%= expo._id %>')" class="btn btn-primary btn-block pull-right">Add floors</button>
+                                </div>
+                            </div>
+                            <button type="submit" ng-click="floors('<%= expo._id %>')" class="btn btn-primary btn-block pull-right">Add floors</button>
+                        </div>
+                    </div>
+                    <!-- list of floors -->
+                    <div class="row" ng-init="init('<%= floorslstJSON %>')">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header defaultColor">
+                                    <h4 class="title">Floors List</h4>
+                                    <p class="category">List of floors</p>
+                                </div>
+                                <div class="card-content table-responsive">
+                                    <table class="table">
+                                        <thead class="text-primary">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>data</th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr ng-repeat="floor in lstfloors">
+                                                
+                                                <td>{{floor.Name}}</td>
+                                                <td>{{floor}}</td>
+
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editFloor(floor)" data-original-title="Edit">
+                                                        <i class="material-icons">edit</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" ng-click="removeFloor(floor)" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                        <i class="material-icons">close</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
+                        
                 </div>
             </div>
             <footer class="footer">

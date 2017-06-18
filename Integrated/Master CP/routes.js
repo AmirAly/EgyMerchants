@@ -83,6 +83,7 @@ module.exports = function (app) {
         expo.getById(req.params.expoId).then(function (_expo) {
             if (_expo.code == 100) {
                 _scope.expo = _expo.data;
+                _scope.floorslstJSON = JSON.stringify(_expo.data.Floors);
                 category.getAll().then(function (_category) {
                     if (_category.code == 100) {
                         _scope.categorieslst = _category.data;
@@ -99,11 +100,13 @@ module.exports = function (app) {
             } else {
                 console.log('else');
                 _scope.expo = {};
+                _scope.floorslstJSON = [];
                 res.render('pages/expo', _scope);
             }
         }).catch(function (_err) {
             console.log(_err);
             _scope.expo = {};
+            _scope.floorslstJSON = [];
             res.render('pages/expo', _scope);
         });
     });

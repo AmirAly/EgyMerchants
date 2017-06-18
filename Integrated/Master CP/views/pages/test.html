@@ -1,5 +1,5 @@
 ﻿<% include ../partials/headpages %>
-<div ng-controller='floorsController' class="pageFloors">
+<div ng-controller='expoController'>
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -47,32 +47,111 @@
         <div class="main-panel">
             <div class="content">
                 <div class="container-fluid">
-
+                    <!-- Start Breadcrumbs -->
+                    <div class="col-md-8">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="/eg/exposlist">Expos List</a>
+                            </li>
+                            <li class="active">Edit Expo</li>
+                        </ol>
+                    </div>
+                    <!-- End Breadcrumbs -->
                     <div class="row">
-                        <div class="col-sm-2 text-center"
-                             ng-repeat="section in floor.sections track by section.sectionId"
-                             id="active{{section.sectionId}}"
-                             ng-init="this['active'+this.section.sectionId] = false;section.isBusy = false"
-                             ng-click="this['active'+this.section.sectionId] =! this['active'+this.section.sectionId] ; section.isBusy =! section.isBusy;"
-                             ng-class="{'active': this['active'+this.section.sectionId]}">
-                            <div>{{section.data}}</div>
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header" data-background-color="orange">
+                                    <h4 class="title">Edit Expo</h4>
+                                    <p class="category">Edit your Expo</p>
+                                </div>
+                                <div class="card-content">
+                                    <form name="frmUpdateExpo">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group label-floating is-focused ">
+                                                    <label class="control-label">Expo Name</label>
+                                                    <input type="text" class="form-control" ng-model="expo.Title" value="<%= expo.Title %>" ng-init="expo.Title = '<%= expo.Title %>'" name="expoTitle" id="expoTitle" required pattern="^.{2,25}$">
+                                                    <span ng-show="frmUpdateExpo.expoTitle.$dirty && frmUpdateExpo.expoTitle.$invalid">
+                                                        <span class="errorFont" ng-show="frmUpdateExpo.expoTitle.$error.required">Required</span>
+                                                        <span class="errorFont" ng-show="frmUpdateExpo.expoTitle.$error.pattern">Expo name is too short or too long</span>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-8">
+                                                <select name="country" ng-model="expo.selectedCategory" value="<%= expo.Category._id %>" ng-init="expo.selectedCategory = '<%= expo.Category._id %>'" class="form-control">
+                                                    <% categorieslst.forEach(function(category){ %>
+                                                    <option value="<%= category._id %>" selected="<%= category._id %>"> <%= category.Name %> </option>
+                                                    <% }); %>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" ng-click="updateExpo('<%= expo._id %>')" class="btn btn-primary pull-right">Update Expo</button>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header card-chart">
+                                    <!--upload img-->
+                                    <div>
+                                        <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="<%= expo.Banner %>" />
+                                        <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" ng-click="floors('<%= expo._id %>')" class="btn btn-primary btn-block pull-right">Add floors</button>
                         </div>
                     </div>
-                    <br /><br />
-                     <button data-target="#modal" data-toggle="modal">Add Section</button>
+                    <!-- list of floors -->
+                    <div class="row" ng-init="init('<%= floorslstJSON %>')">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header defaultColor">
+                                    <h4 class="title">Floors List</h4>
+                                    <p class="category">List of floors</p>
+                                </div>
+                                <div class="card-content table-responsive">
+                                    <table class="table">
+                                        <thead class="text-primary">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>data</th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                    <br /><hr /><br />
+                                            <tr ng-repeat="floor in lstfloors">
+                                                
+                                                <td>{{floor.Name}}</td>
+                                                <td>{{floor}}</td>
 
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editFloor(floor)" data-original-title="Edit">
+                                                        <i class="material-icons">edit</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" ng-click="removeFloor(floor)" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                        <i class="material-icons">close</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
+                                                </td>
+                                            </tr>
 
-                    <button ng-click="loadArray()">Preview</button>
-                    <br />
-                    <br />
-                    <div class="row imagesContainer" id="imagesContainer">
-
-
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <br /><br />
-                    <button ng-click="saveFloor()">Save Floor</button>
+                        
                 </div>
             </div>
             <footer class="footer">
@@ -82,76 +161,6 @@
 
 
     </div>
-
-
-    <!-- Start Modal -->
-    <div id="modal" class="modal fade bs-example-modal-lg" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="content">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="card">
-                                        <div class="card-header" data-background-color="orange">
-                                            <h4 class="title">Add Section</h4>
-                                            <p class="category"></p>
-                                        </div>
-                                        <div class="card-content">
-                                            <form name="frmAddExpo">
-
-                                                <div class="row">
-                                                    <div class="col-md-8">
-                                                        <div class="form-group">
-                                                            <label>Choose store</label>
-                                                            <br>
-                                                            <select name="country" ng-model="selectedstore" class="form-control">
-                                                                <% storeslst.forEach(function(store){ %>
-                                                                <option value="<%= store %>" selected> <%= store.Name %> </option>
-                                                                <% }); %>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="card-header card-chart">
-                                            <!--upload img-->
-                                            <div>
-                                                <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="/img/add.gif" />
-                                                <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
-                                            </div>
-                                        </div>
-                                        <div class="card-content">
-                                            <h4 class="title itemTitle"></h4>
-                                            <p class="category"></p>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" ng-click="addSection()" ng-disabled="frmAddExpo.$invalid" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Modal -->
 </div>
 <!--   Core JS Files   -->
 <% include ../partials/pagesjsfiles %>
