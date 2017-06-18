@@ -73,7 +73,7 @@ module.exports = {
             })
         })
     },
-    editProfile: function (_id, _email, _city, _address, _country, _description, _imgs) {
+    editProfile: function (_id, _email, _city, _address, _country, _description, _imgs, _profilePicture) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ 'Email': _email, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
@@ -102,6 +102,7 @@ module.exports = {
                                         Obj.Address = _address;
                                         Obj.Country = _country;
                                         Obj.Description = _description;
+                                        Obj.ProfilePicture = _profilePicture;
                                         if (_imgs)
                                             Obj.Imgs = _imgs;
                                         Obj.save(function (err, Obj) {
@@ -333,7 +334,8 @@ module.exports = {
     },
     search2: function (_store, _expo, _keyWord, _country) {
         var finalList = [],
-            expoList=[],
+            expoList = [],
+            result=[],
             storesList = [];
         var underscore = require("underscore");
         var filter = { 'Country': { "$regex": _country, "$options": "i" }, 'Status': 'Active', 'Type': 'store' };
@@ -352,6 +354,7 @@ module.exports = {
                 else {
                     if (lst.length > 0) {
                         storesList = storesList.concat(lst);
+                        //console.log("strcoun"+storesList)
                     }
                     Expo.find(expoFilter, 'Floors Title Banner').populate('Floors.Coordinates.Store', '_id Name ProfilePicture Description Address Status Type').exec(function (err, lst) {
                         if (err)
@@ -370,9 +373,10 @@ module.exports = {
                                     }
                                     underscore.each(lst, function (expo) {
                                         underscore.each(expo.Floors, function (floor) {
-                                            storesList=underscore.filter(floor.Coordinates, function (store) {
-                                                return (store.Store.Status == "Active") 
+                                            underscore.each(floor.Coordinates, function (store) {
+                                                if (store.Store.Status == "Active") storesList.push(store.Store);
                                             })
+                                            //console.log("expstr"+storesList);
                                         })
                                     })
                                 }
@@ -408,38 +412,36 @@ module.exports = {
 
                                             }
                                         })
-                                        //}
                                     })
                                 }
 
                             }
                         }
-                    })
-                
-                    var destinctResult = underscore.uniq(finalList, function (x) {
-                        return (x._id).toString();
-                    });
-                    if ((_store !== "" && _keyWord !== "") || _keyWord !== "") {
-                        result = destinctResult;
-                    }
-                    else if (_store !== "") {
-                        if (_expo !== "") {
-                            result = destinctResult.concat(expoList)
+                        var destinctResult = underscore.uniq(finalList, function (x) {
+                            return (x._id).toString();
+                        });
+                        if ((_store !== "" && _keyWord !== "") || _keyWord !== "") {
+                            result = destinctResult;
                         }
-                        else
-                        result = destinctResult
-                    }
-                    else {
-                        if (_expo !== "") { console.log("exp"+expoList); result = storesList.concat(expoList); }
-                        else
-                            result = storesList;
-                    }
-                }
-                if (result.length > 0) {
-                    resolve({ code: 100, data: underscore.groupBy(result, 'Type') });
-                }
-                else {
-                    reject({ code: 21, data: "This filteration didn't result in any data" })
+                        else if (_store !== "") {
+                            if (_expo !== "") {
+                                result = destinctResult.concat(expoList);
+                            }
+                            else
+                                result = destinctResult
+                        }
+                        else {
+                            if (_expo !== "") { result = storesList.concat(expoList); }
+                            else
+                                result = storesList;
+                        }
+                        if (result.length > 0) {
+                            resolve({ code: 100, data: underscore.groupBy(result, 'Type') });
+                        }
+                        else {
+                            reject({ code: 21, data: "This filteration didn't result in any data" })
+                        }
+                    })
                 }
             })
         })
