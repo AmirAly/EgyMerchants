@@ -87,7 +87,7 @@ var newstore = new userschema({ "Email": "mynewmail12@gmail.com", "Password": "n
 //    console.log(err);
 //});
 //"new","masterexpo/newgod/test2","new","egypt"
-store.search("new", "test2", "new", "egypt").then(function (result) {
+store.search2("", "test2", "", "").then(function (result) {
     console.log(result);
 }, function (err) {
     console.log(err);
@@ -223,7 +223,7 @@ var newcategory = new categoryschema({ "Name": "newcategoryy" });
 //    console.log(err);
 //});
 
-var newitem = new itemschema({ "Name": "newitem34", "Description": "desconlytodo", "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "59369940b656ca6c03f909e7" });
+var newitem = new itemschema({ "Name": "my36newitem", "Description": "desconlytodo", "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "59369940b656ca6c03f909e7", "Store": "593d1eb33808cff0009cf889" });
 //item.add(newitem).then(function (result) {
 //    console.log(result);
 //}, function (err) {
@@ -238,7 +238,7 @@ var newitem = new itemschema({ "Name": "newitem34", "Description": "desconlytodo
 //    console.log(err);
 //});
 //593d003bd28c8f3c127c7d38,5937b674a93c5a001176be9c,5937b5d1f10b7eb003b7ce07 ok
-//item.getById("593d003bd28c8f3c127c7d38").then(function (result) {
+//item.getById("5937b5d1f10b7eb003b7ce07").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
