@@ -408,9 +408,9 @@ module.exports = {
                                     finalList = _.filter(expoList, function (expo) {
                                         return (expo.Title.indexOf(_keyWord) !== -1) 
                                     })
-                                   finalList= _.filter(storesList,function (store) {
+                                   finalList=_.map( _.filter(storesList,function (store) {
                                         return (store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1)
-                                        })
+                                   }), function (storeid) { return b.id === a.id; })
                                  //finalList=_.filter(_.filter(storesList, function (store) {
                                  //      return (store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1)
                                  //  }), function (storeid) {
@@ -419,11 +419,9 @@ module.exports = {
 
                                  //       });
                                  //   });
-
-                                   finalList=_.chain( _.filter(storesList, function (store) {
+                                   finalList= _.filter(storesList, function (store) {
                                         return (store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1)
-                                   })
-                                   )
+                                    })
 
                                     _.each(storesList, function (store) {
                                         if (store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1){finalList.push(store);
