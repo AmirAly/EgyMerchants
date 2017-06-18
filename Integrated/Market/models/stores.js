@@ -278,10 +278,8 @@ module.exports = {
                                         }
                                     })
                                     underscore.filter(filteredList, function (store) {
-                                        console.log("key"+_keyWord);
                                         if ((store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1)) {
                                             finalList.push(store);
-                                            console.log("final"+finalList);
                                     Item.find({ $and: [{ $or: [{ 'Name': { "$regex": _keyWord, "$options": "i" } }, { 'Description': { "$regex": _keyWord, "$options": "i" } }] }, { 'Status': 'Active' }, {'Store':store._id}] }, '_id Name Pictures',function (err, itemLst) {
                                                     if (err)
                                                         reject({
@@ -293,7 +291,6 @@ module.exports = {
                                                             underscore.each(itemLst, function (item) {
                                                                 finalList.push({ "_id": item._id, "Name": item.Name, "Pictures": item.Pictures, "Type": "item" });
                                                             })
-                                                           // console.log(finalList);
                                                         }
                                                         
                                                     }
@@ -323,14 +320,14 @@ module.exports = {
                             else
                                 result = storesList;
                         }
-                    },140);
+                    },70);
                     underscore.delay(function () {
                         if (result.length > 0) {
                               resolve({ code: 100, data: underscore.groupBy(result, 'Type') });
                         }
                         else { reject({ code: 21, data: "This filteration didn't result in any data" }) 
                         }
-                    }, 150);
+                    }, 71);
                 }
             })
         })
@@ -411,9 +408,9 @@ module.exports = {
                                     finalList = _.filter(expoList, function (expo) {
                                         return (expo.Title.indexOf(_keyWord) !== -1) 
                                     })
-                                   finalList= _.filter(storesList,function (store) {
+                                   finalList=_.map( _.filter(storesList,function (store) {
                                         return (store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1)
-                                        })
+                                   }), function (storeid) { return b.id === a.id; })
                                  //finalList=_.filter(_.filter(storesList, function (store) {
                                  //      return (store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1)
                                  //  }), function (storeid) {
@@ -422,11 +419,9 @@ module.exports = {
 
                                  //       });
                                  //   });
-
-                                   finalList=_.chain( _.filter(storesList, function (store) {
+                                   finalList= _.filter(storesList, function (store) {
                                         return (store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1)
-                                   })
-                                   )
+                                    })
 
                                     _.each(storesList, function (store) {
                                         if (store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1){finalList.push(store);
