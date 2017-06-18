@@ -7,37 +7,41 @@
 </section>
 
 <!-- One column content -->
-<section class="container responsive pageSearch">
+<section class="container responsive pageSearch" ng-controller="searchController">
     <div class="dvOptionsContainer">
         <div class="row">
             <div class="col-sm-9 col-md-6">
-                <select>
+                <select ng-model="countries">
                     <option value="" selected disabled>All Countries</option>
-                    <option value="">Egypt</option>
-                    <option value="">Saudi Arabia</option>
-					<option value="">Jordan</option>
+					  <% countrieslst.forEach(function(country){ %>
+                    <option value="<%= country.Name %>"><%= country.Name %></option>
+                     <% }); %>
                 </select>
-                <select>
+                <select ng-model="expos">
                     <option value="" selected disabled>All Expos</option>
-                    <option value="">Le Marchee </option>
-                    <option value="">El Masreen </option>
+					<% expolist.forEach(function(expo){ %>
+                    <option value="<%= expo.Title %>"><%= expo.Title %></option>
+                     <% }); %>
+                    
                 </select>
 
-                <select>
+                <select ng-model="stores">
                     <option value="" selected disabled>All Stores</option>
-                    <option value="">Dior </option>
-                    <option value="">Channel </option>
+					<% storeslst.forEach(function(store){ %>
+                    <option value="<%= store.Name %>"><%= store.Name %></option>
+                     <% }); %>
+                    
                 </select>
 
             </div>
             <div class="col-sm-3 col-md-6">
-                <input id="search" type="text" name="txtSearch" value="<%= searchTxt %>" placeholder="Search" class="input-text form-control" autocomplete="off" />
+                <input id="search" type="text" ng-model="keyword" ng-init="keyword = '<%= searchTxt %>' " name="txtSearch" value="<%= searchTxt %>" placeholder="Search" class="input-text form-control" autocomplete="off" />
             </div>
         </div>
         <div class="spacer2"></div>
         <div class="row">
             <div class="col-sm-6 col-sm-offset-6 text-right">
-                <a href="#" class="text-muted"><i class="fa fa-close"></i> Reset Filter </a> &nbsp;
+                <a href="#" ng-click="clearSearch()" class="text-muted"><i class="fa fa-close"></i> Reset Filter </a> &nbsp;
                 <button type="submit" ng-click="refineSearch()" title="Search" class="btn btn-primary"> Refine Search Result <i class="glyphicon glyphicon-search"></i> </button>
             </div>
         </div>

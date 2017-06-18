@@ -215,31 +215,88 @@ module.exports = function (app) {
         res.render('pages/contactus');
     });
 
-    // contacts page 
+    // search page 
     app.get('/Eg/Search/:searchTxt', function (req, res) {
         var _scope = {};
         _scope.searchTxt = req.params.searchTxt;
+        expo.getAll().then(function (_expo) {
+            if (_expo.code == 100) {
+                _scope.expolist = _expo.data;
+                //console.log(_expo.data);
+                country.getAll().then(function (_country) {
+                    if (_country.code == 100) {
+                        _scope.countrieslst = _country.data;
+                        store.getAll().then(function (_store) {
+                            if (_store.code == 100) {
+                                _scope.storeslst = _store.data;
+                                store.search('', '', _scope.searchTxt, '').then(function (_searchResult) {
+                                    console.log(_scope.searchTxt);
+                                    console.log(_searchResult);
+                                    if (searchResult.code == 100) {
+                                        _scope.searchResult = _searchResult;
+                                        res.render('pages/search', _scope);
+                                    } else {
+                                        _scope.searchResult = [];
+                                        res.render('pages/search', _scope);
+                                    }
+                                }).catch(function (err) {
+                                    console.log(_scope.searchTxt);
+                                    console.log(err);
+                                    _scope.searchResult = [];
+                                    res.render('pages/search', _scope);
+                                });
+                            } else {
+                                _scope.storeslst = [];
+                                res.render('pages/search', _scope);
+                            }
+                        }).catch(function (_err) {
+                            //console.log(_err);
+                            _scope.storeslst = [];
+                            res.render('pages/search', _scope);
+                        });
 
-        var searchResult = [
-            {
-                'resultExpos': [
-                    { _id: 1, Img: '/images/expo0.png', Title: 'Le Marchee' },
-                    { _id: 2, Img: '/images/expo1.png', Title: 'Dubai International Expo' }
-                ],
-                'resultStores': [
-                    { _id: 3, Img: '/images/dior.jpg', Title: 'Dior' },
-                    { _id: 4, Img: '/images/chanel.jpg', Title: 'Chanel' }
-                ],
-                'resultProducts': [
-                    { _id: 1, Img: 'http://uploads.tapatalk-cdn.com/20150518/7eb179f322533ce313ad587987f75914.jpg', Title: 'Blue Watch' },
-                    { _id: 2, Img: 'http://g01.a.alicdn.com/kf/HTB1AX3oLpXXXXbraXXXq6xXFXXXW/CHENXI-Gold-Watch-Men-Watches-Top-Brand-Luxury-Famous-2016-Male-Clock-Golden-Quartz-Analog-Wristwatch.jpg', Title: 'Golden Watch' },
-                    { _id: 3, Img: 'https://s-media-cache-ak0.pinimg.com/736x/e2/69/24/e26924a315df6b0d6f6d8ba5488a168c.jpg', Title: 'Rolex Watch' },
-                    { _id: 4, Img: 'https://s-media-cache-ak0.pinimg.com/originals/4e/35/6b/4e356bed54fd89f966c2df43bdcc4bf2.jpg', Title: 'Pincky Watch' }
-                ]
+                    } else {
+                        _scope.countrieslst = {};
+                        res.render('pages/search', _scope);
+                    }
+                }).catch(function (_err) {
+                    console.log(_err);
+                    _scope.countrieslst = {};
+                    res.render('pages/search', _scope);
+                });
+
+            } else {
+                //console.log('else');
+                _scope.expolist = {};
+                res.render('pages/search', _scope);
             }
-        ];
-        _scope.searchResult = searchResult;
-        console.log(req.params.searchTxt);
-        res.render('pages/search', _scope);
+        }).catch(function (_err) {
+            console.log(_err);
+            _scope.expolist = {};
+            res.render('pages/search', _scope);
+        });
+
+        
+        //var searchResult = [
+        //    {
+        //        'resultExpos': [
+        //            { _id: 1, Img: '/images/expo0.png', Title: 'Le Marchee' },
+        //            { _id: 2, Img: '/images/expo1.png', Title: 'Dubai International Expo' }
+        //        ],
+        //        'resultStores': [
+        //            { _id: 3, Img: '/images/dior.jpg', Title: 'Dior' },
+        //            { _id: 4, Img: '/images/chanel.jpg', Title: 'Chanel' }
+        //        ],
+        //        'resultProducts': [
+        //            { _id: 1, Img: 'http://uploads.tapatalk-cdn.com/20150518/7eb179f322533ce313ad587987f75914.jpg', Title: 'Blue Watch' },
+        //            { _id: 2, Img: 'http://g01.a.alicdn.com/kf/HTB1AX3oLpXXXXbraXXXq6xXFXXXW/CHENXI-Gold-Watch-Men-Watches-Top-Brand-Luxury-Famous-2016-Male-Clock-Golden-Quartz-Analog-Wristwatch.jpg', Title: 'Golden Watch' },
+        //            { _id: 3, Img: 'https://s-media-cache-ak0.pinimg.com/736x/e2/69/24/e26924a315df6b0d6f6d8ba5488a168c.jpg', Title: 'Rolex Watch' },
+        //            { _id: 4, Img: 'https://s-media-cache-ak0.pinimg.com/originals/4e/35/6b/4e356bed54fd89f966c2df43bdcc4bf2.jpg', Title: 'Pincky Watch' }
+        //        ]
+        //    }
+        //];
+        //_scope.searchResult = searchResult;
+        //console.log(req.params.searchTxt);
+        //res.render('pages/search', _scope);
     });
 }
