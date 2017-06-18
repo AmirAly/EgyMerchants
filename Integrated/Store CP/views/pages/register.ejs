@@ -136,10 +136,10 @@
                                                 <% if ( categories.length > 0  ){ %>
                                                 <% categories.forEach(function(category){ %>
                                                 <div class="col-md-3 col-xs-6">
-                                                    <div class="choice" ng-click="chooseCategory('<%= category._id %>')" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a house.">
+                                                    <div class="choice" ng-click="chooseCategory('<%= category._id %>')" id="wizardPicturePreview" data-toggle="wizard-radio" >
                                                         <input type="radio" name="type" value="House">
                                                         <div class="icon">
-                                                            <img src=" <%= category.Img %>" class="picture-src" id="wizardPicturePreview" title="" />
+                                                            <img src="/img/category.png " class="picture-src" id="wizardPicturePreview" title="" />
                                                         </div>
                                                         <h6><%= category.Name %></h6>
                                                     </div>

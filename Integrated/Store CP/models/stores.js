@@ -205,7 +205,8 @@ module.exports = {
     search: function (_store, _expo, _keyWord, _country) {
         var finalList = [],
             storesList = [],
-            result=[],
+            result = [],
+         filteredList = [],
             expoList = [];
         var underscore = require("underscore");
         return new Promise(function (resolve, reject) {
@@ -224,7 +225,6 @@ module.exports = {
                 else {
                     if (lst.length > 0) {
                         storesList = storesList.concat(lst);
-                       // console.log(storesList);
                     }
                     Expo.find(expoFilter, 'Floors Title Banner').populate('Floors.Coordinates.Store', '_id Name ProfilePicture Description Address Status Type').exec(function (err, lst) {
                         if (err)
@@ -239,7 +239,7 @@ module.exports = {
                                 })
                                 if (_expo !== "") {
                                     if (_country == "") {
-                                        storesList.length=0;  //console.log(storesList);
+                                        storesList.length=0;  
                                     }
                                     underscore.each(lst, function (expo) {
                                         underscore.each(expo.Floors, function (floor) {
@@ -255,26 +255,29 @@ module.exports = {
                                     return (x._id).toString();
                                 });
                                 storesList = destinctArray;
-                                //console.log(storesList);
-                               //console.log(expoList);
                                 if (_store != "") {
                                     underscore.filter(storesList, function (store) {
-                                           // console.log(store.Name+store.Name.indexOf(_store));
                                             if ((store.Name.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Address.indexOf(_store) !== -1)) {
-                                                finalList.push(store);
+                                                filteredList.push(store);
                                             }
                                     })
-                                   // console.log(finalList);
-                                    //console.log(expoList);
                                 }
                                 if (_keyWord != "") {
+                                    if (_store != "") {
+                                        underscore.filter(storesList, function (store) {
+                                            if ((store.Name.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Address.indexOf(_store) !== -1)) {
+                                                filteredList.push(store);
+                                            }
+                                         })
+                                    }
+                                    else { filteredList = storesList; }
                                     underscore.filter(expoList, function (expo) {
                                         if (expo.Title.indexOf(_keyWord) !== -1) {
                                             finalList.push(expo);
                                         }
                                     })
-                                   // console.log(finalList);
-                                    underscore.filter(storesList, function (store) {
+                                    underscore.filter(filteredList, function (store) {
+                                        
                                         if ((store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1)) {
                                             finalList.push(store);
                                     Item.find({ $and: [{ $or: [{ 'Name': { "$regex": _keyWord, "$options": "i" } }, { 'Description': { "$regex": _keyWord, "$options": "i" } }] }, { 'Status': 'Active' }, {'Store':store._id}] }, '_id Name Pictures',function (err, itemLst) {
@@ -285,46 +288,47 @@ module.exports = {
                                                         });
                                                     else {
                                                         if (itemLst.length > 0) {
-                                                            //console.log("push");
-                                                            underscore.each(itemLst,function(item){
+                                                            underscore.each(itemLst, function (item) {
                                                                 finalList.push({ "_id": item._id, "Name": item.Name, "Pictures": item.Pictures, "Type": "item" });
                                                             })
                                                         }
-                                                        //console.log(finalList);
+                                                        
                                                     }
                                                 })
-                                            }
+                                        }
                                     })
-                                    //console.log(finalList);
                                 }
-                                console.log("final"+finalList[0].Name);
                             }
+
                         }
                     })
+                    underscore.delay(function () {
+                        var destinctResult = underscore.uniq(finalList, function (x) {
+                            return (x._id).toString();
+                        });
+                        if ((_store !== "" && _keyWord !== "") || _keyWord !== "") {
+                            result = destinctResult;
+                        }
+                        else if (_store !== "") {
+                            if (_expo !== "") {
+                                result = destinctResult.concat(expoList)
+                            }
+                            result = destinctResult
+                        }
+                        else {
+                            if (_expo !== "") result = storesList.concat(expoList);
+                            result = storesList;
+                        }
+                    }, 99);
+                    underscore.delay(function () {
+                        if (result.length > 0) {
+                              resolve({ code: 100, data: underscore.groupBy(result, 'Type') });
+                        }
+                        else { reject({ code: 21, data: "This filteration didn't result in any data" }) 
+                        }
+                    }, 100);
                 }
             })
         })
-        ////after we get the finallist
-        //if ((_store !== "" && _keyWord !== "") || _keyWord !== "")
-    //    {underscore.uniq(finalList, function (x) {
-    //    return (x._id).toString();
-    //}); 
-    //   result = finalList }
-        //else if (_store !== "") {
-        //    if (_expo !== "") {
-        //        result = finalList.concat(expoList)
-        //    }
-        //    res = finalList
-        //}
-        //else {
-        //    if (_expo !== "") result = storesList.concat(expoList);
-        //    result = storesList;
-        //}
-        ////after we get final result
-        //if (result.length > 0) {
-        //    underscore.groupBy(result, 'Type');
-        //    resolve({ code: 100, data: res });
-        //}
-        //else { reject({ code: 21, data: "This filteration didn't result in any data" }) }
     },
 }

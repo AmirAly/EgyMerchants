@@ -117,6 +117,7 @@
                                     <button type="submit" ng-click="save()" ng-disabled="frmStoreData.$invalid" class="btn btn-primary pull-right">Update Profile</button>
                                     <div class="clearfix"></div>
                                 </form>
+								<%= store %>
                             </div>
                         </div>
                     </div>
@@ -125,7 +126,7 @@
                             <div class="card-avatar">
                                     <!--upload img-->
                                     <div>
-                                        <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="<%= store.Imgs[0].URL %>" />
+                                        <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="<%= store.ProfilePicture %>" />
                                         <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" />
                                     </div>
                             </div>
