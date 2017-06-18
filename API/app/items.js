@@ -1,4 +1,5 @@
 var Schema = require('./models/item');
+var _ = require("underscore");
 module.exports = {
     getFeatured: function (_storeId) {
         return new Promise(function (resolve, reject) {
@@ -22,6 +23,42 @@ module.exports = {
                     }
                 }
             });
+        })
+    },
+    getByStore: function (_storeId) {
+        var galleries = [],
+            res = [];
+        return new Promise(function (resolve, reject) {
+            Schema.find({ 'Store': _storeId, "Badges": { "$regex": "#Featured", "$options": "i" }, 'Status': 'Active' }, '_id Name Pictures Price Description Gallery').populate('Gallery','Title').exec(function(err, lst){
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if (lst.length > 0)
+                    {
+                        _.each(lst, function (item) { galleries.push({ "_id": item.Gallery._id, "Title": item.Gallery.Title, "Type": "galleries" }) });
+                        res = _.map(lst, function (item) {
+                            return _.pick(_.extend({}, item, { Type: "items" }), '_id', 'Name', 'Pictures', 'Type', 'Description');
+                        });
+                        
+                        resolve({
+                            code: 100,
+                            data: _.groupBy(_.uniq(galleries.concat(res), function (x) {
+                                return (x._id).toString();
+                            }), 'Type')
+                            
+                        });
+                    }
+                    else {
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
+                    }
+                }
+            })
         })
     },
     getByBestSeller: function (_storeId) {
