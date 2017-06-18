@@ -103,13 +103,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" ng-click="floors('<%= expo._id %>')" class="btn btn-primary btn-block pull-right">Add floors</button>
                         </div>
                     </div>
                     <!-- list of floors -->
+
+			        <button type="submit" ng-click="floors('<%= expo._id %>')" class="btn btn-primary pull-right">Add floors</button>
+
                     <div class="row" ng-init="init('<%= floorslstJSON %>')">
                         <div class="col-md-12">
-                            <div class="card">
+                            <div class="card" ng-if="lstfloors.length > 0">
                                 <div class="card-header defaultColor">
                                     <h4 class="title">Floors List</h4>
                                     <p class="category">List of floors</p>
@@ -119,7 +121,6 @@
                                         <thead class="text-primary">
                                             <tr>
                                                 <th>Name</th>
-                                                <th>data</th>
                                                 <th></th>
                                                 <th></th>
                                             </tr>
@@ -127,9 +128,8 @@
                                         <tbody>
 
                                             <tr ng-repeat="floor in lstfloors">
-                                                
-                                                <td>{{floor.Name}}</td>
-                                                <td>{{floor}}</td>
+
+                                                <td>{{floor.Name}} {{floor._id}}</td>
 
                                                 <td>
                                                     <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editFloor(floor)" data-original-title="Edit">
@@ -138,7 +138,7 @@
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" ng-click="removeFloor(floor)" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" ng-click="deleteFloor(floor._id,'<%= expo._id %>')" data-original-title="Remove" aria-describedby="tooltip451158">
                                                         <i class="material-icons">close</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -151,7 +151,8 @@
                             </div>
                         </div>
                     </div>
-                        
+
+
                 </div>
             </div>
             <footer class="footer">

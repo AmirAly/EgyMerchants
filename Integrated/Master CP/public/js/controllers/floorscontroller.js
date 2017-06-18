@@ -41,17 +41,17 @@
                         { sectionId: 30, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "6", data: '5x6', isBusy: false },
         ],
         "Coordinates": [{}],
-        "Name": "first floor"
+        "Name": ""
     }
     $scope.coordinates = [];
 
     $scope.addSection = function () {
         $scope.getSelected();
         $('#modal').modal('toggle');
-        // clear modal
+        // clear modal 
         //..
     }
-
+   
     $scope.getSelected = function () {
         $scope.oneStoreCoordinates = {};
         // filter array by isBusy status to get selected Sections
@@ -160,24 +160,26 @@
     //    }
     //}
 
+    var pathArray = window.location.pathname.split('/');
+
     $scope.saveFloor = function () {
-        var pathArray = window.location.pathname.split('/');
         $scope.floor.Coordinates = $scope.coordinates;
+        $scope.floor.Name = $scope.floorName;
         console.log($scope.floor);
         $scope.loading = true;
         var req = {
             method: 'put',
             url: '/Expo/SetFloor',
             data: {
-                _id: pathArray[pathArray.length - 1],
+                _id: pathArray[pathArray.length - 1], //get last segmant of url
                 Floor: $scope.floor
             }
         }
         API.execute(req).then(function (res) {
             if (res.data.code == 100) {
                 console.log(res);
-                window.location.href = '/eg/store';
-                localStorage.setItem('storeId', res.data._id);
+                window.location.href = '/eg/exposlist';
+                //localStorage.setItem('storeId', res.data._id);
             } else {
                 $scope.errMsg = res.data;
                 $scope.errdiv = true;

@@ -13,6 +13,7 @@
     }
     
     $scope.updateExpo = function (_id) {
+        $scope.loading = true;
         var req = {
             method: 'put',
             url: '/Expo/Edit',
@@ -20,17 +21,18 @@
                 _id: _id,
                 Title: $scope.expo.Title,
                 Category: $scope.expo.selectedCategory,
-                Floors: '',
+                Floors: $scope.lstfloors,
                 Banner: $('#imgItem').attr('src')
             }
         }
         API.execute(req).then(function (_res) {
+            console.log(_res);
             if (_res.data.code == 100) {
-                console.log(_res);
                 window.location.reload();
                 window.location.href = '/eg/exposlist'
             } else {
                 console.log('Something went error');
+                $scope.loading = false;
             }
         });
     };
@@ -39,6 +41,36 @@
         window.location.href = '/eg/Home';
         localStorage.clear();
     };
+
+    $scope.deleteFloor = function (_floorId, _expoId) {
+        $scope.loading = true;
+        for (var i = 0; i < $scope.lstfloors.length; i++) {
+            if ($scope.lstfloors[i]._id == _floorId) {
+                $scope.lstfloors.splice(i, 1);
+            }
+        }
+        console.log($scope.lstfloors);
+        var req = {
+            method: 'put',
+            url: '/Expo/Edit',
+            data: {
+                _id: _expoId,
+                Title: $scope.expo.Title,
+                Category: $scope.expo.selectedCategory,
+                Floors: $scope.lstfloors,
+                Banner: $('#imgItem').attr('src')
+            }
+        }
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 100) {
+                console.log('deleted');
+            } else {
+                console.log('Something went error');
+            }
+            $scope.loading = false;
+        });
+    }
 
 });
 
