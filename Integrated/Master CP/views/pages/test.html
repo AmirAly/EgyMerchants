@@ -1,5 +1,5 @@
 ﻿<% include ../partials/headpages %>
-<div ng-controller='floorsController' class="pageFloors">
+<div ng-controller='floorController' class="pageFloors">
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -48,31 +48,59 @@
             <div class="content">
                 <div class="container-fluid">
 
-                    <div class="row">
-                        <div class="col-sm-2 text-center"
-                             ng-repeat="section in floor.sections track by section.sectionId"
-                             id="active{{section.sectionId}}"
-                             ng-init="this['active'+this.section.sectionId] = false;section.isBusy = false"
-                             ng-click="this['active'+this.section.sectionId] =! this['active'+this.section.sectionId] ; section.isBusy =! section.isBusy;"
-                             ng-class="{'active': this['active'+this.section.sectionId]}">
-                            <div>{{section.data}}</div>
+                    <div class="card">
+                        <div class="card-header" data-background-color="orange">
+                            <h4 class="title">Edit Floor</h4>
+                            <p class="category">Edit floor sections</p>
+                        </div>
+                        <div class="card-content">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group label-floating is-focused ">
+                                        <label class="control-label">Floor Name</label>
+                                        <input type="text" class="form-control" ng-model="floor.Name"  ng-init="floorName = 'Floor'" name="floorName" id="floorName" required pattern="^.{2,25}$">
+                                        <span ng-show="frmUpdateFloor.floorName.$dirty && frmUpdateFloor.floorName.$invalid">
+                                            <span class="errorFont" ng-show="frmUpdateFloor.floorName.$error.required">Required</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-2 text-center"
+                                     ng-repeat="section in floor.Sections track by section.sectionId"
+                                     id="active{{section.sectionId}}"
+                                     ng-init="this['active'+this.section.sectionId] = false;section.isBusy = false"
+                                     ng-click="this['active'+this.section.sectionId] =! this['active'+this.section.sectionId] ; section.isBusy =! section.isBusy;"
+                                     ng-class="{'active': this['active'+this.section.sectionId]}">
+                                    <div>{{section.data}}</div>
+                                </div>
+                            </div>
+
+                            <br /><br />
+                            <button class="btn btn-primary" data-target="#modal" data-toggle="modal">Add Section to selected area</button>
+
+                            <br /><hr /><br />
+
+
+                            <button class="btn btn-primary" ng-click="loadArray()">Preview</button>
+                            <br />
+                            <br />
+                            <div class="row imagesContainer" id="imagesContainer"></div>
+                            <br /><br />
+                            <button class="btn btn-primary" ng-click="saveFloor()">Save Floor</button>
+
+                            <div class="row">
+                                <div class="col-sm-8 col-sm-offset-2">
+                                    <div class=" alert-danger clear text-center" ng-show="errdiv">
+                                        <span class="errorFont"> {{errMsg}}</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <br /><br />
-                     <button data-target="#modal" data-toggle="modal">Add Section</button>
 
-                    <br /><hr /><br />
-
-
-                    <button ng-click="loadArray()">Preview</button>
-                    <br />
-                    <br />
-                    <div class="row imagesContainer" id="imagesContainer">
-
-
-                    </div>
-                    <br /><br />
-                    <button ng-click="saveFloor()">Save Floor</button>
                 </div>
             </div>
             <footer class="footer">
