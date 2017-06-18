@@ -109,7 +109,7 @@
 
 			        <button type="submit" ng-click="floors('<%= expo._id %>')" class="btn btn-primary pull-right">Add floors</button>
 
-                    <div class="row" ng-init="init('<%= floorslstJSON %>')">
+                    <div class="row" ng-init="init('<%= floorslstJSON %>', '<%= expoJSON %>')">
                         <div class="col-md-12">
                             <div class="card" ng-if="lstfloors.length > 0">
                                 <div class="card-header defaultColor">
@@ -129,10 +129,10 @@
 
                                             <tr ng-repeat="floor in lstfloors">
 
-                                                <td>{{floor.Name}} {{floor._id}}</td>
+                                                <td>{{floor.Name}}</td>
 
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editFloor(floor)" data-original-title="Edit">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editFloor(floor, expoData)" data-original-title="Edit">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>

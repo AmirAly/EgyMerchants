@@ -63,6 +63,7 @@ module.exports = function (app) {
 
     app.get('/eg/floors/:expoid', function (req, res) {
         var _scope = {};
+        // drop down fill
         store.getAll().then(function (_store) {
             if (_store.code == 100) {
                 _scope.storeslst = _store.data;
@@ -78,12 +79,31 @@ module.exports = function (app) {
         });
     });
 
+    app.get('/eg/editfloor', function (req, res) {
+        var _scope = {};
+        // drop down fill
+        store.getAll().then(function (_store) {
+            if (_store.code == 100) {
+                _scope.storeslst = _store.data;
+                res.render('pages/editfloor', _scope);
+            } else {
+                _scope.storeslst = [];
+                res.render('pages/editfloor', _scope);
+            }
+        }).catch(function (_err) {
+            console.log(_err);
+            _scope.storeslst = [];
+            res.render('pages/editfloor', _scope);
+        });
+    });
+
     app.get('/eg/expo/:expoId', function (req, res) {
         var _scope = {};
         expo.getById(req.params.expoId).then(function (_expo) {
             if (_expo.code == 100) {
                 _scope.expo = _expo.data;
                 _scope.floorslstJSON = JSON.stringify(_expo.data.Floors);
+                _scope.expoJSON = JSON.stringify(_expo.data);
                 category.getAll().then(function (_category) {
                     if (_category.code == 100) {
                         _scope.categorieslst = _category.data;

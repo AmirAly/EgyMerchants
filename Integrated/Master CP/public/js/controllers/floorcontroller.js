@@ -1,4 +1,4 @@
-﻿egm.controller("floorsController", function ($scope, API, $filter) {
+﻿egm.controller("floorController", function ($scope, API, $filter) {
     
 
     $scope.signOut = function () {
@@ -6,44 +6,9 @@
         localStorage.clear();
     };
 
-
-    $scope.floor = {
-        "Sections": [
-                        { sectionId: 1, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "1", data: '1x1', isBusy: false },
-                        { sectionId: 2, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "2", data: '1x2', isBusy: false },
-                        { sectionId: 3, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "3", data: '1x3', isBusy: false },
-                        { sectionId: 4, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "4", data: '1x4', isBusy: false },
-                        { sectionId: 5, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "5", data: '1x5', isBusy: false },
-                        { sectionId: 6, sectionCoordinateXrow: "1", sectionCoordinateYcoulmn: "6", data: '1x6', isBusy: false },
-                        { sectionId: 7, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "1", data: '2x1', isBusy: false },
-                        { sectionId: 8, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "2", data: '2x2', isBusy: false },
-                        { sectionId: 9, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "3", data: '2x3', isBusy: false },
-                        { sectionId: 10, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "4", data: '2x4', isBusy: false },
-                        { sectionId: 11, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "5", data: '2x5', isBusy: false },
-                        { sectionId: 12, sectionCoordinateXrow: "2", sectionCoordinateYcoulmn: "6", data: '2x6', isBusy: false },
-                        { sectionId: 13, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "1", data: '3x1', isBusy: false },
-                        { sectionId: 14, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "2", data: '3x2', isBusy: false },
-                        { sectionId: 15, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "3", data: '3x3', isBusy: false },
-                        { sectionId: 16, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "4", data: '3x4', isBusy: false },
-                        { sectionId: 17, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "5", data: '3x5', isBusy: false },
-                        { sectionId: 18, sectionCoordinateXrow: "3", sectionCoordinateYcoulmn: "6", data: '3x6', isBusy: false },
-                        { sectionId: 19, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "1", data: '4x1', isBusy: false },
-                        { sectionId: 20, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "2", data: '4x2', isBusy: false },
-                        { sectionId: 21, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "3", data: '4x3', isBusy: false },
-                        { sectionId: 22, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "4", data: '4x4', isBusy: false },
-                        { sectionId: 23, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "5", data: '4x5', isBusy: false },
-                        { sectionId: 24, sectionCoordinateXrow: "4", sectionCoordinateYcoulmn: "6", data: '4x6', isBusy: false },
-                        { sectionId: 25, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "1", data: '5x1', isBusy: false },
-                        { sectionId: 26, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "2", data: '5x2', isBusy: false },
-                        { sectionId: 27, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "3", data: '5x3', isBusy: false },
-                        { sectionId: 28, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "4", data: '5x4', isBusy: false },
-                        { sectionId: 29, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "5", data: '5x5', isBusy: false },
-                        { sectionId: 30, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "6", data: '5x6', isBusy: false },
-        ],
-        "Coordinates": [{}],
-        "Name": ""
-    }
-    $scope.coordinates = [];
+    $scope.floor = JSON.parse(localStorage.getItem('EditedFloor'));
+    $scope.expo = JSON.parse(localStorage.getItem('EditedExpo'));
+    console.log($scope.floor);
 
     $scope.addSection = function () {
         $scope.getSelected();
@@ -120,7 +85,7 @@
             Store: $scope.selectedstore._id,
             StoreName: $scope.selectedstore.Name
         };
-        $scope.coordinates.push($scope.oneStoreCoordinates);
+        $scope.floor.Coordinates.push($scope.oneStoreCoordinates);
         $scope.imgLink = '';
         //add class busy
         $('.active').addClass('busy').removeClass('active');
@@ -141,16 +106,18 @@
         var containerWidth = document.getElementById('imagesContainer').offsetWidth;
         var oneSectionHeight = containerHeight / 5;
         var oneSectionWidth = containerWidth / 6;
-        for (var i = 0; i < $scope.coordinates.length; i++) {
-            var top = $scope.coordinates[i].Top * oneSectionHeight;
-            var left = $scope.coordinates[i].Left * oneSectionWidth;
-            var height = $scope.coordinates[i].Height * oneSectionHeight;
-            var width = $scope.coordinates[i].Width * oneSectionWidth;
+        for (var i = 0; i < $scope.floor.Coordinates.length; i++) {
+            var top = $scope.floor.Coordinates[i].Top * oneSectionHeight;
+            var left = $scope.floor.Coordinates[i].Left * oneSectionWidth;
+            var height = $scope.floor.Coordinates[i].Height * oneSectionHeight;
+            var width = $scope.floor.Coordinates[i].Width * oneSectionWidth;
             var div = document.createElement('div');
-            div.innerHTML = '<div style="background-image:url(' + $scope.coordinates[i].Img + ');position:absolute;top:' + top + ';left:' + left + ';height:' + height + ';width:' + width + ';background-size: cover;background-repeat: no-repeat;"></div>';
+            div.innerHTML = '<div style="background-image:url(' + $scope.floor.Coordinates[i].Img + ');position:absolute;top:' + top + ';left:' + left + ';height:' + height + ';width:' + width + ';background-size: cover;background-repeat: no-repeat;"></div>';
             document.getElementById('imagesContainer').appendChild(div);
         }
     }
+    $scope.loadArray();
+
     //$scope.selectSection = function (_section) {
     //    console.log(_section);
     //    if (_section.data != "") {
@@ -163,30 +130,36 @@
     var pathArray = window.location.pathname.split('/');
 
     $scope.saveFloor = function () {
-        $scope.floor.Coordinates = $scope.coordinates;
-        $scope.floor.Name = $scope.floorName;
+       
         console.log($scope.floor);
+
+        for (var i = 0; i < $scope.expo.Floors.length; i++) {
+            if ($scope.expo.Floors[i]._id == $scope.floor._id) {
+                $scope.expo.Floors[i] = $scope.floor;
+            }
+        }
+
         $scope.loading = true;
         var req = {
             method: 'put',
-            url: '/Expo/SetFloor',
+            url: '/Expo/Edit',
             data: {
-                _id: pathArray[pathArray.length - 1], //get last segmant of url
-                Floor: $scope.floor
+                _id: $scope.expo._id,
+                Title: $scope.expo.Title,
+                Category: $scope.expo.Category,
+                Floors: $scope.expo.Floors,
+                Banner: $scope.expo.Banner
             }
         }
-        API.execute(req).then(function (res) {
-            if (res.data.code == 100) {
-                console.log(res);
-                window.location.href = '/eg/expo/' + pathArray[pathArray.length - 1];
-                //localStorage.setItem('storeId', res.data._id);
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 100) {
+                window.location.reload();
+                window.location.href = '/eg/expo/' + $scope.expo._id;
             } else {
-                $scope.errMsg = res.data;
-                $scope.errdiv = true;
-                console.log(res.data);
+                console.log('Something went error');
                 $scope.loading = false;
             }
-
         });
     }
 

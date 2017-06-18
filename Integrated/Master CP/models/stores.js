@@ -73,7 +73,7 @@ module.exports = {
             })
         })
     },
-    editProfile: function (_id, _email, _city, _address, _country, _description, _imgs) {
+    editProfile: function (_id, _email, _city, _address, _country, _description, _imgs, _profilePicture) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ 'Email': _email, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
@@ -102,6 +102,7 @@ module.exports = {
                                         Obj.Address = _address;
                                         Obj.Country = _country;
                                         Obj.Description = _description;
+                                        Obj.ProfilePicture = _profilePicture;
                                         if (_imgs)
                                             Obj.Imgs = _imgs;
                                         Obj.save(function (err, Obj) {
@@ -333,9 +334,11 @@ module.exports = {
     },
     search2: function (_store, _expo, _keyWord, _country) {
         var finalList = [],
-            expoList=[],
+            expoList = [],
+            result=[],
+            itemsList=[],
             storesList = [];
-        var underscore = require("underscore");
+        var _ = require("underscore");
         var filter = { 'Country': { "$regex": _country, "$options": "i" }, 'Status': 'Active', 'Type': 'store' };
         if (_country == "")
             filter = { 'Status': 'Active', 'Type': 'store' };
@@ -352,6 +355,7 @@ module.exports = {
                 else {
                     if (lst.length > 0) {
                         storesList = storesList.concat(lst);
+                        //console.log("strcoun"+storesList)
                     }
                     Expo.find(expoFilter, 'Floors Title Banner').populate('Floors.Coordinates.Store', '_id Name ProfilePicture Description Address Status Type').exec(function (err, lst) {
                         if (err)
@@ -361,38 +365,68 @@ module.exports = {
                             });
                         else {
                             if (lst.length > 0) {
-                                underscore.each(lst, function (expo) {
+                                _.each(lst, function (expo) {
                                     expoList.push({ "_id": expo._id, "Title": expo.Title, "Banner": expo.banner, "Type": "expo" });
                                 })
                                 if (_expo !== "") {
                                     if (_country == "") {
                                         storesList.length = 0;
                                     }
-                                    underscore.each(lst, function (expo) {
-                                        underscore.each(expo.Floors, function (floor) {
-                                            storesList=underscore.filter(floor.Coordinates, function (store) {
-                                                return (store.Store.Status == "Active") 
+                                    _.each(lst, function (expo) {
+                                        _.each(expo.Floors, function (floor) {
+                                            _.each(floor.Coordinates, function (store) {
+                                                if (store.Store.Status == "Active") storesList.push(store.Store);
                                             })
                                         })
                                     })
                                 }
-                                var destinctArray = underscore.uniq(storesList, function (x) {
+                                var destinctArray = _.uniq(storesList, function (x) {
                                     return (x._id).toString();
                                 })
                                 storesList = destinctArray;
                                 if (_store != "") {
-                                    finalList= underscore.filter(storesList, function (store) {
+                                    finalList = _.filter(storesList, function (store) {
                                         return (store.Name.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Address.indexOf(_store) !== -1) 
                                     })
-                                    storesList = finalList;
-                                    finalList.length = 0;
+                                   // storesList = finalList;
+                                  //  finalList.length = 0;
                                 }
                                 if (_keyWord != "") {
-                                    finalList= underscore.filter(expoList, function (expo) {
+                                    //console.log(storesList);
+                                    Item.find({ $and: [{ $or: [{ 'Name': { "$regex": _keyWord, "$options": "i" } }, { 'Description': { "$regex": _keyWord, "$options": "i" } }] }, { 'Status': 'Active' }] }, '_id Name Pictures', function (err, itemLst) {
+                                        if (err)
+                                            reject({
+                                                code: 1,
+                                                data: err
+                                            });
+                                        else {
+                                            if (itemLst.length > 0) {itemsList=_.map(itemLst, function (item) {
+                                                return _.pick(_.extend({}, item, { Type: "item" }), '_id', 'Name', 'Pictures','Type'); })
+                                            }
+                                            }
+                                        })
+                                    finalList = _.filter(expoList, function (expo) {
                                         return (expo.Title.indexOf(_keyWord) !== -1) 
                                     })
-                                    finalList=  underscore.filter(storesList, function (store) {
+                                   finalList= _.filter(storesList,function (store) {
                                         return (store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1)
+                                        })
+                                 //finalList=_.filter(_.filter(storesList, function (store) {
+                                 //      return (store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1)
+                                 //  }), function (storeid) {
+                                 //      return _.find(itemsList, function (item) {
+                                 //           return item._id === storeid._id;
+
+                                 //       });
+                                 //   });
+
+                                   finalList=_.chain( _.filter(storesList, function (store) {
+                                        return (store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1)
+                                   })
+                                   )
+
+                                    _.each(storesList, function (store) {
+                                        if (store.Name.indexOf(_keyWord) !== -1 || store.Description.indexOf(_keyWord) !== -1 || store.Address.indexOf(_keyWord) !== -1){finalList.push(store);
                                         Item.find({ $and: [{ $or: [{ 'Name': { "$regex": _keyWord, "$options": "i" } }, { 'Description': { "$regex": _keyWord, "$options": "i" } }] }, { 'Status': 'Active' }, { 'Store': store._id }] }, '_id Name Pictures', function (err, itemLst) {
                                             if (err)
                                                 reject({
@@ -401,45 +435,45 @@ module.exports = {
                                                 });
                                             else {
                                                 if (itemLst.length > 0) {
-                                                    underscore.each(itemLst, function (item) {
-                                                        finalList.push({ "_id": item._id, "Name": item.Name, "Pictures": item.Pictures, "Type": "item" });
-                                                    })
+                                                    finalList = _.map(itemLst, function (item) {
+                                                        return _.pick(_.extend({}, item, { Type: "item" }), '_id', 'Name', 'Pictures','Type');
+                                                    });
+                                                    //console.log(finalList);
                                                 }
 
                                             }
                                         })
-                                        //}
+                                    }
                                     })
                                 }
 
                             }
                         }
-                    })
-                
-                    var destinctResult = underscore.uniq(finalList, function (x) {
-                        return (x._id).toString();
-                    });
-                    if ((_store !== "" && _keyWord !== "") || _keyWord !== "") {
-                        result = destinctResult;
-                    }
-                    else if (_store !== "") {
-                        if (_expo !== "") {
-                            result = destinctResult.concat(expoList)
+                        var destinctResult = _.uniq(finalList, function (x) {
+                            return (x._id).toString();
+                        });
+                        if ((_store !== "" && _keyWord !== "") || _keyWord !== "") {
+                            result = destinctResult;
                         }
-                        else
-                        result = destinctResult
-                    }
-                    else {
-                        if (_expo !== "") { console.log("exp"+expoList); result = storesList.concat(expoList); }
-                        else
-                            result = storesList;
-                    }
-                }
-                if (result.length > 0) {
-                    resolve({ code: 100, data: underscore.groupBy(result, 'Type') });
-                }
-                else {
-                    reject({ code: 21, data: "This filteration didn't result in any data" })
+                        else if (_store !== "") {
+                            if (_expo !== "") {
+                                result = destinctResult.concat(expoList);
+                            }
+                            else
+                                result = destinctResult
+                        }
+                        else {
+                            if (_expo !== "") { result = storesList.concat(expoList); }
+                            else
+                                result = storesList;
+                        }
+                        if (result.length > 0) {
+                            //resolve({ code: 100, data: _.groupBy(result, 'Type') });
+                        }
+                        else {
+                            reject({ code: 21, data: "This filteration didn't result in any data" })
+                        }
+                    })
                 }
             })
         })

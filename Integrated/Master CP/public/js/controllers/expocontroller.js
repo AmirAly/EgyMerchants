@@ -3,9 +3,11 @@
         document.getElementById('uploadItemImage').click();
     };
 
-    $scope.init = function (_floors) {
+    $scope.init = function (_floors, _expo) {
         $scope.lstfloors = JSON.parse(_floors);
+        $scope.expoData = JSON.parse(_expo);
         console.log($scope.lstfloors);
+        console.log($scope.expoData);
     }
 
     $scope.floors = function (_id) {
@@ -71,6 +73,14 @@
             $scope.loading = false;
         });
     }
+
+    $scope.editFloor = function (_floor, _expo) {
+        localStorage.setItem('EditedFloor', JSON.stringify(_floor));
+        localStorage.setItem('EditedExpo', JSON.stringify(_expo));
+
+        window.location.href = "/eg/editfloor";
+    }
+
 
 });
 
