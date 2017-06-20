@@ -61,7 +61,13 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-
+    api.get('/Store/Search/:_store/:_expo/:_keyword/:_country', function (req, res) {
+        StoreLogic.search(req.params._store, req.params._expo, req.params._keyword, req.params._country).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     //gallery API calls
     api.post('/Gallery/Add', function (req, res) {
         var _newGallery = new Gallery(req.body);

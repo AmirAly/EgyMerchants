@@ -14,7 +14,7 @@ module.exports = function (app) {
 
     // index page welcome + categories
     app.get('/Eg/Home', function (req, res) {
-        
+
         var _scope = {};
 
         country.getAll().then(function (_countriesData) {
@@ -22,7 +22,7 @@ module.exports = function (app) {
             if (_countriesData.code == 100) {
                 console.log(_countriesData.data);
                 _scope.allCountries = _countriesData.data;
-                
+
                 country.getById(_scope.allCountries[0]._id).then(function (_data) {
                     if (_data.code == 100) {
                         console.log(_data.data);
@@ -86,7 +86,7 @@ module.exports = function (app) {
                 {
                     "Name": 'Women Floor',
                     Coordinates: [
-                        { "Top": 0, "Left": 4, "Width": 2, "Height": 5, "Img": "http://www.styling.pk/wp-content/uploads/2017/02/Mausummery-Pre-Summer-Collection-2017-for-women.jpg", "Store": 1 ,"StoreName":'Spring'},
+                        { "Top": 0, "Left": 4, "Width": 2, "Height": 5, "Img": "http://www.styling.pk/wp-content/uploads/2017/02/Mausummery-Pre-Summer-Collection-2017-for-women.jpg", "Store": 1, "StoreName": 'Spring' },
                         { "Top": 3, "Left": 0, "Width": 4, "Height": 2, "Img": "http://styloplanet.com/wp-content/uploads/2017/04/Borjan-Shoes-Latest-Summer-Collection-for-Women-2017-2018-3-1.png", "Store": 2, "StoreName": 'The Fashion' },
                         { "Top": 0, "Left": 0, "Width": 2, "Height": 3, "Img": "http://3.bp.blogspot.com/-iCXOp3A-BH4/VXWGjdRKIBI/AAAAAAAAALg/uzN4MtS_CRI/s640/borjan-shoes.jpg", "Store": 3, "StoreName": 'Borjan' },
                         { "Top": 0, "Left": 2, "Width": 2, "Height": 3, "Img": "https://fashion360.pk/wp-content/uploads/2017/02/Baroque-Festive-Edition-Luxury-Chiffon-collection-2017-for-women-7.jpg", "Store": 4, "StoreName": 'Luxury Chiffon' }
@@ -123,34 +123,52 @@ module.exports = function (app) {
 
     // store page   /eg/store/almaksoud
     app.get('/Eg/Store/:storeName/:storeId', function (req, res) {
-        console.log(req.query);
-
         var _scope = {};
-        //res.render('pages/store', _scope);
         store.getById(req.params.storeId).then(function (_data) {
-            console.log(req.params.storeId);
-            _scope.store = _data;
-            gallery.getByStore(req.params.storeId).then(function (_galleriesData) {
-                _scope.Galleries = _galleriesData;
-                product.getByBestSeller(req.params.storeId).then(function (_bestSellerData) {
-                    _scope.bestSeller = _bestSellerData;
-                    res.render('pages/store', _scope);
+            if (_data.code == 100) {
+                _scope.store = _data.data;
+                product.getByStore(req.params.storeId).then(function (_galleriesData) {
+                    if (_galleriesData.code == 100) {
+                        _scope.Galleries = _galleriesData.data;
+                        console.log(_galleriesData.data);
+                        product.getFeatured(req.params.storeId).then(function (_featuredItemsData) {
+                            if (_featuredItemsData.code == 100) {
+                                _scope.featured = _featuredItemsData.data;
+                                res.render('pages/store', _scope);
+                            }
+                            else {
+                                _scope.featured = [];
+                                res.render('pages/store', _scope);
+                            }
+                        }).catch(function (_err) {
+                            console.log(_err);
+                            _scope.featured = [];
+                            res.render('pages/store', _scope);
+                        });
+                    } else {
+                        _scope.Galleries = [];
+                        _scope.featured = [];
+                        res.render('pages/store', _scope);
+                    }
                 }).catch(function (_err) {
                     console.log(_err);
-                    _scope.bestSeller = [];
+                    _scope.Galleries = [];
+                    _scope.featured = [];
                     res.render('pages/store', _scope);
                 });
-            }).catch(function (_err) {
-                console.log(_err);
+            }
+            else {
+                _scope.store = {};
                 _scope.Galleries = [];
-                _scope.bestSeller = [];
+                _scope.featured = [];
                 res.render('pages/store', _scope);
-            });
+            }
+
         }).catch(function (_err) {
             console.log(_err);
             _scope.store = {};
             _scope.Galleries = [];
-            _scope.bestSeller = [];
+            _scope.featured = [];
             res.render('pages/store', _scope);
         });
     });
@@ -200,8 +218,14 @@ module.exports = function (app) {
         ];
         _scope.similarProducts = similarProducts;
         product.getById(req.params.productId).then(function (_product) {
-            _scope.product = _product;
-            res.render('pages/product', _scope);
+            if (_product.code == 100) {
+                _scope.product = _product.data;
+                res.render('pages/product', _scope);
+            }
+            else {
+                _scope.product = [];
+                res.render('pages/product', _scope);
+            }
         }).catch(function (_err) {
             console.log(_err);
             _scope.product = [];
@@ -233,16 +257,19 @@ module.exports = function (app) {
                                     console.log(_scope.searchTxt);
                                     console.log(_searchResult);
                                     if (searchResult.code == 100) {
-                                        _scope.searchResult = _searchResult;
+                                        _scope.searchResult = _searchResult
+                                        _scope.JsonSearchResult = JSON.stringify(_searchResult);
                                         res.render('pages/search', _scope);
                                     } else {
                                         _scope.searchResult = [];
+                                        _scope.JsonSearchResult = [];
                                         res.render('pages/search', _scope);
                                     }
                                 }).catch(function (err) {
                                     console.log(_scope.searchTxt);
                                     console.log(err);
                                     _scope.searchResult = [];
+                                    _scope.JsonSearchResult = [];
                                     res.render('pages/search', _scope);
                                 });
                             } else {
@@ -276,7 +303,7 @@ module.exports = function (app) {
             res.render('pages/search', _scope);
         });
 
-        
+
         //var searchResult = [
         //    {
         //        'resultExpos': [

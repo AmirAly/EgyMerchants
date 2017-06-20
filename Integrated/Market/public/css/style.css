@@ -1103,6 +1103,10 @@ h1, h2, h3, h4, h5, h6 {
                 cursor: pointer;
             }
 
+            .storePage .pageBody .dvProductsBlock .col-md-2.col-sm-3 a {
+                text-decoration: none !important;
+            }
+
         .storePage .pageBody .dvProductsBlock .dvItemContainer {
             padding: 10px;
             background: #ececec;
@@ -1129,8 +1133,11 @@ h1, h2, h3, h4, h5, h6 {
                 }
 
                 .storePage .pageBody .dvProductsBlock .dvItemContainer .dvItemDescription h6 {
-                    padding: 0;
+                    padding: 0 5px;
                     font-size: 11px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                 }
 
                 .storePage .pageBody .dvProductsBlock .dvItemContainer .dvItemDescription h2 {
@@ -1246,7 +1253,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .expoPage .wow:hover .image-hover {
     background: rgba(0, 0, 0, 0.74);
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .expoPage .noGutter {
@@ -1505,7 +1512,7 @@ h1, h2, h3, h4, h5, h6 {
 
         .expoPage .secondDiv .brands-slide .container {
             display: flex;
-            display: none;
+            /*display: none;*/
         }
 
             .expoPage .secondDiv .brands-slide .container div {
