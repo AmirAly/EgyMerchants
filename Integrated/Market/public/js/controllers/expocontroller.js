@@ -2,7 +2,7 @@
     $rootScope.loading = true;
     $scope.expos = [];
     $timeout(function () {
-
+        
     }, 2000);
     $scope.loadArray = function (_expoID, _data) {
         console.log(_data);
@@ -31,7 +31,7 @@
                 }
             }
         }
-
+        $rootScope.loading = false;
         //    //empty container dv
         //document.getElementById('imagesContainer' + _expoID).innerHTML = "";
 
@@ -103,3 +103,22 @@
         console.log($scope['activePageNumber' + _expoId]);
     }
 });
+
+function toggle(_id) {
+    if ($('.expoPagingController' + _id).hasClass('hide')) {
+        //hide paging
+        $('.expoPagingController' + _id).removeClass('hide');
+        $('.expoPagingControllerRemoval' + _id).addClass('hide');
+    }
+    else {
+        //show paging
+        $('.expoPagingController' + _id).addClass('hide');
+        $('.expoPagingControllerRemoval' + _id).removeClass('hide');
+    }
+    $('.whiteLayerContainer' + _id).toggleClass('clicked');
+}
+function selectPage(_id, _floor) {
+    $('.btnChangePage').removeClass('active');
+    $('.page' + _floor).addClass('active');
+    $('#expo' + _id + ' .repeated-item').fadeOut('50', 'linear').fadeIn('50', 'linear').animate({ opacity: '1' }, "50");
+}
