@@ -24,8 +24,9 @@
                     var width = _data[i].floors[0].Coordinates[j].Width * oneSectionWidth;
 
                     var div = document.createElement('div');
+                    // replace nbc/id with ' + _data[i].floors[0].Coordinates[j].StoreName + '/' + _data[i].floors[0].Coordinates[j].Store + '
                     div.innerHTML = '<div class="wow flipInX repeated-item" data-wow-duration="2s" style="background-image:url(' + _data[i].floors[0].Coordinates[j].Img + ');position:absolute;top:' + top + 'px;left:' + left + 'px;height:' + height + 'px;width:' + width + 'px;background-size: cover;background-repeat: no-repeat;">\
-                                     <a href="/eg/Store/' + _data[i].floors[0].Coordinates[j].StoreName + '/' + _data[i].floors[0].Coordinates[j].Store + '"><div class="image-hover"><i class="icon-zoom-in-2"></i></div></a><div class="image-title">' + _data[i].floors[0].Coordinates[j].StoreName + '</div>\
+                                     <a href="/eg/Store/NBC/594660e5734d1d59b7895502"><div class="image-hover"><i class="icon-zoom-in-2"></i></div></a><div class="image-title">' + _data[i].floors[0].Coordinates[j].StoreName + '</div>\
                                      </div>';
                     document.getElementById('imagesContainer' + _expoID).appendChild(div);
                 }

@@ -13,7 +13,7 @@
 
     $scope.store = {};
     $scope.store._id = localStorage.getItem('StoreId');
-    $scope.store.Imgs = [];
+    //$scope.store.Imgs = [];
 
     console.log(localStorage.getItem('StoreId'));
 
@@ -23,12 +23,11 @@
     };
 
     
+    $scope.store.ProfilePicture = $('#imgItem').attr('src');
 
     $scope.save = function () {
-        $scope.profileImg = {
-            URL: $('#imgItem').attr('src')
-        }
-        $scope.store.Imgs.push($scope.profileImg);
+        
+        $scope.store.ProfilePicture = $('#imgItem').attr('src');
         console.log($scope.store);
         $scope.loading = true;
         var req = {

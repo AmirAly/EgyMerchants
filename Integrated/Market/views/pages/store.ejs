@@ -4,7 +4,7 @@
 
 <div class="storePage">
     <div class="container">
-        <div class="pageCover" style="background: url(/images/cover.jpg);">
+        <div class="pageCover" style="background: url(<%= store.CoverPhoto %>);">
 
         </div>
         <div class="pageBody">
@@ -14,12 +14,12 @@
                         <div class="dvProfileImgContainer">
                             <div class="dvProfileImg">
                                 <span class="icon-checkmark-2" alt="Is Visited"></span>
-                                <img class="img-responsive" src="/images/nbclogo.png" />
+                                <img class="img-responsive" src="<%= store.ProfilePicture %>" />
                             </div>
                         </div>
 
                         <div class="dvStoreInfo">
-                            <h1>NBC Network</h1>
+                            <h1><%= store.Name %></h1>
                             <span class="dvRating">
                                 <span class="icon-star-3"></span>
                                 <span class="icon-star-3"></span>
@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="dvStoreDescription">
-                            <h3>Building and constructing chemical materials</h3>
+                            <h3><%= store.Description %></h3>
                         </div>
                     </div>
                 </div>
@@ -46,8 +46,17 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="dvStoreIcons">
+                            <% if (store.Badges.HasFactory == true) { %>
                             <img alt="Has Factory" src="/images/factory.png" />
-                            <img alt="verified" src="/images/verified.png" />
+                            <% } else { %>
+                            <img alt="Has Factory" src="/images/nofactory.png" />
+                            <% } %>
+
+                            <% if (store.Badges.Verified == true) { %>
+                            <img alt="Has Factory" src="/images/verified.png" />
+                            <% } else { %>
+                            <img alt="Has Factory" src="/images/notverified.png" />
+                            <% } %>
                         </div>
                     </div>
                 </div>
@@ -65,7 +74,7 @@
 
             <div class="dvProductsBlock row">
                 <div class="col-sm-12">
-                    
+                    <%= featured %>
                     <div class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
                         <div class="dvItemContainer text-center">
                             <img src="http://image.dhgate.com/0x0/f2/albu/g3/M00/55/07/rBVaHFWRNnyAQtfxAADMCSEjlFw087.jpg" class="img-responsive" />
@@ -73,7 +82,7 @@
                                 <h1>Hip pantes 6</h1>
                                 <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
                                 <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
+                                <h5>Product Details</h5>
                             </div>
                         </div>
                     </div>
@@ -85,7 +94,7 @@
                                 <h1>Hip pantes 6</h1>
                                 <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
                                 <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
+                                <h5>Product Details</h5>
                             </div>
                         </div>
                     </div>
@@ -97,7 +106,7 @@
                                 <h1>Hip pantes 6</h1>
                                 <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
                                 <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
+                                <h5>Product Details</h5>
                             </div>
                         </div>
                     </div>
@@ -109,7 +118,7 @@
                                 <h1>Hip pantes 6</h1>
                                 <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
                                 <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
+                                <h5>Product Details</h5>
                             </div>
                         </div>
                     </div>
@@ -121,7 +130,7 @@
                                 <h1>Hip pantes 6</h1>
                                 <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
                                 <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
+                                <h5>Product Details</h5>
                             </div>
                         </div>
                     </div>
@@ -133,7 +142,7 @@
                                 <h1>Hip pantes 6</h1>
                                 <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
                                 <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
+                                <h5>Product Details</h5>
                             </div>
                         </div>
                     </div>
@@ -146,7 +155,7 @@
                                 <h1>Hip pantes 6</h1>
                                 <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
                                 <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
+                                <h5>Product Details</h5>
                             </div>
                         </div>
                     </div>
@@ -158,7 +167,7 @@
                                 <h1>Hip pantes 6</h1>
                                 <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
                                 <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
+                                <h5>Product Details</h5>
                             </div>
                         </div>
                     </div>
@@ -170,7 +179,7 @@
                                 <h1>Hip pantes 6</h1>
                                 <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
                                 <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
+                                <h5>Product Details</h5>
                             </div>
                         </div>
                     </div>
@@ -182,13 +191,16 @@
                                 <h1>Hip pantes 6</h1>
                                 <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
                                 <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
+                                <h5>Product Details</h5>
                             </div>
                         </div>
                     </div>
 
                 </div>
             </div>
+           
+            <% if (Galleries.galleries.length > 0) { %>
+            <% Galleries.galleries.forEach(function(gallery){ %>
 
             <div class="dvAdvcontainer">
                 <img class="img-responsive" src="/images/adv1.png" />
@@ -198,7 +210,7 @@
                 <div class="row">
                     <div class="col-sm-12 text-left">
                         <div class="labelContainer">
-                            <h4>Casual Gallery</h4>
+                            <h4><%= gallery.Title %></h4>
                         </div>
                     </div>
                 </div>
@@ -207,129 +219,31 @@
             <div class="dvProductsBlock row">
                 <div class="col-sm-12">
 
+				<% Galleries.items.forEach(function(item){ %>
                     <div class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <div class="dvItemContainer text-center">
-                            <img src="http://www.stylishwife.com/wp-content/uploads/2014/02/Mens-Casual-Fashion-Style-8.jpg" class="img-responsive" />
+                       <a href="/eg/Product/<%= item.Name %>/<%= item._id %>">
+					    <div class="dvItemContainer text-center">
+                            <img src="<%= item.Pictures[0].URL %>" class="img-responsive" />
                             <div class="dvItemDescription">
-                                <h1>Hip pantes 6</h1>
-                                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
+                                <h1><%= item.Name %></h1>
+                                <h6><%= item.Description %></h6>
                                 <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
+                                <h5>Product Details</h5>
                             </div>
                         </div>
+					  </a>
                     </div>
-
-                    <div class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <div class="dvItemContainer text-center">
-                            <img src="http://nurgulstylista.kz/uploads/1470742884.jpg" class="img-responsive" />
-                            <div class="dvItemDescription">
-                                <h1>Hip pantes 6</h1>
-                                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
-                                <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <div class="dvItemContainer text-center">
-                            <img src="https://s-media-cache-ak0.pinimg.com/236x/45/15/18/451518d966e2c1374a93e3428d6ac61e.jpg" class="img-responsive" />
-                            <div class="dvItemDescription">
-                                <h1>Hip pantes 6</h1>
-                                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
-                                <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <div class="dvItemContainer text-center">
-                            <img src="https://s-media-cache-ak0.pinimg.com/736x/7f/30/49/7f30498d07ff12304a3004ad5519e817.jpg" class="img-responsive" />
-                            <div class="dvItemDescription">
-                                <h1>Hip pantes 6</h1>
-                                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
-                                <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
-                            </div>
-                        </div>
-                    </div>
+				<% }); %>
 
                 </div>
             </div>
 
+            <% }); %>
+            <% } else { %>
+            <p class="txtNoData"> No Galleries Available </p>
+            <% } %>
 
             <div class="dvAdvcontainer">
-                <img class="img-responsive" src="/images/adv3.png" />
-            </div>
-
-            <div class="dvSectionTitle">
-                <div class="row">
-                    <div class="col-sm-12 text-left">
-                        <div class="labelContainer">
-                            <h4>Classic Gallery</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dvProductsBlock row">
-                <div class="col-sm-12">
-
-                    <div class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <div class="dvItemContainer text-center">
-                            <img src="http://image.dhgate.com/0x0/f2/albu/g3/M00/55/07/rBVaHFWRNnyAQtfxAADMCSEjlFw087.jpg" class="img-responsive" />
-                            <div class="dvItemDescription">
-                                <h1>Hip pantes 6</h1>
-                                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
-                                <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <div class="dvItemContainer text-center">
-                            <img src="https://ae01.alicdn.com/kf/HTB1nHAkKVXXXXaVaXXXq6xXFXXXv/2017-New-font-b-Style-b-font-Custome-Made-Groom-Tuxedos-Slim-Fit-Suits-For-Men.jpg" class="img-responsive" />
-                            <div class="dvItemDescription">
-                                <h1>Hip pantes 6</h1>
-                                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
-                                <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <div class="dvItemContainer text-center">
-                            <img src="https://s-media-cache-ak0.pinimg.com/736x/80/f4/dd/80f4dd91bdf236d1301aa04d92d49c83.jpg" class="img-responsive" />
-                            <div class="dvItemDescription">
-                                <h1>Hip pantes 6</h1>
-                                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
-                                <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <div class="dvItemContainer text-center">
-                            <img src="https://ae01.alicdn.com/kf/HTB1oCmXQFXXXXa4XVXXq6xXFXXX1/-Jacket-Pants-Vest-2017-font-b-Men-s-b-font-cotton-and-silk-High-quality.jpg" class="img-responsive" />
-                            <div class="dvItemDescription">
-                                <h1>Hip pantes 6</h1>
-                                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h6>
-                                <h2>$ 28.49</h2>
-								<h5>Product Details</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-			<div class="dvAdvcontainer">
                 <img class="img-responsive" src="/images/adv2.png" />
             </div>
 

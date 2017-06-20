@@ -7,47 +7,50 @@
 </section>
 
 <!-- One column content -->
-<section class="container responsive pageSearch">
+<section class="container responsive pageSearch" ng-controller="searchController">
     <div class="dvOptionsContainer">
         <div class="row">
             <div class="col-sm-9 col-md-6">
-                <select>
+                <select ng-model="countries">
                     <option value="" selected disabled>All Countries</option>
-                    <option value="">Egypt</option>
-                    <option value="">Saudi Arabia</option>
-					<option value="">Jordan</option>
+                    <% countrieslst.forEach(function(country){ %>
+                    <option value="<%= country.Name %>"><%= country.Name %></option>
+                    <% }); %>
                 </select>
-                <select>
+                <select ng-model="expos">
                     <option value="" selected disabled>All Expos</option>
-                    <option value="">Le Marchee </option>
-                    <option value="">El Masreen </option>
+                    <% expolist.forEach(function(expo){ %>
+                    <option value="<%= expo.Title %>"><%= expo.Title %></option>
+                    <% }); %>
+
                 </select>
 
-                <select>
+                <select ng-model="stores">
                     <option value="" selected disabled>All Stores</option>
-                    <option value="">Dior </option>
-                    <option value="">Channel </option>
+                    <% storeslst.forEach(function(store){ %>
+                    <option value="<%= store.Name %>"><%= store.Name %></option>
+                    <% }); %>
+
                 </select>
 
             </div>
             <div class="col-sm-3 col-md-6">
-                <input id="search" type="text" name="txtSearch" value="<%= searchTxt %>" placeholder="Search" class="input-text form-control" autocomplete="off" />
+                <input id="search" type="text" ng-model="keyword" ng-init="keyword = '<%= searchTxt %>' " name="txtSearch" value="<%= searchTxt %>" placeholder="Search" class="input-text form-control" autocomplete="off" />
             </div>
         </div>
         <div class="spacer2"></div>
         <div class="row">
             <div class="col-sm-6 col-sm-offset-6 text-right">
-                <a href="#" class="text-muted"><i class="fa fa-close"></i> Reset Filter </a> &nbsp;
+                <a href="#" ng-click="clearSearch()" class="text-muted"><i class="fa fa-close"></i> Reset Filter </a> &nbsp;
                 <button type="submit" ng-click="refineSearch()" title="Search" class="btn btn-primary"> Refine Search Result <i class="glyphicon glyphicon-search"></i> </button>
             </div>
         </div>
     </div>
 
     <% if (searchResult.length > 0) { %>
+    <div class="panel-group" id="accordion" ng-if="searchResult.length > 0" ng-init="init('<%= JsonSearchResult %>')">
 
-    <div class="panel-group" id="accordion">
-
-        <div class="panel panel-default">
+        <div class="panel panel-default" ng-if="searchResult.expo">
             <div class="panel-heading">
                 <h2 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#dvExpos">Expos <i class="more-less glyphicon glyphicon-minus"></i></a>
@@ -58,10 +61,10 @@
                     <div class="row products-list  products-list-small">
                         <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
                             <% searchResult[0].resultExpos.forEach(function(result){ %>
-                            <div class="product-preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
-                                <div class="preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
+                            <div class="product-preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
+                                <div class="preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
                                     <a href="#" class="preview-image">
-                                        <img class="img-responsive wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s"  src="<%= result.Img %>" width="270" height="328" alt="">
+                                        <img class="img-responsive wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" src="<%= result.Img %>" width="270" height="328" alt="">
                                     </a>
                                     <ul class="product-controls-list right hide-right">
                                         <li class="top-out"></li>
@@ -81,7 +84,7 @@
             </div>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default" ng-if="searchResult.store">
             <div class="panel-heading">
                 <h2 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#dvStores">Stores <i class="more-less glyphicon glyphicon-plus"></i></a>
@@ -92,10 +95,10 @@
                     <div class="row products-list  products-list-small">
                         <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
                             <% searchResult[0].resultStores.forEach(function(result){ %>
-                            <div class="product-preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
-                                <div class="preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
+                            <div class="product-preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
+                                <div class="preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
                                     <a href="/eg/Store/<%= result.Title %>/<%= result._id %>" class="preview-image">
-                                        <img class="img-responsive wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s"  src="<%= result.Img %>" width="270" height="328" alt="">
+                                        <img class="img-responsive wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" src="<%= result.Img %>" width="270" height="328" alt="">
                                     </a>
                                     <ul class="product-controls-list right hide-right">
                                         <li class="top-out"></li>
@@ -116,7 +119,7 @@
             </div>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default" ng-if="searchResult.item">
             <div class="panel-heading">
                 <h2 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#dvProducts">Products <i class="more-less glyphicon glyphicon-plus"></i></a>
@@ -127,10 +130,10 @@
                     <div class="row products-list  products-list-small">
                         <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
                             <% searchResult[0].resultProducts.forEach(function(result){ %>
-                            <div class="product-preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
-                                <div class="preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" >
+                            <div class="product-preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
+                                <div class="preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
                                     <a href="/eg/Product/<%= result.Title %>/<%= result._id %>" class="preview-image">
-                                        <img class="img-responsive wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s"  src="<%= result.Img %>" width="270" height="328" alt="">
+                                        <img class="img-responsive wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" src="<%= result.Img %>" width="270" height="328" alt="">
                                     </a>
                                     <ul class="product-controls-list right hide-right">
                                         <li class="top-out"></li>
@@ -151,10 +154,10 @@
         </div>
 
     </div>
-
-
     <% } else { %>
-    <p class="txtNoData"> No Data Available </p>
+   
+	    <p ng-if="!searchResult.length > 0" class="txtNoData"> No Data Available </p>
+
     <% } %>
 
 </section>
@@ -163,14 +166,14 @@
 <% include ../partials/pageend %>
 <script src="/scripts/contactus.js"></script>
 <script>
-function toggleIcon(e) {
-    $(e.target)
-        .prev('.panel-heading')
-        .find(".more-less")
-        .toggleClass('glyphicon-plus glyphicon-minus');
-}
-$('.panel-group').on('hidden.bs.collapse', toggleIcon);
-$('.panel-group').on('shown.bs.collapse', toggleIcon);
+    function toggleIcon(e) {
+        $(e.target)
+            .prev('.panel-heading')
+            .find(".more-less")
+            .toggleClass('glyphicon-plus glyphicon-minus');
+    }
+    $('.panel-group').on('hidden.bs.collapse', toggleIcon);
+    $('.panel-group').on('shown.bs.collapse', toggleIcon);
 </script>
 <% include ../partials/pagesocial %>
 
