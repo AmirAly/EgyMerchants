@@ -87,7 +87,7 @@ var newstore = new userschema({ "Email": "mynewmail12@gmail.com", "Password": "n
 //    console.log(err);
 //});
 //"new","masterexpo/newgod/test2","new","egypt"
-store.search("all", "all", "all", "egypt").then(function (result) {
+store.search2("new", "", "new", "egypt").then(function (result) {
     console.log(result);
 }, function (err) {
     console.log(err);
@@ -244,8 +244,8 @@ var newitem = new itemschema({ "Name": "my36newitem", "Description": "desconlyto
 //    console.log(err);
 //});
 
-//item.getByStore("593d1eb33808cff0009cf879").then(function (result) {
-//    console.log(result.data.items);
+//item.getByStore("593d1eb33808cff0009cf889").then(function (result) {
+//    console.log(result.data[0].gallery);
 //}, function (err) {
 //    console.log(err);
 //});
