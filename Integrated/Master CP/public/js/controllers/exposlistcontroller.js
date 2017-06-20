@@ -14,7 +14,7 @@
                 Category: $scope.expo.selectedCategory,
                 Banner: $('#imgItem').attr('src'),
                 Status: 'Active',
-                Floors:['']
+                Floors:[]
             }
         }
         API.execute(req).then(function (_res) {

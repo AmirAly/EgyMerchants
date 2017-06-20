@@ -79,22 +79,52 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/eg/editfloor', function (req, res) {
+    app.get('/eg/editfloor/:floorid/:expoid', function (req, res) {
         var _scope = {};
-        // drop down fill
-        store.getAll().then(function (_store) {
-            if (_store.code == 100) {
-                _scope.storeslst = _store.data;
-                res.render('pages/editfloor', _scope);
+
+        expo.getById(req.params.expoid).then(function (_expo) {
+            if (_expo.code == 100) {
+                _scope.expoJson = JSON.stringify(_expo.data);
+                store.getAll().then(function (_store) {
+                    if (_store.code == 100) {
+                        _scope.storeslst = _store.data;
+
+                        for (var i = 0; i < _expo.data.Floors.length; i++) {
+                            if (_expo.data.Floors[i]._id == req.params.floorid) {
+                                console.log(_expo.data.Floors[i]);
+                                _scope.floorslstJSON = JSON.stringify(_expo.data.Floors[i]);
+                            }
+                        }
+
+                        res.render('pages/editfloor', _scope);
+                    } else {
+                        _scope.storeslst = [];
+                        res.render('pages/editfloor', _scope);
+                    }
+                }).catch(function (_err) {
+                    console.log(_err);
+                    _scope.storeslst = [];
+                    res.render('pages/editfloor', _scope);
+                });
+
+
             } else {
+                console.log('else');
+                _scope.expoJson = {};
+                _scope.floorslstJSON = [];
                 _scope.storeslst = [];
                 res.render('pages/editfloor', _scope);
             }
         }).catch(function (_err) {
             console.log(_err);
+            _scope.expoJson = {};
+            _scope.floorslstJSON = [];
             _scope.storeslst = [];
             res.render('pages/editfloor', _scope);
         });
+
+
+        // drop down fill
     });
 
     app.get('/eg/expo/:expoId', function (req, res) {

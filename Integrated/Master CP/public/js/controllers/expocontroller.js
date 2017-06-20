@@ -74,11 +74,8 @@
         });
     }
 
-    $scope.editFloor = function (_floor, _expo) {
-        localStorage.setItem('EditedFloor', JSON.stringify(_floor));
-        localStorage.setItem('EditedExpo', JSON.stringify(_expo));
-
-        window.location.href = "/eg/editfloor";
+    $scope.editFloor = function (_floorId, _expoId) {
+        window.location.href = "/eg/editfloor/" + _floorId + "/" + _expoId;
     }
 
 

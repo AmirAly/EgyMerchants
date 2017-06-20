@@ -1,14 +1,18 @@
 ﻿egm.controller("floorController", function ($scope, API, $filter) {
-    
 
+    $scope.init1 = function (_expoJson) {
+        $scope.expo = JSON.parse(_expoJson);
+        console.log($scope.expo);
+    }
+    $scope.init2 = function (_floorJson) {
+        $scope.floor = JSON.parse(_floorJson);
+        console.log($scope.floor); 
+        $scope.loadArray();
+    }
     $scope.signOut = function () {
         window.location.href = '/eg/Home';
         localStorage.clear();
     };
-
-    $scope.floor = JSON.parse(localStorage.getItem('EditedFloor'));
-    $scope.expo = JSON.parse(localStorage.getItem('EditedExpo'));
-    console.log($scope.floor);
 
     $scope.addSection = function () {
         $scope.getSelected();
@@ -16,7 +20,7 @@
         // clear modal 
         //..
     }
-   
+
     $scope.getSelected = function () {
         $scope.oneStoreCoordinates = {};
         // filter array by isBusy status to get selected Sections
@@ -76,15 +80,20 @@
         console.log("Top : " + (minH - 1) + " Left : " + (minW - 1));
         // add data to coordinates array
         console.log($scope.selectedstore);
+        
+        var e = document.getElementById("selectStore");
+        var strUser = e.options[e.selectedIndex].text;
+
         $scope.oneStoreCoordinates = {
             Top: (minH - 1),
             Left: (minW - 1),
             Width: sectionWidth,
             Height: sectionHeight,
             Img: $('#imgItem').attr('src'),
-            Store: $scope.selectedstore._id,
-            StoreName: $scope.selectedstore.Name
+            Store: $scope.selectedstore,
+            StoreName: strUser
         };
+        console.log($scope.oneStoreCoordinates);
         $scope.floor.Coordinates.push($scope.oneStoreCoordinates);
         $scope.imgLink = '';
         //add class busy
@@ -99,6 +108,8 @@
     }
     //load from coordinates array
     $scope.loadArray = function () {
+        console.log('enteeer');
+
         //empty container dv
         document.getElementById('imagesContainer').innerHTML = "";
         // get window height & width
@@ -106,6 +117,7 @@
         var containerWidth = document.getElementById('imagesContainer').offsetWidth;
         var oneSectionHeight = containerHeight / 5;
         var oneSectionWidth = containerWidth / 6;
+        console.log($scope.floor.Coordinates);
         for (var i = 0; i < $scope.floor.Coordinates.length; i++) {
             var top = $scope.floor.Coordinates[i].Top * oneSectionHeight;
             var left = $scope.floor.Coordinates[i].Left * oneSectionWidth;
@@ -114,9 +126,10 @@
             var div = document.createElement('div');
             div.innerHTML = '<div style="background-image:url(' + $scope.floor.Coordinates[i].Img + ');position:absolute;top:' + top + ';left:' + left + ';height:' + height + ';width:' + width + ';background-size: cover;background-repeat: no-repeat;"></div>';
             document.getElementById('imagesContainer').appendChild(div);
+            console.log(div);
         }
     }
-    $scope.loadArray();
+    
 
     //$scope.selectSection = function (_section) {
     //    console.log(_section);
@@ -130,8 +143,9 @@
     var pathArray = window.location.pathname.split('/');
 
     $scope.saveFloor = function () {
-       
+
         console.log($scope.floor);
+        console.log($scope.expo);
 
         for (var i = 0; i < $scope.expo.Floors.length; i++) {
             if ($scope.expo.Floors[i]._id == $scope.floor._id) {
