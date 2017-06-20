@@ -26,10 +26,8 @@ module.exports = {
         })
     },
     getByStore: function (_storeId) {
-        var galleries = [],
-            res = [];
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Store': _storeId, "Badges": { "$regex": "#Featured", "$options": "i" }, 'Status': 'Active' }, '_id Name Pictures Price Description Gallery').populate('Gallery','Title').exec(function(err, lst){
+            Schema.find({ 'Store': _storeId,'Status': 'Active' }, '_id Name Pictures Price Description Gallery').populate('Gallery','Title').exec(function(err, lst){
                 if (err)
                     reject({
                         code: 1,
@@ -38,17 +36,11 @@ module.exports = {
                 else {
                     if (lst.length > 0)
                     {
-                        _.each(lst, function (item) { galleries.push({ "_id": item.Gallery._id, "Title": item.Gallery.Title, "Type": "galleries" }) });
-                        res = _.map(lst, function (item) {
-                            return _.pick(_.extend({}, item, { Type: "items" }), '_id', 'Name', 'Pictures', 'Type', 'Description');
-                        });
-                        
+                        var grouped = _.groupBy(lst, 'Gallery');
+                        var result = _.map(grouped, function (items, key) { var newObj = {}; newObj = { "gallery": key, "items": items }; return newObj });
                         resolve({
                             code: 100,
-                            data: _.groupBy(_.uniq(galleries.concat(res), function (x) {
-                                return (x._id).toString();
-                            }), 'Type')
-                            
+                            data: result
                         });
                     }
                     else {
