@@ -87,11 +87,11 @@ var newstore = new userschema({ "Email": "mynewmail12@gmail.com", "Password": "n
 //    console.log(err);
 //});
 //"new","masterexpo/newgod/test2","new","egypt"
-store.search2("new", "", "new", "egypt").then(function (result) {
-    console.log(result);
-}, function (err) {
-    console.log(err);
-});
+//store.search("new", "test2", "all", "all").then(function (result) {
+//    console.log(result.data);
+//}, function (err) {
+//    console.log(err);
+//});
 var newmaster = new userschema({ "Email": "newmaster@gmail.com", "Password": "123456", "Name": "anisa"});
 //master.register(newmaster).then(function (result) {
 //    console.log(result); 
@@ -245,7 +245,7 @@ var newitem = new itemschema({ "Name": "my36newitem", "Description": "desconlyto
 //});
 
 //item.getByStore("593d1eb33808cff0009cf889").then(function (result) {
-//    console.log(result.data[0].gallery);
+//    console.log(result.data);
 //}, function (err) {
 //    console.log(err);
 //});
