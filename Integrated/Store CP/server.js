@@ -25,10 +25,10 @@ mongoose.connect(db.url, function (err) {
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept , authorization");
             next();
         });
-        app.listen(process.env.PORT || 8080);
+        app.listen(process.env.PORT || 8090);
         //app.get('*', function (req, res) {
         //    res.render('pages/404');
         //});
-        console.log('8080 is the magic port');
+        console.log('8090 is the magic port');
     }
 });

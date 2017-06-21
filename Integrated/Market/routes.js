@@ -146,14 +146,14 @@ module.exports = function (app) {
                 _scope.store = _data.data;
                 product.getByStore(req.params.storeId).then(function (_galleriesData) {
                     if (_galleriesData.code == 100) {
+                        _scope.GalleriesJson = JSON.stringify(_galleriesData.data);
                         _scope.Galleries = _galleriesData.data;
                         console.log(_galleriesData.data);
                         product.getFeatured(req.params.storeId).then(function (_featuredItemsData) {
                             if (_featuredItemsData.code == 100) {
                                 _scope.featured = _featuredItemsData.data;
                                 res.render('pages/store', _scope);
-                            }
-                            else {
+                            } else {
                                 _scope.featured = [];
                                 res.render('pages/store', _scope);
                             }
@@ -164,19 +164,21 @@ module.exports = function (app) {
                         });
                     } else {
                         _scope.Galleries = [];
+                        _scope.GalleriesJson = [];
                         _scope.featured = [];
                         res.render('pages/store', _scope);
                     }
                 }).catch(function (_err) {
                     console.log(_err);
                     _scope.Galleries = [];
+                    _scope.GalleriesJson = [];
                     _scope.featured = [];
                     res.render('pages/store', _scope);
                 });
-            }
-            else {
+            } else {
                 _scope.store = {};
                 _scope.Galleries = [];
+                _scope.GalleriesJson = [];
                 _scope.featured = [];
                 res.render('pages/store', _scope);
             }
@@ -185,6 +187,7 @@ module.exports = function (app) {
             console.log(_err);
             _scope.store = {};
             _scope.Galleries = [];
+            _scope.GalleriesJson = [];
             _scope.featured = [];
             res.render('pages/store', _scope);
         });
@@ -248,7 +251,7 @@ module.exports = function (app) {
                         store.getAll().then(function (_store) {
                             if (_store.code == 100) {
                                 _scope.storeslst = _store.data;
-                                store.search('', '', _scope.searchTxt, '').then(function (_searchResult) {
+                                store.search('all', 'all', _scope.searchTxt, 'all').then(function (_searchResult) {
                                     console.log(_scope.searchTxt);
                                     console.log(_searchResult);
                                     if (searchResult.code == 100) {
