@@ -27,6 +27,11 @@
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
         console.log('enteeeeeeeeeer');
+
+        // get all countries
+        $scope.allCountries = JSON.parse(localStorage.getItem('allCountries'));
+        console.log($scope.allCountries);
+
     }
     $scope.load();
 

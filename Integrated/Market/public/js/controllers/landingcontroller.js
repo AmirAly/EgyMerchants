@@ -8,6 +8,8 @@
     $scope.init = function (_allcountres, _allcategories) {
        
         $scope.allCountries = _allcountres;
+        localStorage.setItem('allCountries', (JSON.stringify(_allcountres)));
+
         $scope.selectedCountry = $scope.allCountries[0];
         console.log($scope.selectedCountry);
         $scope.allcategories = _allcategories.Categories;
