@@ -261,7 +261,7 @@ module.exports = {
                                 }
                             if (_store != "all" && _keyWord == "all") {
                                     finalList = _.filter(storesList, function (store) {
-                                        return (store.Name.indexOf(_store) !== -1 || store.Description.indexOf(_store) !== -1 || store.Address.indexOf(_store) !== -1) 
+                                        return (store.Name.toLowerCase().indexOf(_store.toLowerCase()) !== -1 || store.Description.toLowerCase().indexOf(_store.toLowerCase()) !== -1 || store.Address.toLowerCase().indexOf(_store.toLowerCase()) !== -1)
                                     })
                                     
                                     if (_expo != "all") {finalList=finalList.concat(expoList) }

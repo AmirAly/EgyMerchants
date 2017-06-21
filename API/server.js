@@ -87,8 +87,8 @@ var newstore = new userschema({ "Email": "mynewmail12@gmail.com", "Password": "n
 //    console.log(err);
 //});
 //"new","masterexpo/newgod/test2","new","egypt"
-//store.search2("all", "all", "all", "egypt").then(function (result) {
-//    console.log(result);
+//store.search("new", "test2", "all", "all").then(function (result) {
+//    console.log(result.data);
 //}, function (err) {
 //    console.log(err);
 //});
