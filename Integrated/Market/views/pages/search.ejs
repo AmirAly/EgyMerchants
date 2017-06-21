@@ -8,17 +8,17 @@
 
 <!-- One column content -->
 <section class="container responsive pageSearch" ng-controller="searchController">
-    <div class="dvOptionsContainer">
+    <div class="dvOptionsContainer" ng-init="init1('<%= JsonSearchResult %>')">
         <div class="row">
             <div class="col-sm-9 col-md-6">
                 <select ng-model="countries">
-                    <option value="" selected disabled>All Countries</option>
+                    <option value="all" selected >All Countries</option>
                     <% countrieslst.forEach(function(country){ %>
                     <option value="<%= country.Name %>"><%= country.Name %></option>
                     <% }); %>
                 </select>
                 <select ng-model="expos">
-                    <option value="" selected disabled>All Expos</option>
+                    <option value="all" selected >All Expos</option>
                     <% expolist.forEach(function(expo){ %>
                     <option value="<%= expo.Title %>"><%= expo.Title %></option>
                     <% }); %>
@@ -26,7 +26,7 @@
                 </select>
 
                 <select ng-model="stores">
-                    <option value="" selected disabled>All Stores</option>
+                    <option value="all" selected >All Stores</option>
                     <% storeslst.forEach(function(store){ %>
                     <option value="<%= store.Name %>"><%= store.Name %></option>
                     <% }); %>
@@ -47,10 +47,9 @@
         </div>
     </div>
 
-    <% if (searchResult.length > 0) { %>
-    <div class="panel-group" id="accordion" ng-if="searchResult.length > 0" ng-init="init('<%= JsonSearchResult %>')">
+    <div class="panel-group" id="accordion" ng-show="searchResult">
 
-        <div class="panel panel-default" ng-if="searchResult.expo">
+        <div class="panel panel-default" ng-show="searchResult.expo">
             <div class="panel-heading">
                 <h2 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#dvExpos">Expos <i class="more-less glyphicon glyphicon-minus"></i></a>
@@ -60,11 +59,10 @@
                 <div class="panel-body">
                     <div class="row products-list  products-list-small">
                         <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
-                            <% searchResult[0].resultExpos.forEach(function(result){ %>
-                            <div class="product-preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
+                            <div ng-repeat="expo in searchResult.expo" class="product-preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
                                 <div class="preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
                                     <a href="#" class="preview-image">
-                                        <img class="img-responsive wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" src="<%= result.Img %>" width="270" height="328" alt="">
+                                        <img class="img-responsive wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" src="{{expo.Banner}}" width="270" height="328" alt="">
                                     </a>
                                     <ul class="product-controls-list right hide-right">
                                         <li class="top-out"></li>
@@ -75,30 +73,28 @@
                                     <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
                                     <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
                                 </div>
-                                <h3 class="title"><a href="#"><%= result.Title %></a></h3>
+                                <h3 class="title"><a href="#">{{expo.Name}}</a></h3>
                             </div>
-                            <% }); %>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="panel panel-default" ng-if="searchResult.store">
+        <div class="panel panel-default" ng-show="searchResult.store">
             <div class="panel-heading">
                 <h2 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#dvStores">Stores <i class="more-less glyphicon glyphicon-plus"></i></a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#dvStores">Stores <i class="more-less glyphicon glyphicon-minus"></i></a>
                 </h2>
             </div>
-            <div id="dvStores" class="panel-collapse collapse ">
+            <div id="dvStores" class="panel-collapse collapse in">
                 <div class="panel-body">
                     <div class="row products-list  products-list-small">
                         <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
-                            <% searchResult[0].resultStores.forEach(function(result){ %>
-                            <div class="product-preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
+                            <div ng-repeat="store in searchResult.store" class="product-preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
                                 <div class="preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
-                                    <a href="/eg/Store/<%= result.Title %>/<%= result._id %>" class="preview-image">
-                                        <img class="img-responsive wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" src="<%= result.Img %>" width="270" height="328" alt="">
+                                    <a href="/eg/Store/{{store.Name}}/{{store._id}}" class="preview-image">
+                                        <img class="img-responsive wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" src="{{store.ProfilePicture}}" width="270" height="328" alt="">
                                     </a>
                                     <ul class="product-controls-list right hide-right">
                                         <li class="top-out"></li>
@@ -106,12 +102,11 @@
                                         <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
                                         <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
                                     </ul>
-                                    <a href="/eg/Store/<%= result.Title %>/<%= result._id %>" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
+                                    <a href="/eg/Store/{{store.Name}}/{{store._id}}" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
                                     <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
                                 </div>
-                                <h3 class="title"><a href="/eg/Store/<%= result.Title %>/<%= result._id %>"><%= result.Title %></a></h3>
+                                <h3 class="title"><a href="/eg/Store/{{store.Name}}/{{store._id}}">{{store.Name}}</a></h3>
                             </div>
-                            <% }); %>
                         </div>
                     </div>
 
@@ -119,21 +114,20 @@
             </div>
         </div>
 
-        <div class="panel panel-default" ng-if="searchResult.item">
+        <div class="panel panel-default" ng-show="searchResult.item">
             <div class="panel-heading">
                 <h2 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#dvProducts">Products <i class="more-less glyphicon glyphicon-plus"></i></a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#dvProducts">Products <i class="more-less glyphicon glyphicon-minus"></i></a>
                 </h2>
             </div>
-            <div id="dvProducts" class="panel-collapse collapse ">
+            <div id="dvProducts" class="panel-collapse collapse in">
                 <div class="panel-body">
                     <div class="row products-list  products-list-small">
                         <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
-                            <% searchResult[0].resultProducts.forEach(function(result){ %>
-                            <div class="product-preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
+                            <div ng-repeat="item in searchResult.item" class="product-preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
                                 <div class="preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
-                                    <a href="/eg/Product/<%= result.Title %>/<%= result._id %>" class="preview-image">
-                                        <img class="img-responsive wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" src="<%= result.Img %>" width="270" height="328" alt="">
+                                    <a href="/eg/Product/{{item.Name}}/{{item._id}}" class="preview-image">
+                                        <img class="img-responsive wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" src="{{item.Pictures[0].URL}}" width="270" height="328" alt="">
                                     </a>
                                     <ul class="product-controls-list right hide-right">
                                         <li class="top-out"></li>
@@ -141,12 +135,11 @@
                                         <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
                                         <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
                                     </ul>
-                                    <a href="/eg/Product/<%= result.Title %>/<%= result._id %>" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
+                                    <a href="/eg/Product/{{item.Name}}/{{item._id}}" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
                                     <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
                                 </div>
-                                <h3 class="title"><a href="/eg/Product/<%= result.Title %>/<%= result._id %>"><%= result.Title %></a></h3>
+                                <h3 class="title"><a href="/eg/Product/{{item.Name}}/{{item._id}}">{{item.Name}}</a></h3>
                             </div>
-                            <% }); %>
                         </div>
                     </div>
                 </div>
@@ -154,17 +147,14 @@
         </div>
 
     </div>
-    <% } else { %>
-   
-	    <p ng-if="!searchResult.length > 0" class="txtNoData"> No Data Available </p>
 
-    <% } %>
+    <p ng-show="!searchResult" class="txtNoData"> No Data Available </p>
+
 
 </section>
 <!-- //end One columns content -->
 <% include ../partials/pagefooter %>
 <% include ../partials/pageend %>
-<script src="/scripts/contactus.js"></script>
 <script>
     function toggleIcon(e) {
         $(e.target)

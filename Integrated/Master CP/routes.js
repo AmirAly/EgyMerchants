@@ -31,32 +31,31 @@ module.exports = function (app) {
 
     app.get('/eg/exposlist', function (req, res) {
         var _scope = {};
-        expo.getAll().then(function (_expo) {
-            if (_expo.code == 100) {
-                _scope.expolist = _expo.data;
-                console.log(_expo.data);
-                category.getAll().then(function (_category) {
-                    if (_category.code == 100) {
-                        _scope.categorieslst = _category.data;
+        category.getAll().then(function (_category) {
+            if (_category.code == 100) {
+                _scope.categorieslst = _category.data;
+                expo.getAll().then(function (_expo) {
+                    if (_expo.code == 100) {
+                        _scope.expolist = _expo.data;
+                        console.log(_expo.data);
                         res.render('pages/exposlist', _scope);
-                    } else {
-                        _scope.categorieslst = {};
+                    }
+                    else {
+                        _scope.expolist = [];
                         res.render('pages/exposlist', _scope);
                     }
                 }).catch(function (_err) {
-                    console.log(_err);
-                    _scope.categorieslst = {};
+                    _scope.expolist = [];
                     res.render('pages/exposlist', _scope);
                 });
 
             } else {
-                console.log('else');
-                _scope.expolist = {};
+                _scope.categorieslst = {};
                 res.render('pages/exposlist', _scope);
             }
         }).catch(function (_err) {
             console.log(_err);
-            _scope.expolist = {};
+            _scope.categorieslst = {};
             res.render('pages/exposlist', _scope);
         });
     });

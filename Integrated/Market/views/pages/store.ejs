@@ -46,13 +46,13 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="dvStoreIcons">
-                            <% if (store.Badges.HasFactory == true) { %>
+                            <% if (store.Badges.HasFactory) { %>
                             <img alt="Has Factory" src="/images/factory.png" />
                             <% } else { %>
                             <img alt="Has Factory" src="/images/nofactory.png" />
                             <% } %>
 
-                            <% if (store.Badges.Verified == true) { %>
+                            <% if (store.Badges.Verified) { %>
                             <img alt="Has Factory" src="/images/verified.png" />
                             <% } else { %>
                             <img alt="Has Factory" src="/images/notverified.png" />

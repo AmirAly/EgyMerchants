@@ -29,8 +29,8 @@
         console.log('enteeeeeeeeeer');
 
         // get all countries
-        $scope.allCountries = JSON.parse(localStorage.getItem('allCountries'));
-        console.log($scope.allCountries);
+        $scope.allCountriesGeneralList = JSON.parse(localStorage.getItem('allCountries'));
+        console.log($scope.allCountriesGeneralList);
 
     }
     $scope.load();
