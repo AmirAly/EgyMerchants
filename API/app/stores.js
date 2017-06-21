@@ -4,9 +4,7 @@ var Gallery = require('./models/gallery');
 var Expo = require('./models/expo');
 var Item = require('./models/item');
 var Category = require('./models/category');
-var Helper = require('./helper');
 var _ = require("underscore");
-var CDN = "https://egmpre.blob.core.windows.net/";
 module.exports = {
     register: function (_newStore) {
         return new Promise(function (resolve, reject) {
