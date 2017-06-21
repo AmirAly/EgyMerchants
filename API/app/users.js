@@ -1,6 +1,4 @@
 var Schema = require('./models/user');
-var Helper = require('./helper');
-
 module.exports = {
     register: function (_newUser) {
         return new Promise(function (resolve, reject) {

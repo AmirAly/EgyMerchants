@@ -1,6 +1,5 @@
 var Schema = require('./models/category');
 module.exports = {
-  
     getAll: function () {
         return new Promise(function (resolve, reject) {
             Schema.find({'Status': 'Active'}, '', function (err, lst) {
