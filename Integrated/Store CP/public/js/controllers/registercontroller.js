@@ -2,10 +2,9 @@
     $scope.categories = [];
     $scope.register = {};
 
-
+    $scope.categoryId ='590726b2f36d286835cb21a3';
     $scope.chooseCategory = function (_id) {
         console.log(_id);
-        _id = '590726b2f36d286835cb21a3';
         $scope.categoryId = _id;
 
 
