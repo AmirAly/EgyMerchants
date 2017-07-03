@@ -44,8 +44,8 @@
                                 <li data-toggle="modal" data-target="#modal-login" ng-init="loggedUser = false" ng-hide="loggedUser">
                                     <a href="#">LOG IN</a>
                                 </li>
-                                <li ng-show="loggedUser" ng-click="logout()">
-                                    <a href="#">Welcome {{userName}} | LOG OUT</a>
+                                <li ng-show="loggedUser">
+                                    <a href="#">Welcome {{userName}} | <span ng-click="logout()">LOG OUT</span></a>
                                 </li>
                             </ul>
 

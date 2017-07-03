@@ -4,42 +4,40 @@
 <div class="expoPage" ng-controller="expoController">
     <div class="allExposView" ng-hide="showSingleExpo">
         <div class="secondDiv">
-		<% if (expos.length > 0) { %>
+            <% if (expos.length > 0) { %>
             <% expos.forEach(function(expo){ %>
-            <section  swinch-duration="1000" data-scroll
-                     class="secondExpo repeated-item" id="expo<%= expo._id %>" swinch-offset="-50" >
+            <section swinch-duration="1000" data-scroll
+                     class="secondExpo repeated-item" id="expo<%= expo._id %>" swinch-offset="-60">
                 <article>
                     <div class="expoData">
-					 
+
                         <div>
                             <div class="singleExpoView" id="expo<%= expo._id %>">
                                 <div class="container-fluid">
-                                   
-									<div class="row" ng-init="loadArray('<%= expo._id %>','<%=JsonFloor%>')">
 
-									<div class="row imagesContainer" id="imagesContainer<%= expo._id %>"></div>
+                                    <div class="row" ng-init="loadArray('<%= expo._id %>','<%=JsonFloor%>')">
+
+                                        <div class="row imagesContainer" id="imagesContainer<%= expo._id %>"></div>
 
                                     </div>
 
                                     <div class="expoDetails">
                                         <!-- Pagination -->
                                         <h6 class="text-center light expoPagingController<%= expo._id %>"
-                                            onclick="toggle('<%= expo._id %>')">
+                                            ng-click="toggle('<%= expo._id %>')">
                                             <img src="/images/rightarrow.png" />
                                         </h6>
                                         <h6 class="text-center light expoPagingControllerRemoval<%= expo._id %> hide opened"
-                                            onclick="toggle('<%= expo._id %>')">
+                                            ng-click="toggle('<%= expo._id %>')">
                                             <img src="/images/leftarrow.png" />
                                         </h6>
-										<div class="whiteLayerContainer whiteLayerContainer<%= expo._id %>">
-											<ul class="pagination-main clicked dvPageNumbers<%= expo._id %> " >
-												<li onclick="selectPage('<%= expo._id %>',1)" class="btnChangePage page1 active"><a>1</a></li>
-												<li onclick="selectPage('<%= expo._id %>',2)" class="btnChangePage page2"><a>2</a></li>
-												<li onclick="selectPage('<%= expo._id %>',3)" class="btnChangePage page3"><a>3</a></li>
-												<li onclick="selectPage('<%= expo._id %>',4)" class="btnChangePage page4"><a>4</a></li>
-											</ul>
-											<div class="whiteLayer"></div>
-										</div>
+                                        <div class="whiteLayerContainer whiteLayerContainer<%= expo._id %>">
+                                            <ul id="pagingContainer<%= expo._id %>" class="pagination-main clicked dvPageNumbers<%= expo._id %> ">
+                                                <li ng-click="selectPage('<%= expo._id %>',1)" class="btnChangePage page1 active"><a>1</a></li>
+                                                
+                                            </ul>
+                                            <div class="whiteLayer"></div>
+                                        </div>
                                     </div>
                                     <!-- //end Pagination -->
                                 </div>
@@ -51,49 +49,49 @@
 
 
 
-<div class="homepage-bar">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <i class="icon-shipping"></i>
-		<div class="text-area"><h3>FREE SHIPPING &amp; RETURN</h3><p>Free shipping on all orders over $99.</p></div>
-      </div>
-      <div class="col-md-4">
-        <i class="icon-money-bag"></i>
-		<div class="text-area"><h3>MONEY BACK GUARANTEE</h3><p>100% money back guarantee.</p></div>
-      </div>
-      <div class="col-md-4">
-        <i class="icon-support"></i>
-		<div class="text-area"><h3>ONLINE SUPPORT 24/7</h3><p>Lorem ipsum dolor sit amet.</p></div>
-      </div>
-    </div>
-  </div>
-</div>
+            <div class="homepage-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <i class="icon-shipping"></i>
+                            <div class="text-area"><h3>FREE SHIPPING &amp; RETURN</h3><p>Free shipping on all orders over $99.</p></div>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="icon-money-bag"></i>
+                            <div class="text-area"><h3>MONEY BACK GUARANTEE</h3><p>100% money back guarantee.</p></div>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="icon-support"></i>
+                            <div class="text-area"><h3>ONLINE SUPPORT 24/7</h3><p>Lorem ipsum dolor sit amet.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
             <% }); %>
 
-<div class="brands-slide"> 
-  <div class="container">
-    <div>
-		<img class="lazyOwl"  alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand1.png">
-		<img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand2.png">
-		<img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand3.png">
-		<img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand4.png">
-		<img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand5.png">
-	</div>
-  </div>
-</div>
+            <div class="brands-slide">
+                <div class="container">
+                    <div>
+                        <img class="lazyOwl" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand1.png">
+                        <img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand2.png">
+                        <img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand3.png">
+                        <img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand4.png">
+                        <img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand5.png">
+                    </div>
+                </div>
+            </div>
 
-			<% } else { %>
-			 <p class="txtNoData"> No Data Available </p>
-			 <% } %>
+            <% } else { %>
+            <p class="txtNoData"> No Data Available </p>
+            <% } %>
         </div>
     </div>
 
 
 
-    
+
 </div>
 
 

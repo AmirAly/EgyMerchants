@@ -505,7 +505,9 @@ h6.mega {
             }
 
 .header-wrapper {
-    background-color: #282d3b;
+    background-color: #2f3946;
+    /*border-bottom: 1px solid #ccc;*/
+    /*box-shadow: 0px 0px 4px 0px #888;*/
     height: 47px;
     z-index: 999;
     width: 100%;
@@ -1427,7 +1429,7 @@ h6.mega {
     text-align: left;
     box-shadow: inset 0px 1px 1px #b9b9b9;
     background-color: #f4f4f4;
-    border-bottom: 1px solid #bbb;
+    /*border-bottom: 1px solid #bbb;*/
 }
 
     .expoPage article .expoData h6 {
@@ -1504,7 +1506,7 @@ h6.mega {
 
 
 .expoPage .imagesContainer {
-    background: #f3f3f1;
+    background: #2f3946;
     height: 100vh;
     overflow: hidden;
     position: relative;
