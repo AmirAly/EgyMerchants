@@ -1,5 +1,4 @@
 var Schema = require('./models/user');
-var Helper = require('./helper');
 module.exports = {
     //added for test
     register: function (_newMaster) {

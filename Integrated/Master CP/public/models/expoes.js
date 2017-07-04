@@ -186,7 +186,7 @@ module.exports = {
                 }
             })
         })
-    },//edit on floors
+    },
     suspend: function (_id) {
         return new Promise(function (resolve, reject) {
             Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "Suspended" } }, { new: true }, function (err, Obj) {
