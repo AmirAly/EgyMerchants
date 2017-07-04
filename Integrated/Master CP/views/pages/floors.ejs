@@ -139,9 +139,9 @@
                                                         <div class="form-group">
                                                             <label>Choose store</label>
                                                             <br>
-                                                            <select name="country" ng-model="selectedstore" class="form-control">
+                                                            <select name="country" id="selectStore" ng-model="selectedstore" class="form-control">
                                                                 <% storeslst.forEach(function(store){ %>
-                                                                <option value="<%= store %>" selected> <%= store.Name %> </option>
+                                                                <option value="<%= store._id %>" selected> <%= store.Name %> </option>
                                                                 <% }); %>
                                                             </select>
                                                         </div>

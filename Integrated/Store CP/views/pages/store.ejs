@@ -122,17 +122,17 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card card-profile">
-                            <div class="card-avatar">
+                        <div class="card">
+                            <div class="card-header card-chart">
                                     <!--upload img-->
                                     <div>
                                         <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="<%= store.ProfilePicture %>" />
-                                        <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" />
+                                        <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide"/>
                                     </div>
                             </div>
-                            <div class="content">
-                                <h4 class="card-title itemTitle"><%= store.Name %></h4>
-                                <p class="card-content category text-gray"><%= store.Description %></p>
+                            <div class="card-content">
+                                <h4 class="title itemTitle"><%= store.Name %></h4>
+                                <p class="category"><%= store.Description %></p>
                             </div>
                         </div>
                     </div>

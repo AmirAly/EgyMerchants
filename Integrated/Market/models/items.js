@@ -3,7 +3,7 @@ var _ = require("underscore");
 module.exports = {
     getFeatured: function (_storeId) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Store': _storeId, "Badges": { "$regex": "#Featured", "$options": "i" }, 'Status': 'Active' }, '_id Name Rate Pictures Price', function (err, lst) {
+            Schema.find({ 'Store': _storeId, "Badges": { "$regex": "Featured", "$options": "i" }, 'Status': 'Active' }, '_id Name Rate Pictures Price Description', function (err, lst) {
                 if (err)
                     reject({
                         code: 1,
@@ -36,8 +36,11 @@ module.exports = {
                 else {
                     if (lst.length > 0)
                     {
-                        var grouped = _.groupBy(lst, 'Gallery');
-                        var result = _.map(grouped, function (items, key) { var newObj = {}; newObj = { "gallery": key, "items": items }; return newObj });
+                        var result = _.chain(lst)
+                         .groupBy("Gallery").pairs()
+                         .map(function (currentItem) {
+                          return _.object(_.zip(["gallery", "items"], currentItem));
+                          }).value();
                         resolve({
                             code: 100,
                             data: result

@@ -18,7 +18,7 @@
         $scope.getSelected();
         $('#modal').modal('toggle');
         // clear modal 
-        //..
+        $('#imgItem').attr('src','/img/add.gif');
     }
 
     $scope.getSelected = function () {

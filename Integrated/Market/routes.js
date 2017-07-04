@@ -254,50 +254,70 @@ module.exports = function (app) {
                                 store.search('all', 'all', _scope.searchTxt, 'all').then(function (_searchResult) {
                                     console.log(_scope.searchTxt);
                                     console.log(_searchResult);
-                                    if (searchResult.code == 100) {
-                                        _scope.searchResult = _searchResult
-                                        _scope.JsonSearchResult = JSON.stringify(_searchResult);
+                                    if (_searchResult.code == 100) {
+                                        _scope.lstSearchResult = _searchResult.data;
+                                        _scope.JsonSearchResult = JSON.stringify(_searchResult.data);
                                         res.render('pages/search', _scope);
                                     } else {
-                                        _scope.searchResult = [];
+                                        _scope.lstSearchResult = [];
                                         _scope.JsonSearchResult = [];
                                         res.render('pages/search', _scope);
                                     }
                                 }).catch(function (err) {
                                     console.log(_scope.searchTxt);
                                     console.log(err);
-                                    _scope.searchResult = [];
+                                    _scope.storeslst = [];
+                                    _scope.lstSearchResult = [];
                                     _scope.JsonSearchResult = [];
                                     res.render('pages/search', _scope);
                                 });
                             } else {
                                 _scope.storeslst = [];
+                                _scope.lstSearchResult = [];
+                                _scope.JsonSearchResult = [];
                                 res.render('pages/search', _scope);
                             }
                         }).catch(function (_err) {
                             //console.log(_err);
                             _scope.storeslst = [];
+                            _scope.lstSearchResult = [];
+                            _scope.JsonSearchResult = [];
                             res.render('pages/search', _scope);
                         });
 
                     } else {
-                        _scope.countrieslst = {};
+                        _scope.storeslst = [];
+                        _scope.countrieslst = [];
+                        _scope.lstSearchResult = [];
+                        _scope.JsonSearchResult = [];
                         res.render('pages/search', _scope);
                     }
                 }).catch(function (_err) {
                     console.log(_err);
-                    _scope.countrieslst = {};
+                    _scope.storeslst = [];
+                    _scope.expolist = [];
+                    _scope.countrieslst = [];
+                    _scope.lstSearchResult = [];
+                    _scope.JsonSearchResult = [];
                     res.render('pages/search', _scope);
                 });
 
             } else {
                 //console.log('else');
-                _scope.expolist = {};
+                _scope.storeslst = [];
+                _scope.expolist = [];
+                _scope.countrieslst = [];
+                _scope.lstSearchResult = [];
+                _scope.JsonSearchResult = [];
                 res.render('pages/search', _scope);
             }
         }).catch(function (_err) {
             console.log(_err);
-            _scope.expolist = {};
+            _scope.storeslst = [];
+            _scope.expolist = [];
+            _scope.countrieslst = [];
+            _scope.lstSearchResult = [];
+            _scope.JsonSearchResult = [];
             res.render('pages/search', _scope);
         });
 

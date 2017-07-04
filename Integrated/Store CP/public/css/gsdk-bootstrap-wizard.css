@@ -1160,3 +1160,8 @@ label {
         min-width: 140px;
     }
 }
+
+.wizard-card .picture {
+    display: flex !important;
+    justify-content: center !important;
+}

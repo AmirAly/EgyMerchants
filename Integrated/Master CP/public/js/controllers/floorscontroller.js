@@ -49,7 +49,7 @@
         $scope.getSelected();
         $('#modal').modal('toggle');
         // clear modal 
-        //..
+        $('#imgItem').attr('src', '/img/add.gif');
     }
    
     $scope.getSelected = function () {
@@ -111,15 +111,20 @@
         console.log("Top : " + (minH - 1) + " Left : " + (minW - 1));
         // add data to coordinates array
         console.log($scope.selectedstore);
+
+        var e = document.getElementById("selectStore");
+        var strUser = e.options[e.selectedIndex].text;
+
         $scope.oneStoreCoordinates = {
             Top: (minH - 1),
             Left: (minW - 1),
             Width: sectionWidth,
             Height: sectionHeight,
             Img: $('#imgItem').attr('src'),
-            Store: $scope.selectedstore._id,
-            StoreName: $scope.selectedstore.Name
+            Store: $scope.selectedstore,
+            StoreName: strUser
         };
+
         $scope.coordinates.push($scope.oneStoreCoordinates);
         $scope.imgLink = '';
         //add class busy
