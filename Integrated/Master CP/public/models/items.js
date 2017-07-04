@@ -1,8 +1,9 @@
 var Schema = require('./models/item');
+var _ = require("underscore");
 module.exports = {
     getFeatured: function (_storeId) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Store': _storeId, "Badges": { "$regex": "#Featured", "$options": "i" }, 'Status': 'Active' }, '_id Name Rate Pictures Price', function (err, lst) {
+            Schema.find({ 'Store': _storeId, "Badges": { "$regex": "Featured", "$options": "i" }, 'Status': 'Active' }, '_id Name Rate Pictures Price Description', function (err, lst) {
                 if (err)
                     reject({
                         code: 1,
@@ -22,6 +23,37 @@ module.exports = {
                     }
                 }
             });
+        })
+    },
+    getByStore: function (_storeId) {
+        return new Promise(function (resolve, reject) {
+            Schema.find({ 'Store': _storeId,'Status': 'Active' }, '_id Name Pictures Price Description Gallery').populate('Gallery','Title').exec(function(err, lst){
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if (lst.length > 0)
+                    {
+                        var result = _.chain(lst)
+                         .groupBy("Gallery").pairs()
+                         .map(function (currentItem) {
+                          return _.object(_.zip(["gallery", "items"], currentItem));
+                          }).value();
+                        resolve({
+                            code: 100,
+                            data: result
+                        });
+                    }
+                    else {
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
+                    }
+                }
+            })
         })
     },
     getByBestSeller: function (_storeId) {
