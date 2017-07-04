@@ -5751,3 +5751,7 @@ footer {
 .tagslabel {
     top: -38px !important;
 }
+.coverContent{
+    background-color: #f1f3f5;
+    height: 200px;
+}

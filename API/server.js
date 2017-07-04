@@ -48,7 +48,7 @@ mongoose.connect(db.url, function (err) {
     }
 });
  
-var newstore = new userschema({ "Email": "gamila@gmail.com", "Password": "nada", "Name": "my new store12", "Country": "italy", "Category": "furniture" });
+var newstore = new userschema({ "Email": "gamila12@gmail.com", "Password": "nada12", "Name": "my new item store12", "Country": "italy", "Category": "furniture" });
 //store.register(newstore).
 //    then(function (result) {
 //    console.log(result); 
@@ -71,12 +71,12 @@ var newstore = new userschema({ "Email": "gamila@gmail.com", "Password": "nada",
 //}, function (err) {
 //    console.log(err);
 //});
-//store.editProfile("593d10430a55c750117f07f5", "mynewmail4@gmail.com", "cairoo", "addr", "italy", "desc", "").then(function (result) {
+//store.editProfile("5936692ee2e8258c0c9b1206", "cccc@gmail.com", "cairoo", "addr", "egypt", "desc","", "","ppppng").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//store.getById("59427a4c734d1d235a9447e3").then(function (result) {
+//store.getById("5936692ee2e8258c0c9b1206").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -87,7 +87,7 @@ var newstore = new userschema({ "Email": "gamila@gmail.com", "Password": "nada",
 //    console.log(err);
 //});
 //"new","masterexpo/newgod/test2","new","egypt"
-//store.search("all", "all", "nbc", "all").then(function (result) {
+//store.search("store2", "new", "item", "egypt").then(function (result) {
 //    console.log(result.data);
 //}, function (err) {
 //    console.log(err);
@@ -153,7 +153,7 @@ var newcountry = new countryschema({ "Name": "U.S.A", "WelcomeMsg": "welcome in 
 //}, function (err) {
 //    console.log(err);
 //});
-var newexpo = new exposchema({ "Title": "new master", "Banner": "bnner", "Category": "59143976a6adb01098ef50b8" });
+var newexpo = new exposchema({ "Title": "new dream expo", "Banner": "bnner", "Category": "59143976a6adb01098ef50b8" });
 //expo.add(newexpo).then(function (result) {
 //    console.log(result); 
 //}, function(err) {
@@ -164,7 +164,7 @@ var newexpo = new exposchema({ "Title": "new master", "Banner": "bnner", "Catego
 //}, function (err) {
 //    console.log(err);
 //});
-//expo.setFloor("59423d1a45c945c40bb26e72", { "Name": "testcoordinates2", "Coordinates": [{ "Store": "593e4af011b740e8163beb2d"}] }).then(function (result) {
+//expo.setFloor("59413435f9989b6412a3e100", { "Name": "testcoordinates2", "Coordinates": [{ "Store": "595b688e4df9b72c03077f81" }] }).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -223,7 +223,7 @@ var newcategory = new categoryschema({ "Name": "newcategoryy" });
 //    console.log(err);
 //});
 
-var newitem = new itemschema({ "Name": "my36newitem", "Description": "desconlytodo", "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "59369940b656ca6c03f909e7", "Store": "593d1eb33808cff0009cf889" });
+var newitem = new itemschema({ "Name": "newitemtod2", "Description": "desconlytodo", "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "59369940b656ca6c03f909e7", "Store": "595b688e4df9b72c03077f81" });
 //item.add(newitem).then(function (result) {
 //    console.log(result);
 //}, function (err) {
