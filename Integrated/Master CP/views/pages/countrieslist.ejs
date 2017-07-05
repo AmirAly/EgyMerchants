@@ -171,7 +171,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Welcome message</label>
-                                                            <input type="text" class="form-control" ng-model="country.WelcomeMsg" required pattern="^.{2,15}$" name="countryWelcomeMsg" id="countryWelcomeMsg">
+                                                            <input type="text" class="form-control" ng-model="country.WelcomeMsg" required pattern="^.{2,50}$" name="countryWelcomeMsg" id="countryWelcomeMsg">
                                                             <span ng-show="frmAddCountry.countryWelcomeMsg.$dirty && frmAddCountry.countryWelcomeMsg.$invalid">
                                                                 <span class="errorFont" ng-show="frmAddCountry.countryWelcomeMsg.$error.required">Required</span>
                                                                 <span class="errorFont" ng-show="frmAddCountry.countryWelcomeMsg.$error.pattern">Welcome message is too short or too long</span>

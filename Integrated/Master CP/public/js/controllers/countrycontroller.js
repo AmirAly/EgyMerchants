@@ -3,7 +3,7 @@
         document.getElementById('uploadItemImage').click()
     };
 
-    scope.CheckedCategoriesId = JSON.parse(localStorage.getItem('CheckedCategories'));
+    $scope.CheckedCategoriesId = JSON.parse(localStorage.getItem('CheckedCategories'));
     console.log($scope.CheckedCategoriesId);
 
     $scope.init = function (_categorieslst, _country) {
