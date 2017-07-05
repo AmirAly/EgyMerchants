@@ -16,7 +16,6 @@
     $scope.storeId = localStorage.getItem('StoreId');
 
     $scope.moveToItem = function (_itemId) {
-        localStorage.setItem('ItemId', _itemId);
         window.location.href = '/eg/p/product/' + _itemId;
     };
 

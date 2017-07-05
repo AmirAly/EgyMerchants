@@ -17,12 +17,7 @@
     $scope.moveToItems = function (_galleryId) {
         window.location.href = '/eg/p/products/' + _galleryId
         localStorage.setItem('GalleryId', _galleryId);
-        
     };
-
-
-    $scope.galleryId = localStorage.getItem('GalleryOfGalleries');
-    console.log(localStorage.getItem('GalleryOfGalleries'));
 
     $scope.signOut = function () {
         window.location.href = '/eg/Home';
@@ -30,12 +25,14 @@
     };
 
     $scope.updateGallery = function () {
+        
+        console.log($scope.galleryId);
         $scope.loading = true;
         var req = {
             method: 'put',
             url: '/Gallery/Edit',
             data: {
-                _id: $scope.galleryId,//'59099416734d1d274bfd08d4'
+                _id: $scope.galleryId,
                 Title: $scope.gallery.Title,
                 Description: $scope.gallery.Description,
                 Imgs: $('#imgItem').attr('src')

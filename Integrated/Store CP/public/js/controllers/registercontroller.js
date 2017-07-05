@@ -35,13 +35,14 @@
             console.log('default image');
         }
 
-        $scope.loading = true;
+        //$scope.loading = true;
         var req = {
             method: 'post',
             url: '/Store/Register',
             data: $scope.register
         }
         API.execute(req).then(function (res) {
+            console.log(res);
             if (res.data.code == 100) {
                 console.log(res.data.data);
                 window.location.href = '/eg/Home';

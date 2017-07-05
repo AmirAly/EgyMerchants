@@ -11,8 +11,7 @@
 
     $scope.storeId = localStorage.getItem('StoreId');
     $scope.galleryId = localStorage.getItem('GalleryId');
-    console.log(localStorage.getItem('ItemId'));
-    $scope.itemId = localStorage.getItem('ItemId');
+    
     $scope.init = function (_s) {
         $scope.currentItem = JSON.parse(_s);
     };
@@ -89,12 +88,13 @@
     };
 
     $scope.updateItem = function () {
-        $scope.loading = true;
+        console.log($scope.currentItem._id);
+        //$scope.loading = true;
         var req = {
             method: 'put',
             url: '/Item/Edit',
             data: {
-                _id: $scope.itemId,//'59089186734d1d3098a85879'
+                _id: $scope.currentItem._id,//'59089186734d1d3098a85879'
                 Name: $scope.item.Name,
                 Description: $scope.item.Description,
                 Price: $scope.item.Price,
@@ -107,7 +107,7 @@
         API.execute(req).then(function (res) {
             if (res.data.code == 100) {
                 console.log(res.data.data);
-                window.location.reload();
+                //window.location.reload();
             } else {
                 console.log('err');
                 $scope.loading = false;

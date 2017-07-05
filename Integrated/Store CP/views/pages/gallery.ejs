@@ -1,5 +1,5 @@
 <% include ../partials/headpages %>
-<div ng-controller='galleryController'>
+<div ng-controller='galleryController' ng-init=" galleryId ='<%= gallery._id %>'">
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
