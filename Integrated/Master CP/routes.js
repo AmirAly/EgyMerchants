@@ -214,6 +214,7 @@ module.exports = function (app) {
         country.getById(req.params.countryId).then(function (_country) {
             if (_country.code == 100) {
                 _scope.country = _country.data;
+                _scope.countryJSON = JSON.stringify(_country.data);
                 category.getAll().then(function (_category) {
                     if (_category.code == 100) {
                         _scope.categorieslst = _category.data;

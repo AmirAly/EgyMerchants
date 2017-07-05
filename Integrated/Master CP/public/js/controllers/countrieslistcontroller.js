@@ -1,6 +1,6 @@
 ﻿egm.controller("countriesListController", function ($scope, API) {
     $scope.ShowFileSelector = function () {
-        document.getElementById('uploadItemImage').click()
+        document.getElementById('uploadItemImage').click();
     };
 
     $scope.init = function (_categories , _countries) {
@@ -53,8 +53,7 @@
        window.location.href = '/eg/country/' + _id;
         console.log(_id);
         console.log(categories);
-        localStorage.setItem('CheckedCategories', JSON.stringify(categories));
-        localStorage.setItem('countryId', _id);
+       
     };
 
     $scope.removeCountry = function (_id) {
