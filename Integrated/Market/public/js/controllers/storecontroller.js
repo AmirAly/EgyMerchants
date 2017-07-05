@@ -8,5 +8,7 @@
             _galleriesJson[i].gallery = result3;
         }
         $scope.GalleriesLst = _galleriesJson;
+
+        
     }
 });

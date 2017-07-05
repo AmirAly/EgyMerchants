@@ -32,16 +32,6 @@
         $scope.allCountriesGeneralList = JSON.parse(localStorage.getItem('allCountries'));
         console.log($scope.allCountriesGeneralList);
 
-        // get user object from local storage
-        var userObject = localStorage.getItem('userObject');
-        if (userObject != '' && userObject != null) {
-            $scope.userName = userObject.Name;
-            $scope.loggedUser = true;
-        }
-        else {
-            $scope.userName = '';
-            $scope.loggedUser = false;
-        }
 
     }
     $scope.load();
@@ -67,16 +57,16 @@
                     $scope.frmLogin.$setPristine();
                     $scope.frmLogin.$setUntouched();
                     $scope.loginObj = {};
-                    $scope.loggedUser = true;
-                    $scope.userName = _res.data.data.Name;
-                    localStorage.setItem('userObject', _res.data.data);
+                    $rootScope.loggedUser = true;
+                    $rootScope.userName = _res.data.data.Name;
+                    localStorage.setItem('userObject', JSON.stringify(_res.data.data));
                     $scope.dismiss();
 
                 } else {
                     $scope.dataLoading = false;
                     $scope.afterLoginError = _res.data.data;
-                    $scope.loggedUser = false;
-                    localStorage.setItem('userObject', '');
+                    $rootScope.loggedUser = false;
+                    //localStorage.setItem('userObject', '');
                 }
 
             });
@@ -102,22 +92,25 @@
                     $scope.frmRegister.$setPristine();
                     $scope.frmRegister.$setUntouched();
                     $scope.registerObj = {};
-                    $scope.loggedUser = true;
-                    $scope.userName = _res.data.data.Name;
-                    localStorage.setItem('userObject', _res.data.data);
+                    $rootScope.loggedUser = true;
+                    $rootScope.userName = _res.data.data.Name;
+                    localStorage.setItem('userObject', JSON.stringify(_res.data.data));
                     $scope.dismiss();
                 } else {
                     $scope.dataLoading = false;
                     $scope.afterRegisterError = _res.data.data;
-                    $scope.loggedUser = false;
-                    localStorage.setItem('userObject', '');
+                    $rootScope.loggedUser = false;
+                    //localStorage.setItem('userObject', '');
                 }
             });
         }
     }
 
     $scope.logout = function () {
+        localStorage.clear();
         window.location.href = "/eg/Home";
+       
+
     }
 
     $scope.txtSearch = '';

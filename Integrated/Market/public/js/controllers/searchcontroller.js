@@ -14,6 +14,7 @@
             $scope.searchResult = _result;
         }
         console.log($scope.searchResult);
+
     }
 
     $scope.refineSearch = function () {

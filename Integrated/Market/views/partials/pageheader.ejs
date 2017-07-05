@@ -41,11 +41,11 @@
                                 <li>
                                     <a href="#">MY INBOX</a>
                                 </li>
-                                <li data-toggle="modal" data-target="#modal-login" ng-init="loggedUser = false" ng-hide="loggedUser">
+                                <li data-toggle="modal" data-target="#modal-login" ng-hide="loggedUser">
                                     <a href="#">LOG IN</a>
                                 </li>
                                 <li ng-show="loggedUser">
-                                    <a href="#">Welcome {{userName}} | <span ng-click="logout()">LOG OUT</span></a>
+                                  <span>Welcome {{userName}} | </span> <span><a href="#"><span ng-click="logout()">LOG OUT</span></a></span>
                                 </li>
                             </ul>
 
