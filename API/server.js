@@ -71,12 +71,12 @@ var newstore = new userschema({ "Email": "gamila12@gmail.com", "Password": "nada
 //}, function (err) {
 //    console.log(err);
 //});
-//store.editProfile("593d10430a55c750117f07f5", "mynewmail4@gmail.com", "cairoo", "addr", "italy", "desc", "").then(function (result) {
+//store.editProfile("5936692ee2e8258c0c9b1206", "cccc@gmail.com", "cairoo", "addr", "egypt", "desc","", "","ppppng").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//store.getById("59427a4c734d1d235a9447e3").then(function (result) {
+//store.getById("5936692ee2e8258c0c9b1206").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -87,8 +87,8 @@ var newstore = new userschema({ "Email": "gamila12@gmail.com", "Password": "nada
 //    console.log(err);
 //});
 //"new","masterexpo/newgod/test2","new","egypt"
-//store.search("store2", "all", "item", "all").then(function (result) {
-//    console.log(result);
+//store.search("store2", "new", "item", "egypt").then(function (result) {
+//    console.log(result.data);
 //}, function (err) {
 //    console.log(err);
 //});

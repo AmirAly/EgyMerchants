@@ -3,73 +3,88 @@
 
 <div class="expoPage" ng-controller="expoController">
     <div class="allExposView" ng-hide="showSingleExpo">
-        <div class="secondDiv">
+        <div class="secondDiv" ng-init="init('<%= JsonExpos %>')">
+
             <% if (expos.length > 0) { %>
-            <% expos.forEach(function(expo){ %>
-            <section swinch-duration="1000" data-scroll
-                     class="secondExpo repeated-item" id="expo<%= expo._id %>" swinch-offset="-60">
-                <article>
-                    <div class="expoData">
+            <div ng-repeat="expo in exposList">
+                <section swinch-duration="1000" data-scroll
+                         class="secondExpo repeated-item" id="expo{{expo._id}}" swinch-offset="-50">
+                    <article>
 
-                        <div>
-                            <div class="singleExpoView" id="expo<%= expo._id %>">
-                                <div class="container-fluid">
+                        <div class="expoData">
 
-                                    <div class="row" ng-init="loadArray('<%= expo._id %>','<%=JsonFloor%>')">
+                            <div>
+                                <div class="singleExpoView" id="expo{{expo._id}}">
+                                    <div class="container-fluid">
 
-                                        <div class="row imagesContainer" id="imagesContainer<%= expo._id %>"></div>
+                                        <div class="row" ng-init="loadArray(expo._id)">
 
-                                    </div>
+                                            <!-- floors -->
+                                            <div ng-repeat="floor in expo.Floors" class="boxme" ng-show="activePageNumber{{expo._id}} == {{$index}}" ng-init="initfirstPage(expo._id,0)">
+                                                <div class="row imagesContainer" id="imagesContainer{{expo._id}}">
 
-                                    <div class="expoDetails">
-                                        <!-- Pagination -->
-                                        <h6 class="text-center light expoPagingController<%= expo._id %>"
-                                            ng-click="toggle('<%= expo._id %>')">
-                                            <img src="/images/rightarrow.png" />
-                                        </h6>
-                                        <h6 class="text-center light expoPagingControllerRemoval<%= expo._id %> hide opened"
-                                            ng-click="toggle('<%= expo._id %>')">
-                                            <img src="/images/leftarrow.png" />
-                                        </h6>
-                                        <div class="whiteLayerContainer whiteLayerContainer<%= expo._id %>">
-                                            <ul id="pagingContainer<%= expo._id %>" class="pagination-main clicked dvPageNumbers<%= expo._id %> ">
-                                                <li ng-click="selectPage('<%= expo._id %>',1)" class="btnChangePage page1 active"><a>1</a></li>
-                                                
-                                            </ul>
-                                            <div class="whiteLayer"></div>
+                                                    <div ng-repeat="sec in floor.Coordinates">
+                                                        <div class=" repeated-item" ng-style="{'background-image': 'url({{sec.Img}})','position':'absolute','background-size': 'cover','background-repeat': 'no-repeat','top':{{sec.Top * oneSectionHeight}}+'px','left':{{sec.Left * oneSectionWidth}}+'px','height':{{sec.Height * oneSectionHeight}}+'px', 'width':{{sec.Width * oneSectionWidth}}+'px'}">
+                                                            <a href="/eg/Store/{{sec.StoreName}}/{{sec.Store._id}}"><div class="image-hover"><i class="icon-zoom-in-2"></i></div></a><div class="image-title">{{sec.StoreName}}</div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+
                                         </div>
+
+                                        <div class="expoDetails">
+                                            <!-- Pagination -->
+                                            <h6 class="text-center light expoPagingController{{expo._id}}"
+                                                ng-click="toggle(expo._id)">
+                                                <img src="/images/rightarrow.png" />
+                                            </h6>
+                                            <h6 class="text-center light expoPagingControllerRemoval{{expo._id}} hide opened"
+                                                ng-click="toggle(expo._id)">
+                                                <img src="/images/leftarrow.png" />
+                                            </h6>
+                                            <div class="whiteLayerContainer whiteLayerContainer{{expo._id}}">
+                                                <ul id="pagingContainer{{expo._id}}" class="pagination-main clicked dvPageNumbers{{expo._id}} ">
+                                                    <li ng-repeat="f in expo.Floors"
+                                                        ng-click="selectPage(expo._id,$index,$index );" class="btnChangePage page{{$index}}"><a>{{$index+1}}</a></li>
+
+                                                </ul>
+                                                <div class="whiteLayer"></div>
+                                            </div>
+                                        </div>
+                                        <!-- //end Pagination -->
                                     </div>
-                                    <!-- //end Pagination -->
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </article>
-            </section>
+                    </article>
+                </section>
 
 
 
-            <div class="homepage-bar">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <i class="icon-shipping"></i>
-                            <div class="text-area"><h3>FREE SHIPPING &amp; RETURN</h3><p>Free shipping on all orders over $99.</p></div>
-                        </div>
-                        <div class="col-md-4">
-                            <i class="icon-money-bag"></i>
-                            <div class="text-area"><h3>MONEY BACK GUARANTEE</h3><p>100% money back guarantee.</p></div>
-                        </div>
-                        <div class="col-md-4">
-                            <i class="icon-support"></i>
-                            <div class="text-area"><h3>ONLINE SUPPORT 24/7</h3><p>Lorem ipsum dolor sit amet.</p></div>
+                <div class="homepage-bar">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <i class="icon-shipping"></i>
+                                <div class="text-area"><h3>FREE SHIPPING &amp, RETURN</h3><p>Free shipping on all orders over $99.</p></div>
+                            </div>
+                            <div class="col-md-4">
+                                <i class="icon-money-bag"></i>
+                                <div class="text-area"><h3>MONEY BACK GUARANTEE</h3><p>100% money back guarantee.</p></div>
+                            </div>
+                            <div class="col-md-4">
+                                <i class="icon-support"></i>
+                                <div class="text-area"><h3>ONLINE SUPPORT 24/7</h3><p>Lorem ipsum dolor sit amet.</p></div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-
-
-            <% }); %>
 
             <div class="brands-slide">
                 <div class="container">

@@ -2070,3 +2070,52 @@ h6.mega {
     color: #d2d2d2;
     opacity: 0.4;
 }
+
+
+.boxme.ng-hide-add {
+    -webkit-animation: fadeOutLeftBig 0.4s;
+    /*display: block!important;*/
+}
+.boxme.ng-hide-remove {
+    -webkit-animation: fadeInLeftBig 0.8s;
+}
+
+@keyframes slideFromRight {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideFromLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@-webkit-keyframes slideFromRight {
+    0% {
+        -webkit-transform: translateX(100%);
+    }
+
+    100% {
+        -webkit-transform: translateX(0);
+    }
+}
+
+@-webkit-keyframes slideFromLeft {
+    0% {
+        -webkit-transform: translateX(-100%);
+    }
+
+    100% {
+        -webkit-transform: translateX(0);
+    }
+}
