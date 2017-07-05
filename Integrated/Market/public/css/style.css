@@ -2073,19 +2073,19 @@ h6.mega {
 
 
 .boxme.ng-hide-add {
-    -webkit-animation: fadeOutRightBig 0.4s;
+    -webkit-animation: fadeOutLeftBig 0.8s;
     /*display: block!important;*/
 }
 .boxme.ng-hide-remove {
-    -webkit-animation: fadeInRightBig 0.8s;
+    -webkit-animation: fadeInRightBig 0.4s;
 }
 
 .boxme.ng-show-add {
-    -webkit-animation: slideFromRight 0.4s;
+    -webkit-animation: slideFromRight 0.8s;
     /*display: block!important;*/
 }
 .boxme.ng-show-remove {
-    -webkit-animation: slideFromRight 0.8s;
+    -webkit-animation: slideFromRight 0.4s;
 }
 
 @keyframes slideFromRight {

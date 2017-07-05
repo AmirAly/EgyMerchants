@@ -49,13 +49,23 @@
         $scope['hidePages' + _id] = true;
     }
 
-    $scope.selectPage = function (_expoId, _pageNo, _floorId) {
+    //// one button to swipe floors 1 ,  2
+    var fId = 0;
+    $scope.selectPage = function (_expoId, _pageNo, _floorsCounter) {
         console.log(_pageNo);
         $('.btnChangePage').removeClass('active');
         $('.page' + _pageNo).addClass('active');
-        $scope['activePageNumber' + _expoId] = _floorId;
+        $scope['activePageNumber' + _expoId] = fId;
         console.log(_expoId);
         console.log($scope['activePageNumber' + _expoId]);
+        if (fId <= _floorsCounter) {
+            fId++;
+        }
+        else {
+            fId = 0;
+        }
+        console.log(fId);
+        console.log(_floorsCounter);
     }
 
     $scope.initfirstPage = function (_expoId, _floorId) {
