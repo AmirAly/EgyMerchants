@@ -87,7 +87,7 @@ var newstore = new userschema({ "Email": "gamila12@gmail.com", "Password": "nada
 //    console.log(err);
 //});
 //"new","masterexpo/newgod/test2","new","egypt"
-//store.search("store2", "new", "item", "egypt").then(function (result) {
+//store.search("store12", "expo", "item", "italy").then(function (result) {
 //    console.log(result.data);
 //}, function (err) {
 //    console.log(err);
@@ -229,7 +229,7 @@ var newitem = new itemschema({ "Name": "newitemtod2", "Description": "desconlyto
 //}, function (err) {
 //    console.log(err);
 //});
-//item.edit("5937b5d1f10b7eb003b7ce07", "newitem34", "desc", {
+//item.edit("594a710e3e856b0b684b3917", "beautiful dress", "desc", {
 //    "Title": "t5it",
 //"URL":"url"
 //},"334","444","badg","tags").then(function (result) {
@@ -238,7 +238,7 @@ var newitem = new itemschema({ "Name": "newitemtod2", "Description": "desconlyto
 //    console.log(err);
 //});
 //593d003bd28c8f3c127c7d38,5937b674a93c5a001176be9c,5937b5d1f10b7eb003b7ce07 ok
-//item.getById("5937b5d1f10b7eb003b7ce07").then(function (result) {
+//item.getById("59463fb599f97ae4127813f6").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
