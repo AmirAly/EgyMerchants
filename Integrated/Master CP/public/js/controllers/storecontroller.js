@@ -21,7 +21,7 @@
         console.log(" Featured " + $scope.featured + ",HasFactory " + $scope.hasFactory + " , Verified " + $scope.verified);
     };
 
-    $scope.getCheckedBoxes = function () {
+    $scope.save = function () {
         var req = {
             method: 'put',
             url: '/Store/EditBadges',
