@@ -47,6 +47,7 @@
             url: '/Store/Search/' + store + '/' + expo + '/' + keyword + '/' + country,
             data: {}
         }
+        console.log(req);
         API.execute(req).then(function (_res) {
             console.log(_res);
             if (_res.data.code == 100) {
