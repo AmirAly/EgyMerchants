@@ -13,7 +13,7 @@ module.exports = function (app) {
     app.get('/eg/store/:storeId', function (req, res) {
         var _scope = {};
         store.getById(req.params.storeId).then(function (_store) {
-            console.log(_store);
+            //console.log(_store);
             if (_store.code == 100) {
                 _scope.store = _store.data;
                 res.render('pages/store', _scope);

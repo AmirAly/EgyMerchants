@@ -25,15 +25,12 @@
         localStorage.clear();
     };
 
-    $scope.store.ProfilePicture = $('#imgItem').attr('src');
-    //$scope.store.CoverPhoto = $('#imgItemCover').attr('src');
-
     $scope.save = function () {
         $scope.store.ProfilePicture = $('#imgItem').attr('src');
         $scope.store.CoverPhoto = $('#imgItemCover').attr('src');
 
         console.log($scope.store);
-        //$scope.loading = true;
+        $scope.loading = true;
         var req = {
             method: 'put',
             url: '/Store/EditProfile',
@@ -41,9 +38,10 @@
         }
         console.log($scope.store);
         API.execute(req).then(function (res) {
+            console.log(res);
             if (res.data.code == 100) {
                 console.log(res);
-               // window.location.reload();
+                window.location.reload();
             } else {
                 console.log(res.data.data);
                 console.log('canot edit');
