@@ -349,7 +349,7 @@ h6.mega {
         font-size: 11px;
         padding: 4px 15px;
         text-transform: uppercase;
-        line-height: 19px;
+        line-height: 2.8;
     }
 
         .dvTopLinks li a {
@@ -2073,11 +2073,19 @@ h6.mega {
 
 
 .boxme.ng-hide-add {
-    -webkit-animation: fadeOutLeftBig 0.4s;
+    -webkit-animation: fadeOutRightBig 0.4s;
     /*display: block!important;*/
 }
 .boxme.ng-hide-remove {
-    -webkit-animation: fadeInLeftBig 0.8s;
+    -webkit-animation: fadeInRightBig 0.8s;
+}
+
+.boxme.ng-show-add {
+    -webkit-animation: slideFromRight 0.4s;
+    /*display: block!important;*/
+}
+.boxme.ng-show-remove {
+    -webkit-animation: slideFromRight 0.8s;
 }
 
 @keyframes slideFromRight {

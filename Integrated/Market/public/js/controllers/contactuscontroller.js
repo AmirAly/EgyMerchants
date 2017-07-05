@@ -1,5 +1,5 @@
 ﻿app.controller("contactusController", function ($scope, $state, $rootScope, $timeout) {
-
+   
     $scope.submit = function () {
         $('#success').fadeIn();
         $('#contactform').each(function () { this.reset(); });

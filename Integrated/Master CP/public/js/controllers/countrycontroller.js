@@ -3,16 +3,20 @@
         document.getElementById('uploadItemImage').click()
     };
 
-    $scope.countryId = localStorage.getItem('countryId');
     $scope.CheckedCategoriesId = JSON.parse(localStorage.getItem('CheckedCategories'));
     console.log($scope.CheckedCategoriesId);
 
-    $scope.init = function (_categorieslst) {
+    $scope.init = function (_categorieslst, _country) {
         $scope.categories = JSON.parse(_categorieslst);
+        $scope.countryObj = JSON.parse(_country);
+        $scope.countryId = $scope.countryObj._id;
+        console.log($scope.countryId);
+        $scope.checkedCategories = $scope.countryObj.Categories;
+        console.log($scope.checkedCategories);
         for (var i = 0; i < $scope.categories.length; i++) {
-            for (var j = 0; j < $scope.CheckedCategoriesId.length; j++) {
+            for (var j = 0; j < $scope.checkedCategories.length; j++) {
                 
-                if ($scope.categories[i]._id == $scope.CheckedCategoriesId[j]) {
+                if ($scope.categories[i]._id == $scope.checkedCategories[j]._id) {
                     $scope.categories[i].checked = true;
                 }
             }
@@ -21,6 +25,8 @@
     
     var checkboxesChecked = [];
     $scope.updateCountry = function () {
+        console.log($scope.countryObj);
+        console.log($scope.countryId);
         $scope.loading = true;
         for (var i = 0; i < $scope.categories.length; i++) {
             if ($scope.categories[i].checked) {

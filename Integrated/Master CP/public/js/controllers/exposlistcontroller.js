@@ -2,7 +2,7 @@
 
 
     $scope.ShowFileSelector = function () {
-        document.getElementById('uploadItemImage').click()
+        document.getElementById('uploadItemImage').click();
     };
 
     $scope.addExpo = function () {

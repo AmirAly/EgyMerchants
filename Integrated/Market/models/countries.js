@@ -94,7 +94,7 @@ module.exports = {
                             else
                                 resolve({
                                     code: 100,
-                                    data:Obj//"Country data edited successfully"
+                                    data:"Country data edited successfully"
                                 })
                         })
 
