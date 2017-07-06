@@ -2,11 +2,11 @@
 
     $scope.init1 = function (_expoJson) {
         $scope.expo = JSON.parse(_expoJson);
-        console.log($scope.expo);
+        //console.log($scope.expo);
     }
     $scope.init2 = function (_floorJson) {
         $scope.floor = JSON.parse(_floorJson);
-        console.log($scope.floor); 
+        //console.log($scope.floor); 
         $scope.loadArray();
     }
     $scope.signOut = function () {
@@ -25,7 +25,7 @@
         $scope.oneStoreCoordinates = {};
         // filter array by isBusy status to get selected Sections
         $scope.selectedSections = $filter('filter')($scope.floor.Sections, { isBusy: true });
-        console.log($scope.selectedSections);
+        //console.log($scope.selectedSections);
         // get lowest & highest values
         // width
         function findMinCoordinateYcoulmn() {
@@ -51,7 +51,7 @@
         }
         var maxW = findMaxCoordinateYcoulmn().sectionCoordinateYcoulmn;
         sectionWidth = (maxW - minW) + 1;
-        console.log("sectionWidth : " + sectionWidth);
+        //console.log("sectionWidth : " + sectionWidth);
         // height
         function findMinCoordinateXrow() {
             var result = null;
@@ -76,10 +76,10 @@
         }
         var maxH = findMaxCoordinateXrow().sectionCoordinateXrow;
         sectionHeight = (maxH - minH) + 1;
-        console.log("sectionHeight : " + sectionHeight);
-        console.log("Top : " + (minH - 1) + " Left : " + (minW - 1));
+        //console.log("sectionHeight : " + sectionHeight);
+        //console.log("Top : " + (minH - 1) + " Left : " + (minW - 1));
         // add data to coordinates array
-        console.log($scope.selectedstore);
+        //console.log($scope.selectedstore);
         
         var e = document.getElementById("selectStore");
         var strUser = e.options[e.selectedIndex].text;
@@ -93,7 +93,7 @@
             Store: $scope.selectedstore,
             StoreName: strUser
         };
-        console.log($scope.oneStoreCoordinates);
+        //console.log($scope.oneStoreCoordinates);
         $scope.floor.Coordinates.push($scope.oneStoreCoordinates);
         $scope.imgLink = '';
         //add class busy
@@ -108,7 +108,7 @@
     }
     //load from coordinates array
     $scope.loadArray = function () {
-        console.log('enteeer');
+        //console.log('enteeer');
 
         //empty container dv
         document.getElementById('imagesContainer').innerHTML = "";
@@ -117,7 +117,7 @@
         var containerWidth = document.getElementById('imagesContainer').offsetWidth;
         var oneSectionHeight = containerHeight / 5;
         var oneSectionWidth = containerWidth / 6;
-        console.log($scope.floor.Coordinates);
+        //console.log($scope.floor.Coordinates);
         for (var i = 0; i < $scope.floor.Coordinates.length; i++) {
             var top = $scope.floor.Coordinates[i].Top * oneSectionHeight;
             var left = $scope.floor.Coordinates[i].Left * oneSectionWidth;
@@ -126,7 +126,7 @@
             var div = document.createElement('div');
             div.innerHTML = '<div style="background-image:url(' + $scope.floor.Coordinates[i].Img + ');position:absolute;top:' + top + ';left:' + left + ';height:' + height + ';width:' + width + ';background-size: cover;background-repeat: no-repeat;"></div>';
             document.getElementById('imagesContainer').appendChild(div);
-            console.log(div);
+            //console.log(div);
         }
     }
     
@@ -144,8 +144,8 @@
 
     $scope.saveFloor = function () {
 
-        console.log($scope.floor);
-        console.log($scope.expo);
+        //console.log($scope.floor);
+        //console.log($scope.expo);
 
         for (var i = 0; i < $scope.expo.Floors.length; i++) {
             if ($scope.expo.Floors[i]._id == $scope.floor._id) {
@@ -166,12 +166,12 @@
             }
         }
         API.execute(req).then(function (_res) {
-            console.log(_res);
+            //console.log(_res);
             if (_res.data.code == 100) {
                 window.location.reload();
                 window.location.href = '/eg/expo/' + $scope.expo._id;
             } else {
-                console.log('Something went error');
+                //console.log('Something went error');
                 $scope.loading = false;
             }
         });

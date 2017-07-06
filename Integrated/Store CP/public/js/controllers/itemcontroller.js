@@ -43,15 +43,11 @@
     $scope.picEditModal = {};
     $scope.editItemPic = function (_item) {
         //open modal edit
-        console.log(_item);
         $scope.picEditModal.Title = _item.Title;
         $scope.picEditModal._id = _item._id;
         $scope.picEditModal.URL = _item.URL;
-
-
-
-        //$('#imgItem').attr('src', _item.URL);
     };
+
     $scope.alertWarningEdite = true;
     $scope.editePic = function () {
         //save modal edit
@@ -59,8 +55,6 @@
 
         for (var i = 0; i < $scope.currentItem.Pictures.length; i++) {
             if ($scope.currentItem.Pictures[i]._id == $scope.picEditModal._id) {
-                console.log($scope.picEditModal);
-                console.log($scope.currentItem.Pictures[i]);
                 $scope.currentItem.Pictures[i].Title = $scope.picEditModal.Title;
                 $scope.currentItem.Pictures[i].URL = $scope.picEditModal.URL;
                 $scope.dismiss();
@@ -71,14 +65,11 @@
     
     var tagVal = $("#TagsInput").val();
     var badgesVal = $("#BadgesInput").val();
-    console.log(badgesVal);
-    console.log(tagVal);
+    
     if (tagVal == "undefined") {
-        console.log('true');
         $('#TagsInput').tagsinput('removeAll');
     }
     if (badgesVal == "undefined") {
-        console.log('true');
         $('#BadgesInput').tagsinput('removeAll');
     }
    
@@ -88,8 +79,6 @@
     };
 
     $scope.updateItem = function () {
-        console.log($scope.currentItem._id);
-        //$scope.loading = true;
         var req = {
             method: 'put',
             url: '/Item/Edit',
@@ -106,10 +95,9 @@
         }
         API.execute(req).then(function (res) {
             if (res.data.code == 100) {
-                console.log(res.data.data);
-                //window.location.reload();
+                window.location.reload();
             } else {
-                console.log('err');
+                console.log(res);
                 $scope.loading = false;
             }
         });
