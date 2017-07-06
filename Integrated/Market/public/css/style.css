@@ -754,6 +754,8 @@ h6.mega {
 
 .pin {
     max-width: 20px;
+    max-height: 15px;
+    width: 20px;
 }
 
 /*Welcome Page*/
@@ -975,7 +977,15 @@ h6.mega {
                 width: 200px;
                 border: 1px solid #8a8787;
                 box-shadow: 0px 0px 2px 0px;
+                display: flex;
+                justify-content: center;
             }
+
+                .storePage .pageBody .dvStoreHeader .dvProfileImgContainer .dvProfileImg img {
+                    max-width: 100%;
+                    max-height: 100%;
+                    margin: auto;
+                }
 
                 .storePage .pageBody .dvStoreHeader .dvProfileImgContainer .dvProfileImg .icon-checkmark-2 {
                     font-size: 28px;
@@ -1170,17 +1180,19 @@ h6.mega {
         -moz-transition: opacity-color .5s ease;
         transition: opacity-color .5s ease;
     }
-    .expoPage .outerContainer{
-        position:relative;
-    }
-.expoPage .outerContainer:hover .image-hover i[class*=icon-] {
-    opacity: 0.9;
+
+.expoPage .outerContainer {
+    position: relative;
 }
 
-.expoPage .outerContainer:hover .image-hover {
-    background: rgba(0, 0, 0, 0.74);
-    cursor: pointer;
-}
+    .expoPage .outerContainer:hover .image-hover i[class*=icon-] {
+        opacity: 0.9;
+    }
+
+    .expoPage .outerContainer:hover .image-hover {
+        background: rgba(0, 0, 0, 0.74);
+        cursor: pointer;
+    }
 
 
 /*.expoPage .expoDetails {
