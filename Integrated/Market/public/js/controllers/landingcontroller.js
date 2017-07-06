@@ -1,4 +1,4 @@
-﻿app.controller("landingController", function ($scope, $rootScope, $timeout, API) {
+﻿app.controller("landingController",  function ($scope, $rootScope, $timeout, API) {
     $rootScope.loading = true;
     $timeout(function () {
         $rootScope.loading = false;
