@@ -16,9 +16,6 @@
 
     $scope.store = {};
     $scope.store._id = localStorage.getItem('StoreId');
-    //$scope.store.Imgs = [];
-
-    console.log(localStorage.getItem('StoreId'));
 
     $scope.signOut = function () {
         window.location.href = '/eg/Home';
@@ -28,23 +25,17 @@
     $scope.save = function () {
         $scope.store.ProfilePicture = $('#imgItem').attr('src');
         $scope.store.CoverPhoto = $('#imgItemCover').attr('src');
-
-        console.log($scope.store);
         $scope.loading = true;
         var req = {
             method: 'put',
             url: '/Store/EditProfile',
             data: $scope.store
         }
-        console.log($scope.store);
         API.execute(req).then(function (res) {
-            console.log(res);
             if (res.data.code == 100) {
-                console.log(res);
                 window.location.reload();
             } else {
                 console.log(res.data.data);
-                console.log('canot edit');
                 $scope.loading = false;
             }
         });

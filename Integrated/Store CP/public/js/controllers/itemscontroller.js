@@ -12,7 +12,6 @@
     $scope.preload();
 
     $scope.galleryId = localStorage.getItem('GalleryId');
-    console.log(localStorage.getItem('GalleryId'));
     $scope.storeId = localStorage.getItem('StoreId');
 
     $scope.moveToItem = function (_itemId) {
@@ -42,10 +41,8 @@
             }
         }
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
                 $scope.itemId = _res.data.data._id;
-                console.log('id:', $scope.itemId); //"591cd30b2b99d00af8affaa0"
                 window.location.reload();
             } else {
                 $scope.loading = false;

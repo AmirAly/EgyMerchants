@@ -11,7 +11,6 @@
 
     $scope.preload();
 
-    console.log(localStorage.getItem('StoreId'));
     $scope.storeId = localStorage.getItem('StoreId');
 
     $scope.moveToItems = function (_galleryId) {
@@ -26,7 +25,6 @@
 
     $scope.updateGallery = function () {
         
-        console.log($scope.galleryId);
         $scope.loading = true;
         var req = {
             method: 'put',
@@ -39,12 +37,10 @@
             }
         }
         API.execute(req).then(function (res) {
-            console.log('1');
             if (res.data.code == 100) {
-                console.log(res);
                 window.location.reload();
             } else {
-                console.log('err');
+                console.log(res);
                 $scope.loading = false;
             }
         });

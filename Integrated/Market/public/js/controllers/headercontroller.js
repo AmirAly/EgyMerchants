@@ -26,12 +26,9 @@
 
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
-        console.log('enteeeeeeeeeer');
 
         // get all countries
         $scope.allCountriesGeneralList = JSON.parse(localStorage.getItem('allCountries'));
-        console.log($scope.allCountriesGeneralList);
-
 
     }
     $scope.load();
@@ -44,7 +41,6 @@
         if (form.$valid) {
             // call loader , login , hide modal & add user name
             $scope.dataLoading = true;
-            console.log($scope.loginObj);
 
             var req = {
                 method: 'post',
@@ -80,7 +76,6 @@
         if (form.$valid) {
             // call loader , Register , hide modal & add user name
             $scope.dataLoading = true;
-            console.log($scope.registerObj);
             var req = {
                 method: 'post',
                 url: '/User/Register',

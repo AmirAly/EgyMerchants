@@ -21,14 +21,14 @@
 
                                             <!-- floors -->
                                             <div ng-repeat="floor in expo.Floors" class="boxme" ng-show="activePageNumber{{expo._id}} == {{$index}}" ng-init="initfirstPage(expo._id,0)">
-                                                <div class="row imagesContainer" id="imagesContainer{{expo._id}}">
+                                                <div class="imagesContainer" id="imagesContainer{{expo._id}}">
 
-                                                    <div ng-repeat="sec in floor.Coordinates">
-                                                        <div class=" repeated-item" ng-style="{'background-image': 'url({{sec.Img}})','position':'absolute','background-size': 'cover','background-repeat': 'no-repeat','top':{{sec.Top * oneSectionHeight}}+'px','left':{{sec.Left * oneSectionWidth}}+'px','height':{{sec.Height * oneSectionHeight}}+'px', 'width':{{sec.Width * oneSectionWidth}}+'px'}">
+                                                    <div class="outerContainer" ng-repeat="sec in floor.Coordinates">
+                                                        <div class=" repeated-item" ng-style="{'background-image': 'url({{sec.Img}})','position':'absolute','background-size': 'cover','background-repeat': 'no-repeat','top':{{sec.Top * oneSectionHeight}} +'px','left':{{sec.Left * oneSectionWidth}} +'px','height':{{sec.Height * oneSectionHeight}} - 3 +'px', 'width':{{sec.Width * oneSectionWidth}} - 3 +'px'}">
                                                             <a href="/eg/Store/{{sec.StoreName}}/{{sec.Store._id}}"><div class="image-hover"><i class="icon-zoom-in-2"></i></div></a><div class="image-title">{{sec.StoreName}}</div>
                                                         </div>
                                                     </div>
-
+													 <h4>{{floor.Name}}</h4>
                                                 </div>
 
 
@@ -38,22 +38,11 @@
 
                                         <div class="expoDetails">
                                             <!-- Pagination -->
-                                            <h6 class="text-center light expoPagingController{{expo._id}}"
-                                                ng-click="toggle(expo._id)">
-                                                <img src="/images/rightarrow.png" />
-                                            </h6>
-                                            <h6 class="text-center light expoPagingControllerRemoval{{expo._id}} hide opened"
-                                                ng-click="toggle(expo._id)">
-                                                <img src="/images/leftarrow.png" />
-                                            </h6>
-                                            <div class="whiteLayerContainer whiteLayerContainer{{expo._id}}">
-                                                <ul id="pagingContainer{{expo._id}}" class="pagination-main clicked dvPageNumbers{{expo._id}} ">
-                                                    <li ng-repeat="f in expo.Floors"
-                                                        ng-click="selectPage(expo._id,$index,$index );" class="btnChangePage page{{$index}}"><a>{{$index+1}}</a></li>
+                                           
+											<h5 class="text-center light" ng-click="selectPage(expo._id,expo.Floors.length)">
+                                               <img src="/images/rightarrow.png" />
+                                            </h5>
 
-                                                </ul>
-                                                <div class="whiteLayer"></div>
-                                            </div>
                                         </div>
                                         <!-- //end Pagination -->
                                     </div>
@@ -112,7 +101,6 @@
 
 <% include ../partials/pagefooter %>
 <% include ../partials/pageend %>
-<script src="/scripts/expo.js"></script>
 <% include ../partials/pagesocial %>
 
 </body>

@@ -1,7 +1,6 @@
 ﻿egm.controller("storeController", function ($scope, API) {
 
     $scope.editStore = function (_id, store, Featured, HasFactory, Verified) {
-        console.log(_id, store);
         $scope.storeId = _id;
         $scope.storeName = store;
         if (Verified == 'true')
@@ -17,8 +16,6 @@
             $scope.featured = true;
         else
             $scope.featured = false;
-
-        console.log(" Featured " + $scope.featured + ",HasFactory " + $scope.hasFactory + " , Verified " + $scope.verified);
     };
 
     $scope.save = function () {
@@ -34,7 +31,6 @@
         }
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
-                console.log(_res);
                 window.location.reload();
             } else {
                 console.log(_res);
@@ -46,6 +42,5 @@
         window.location.href = '/eg/Home';
         localStorage.clear();
     };
-
 
 });

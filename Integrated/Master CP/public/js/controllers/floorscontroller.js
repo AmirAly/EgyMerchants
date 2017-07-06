@@ -56,7 +56,7 @@
         $scope.oneStoreCoordinates = {};
         // filter array by isBusy status to get selected Sections
         $scope.selectedSections = $filter('filter')($scope.floor.Sections, { isBusy: true });
-        console.log($scope.selectedSections);
+        //console.log($scope.selectedSections);
         // get lowest & highest values
         // width
         function findMinCoordinateYcoulmn() {
@@ -82,7 +82,7 @@
         }
         var maxW = findMaxCoordinateYcoulmn().sectionCoordinateYcoulmn;
         sectionWidth = (maxW - minW) + 1;
-        console.log("sectionWidth : " + sectionWidth);
+        //console.log("sectionWidth : " + sectionWidth);
         // height
         function findMinCoordinateXrow() {
             var result = null;
@@ -107,10 +107,10 @@
         }
         var maxH = findMaxCoordinateXrow().sectionCoordinateXrow;
         sectionHeight = (maxH - minH) + 1;
-        console.log("sectionHeight : " + sectionHeight);
-        console.log("Top : " + (minH - 1) + " Left : " + (minW - 1));
+        //console.log("sectionHeight : " + sectionHeight);
+        //console.log("Top : " + (minH - 1) + " Left : " + (minW - 1));
         // add data to coordinates array
-        console.log($scope.selectedstore);
+        //console.log($scope.selectedstore);
 
         var e = document.getElementById("selectStore");
         var strUser = e.options[e.selectedIndex].text;
@@ -170,7 +170,7 @@
     $scope.saveFloor = function () {
         $scope.floor.Coordinates = $scope.coordinates;
         $scope.floor.Name = $scope.floorName;
-        console.log($scope.floor);
+        //console.log($scope.floor);
         $scope.loading = true;
         var req = {
             method: 'put',
@@ -182,13 +182,13 @@
         }
         API.execute(req).then(function (res) {
             if (res.data.code == 100) {
-                console.log(res);
+                //console.log(res);
                 window.location.href = '/eg/expo/' + pathArray[pathArray.length - 1];
                 //localStorage.setItem('storeId', res.data._id);
             } else {
                 $scope.errMsg = res.data;
                 $scope.errdiv = true;
-                console.log(res.data);
+                //console.log(res.data);
                 $scope.loading = false;
             }
 

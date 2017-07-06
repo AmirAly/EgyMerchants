@@ -11,7 +11,6 @@
 
     $scope.preload();
 
-    console.log(localStorage.getItem('StoreId'));
     $scope.storeId = localStorage.getItem('StoreId');
 
     $scope.moveToGallery = function (_galleryOfGalleries) {
@@ -33,11 +32,8 @@
             }
         }
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
-                console.log(_res);
                 $scope.galleryId = _res.data._id;
-                console.log('id:', $scope.galleryId);
                 window.location.reload();
             } else {
                 $scope.loading = false;
