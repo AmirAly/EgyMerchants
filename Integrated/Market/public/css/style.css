@@ -304,17 +304,17 @@ h6.mega {
     outline: none !important;
 }
 
-    .header .navbar {
-        min-height: 35px !important;
-        background-color: #fff;
-        border-bottom: 2px solid #eee;
-        margin-bottom: 0;
-        position: relative;
-        left: 0;
-        right: 0;
-        max-height: 185px;
-        border: 0;
-    }
+.header .navbar {
+    min-height: 35px !important;
+    background-color: #fff;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 0;
+    position: relative;
+    left: 0;
+    right: 0;
+    max-height: 185px;
+    border: 0;
+}
 
 @media (max-width:767px) {
     .header .navbar {
@@ -1129,7 +1129,7 @@ h6.mega {
     color: #fff;
     text-decoration: none;
     font-size: 14px;
-    transition-duration:1s;
+    transition-duration: 1s;
 }
 
 
@@ -1170,22 +1170,25 @@ h6.mega {
         -moz-transition: opacity-color .5s ease;
         transition: opacity-color .5s ease;
     }
-
-.expoPage .wow:hover .image-hover i[class*=icon-] {
+    .expoPage .outerContainer{
+        position:relative;
+    }
+.expoPage .outerContainer:hover .image-hover i[class*=icon-] {
     opacity: 0.9;
 }
 
-.expoPage .wow:hover .image-hover {
+.expoPage .outerContainer:hover .image-hover {
     background: rgba(0, 0, 0, 0.74);
     cursor: pointer;
 }
 
 
-.expoPage .expoDetails {
+/*.expoPage .expoDetails {
     position: absolute;
     top: 0px;
     bottom: 0px;
     left: 0px;
+    right: 0px;
 }
 
     .expoPage .expoDetails .whiteLayer {
@@ -1197,7 +1200,7 @@ h6.mega {
         bottom: 0;
         z-index: 1;
         box-shadow: 1px 1px 7px 2px #444;
-    }
+    }*/
 
 .whiteLayerContainer {
     left: -100px;
@@ -1432,19 +1435,28 @@ h6.mega {
     /*border-bottom: 1px solid #bbb;*/
 }
 
-    .expoPage article .expoData h6 {
+    .expoPage article .expoData h5 {
         width: 70px;
-        position: relative;
+        position: absolute;
         z-index: 100;
         cursor: pointer;
-        top: 30px;
+        bottom: 20px;
+        right: 0px;
     }
 
-        .expoPage article .expoData h6.opened {
-            left: 70px;
-            transition-delay: 0.5s;
-            animation-delay: 0.5s;
-        }
+    .expoPage article .expoData h4 {
+        position: absolute;
+        z-index: 100;
+        cursor: default;
+        bottom: 45px;
+        right: 70px;
+        background: #2f3946;
+        padding: 10px;
+        border: 3px solid #fff;
+        border-radius: 0 30px;
+        box-shadow: 0 0 4px 1px #2f3946;
+        box-shadow: 0 0 0px 5px #2f3946;
+    }
 
     .expoPage article .expoData h1 {
         color: #fff;
@@ -1580,32 +1592,6 @@ h6.mega {
                 max-height: 150px;
             }
 
-/*repeated-item*/
-/*  We're using CSS transitions for when the enter and move events are triggered for the element that has the .repeated-item class*/
-.repeated-item.ng-enter, .repeated-item.ng-move {
-    transition: all 0.5s linear;
-    opacity: 0;
-}
-    /* The ng-enter-active and ng-move-active are where the transition destination properties are set so that the animation knows what to animate.*/
-    .repeated-item.ng-enter.ng-enter-active,
-    .repeated-item.ng-move.ng-move-active {
-        opacity: 1;
-    }
-
-/*We're using CSS keyframe animations for when the leave event is triggered for the element  that has the .repeated-item class*/
-.repeated-item.ng-leave {
-    animation: 0.5s my_animation;
-}
-
-@keyframes my_animation {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-    }
-}
 
 /*footer*/
 
@@ -2073,17 +2059,19 @@ h6.mega {
 
 
 .boxme.ng-hide-add {
-    -webkit-animation: fadeOutLeftBig 0.8s;
+    -webkit-animation: fadeOutLeftBig 0.4s;
     /*display: block!important;*/
 }
+
 .boxme.ng-hide-remove {
     -webkit-animation: fadeInRightBig 0.4s;
 }
 
 .boxme.ng-show-add {
-    -webkit-animation: slideFromRight 0.8s;
+    -webkit-animation: slideFromRight 0.4s;
     /*display: block!important;*/
 }
+
 .boxme.ng-show-remove {
     -webkit-animation: slideFromRight 0.4s;
 }

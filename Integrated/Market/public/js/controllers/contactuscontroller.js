@@ -3,7 +3,6 @@
     $scope.submit = function () {
         $('#success').fadeIn();
         $('#contactform').each(function () { this.reset(); });
-        //console.log(Error);
         //if (Error) {
         //    $('#contactform').fadeTo("slow", 0, function () {
         //        $('#error').fadeIn();
