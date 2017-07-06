@@ -14,15 +14,19 @@ var Category = require('./models/category');
 var User = require('./models/user');
 var Expo = require('./models/expo');
 var Helper = require('./helper');
-
+var CountriesInJson = require('./allcountries.json');
 
 module.exports = function (app, express) {
     var api = express.Router();
-
+    
     api.get('/', function (req, res) {
         return res.json({ code: '100', data: 'This api is working great, howver further calls to other endpoints require a token' });
     });
-
+    api.get('/Store/LoadCountries', function (req, res) {
+        var list = CountriesInJson;
+        return res.json({ code: 100, data: CountriesInJson.data });
+        
+    })
     //store API calls
     api.post('/Store/Register', function (req, res) {
         var _newstore = new User(req.body);
