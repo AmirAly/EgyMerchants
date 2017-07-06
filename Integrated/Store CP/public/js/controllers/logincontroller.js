@@ -15,11 +15,9 @@
                 //$rootScope.storeId = res.data.data._id;
                 localStorage.setItem('StoreId', res.data.data._id);
                 window.location.href = '/eg/g/galleries/' + res.data.data._id;
-                console.log(res);
             } else {
                 $scope.errMsg = true;
                 $scope.errdiv = true;
-                console.log(res.data);
                 $scope.loading = false;
             }
 

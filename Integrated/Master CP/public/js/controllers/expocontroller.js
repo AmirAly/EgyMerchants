@@ -1,4 +1,5 @@
 ﻿egm.controller("expoController", function ($scope, API) {
+
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click();
     };
@@ -6,13 +7,11 @@
     $scope.init = function (_floors, _expo) {
         $scope.lstfloors = JSON.parse(_floors);
         $scope.expoData = JSON.parse(_expo);
-        console.log($scope.lstfloors);
-        console.log($scope.expoData);
-    }
+    };
 
     $scope.floors = function (_id) {
-        window.location.href = '/eg/floors/'+_id;
-    }
+        window.location.href = '/eg/floors/' + _id;
+    };
     
     $scope.updateExpo = function (_id) {
         $scope.loading = true;
@@ -28,12 +27,10 @@
             }
         }
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
                 window.location.reload();
                 window.location.href = '/eg/exposlist'
             } else {
-                console.log('Something went error');
                 $scope.loading = false;
             }
         });
@@ -51,7 +48,7 @@
                 $scope.lstfloors.splice(i, 1);
             }
         }
-        console.log($scope.lstfloors);
+
         var req = {
             method: 'put',
             url: '/Expo/Edit',
@@ -64,7 +61,6 @@
             }
         }
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
                 console.log('deleted');
             } else {
@@ -72,12 +68,11 @@
             }
             $scope.loading = false;
         });
-    }
+    };
 
     $scope.editFloor = function (_floorId, _expoId) {
         window.location.href = "/eg/editfloor/" + _floorId + "/" + _expoId;
-    }
-
+    };
 
 });
 

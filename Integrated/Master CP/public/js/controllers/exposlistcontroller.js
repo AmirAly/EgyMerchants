@@ -19,7 +19,6 @@
         }
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
-                console.log(_res);
                 window.location.reload();
             } else {
                 console.log('something went wrong');
@@ -42,7 +41,6 @@
         }
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
-                console.log('deleted');
                 window.location.reload();
             } else {
                 console.log('Something went wrong');
@@ -56,6 +54,7 @@
     };
 
 });
+
 function convertImgToBase64URL(event) {
     var filesSelected = document.getElementById("uploadItemImage").files;
     if (filesSelected.length > 0) {

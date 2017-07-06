@@ -122,6 +122,7 @@ html {
 
 .errorFont {
     color: tomato;
+    padding: 10px;
 }
 
 .noUi-target,
@@ -2588,6 +2589,7 @@ select.form-control {
 
 .alert-info, .alert-danger, .alert-warning, .alert-success {
     color: #ffffff;
+    padding: 10px;
 }
 
 .alert-default a, .alert-default .alert-link {
