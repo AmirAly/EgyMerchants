@@ -532,7 +532,7 @@ h6.mega {
 .sticky-logo {
     float: left;
     margin-right: 20px;
-    display: none;
+    display: block;
     transition: color 0.1s,background-color .1s;
 }
 
@@ -1518,7 +1518,7 @@ h6.mega {
 
 
 .expoPage .imagesContainer {
-    background: #2f3946;
+    background: #fff;
     height: 100vh;
     overflow: hidden;
     position: relative;
