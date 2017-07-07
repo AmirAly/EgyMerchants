@@ -4,7 +4,7 @@
         document.getElementById('uploadItemImage').click();
     };
 
-    $scope.init = function (_categories , _countries) {
+    $scope.init = function (_categories, _countries) {
         $scope.categories = JSON.parse(_categories);
         $scope.countries = JSON.parse(_countries);
     };
@@ -32,35 +32,38 @@
         }
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
-                 window.location.reload();
+                window.location.reload();
             } else {
                 $scope.loading = false;
                 if (_res.data.code == 21) {
-                    console.log('Already Exist');
-                    $scope.loading = false;
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
                 } else {
                     $scope.loading = false;
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
                 }
             }
         });
     };
 
-    $scope.editCountry = function (_id , categories) {
-       window.location.href = '/eg/country/' + _id;
+    $scope.editCountry = function (_id, categories) {
+        window.location.href = '/eg/country/' + _id;
     };
 
     $scope.callDelModal = function (_countryId) {
-        console.log(_countryId);
         $scope.countryDelId = _countryId;
     };
 
-    $scope.removeCountry = function (_id) {
+    $scope.removeCountry = function () {
         $scope.loading = true;
         var req = {
             method: 'put',
             url: '/Country/Suspend',
             data: {
-                _id: _id
+                _id: $scope.countryDelId
             }
         }
         API.execute(req).then(function (_res) {
@@ -68,9 +71,17 @@
                 window.location.reload();
             } else {
                 $scope.loading = false;
-                console.log(_res);
+                if (_res.data.code == 21) {
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                } else {
+                    $scope.loading = false;
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                }
             }
-
         });
     };
 

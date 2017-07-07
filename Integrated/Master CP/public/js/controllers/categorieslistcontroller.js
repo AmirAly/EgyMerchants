@@ -20,6 +20,7 @@
                     $scope.errdiv = true;
                     $scope.errorMsg = _res.data.data;
                 } else {
+                    $scope.loading = false;
                     $scope.errMsg = true;
                     $scope.errdiv = true;
                     $scope.errorMsg = _res.data.data;
@@ -57,6 +58,7 @@
                         $scope.errdiv = false;
                     });
                 } else {
+                    $scope.loading = false;
                     $scope.errMsg = true;
                     $scope.errdiv = true;
                     $scope.errorMsg = _res.data.data;
@@ -66,13 +68,12 @@
                     });
                 }
             }
-        })
+        });
     };
 
     $scope.callDelModal = function (_categoryId) {
-        console.log(_categoryId);
         $scope.categoryDelId = _categoryId;
-    }
+    };
 
     $scope.removeCategory = function () {
         $scope.loading = true;
@@ -84,7 +85,6 @@
             }
         }
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
                 window.location.reload();
             } else {
@@ -94,6 +94,7 @@
                     $scope.errdiv = true;
                     $scope.errorMsg = _res.data.data;
                 } else {
+                    $scope.loading = false;
                     $scope.errMsg = true;
                     $scope.errdiv = true;
                     $scope.errorMsg = _res.data.data;
