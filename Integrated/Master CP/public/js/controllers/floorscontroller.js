@@ -186,10 +186,19 @@
                 window.location.href = '/eg/expo/' + pathArray[pathArray.length - 1];
                 //localStorage.setItem('storeId', res.data._id);
             } else {
-                $scope.errMsg = res.data;
-                $scope.errdiv = true;
-                //console.log(res.data);
+                //$scope.errMsg = res.data;
+                //$scope.errdiv = true;
                 $scope.loading = false;
+                if (_res.data.code == 21) {
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                } else {
+                    $scope.loading = false;
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                }
             }
 
         });
