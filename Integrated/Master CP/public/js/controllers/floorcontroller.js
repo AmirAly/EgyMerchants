@@ -166,13 +166,21 @@
             }
         }
         API.execute(req).then(function (_res) {
-            //console.log(_res);
             if (_res.data.code == 100) {
                 window.location.reload();
                 window.location.href = '/eg/expo/' + $scope.expo._id;
             } else {
-                //console.log('Something went error');
                 $scope.loading = false;
+                if (_res.data.code == 21) {
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                } else {
+                    $scope.loading = false;
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                }
             }
         });
     }
