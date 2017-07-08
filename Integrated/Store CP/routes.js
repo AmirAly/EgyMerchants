@@ -13,7 +13,6 @@ module.exports = function (app) {
     app.get('/eg/store/:storeId', function (req, res) {
         var _scope = {};
         store.getById(req.params.storeId).then(function (_store) {
-            //console.log(_store);
             if (_store.code == 100) {
                 _scope.store = _store.data;
                 res.render('pages/store', _scope);
@@ -51,7 +50,6 @@ module.exports = function (app) {
             if (_item.code == 100) {
                 _scope.item = _item.data;
                 _scope.itemJSON = JSON.stringify(_item.data);
-                console.log(_scope.itemJSON);
                 res.render('pages/item', _scope);
             } else {
                 _scope.item = [];
@@ -134,11 +132,4 @@ module.exports = function (app) {
             res.render('pages/login', _scope);
         });
     });
-
-    // contacts page 
-    //app.get('/eg/contactus', function (req, res) {
-    //    res.render('pages/contactus');
-    //});
-
-
 }
