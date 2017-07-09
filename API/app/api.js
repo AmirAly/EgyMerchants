@@ -15,18 +15,22 @@ var User = require('./models/user');
 var Expo = require('./models/expo');
 var Helper = require('./helper');
 var CountriesInJson = require('./allcountries.json');
+var _ = require("underscore");
 
 module.exports = function (app, express) {
     var api = express.Router();
     
     api.get('/', function (req, res) {
-        return res.json({ code: '100', data: 'This api is working great, howver further calls to other endpoints require a token' });
+        return res.json({ code: '100', data: 'This api is working great, however further calls to other endpoints require a token' });
     });
-    api.get('/Store/LoadCountries', function (req, res) {
-        var list = CountriesInJson;
-        return res.json({ code: 100, data: CountriesInJson.data });
+
+    //load all countries from json file
+    api.get('/Country/LoadCountries', function (req, res) {
+        var list = _.each(_.each(CountriesInJson.data, function (country) { encodeURI(country.name) }), function (encodedCountry) { decodeURI(encodedCountry.name) })
+        return res.json({ code: 100, data: list });
         
     })
+
     //store API calls
     api.post('/Store/Register', function (req, res) {
         var _newstore = new User(req.body);
