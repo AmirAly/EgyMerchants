@@ -6,6 +6,7 @@
     };
 
     $scope.addExpo = function () {
+        $scope.loading = true;
         var req = {
             method: 'post',
             url: '/Expo/Add',
@@ -21,7 +22,17 @@
             if (_res.data.code == 100) {
                 window.location.reload();
             } else {
-                console.log('something went wrong');
+                $scope.loading = false;
+                if (_res.data.code == 21) {
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                } else {
+                    $scope.loading = false;
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                }
             }
         });
     };
@@ -31,19 +42,34 @@
         window.location.href = '/eg/expo/' + _id;
     };
 
-    $scope.removeExpo = function (_id) {
+    $scope.callDelModal = function (_expoId) {
+        $scope.expoDelId = _expoId;
+    };
+
+    $scope.removeExpo = function () {
+        $scope.loading = true;
         var req = {
             method: 'put',
             url: '/Expo/Suspend',
             data: {
-                _id: _id
+                _id: $scope.expoDelId
             }
         }
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
                 window.location.reload();
             } else {
-                console.log('Something went wrong');
+                $scope.loading = false;
+                if (_res.data.code == 21) {
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                } else {
+                    $scope.loading = false;
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                }
             }
         });
     };

@@ -32,6 +32,16 @@
                 window.location.href = '/eg/exposlist'
             } else {
                 $scope.loading = false;
+                if (_res.data.code == 21) {
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                } else {
+                    $scope.loading = false;
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                }
             }
         });
     };
@@ -41,10 +51,15 @@
         localStorage.clear();
     };
 
-    $scope.deleteFloor = function (_floorId, _expoId) {
+    $scope.callDelModal = function (_floorId , _expoId) {
+        $scope.floorDelId = _floorId;
+        $scope.expoDelId = _expoId;
+    };
+
+    $scope.deleteFloor = function () {
         $scope.loading = true;
         for (var i = 0; i < $scope.lstfloors.length; i++) {
-            if ($scope.lstfloors[i]._id == _floorId) {
+            if ($scope.lstfloors[i]._id == $scope.floorDelId) {
                 $scope.lstfloors.splice(i, 1);
             }
         }
@@ -53,7 +68,7 @@
             method: 'put',
             url: '/Expo/Edit',
             data: {
-                _id: _expoId,
+                _id: $scope.expoDelId,
                 Title: $scope.expo.Title,
                 Category: $scope.expo.selectedCategory,
                 Floors: $scope.lstfloors,
@@ -62,11 +77,19 @@
         }
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
-                console.log('deleted');
             } else {
-                console.log('Something went error');
+                $scope.loading = false;
+                if (_res.data.code == 21) {
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                } else {
+                    $scope.loading = false;
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                }
             }
-            $scope.loading = false;
         });
     };
 
