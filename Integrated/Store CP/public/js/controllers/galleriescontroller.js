@@ -28,7 +28,7 @@
                 DisplayPicture: $('#imgItem').attr('src'),
                 Badges: 'offer',
                 Status: 'Active',
-                Store: $scope.storeId   //'59084a09734d1d3098a82cd6'
+                Store: $scope.storeId   
             }
         }
         API.execute(req).then(function (_res) {
@@ -37,6 +37,16 @@
                 window.location.reload();
             } else {
                 $scope.loading = false;
+                if (_res.data.code == 21) {
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                } else {
+                    $scope.loading = false;
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                }
             }
         });
     };

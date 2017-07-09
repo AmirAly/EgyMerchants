@@ -138,7 +138,11 @@
                                                     <input type="text" class="form-control Tags" value="<%= item.Tags %>" ng-init="item.Tags = '<%= item.Tags %>'" ng-model="item.Tags" name="Tags" id="TagsInput" data-role="tagsinput">
                                                 </div>
                                             </div>
+											
                                         </div>
+											<div class=" alert-danger clear text-center" ng-show="errdiv">
+                                                    <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
+                                                </div>
                                         <button type="button" value="submit" ng-click="updateItem()" ng-disabled="frmUpdateGallery.$invalid" class="btn btn-primary pull-right">Update Item</button>
                                         <div class="clearfix"></div>
                                     </form>

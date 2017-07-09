@@ -36,12 +36,22 @@
                 Imgs: $('#imgItem').attr('src')
             }
         }
-        API.execute(req).then(function (res) {
-            if (res.data.code == 100) {
+        API.execute(req).then(function (_res) {
+            if (_res.data.code == 100) {
                 window.location.reload();
             } else {
-                console.log(res);
                 $scope.loading = false;
+                
+                if (_res.data.code == 21) {
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                } else {
+                    $scope.loading = false;
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                }
             }
         });
     };

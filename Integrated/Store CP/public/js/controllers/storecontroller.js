@@ -35,8 +35,17 @@
             if (res.data.code == 100) {
                 window.location.reload();
             } else {
-                console.log(res.data.data);
                 $scope.loading = false;
+                if (_res.data.code == 21) {
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                } else {
+                    $scope.loading = false;
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                }
             }
         });
     };

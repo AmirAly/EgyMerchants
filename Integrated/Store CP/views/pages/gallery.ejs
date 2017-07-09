@@ -91,11 +91,20 @@
                                                             <span class="errorFont" ng-show="frmUpdateGallery.galleryDesc.$error.pattern">Gallery description is too long</span>
                                                         </span>
                                                     </div>
+
+											       <div class=" alert-danger clear text-center" ng-show="errdiv">
+                                                      <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
+                                                   </div>
                                                 </div>
+												
                                             </div>
+											
+
                                         </div>
                                         <button type="submit" ng-click="updateGallery()" ng-disabled="frmUpdateGallery.$invalid" class="btn btn-primary pull-right">Update Gallery</button>
                                         <div class="clearfix"></div>
+
+										
                                     </form>
                                 </div>
                             </div>

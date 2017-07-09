@@ -79,11 +79,12 @@
     };
 
     $scope.updateItem = function () {
+        $scope.loading = true;
         var req = {
             method: 'put',
             url: '/Item/Edit',
             data: {
-                _id: $scope.currentItem._id,//'59089186734d1d3098a85879'
+                _id: $scope.currentItem._id,
                 Name: $scope.item.Name,
                 Description: $scope.item.Description,
                 Price: $scope.item.Price,
@@ -93,12 +94,21 @@
                 PriceBeforeSale: $scope.item.PriceBeforeSale
             }
         }
-        API.execute(req).then(function (res) {
-            if (res.data.code == 100) {
+        API.execute(req).then(function (_res) {
+            if (_res.data.code == 100) {
                 window.location.reload();
             } else {
-                console.log(res);
                 $scope.loading = false;
+                if (_res.data.code == 21) {
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                } else {
+                    $scope.loading = false;
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                }
             }
         });
     };
