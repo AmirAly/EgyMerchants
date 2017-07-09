@@ -5,7 +5,7 @@
 
     $scope.preload = function () {
         if (localStorage.getItem('StoreId') == null || localStorage.getItem('StoreId') == '') {
-            window.location.href = '/eg/Home';
+            window.location.href = '/Home';
         }
     };
 
@@ -14,12 +14,12 @@
     $scope.storeId = localStorage.getItem('StoreId');
 
     $scope.moveToItems = function (_galleryId) {
-        window.location.href = '/eg/p/products/' + _galleryId
+        window.location.href = '/p/products/' + _galleryId
         localStorage.setItem('GalleryId', _galleryId);
     };
 
     $scope.signOut = function () {
-        window.location.href = '/eg/Home';
+        window.location.href = '/Home';
         localStorage.clear();
     };
 

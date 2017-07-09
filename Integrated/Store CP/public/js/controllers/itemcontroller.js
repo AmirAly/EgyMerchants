@@ -2,7 +2,7 @@
 
     $scope.preload = function () {
         if (localStorage.getItem('StoreId') == null || localStorage.getItem('StoreId') == '') {
-            window.location.href = '/eg/Home';
+            window.location.href = '/Home';
         }
     };
 
@@ -74,7 +74,7 @@
     }
    
     $scope.signOut = function () {
-        window.location.href = '/eg/Home';
+        window.location.href = '/Home';
         localStorage.clear();
     };
 

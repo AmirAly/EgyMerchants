@@ -2,7 +2,7 @@
     
 
     $scope.signOut = function () {
-        window.location.href = '/eg/Home';
+        window.location.href = '/Home';
         localStorage.clear();
     };
 
@@ -183,7 +183,7 @@
         API.execute(req).then(function (res) {
             if (res.data.code == 100) {
                 //console.log(res);
-                window.location.href = '/eg/expo/' + pathArray[pathArray.length - 1];
+                window.location.href = '/expo/' + pathArray[pathArray.length - 1];
                 //localStorage.setItem('storeId', res.data._id);
             } else {
                 //$scope.errMsg = res.data;

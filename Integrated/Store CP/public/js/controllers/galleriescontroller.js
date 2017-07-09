@@ -5,16 +5,32 @@
 
     $scope.preload = function () {
         if (localStorage.getItem('StoreId') == null || localStorage.getItem('StoreId') == '') {
-            window.location.href = '/eg/Home';
+            window.location.href = '/Home';
         }
     };
+
+    $('.modal').on('hidden.bs.modal', function () {
+        console.log('enter');
+
+        $("#myForm").trigger("reset");
+        //document.getElementById("myForm").reset();
+
+        //$(this).closest('form').find("input[type=text], textarea").val("");
+
+        $scope.errMsg = false;
+        $scope.errdiv = false;
+        console.log($scope.errMsg);
+        console.log($scope.errdiv);
+
+        //console.log($scope.gallery.Title);
+    });
 
     $scope.preload();
 
     $scope.storeId = localStorage.getItem('StoreId');
 
     $scope.moveToGallery = function (_galleryOfGalleries) {
-        window.location.href = '/eg/g/gallery/' + _galleryOfGalleries;
+        window.location.href = '/g/gallery/' + _galleryOfGalleries;
     };
 
     $scope.addGallery = function () {
@@ -52,7 +68,7 @@
     };
 
     $scope.signOut = function () {
-        window.location.href = '/eg/Home';
+        window.location.href = '/Home';
         localStorage.clear();
     };
 

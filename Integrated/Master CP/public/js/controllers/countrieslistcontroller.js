@@ -50,7 +50,7 @@
     };
 
     $scope.editCountry = function (_id, categories) {
-        window.location.href = '/eg/country/' + _id;
+        window.location.href = '/country/' + _id;
     };
 
     $scope.callDelModal = function (_countryId) {
@@ -86,7 +86,7 @@
     };
 
     $scope.signOut = function () {
-        window.location.href = '/eg/Home';
+        window.location.href = '/Home';
         localStorage.clear();
     };
 

@@ -5,7 +5,7 @@
 
     $scope.preload = function () {
         if (localStorage.getItem('StoreId') == null || localStorage.getItem('StoreId') == '') {
-            window.location.href = '/eg/Home';
+            window.location.href = '/Home';
         }
     };
 
@@ -15,11 +15,11 @@
     $scope.storeId = localStorage.getItem('StoreId');
 
     $scope.moveToItem = function (_itemId) {
-        window.location.href = '/eg/p/product/' + _itemId;
+        window.location.href = '/p/product/' + _itemId;
     };
 
     $scope.signOut = function () {
-        window.location.href = '/eg/Home';
+        window.location.href = '/Home';
         localStorage.clear();
     };
 

@@ -39,7 +39,7 @@
 
     $scope.editExpo = function (_id) {
         localStorage.setItem('expoId', _id);
-        window.location.href = '/eg/expo/' + _id;
+        window.location.href = '/expo/' + _id;
     };
 
     $scope.callDelModal = function (_expoId) {
@@ -75,7 +75,7 @@
     };
 
     $scope.signOut = function () {
-        window.location.href = '/eg/Home';
+        window.location.href = '/Home';
         localStorage.clear();
     };
 

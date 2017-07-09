@@ -14,7 +14,7 @@
     }
 
     $scope.signOut = function () {
-        window.location.href = '/eg/Home';
+        window.location.href = '/Home';
         localStorage.clear();
     };
 
@@ -37,7 +37,7 @@
         }
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
-                window.location.href = '/eg/Home';
+                window.location.href = '/Home';
             } else {
                 $scope.loading = false;
                 $scope.errMsg = true;

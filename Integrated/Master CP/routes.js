@@ -9,10 +9,10 @@ module.exports = function (app) {
     // use res.render to load up an ejs view file
     // index page 
     app.get('/', function (req, res) {
-        return res.redirect('/eg/Home');
+        return res.redirect('/Home');
     });
 
-    app.get('/eg/store', function (req, res) {
+    app.get('/store', function (req, res) {
         var _scope = {};
         store.getAll().then(function (_store) {
             if (_store.code == 100) {
@@ -29,7 +29,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/eg/exposlist', function (req, res) {
+    app.get('/exposlist', function (req, res) {
         var _scope = {};
         category.getAll().then(function (_category) {
             if (_category.code == 100) {
@@ -59,7 +59,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/eg/floors/:expoid', function (req, res) {
+    app.get('/floors/:expoid', function (req, res) {
         var _scope = {};
         // drop down fill
         store.getAll().then(function (_store) {
@@ -77,7 +77,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/eg/editfloor/:floorid/:expoid', function (req, res) {
+    app.get('/editfloor/:floorid/:expoid', function (req, res) {
         var _scope = {};
 
         expo.getById(req.params.expoid).then(function (_expo) {
@@ -124,7 +124,7 @@ module.exports = function (app) {
         // drop down fill
     });
 
-    app.get('/eg/expo/:expoId', function (req, res) {
+    app.get('/expo/:expoId', function (req, res) {
         var _scope = {};
         expo.getById(req.params.expoId).then(function (_expo) {
             if (_expo.code == 100) {
@@ -157,7 +157,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/eg/categorieslist', function (req, res) {
+    app.get('/categorieslist', function (req, res) {
         var _scope = {};
         category.getAll().then(function (_category) {
             if (_category.code == 100) {
@@ -174,7 +174,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/eg/countrieslist', function (req, res) {
+    app.get('/countrieslist', function (req, res) {
         var _scope = {};
         country.getAll().then(function (_country) {
             if (_country.code == 100) {
@@ -206,7 +206,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/eg/country/:countryId', function (req, res) {
+    app.get('/country/:countryId', function (req, res) {
         var _scope = {};
         country.getById(req.params.countryId).then(function (_country) {
             if (_country.code == 100) {
@@ -238,7 +238,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/eg/Home', function (req, res) {
+    app.get('/Home', function (req, res) {
         var _scope = {};
         master.login().then(function (_master) {
             if (_master.code == 100) {
