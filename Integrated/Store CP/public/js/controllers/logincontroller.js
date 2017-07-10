@@ -13,7 +13,7 @@
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
                 localStorage.setItem('StoreId', _res.data.data._id);
-                window.location.href = '/eg/g/galleries/' + _res.data.data._id;
+                window.location.href = '/g/galleries/' + _res.data.data._id;
             } else {
                 $scope.loading = false;
                 $scope.errMsg = true;

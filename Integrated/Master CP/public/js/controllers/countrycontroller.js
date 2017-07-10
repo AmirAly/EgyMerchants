@@ -45,7 +45,7 @@
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
                 window.location.reload();
-                window.location.href = '/eg/countrieslist'
+                window.location.href = '/countrieslist'
 
             } else {
                 $scope.loading = false;
@@ -66,7 +66,7 @@
     };
 
     $scope.signOut = function () {
-        window.location.href = '/eg/Home';
+        window.location.href = '/Home';
         localStorage.clear();
     };
 

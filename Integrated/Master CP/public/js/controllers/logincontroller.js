@@ -12,7 +12,7 @@
         }
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
-                window.location.href = '/eg/store';
+                window.location.href = '/store';
                 localStorage.setItem('storeId', _res.data._id);
             } else {
                 $scope.loading = false;

@@ -639,7 +639,7 @@ h2.title {
 
         .sidebar .logo .simple-text,
         .off-canvas-sidebar .logo .simple-text {
-            text-transform: uppercase;
+            /*text-transform: uppercase;*/
             padding: 5px 0px;
             display: block;
             font-size: 18px;
@@ -5755,4 +5755,18 @@ footer {
 .coverContent{
     background-color: #f1f3f5;
     height: 200px;
+}
+.bootstrap-tagsinput{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    display: inline-block;
+    padding: 4px 6px;
+    color: #555;
+    vertical-align: middle;
+    border-radius: 4px;
+    max-width: 100%;
+    line-height: 22px;
+    cursor: text;
+    min-width: 100%;
 }
