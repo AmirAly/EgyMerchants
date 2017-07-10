@@ -23,13 +23,7 @@ module.exports = function (app, express) {
     api.get('/', function (req, res) {
         return res.json({ code: '100', data: 'This api is working great, however further calls to other endpoints require a token' });
     });
-
-    //load all countries from json file
-    api.get('/Country/LoadCountries', function (req, res) {
-        var list = _.each(_.each(CountriesInJson.data, function (country) { encodeURI(country.name) }), function (encodedCountry) { decodeURI(encodedCountry.name) })
-        return res.json({ code: 100, data: list });
-        
-    })
+   
 
     //store API calls
     api.post('/Store/Register', function (req, res) {
@@ -163,6 +157,13 @@ module.exports = function (app, express) {
     })
     api.get('/Country/GetById/:_id', function (req, res) {
         CountryLogic.getById(req.params._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.get('/Country/LoadAllInJson', function (req, res) {
+        CountryLogic.loadAllInJson().then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);

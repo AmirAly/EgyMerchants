@@ -1,5 +1,6 @@
 var Schema = require('./models/country');
 var Category = require('./models/category');
+var CountriesInJson = require('./allcountries.json');
 module.exports = {
     add: function (_newCountry) {
         return new Promise(function (resolve, reject) {
@@ -184,6 +185,14 @@ module.exports = {
                         });
                     }
                 }
+            });
+        })
+    },
+    loadAllInJson: function () {
+        return new Promise(function (resolve, reject) {
+            resolve({
+                code: 100,
+                data: CountriesInJson.data
             });
         })
     },
