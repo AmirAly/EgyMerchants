@@ -5,7 +5,7 @@
 
     $scope.preload = function () {
         if (localStorage.getItem('StoreId') == null || localStorage.getItem('StoreId') == '') {
-            window.location.href = '/eg/Home';
+            window.location.href = '/Home';
         }
     };
 
@@ -14,12 +14,12 @@
     $scope.storeId = localStorage.getItem('StoreId');
 
     $scope.moveToItems = function (_galleryId) {
-        window.location.href = '/eg/p/products/' + _galleryId
+        window.location.href = '/p/products/' + _galleryId
         localStorage.setItem('GalleryId', _galleryId);
     };
 
     $scope.signOut = function () {
-        window.location.href = '/eg/Home';
+        window.location.href = '/Home';
         localStorage.clear();
     };
 
@@ -36,12 +36,22 @@
                 Imgs: $('#imgItem').attr('src')
             }
         }
-        API.execute(req).then(function (res) {
-            if (res.data.code == 100) {
+        API.execute(req).then(function (_res) {
+            if (_res.data.code == 100) {
                 window.location.reload();
             } else {
-                console.log(res);
                 $scope.loading = false;
+                
+                if (_res.data.code == 21) {
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                } else {
+                    $scope.loading = false;
+                    $scope.errMsg = true;
+                    $scope.errdiv = true;
+                    $scope.errorMsg = _res.data.data;
+                }
             }
         });
     };

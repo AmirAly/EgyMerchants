@@ -10,14 +10,15 @@
             url: '/Master/Login',
             data: $scope.loginData
         }
-        API.execute(req).then(function (res) {
-            if (res.data.code == 100) {
-                window.location.href = '/eg/store';
-                localStorage.setItem('storeId', res.data._id);
+        API.execute(req).then(function (_res) {
+            if (_res.data.code == 100) {
+                window.location.href = '/store';
+                localStorage.setItem('storeId', _res.data._id);
             } else {
+                $scope.loading = false;
                 $scope.errMsg = true;
                 $scope.errdiv = true;
-                $scope.loading = false;
+                $scope.errorMsg = _res.data.data;
             }
 
         });

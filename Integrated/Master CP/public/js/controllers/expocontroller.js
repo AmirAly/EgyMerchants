@@ -10,7 +10,7 @@
     };
 
     $scope.floors = function (_id) {
-        window.location.href = '/eg/floors/' + _id;
+        window.location.href = '/floors/' + _id;
     };
     
     $scope.updateExpo = function (_id) {
@@ -29,7 +29,7 @@
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
                 window.location.reload();
-                window.location.href = '/eg/exposlist'
+                window.location.href = '/exposlist'
             } else {
                 $scope.loading = false;
                 if (_res.data.code == 21) {
@@ -47,7 +47,7 @@
     };
 
     $scope.signOut = function () {
-        window.location.href = '/eg/Home';
+        window.location.href = '/Home';
         localStorage.clear();
     };
 
@@ -94,7 +94,7 @@
     };
 
     $scope.editFloor = function (_floorId, _expoId) {
-        window.location.href = "/eg/editfloor/" + _floorId + "/" + _expoId;
+        window.location.href = "/editfloor/" + _floorId + "/" + _expoId;
     };
 
 });

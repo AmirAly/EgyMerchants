@@ -10,15 +10,15 @@
             url: '/Store/Login',
             data: $scope.loginData
         }
-        API.execute(req).then(function (res) {
-            if (res.data.code == 100) {
-                //$rootScope.storeId = res.data.data._id;
-                localStorage.setItem('StoreId', res.data.data._id);
-                window.location.href = '/eg/g/galleries/' + res.data.data._id;
+        API.execute(req).then(function (_res) {
+            if (_res.data.code == 100) {
+                localStorage.setItem('StoreId', _res.data.data._id);
+                window.location.href = '/g/galleries/' + _res.data.data._id;
             } else {
+                $scope.loading = false;
                 $scope.errMsg = true;
                 $scope.errdiv = true;
-                $scope.loading = false;
+                $scope.errorMsg = _res.data.data;
             }
 
         });

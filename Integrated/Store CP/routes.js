@@ -6,11 +6,11 @@ module.exports = function (app) {
     // use res.render to load up an ejs view file
     // index page 
     app.get('/', function (req, res) {
-        return res.redirect('/eg/Home');
+        return res.redirect('/Home');
     });
 
 
-    app.get('/eg/store/:storeId', function (req, res) {
+    app.get('/store/:storeId', function (req, res) {
         var _scope = {};
         store.getById(req.params.storeId).then(function (_store) {
             if (_store.code == 100) {
@@ -27,7 +27,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/eg/g/gallery/:galleryId', function (req, res) {
+    app.get('/g/gallery/:galleryId', function (req, res) {
         var _scope = {};
         gallery.getById(req.params.galleryId).then(function (_gallery) {
             if (_gallery.code == 100) {
@@ -44,7 +44,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/eg/p/product/:itemId', function (req, res) {
+    app.get('/p/product/:itemId', function (req, res) {
         var _scope = {};
         product.getById(req.params.itemId).then(function (_item) {
             if (_item.code == 100) {
@@ -62,7 +62,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/eg/g/galleries/:storeId', function (req, res) {
+    app.get('/g/galleries/:storeId', function (req, res) {
         var _scope = {};
         gallery.getByStore(req.params.storeId).then(function (_galleryLst) {
             if (_galleryLst.code == 100) {
@@ -79,7 +79,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/eg/p/products/:galleryId', function (req, res) {
+    app.get('/p/products/:galleryId', function (req, res) {
         var _scope = {};
         product.getByGalleryId(req.params.galleryId).then(function (_itemLst) {
 
@@ -99,7 +99,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/eg/register', function (req, res) {
+    app.get('/register', function (req, res) {
         var _scope = {};
         category.getAll().then(function (_category) {
             if (_category.code == 100) {
@@ -116,7 +116,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/eg/Home', function (req, res) {
+    app.get('/Home', function (req, res) {
         var _scope = {};
         store.login().then(function (_user) {
             if (_user.code == 100) {
