@@ -27,7 +27,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/g/gallery/:galleryId', function (req, res) {
+    app.get('/gallery/:galleryId', function (req, res) {
         var _scope = {};
         gallery.getById(req.params.galleryId).then(function (_gallery) {
             if (_gallery.code == 100) {
@@ -44,7 +44,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/p/product/:itemId', function (req, res) {
+    app.get('/product/:itemId', function (req, res) {
         var _scope = {};
         product.getById(req.params.itemId).then(function (_item) {
             if (_item.code == 100) {
@@ -62,7 +62,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/g/galleries/:storeId', function (req, res) {
+    app.get('/galleries/:storeId', function (req, res) {
         var _scope = {};
         gallery.getByStore(req.params.storeId).then(function (_galleryLst) {
             if (_galleryLst.code == 100) {
@@ -79,7 +79,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/p/products/:galleryId', function (req, res) {
+    app.get('/products/:galleryId', function (req, res) {
         var _scope = {};
         product.getByGalleryId(req.params.galleryId).then(function (_itemLst) {
 

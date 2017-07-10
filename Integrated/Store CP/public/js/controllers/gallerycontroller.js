@@ -14,7 +14,7 @@
     $scope.storeId = localStorage.getItem('StoreId');
 
     $scope.moveToItems = function (_galleryId) {
-        window.location.href = '/p/products/' + _galleryId
+        window.location.href = '/products/' + _galleryId
         localStorage.setItem('GalleryId', _galleryId);
     };
 
