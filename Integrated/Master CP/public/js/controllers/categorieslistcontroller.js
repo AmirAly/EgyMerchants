@@ -1,5 +1,15 @@
 ﻿egm.controller("categoriesListController", function ($scope, API) {
 
+    $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
+        $scope.frmAddCategory.$setPristine();
+        $scope.isEmpty = true;
+        $scope.errMsg = false;
+        $scope.errdiv = false;
+        $scope.category = {};
+        $scope.$apply();
+    });
+
+
     $scope.addCategory = function () {
         $scope.loading = true;
         var req = {

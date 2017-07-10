@@ -148,7 +148,7 @@
                                             <form name="frmAddExpo">
                                                 <div class="row">
                                                     <div class="col-md-5">
-                                                        <div class="form-group label-floating">
+                                                        <div class="form-group label-floating" ng-class="{'is-empty':isEmpty == true}">
                                                             <label class="control-label">Expo Name</label>
                                                             <input type="text" class="form-control" ng-model="expo.Title" required pattern="^.{2,25}$" name="expoTitle" id="expoTitle">
                                                             <span ng-show="frmAddExpo.expoTitle.$dirty && frmAddExpo.expoTitle.$invalid">

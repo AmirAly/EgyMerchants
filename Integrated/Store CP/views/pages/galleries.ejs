@@ -118,10 +118,10 @@
                                             <p class="category">Create A New Gallery</p>
                                         </div>
                                         <div class="card-content">
-                                            <form name="frmAddGallery" id="myForm">
+                                            <form name="frmAddGallery">
                                                 <div class="row">
                                                     <div class="col-md-5">
-                                                        <div class="form-group label-floating">
+                                                        <div class="form-group label-floating" ng-class="{'is-empty': isEmpty == true}">
                                                             <label class="control-label">Gallery Name</label>
                                                             <input type="text" class="form-control" ng-model="gallery.Title" required pattern="^.{1,35}$" name="galleryTitle" id="galleryTitle">
                                                             <span ng-show="frmAddGallery.galleryTitle.$dirty && frmAddGallery.galleryTitle.$invalid">
@@ -134,7 +134,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <div class="form-group label-floating">
+                                                            <div class="form-group label-floating" ng-class="{'is-empty': isEmpty == true}">
                                                                 <label class="control-label"> About Gallery</label>
                                                                 <textarea class="form-control" rows="3" ng-model="gallery.Description" required pattern="^.{1,200}$" name="galleryDesc" id="galleryDesc"></textarea>
                                                                 <span ng-show="frmAddGallery.galleryDesc.$dirty && frmAddGallery.galleryDesc.$invalid">
@@ -147,7 +147,7 @@
                                                 </div>
 
 												<div class=" alert-danger clear text-center" ng-show="errdiv">
-                                                    <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
+                                                    <span class="errorFont id="errMsg" "ng-show="errMsg"> {{errorMsg}} </span>
                                                 </div>
 
                                                 <div class="clearfix"></div>

@@ -219,7 +219,7 @@
                                             <form name="frmAddPic" novalidate>
                                                 <div class="row">
                                                     <div class="col-md-5">
-                                                        <div class="form-group label-floating">
+                                                        <div class="form-group label-floating" ng-class="{'is-empty':isEmpty == true}">
                                                             <label class="control-label">Picture Name</label>
                                                             <input type="text" class="form-control" ng-model="picAddModalTitle" required name="picTitle" id="picTitle" pattern="^.{1,35}$">
                                                             <span ng-show="frmAddPic.picTitle.$dirty && frmAddPic.picTitle.$invalid">

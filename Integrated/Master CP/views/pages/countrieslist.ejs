@@ -145,7 +145,7 @@
                                             <form name="frmAddCountry">
                                                 <div class="row">
                                                     <div class="col-md-8">
-                                                        <div class="form-group label-floating">
+                                                        <div class="form-group label-floating" ng-class="{'is-empty':isEmpty == true}">
                                                             <label class="control-label">Country name</label>
                                                             <input type="text" class="form-control" ng-model="country.Name" required pattern="^.{2,15}$" name="countryName" id="countryName">
                                                             <span ng-show="frmAddCountry.countryName.$dirty && frmAddCountry.countryName.$invalid">
@@ -157,7 +157,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-8">
-                                                        <div class="form-group label-floating">
+                                                        <div class="form-group label-floating" ng-class="{'is-empty':isEmpty == true}">
                                                             <label class="control-label">Country iso code</label>
                                                             <input type="text" class="form-control" ng-model="country.IsoCode" required pattern="^.{2,3}$" name="countryIsoCode" id="countryIsoCode">
                                                             <span ng-show="frmAddCountry.countryIsoCode.$dirty && frmAddCountry.countryIsoCode.$invalid">
@@ -169,7 +169,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <div class="form-group label-floating">
+                                                        <div class="form-group label-floating" ng-class="{'is-empty':isEmpty == true}">
                                                             <label class="control-label">Welcome message</label>
                                                             <input type="text" class="form-control" ng-model="country.WelcomeMsg" required pattern="^.{2,50}$" name="countryWelcomeMsg" id="countryWelcomeMsg">
                                                             <span ng-show="frmAddCountry.countryWelcomeMsg.$dirty && frmAddCountry.countryWelcomeMsg.$invalid">

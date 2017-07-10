@@ -139,7 +139,7 @@
                                             <form name="frmAddCategory">
                                                 <div class="row">
                                                     <div class="col-md-8">
-                                                        <div class="form-group label-floating">
+                                                        <div class="form-group label-floating" ng-class="{'is-empty':isEmpty == true}">
                                                             <label class="control-label">Category</label>
                                                             <input type="text" class="form-control" ng-model="category.Name" required pattern="^.{2,35}$" name="categoryTitle" id="categoryTitle">
                                                             <span ng-show="frmAddCategory.categoryTitle.$dirty && frmAddCategory.categoryTitle.$invalid">
