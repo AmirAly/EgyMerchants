@@ -124,26 +124,27 @@ var newuser = new userschema({ "Email": "anisa123@gmail.com", "Password": "12345
 //}, function (err) {
 //    console.log(err);
 //});
-
-var newcountry = new countryschema({ "Name": "U.S.A", "WelcomeMsg": "welcome in U.S.A", "IsoCode": "123","Flag":"white/green"});
+//59633066a7490bf417a675c9//eg,596330d500eb17980c488068//italy,/59636119220c50cc02359e78/ksa,596360ebb635d094156a8083//dubai
+var newcountry = new countryschema({ "Name": "ksa", "WelcomeMsg": "welcome in ksa", "IsoCode": "ksa","Flag":"green"});
 //country.add(newcountry).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
-//country.edit("593d38aab81b891415bf6fe0", "U.S.A", "yellow", "123", "welcome", ["593d3878535ef028135b7217"]).then(function (result) {
+//country.edit("596330d500eb17980c488068", "italia", "flag", "iso", "welcomemsg").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//country.suspend("5937e5801cf86e0c0b23c9e5").then(function (result) {
+//59633066a7490bf417a675c9//eg,596330d500eb17980c488068//italy,/596358c6016eda24031261a7/ksa/deleted,596358f1fefe5a7004396daa//dubai
+//country.suspend("596358f1fefe5a7004396daa").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
-//country.getById("593d38aab81b891415bf6fe0").then(function (result) {
+//country.getById("596358f1fefe5a7004396daa").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -153,14 +154,15 @@ var newcountry = new countryschema({ "Name": "U.S.A", "WelcomeMsg": "welcome in 
 //}, function (err) {
 //    console.log(err);
 //});
-var newexpo = new exposchema({ "Title": "new dream expo", "Banner": "bnner", "Category": "59143976a6adb01098ef50b8" });
+var newexpo = new exposchema({ "Title": "new dream expocat2", "Banner": "bnner", "Category": "59634731a92a5b1c0b356848" });
 //expo.add(newexpo).then(function (result) {
 //    console.log(result); 
 //}, function(err) {
 //    console.log(err); 
 //});
-//expo.getById("59412db17237639c0349bbb8").then(function (result) {
-//    console.log(result.data.Floors);
+//59633acd6ac2d15c01ae3734
+//expo.getById("59633acd6ac2d15c01ae3734").then(function (result) {
+//    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
@@ -196,18 +198,27 @@ var newexpo = new exposchema({ "Title": "new dream expo", "Banner": "bnner", "Ca
 //}, function (err) {
 //    console.log(err);
 //});
-var newcategory = new categoryschema({ "Name": "newcategoryy" });
+//59633066a7490bf417a675c9//eg,596330d500eb17980c488068//italy,/59636119220c50cc02359e78/ksa,596360ebb635d094156a8083//dubai
+
+var newcategory = new categoryschema({ "Name": "furniture", "Country": "59636119220c50cc02359e78" });
 //category.add(newcategory).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//category.edit("593d3878535ef028135b7217", "okcar").then(function (result) {
+//category.edit("59636190ec710c7808cc1942", "accessories", "59636119220c50cc02359e78").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//category.suspend("5937eac6a0bdebb00ab1713f").then(function (result) {
+//59636190ec710c7808cc1942/ksaaccessory,59634731a92a5b1c0b356848/hasexpo,596330d500eb17980c48806a
+//category.suspend("59636190ec710c7808cc1942").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+
+//category.getByCountry("596360ebb635d094156a8083").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -217,12 +228,6 @@ var newcategory = new categoryschema({ "Name": "newcategoryy" });
 //}, function (err) {
 //    console.log(err);
 //});
-//category.getByCountry("593d06591f0fafcc047e2388").then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
-
 var newitem = new itemschema({ "Name": "newitemtod2", "Description": "desconlytodo", "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "59369940b656ca6c03f909e7", "Store": "595b688e4df9b72c03077f81" });
 //item.add(newitem).then(function (result) {
 //    console.log(result);
