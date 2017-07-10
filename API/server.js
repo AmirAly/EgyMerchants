@@ -154,6 +154,11 @@ var newcountry = new countryschema({ "Name": "ksa", "WelcomeMsg": "welcome in ks
 //}, function (err) {
 //    console.log(err);
 //});
+country.loadAllInJson().then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
 var newexpo = new exposchema({ "Title": "new dream expocat2", "Banner": "bnner", "Category": "59634731a92a5b1c0b356848" });
 //expo.add(newexpo).then(function (result) {
 //    console.log(result); 
