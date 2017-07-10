@@ -1,4 +1,4 @@
-﻿app.controller("expoController", function ($scope, $rootScope, $timeout) {
+﻿app.controller("expoController", function ($scope, $rootScope, $timeout, $window) {
     $rootScope.loading = true;
     $scope.expos = [];
     $timeout(function () {
@@ -6,6 +6,19 @@
         $rootScope.loading = false;
     }, 2000);
 
+    window.onresize = function () {
+        console.log('resize');
+        $rootScope.loading = true;
+        location.reload();
+    }
+
+    //var appWindow = angular.element($window);
+    //appWindow.bind('resize', function () {
+    //    console.log('Resized your browser');
+    //    console.log('resize');
+    //    $rootScope.loading = true;
+    //    location.reload();
+    //});
 
     $scope.loadArray = function (_expoID) {
         // get window height & width
@@ -36,7 +49,7 @@
             fId = 0;
             $scope['activePageNumber' + _expoId] = fId;
         }
-       
+
 
     }
 
