@@ -515,7 +515,8 @@ h6.mega {
 }
 
     .header-wrapper.isScrolled .sticky-logo {
-        display: block;
+        display: block !important;
+        visibility: visible !important;
     }
 
     .header-wrapper .main-nav {
