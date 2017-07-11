@@ -105,7 +105,6 @@ module.exports = function (app) {
         country.loadAllInJson().then(function (_country) {
             if (_country.code == 100) {
                 _scope.countries = _country.data;
-                console.log(_scope.countries);
                 res.render('pages/register', _scope);
             } else {
                 _scope.countries = [];
