@@ -209,7 +209,6 @@ module.exports = {
             expoStoresList = [],
             itemsList = [],
             storesList = [];
-       // storesByKey = [];
         var filter = { 'Country': { "$regex": _country, "$options": "i" }, 'Status': 'Active', 'Type': 'store' };
         if (_country == "all")
             filter = { 'Status': 'Active', 'Type': 'store' };
@@ -290,25 +289,6 @@ module.exports = {
                                                     return (expo.Title.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1)
                                                 }))
                                             else { finalList = finalList.concat(expoList)}
-                                            //if (_store != "all") {
-                                            //    storesList = _.filter(storesList, function (store) {
-                                            //        return (store.Name.toLowerCase().indexOf(_store.toLowerCase()) !== -1 || store.Description.toLowerCase().indexOf(_store.toLowerCase()) !== -1 || store.Address.toLowerCase().indexOf(_store.toLowerCase()) !== -1)
-                                            //    })
-                                            //    finalList = finalList.concat(storesList);
-                                            //    storesByKey = storesList;
-                                            //}
-                                            //if (_country != "all") {
-                                            //    finalList = finalList.concat(storesList);
-                                            //    storesByKey = storesList;
-                                            //}
-                                          //  else {
-                                                //var filteredStores = _.filter(storesList, function (store) {
-                                                //    return (store.Name.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1 || store.Description.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1 || store.Address.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1)
-                                                //})
-                                                //finalList = finalList.concat(filteredStores);
-                                                //storesByKey = filteredStores;
-                                          //  }
-                                           
                                             if (_store != "all" || _expo != "all" || _country != "all") {
                                                 if (_store != "all") {
                                                     storesList = _.filter(storesList, function (store) {
@@ -316,13 +296,17 @@ module.exports = {
                                                     })
                                                     finalList = finalList.concat(storesList);
                                                 }
-                                                console.log(storesList);
-                                                _.each(storesList, function (store) {
-                                                    var res = _.filter(itemsList, function (item) {
-                                                        return item.Store == store._id.toString();
+                                                else {
+                                                    finalList = finalList.concat(_.filter(storesList, function (store) {
+                                                        return (store.Name.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1 || store.Description.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1 || store.Address.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1)
+                                                    }))
+                                                }
+                                                    _.each(storesList, function (store) {
+                                                        var res = _.filter(itemsList, function (item) {
+                                                            return item.Store == store._id.toString();
+                                                        })
+                                                        finalList = finalList.concat(res);
                                                     })
-                                                    finalList = finalList.concat(res);
-                                                })
                                             }
                                             else {
                                                 var filteredStores = _.filter(storesList, function (store) {

@@ -2,6 +2,7 @@
 var product = require('./models/items');
 var gallery = require('./models/galleries');
 var category = require('./models/categories');
+var country = require('./models/countries');
 module.exports = function (app) {
     // use res.render to load up an ejs view file
     // index page 
@@ -27,7 +28,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/g/gallery/:galleryId', function (req, res) {
+    app.get('/gallery/:galleryId', function (req, res) {
         var _scope = {};
         gallery.getById(req.params.galleryId).then(function (_gallery) {
             if (_gallery.code == 100) {
@@ -44,7 +45,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/p/product/:itemId', function (req, res) {
+    app.get('/product/:itemId', function (req, res) {
         var _scope = {};
         product.getById(req.params.itemId).then(function (_item) {
             if (_item.code == 100) {
@@ -62,7 +63,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/g/galleries/:storeId', function (req, res) {
+    app.get('/galleries/:storeId', function (req, res) {
         var _scope = {};
         gallery.getByStore(req.params.storeId).then(function (_galleryLst) {
             if (_galleryLst.code == 100) {
@@ -79,7 +80,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/p/products/:galleryId', function (req, res) {
+    app.get('/products/:galleryId', function (req, res) {
         var _scope = {};
         product.getByGalleryId(req.params.galleryId).then(function (_itemLst) {
 
@@ -101,19 +102,33 @@ module.exports = function (app) {
 
     app.get('/register', function (req, res) {
         var _scope = {};
-        category.getAll().then(function (_category) {
-            if (_category.code == 100) {
-                _scope.categories = _category.data;
+        country.loadAllInJson().then(function (_country) {
+            if (_country.code == 100) {
+                _scope.countries = _country.data;
                 res.render('pages/register', _scope);
             } else {
-                _scope.categories = [];
+                _scope.countries = [];
                 res.render('pages/register', _scope);
             }
         }).catch(function (_err) {
             console.log(_err);
-            _scope.categories = [];
+            _scope.countries = [];
             res.render('pages/register', _scope);
         });
+
+        //category.getAll().then(function (_category) {
+        //    if (_category.code == 100) {
+        //        _scope.categories = _category.data;
+        //        res.render('pages/register', _scope);
+        //    } else {
+        //        _scope.categories = [];
+        //        res.render('pages/register', _scope);
+        //    }
+        //}).catch(function (_err) {
+        //    console.log(_err);
+        //    _scope.categories = [];
+        //    res.render('pages/register', _scope);
+        //});
     });
 
     app.get('/Home', function (req, res) {

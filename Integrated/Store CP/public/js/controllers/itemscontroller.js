@@ -27,7 +27,7 @@
 
 
     $scope.moveToItem = function (_itemId) {
-        window.location.href = '/p/product/' + _itemId;
+        window.location.href = '/product/' + _itemId;
     };
 
     $scope.signOut = function () {
