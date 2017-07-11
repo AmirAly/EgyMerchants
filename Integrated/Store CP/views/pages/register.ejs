@@ -92,7 +92,6 @@
                                             <div class="col-sm-12">
                                                 <h4 class="info-text"> Are you living in a nice area? </h4>
                                             </div>
-											<%= countries %>
                                             <div class="col-sm-5 col-sm-offset-1">
                                                 <div class="form-group">
                                                     <label>City</label>
@@ -104,12 +103,13 @@
                                                     <label>Country</label>
                                                     <br>
                                                     <select name="country" ng-model="selectedCity" class="form-control">
-                                                        <option value="59067579734d1d32590f51dd" selected> Egypt </option>
-                                                        <option value="590676e7734d1d32590f5248"> Italy </option>
-                                                        <option value="59067906734d1d32590f529b"> Turkey </option>
-                                                        <option value="59067b18734d1d32590f531a"> Dubai </option>
-                                                        <option value="59067b96734d1d32590f5335"> France </option>
-                                                        <option value="59196d1da4d87d11d82559c4"> Estonia </option>
+													<% if ( countries.length > 0  ){ %>
+                                                    <% countries.forEach(function(country){ %>
+                                                        <option selected><%= country.name %></option>
+												      <% }); %>
+                                                      <% }else{ %> 
+													  <p class="text-center">There is no countries</p>
+                                                      <% } %>
                                                     </select>
                                                 </div>
                                             </div>
