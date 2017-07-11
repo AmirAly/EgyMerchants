@@ -2,6 +2,7 @@
 var product = require('./models/items');
 var gallery = require('./models/galleries');
 var category = require('./models/categories');
+var country = require('./models/countries');
 module.exports = function (app) {
     // use res.render to load up an ejs view file
     // index page 
@@ -101,19 +102,34 @@ module.exports = function (app) {
 
     app.get('/register', function (req, res) {
         var _scope = {};
-        category.getAll().then(function (_category) {
-            if (_category.code == 100) {
-                _scope.categories = _category.data;
+        country.loadAllInJson().then(function (_country) {
+            if (_country.code == 100) {
+                _scope.countries = _country.data;
+                console.log(_scope.countries);
                 res.render('pages/register', _scope);
             } else {
-                _scope.categories = [];
+                _scope.countries = [];
                 res.render('pages/register', _scope);
             }
         }).catch(function (_err) {
             console.log(_err);
-            _scope.categories = [];
+            _scope.countries = [];
             res.render('pages/register', _scope);
         });
+
+        //category.getAll().then(function (_category) {
+        //    if (_category.code == 100) {
+        //        _scope.categories = _category.data;
+        //        res.render('pages/register', _scope);
+        //    } else {
+        //        _scope.categories = [];
+        //        res.render('pages/register', _scope);
+        //    }
+        //}).catch(function (_err) {
+        //    console.log(_err);
+        //    _scope.categories = [];
+        //    res.render('pages/register', _scope);
+        //});
     });
 
     app.get('/Home', function (req, res) {

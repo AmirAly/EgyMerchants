@@ -14,14 +14,16 @@ var Category = require('./models/category');
 var User = require('./models/user');
 var Expo = require('./models/expo');
 var Helper = require('./helper');
-
+var CountriesInJson = require('./allcountries.json');
+var _ = require("underscore");
 
 module.exports = function (app, express) {
     var api = express.Router();
-
+    
     api.get('/', function (req, res) {
-        return res.json({ code: '100', data: 'This api is working great, howver further calls to other endpoints require a token' });
+        return res.json({ code: '100', data: 'This api is working great, however further calls to other endpoints require a token' });
     });
+   
 
     //store API calls
     api.post('/Store/Register', function (req, res) {
@@ -155,6 +157,13 @@ module.exports = function (app, express) {
     })
     api.get('/Country/GetById/:_id', function (req, res) {
         CountryLogic.getById(req.params._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.get('/Country/LoadAllInJson', function (req, res) {
+        CountryLogic.loadAllInJson().then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
