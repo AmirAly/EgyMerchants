@@ -2,6 +2,7 @@
 // modules =================================================
 var express = require('express');
 var app = express();
+app.use(express.static(__dirname + '/images'));
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var api = require('./app/api')(app, express);
@@ -144,7 +145,7 @@ var newcountry = new countryschema({ "Name": "ksa", "WelcomeMsg": "welcome in ks
 //    console.log(err);
 //});
 
-//country.getById("596358f1fefe5a7004396daa").then(function (result) {
+//country.getById("596360ebb635d094156a8083").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -154,11 +155,11 @@ var newcountry = new countryschema({ "Name": "ksa", "WelcomeMsg": "welcome in ks
 //}, function (err) {
 //    console.log(err);
 //});
-country.loadAllInJson().then(function (result) {
-    console.log(result);
-}, function (err) {
-    console.log(err);
-});
+//country.loadAllInJson().then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 var newexpo = new exposchema({ "Title": "new dream expocat2", "Banner": "bnner", "Category": "59634731a92a5b1c0b356848" });
 //expo.add(newexpo).then(function (result) {
 //    console.log(result); 
@@ -205,13 +206,13 @@ var newexpo = new exposchema({ "Title": "new dream expocat2", "Banner": "bnner",
 //});
 //59633066a7490bf417a675c9//eg,596330d500eb17980c488068//italy,/59636119220c50cc02359e78/ksa,596360ebb635d094156a8083//dubai
 
-var newcategory = new categoryschema({ "Name": "furniture", "Country": "59636119220c50cc02359e78" });
+var newcategory = new categoryschema({ "Name": "modernfurniture", "Country": "59636119220c50cc02359e78" });
 //category.add(newcategory).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//category.edit("59636190ec710c7808cc1942", "accessories", "59636119220c50cc02359e78").then(function (result) {
+//category.edit("59636190ec710c7808cc1942", "modernfurniture44", "59636119220c50cc02359e78").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -223,7 +224,7 @@ var newcategory = new categoryschema({ "Name": "furniture", "Country": "59636119
 //    console.log(err);
 //});
 
-//category.getByCountry("596360ebb635d094156a8083").then(function (result) {
+//category.getByCountry('eg').then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -233,7 +234,7 @@ var newcategory = new categoryschema({ "Name": "furniture", "Country": "59636119
 //}, function (err) {
 //    console.log(err);
 //});
-var newitem = new itemschema({ "Name": "newitemtod2", "Description": "desconlytodo", "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "59369940b656ca6c03f909e7", "Store": "595b688e4df9b72c03077f81" });
+var newitem = new itemschema({ "Name": "newitemtod2'", "Description": "desconlytodo", "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "59369940b656ca6c03f909e7", "Store": "595b688e4df9b72c03077f81" });
 //item.add(newitem).then(function (result) {
 //    console.log(result);
 //}, function (err) {
