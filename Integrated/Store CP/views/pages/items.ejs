@@ -124,8 +124,10 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group label-floating" ng-class="{'is-empty':isEmpty == true}">
                                                             <label class="control-label">Item Name</label>
-                                                            <input type="text" class="form-control" ng-model="item.Name" required name="itemTitle" id="itemTitle" pattern="^.{1,35}$">
+                                                            <input type="text" class="form-control" ng-model="item.Name" ng-minlength="1" ng-maxlength="50" required name="itemTitle" id="itemTitle">
                                                             <span ng-show="frmAddItem.itemTitle.$dirty && frmAddItem.itemTitle.$invalid">
+																<span class="errorFont" ng-show="frmAddItem.itemTitle.$error.minlength">Price minimum 1 number</span>
+																<span class="errorFont" ng-show="frmAddItem.itemTitle.$error.maxlength">Price maxlength 5 number</span>
                                                                 <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.required">Required</span>
                                                                 <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.pattern">Item name is too long</span>
                                                             </span>
@@ -136,9 +138,10 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group label-floating" ng-class="{'is-empty':isEmpty == true}">
                                                             <label class="control-label">Price</label>
-                                                            <input type="text" class="form-control" ng-model="item.Price" required name="itemPrice" id="itemPrice" pattern="^[0-9]{2,7}$">
+                                                            <input type="text" class="form-control" ng-model="item.Price" ng-minlength="1" required name="itemPrice" id="itemPrice" pattern="^[0-9]{1,}$">
                                                             <span ng-show="frmAddItem.itemPrice.$dirty && frmAddItem.itemPrice.$invalid">
                                                                 <span class="errorFont" ng-show="frmAddItem.itemPrice.$error.required">Required</span>
+																<span class="errorFont" ng-show="frmAddItem.itemPrice.$error.minlength">Price minimum 1 number</span>
                                                                 <span class="errorFont" ng-show="frmAddItem.itemPrice.$error.pattern">Price min 2 number and max 7 number</span>
                                                             </span>
                                                         </div>
@@ -149,7 +152,7 @@
                                                         <div class="form-group">
                                                             <div class="form-group label-floating" ng-class="{'is-empty':isEmpty == true}">
                                                                 <label class="control-label"> About Item</label>
-                                                                <textarea class="form-control" rows="3" ng-model="item.Description" required name="itemDesc" id="itemDesc" pattern="^.{1,200}$"></textarea>
+                                                                <textarea class="form-control" rows="3" ng-model="item.Description" required name="itemDesc" id="itemDesc" pattern="^.{1,}$"></textarea>
                                                                 <span ng-show="frmAddItem.itemDesc.$dirty && frmAddItem.itemDesc.$invalid">
                                                                     <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.required">Required</span>
                                                                     <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.pattern">Item description is too long</span>

@@ -42,7 +42,11 @@
                                                     <label>
                                                         Email <small>(required)</small>
                                                     </label>
-                                                    <input name="username" type="text" class="form-control" ng-model="loginData.Email" placeholder="Email..." required="">
+                                                    <input name="username" type="email" class="form-control" ng-model="loginData.Email" placeholder="Email..." name="email" id="email" required="" pattern="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$">
+													<span ng-show="frmLogin.email.$dirty && frmLogin.email.$invalid">
+                                                         <span class="errorFont" ng-show="frmLogin.email.$error.required">Required</span>
+                                                         <span class="errorFont" ng-show="frmLogin.email.$error.pattern">example@mail.com</span>
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="col-sm-8 col-sm-offset-2">
@@ -50,8 +54,12 @@
                                                     <label>
                                                         Password <small>(required)</small>
                                                     </label>
-                                                    <input name="password" type="password" class="form-control" ng-model="loginData.Password" placeholder="password..." required="">
-                                                </div>
+                                                    <input name="password" type="password" class="form-control" ng-model="loginData.Password" name="psw" id="psw" placeholder="password..." required="">
+                                                    <span ng-show="frmLogin.psw.$dirty && frmLogin.psw.$invalid">
+                                                         <span class="errorFont" ng-show="frmLogin.psw.$error.required">Required</span>
+                                                         <span class="errorFont" ng-show="frmLogin.psw.$error.pattern">example@mail.com</span>
+                                                    </span>
+												</div>
                                             </div>
                                             <div class="col-sm-8 col-sm-offset-2">
                                                 <div class=" alert-danger clear text-center" ng-show="errdiv">
