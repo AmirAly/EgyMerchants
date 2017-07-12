@@ -12,14 +12,6 @@
         location.reload();
     }
 
-    //var appWindow = angular.element($window);
-    //appWindow.bind('resize', function () {
-    //    console.log('Resized your browser');
-    //    console.log('resize');
-    //    $rootScope.loading = true;
-    //    location.reload();
-    //});
-
     $scope.loadArray = function (_expoID) {
         // get window height & width
         $scope.containerHeight = window.innerHeight;
@@ -29,7 +21,8 @@
         $rootScope.loading = false;
     }
 
-    $scope.init = function (_list) {
+    $scope.init = function (_list, _isoCode) {
+        $scope.IsoCode = _isoCode;
         if (_list != '') {
             $scope.exposList = JSON.parse(_list);
         }

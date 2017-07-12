@@ -1,8 +1,8 @@
 ﻿app.controller("searchController", function ($scope, $rootScope, API) {
     //$scope.keyword = '';
-    $scope.expos = '';
-    $scope.countries = '';
-    $scope.stores = '';
+    $scope.expos = 'all';
+    $scope.countries = 'all';
+    $scope.stores = 'all';
     $scope.init1 = function (_result) {
         if ( _result != '') {
             $scope.searchResult = JSON.parse(_result);
@@ -44,6 +44,7 @@
                 $scope.searchResult = _res.data.data;
                 $rootScope.loading = false;
             } else {
+                $scope.searchResult = '';
                 $rootScope.loading = false;
             }
         });
@@ -51,9 +52,9 @@
 
     $scope.clearSearch = function () {
         $scope.keyword = '';
-        $scope.expos = '';
-        $scope.countries = '';
-        $scope.stores = '';
+        $scope.expos = 'all';
+        $scope.countries = 'all';
+        $scope.stores = 'all';
     }
 
 

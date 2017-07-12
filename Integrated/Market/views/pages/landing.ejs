@@ -30,7 +30,7 @@
                 <p class="wow slideInUp" data-wow-duration="2s">{{selectedCountry.WelcomeMsg}}</p>
 				
 						<div ng-repeat="category in allcategories track by $index" class="wow bounceInRight txtCategoryContainer" data-wow-duration="2s">
-							<a href="/Eg/Expos/{{category._id}}">{{category.Name}}</a>
+							<a href="/{{IsoCode}}/Expos/{{category._id}}">{{category.Name}}</a>
 						</div>
 					 <p ng-show="countryCategories.length > 0" class="txtNoData"> No Categories Available </p>
            </div>
@@ -40,7 +40,7 @@
                 <img class="pin" src="{{selectedCountry.Flag}}"/> <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li ng-repeat="country in allCountries track by $index" ng-click="changeCountry(country._id)">
+						<li ng-repeat="country in allCountries track by $index" ng-click="changeCountry(country.IsoCode)">
 						   <a><img src="{{country.Flag}}"/></a>
 						</li>
               </ul>
