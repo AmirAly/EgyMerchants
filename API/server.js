@@ -127,11 +127,11 @@ var newuser = new userschema({ "Email": "anisa123@gmail.com", "Password": "12345
 //});
 //5965dd9eceaa8fc80bddf8ff//eg,596330d500eb17980c488068//italy,/59636119220c50cc02359e78/ksa,596360ebb635d094156a8083//dubai
 var newcountry = new countryschema({ "Name": "egypt", "WelcomeMsg": "welcome in egypt", "IsoCode": "eg","Flag":"red"});
-country.add(newcountry).then(function (result) {
-    console.log(result);
-}, function (err) {
-    console.log(err);
-});
+//country.add(newcountry).then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 
 //country.edit("59633066a7490bf417a675c9", "dubai", "flag", "eg", "welcomemsg").then(function (result) {
 //    console.log(result);
