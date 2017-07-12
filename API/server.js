@@ -125,21 +125,21 @@ var newuser = new userschema({ "Email": "anisa123@gmail.com", "Password": "12345
 //}, function (err) {
 //    console.log(err);
 //});
-//5965dd9eceaa8fc80bddf8ff//eg,596330d500eb17980c488068//italy,/59636119220c50cc02359e78/ksa,596360ebb635d094156a8083//dubai
-var newcountry = new countryschema({ "Name": "egypt", "WelcomeMsg": "welcome in egypt", "IsoCode": "eg","Flag":"red"});
+//5965dd9eceaa8fc80bddf8ff//eg,5965df57fc4340540bc921b4//italy,/5965e1a21c091a9c0884b0ca/ksa,5965e9f7168fd5c404ab9218//dubai
+var newcountry = new countryschema({ "Name": "dubai", "WelcomeMsg": "welcome in dubai", "IsoCode": "db", "Flag": "white" });
 //country.add(newcountry).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
-//country.edit("59633066a7490bf417a675c9", "dubai", "flag", "eg", "welcomemsg").then(function (result) {
+//country.edit("5965e9f7168fd5c404ab9218", "dubai", "flag", "iso", "welcomemsg").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 //59633066a7490bf417a675c9/related/eg,/59636119220c50cc02359e78/ksa/related,596360ebb635d094156a8083//dubai,5964e0584c9d02440c7b8280/italy
-//country.remove("5965dd2a7d5d9da00907f46c").then(function (result) {
+//country.remove("59633066a7490bf417a675c9").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -160,7 +160,7 @@ var newcountry = new countryschema({ "Name": "egypt", "WelcomeMsg": "welcome in 
 //}, function (err) {
 //    console.log(err);
 //});
-var newexpo = new exposchema({ "Title": "new dream expocat22", "Banner": "bnner", "Category": "59636190ec710c7808cc1942" });
+var newexpo = new exposchema({ "Title": "new dream expocat22", "Banner": "bnner", "Category": "5965ed146d5d42e80e4124d3" });
 //expo.add(newexpo).then(function (result) {
 //    console.log(result); 
 //}, function(err) {
@@ -204,21 +204,23 @@ var newexpo = new exposchema({ "Title": "new dream expocat22", "Banner": "bnner"
 //}, function (err) {
 //    console.log(err);
 //});
-//59633066a7490bf417a675c9//eg,596330d500eb17980c488068//italy,/59636119220c50cc02359e78/ksa,596360ebb635d094156a8083//dubai
+//5965dd9eceaa8fc80bddf8ff//eg,5965df57fc4340540bc921b4//italy,/5965e1a21c091a9c0884b0ca/ksa,5965e9f7168fd5c404ab9218//dubai
+//59633066a7490bf417a675c9/related/eg,/59636119220c50cc02359e78/ksa/related,596360ebb635d094156a8083//dubai,5965eb1913a1a4900830e6dc/italy
 
-var newcategory = new categoryschema({ "Name": "accessories", "Country": "59633066a7490bf417a675c9" });
+//5965ed146d5d42e80e4124d3,5965ed35f49c64d40adecccb,
+var newcategory = new categoryschema({ "Name": "gg", "Country": "5965df57fc4340540bc921b4" });
 //category.add(newcategory).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//category.edit("59636190ec710c7808cc1942", "modernfurniture44", "59636119220c50cc02359e78").then(function (result) {
+//category.edit("5965ed146d5d42e80e4124d5", "watches", "5965dd9eceaa8fc80bddf8ff").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 //59636190ec710c7808cc1942,5964cca41d280820170bdcd4/hasexpo,5964ccf1e91fd4401219c435,5964cfe7b68be204141a4f2b,5964d22a140c285c001b569f,5964d2754606115416a5a66b
-//category.remove("5964d2754606115416a5a66b").then(function (result) {
+//category.remove("5965ef265495deac01bc51aa").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);

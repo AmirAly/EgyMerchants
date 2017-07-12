@@ -1,14 +1,14 @@
 var Mongoose = require("mongoose");
 var Schema = Mongoose.Schema;
 var Item = new Schema({
-    Name: { type: String, required: 'Name is required' },
-    Description: { type: String },
+    Name: { type: String, required: 'Name is required',min:2,max:50 },
+    Description: { type: String,min:2},
     Pictures: [{
         Title: { type: String },
         URL: { type: String }
     }],
-    Price: { type: Number,default:0},
-    PriceBeforeSale: { type: Number, default: 0 },
+    Price: { type: Number,default:0,min:1},
+    PriceBeforeSale: { type: Number, default: 0,min:1 },
     Rate: { type: Number },
     Sold: { type: Number },
     Tags: { type: String },
