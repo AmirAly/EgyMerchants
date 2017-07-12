@@ -26,6 +26,7 @@
                 API.execute(req).then(function (_res) {
                     if (_res.data.code == 100) {
                         $scope.allcategories = _res.data.data.Categories;
+                        window.location.href = '/' + _res.data.data.IsoCode+'/Home';
                         //console.log(_res);
                     } else {
                         //console.log(_res);

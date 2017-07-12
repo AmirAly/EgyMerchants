@@ -7,23 +7,20 @@ var country = require('./models/countries');
 module.exports = function (app) {
     // use res.render to load up an ejs view file
     app.get('/', function (req, res) {
-        return res.redirect('/eg/Home');
+        return res.redirect('/EG/Home');
     });
 
     // index page welcome + categories
-    app.get('/Eg/Home', function (req, res) {
-
+    app.get('/:countryIso/Home', function (req, res) {
+        console.log(req.params.countryIso);
         var _scope = {};
-
+        _scope.countryIso = req.params.countryIso;
         country.getAll().then(function (_countriesData) {
-            console.log(_countriesData);
             if (_countriesData.code == 100) {
-                console.log(_countriesData.data);
                 _scope.allCountries = _countriesData.data;
                 _scope.JsonCountries = JSON.stringify(_countriesData.data);
                 country.getById(_scope.allCountries[0]._id).then(function (_data) {
                     if (_data.code == 100) {
-                        console.log(_data.data);
                         _scope.categoriesData = _data.data;
                         _scope.JsonCategories = JSON.stringify(_data.data);
                         res.render('pages/landing', _scope);
@@ -82,7 +79,7 @@ module.exports = function (app) {
 
     });
 
-    // store page   /eg/store/almaksoud
+    // store page /eg/store/almaksoud
     app.get('/Eg/Store/:storeName/:storeId', function (req, res) {
         var _scope = {};
         store.getById(req.params.storeId).then(function (_data) {
@@ -92,7 +89,6 @@ module.exports = function (app) {
                     if (_galleriesData.code == 100) {
                         _scope.GalleriesJson = JSON.stringify(_galleriesData.data);
                         _scope.Galleries = _galleriesData.data;
-                        console.log(_galleriesData.data);
                         product.getFeatured(req.params.storeId).then(function (_featuredItemsData) {
                             if (_featuredItemsData.code == 100) {
                                 _scope.featured = _featuredItemsData.data;
@@ -188,7 +184,6 @@ module.exports = function (app) {
         expo.getAll().then(function (_expo) {
             if (_expo.code == 100) {
                 _scope.expolist = _expo.data;
-                //console.log(_expo.data);
                 country.getAll().then(function (_country) {
                     if (_country.code == 100) {
                         _scope.countrieslst = _country.data;
@@ -222,7 +217,6 @@ module.exports = function (app) {
                                 res.render('pages/search', _scope);
                             }
                         }).catch(function (_err) {
-                            //console.log(_err);
                             _scope.storeslst = [];
                             _scope.lstSearchResult = [];
                             _scope.JsonSearchResult = [];
@@ -247,7 +241,6 @@ module.exports = function (app) {
                 });
 
             } else {
-                //console.log('else');
                 _scope.storeslst = [];
                 _scope.expolist = [];
                 _scope.countrieslst = [];
@@ -265,27 +258,5 @@ module.exports = function (app) {
             res.render('pages/search', _scope);
         });
 
-
-        //var searchResult = [
-        //    {
-        //        'resultExpos': [
-        //            { _id: 1, Img: '/images/expo0.png', Title: 'Le Marchee' },
-        //            { _id: 2, Img: '/images/expo1.png', Title: 'Dubai International Expo' }
-        //        ],
-        //        'resultStores': [
-        //            { _id: 3, Img: '/images/dior.jpg', Title: 'Dior' },
-        //            { _id: 4, Img: '/images/chanel.jpg', Title: 'Chanel' }
-        //        ],
-        //        'resultProducts': [
-        //            { _id: 1, Img: 'http://uploads.tapatalk-cdn.com/20150518/7eb179f322533ce313ad587987f75914.jpg', Title: 'Blue Watch' },
-        //            { _id: 2, Img: 'http://g01.a.alicdn.com/kf/HTB1AX3oLpXXXXbraXXXq6xXFXXXW/CHENXI-Gold-Watch-Men-Watches-Top-Brand-Luxury-Famous-2016-Male-Clock-Golden-Quartz-Analog-Wristwatch.jpg', Title: 'Golden Watch' },
-        //            { _id: 3, Img: 'https://s-media-cache-ak0.pinimg.com/736x/e2/69/24/e26924a315df6b0d6f6d8ba5488a168c.jpg', Title: 'Rolex Watch' },
-        //            { _id: 4, Img: 'https://s-media-cache-ak0.pinimg.com/originals/4e/35/6b/4e356bed54fd89f966c2df43bdcc4bf2.jpg', Title: 'Pincky Watch' }
-        //        ]
-        //    }
-        //];
-        //_scope.searchResult = searchResult;
-        //console.log(req.params.searchTxt);
-        //res.render('pages/search', _scope);
     });
 }
