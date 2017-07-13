@@ -1,5 +1,6 @@
 ﻿app.controller("storeController", function ($scope, $rootScope, $timeout) {
-    $scope.init = function (_galleriesJson) {
+    $scope.init = function (_galleriesJson, _isoCode) {
+        $rootScope.IsoCode = _isoCode;
         $scope.GalleriesLst = [];
         for (var i = 0; i < _galleriesJson.length; i++) {
             var result = _galleriesJson[i].gallery.slice(1, -1);

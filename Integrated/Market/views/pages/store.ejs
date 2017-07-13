@@ -7,7 +7,7 @@
         <div class="pageCover" style="background: url(<%= store.CoverPhoto %>);">
 
         </div>
-        <div class="pageBody" ng-init="init(<%= GalleriesJson %>)">
+        <div class="pageBody" ng-init="init(<%= GalleriesJson %>, '<%= countryIso %>')">
             <div class="dvStoreHeader">
                 <div class="row">
                     <div class="col-sm-12">
@@ -78,7 +78,7 @@
                     <% if (featured.length > 0) { %>
                     <% featured.forEach(function(item){ %>
                     <div class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <a href="/eg/Product/<%= item.Name %>/<%= item._id %>">
+                        <a href="/{{IsoCode}}/Product/<%= item.Name %>/<%= item._id %>">
                             <div class="dvItemContainer text-center">
                                 <img src="<%= item.Pictures[0].URL %>" class="img-responsive" />
                                 <div class="dvItemDescription">
@@ -118,7 +118,7 @@
                     <div class="col-sm-12">
 
                         <div ng-repeat="item in gallery.items" class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                            <a href="/eg/Product/{{item.Name}}/{{item._id}}">
+                            <a href="/{{IsoCode}}/Product/{{item.Name}}/{{item._id}}">
                                 <div class="dvItemContainer text-center">
                                     <img src="{{item.Pictures[0].URL}}" class="img-responsive" />
                                     <div class="dvItemDescription">

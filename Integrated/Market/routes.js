@@ -17,43 +17,23 @@ module.exports = function (app) {
         _scope.countryIso = req.params.countryIso;
         country.getAll().then(function (_countriesData) {
             if (_countriesData.code == 100) {
-                //console.log(_countriesData.data);
+                console.log(_countriesData.data);
                 _scope.allCountries = _countriesData.data;
                 _scope.JsonCountries = JSON.stringify(_countriesData.data);
-                category.getByCountry(req.params.countryIso).then(function (_data) {
-                    if (_data.code == 100) {
-                        console.log(_data.data);
-                        _scope.categoriesData = _data.data;
-                        _scope.JsonCategories = JSON.stringify(_data.data);
-                        res.render('pages/landing', _scope);
-                    }
-                    else {
-                        _scope.categoriesData = [];
-                        _scope.JsonCategories = [];
-                        res.render('pages/landing', _scope);
-                    }
-                }).catch(function (_err) {
-                    console.log(_err);
-                    _scope.categoriesData = [];
-                    _scope.JsonCategories = [];
-                    res.render('pages/landing', _scope);
-                });
+                res.render('pages/landing', _scope);
             }
             else {
-                _scope.categoriesData = [];
-                _scope.JsonCategories = [];
                 _scope.allCountries = [];
                 _scope.JsonCountries = [];
                 res.render('pages/landing', _scope);
             }
         }).catch(function (_err) {
             console.log(_err);
-            _scope.categoriesData = [];
-            _scope.JsonCategories = [];
             _scope.allCountries = [];
             _scope.JsonCountries = [];
             res.render('pages/landing', _scope);
         });
+
     });
 
     // expo page expos
@@ -83,7 +63,7 @@ module.exports = function (app) {
 
     });
 
-    // store page /eg/store/almaksoud
+    // store page /EG/store/almaksoud
     app.get('/:countryIso/Store/:storeName/:storeId', function (req, res) {
         console.log(req.params.countryIso);
         var _scope = {};

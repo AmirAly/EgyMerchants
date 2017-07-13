@@ -1,26 +1,36 @@
 ﻿app.controller("landingController", function ($scope, $rootScope, $timeout, API, $filter) {
-    $rootScope.loading = true;
-    $timeout(function () {
-        $rootScope.loading = false;
-    }, 2000);
+    //$rootScope.loading = true;
 
-    $scope.init = function (_allcountres, _allcategories, _isoCode) {
+    $scope.init2 = function (_allcountres, _isoCode) {
+        console.log('enter');
         $scope.allCountries = JSON.parse(_allcountres);
         localStorage.setItem('allCountries', (JSON.stringify($scope.allCountries)));
         $scope.selectedCountry = ($filter('filter')($scope.allCountries, { 'IsoCode': _isoCode }))[0]; //$scope.allCountries[0];
-        $scope.IsoCode = _isoCode;
-        if (_allcategories == '') {
-            $scope.allcategories = [];
+        localStorage.setItem('selectedCountry', (JSON.stringify($scope.selectedCountry)));
+        $rootScope.IsoCode = _isoCode;
+
+        $scope.loading = true;
+        var req = {
+            method: 'get',
+            url: '/Category/GetByCountry/' + _isoCode,
+            data: {}
         }
-        else {
-            $scope.lstCategories = JSON.parse(_allcategories);
-            $scope.allcategories = $scope.lstCategories;
-        }
+        API.execute(req).then(function (_res) {
+            console.log(_res.data);
+            if (_res.data.code == 100) {
+                $scope.allcategories = _res.data.data;
+            } else {
+                $scope.allcategories = [];
+            }
+            $scope.loading = false;
+        });
+
     }
 
     $scope.changeCountry = function (_isoCode) {
-        $scope.IsoCode = _isoCode;
+        $rootScope.IsoCode = _isoCode;
         $scope.selectedCountry = ($filter('filter')($scope.allCountries, { 'IsoCode': _isoCode }))[0];
+        localStorage.setItem('selectedCountry', (JSON.stringify($scope.selectedCountry)));
         window.location.href = '/' + _isoCode + '/Home';
     }
 });

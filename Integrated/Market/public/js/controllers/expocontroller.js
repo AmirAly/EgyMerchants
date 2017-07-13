@@ -22,7 +22,7 @@
     }
 
     $scope.init = function (_list, _isoCode) {
-        $scope.IsoCode = _isoCode;
+        $rootScope.IsoCode = _isoCode;
         if (_list != '') {
             $scope.exposList = JSON.parse(_list);
         }
