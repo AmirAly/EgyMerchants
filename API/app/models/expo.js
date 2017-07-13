@@ -6,11 +6,11 @@ var Expo = new Schema({
         ref: 'Category',
         required: "Please enter category id"
     },
-    Title: { type: String, min: 2,required:"please enter title" },
-    Banner: { type: String, min: 2 },
+    Title: { type: String, min:2,max:50,required:"please enter title" },
+    Banner: { type: String,min:2 },
     Status: { type: String, default: 'Active' },
     Floors:[{
-        Name: { type: String },
+        Name: { type: String,min:2,max:50 },
         Sections: [{}],
         Coordinates: [{
             Store: {
@@ -22,7 +22,7 @@ var Expo = new Schema({
             Width: { type: Number },
             Height: { type: Number },
             Img: { type: String },
-            StoreName: { type: String }
+            StoreName: { type: String,min:2,max:50 }
         }],
     }]
 });
