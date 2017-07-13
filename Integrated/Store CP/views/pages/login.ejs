@@ -19,7 +19,7 @@
                     <!--      Wizard container        -->
                     <div class="wizard-container">
                         <div class="card wizard-card" data-color="orange" id="wizardProfile">
-                            <form action="" method="" name="frmLogin" novalidate>
+                            <form  name="frmLogin" novalidate >
                                 <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
                                 <div class="wizard-header">
                                     <h3>
@@ -42,7 +42,7 @@
                                                     <label>
                                                         Email <small>(required)</small>
                                                     </label>
-                                                    <input name="username" type="email" class="form-control" ng-model="loginData.Email" placeholder="Email..." name="email" id="email" required="" pattern="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$">
+                                                    <input type="email" class="form-control" ng-model="loginData.Email" placeholder="Email..." name="email" id="email" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 													<span ng-show="frmLogin.email.$dirty && frmLogin.email.$invalid">
                                                          <span class="errorFont" ng-show="frmLogin.email.$error.required">Required</span>
                                                          <span class="errorFont" ng-show="frmLogin.email.$error.pattern">example@mail.com</span>
@@ -54,10 +54,10 @@
                                                     <label>
                                                         Password <small>(required)</small>
                                                     </label>
-                                                    <input name="password" type="password" class="form-control" ng-model="loginData.Password" name="psw" id="psw" placeholder="password..." required="">
+                                                    <input type="password" class="form-control" ng-model="loginData.Password" ng-minlength="6" name="psw" id="psw" placeholder="password..." required="">
                                                     <span ng-show="frmLogin.psw.$dirty && frmLogin.psw.$invalid">
                                                          <span class="errorFont" ng-show="frmLogin.psw.$error.required">Required</span>
-                                                         <span class="errorFont" ng-show="frmLogin.psw.$error.pattern">example@mail.com</span>
+														 <span class="errorFont" ng-show="frmLogin.psw.$error.minlength">Password minimum length 6 Characters</span>
                                                     </span>
 												</div>
                                             </div>
@@ -75,7 +75,7 @@
 
                                 <div class="wizard-footer height-wizard">
                                     <div class="pull-right">
-                                        <input type='button' ng-click="login()" class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='login' value='login' />
+                                        <button type='submit' ng-click="doLogin(frmLogin)" form="frmLogin" class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='login' value='login' />Login</button>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>

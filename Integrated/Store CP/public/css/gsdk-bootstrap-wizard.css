@@ -1165,3 +1165,6 @@ label {
     display: flex !important;
     justify-content: center !important;
 }
+.errorFont {
+    color: tomato;
+}

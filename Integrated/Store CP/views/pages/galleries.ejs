@@ -123,10 +123,10 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group label-floating" ng-class="{'is-empty': isEmpty == true}">
                                                             <label class="control-label">Gallery Name</label>
-                                                            <input type="text" class="form-control" ng-model="gallery.Title" required pattern="^.{1,35}$" name="galleryTitle" id="galleryTitle">
+                                                            <input type="text" class="form-control" ng-model="gallery.Title" ng-minlength="2" name="galleryTitle" id="galleryTitle">
                                                             <span ng-show="frmAddGallery.galleryTitle.$dirty && frmAddGallery.galleryTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmAddGallery.galleryTitle.$error.required">Required</span>
-                                                                <span class="errorFont" ng-show="frmAddGallery.galleryTitle.$error.pattern">Gallery name is too long</span>
+                                                                <span class="errorFont" ng-show="frmAddGallery.galleryTitle.$error.minlength">Gallery name is too short</span>
                                                             </span>
                                                         </div>
                                                     </div>

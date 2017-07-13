@@ -36,7 +36,7 @@
     };
 
     $scope.addItem = function () {
-        $scope.loading = true;
+        //$scope.loading = true;
         var req = {
             method: 'post',
             url: '/Item/Add',
@@ -53,11 +53,12 @@
             }
         }
         API.execute(req).then(function (_res) {
+            console.log(_res);
             if (_res.data.code == 100) {
                 $scope.itemId = _res.data.data._id;
-                window.location.reload();
+               // window.location.reload();
             } else {
-                $scope.loading = false;
+                //$scope.loading = false;
                 if (_res.data.code == 21) {
                     $scope.errMsg = true;
                     $scope.errdiv = true;
@@ -72,3 +73,19 @@
         });
     };
 });
+function convertImgToBase64URL(event) {
+    var filesSelected = document.getElementById("uploadItemImage").files;
+    if (filesSelected.length > 0) {
+        var fileToLoad = filesSelected[0];
+        var fileReader = new FileReader();
+        fileReader.onload = function (fileLoadedEvent) {
+            BaseImg64 = fileLoadedEvent.target.result;
+            UploadImage(BaseImg64);
+        };
+        fileReader.readAsDataURL(fileToLoad);
+    }
+};
+
+function UploadImage(_BaseImg64) {
+    $('#imgItem').attr('src', _BaseImg64);
+};

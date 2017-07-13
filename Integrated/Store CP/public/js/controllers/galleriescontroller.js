@@ -1,7 +1,25 @@
 ﻿egm.controller("galleriesController", ['$scope', 'API', function ($scope, API, $apply) {
     $scope.ShowFileSelector = function () {
-        document.getElementById('uploadItemImage').click()
+        document.getElementById('uploadItemImage').click();
+        
     };
+
+    var _URL = window.URL || window.webkitURL;
+    $("#uploadItemImage").change(function () {
+        var file, img;
+        if ((file = this.files[0])) {
+            img = new Image();
+            img.onload = function () {
+                $scope.imgWidth = this.width;
+                $scope.imgWidth = this.width;
+                alert(this.width + " " + this.height);
+            };
+            img.onerror = function () {
+                alert("not a valid file: " + file.type);
+            };
+            img.src = _URL.createObjectURL(file);
+        }
+    });
 
     $scope.preload = function () {
         if (localStorage.getItem('StoreId') == null || localStorage.getItem('StoreId') == '') {
