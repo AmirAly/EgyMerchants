@@ -17,9 +17,9 @@
           <script src="/js/general/respond.min.js"></script>
         <![endif]-->
     </head>
-<body class="pageLanding" ng-cloak ng-controller="landingController" ng-init="init('<%= JsonCountries %>','<%= JsonCategories %>','<%= countryIso %>')">      
+<body class="pageLanding" ng-controller="landingController">      
 <div class="colordLayer"></div>
-<div class="container-fluid">
+<div class="container-fluid"  ng-init="init2('<%=JsonCountries%>','<%=countryIso%>')">
     <div class="container">
         <div class="row">
             <div class="col-md-5 big">
@@ -29,8 +29,8 @@
                 <h1 class="wow slideInDown" data-wow-duration="2s">WELLCOME</h1>
                 <p class="wow slideInUp" data-wow-duration="2s">{{selectedCountry.WelcomeMsg}}</p>
 				
-						<div ng-repeat="category in allcategories track by $index" class="wow bounceInRight txtCategoryContainer" data-wow-duration="2s">
-							<a href="/Eg/Expos/{{category._id}}">{{category.Name}}</a>
+						<div ng-cloak ng-repeat="category in allcategories track by $index" class="wow bounceInRight txtCategoryContainer" data-wow-duration="2s">
+							<a href="/{{IsoCode}}/Expos/{{category._id}}">{{category.Name}}</a>
 						</div>
 					 <p ng-show="countryCategories.length > 0" class="txtNoData"> No Categories Available </p>
            </div>
@@ -40,7 +40,7 @@
                 <img class="pin" src="{{selectedCountry.Flag}}"/> <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li ng-repeat="country in allCountries track by $index" ng-click="changeCountry(country._id)">
+						<li ng-repeat="country in allCountries track by $index" ng-click="changeCountry(country.IsoCode)">
 						   <a><img src="{{country.Flag}}"/></a>
 						</li>
               </ul>

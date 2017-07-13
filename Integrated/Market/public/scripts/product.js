@@ -12,8 +12,8 @@
         var GalleyName = JSON.parse(localStorage.getItem('galleryName'));
         $('#GalleyName').html(GalleyName);
 
-        $("#StoreNameLink").attr("href", "/Eg/Store/" + StoreName + "/" + StoreId + "");
-        $("#GalleyNameLink").attr("href", "/Eg/Store/" + GalleyName + "/" + GalleyId + "");
+        $("#StoreNameLink").attr("href", "/EG/Store/" + StoreName + "/" + StoreId + "");
+        $("#GalleyNameLink").attr("href", "/EG/Store/" + GalleyName + "/" + GalleyId + "");
 
     }, 500);
     

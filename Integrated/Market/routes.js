@@ -20,46 +20,28 @@ module.exports = function (app) {
                 console.log(_countriesData.data);
                 _scope.allCountries = _countriesData.data;
                 _scope.JsonCountries = JSON.stringify(_countriesData.data);
-                category.getByCountry(req.params.countryIso).then(function (_data) {
-                    if (_data.code == 100) {
-                        console.log(_data.data);
-                        _scope.categoriesData = _data.data;
-                        _scope.JsonCategories = JSON.stringify(_data.data);
-                        res.render('pages/landing', _scope);
-                    }
-                    else {
-                        _scope.categoriesData = [];
-                        _scope.JsonCategories = [];
-                        res.render('pages/landing', _scope);
-                    }
-                }).catch(function (_err) {
-                    console.log(_err);
-                    _scope.categoriesData = [];
-                    _scope.JsonCategories = [];
-                    res.render('pages/landing', _scope);
-                });
+                res.render('pages/landing', _scope);
             }
             else {
-                _scope.categoriesData = [];
-                _scope.JsonCategories = [];
                 _scope.allCountries = [];
                 _scope.JsonCountries = [];
                 res.render('pages/landing', _scope);
             }
         }).catch(function (_err) {
             console.log(_err);
-            _scope.categoriesData = [];
-            _scope.JsonCategories = [];
             _scope.allCountries = [];
             _scope.JsonCountries = [];
             res.render('pages/landing', _scope);
         });
+
     });
 
     // expo page expos
-    app.get('/Eg/Expos/:catId', function (req, res) {
+    app.get('/:countryIso/Expos/:catId', function (req, res) {
         
+        console.log(req.params.countryIso);
         var _scope = {};
+        _scope.countryIso = req.params.countryIso;
         expo.getByCategory(req.params.catId).then(function (_data) {
             if (_data.code == 100) {
                 _scope.expos = _data.data;
@@ -81,9 +63,11 @@ module.exports = function (app) {
 
     });
 
-    // store page /eg/store/almaksoud
-    app.get('/Eg/Store/:storeName/:storeId', function (req, res) {
+    // store page /EG/store/almaksoud
+    app.get('/:countryIso/Store/:storeName/:storeId', function (req, res) {
+        console.log(req.params.countryIso);
         var _scope = {};
+        _scope.countryIso = req.params.countryIso;
         store.getById(req.params.storeId).then(function (_data) {
             if (_data.code == 100) {
                 _scope.store = _data.data;
@@ -136,8 +120,10 @@ module.exports = function (app) {
     });
 
     // product page 
-    app.get('/Eg/Product/:productName/:productId', function (req, res) {
+    app.get('/:countryIso/Product/:productName/:productId', function (req, res) {
+        console.log(req.params.countryIso);
         var _scope = {};
+        _scope.countryIso = req.params.countryIso;
         var similarProducts = [
            { id: 1, img: 'https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg' },
            { id: 2, img: 'https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg' },
@@ -175,14 +161,20 @@ module.exports = function (app) {
     });
 
     // contacts page 
-    app.get('/Eg/Contactus', function (req, res) {
+    app.get('/:countryIso/Contactus', function (req, res) {
+        console.log(req.params.countryIso);
+        var _scope = {};
+        _scope.countryIso = req.params.countryIso;
         res.render('pages/contactus');
     });
 
     // search page 
-    app.get('/Eg/Search/:searchTxt', function (req, res) {
+    app.get('/:countryIso/Search/:searchTxt', function (req, res) {
+        console.log(req.params.countryIso);
         var _scope = {};
+        _scope.countryIso = req.params.countryIso;
         _scope.searchTxt = req.params.searchTxt;
+        console.log(req.params.searchTxt);
         expo.getAll().then(function (_expo) {
             if (_expo.code == 100) {
                 _scope.expolist = _expo.data;
@@ -194,7 +186,7 @@ module.exports = function (app) {
                                 _scope.storeslst = _store.data;
                                 store.search('all', 'all', _scope.searchTxt, 'all').then(function (_searchResult) {
                                     console.log(_scope.searchTxt);
-                                    console.log(_searchResult);
+                                    //console.log(_searchResult);
                                     if (_searchResult.code == 100) {
                                         _scope.lstSearchResult = _searchResult.data;
                                         _scope.JsonSearchResult = JSON.stringify(_searchResult.data);

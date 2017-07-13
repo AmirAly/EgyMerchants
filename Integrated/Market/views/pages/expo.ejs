@@ -3,7 +3,7 @@
 
 <div class="expoPage" ng-controller="expoController">
     <div class="allExposView" ng-hide="showSingleExpo">
-        <div class="secondDiv" ng-init="init('<%= JsonExpos %>')">
+        <div class="secondDiv" ng-init="init('<%= JsonExpos %>', '<%= countryIso %>')">
 
             <% if (expos.length > 0) { %>
             <div ng-repeat="expo in exposList">
@@ -25,7 +25,7 @@
 
                                                     <div class="outerContainer" ng-repeat="sec in floor.Coordinates">
                                                         <div class=" repeated-item" ng-style="{'background-image': 'url({{sec.Img}})','position':'absolute','background-size': 'cover','background-repeat': 'no-repeat','top':{{sec.Top * oneSectionHeight}} +'px','left':{{sec.Left * oneSectionWidth}} +'px','height':{{sec.Height * oneSectionHeight}} - 3 +'px', 'width':{{sec.Width * oneSectionWidth}} - 3 +'px'}">
-                                                            <a href="/eg/Store/{{sec.StoreName}}/{{sec.Store._id}}"><div class="image-hover"><i class="icon-zoom-in-2"></i></div></a><div class="image-title">{{sec.StoreName}}</div>
+                                                            <a href="/{{IsoCode}}/Store/{{sec.StoreName}}/{{sec.Store._id}}"><div class="image-hover"><i class="icon-zoom-in-2"></i></div></a><div class="image-title">{{sec.StoreName}}</div>
                                                         </div>
                                                     </div>
 													 <h4>{{floor.Name}}</h4>

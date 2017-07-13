@@ -16,12 +16,12 @@
                             <div class="navbar-left">
                                 <div class="dropdown">
                                     <button class="btn btn-default dropdown-toggle" type="button" id="countryDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <img class="pin" src="{{allCountriesGeneralList[0].Flag}}" /> {{allCountriesGeneralList[0].Name}}  <span class="caret"></span>
+                                        <img class="pin" src="{{selectedCountry.Flag}}" />  <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="countryDropdownMenu">
                                         <li ng-repeat="country in allCountriesGeneralList">
-                                            <a href="/Eg/Home">
-                                                <img class="pin" src="{{country.Flag}}" /> {{country.Name}}
+                                            <a href="/{{country.IsoCode}}/Home">
+                                                <img class="pin" src="{{country.Flag}}" />
                                             </a>
                                         </li>
                                     </ul>
@@ -29,10 +29,10 @@
                             </div>
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
-                                    <a href="/Eg/Home">Home</a>
+                                    <a href="/{{selectedCountry.IsoCode}}/Home">Home</a>
                                 </li>
                                 <li>
-                                    <a href="/Eg/Contactus">ABOUT US</a>
+                                    <a href="/{{selectedCountry.IsoCode}}/Contactus">ABOUT US</a>
                                 </li>
                                 <li>
                                     <a href="#">MY ACCOUNT</a>
@@ -58,7 +58,7 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <h1 class="logo">
-                                    <a href="/Eg/Home">
+                                    <a href="/{{selectedCountry.IsoCode}}/Home">
                                         <img src="/images/Expoeveryday.png" alt="Expo" />
                                     </a>
                                 </h1>
@@ -100,7 +100,7 @@
                             <div class="menu-wrapper">
                                 <div class="sticky-logo wow bounceInLeft">
 
-                                    <a href="/Eg/Home">
+                                    <a href="/{{selectedCountry.IsoCode}}/Home">
                                         <img src="/images/Expoeveryday.png" class="img-responsive" alt="Expo" />
                                     </a>
 
@@ -108,12 +108,12 @@
                                 <div class="menu-all-pages-container">
                                     <ul class="menu">
                                         <li class="act">
-                                            <a href="/Eg/Home">
+                                            <a href="/{{selectedCountry.IsoCode}}/Home">
                                                 <span>Home</span>
                                             </a>
                                         </li>
                                         <li class="act">
-                                            <a href="/Eg/Contactus">
+                                            <a href="/{{selectedCountry.IsoCode}}/Contactus">
                                                 <span>Contact us</span>
                                             </a>
                                         </li>

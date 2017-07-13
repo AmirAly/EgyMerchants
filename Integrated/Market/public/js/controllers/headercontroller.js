@@ -29,6 +29,7 @@
 
         // get all countries
         $scope.allCountriesGeneralList = JSON.parse(localStorage.getItem('allCountries'));
+        $scope.selectedCountry = JSON.parse(localStorage.getItem('selectedCountry'));
 
     }
     $scope.load();
@@ -103,15 +104,13 @@
 
     $scope.logout = function () {
         localStorage.clear();
-        window.location.href = "/eg/Home";
-       
-
+        window.location.href = "/" + $rootScope.IsoCode + "/Home";
     }
 
     $scope.txtSearch = '';
     $scope.search = function () {
         if ($scope.txtSearch != '') {
-            window.location.href = "/EG/Search/" + $scope.txtSearch;
+            window.location.href = "/" + $rootScope.IsoCode + "/Search/" + $scope.txtSearch;
         }
     }
 });
