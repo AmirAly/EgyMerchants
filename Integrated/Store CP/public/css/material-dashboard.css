@@ -4051,14 +4051,14 @@ footer {
         padding: 15px 20px;
     }
 
-        .card .card-content .category {
+        .card .card-content .category , .price {
             margin-bottom: 0;
             text-overflow: ellipsis;
             width: 95%;
             white-space: nowrap;
             overflow: hidden;
         }
-
+        
         .card .card-content .itemTitle {
             margin-bottom: 0;
             text-overflow: ellipsis;
@@ -5774,5 +5774,8 @@ footer {
 }
 
 #errImgDiv {
+    display: none;
+}
+#errImgDivEdit {
     display: none;
 }

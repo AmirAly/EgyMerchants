@@ -62,7 +62,11 @@
                                             <br>
                                             <div class="coverContent">
                                                 <img fallbacksrc="" id="imgItemCover" ng-click="ShowFileSelectorCover()" class="img-responsive cursorPointer imgItemCover" src="<%= store.CoverPhoto %>" />
-                                                <input type="file" onchange="convertImgToBase64URLCover(event)" id="uploadItemImageCover" class="hide" />
+                                                <input type="file" onchange="convertCoverStoreImgToBase64URLCover(event)" id="uploadItemImageCover" class="hide" accept="image/*" />
+                                            </div>
+											<br>
+                                            <div class=" alert-danger clear text-center" id="errImgDiv">
+                                                <span class="errorFont"> Cover is not suitable  </span>
                                             </div>
                                         </div>
                                     </div>
@@ -79,10 +83,11 @@
                                         <div class="col-md-12">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Adress</label>
-                                                <input type="text" class="form-control" value="<%= store.Address%>" ng-init="store.Address = '<%= store.Address%>'" ng-model="store.Address" required name="Address" id="Address" pattern="^.{1,50}$">
+                                                <input type="text" class="form-control" value="<%= store.Address%>" ng-init="store.Address = '<%= store.Address%>'" ng-model="store.Address" required name="Address" id="Address" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                 <span ng-show="frmStoreData.Address.$dirty && frmStoreData.Address.$invalid">
                                                     <span class="errorFont" ng-show="frmStoreData.Address.$error.required">Required</span>
-                                                    <span class="errorFont" ng-show="frmStoreData.Address.$error.pattern">Address is too long</span>
+                                                    <span class="errorFont" ng-show="frmStoreData.Address.$error.minlength">Address is too short</span>
+                                                    <span class="errorFont" ng-show="frmStoreData.Address.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -91,10 +96,11 @@
                                         <div class="col-md-12">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Email address</label>
-                                                <input type="Email" class="form-control" value="<%= store.Email%>" ng-init="store.Email='<%= store.Email%>'" ng-model="store.Email" required name="Email" id="Email" pattern="^.{1,40}$">
-                                                <span ng-show="frmStoreData.Email.$dirty && frmStoreData.Email.$invalid">
+                                                <input type="Email" class="form-control" value="<%= store.Email%>" ng-init="store.Email='<%= store.Email%>'" ng-model="store.Email" required name="Email" id="Email" ng-minlength="6" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                                <span ng-show=" frmStoreData.Email.$dirty && frmStoreData.Email.$invalid">
                                                     <span class="errorFont" ng-show="frmStoreData.Email.$error.required">Required</span>
-                                                    <span class="errorFont" ng-show="frmStoreData.Email.$error.Email">Invalid Email</span>
+                                                    <span class="errorFont" ng-show="frmStoreData.Email.$error.minlength">Email is too short</span>
+                                                    <span class="errorFont" ng-show="frmStoreData.Email.$error.pattern">Invalid Email</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -103,10 +109,12 @@
                                         <div class="col-md-12">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">City</label>
-                                                <input type="text" class="form-control" value="<%= store.City%>" ng-init="store.City='<%= store.City%>'" ng-model="store.City" required name="City" id="City" pattern="^.{1,35}">
+                                                <input type="text" class="form-control" value="<%= store.City%>" ng-init="store.City='<%= store.City%>'" ng-model="store.City" required name="City" id="City" ng-minlength="2" ng-maxlength="25" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                 <span ng-show="frmStoreData.City.$dirty && frmStoreData.City.$invalid">
                                                     <span class="errorFont" ng-show="frmStoreData.City.$error.required">Required</span>
-                                                    <span class="errorFont" ng-show="frmStoreData.City.$error.pattern">City is too long</span>
+                                                    <span class="errorFont" ng-show="frmStoreData.City.$error.minlength">City name is too short</span>
+                                                    <span class="errorFont" ng-show="frmStoreData.City.$error.maxlength">City name is too long</span>
+                                                    <span class="errorFont" ng-show="frmStoreData.City.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -116,17 +124,19 @@
                                             <div class="form-group">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label"> About Store</label>
-                                                    <textarea class="form-control" ng-init="store.Description='<%= store.Description %>'" rows="3" ng-model="store.Description" required name="Desc" id="Desc" pattern="^.{1,200}$"><%= store.Description %></textarea>
+                                                    <textarea class="form-control" ng-init="store.Description='<%= store.Description %>'" rows="3" ng-model="store.Description" required name="Desc" id="Desc" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$">
+                                                        <%= store.Description %>
+                                                    </textarea>
                                                     <span ng-show="frmStoreData.Desc.$dirty && frmStoreData.Desc.$invalid">
                                                         <span class="errorFont" ng-show="frmStoreData.Desc.$error.required">Required</span>
-                                                        <span class="errorFont" ng-show="frmStoreData.Desc.$error.pattern">Description is too long</span>
-                                                    </span>
+                                                        <span class="errorFont" ng-show="frmStoreData.Desc.$error.minlength">Description is too short</span>
+                                                        <span class="errorFont" ng-show="frmStoreData.Desc.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-									<div class=" alert-danger clear text-center" ng-show="errdiv">
-                                         <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
+                                    <div class=" alert-danger clear text-center" ng-show="errdiv">
+                                        <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
                                     </div>
                                     <button type="submit" ng-click="save()" ng-disabled="frmStoreData.$invalid" class="btn btn-primary pull-right">Update Profile</button>
                                     <div class="clearfix"></div>
@@ -141,12 +151,16 @@
                                 <!--upload img-->
                                 <div>
                                     <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="<%= store.ProfilePicture %>" />
-                                    <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
+                                    <input type="file" onchange="convertProfileStoreImgToBase64URL(event)" id="uploadItemImage" class="hide" accept="image/*" />
                                 </div>
                             </div>
                             <div class="card-content">
                                 <h4 class="title itemTitle"><%= store.Name %></h4>
                                 <p class="category"><%= store.Description %></p>
+								<br>
+                                <div class=" alert-danger clear text-center" id="errImgDivEdit">
+                                    <span class="errorFont"> Image is not suitable </span>
+                                </div>
                             </div>
                         </div>
                     </div>

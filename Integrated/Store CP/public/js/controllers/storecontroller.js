@@ -50,16 +50,26 @@
         });
     };
 });
-function convertImgToBase64URL(event) {
+function convertProfileStoreImgToBase64URL(event) {
     var filesSelected = document.getElementById("uploadItemImage").files;
+    var img = new Image();
     if (filesSelected.length > 0) {
         var fileToLoad = filesSelected[0];
         var fileReader = new FileReader();
         fileReader.onload = function (fileLoadedEvent) {
-            BaseImg64 = fileLoadedEvent.target.result;
-            UploadImage(BaseImg64);
+            img.onload = function () {
+                if ((this.height / this.width) < 1.5 && fileToLoad.size <= 2000000) {
+                    document.getElementById("errImgDivEdit").style.display = 'none';
+                    BaseImg64 = fileLoadedEvent.target.result;
+                    UploadImage(BaseImg64);
+                } else {
+                    document.getElementById("errImgDivEdit").style.display = 'block';
+                }
+            };
+
         };
         fileReader.readAsDataURL(fileToLoad);
+        img.src = _URL.createObjectURL(fileToLoad);
     }
 };
 
@@ -67,16 +77,26 @@ function UploadImage(_BaseImg64) {
     $('#imgItem').attr('src', _BaseImg64);
 };
 
-function convertImgToBase64URLCover(event) {
-    var filesSelectedCover = document.getElementById("uploadItemImageCover").files;
-    if (filesSelectedCover.length > 0) {
-        var fileToLoad = filesSelectedCover[0];
+function convertCoverStoreImgToBase64URLCover(event) {
+    var filesSelected = document.getElementById("uploadItemImageCover").files;
+    var img = new Image();
+    if (filesSelected.length > 0) {
+        var fileToLoad = filesSelected[0];
         var fileReader = new FileReader();
         fileReader.onload = function (fileLoadedEvent) {
-            BaseImg64 = fileLoadedEvent.target.result;
-            UploadImageCover(BaseImg64);
+            img.onload = function () {
+                if ((this.height / this.width) < 1.5 && fileToLoad.size <= 2000000) {
+                    document.getElementById("errImgDiv").style.display = 'none';
+                    BaseImg64 = fileLoadedEvent.target.result;
+                    UploadImageCover(BaseImg64);
+                } else {
+                    document.getElementById("errImgDiv").style.display = 'block';
+                }
+            };
+            
         };
         fileReader.readAsDataURL(fileToLoad);
+        img.src = _URL.createObjectURL(fileToLoad);
     }
 };
 

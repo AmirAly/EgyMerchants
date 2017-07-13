@@ -69,13 +69,15 @@
                                 <div class="card-content">
                                     <form name="frmUpdateGallery">
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <div class="col-md-12">
                                                 <div class="form-group label-floating is-focused ">
                                                     <label class="control-label">Gallery Name</label>
-                                                    <input type="text" class="form-control" value="<%= gallery.Title %>" ng-init="gallery.Title = '<%= gallery.Title %>'" ng-model="gallery.Title" name="galleryTitle" id="galleryTitle" required pattern="^.{1,35}$">
+                                                    <input type="text" class="form-control" value="<%= gallery.Title %>" ng-init="gallery.Title = '<%= gallery.Title %>'" ng-model="gallery.Title" name="galleryTitle" id="galleryTitle" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$" >
                                                     <span ng-show="frmUpdateGallery.galleryTitle.$dirty && frmUpdateGallery.galleryTitle.$invalid">
                                                         <span class="errorFont" ng-show="frmUpdateGallery.galleryTitle.$error.required">Required</span>
-                                                        <span class="errorFont" ng-show="frmUpdateGallery.galleryTitle.$error.pattern">Gallery name is too long</span>
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.galleryTitle.$error.minlength">Gallery name is too short</span>
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.galleryTitle.$error.maxlength">Gallery name is too long</span>
+                                                        <span class="errorFont" ng-show="frmUpdateGallery.galleryTitle.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -85,26 +87,27 @@
                                                 <div class="form-group">
                                                     <div class="form-group label-floating is-focused ">
                                                         <label class="control-label"> About Me</label>
-                                                        <textarea class="form-control" value="<%= gallery.Description %>" ng-init="gallery.Description = '<%= gallery.Description %>'" rows="3" ng-model="gallery.Description" required name="galleryDesc" id="galleryDesc" pattern="^.{1,200}$"><%= gallery.Description %></textarea>
+                                                        <textarea class="form-control" value="<%= gallery.Description %>" ng-init="gallery.Description = '<%= gallery.Description %>'" rows="3" ng-model="gallery.Description" required name="galleryDesc" id="galleryDesc" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$" ><%= gallery.Description %></textarea>
                                                         <span ng-show="frmUpdateGallery.galleryDesc.$dirty && frmUpdateGallery.galleryDesc.$invalid">
                                                             <span class="errorFont" ng-show="frmUpdateGallery.galleryDesc.$error.required">Required</span>
-                                                            <span class="errorFont" ng-show="frmUpdateGallery.galleryDesc.$error.pattern">Gallery description is too long</span>
+                                                            <span class="errorFont" ng-show="frmUpdateGallery.galleryDesc.$error.minlength">Gallery name is too short</span>
+                                                            <span class="errorFont" ng-show="frmUpdateGallery.galleryDesc.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>
                                                         </span>
                                                     </div>
 
-											       <div class=" alert-danger clear text-center" ng-show="errdiv">
-                                                      <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
-                                                   </div>
+                                                    <div class=" alert-danger clear text-center" ng-show="errdiv">
+                                                        <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
+                                                    </div>
                                                 </div>
-												
+
                                             </div>
-											
+
 
                                         </div>
                                         <button type="submit" ng-click="updateGallery()" ng-disabled="frmUpdateGallery.$invalid" class="btn btn-primary pull-right">Update Gallery</button>
                                         <div class="clearfix"></div>
 
-										
+
                                     </form>
                                 </div>
                             </div>
@@ -115,12 +118,15 @@
                                     <!--upload img-->
                                     <div>
                                         <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="<%= gallery.DisplayPicture %>" />
-                                        <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
+                                        <input type="file" onchange="convertEditGalleryImgToBase64URL(event)" id="uploadItemImage" class="hide" accept="image/*" />
                                     </div>
                                 </div>
                                 <div class="card-content">
                                     <h4 class="title itemTitle"><%= gallery.Title %></h4>
                                     <p class="category"><%= gallery.Description %></p>
+									<div class=" alert-danger clear text-center" id="errImgDiv">
+                                        <span class="errorFont"> Image is not suitable </span>
+                                    </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
