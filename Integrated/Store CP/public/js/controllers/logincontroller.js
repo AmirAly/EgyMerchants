@@ -3,7 +3,18 @@
     $scope.loginData.Email = '';
     $scope.loginData.Password = '';
 
-    $scope.login = function () {
+    $scope.doLogin = function (form) {
+        angular.forEach($scope.frmLogin.$error.required, function (field) {
+            field.$setDirty();
+        });
+        if (form.$valid) {
+            console.log('enter');
+            login();
+        }
+    };
+
+
+    function login() {
         $scope.loading = true;
         var req = {
             method: 'post',
