@@ -193,6 +193,13 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.get('/Category/GetByCountry/:_isoCode', function (req, res) {
+        CategoryLogic.getByCountry(req.params._isoCode).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
 
     //master API calls
     api.post('/Master/Register', function (req, res) {
