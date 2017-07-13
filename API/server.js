@@ -88,7 +88,7 @@ var newstore = new userschema({ "Email": "gamila12@gmail.com", "Password": "nada
 //    console.log(err);
 //});
 //"new","masterexpo/newgod/test2","new","egypt"
-//store.search("store12", "expo", "item", "italy").then(function (result) {
+//store.search("all", "all", "all", "dream@@~#").then(function (result) {
 //    console.log(result.data);
 //}, function (err) {
 //    console.log(err);
@@ -125,27 +125,27 @@ var newuser = new userschema({ "Email": "anisa123@gmail.com", "Password": "12345
 //}, function (err) {
 //    console.log(err);
 //});
-//59633066a7490bf417a675c9//eg,596330d500eb17980c488068//italy,/59636119220c50cc02359e78/ksa,596360ebb635d094156a8083//dubai
-var newcountry = new countryschema({ "Name": "ksa", "WelcomeMsg": "welcome in ksa", "IsoCode": "ksa","Flag":"green"});
+//5965dd9eceaa8fc80bddf8ff//eg,5965df57fc4340540bc921b4//italy,/5965e1a21c091a9c0884b0ca/ksa,5965e9f7168fd5c404ab9218//dubai
+var newcountry = new countryschema({ "Name": "dubai", "WelcomeMsg": "welcome in dubai", "IsoCode": "db", "Flag": "white" });
 //country.add(newcountry).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
-//country.edit("596330d500eb17980c488068", "italia", "flag", "iso", "welcomemsg").then(function (result) {
+//country.edit("5965e9f7168fd5c404ab9218", "dubai", "flag", "iso", "welcomemsg").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//59633066a7490bf417a675c9//eg,596330d500eb17980c488068//italy,/596358c6016eda24031261a7/ksa/deleted,596358f1fefe5a7004396daa//dubai
-//country.suspend("596358f1fefe5a7004396daa").then(function (result) {
+//59633066a7490bf417a675c9/related/eg,/59636119220c50cc02359e78/ksa/related,596360ebb635d094156a8083//dubai,5964e0584c9d02440c7b8280/italy
+//country.remove("59633066a7490bf417a675c9").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
-//country.getById("596360ebb635d094156a8083").then(function (result) {
+//country.getById("59633066a7490bf417a675c9").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -160,7 +160,7 @@ var newcountry = new countryschema({ "Name": "ksa", "WelcomeMsg": "welcome in ks
 //}, function (err) {
 //    console.log(err);
 //});
-var newexpo = new exposchema({ "Title": "new dream expocat2", "Banner": "bnner", "Category": "59634731a92a5b1c0b356848" });
+var newexpo = new exposchema({ "Title": "new dream expocat22", "Banner": "bnner", "Category": "5965ed146d5d42e80e4124d3" });
 //expo.add(newexpo).then(function (result) {
 //    console.log(result); 
 //}, function(err) {
@@ -188,7 +188,7 @@ var newexpo = new exposchema({ "Title": "new dream expocat2", "Banner": "bnner",
 //}, function (err) {
 //    console.log(err);
 //});
-//expo.suspend("594a79843e856b0b684b392f").then(function (result) {
+//expo.remove("5963641e78d6ccb40e361416").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -204,21 +204,23 @@ var newexpo = new exposchema({ "Title": "new dream expocat2", "Banner": "bnner",
 //}, function (err) {
 //    console.log(err);
 //});
-//59633066a7490bf417a675c9//eg,596330d500eb17980c488068//italy,/59636119220c50cc02359e78/ksa,596360ebb635d094156a8083//dubai
+//5965dd9eceaa8fc80bddf8ff//eg,5965df57fc4340540bc921b4//italy,/5965e1a21c091a9c0884b0ca/ksa,5965e9f7168fd5c404ab9218//dubai
+//59633066a7490bf417a675c9/related/eg,/59636119220c50cc02359e78/ksa/related,596360ebb635d094156a8083//dubai,5965eb1913a1a4900830e6dc/italy
 
-var newcategory = new categoryschema({ "Name": "modernfurniture", "Country": "59636119220c50cc02359e78" });
+//5965ed146d5d42e80e4124d3,5965ed35f49c64d40adecccb,
+var newcategory = new categoryschema({ "Name": "gg", "Country": "5965df57fc4340540bc921b4" });
 //category.add(newcategory).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//category.edit("59636190ec710c7808cc1942", "modernfurniture44", "59636119220c50cc02359e78").then(function (result) {
+//category.edit("5965ed146d5d42e80e4124d5", "watches", "5965dd9eceaa8fc80bddf8ff").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//59636190ec710c7808cc1942/ksaaccessory,59634731a92a5b1c0b356848/hasexpo,596330d500eb17980c48806a
-//category.suspend("59636190ec710c7808cc1942").then(function (result) {
+//59636190ec710c7808cc1942,5964cca41d280820170bdcd4/hasexpo,5964ccf1e91fd4401219c435,5964cfe7b68be204141a4f2b,5964d22a140c285c001b569f,5964d2754606115416a5a66b
+//category.remove("5965ef265495deac01bc51aa").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);

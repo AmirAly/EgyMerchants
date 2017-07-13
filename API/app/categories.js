@@ -75,7 +75,6 @@ module.exports = {
                                             else {
                                                 Obj.Name = _name;
                                                 Obj.Country = _country;
-                                                Obj.Status = "Active";
                                                 Obj.save(function (err, Obj) {
                                                     if (err)
                                                         reject({
@@ -85,7 +84,7 @@ module.exports = {
                                                     else
                                                         resolve({
                                                             code: 100,
-                                                            data: Obj//"Category data edited successfully"
+                                                            data:"Category data edited successfully"
                                                         })
                                                 })
                                             }
@@ -101,7 +100,7 @@ module.exports = {
                         })
         })
     },
-    deleted: function (_id) {
+    remove: function (_id) {
         return new Promise(function (resolve, reject) {
             Schema.find({ 'Status': 'Active' }, '', function (err, lst) {
                 if (err)
@@ -119,7 +118,6 @@ module.exports = {
                                 {
                                     if (lst.length >0)
                                     {
-                                        
                                         Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "deleted" } }, { new: true }, function (err, Obj) {
                                             if (err)
                                                 reject({ code: 1, data: err })
