@@ -7,8 +7,8 @@ var Item = new Schema({
         Title: { type: String },
         URL: { type: String }
     }],
-    Price: { type: Number,default:0,min:1},
-    PriceBeforeSale: { type: Number, default: 0,min:1 },
+    Price: { type: Number,default:0},
+    PriceBeforeSale: { type: Number, default:0},
     Rate: { type: Number },
     Sold: { type: Number },
     Tags: { type: String },
