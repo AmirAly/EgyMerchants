@@ -1168,3 +1168,6 @@ label {
 .errorFont {
     color: tomato;
 }
+#errImgDiv {
+    display: none;
+}

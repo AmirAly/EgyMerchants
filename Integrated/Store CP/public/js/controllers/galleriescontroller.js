@@ -10,7 +10,6 @@
     };
 
     $('.modal').on('hidden.bs.modal', function () {
-
         $scope.gallery = {};
         document.getElementById("frmAddGallery").reset();
         $scope.frmAddGallery.$setUntouched();

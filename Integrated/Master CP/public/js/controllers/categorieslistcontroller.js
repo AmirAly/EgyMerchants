@@ -1,11 +1,13 @@
 ﻿egm.controller("categoriesListController", function ($scope, API) {
 
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
+        $scope.category = {};
+        document.getElementById("frmAddCategory").reset();
+        $scope.frmAddCategory.$setUntouched();
         $scope.frmAddCategory.$setPristine();
         $scope.isEmpty = true;
         $scope.errMsg = false;
         $scope.errdiv = false;
-        $scope.category = {};
         $scope.$apply();
     });
 
