@@ -136,15 +136,17 @@
                                             <p class="category">Create A New Category</p>
                                         </div>
                                         <div class="card-content">
-                                            <form name="frmAddCategory">
+                                            <form name="frmAddCategory" id="frmAddCategory">
                                                 <div class="row">
                                                     <div class="col-md-8">
                                                         <div class="form-group label-floating" ng-class="{'is-empty':isEmpty == true}">
                                                             <label class="control-label">Category</label>
-                                                            <input type="text" class="form-control" ng-model="category.Name" required pattern="^.{2,35}$" name="categoryTitle" id="categoryTitle">
+                                                            <input type="text" class="form-control" ng-model="category.Name" required name="categoryTitle" id="categoryTitle" ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                             <span ng-show="frmAddCategory.categoryTitle.$dirty && frmAddCategory.categoryTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmAddCategory.categoryTitle.$error.required">Required</span>
-                                                                <span class="errorFont" ng-show="frmAddCategory.categoryTitle.$error.pattern">Category name is too short or too long</span>
+                                                                <span class="errorFont" ng-show="frmAddCategory.categoryTitle.$error.minlength">Category name is too short</span>
+                                                                <span class="errorFont" ng-show="frmAddCategory.categoryTitle.$error.maxlength">Category name is too long</span>
+                                                                <span class="errorFont" ng-show="frmAddCategory.categoryTitle.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -197,10 +199,12 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Category</label>
-                                                            <input type="text" class="form-control" ng-model="categoryName" value="categoryName" required pattern="^.{2,35}$" name="categoryTitle" id="categoryTitle">
+                                                            <input type="text" class="form-control" ng-model="categoryName" value="categoryName" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$" name="categoryTitle" id="categoryTitle">
                                                             <span ng-show="frmEditCategory.categoryTitle.$dirty && frmEditCategory.categoryTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmEditCategory.categoryTitle.$error.required">Required</span>
-                                                                <span class="errorFont" ng-show="frmEditCategory.categoryTitle.$error.pattern">Category name is too short or too long</span>
+                                                                <span class="errorFont" ng-show="frmEditCategory.categoryTitle.$error.minlength">Category name is too short</span>
+                                                                <span class="errorFont" ng-show="frmEditCategory.categoryTitle.$error.maxlength">Category name is too long</span>
+                                                                <span class="errorFont" ng-show="frmEditCategory.categoryTitle.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -228,27 +232,27 @@
         </div>
     </div>
 
-<!-- Start Modal  ((cofirmation))-->
-<div class="modal fade bs-example-modal-lg3" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-			
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-				<h4 class="modal-title">Confirm deletion</h4>
-            </div>
-            <div class="modal-body">
-                <div class="content">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header" data-background-color="orange">
-                                        <h4 class="title">Are you sure you want to delete</h4>
-                                    </div>
-                                    <div class="card-content">
+    <!-- Start Modal  ((cofirmation))-->
+    <div class="modal fade bs-example-modal-lg3" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Confirm deletion</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header" data-background-color="orange">
+                                            <h4 class="title">Are you sure you want to delete</h4>
+                                        </div>
+                                        <div class="card-content">
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <span>Delete this category ?</span>
@@ -257,25 +261,23 @@
                                             <div class=" alert-danger clear text-center" ng-show="errdiv">
                                                 <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
                                             </div>
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
-                                    <div class="clearfix"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" ng-click="removeCategory()"  class="btn btn-primary">Delete</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" ng-click="removeCategory()" class="btn btn-primary">Delete</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End modal -->
+    <!-- End modal -->
 </div>
 <!-- End controller -->
-
-
 <!--   Core JS Files   -->
 <% include ../partials/pagesjsfiles %>/partials/pagesjsfiles %>

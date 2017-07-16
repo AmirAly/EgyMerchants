@@ -67,13 +67,15 @@
                                 <div class="card-content">
                                     <form name="frmUpdateExpo">
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <div class="col-md-8">
                                                 <div class="form-group label-floating is-focused ">
                                                     <label class="control-label">Expo Name</label>
-                                                    <input type="text" class="form-control" ng-model="expo.Title" value="<%= expo.Title %>" ng-init="expo.Title = '<%= expo.Title %>'" name="expoTitle" id="expoTitle" required pattern="^.{2,25}$">
+                                                    <input type="text" class="form-control" ng-model="expo.Title" value="<%= expo.Title %>" ng-init="expo.Title = '<%= expo.Title %>'" name="expoTitle" id="expoTitle" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                     <span ng-show="frmUpdateExpo.expoTitle.$dirty && frmUpdateExpo.expoTitle.$invalid">
                                                         <span class="errorFont" ng-show="frmUpdateExpo.expoTitle.$error.required">Required</span>
-                                                        <span class="errorFont" ng-show="frmUpdateExpo.expoTitle.$error.pattern">Expo name is too short or too long</span>
+                                                        <span class="errorFont" ng-show="frmUpdateExpo.expoTitle.$error.minlength">Expo name is too short</span>
+                                                        <span class="errorFont" ng-show="frmUpdateExpo.expoTitle.$error.maxlength">Expo name is too long</span>
+                                                        <span class="errorFont" ng-show="frmUpdateExpo.expoTitle.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>
                                                     </span>
                                                 </div>
 
@@ -89,7 +91,7 @@
 
                                         <button type="submit" ng-click="updateExpo('<%= expo._id %>')" class="btn btn-primary pull-right">Update Expo</button>
                                         <div class="clearfix"></div>
-										<div class=" alert-danger clear text-center" ng-show="errdiv">
+                                        <div class=" alert-danger clear text-center" ng-show="errdiv">
                                             <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
                                         </div>
                                     </form>
@@ -102,7 +104,12 @@
                                     <!--upload img-->
                                     <div>
                                         <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="<%= expo.Banner %>" />
-                                        <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" class="hide" />
+                                        <input type="file" onchange="convertEditExpoImgToBase64URL(event)" id="uploadItemImage" class="hide" accept="image/*" />
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <div class=" alert-danger clear text-center" id="errImgDiv">
+                                        <span class="errorFont"> Image is not suitable </span>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +117,7 @@
                     </div>
                     <!-- list of floors -->
 
-			        <button type="submit" ng-click="floors('<%= expo._id %>')" class="btn btn-primary pull-right">Add floors</button>
+                    <button type="submit" ng-click="floors('<%= expo._id %>')" class="btn btn-primary pull-right">Add floors</button>
 
                     <div class="row" ng-init="init('<%= floorslstJSON %>', '<%= expoJSON %>')">
                         <div class="col-md-12">
@@ -164,26 +171,26 @@
         </div>
     </div>
 
-	<!-- Start Modal  ((cofirmation))-->
-<div class="modal fade bs-example-modal-lg3" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-				<h4 class="modal-title">Confirm deletion</h4>
-            </div>
-            <div class="modal-body">
-                <div class="content">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header" data-background-color="orange">
-                                        <h4 class="title">Are you sure you want to delete</h4>
-                                    </div>
-                                    <div class="card-content">
+    <!-- Start Modal  ((cofirmation))-->
+    <div class="modal fade bs-example-modal-lg3" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Confirm deletion</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header" data-background-color="orange">
+                                            <h4 class="title">Are you sure you want to delete</h4>
+                                        </div>
+                                        <div class="card-content">
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <span>Delete this floor ?</span>
@@ -192,22 +199,22 @@
                                             <div class=" alert-danger clear text-center" ng-show="errdiv">
                                                 <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
                                             </div>
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
-                                    <div class="clearfix"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" ng-click="deleteFloor()"  class="btn btn-primary">Delete</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" ng-click="deleteFloor()" class="btn btn-primary">Delete</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End modal -->
+    <!-- End modal -->
 
 </div>
 <!--   Core JS Files   -->

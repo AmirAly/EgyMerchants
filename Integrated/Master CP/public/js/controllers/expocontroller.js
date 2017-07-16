@@ -98,17 +98,27 @@
     };
 
 });
-
-function convertImgToBase64URL(event) {
+var _URL = window.URL || window.webkitURL;
+function convertEditExpoImgToBase64URL(event) {
     var filesSelected = document.getElementById("uploadItemImage").files;
+    var img = new Image();
     if (filesSelected.length > 0) {
         var fileToLoad = filesSelected[0];
         var fileReader = new FileReader();
         fileReader.onload = function (fileLoadedEvent) {
-            BaseImg64 = fileLoadedEvent.target.result;
-            UploadImage(BaseImg64);
+            img.onload = function () {
+                if ((this.height / this.width) < 1.5 && fileToLoad.size <= 2000000) {
+                    document.getElementById("errImgDiv").style.display = 'none';
+                    BaseImg64 = fileLoadedEvent.target.result;
+                    UploadImage(BaseImg64);
+                } else {
+                    document.getElementById("errImgDiv").style.display = 'block';
+                }
+            };
+
         };
         fileReader.readAsDataURL(fileToLoad);
+        img.src = _URL.createObjectURL(fileToLoad);
     }
 };
 

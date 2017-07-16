@@ -19,7 +19,7 @@
                     <!--      Wizard container        -->
                     <div class="wizard-container">
                         <div class="card wizard-card" data-color="orange" id="wizardProfile">
-                            <form action="" method="" name="frmLogin" novalidate>
+                            <form action="" name="frmLogin" id="frmLogin" novalidate>
                                 <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
                                 <div class="wizard-header">
                                     <h3>
@@ -42,7 +42,12 @@
                                                     <label>
                                                         Email <small>(required)</small>
                                                     </label>
-                                                    <input name="username" type="text" class="form-control" ng-model="loginData.Email" placeholder="Email..." required="">
+                                                    <input type="text" class="form-control" ng-model="loginData.Email" placeholder="Email..." required="" name="email" id="email" ng-minlength="6" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                                    <span ng-show="frmLogin.email.$dirty && frmLogin.email.$invalid">
+                                                        <span class="errorFont" ng-show="frmLogin.email.$error.required">Required</span>
+                                                        <span class="errorFont" ng-show="frmLogin.email.$error.minlength">Email is too short</span>
+														<span class="errorFont" ng-show="frmLogin.email.$error.pattern">Invalid email please enter the email as example@mail.com</span>
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="col-sm-8 col-sm-offset-2">
@@ -50,7 +55,12 @@
                                                     <label>
                                                         Password <small>(required)</small>
                                                     </label>
-                                                    <input name="password" type="password" class="form-control" ng-model="loginData.Password" placeholder="password..." required="">
+                                                    <input name="pwd" id="pwd" type="password" class="form-control" ng-model="loginData.Password" placeholder="password..." required="" ng-minlength="6">
+                                                    <span ng-show="frmLogin.email.$dirty && frmLogin.pwd.$invalid">
+                                                        <span class="errorFont" ng-show="frmLogin.pwd.$error.required">Required</span>
+                                                        <span class="errorFont" ng-show="frmLogin.pwd.$error.minlength">Password minimum length 6 Characters</span>
+                                                    </span>
+
                                                 </div>
                                             </div>
                                             <div class="col-sm-8 col-sm-offset-2">
@@ -64,7 +74,7 @@
 
                                 <div class="wizard-footer height-wizard">
                                     <div class="pull-right">
-                                        <input type='button' ng-click="login()" class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='login' value='login' />
+                                        <input type='button' ng-click="doLogin(frmLogin)" class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='login' value='login' />
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>

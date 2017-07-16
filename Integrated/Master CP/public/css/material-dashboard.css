@@ -122,7 +122,6 @@ html {
 
 .errorFont {
     color: tomato;
-    padding: 10px;
 }
 
 .noUi-target,
@@ -5839,4 +5838,7 @@ footer {
     /*width: 1600px;*/
     overflow: hidden;
     position: relative;
+}
+#errImgDiv{
+    display:none;
 }
