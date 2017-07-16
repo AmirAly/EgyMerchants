@@ -47,10 +47,13 @@
                                                 <div class="picture-container">
                                                     <div class="picture">
                                                         <img fallbacksrc="" id="imgItem" ng-click="ShowFileSelector()" class="img-responsive cursorPointer imgItem" src="/img/default-avatar.png" />
-                                                        <input type="file" onchange="convertImgToBase64URL(event)" id="uploadItemImage" />
+                                                        <input type="file" onchange="convertRegisterImgToBase64URL(event)" id="uploadItemImage" accept="image/*"/>
 
                                                     </div>
                                                     <h6>Choose Picture</h6>
+													<div class=" alert-danger clear text-center" id="errImgDiv">
+                                                       <span class="errorFont"> Image is not suitable </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
