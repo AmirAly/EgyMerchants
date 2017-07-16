@@ -13,11 +13,11 @@
                     checkScrollTop();
                 });
                 function checkScrollTop() {
-                    if ($(window).scrollTop() < 100) {
-                        $('.header-wrapper').attr('style', 'position: static !important;'); // .removeClass('isScrolled');
+                    if ($(window).scrollTop() < 100) {    
+                        $('.header-wrapper').attr('style', 'position: static !important;background-color: #2f3946 !important;'); // .removeClass('isScrolled');
                     }
                     else {
-                        $('.header-wrapper').attr('style', 'position: fixed !important;').addClass('isScrolled');
+                        $('.header-wrapper').attr('style', 'position: fixed !important;background-color: rgba(47, 57, 70, 0.58) !important;').addClass('isScrolled');
                     }
                 }
 
