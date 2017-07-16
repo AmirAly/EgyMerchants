@@ -6,7 +6,18 @@
     //    $scope.categoryId = _id;
     //};
     $scope.selectedCity = 'Egypt';
-    $scope.next = function () {
+
+    $scope.doNext = function () {
+        angular.forEach($scope.frmRegister.$error.required, function (field) {
+            field.$setDirty();
+        });
+        if (form.$valid) {
+            console.log('enter');
+            next();
+        }
+    }
+
+     function next () {
         $scope.frmRegister.txtCity.$validate();
         $scope.frmRegister.txtAddress.$validate();
         $scope.frmRegister.txtDescription.$validate();
