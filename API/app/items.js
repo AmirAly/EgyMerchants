@@ -149,11 +149,17 @@ module.exports = {
                                     code: 1,
                                     data: err
                                 });
-                            else
+                            else {
+                                for (i == 0; i < Obj.Pictures.length; i++)
+                                {
+                                    var Uploadedimg = Helper.uploadimage(Obj.Pictures[i].URL+i+ ".png");
+                                    Obj.Pictures[0].URL = Obj.Pictures[i].URL + i + ".png";
+                                }
                                 resolve({
                                     code: 100,
-                                   data: "This item added successfully"
+                                    data: "This item added successfully"
                                 });
+                            }
                         })
                     }
                 }

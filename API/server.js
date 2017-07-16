@@ -236,7 +236,7 @@ var newcategory = new categoryschema({ "Name": "gg", "Country": "5965df57fc43405
 //}, function (err) {
 //    console.log(err);
 //});
-var newitem = new itemschema({ "Name": "newitemtod2'", "Description": "desconlytodo", "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "59369940b656ca6c03f909e7", "Store": "595b688e4df9b72c03077f81" });
+var newitem = new itemschema({ "Name": "alia'", "Description": "desconlytodo", "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "59088e74734d1d3098a8563e", "Store": "59427a4c734d1d235a9447e3" });
 //item.add(newitem).then(function (result) {
 //    console.log(result);
 //}, function (err) {
