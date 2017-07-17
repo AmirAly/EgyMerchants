@@ -1,6 +1,12 @@
 ﻿egm.controller("registerController", function ($scope, API) {
     $scope.categories = [];
     $scope.register = {};
+    $scope.countriesLst = [
+        { Name: 'Furniture' },
+        { Name: 'Clothes' },
+        { Name: 'Cars' },
+        { Name: 'Accessories' }
+    ];
 
     //$scope.chooseCategory = function (_id) {
     //    $scope.categoryId = _id;

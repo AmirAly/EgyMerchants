@@ -221,13 +221,12 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>country</label>
                                                             <br>
-                                                            <select name="country" ng-model="selectedCountryEdite"  class="form-control">
+                                                            <select name="country" ng-model="selectedCountryEdite" value="selectedCountryEdite" class="form-control">
                                                                 <% countrieslst.forEach(function(country){ %>
                                                                 <option value="<%= country._id %>" selected> <%= country.Name %> </option>
                                                                 <% }); %>
