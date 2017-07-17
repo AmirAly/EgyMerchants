@@ -1,5 +1,6 @@
 ﻿egm.controller("floorController", function ($scope, API, $filter) {
 
+<<<<<<< HEAD
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
         $scope.selectedstore = '';
         document.getElementById("frmAddSection").reset();
@@ -13,6 +14,8 @@
     });
 
 
+=======
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
     $scope.init1 = function (_expoJson) {
         $scope.expo = JSON.parse(_expoJson);
         //console.log($scope.expo);
@@ -23,7 +26,11 @@
         $scope.loadArray();
     }
     $scope.signOut = function () {
+<<<<<<< HEAD
         window.location.href = '/Home';
+=======
+        window.location.href = '/eg/Home';
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
         localStorage.clear();
     };
 
@@ -181,7 +188,11 @@
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
                 window.location.reload();
+<<<<<<< HEAD
                 window.location.href = '/expo/' + $scope.expo._id;
+=======
+                window.location.href = '/eg/expo/' + $scope.expo._id;
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
             } else {
                 $scope.loading = false;
                 if (_res.data.code == 21) {
@@ -203,14 +214,20 @@
     };
 
 });
+<<<<<<< HEAD
 var _URL = window.URL || window.webkitURL;
 function convertEditFloorImgToBase64URL(event) {
     var filesSelected = document.getElementById("uploadItemImage").files;
     var img = new Image();
+=======
+function convertImgToBase64URL(event) {
+    var filesSelected = document.getElementById("uploadItemImage").files;
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
     if (filesSelected.length > 0) {
         var fileToLoad = filesSelected[0];
         var fileReader = new FileReader();
         fileReader.onload = function (fileLoadedEvent) {
+<<<<<<< HEAD
             img.onload = function () {
                 if ((this.height / this.width) < 1.5 && fileToLoad.size <= 2000000) {
                     document.getElementById("errImgDiv").style.display = 'none';
@@ -225,6 +242,12 @@ function convertEditFloorImgToBase64URL(event) {
         };
         fileReader.readAsDataURL(fileToLoad);
         img.src = _URL.createObjectURL(fileToLoad);
+=======
+            BaseImg64 = fileLoadedEvent.target.result;
+            UploadImage(BaseImg64);
+        };
+        fileReader.readAsDataURL(fileToLoad);
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
     }
 };
 

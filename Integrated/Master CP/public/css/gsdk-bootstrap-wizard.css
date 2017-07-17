@@ -1160,9 +1160,12 @@ label {
         min-width: 140px;
     }
 }
+<<<<<<< HEAD
 .errorFont {
     color: tomato;
 }
 #errImgDiv {
     display: none;
 }
+=======
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c

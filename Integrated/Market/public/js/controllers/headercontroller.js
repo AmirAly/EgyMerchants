@@ -29,7 +29,10 @@
 
         // get all countries
         $scope.allCountriesGeneralList = JSON.parse(localStorage.getItem('allCountries'));
+<<<<<<< HEAD
         $scope.selectedCountry = JSON.parse(localStorage.getItem('selectedCountry'));
+=======
+>>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
 
     }
     $scope.load();
@@ -104,13 +107,23 @@
 
     $scope.logout = function () {
         localStorage.clear();
+<<<<<<< HEAD
         window.location.href = "/" + $rootScope.IsoCode + "/Home";
+=======
+        window.location.href = "/eg/Home";
+       
+
+>>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
     }
 
     $scope.txtSearch = '';
     $scope.search = function () {
         if ($scope.txtSearch != '') {
+<<<<<<< HEAD
             window.location.href = "/" + $rootScope.IsoCode + "/Search/" + $scope.txtSearch;
+=======
+            window.location.href = "/EG/Search/" + $scope.txtSearch;
+>>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
         }
     }
 });

@@ -1,5 +1,6 @@
 ﻿egm.controller("categoriesListController", function ($scope, API) {
 
+<<<<<<< HEAD
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
         $scope.category = {};
         document.getElementById("frmAddCategory").reset();
@@ -15,6 +16,8 @@
         $scope.categoryData = JSON.parse(_category);
     }
 
+=======
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
     $scope.addCategory = function () {
         $scope.loading = true;
         var req = {
@@ -22,8 +25,12 @@
             url: '/Category/Add',
             data: {
                 Name: $scope.category.Name,
+<<<<<<< HEAD
                 Status: "Active",
                 Country: $scope.selectedCountry
+=======
+                Status: "Active"
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
             }
         }
         API.execute(req).then(function (_res) {
@@ -45,10 +52,16 @@
         });
     };
 
+<<<<<<< HEAD
     $scope.editCategory = function (_categoryId, _categoryName, _country) {
         $scope.categoryId = _categoryId;
         $scope.categoryName = _categoryName;
         $scope.selectedCountryEdite = _country;
+=======
+    $scope.editCategory = function (_categoryId, _categoryName) {
+        $scope.categoryId = _categoryId;
+        $scope.categoryName = _categoryName;
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
     };
 
     $scope.updateCategory = function () {
@@ -59,7 +72,10 @@
             data: {
                 _id: $scope.categoryId,
                 Name: $scope.categoryName,
+<<<<<<< HEAD
                 Country: $scope.selectedCountryEdite
+=======
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
             }
         }
         API.execute(req).then(function (_res) {
@@ -124,7 +140,11 @@
     };
 
     $scope.signOut = function () {
+<<<<<<< HEAD
         window.location.href = '/Home';
+=======
+        window.location.href = '/eg/Home';
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
         localStorage.clear();
     };
 
