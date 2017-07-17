@@ -1,37 +1,34 @@
 ﻿egm.controller("registerController", function ($scope, API) {
     $scope.categories = [];
     $scope.register = {};
-    $scope.countriesLst = [
-        { Name: 'Furniture' },
-        { Name: 'Clothes' },
-        { Name: 'Cars' },
-        { Name: 'Accessories' }
+    $scope.categoriesLst = [
+        { "Name": "Furniture" },
+        { "Name": "Clothes" },
+        { "Name": "Cars" },
+        { "Name": "Accessories" },
+        { "Name": "Watches" },
+        { "Name": "Mobiles" },
+        { "Name": "Food" }
     ];
 
-    $scope.categorieslst = [
-        { "Name" : 'Furniture' },
-
-    ];
-
-
-    //$scope.chooseCategory = function (_id) {
-    //    $scope.categoryId = _id;
-    //};
+    $scope.chooseCategory = function (_selectedCategory) {
+        $scope.categoryName = _selectedCategory;
+        console.log($scope.categoryName);
+    };
     $scope.selectedCity = 'Egypt';
 
-    $scope.doNext = function () {
+    $scope.doNext = function (form) {
         angular.forEach($scope.frmRegister.$error.required, function (field) {
             field.$setDirty();
         });
         if (form.$valid) {
-            console.log('enter');
             next();
         }
     }
 
      function next () {
-        $scope.frmRegister.txtCity.$validate();
-        $scope.frmRegister.txtAddress.$validate();
+         $scope.frmRegister.city.$validate();
+        $scope.frmRegister.address.$validate();
         $scope.frmRegister.txtDescription.$validate();
     }
 
