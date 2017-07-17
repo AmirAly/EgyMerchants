@@ -162,7 +162,32 @@ module.exports = function (app) {
         category.getAll().then(function (_category) {
             if (_category.code == 100) {
                 _scope.categorieslst = _category.data;
-                res.render('pages/categorieslist', _scope);
+                _scope.categorieslsJSON = JSON.stringify(_category.data);
+                country.getAll().then(function (_country) {
+                    if (_country.code == 100) {
+                        _scope.countrieslst = _country.data;
+                        res.render('pages/categorieslist', _scope);
+                    } else {
+                        _scope.countrieslst = [];
+                        res.render('pages/categorieslist', _scope);
+                    }
+                }).catch(function (_err) {
+                    console.log(_err);
+                    _scope.categorieslst = {};
+                    res.render('pages/categorieslist', _scope);
+                });
+                category.getById(req.params.categoryid).then(function (_category) {
+                    if (_category.code == 100) {
+                        _scope.category = _category.data;
+                    } else {
+                        _scope.category = {};
+                        res.render('pages/categorieslist', _scope);
+                    }
+                }).catch(function (_err) {
+                    console.log(_err);
+                    _scope.category = {};
+                    res.render('pages/categorieslist', _scope);
+                });
             } else {
                 _scope.categorieslst = {};
                 res.render('pages/categorieslist', _scope);

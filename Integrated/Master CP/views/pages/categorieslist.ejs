@@ -1,5 +1,5 @@
 <% include ../partials/headpages %>
-<div ng-controller='categoriesListController'>
+<div ng-controller='categoriesListController' ng-init="init('<%= categorieslsJSON %>')">
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -84,7 +84,7 @@
                                             <tr>
                                                 <td><%= category.Name%></td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" ng-click="editCategory('<%= category._id %>','<%= category.Name %>')" data-target=".bs-example-modal-lg2" data-original-title="Edit Category">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" ng-click="editCategory('<%= category._id %>','<%= category.Name %>','<%= category.Country %>')" data-target=".bs-example-modal-lg2" data-original-title="Edit Category">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -138,7 +138,7 @@
                                         <div class="card-content">
                                             <form name="frmAddCategory" id="frmAddCategory">
                                                 <div class="row">
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-12">
                                                         <div class="form-group label-floating" ng-class="{'is-empty':isEmpty == true}">
                                                             <label class="control-label">Category</label>
                                                             <input type="text" class="form-control" ng-model="category.Name" required name="categoryTitle" id="categoryTitle" ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
@@ -151,7 +151,19 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>country</label>
+                                                            <br>
+                                                            <select name="country" ng-model="selectedCountry" class="form-control">
+                                                                <% countrieslst.forEach(function(country){ %>
+                                                                <option value="<%= country._id %>" selected> <%= country.Name %> </option>
+                                                                <% }); %>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class=" alert-danger clear text-center" ng-show="errdiv">
                                                     <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
                                                 </div>
@@ -172,7 +184,7 @@
             </div>
         </div>
     </div>
-    <!-- End Modal -->
+    <!-- End Modal add-->
     <!-- Start Modal  ((edit))-->
     <div class="modal fade bs-example-modal-lg2" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document">
@@ -209,6 +221,21 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>country</label>
+                                                            <br>
+                                                            <select name="country" ng-model="selectedCountryEdite"  class="form-control">
+                                                                <% countrieslst.forEach(function(country){ %>
+                                                                <option value="<%= country._id %>" selected> <%= country.Name %> </option>
+                                                                <% }); %>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <div class=" alert-danger clear text-center" ng-show="errdiv">
                                                     <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
                                                 </div>
@@ -231,7 +258,7 @@
             </div>
         </div>
     </div>
-
+    <!-- End Modal edit-->
     <!-- Start Modal  ((cofirmation))-->
     <div class="modal fade bs-example-modal-lg3" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document">
@@ -276,7 +303,7 @@
             </div>
         </div>
     </div>
-    <!-- End modal -->
+    <!-- End modal cofirmation-->
 </div>
 <!-- End controller -->
 <!--   Core JS Files   -->

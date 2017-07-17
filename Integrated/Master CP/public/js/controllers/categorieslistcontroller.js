@@ -11,6 +11,9 @@
         $scope.$apply();
     });
 
+    $scope.init = function (_category) {
+        $scope.categoryData = JSON.parse(_category);
+    }
 
     $scope.addCategory = function () {
         $scope.loading = true;
@@ -19,7 +22,8 @@
             url: '/Category/Add',
             data: {
                 Name: $scope.category.Name,
-                Status: "Active"
+                Status: "Active",
+                Country: $scope.selectedCountry
             }
         }
         API.execute(req).then(function (_res) {
@@ -41,9 +45,10 @@
         });
     };
 
-    $scope.editCategory = function (_categoryId, _categoryName) {
+    $scope.editCategory = function (_categoryId, _categoryName, _country) {
         $scope.categoryId = _categoryId;
         $scope.categoryName = _categoryName;
+        $scope.selectedCountryEdite = _country;
     };
 
     $scope.updateCategory = function () {
@@ -54,6 +59,7 @@
             data: {
                 _id: $scope.categoryId,
                 Name: $scope.categoryName,
+                Country: $scope.selectedCountryEdite
             }
         }
         API.execute(req).then(function (_res) {
