@@ -1,7 +1,8 @@
-﻿egm.controller("floorsController", function ($scope, API, $filter) {
-    
+﻿egm.controller("floorsController", function ($scope, API, $filter, $compile) {
+
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
-        $scope.selectedstore = '';
+        //$scope.selectedstore = '<%= storeslst %>';
+        //console.log($scope.selectedstore);
         document.getElementById("frmAddSection").reset();
         $scope.frmAddSection.$setUntouched();
         $scope.frmAddSection.$setPristine();
@@ -58,15 +59,15 @@
     $scope.addSection = function () {
         $scope.getSelected();
         $('#modal').modal('toggle');
-        // clear modal 
-        $('#imgItem').attr('src', '/img/add.gif');
+        //// clear modal 
+        //$('#imgItem').attr('src', '/img/add.gif');
+        $scope.loadArray();
     }
-   
+
     $scope.getSelected = function () {
         $scope.oneStoreCoordinates = {};
         // filter array by isBusy status to get selected Sections
         $scope.selectedSections = $filter('filter')($scope.floor.Sections, { isBusy: true });
-        //console.log($scope.selectedSections);
         // get lowest & highest values
         // width
         function findMinCoordinateYcoulmn() {
@@ -92,7 +93,6 @@
         }
         var maxW = findMaxCoordinateYcoulmn().sectionCoordinateYcoulmn;
         sectionWidth = (maxW - minW) + 1;
-        //console.log("sectionWidth : " + sectionWidth);
         // height
         function findMinCoordinateXrow() {
             var result = null;
@@ -117,11 +117,8 @@
         }
         var maxH = findMaxCoordinateXrow().sectionCoordinateXrow;
         sectionHeight = (maxH - minH) + 1;
-        //console.log("sectionHeight : " + sectionHeight);
-        //console.log("Top : " + (minH - 1) + " Left : " + (minW - 1));
-        // add data to coordinates array
-        //console.log($scope.selectedstore);
 
+        // add data to coordinates array
         var e = document.getElementById("selectStore");
         var strUser = e.options[e.selectedIndex].text;
 
@@ -132,25 +129,29 @@
             Height: sectionHeight,
             Img: $('#imgItem').attr('src'),
             Store: $scope.selectedstore,
-            StoreName: strUser
+            StoreName: strUser,
+            index:index
         };
-
+        index++;
         $scope.coordinates.push($scope.oneStoreCoordinates);
         $scope.imgLink = '';
         //add class busy
-        $('.active').addClass('busy').removeClass('active');
+        //$('.active').addClass('busy').removeClass('active');
+        $('.active').removeClass('active');
         // clear array from active , isBusy status
         for (var i = 0; i < $scope.floor.Sections.length; i++) {
             if ($scope.floor.Sections[i].isBusy != false) {
                 $scope.floor.Sections[i].isBusy = false;
-                $scope.floor.Sections[i].data = '';
+                //$scope.floor.Sections[i].data = '';
             }
         }
     }
+    var index = 0;
     //load from coordinates array
     $scope.loadArray = function () {
-        //empty container dv
-        document.getElementById('imagesContainer').innerHTML = "";
+
+        ////empty container dv
+        //document.getElementById('imagesContainer').innerHTML = "";
         // get window height & width
         var containerHeight = document.getElementById('imagesContainer').offsetHeight;
         var containerWidth = document.getElementById('imagesContainer').offsetWidth;
@@ -162,10 +163,37 @@
             var height = $scope.coordinates[i].Height * oneSectionHeight;
             var width = $scope.coordinates[i].Width * oneSectionWidth;
             var div = document.createElement('div');
-            div.innerHTML = '<div style="background-image:url(' + $scope.coordinates[i].Img + ');position:absolute;top:' + top + ';left:' + left + ';height:' + height + ';width:' + width + ';background-size: cover;background-repeat: no-repeat;"></div>';
-            document.getElementById('imagesContainer').appendChild(div);
+            div.innerHTML = '<div class="customSectionDv" ng-click="deleteSection(' +  $scope.coordinates[i].index  + ')" style="opacity:0.5;cursor:pointer;background-image:url(' + $scope.coordinates[i].Img + ');position:absolute;top:' + top + ';left:' + left + ';height:' + height + ';width:' + width + ';background-size: cover;background-repeat: no-repeat;"></div>';
+            angular.element(document.querySelector('#imagesContainer')).append($compile(div)($scope));
+
         }
     }
+
+    $scope.deleteSection = function (_objId) {
+        console.log('enter');
+        console.log(_objId);
+        console.log($scope.coordinates);
+
+        $scope.coordinates = $scope.coordinates.filter(function (obj) {
+            return obj.index !== _objId;
+        });
+        console.log($scope.coordinates);
+
+        $('.customSectionDv').remove();
+
+        for (var i = 0; i < $scope.floor.Sections.length; i++) {
+            var sec = $scope.floor.Sections[i];
+            sec.isBusy = false
+        }
+
+        $scope.loadArray();
+        //delete confirmation
+        // delete section 
+        // reload squares
+        // reset squares text
+        // remove is busy 
+    }
+
     //$scope.selectSection = function (_section) {
     //    console.log(_section);
     //    if (_section.data != "") {

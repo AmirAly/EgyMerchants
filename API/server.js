@@ -160,7 +160,7 @@ var newcountry = new countryschema({ "Name": "dubai", "WelcomeMsg": "welcome in 
 //}, function (err) {
 //    console.log(err);
 //});
-var newexpo = new exposchema({ "Title": "new dream expocat22", "Banner": "bnner", "Category": "5965ed146d5d42e80e4124d3" });
+var newexpo = new exposchema({ "Title": "new expo", "Banner": "bnner", "Category": "596c9e60ebfabe101402fb6f" });
 //expo.add(newexpo).then(function (result) {
 //    console.log(result); 
 //}, function(err) {
