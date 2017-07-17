@@ -11,7 +11,7 @@
             window.location.href = '/Home';
         }
     };
-
+    ////do nothing
     $scope.preload();
 
     $scope.store = {};
