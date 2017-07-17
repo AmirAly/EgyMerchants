@@ -234,36 +234,36 @@ module.exports = {
                             });
                         else {
                             if (lst.length > 0) {
-                            expoList=_.map(lst,function(expo){
-                                return _.pick(_.extend({}, expo, { Type: "expo" }), '_id', 'Title', 'Banner','Type'); 
-                            })
-                            if (_expo != "all") {
-                                        _.each(lst, function (expo) {
-                                            _.each(expo.Floors, function (floor) {
-                                                _.each(floor.Coordinates, function (store) {
-                                                    if (store.Store.Status == "Active") expoStoresList.push(store.Store);
-                                                })
+                                expoList = _.map(lst, function (expo) {
+                                    return _.pick(_.extend({}, expo, { Type: "expo" }), '_id', 'Title', 'Banner', 'Type');
+                                })
+                                if (_expo != "all") {
+                                    _.each(lst, function (expo) {
+                                        _.each(expo.Floors, function (floor) {
+                                            _.each(floor.Coordinates, function (store) {
+                                                if (store.Store.Status == "Active") expoStoresList.push(store.Store);
                                             })
                                         })
-                                        var destinctArray = _.uniq(expoStoresList, function (x) {
-                                            return (x._id).toString();
-                                        })
-                                        var intersect=[];
-                                     _.each(destinctArray, function (a) {
-                                            _.each(storesList, function (b) {
-                                                if (a._id.toString() === b._id.toString()) {
-                                                    intersect.push(a);
-                                                }
-                                            });
-                                     });
-                                     storesList = intersect;
+                                    })
+                                    var destinctArray = _.uniq(expoStoresList, function (x) {
+                                        return (x._id).toString();
+                                    })
+                                    var intersect = [];
+                                    _.each(destinctArray, function (a) {
+                                        _.each(storesList, function (b) {
+                                            if (a._id.toString() === b._id.toString()) {
+                                                intersect.push(a);
+                                            }
+                                        });
+                                    });
+                                    storesList = intersect;
                                 }
-                            if (_store != "all" && _keyWord == "all") {
+                                if (_store != "all" && _keyWord == "all") {
                                     finalList = _.filter(storesList, function (store) {
                                         return (store.Name.toLowerCase().indexOf(_store.toLowerCase()) !== -1 || store.Description.toLowerCase().indexOf(_store.toLowerCase()) !== -1 || store.Address.toLowerCase().indexOf(_store.toLowerCase()) !== -1)
                                     })
-                                    
-                                    if (_expo != "all") {finalList=finalList.concat(expoList) }
+
+                                    if (_expo != "all") { finalList = finalList.concat(expoList) }
                                     if (finalList.length > 0) {
                                         resolve({ code: 100, data: _.groupBy(finalList, 'Type') });
                                     }
@@ -271,7 +271,7 @@ module.exports = {
                                         reject({ code: 21, data: "This filteration didn't result in any data" })
                                     }
                                 }
-                            if (_keyWord != "all") {
+                                if (_keyWord != "all") {
                                     Item.find({ $and: [{ $or: [{ 'Name': { "$regex": _keyWord, "$options": "i" } }, { 'Description': { "$regex": _keyWord, "$options": "i" } }] }, { 'Status': 'Active' }] }, '_id Name Pictures Store', function (err, itemLst) {
                                         if (err)
                                             reject({
@@ -284,11 +284,11 @@ module.exports = {
                                                     return _.pick(_.extend({}, item, { Type: "item" }), '_id', 'Name', 'Pictures', 'Store', 'Type');
                                                 })
                                             }
-                                            if (_expo == "all") 
+                                            if (_expo == "all")
                                                 finalList = finalList.concat(_.filter(expoList, function (expo) {
                                                     return (expo.Title.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1)
                                                 }))
-                                            else { finalList = finalList.concat(expoList)}
+                                            else { finalList = finalList.concat(expoList) }
                                             if (_store != "all" || _expo != "all" || _country != "all") {
                                                 if (_store != "all") {
                                                     storesList = _.filter(storesList, function (store) {
@@ -301,12 +301,12 @@ module.exports = {
                                                         return (store.Name.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1 || store.Description.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1 || store.Address.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1)
                                                     }))
                                                 }
-                                                    _.each(storesList, function (store) {
-                                                        var res = _.filter(itemsList, function (item) {
-                                                            return item.Store == store._id.toString();
-                                                        })
-                                                        finalList = finalList.concat(res);
+                                                _.each(storesList, function (store) {
+                                                    var res = _.filter(itemsList, function (item) {
+                                                        return item.Store == store._id.toString();
                                                     })
+                                                    finalList = finalList.concat(res);
+                                                })
                                             }
                                             else {
                                                 var filteredStores = _.filter(storesList, function (store) {
@@ -329,18 +329,8 @@ module.exports = {
                                     })
                                 }
                                 else {
-                                if (_expo != "all") {
-                                    finalList = storesList.concat(expoList);
-                                    if (finalList.length > 0) {
-                                        resolve({ code: 100, data: _.groupBy(finalList, 'Type') });
-                                    }
-                                    else {
-                                        reject({ code: 21, data: "This filteration didn't result in any data" })
-                                    }
-                                    }
-                                else {
-                                    if (_country != "all") {
-                                        finalList = storesList;
+                                    if (_expo != "all") {
+                                        finalList = storesList.concat(expoList);
                                         if (finalList.length > 0) {
                                             resolve({ code: 100, data: _.groupBy(finalList, 'Type') });
                                         }
@@ -348,13 +338,23 @@ module.exports = {
                                             reject({ code: 21, data: "This filteration didn't result in any data" })
                                         }
                                     }
-                                    else { reject({ code: 22, data: "please enter any value for search" }) }
+                                    else {
+                                        if (_country != "all") {
+                                            finalList = storesList;
+                                            if (finalList.length > 0) {
+                                                resolve({ code: 100, data: _.groupBy(finalList, 'Type') });
+                                            }
+                                            else {
+                                                reject({ code: 21, data: "This filteration didn't result in any data" })
+                                            }
+                                        }
+                                        else { reject({ code: 22, data: "please enter any value for search" }) }
                                     }
                                 }
-                                
+
                             }
                         }
-                       
+
                     })
                 }
             })

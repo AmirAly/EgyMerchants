@@ -160,7 +160,7 @@ var newcountry = new countryschema({ "Name": "dubai", "WelcomeMsg": "welcome in 
 //}, function (err) {
 //    console.log(err);
 //});
-var newexpo = new exposchema({ "Title": "new dream expocat22", "Banner": "bnner", "Category": "5965ed146d5d42e80e4124d3" });
+var newexpo = new exposchema({ "Title": "new expo", "Banner": "bnner", "Category": "596c9e60ebfabe101402fb6f" });
 //expo.add(newexpo).then(function (result) {
 //    console.log(result); 
 //}, function(err) {
@@ -236,12 +236,12 @@ var newcategory = new categoryschema({ "Name": "gg", "Country": "5965df57fc43405
 //}, function (err) {
 //    console.log(err);
 //});
-var newitem = new itemschema({ "Name": "aliaa", "Description": "desconlytodo", "Pictures": [{ "URL": "C:\Users\nada\Desktop\Downloads\AAoL6pj06a.png" }], "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "59088e74734d1d3098a8563e", "Store": "59427a4c734d1d235a9447e3" });
-//item.add(newitem).then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
+var newitem = new itemschema({ "Name": "olaaa", "Description": "desconlytodo", "Pictures": [{ "URL": "C:\Users\nada\Desktop\Downloads\AAoL6pj06a.png" }], "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "59088e74734d1d3098a8563e", "Store": "59427a4c734d1d235a9447e3" });
+item.add(newitem).then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
 //item.edit("594a710e3e856b0b684b3917", "beautiful dress", "desc", {
 //    "Title": "t5it",
 //"URL":"url"

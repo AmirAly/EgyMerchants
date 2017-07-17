@@ -5,7 +5,7 @@ var _ = require("underscore");
 module.exports = {
     add: function (_newCountry) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({'Name': _newCountry.Name,'Status':'Active'}, '', function (err, Obj) {
+            Schema.findOne({ 'Name': _newCountry.Name, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -69,7 +69,11 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
+<<<<<<< HEAD
+                        Schema.findOne({ 'Name': _name, 'Status': 'Active', '_id': { $ne: _id } }, '', function (err, Objexist) {
+=======
                         Schema.findOne({'Name': _name,'Status':'Active', '_id': { $ne: _id } }, '', function (err, Objexist) {
+>>>>>>> 8c81e9edf18d987302795c7d1f2a25fca82758a7
                             if (err)
                                 reject({
                                     code: 1,
@@ -92,7 +96,11 @@ module.exports = {
                                         else
                                             resolve({
                                                 code: 100,
+<<<<<<< HEAD
+                                                data: "Country data edited successfully"
+=======
                                                 data:"Country data edited successfully"
+>>>>>>> 8c81e9edf18d987302795c7d1f2a25fca82758a7
                                             })
                                     })
                                 }
@@ -146,15 +154,14 @@ module.exports = {
                                         Schema.findOneAndRemove({ '_id': _id }, function (err, Obj) {
                                             if (err)
                                                 reject({ code: 1, data: err })
-                                            else
-                                            {
+                                            else {
                                                 if (Obj)
-                                            resolve({
-                                                code: 100, data: "This country deleted successfuylly"
-                                            })
-                                            else
+                                                    resolve({
+                                                        code: 100, data: "This country deleted successfuylly"
+                                                    })
+                                                else
                                                     reject({ code: 21, data: "This filteration didn't resulted in any data" })
-                                        }
+                                            }
                                         })
 
                                     }
@@ -169,7 +176,7 @@ module.exports = {
     },
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id, 'Status': 'Active' }, '',function (err, Obj) {
+            Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,

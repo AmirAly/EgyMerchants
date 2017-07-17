@@ -7,11 +7,7 @@
         <div class="pageCover" style="background: url(<%= store.CoverPhoto %>);">
 
         </div>
-<<<<<<< HEAD
         <div class="pageBody" ng-init="init(<%= GalleriesJson %>, '<%= countryIso %>')">
-=======
-        <div class="pageBody" ng-init="init(<%= GalleriesJson %>)">
->>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
             <div class="dvStoreHeader">
                 <div class="row">
                     <div class="col-sm-12">
@@ -34,11 +30,7 @@
                         </div>
 
                         <div class="dvFlagContainer">
-<<<<<<< HEAD
                             <img alt="Flag" class="img-responsive" src="https://egym.herokuapp.com/<%= store.Country %>.png" />
-=======
-                            <img alt="Flag" class="img-responsive" src="/images/Egypt.png" />
->>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
                         </div>
                     </div>
                 </div>
@@ -86,11 +78,7 @@
                     <% if (featured.length > 0) { %>
                     <% featured.forEach(function(item){ %>
                     <div class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-<<<<<<< HEAD
                         <a href="/{{IsoCode}}/Product/<%= item.Name %>/<%= item._id %>">
-=======
-                        <a href="/eg/Product/<%= item.Name %>/<%= item._id %>">
->>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
                             <div class="dvItemContainer text-center">
                                 <img src="<%= item.Pictures[0].URL %>" class="img-responsive" />
                                 <div class="dvItemDescription">
@@ -130,11 +118,7 @@
                     <div class="col-sm-12">
 
                         <div ng-repeat="item in gallery.items" class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-<<<<<<< HEAD
                             <a href="/{{IsoCode}}/Product/{{item.Name}}/{{item._id}}">
-=======
-                            <a href="/eg/Product/{{item.Name}}/{{item._id}}">
->>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
                                 <div class="dvItemContainer text-center">
                                     <img src="{{item.Pictures[0].URL}}" class="img-responsive" />
                                     <div class="dvItemDescription">
