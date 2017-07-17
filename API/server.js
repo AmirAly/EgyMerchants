@@ -88,7 +88,7 @@ var newstore = new userschema({ "Email": "gamila12@gmail.com", "Password": "nada
 //    console.log(err);
 //});
 //"new","masterexpo/newgod/test2","new","egypt"
-//store.search("all", "all", "all", "dream@@~#").then(function (result) {
+//store.search("all", "all", "n", "all").then(function (result) {
 //    console.log(result.data);
 //}, function (err) {
 //    console.log(err);
@@ -236,12 +236,12 @@ var newcategory = new categoryschema({ "Name": "gg", "Country": "5965df57fc43405
 //}, function (err) {
 //    console.log(err);
 //});
-var newitem = new itemschema({ "Name": "newitemtod2'", "Description": "desconlytodo", "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "59369940b656ca6c03f909e7", "Store": "595b688e4df9b72c03077f81" });
-//item.add(newitem).then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
+var newitem = new itemschema({ "Name": "olaaa", "Description": "desconlytodo", "Pictures": [{ "URL": "C:\Users\nada\Desktop\Downloads\AAoL6pj06a.png" }], "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "59088e74734d1d3098a8563e", "Store": "59427a4c734d1d235a9447e3" });
+item.add(newitem).then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
 //item.edit("594a710e3e856b0b684b3917", "beautiful dress", "desc", {
 //    "Title": "t5it",
 //"URL":"url"

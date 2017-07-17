@@ -1,5 +1,6 @@
 var Schema = require('./models/item');
 var _ = require("underscore");
+var Helper= require('./helper');
 module.exports = {
     getFeatured: function (_storeId) {
         return new Promise(function (resolve, reject) {
@@ -149,11 +150,18 @@ module.exports = {
                                     code: 1,
                                     data: err
                                 });
-                            else
+                            else {
+                                //if (Obj.Pictures) {
+                                //    for (var i= 0; i < Obj.Pictures.length; i++) {
+                                //        var UploadedImg = Helper.uploadImage(Obj.Pictures[i].URL + i + ".png");
+                                //        Obj.Pictures[i].URL = Helper.getImage(Obj.Pictures[i].URL + i + ".png");
+                                //    }
+                                //}
                                 resolve({
                                     code: 100,
-                                   data: "This item added successfully"
+                                    data:"This item added successfully"
                                 });
+                            }
                         })
                     }
                 }

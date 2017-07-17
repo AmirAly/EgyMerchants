@@ -142,14 +142,14 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Country/Edit', function (req, res) {
-        CountryLogic.edit(req.body._id, req.body.Name, req.body.Flag, req.body.IsoCode,req.body.WelcomeMsg,req.body.Categories).then(function (result) {
+        CountryLogic.edit(req.body._id, req.body.Name, req.body.Flag, req.body.IsoCode,req.body.WelcomeMsg).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
         });
     })
-    api.put('/Country/Suspend', function (req, res) {
-        CountryLogic.suspend(req.body._id).then(function (result) {
+    api.put('/Country/Remove', function (req, res) {
+        CountryLogic.remove(req.body._id).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -180,14 +180,14 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Category/Edit', function (req, res) {
-        CategoryLogic.edit(req.body._id, req.body.Name).then(function (result) {
+        CategoryLogic.edit(req.body._id, req.body.Name,req.body.Country).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
         });
     })
-    api.put('/Category/Suspend', function (req, res) {
-        CategoryLogic.suspend(req.body._id).then(function (result) {
+    api.put('/Category/Remove', function (req, res) {
+        CategoryLogic.remove(req.body._id).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -260,8 +260,8 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-    api.put('/Expo/Suspend', function (req, res) {
-        ExpoLogic.suspend(req.body._id).then(function (result) {
+    api.put('/Expo/Remove', function (req, res) {
+        ExpoLogic.remove(req.body._id).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
