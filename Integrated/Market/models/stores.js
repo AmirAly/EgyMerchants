@@ -204,11 +204,6 @@ module.exports = {
         })
     },
     search: function (_store, _expo, _keyWord, _country) {
-        console.log(_store);
-        console.log(_expo);
-        console.log(_keyWord);
-        console.log(_country);
-
         var finalList = [],
             expoList = [],
             expoStoresList = [],

@@ -1,6 +1,7 @@
 ﻿<% include ../partials/pagestart %>
 <% include ../partials/pageheader %>
 
+<<<<<<< HEAD
 <div ng-controller="productController">
     <div ng-init="init('<%= countryIso %>')">
         <div class="clear"></div>
@@ -149,6 +150,153 @@
         <!-- //end Two columns content -->
     </div>
 </div>
+=======
+<div class="clear"></div>
+<!-- Breadcrumbs -->
+<section class="container">
+    <nav class="breadcrumbs">
+        <span class="maincrumb"><a href="/eg/Home">Home</a></span>
+        <span class="maincrumb"><span class="divider">›</span><span href="/Eg/Product/<%= product.Name %>/<%= product._id %>"><span> <%= product.Name %></span></span></span>
+    </nav>
+</section>
+<!-- //end Breadcrumbs -->
+<!-- One column content -->
+<section class="container">
+
+    <!-- Product view -->
+    <div class="product-view row">
+
+	<div class="col-sm-6 col-md-6 col-lg-6">
+            <div class="large-image"> <img alt="#" class="cloudzoom" src="<%= product.Pictures[0].URL %>" data-cloudzoom="zoomImage: '<%= product.Pictures[0].URL %>', autoInside : 991" /> </div>
+            <div class="flexslider flexslider-thumb">
+                <ul class="previews-list slides">
+				<% product.Pictures.forEach(function(img){ %>
+                    <li><img class='cloudzoom-gallery' alt="#" src="<%= img.URL %>" data-cloudzoom="useZoom: '.cloudzoom', image: '<%= img.URL %>', zoomImage: '<%= img.URL %>', autoInside : 991"></li>
+                 <% }); %>
+				    <li><a class="various fancybox.iframe" href="#"><img alt="#" class='fancybox-video' src="/images/video.png"></a></li>
+                </ul>
+            </div>
+        </div>
+
+       
+        <div class="col-sm-6 col-md-6 col-lg-6">
+
+            <!-- Product label -->
+            <div class="product-label">
+                <div class="box-wrap">
+                    <div class="box-wrap-top"></div>
+                    <div class="box-wrap-bot"></div>
+                    <div class="box-wrap-center"></div>
+                    <div class="box">
+                        <div class="box-content">
+                            <h2><%= product.Name %></h2>
+                            <% if (product.PriceBeforeSale) { %>
+                               <span class="price old"><%= product.PriceBeforeSale %></span> 
+                            <% }; %>
+                            <% if (product.Price) { %>
+                               <span class="price new"><%= product.Price %></span> <br>
+                            <% }; %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- //end Product label -->
+            <div class="row">
+
+                <div class="col-xs-12">
+                    <!-- Description -->
+                    <div class="product-description">
+                        <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span>
+                        <div class="panel-group accordion-simple" id="product-accordion">
+                            <div class="panel">
+                                <div class="panel-heading"> <a data-toggle="collapse" data-parent="#product-accordion" href="#product-description"> <span class="arrow-down icon-arrow-down-4"></span> <span class="arrow-up icon-arrow-up-4"></span> Description </a> </div>
+                                <div id="product-description" class="panel-collapse collapse in">
+                                    <div class="panel-body"> <%= product.Description %></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //end Description -->
+                </div>
+
+                <div class="col-xs-12">
+                    <section class="dvAdvertise">
+                        <img class="img-responsive" src="/images/adv3.png" />
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //end Product view --> <!-- Services -->
+    <section class="services-block single small row">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 divider-right">
+            <a href="#" class="item">
+                <span class="icon icon-tags-2"></span>
+                <div class="text"> <span class="title">Special Offer 1+1=3</span> <span class="description">Get a gift!</span></div>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 divider-right">
+            <a href="#" class="item">
+                <span class="icon icon-credit-card"></span>
+                <div class="text"><span class="title">FREE REWARD CARD</span> <span class="description">Worth 10$, 50$, 100$</span></div>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 divider-right">
+            <a href="#" class="item">
+                <span class="icon icon-users-2"></span>
+                <div class="text"> <span class="title">Join Our Club</span></div>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 divider-right">
+            <a href="#" class="item">
+                <span class="icon icon-truck"></span>
+                <div class="text"><span class="title">Free Shipping</span> </div>
+            </a>
+        </div>
+    </section>
+    <!-- //end Services -->
+    <!-- Upsell products -->
+    <section class="slider-products content-box">
+        <h3>Simillar Products</h3>
+
+        <!-- Products list -->
+        <div class="products-list-small">
+            <ul class="slides">
+                <% if (similarProducts.length > 0) { %>
+                <% similarProducts.forEach(function(product){ %>
+                <li>
+                    <div class="product-preview">
+                        <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
+                            <a href="#"><img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= product.img %>" alt=""></a>
+                            <a href="#" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a>
+                        </div>
+                    </div>
+                </li>
+                <% }); %>
+                <% } else { %>
+                <p class="txtNoData"> No Data Available </p>
+                <% } %>
+
+            </ul>
+        </div>
+        <!-- //end Products list -->
+        <!-- Product view compact -->
+        <div class="product-view-ajax">
+            <div class="ajax-loader progress progress-striped active">
+                <div class="progress-bar progress-bar-danger" role="progressbar"></div>
+            </div>
+            <div class="layar"></div>
+            <div class="product-view-container"> </div>
+        </div>
+        <!-- //end Product view compact -->
+
+    </section>
+    <!-- //end Upsell products -->
+
+</section>
+<!-- //end Two columns content -->
+>>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
 <% include ../partials/pagefooter %>
 <% include ../partials/pageend %>
 <script src="/scripts/product.js"></script>

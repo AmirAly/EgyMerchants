@@ -3,7 +3,11 @@
 
 <div class="expoPage" ng-controller="expoController">
     <div class="allExposView" ng-hide="showSingleExpo">
+<<<<<<< HEAD
         <div class="secondDiv" ng-init="init('<%= JsonExpos %>', '<%= countryIso %>')">
+=======
+        <div class="secondDiv" ng-init="init('<%= JsonExpos %>')">
+>>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
 
             <% if (expos.length > 0) { %>
             <div ng-repeat="expo in exposList">
@@ -25,7 +29,11 @@
 
                                                     <div class="outerContainer" ng-repeat="sec in floor.Coordinates">
                                                         <div class=" repeated-item" ng-style="{'background-image': 'url({{sec.Img}})','position':'absolute','background-size': 'cover','background-repeat': 'no-repeat','top':{{sec.Top * oneSectionHeight}} +'px','left':{{sec.Left * oneSectionWidth}} +'px','height':{{sec.Height * oneSectionHeight}} - 3 +'px', 'width':{{sec.Width * oneSectionWidth}} - 3 +'px'}">
+<<<<<<< HEAD
                                                             <a href="/{{IsoCode}}/Store/{{sec.StoreName}}/{{sec.Store._id}}"><div class="image-hover"><i class="icon-zoom-in-2"></i></div></a><div class="image-title">{{sec.StoreName}}</div>
+=======
+                                                            <a href="/eg/Store/{{sec.StoreName}}/{{sec.Store._id}}"><div class="image-hover"><i class="icon-zoom-in-2"></i></div></a><div class="image-title">{{sec.StoreName}}</div>
+>>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
                                                         </div>
                                                     </div>
 													 <h4>{{floor.Name}}</h4>

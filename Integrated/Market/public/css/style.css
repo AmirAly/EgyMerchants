@@ -33,10 +33,13 @@
     font-style: normal;
 }
 
+<<<<<<< HEAD
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x- ng-cloak {
     display: none !important;
 }
 
+=======
+>>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
 html, html a {
     -webkit-font-smoothing: antialiased;
 }
@@ -519,8 +522,12 @@ h6.mega {
 }
 
     .header-wrapper.isScrolled .sticky-logo {
+<<<<<<< HEAD
         display: block !important;
         visibility: visible !important;
+=======
+        display: block;
+>>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
     }
 
     .header-wrapper .main-nav {
@@ -687,7 +694,10 @@ h6.mega {
         line-height: .9;
         margin-bottom: 7vh;
         color: #2b2b2b;
+<<<<<<< HEAD
         padding-left: 30px;
+=======
+>>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
     }
 
     .pageLanding .container-fluid .txtCategoryContainer {
@@ -697,9 +707,15 @@ h6.mega {
     .pageLanding .container-fluid a {
         font-size: 25px;
         font-weight: bold;
+<<<<<<< HEAD
         text-decoration: underline;
         color: black;
         padding-left: 50px;
+=======
+        text-decoration: none;
+        color: black;
+        padding-left: 20px;
+>>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
         font-family: "Century Gothic";
         text-transform: capitalize;
     }
@@ -1090,9 +1106,12 @@ h6.mega {
                     font-size: 100%;
                     font-size: 14px;
                     font-family: Mavenpro-black, Arial, Helvetica, sans-serif;
+<<<<<<< HEAD
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
+=======
+>>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
                 }
 
                 .storePage .pageBody .dvProductsBlock .dvItemContainer .dvItemDescription h6 {
@@ -2136,6 +2155,9 @@ h6.mega {
         -webkit-transform: translateX(0);
     }
 }
+<<<<<<< HEAD
 .pageHeader .dropdown-menu {
     min-width: auto;
 }
+=======
+>>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813

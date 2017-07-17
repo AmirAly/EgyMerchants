@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿app.controller("expoController", function ($scope, $rootScope, $timeout, $window) {
+=======
+﻿app.controller("expoController", function ($scope, $rootScope, $timeout) {
+>>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
     $rootScope.loading = true;
     $scope.expos = [];
     $timeout(function () {
@@ -6,11 +10,14 @@
         $rootScope.loading = false;
     }, 2000);
 
+<<<<<<< HEAD
     window.onresize = function () {
         console.log('resize');
         $rootScope.loading = true;
         location.reload();
     }
+=======
+>>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
 
     $scope.loadArray = function (_expoID) {
         // get window height & width
@@ -21,8 +28,12 @@
         $rootScope.loading = false;
     }
 
+<<<<<<< HEAD
     $scope.init = function (_list, _isoCode) {
         $rootScope.IsoCode = _isoCode;
+=======
+    $scope.init = function (_list) {
+>>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
         if (_list != '') {
             $scope.exposList = JSON.parse(_list);
         }
@@ -42,7 +53,11 @@
             fId = 0;
             $scope['activePageNumber' + _expoId] = fId;
         }
+<<<<<<< HEAD
 
+=======
+       
+>>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
 
     }
 
