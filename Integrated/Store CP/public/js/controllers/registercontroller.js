@@ -2,6 +2,12 @@
     $scope.categories = [];
     $scope.register = {};
 
+    $scope.categorieslst = [
+        { "Name" : 'Furniture' },
+
+    ];
+
+
     //$scope.chooseCategory = function (_id) {
     //    $scope.categoryId = _id;
     //};
