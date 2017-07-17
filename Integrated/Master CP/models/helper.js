@@ -1,7 +1,20 @@
-var fileService = require('azure-storage')
-        .createBlobService('egmpre', 'U7rnqj67eTUWBhYD5xBfSLrxc21jIpuHeRPKzr9GrOlXa485konFwcvMEnYz2Ohe1h84Vs/EPs5BxbsMPRHcAw==');
+
+var cloudinary = require('cloudinary');
+cloudinary.config({ 
+    cloud_name: 'dce2oozza', 
+    api_key: '245386291529646',
+    api_secret: 'HoxadU9ZcgWxIREdqb45QzDJo-I' 
+});
 
 module.exports = {
+    uploadImage: function (_name) {
+        cloudinary.uploader.upload(_name, function (result) {
+            console.log("result")
+        }, { public_id: _name });
+    },
+    getImage: function (_name) {
+        cloudinary.url(_name);
+    },
     sendEmail: function (email) {
         var smtpTransport = nodemailer.createTransport({
             transport: "SMTP",

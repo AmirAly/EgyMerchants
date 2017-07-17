@@ -122,6 +122,10 @@ html {
 
 .errorFont {
     color: tomato;
+<<<<<<< HEAD
+=======
+    padding: 10px;
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
 }
 
 .noUi-target,
@@ -686,7 +690,11 @@ h2.title {
 
         .sidebar .logo .simple-text,
         .off-canvas-sidebar .logo .simple-text {
+<<<<<<< HEAD
             /*text-transform: uppercase;*/
+=======
+            text-transform: uppercase;
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
             padding: 5px 0px;
             display: block;
             font-size: 18px;
@@ -5839,6 +5847,9 @@ footer {
     overflow: hidden;
     position: relative;
 }
+<<<<<<< HEAD
 #errImgDiv{
     display:none;
 }
+=======
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c

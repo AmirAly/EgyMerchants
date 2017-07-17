@@ -14,14 +14,16 @@ var Category = require('./models/category');
 var User = require('./models/user');
 var Expo = require('./models/expo');
 var Helper = require('./helper');
-
+var CountriesInJson = require('./allcountries.json');
+var _ = require("underscore");
 
 module.exports = function (app, express) {
     var api = express.Router();
-
+    
     api.get('/', function (req, res) {
-        return res.json({ code: '100', data: 'This api is working great, howver further calls to other endpoints require a token' });
+        return res.json({ code: '100', data: 'This api is working great, however further calls to other endpoints require a token' });
     });
+   
 
     //store API calls
     api.post('/Store/Register', function (req, res) {
@@ -140,14 +142,14 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Country/Edit', function (req, res) {
-        CountryLogic.edit(req.body._id, req.body.Name, req.body.Flag, req.body.IsoCode,req.body.WelcomeMsg,req.body.Categories).then(function (result) {
+        CountryLogic.edit(req.body._id, req.body.Name, req.body.Flag, req.body.IsoCode,req.body.WelcomeMsg).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
         });
     })
-    api.put('/Country/Suspend', function (req, res) {
-        CountryLogic.suspend(req.body._id).then(function (result) {
+    api.put('/Country/Remove', function (req, res) {
+        CountryLogic.remove(req.body._id).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -155,6 +157,13 @@ module.exports = function (app, express) {
     })
     api.get('/Country/GetById/:_id', function (req, res) {
         CountryLogic.getById(req.params._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.get('/Country/LoadAllInJson', function (req, res) {
+        CountryLogic.loadAllInJson().then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -171,14 +180,21 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Category/Edit', function (req, res) {
-        CategoryLogic.edit(req.body._id, req.body.Name).then(function (result) {
+        CategoryLogic.edit(req.body._id, req.body.Name,req.body.Country).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
         });
     })
-    api.put('/Category/Suspend', function (req, res) {
-        CategoryLogic.suspend(req.body._id).then(function (result) {
+    api.put('/Category/Remove', function (req, res) {
+        CategoryLogic.remove(req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.get('/Category/GetByCountry/:_isoCode', function (req, res) {
+        CategoryLogic.getByCountry(req.params._isoCode).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -244,8 +260,8 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-    api.put('/Expo/Suspend', function (req, res) {
-        ExpoLogic.suspend(req.body._id).then(function (result) {
+    api.put('/Expo/Remove', function (req, res) {
+        ExpoLogic.remove(req.body._id).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);

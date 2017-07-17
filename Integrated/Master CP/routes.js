@@ -9,10 +9,17 @@ module.exports = function (app) {
     // use res.render to load up an ejs view file
     // index page 
     app.get('/', function (req, res) {
+<<<<<<< HEAD
         return res.redirect('/Home');
     });
 
     app.get('/store', function (req, res) {
+=======
+        return res.redirect('/eg/Home');
+    });
+
+    app.get('/eg/store', function (req, res) {
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
         var _scope = {};
         store.getAll().then(function (_store) {
             if (_store.code == 100) {
@@ -29,7 +36,11 @@ module.exports = function (app) {
         });
     });
 
+<<<<<<< HEAD
     app.get('/exposlist', function (req, res) {
+=======
+    app.get('/eg/exposlist', function (req, res) {
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
         var _scope = {};
         category.getAll().then(function (_category) {
             if (_category.code == 100) {
@@ -59,7 +70,11 @@ module.exports = function (app) {
         });
     });
 
+<<<<<<< HEAD
     app.get('/floors/:expoid', function (req, res) {
+=======
+    app.get('/eg/floors/:expoid', function (req, res) {
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
         var _scope = {};
         // drop down fill
         store.getAll().then(function (_store) {
@@ -77,7 +92,11 @@ module.exports = function (app) {
         });
     });
 
+<<<<<<< HEAD
     app.get('/editfloor/:floorid/:expoid', function (req, res) {
+=======
+    app.get('/eg/editfloor/:floorid/:expoid', function (req, res) {
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
         var _scope = {};
 
         expo.getById(req.params.expoid).then(function (_expo) {
@@ -124,7 +143,11 @@ module.exports = function (app) {
         // drop down fill
     });
 
+<<<<<<< HEAD
     app.get('/expo/:expoId', function (req, res) {
+=======
+    app.get('/eg/expo/:expoId', function (req, res) {
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
         var _scope = {};
         expo.getById(req.params.expoId).then(function (_expo) {
             if (_expo.code == 100) {
@@ -157,12 +180,45 @@ module.exports = function (app) {
         });
     });
 
+<<<<<<< HEAD
     app.get('/categorieslist', function (req, res) {
+=======
+    app.get('/eg/categorieslist', function (req, res) {
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
         var _scope = {};
         category.getAll().then(function (_category) {
             if (_category.code == 100) {
                 _scope.categorieslst = _category.data;
+<<<<<<< HEAD
+                _scope.categorieslsJSON = JSON.stringify(_category.data);
+                country.getAll().then(function (_country) {
+                    if (_country.code == 100) {
+                        _scope.countrieslst = _country.data;
+                        res.render('pages/categorieslist', _scope);
+                    } else {
+                        _scope.countrieslst = [];
+                        res.render('pages/categorieslist', _scope);
+                    }
+                }).catch(function (_err) {
+                    console.log(_err);
+                    _scope.categorieslst = {};
+                    res.render('pages/categorieslist', _scope);
+                });
+                category.getById(req.params.categoryid).then(function (_category) {
+                    if (_category.code == 100) {
+                        _scope.category = _category.data;
+                    } else {
+                        _scope.category = {};
+                        res.render('pages/categorieslist', _scope);
+                    }
+                }).catch(function (_err) {
+                    console.log(_err);
+                    _scope.category = {};
+                    res.render('pages/categorieslist', _scope);
+                });
+=======
                 res.render('pages/categorieslist', _scope);
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
             } else {
                 _scope.categorieslst = {};
                 res.render('pages/categorieslist', _scope);
@@ -174,7 +230,11 @@ module.exports = function (app) {
         });
     });
 
+<<<<<<< HEAD
     app.get('/countrieslist', function (req, res) {
+=======
+    app.get('/eg/countrieslist', function (req, res) {
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
         var _scope = {};
         country.getAll().then(function (_country) {
             if (_country.code == 100) {
@@ -206,7 +266,11 @@ module.exports = function (app) {
         });
     });
 
+<<<<<<< HEAD
     app.get('/country/:countryId', function (req, res) {
+=======
+    app.get('/eg/country/:countryId', function (req, res) {
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
         var _scope = {};
         country.getById(req.params.countryId).then(function (_country) {
             if (_country.code == 100) {
@@ -238,7 +302,11 @@ module.exports = function (app) {
         });
     });
 
+<<<<<<< HEAD
     app.get('/Home', function (req, res) {
+=======
+    app.get('/eg/Home', function (req, res) {
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
         var _scope = {};
         master.login().then(function (_master) {
             if (_master.code == 100) {

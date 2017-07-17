@@ -9,7 +9,7 @@ cloudinary.config({
 module.exports = {
     uploadImage: function (_name) {
         cloudinary.uploader.upload(_name, function (result) {
-            console.log("result")
+            console.log(result)
         }, { public_id: _name });
     },
     getImage: function (_name) {

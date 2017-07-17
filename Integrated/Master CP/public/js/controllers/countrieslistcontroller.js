@@ -9,6 +9,7 @@
         $scope.countries = JSON.parse(_countries);
     };
 
+<<<<<<< HEAD
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
 
         $scope.country = {};
@@ -24,6 +25,8 @@
         $scope.$apply();
     });
 
+=======
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
     var checkboxesChecked = [];
     $scope.addCountry = function (optionsCheckboxes) {
         $scope.loading = true;
@@ -65,7 +68,11 @@
     };
 
     $scope.editCountry = function (_id, categories) {
+<<<<<<< HEAD
         window.location.href = '/country/' + _id;
+=======
+        window.location.href = '/eg/country/' + _id;
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
     };
 
     $scope.callDelModal = function (_countryId) {
@@ -101,19 +108,30 @@
     };
 
     $scope.signOut = function () {
+<<<<<<< HEAD
         window.location.href = '/Home';
+=======
+        window.location.href = '/eg/Home';
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
         localStorage.clear();
     };
 
 });
+<<<<<<< HEAD
 var _URL = window.URL || window.webkitURL;
 function convertCountryAddImgToBase64URL(event) {
     var filesSelected = document.getElementById("uploadItemImage").files;
     var img = new Image();
+=======
+
+function convertImgToBase64URL(event) {
+    var filesSelected = document.getElementById("uploadItemImage").files;
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
     if (filesSelected.length > 0) {
         var fileToLoad = filesSelected[0];
         var fileReader = new FileReader();
         fileReader.onload = function (fileLoadedEvent) {
+<<<<<<< HEAD
             img.onload = function () {
                 if ((this.height / this.width) < 1.5 && fileToLoad.size <= 2000000) {
                     document.getElementById("errImgDiv").style.display = 'none';
@@ -128,6 +146,12 @@ function convertCountryAddImgToBase64URL(event) {
         };
         fileReader.readAsDataURL(fileToLoad);
         img.src = _URL.createObjectURL(fileToLoad);
+=======
+            BaseImg64 = fileLoadedEvent.target.result;
+            UploadImage(BaseImg64);
+        };
+        fileReader.readAsDataURL(fileToLoad);
+>>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
     }
 };
 
