@@ -152,8 +152,8 @@ module.exports = {
                             else {
                                 for (i == 0; i < Obj.Pictures.length; i++)
                                 {
-                                    var Uploadedimg = Helper.uploadimage(Obj.Pictures[i].URL+i+ ".png");
-                                    Obj.Pictures[0].URL = Obj.Pictures[i].URL + i + ".png";
+                                    var UploadedImg = Helper.uploadImage(Obj.Pictures[i].URL+i+ ".png");
+                                    Obj.Pictures[0].URL = Helper.getImage(Obj.Pictures[i].URL + i + ".png");
                                 }
                                 resolve({
                                     code: 100,

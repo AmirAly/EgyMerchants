@@ -1,3 +1,4 @@
+
 var cloudinary = require('cloudinary');
 cloudinary.config({ 
     cloud_name: 'dce2oozza', 
@@ -6,10 +7,13 @@ cloudinary.config({
 });
 
 module.exports = {
-    uploadimage: function (_name) {
-        cloudinary.uploader.upload(name, function (result) {
+    uploadImage: function (_name) {
+        cloudinary.uploader.upload(_name, function (result) {
             console.log("result")
         }, { public_id: _name });
+    },
+    getImage: function (_name) {
+        cloudinary.url(_name);
     },
     sendEmail: function (email) {
         var smtpTransport = nodemailer.createTransport({

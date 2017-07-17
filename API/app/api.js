@@ -148,8 +148,8 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-    api.put('/Country/Suspend', function (req, res) {
-        CountryLogic.suspend(req.body._id).then(function (result) {
+    api.put('/Country/Remove', function (req, res) {
+        CountryLogic.remove(req.body._id).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -186,8 +186,8 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-    api.put('/Category/Suspend', function (req, res) {
-        CategoryLogic.suspend(req.body._id).then(function (result) {
+    api.put('/Category/Remove', function (req, res) {
+        CategoryLogic.remove(req.body._id).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -260,8 +260,8 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-    api.put('/Expo/Suspend', function (req, res) {
-        ExpoLogic.suspend(req.body._id).then(function (result) {
+    api.put('/Expo/Remove', function (req, res) {
+        ExpoLogic.remove(req.body._id).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
