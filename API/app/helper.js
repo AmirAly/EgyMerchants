@@ -1,5 +1,6 @@
-
+var fs = require('fs');
 var cloudinary = require('cloudinary');
+
 cloudinary.config({ 
     cloud_name: 'dce2oozza', 
     api_key: '245386291529646',
@@ -8,6 +9,13 @@ cloudinary.config({
 
 module.exports = {
     uploadImage: function (_name) {
+        //var stream = cloudinary.uploader.upload_stream(function (result) { console.log(result); });
+        //var file_reader = fs.createReadStream('my_picture.jpg', { encoding: 'binary' }).on('data', stream.write).on('end', stream.end);
+        //stream = cloudinary.uploader.upload_stream(function(result) {
+        //    console.log(result);
+        //}, { public_id:_name });
+        //fs.createReadStream(req.files.image.path, {encoding: 'binary'}).on('data', stream.write).on('end', stream.end);
+
         cloudinary.uploader.upload(_name, function (result) {
             console.log(result)
         }, { public_id: _name });

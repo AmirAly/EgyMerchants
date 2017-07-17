@@ -151,13 +151,12 @@ module.exports = {
                                     data: err
                                 });
                             else {
-                                if (Obj.Pictures) {
-                                    for (var i= 0; i < Obj.Pictures.length; i++) {
-                                        var UploadedImg = Helper.uploadImage(Obj.Pictures[i].URL + i + ".png");
-                                       // Obj.Pictures[i].URL = Helper.getImage(Obj.Pictures[i].URL + i + ".png");
-                                        //console.log(Obj.Pictures[i].URL);
-                                    }
-                                }
+                                //if (Obj.Pictures) {
+                                //    for (var i= 0; i < Obj.Pictures.length; i++) {
+                                //        var UploadedImg = Helper.uploadImage(Obj.Pictures[i].URL + i + ".png");
+                                //        Obj.Pictures[i].URL = Helper.getImage(Obj.Pictures[i].URL + i + ".png");
+                                //    }
+                                //}
                                 resolve({
                                     code: 100,
                                     data:"This item added successfully"

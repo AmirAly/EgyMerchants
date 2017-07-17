@@ -50,11 +50,7 @@
     };
 
     $scope.signOut = function () {
-<<<<<<< HEAD
         window.location.href = '/Home';
-=======
-        window.location.href = '/eg/Home';
->>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
         localStorage.clear();
     };
 

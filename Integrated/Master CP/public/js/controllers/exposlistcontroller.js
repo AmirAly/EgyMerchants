@@ -5,7 +5,6 @@
         document.getElementById('uploadItemImage').click();
     };
 
-<<<<<<< HEAD
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
         $scope.expo = {};
         document.getElementById("frmAddExpo").reset();
@@ -20,8 +19,6 @@
     });
 
 
-=======
->>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
     $scope.addExpo = function () {
         $scope.loading = true;
         var req = {
@@ -56,11 +53,7 @@
 
     $scope.editExpo = function (_id) {
         localStorage.setItem('expoId', _id);
-<<<<<<< HEAD
         window.location.href = '/expo/' + _id;
-=======
-        window.location.href = '/eg/expo/' + _id;
->>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
     };
 
     $scope.callDelModal = function (_expoId) {
@@ -96,30 +89,19 @@
     };
 
     $scope.signOut = function () {
-<<<<<<< HEAD
         window.location.href = '/Home';
-=======
-        window.location.href = '/eg/Home';
->>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
         localStorage.clear();
     };
 
 });
-<<<<<<< HEAD
 var _URL = window.URL || window.webkitURL;
 function convertAddExpoImgToBase64URL(event) {
     var filesSelected = document.getElementById("uploadItemImage").files;
     var img = new Image();
-=======
-
-function convertImgToBase64URL(event) {
-    var filesSelected = document.getElementById("uploadItemImage").files;
->>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
     if (filesSelected.length > 0) {
         var fileToLoad = filesSelected[0];
         var fileReader = new FileReader();
         fileReader.onload = function (fileLoadedEvent) {
-<<<<<<< HEAD
             img.onload = function () {
                 if ((this.height / this.width) < 1.5 && fileToLoad.size <= 2000000) {
                     document.getElementById("errImgDiv").style.display = 'none';
@@ -134,12 +116,6 @@ function convertImgToBase64URL(event) {
         };
         fileReader.readAsDataURL(fileToLoad);
         img.src = _URL.createObjectURL(fileToLoad);
-=======
-            BaseImg64 = fileLoadedEvent.target.result;
-            UploadImage(BaseImg64);
-        };
-        fileReader.readAsDataURL(fileToLoad);
->>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
     }
 };
 

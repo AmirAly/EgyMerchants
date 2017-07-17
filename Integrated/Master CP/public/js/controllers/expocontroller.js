@@ -10,11 +10,7 @@
     };
 
     $scope.floors = function (_id) {
-<<<<<<< HEAD
         window.location.href = '/floors/' + _id;
-=======
-        window.location.href = '/eg/floors/' + _id;
->>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
     };
     
     $scope.updateExpo = function (_id) {
@@ -33,11 +29,7 @@
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
                 window.location.reload();
-<<<<<<< HEAD
                 window.location.href = '/exposlist'
-=======
-                window.location.href = '/eg/exposlist'
->>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
             } else {
                 $scope.loading = false;
                 if (_res.data.code == 21) {
@@ -55,11 +47,7 @@
     };
 
     $scope.signOut = function () {
-<<<<<<< HEAD
         window.location.href = '/Home';
-=======
-        window.location.href = '/eg/Home';
->>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
         localStorage.clear();
     };
 
@@ -106,7 +94,6 @@
     };
 
     $scope.editFloor = function (_floorId, _expoId) {
-<<<<<<< HEAD
         window.location.href = "/editfloor/" + _floorId + "/" + _expoId;
     };
 
@@ -115,20 +102,10 @@ var _URL = window.URL || window.webkitURL;
 function convertEditExpoImgToBase64URL(event) {
     var filesSelected = document.getElementById("uploadItemImage").files;
     var img = new Image();
-=======
-        window.location.href = "/eg/editfloor/" + _floorId + "/" + _expoId;
-    };
-
-});
-
-function convertImgToBase64URL(event) {
-    var filesSelected = document.getElementById("uploadItemImage").files;
->>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
     if (filesSelected.length > 0) {
         var fileToLoad = filesSelected[0];
         var fileReader = new FileReader();
         fileReader.onload = function (fileLoadedEvent) {
-<<<<<<< HEAD
             img.onload = function () {
                 if ((this.height / this.width) < 1.5 && fileToLoad.size <= 2000000) {
                     document.getElementById("errImgDiv").style.display = 'none';
@@ -142,12 +119,6 @@ function convertImgToBase64URL(event) {
         };
         fileReader.readAsDataURL(fileToLoad);
         img.src = _URL.createObjectURL(fileToLoad);
-=======
-            BaseImg64 = fileLoadedEvent.target.result;
-            UploadImage(BaseImg64);
-        };
-        fileReader.readAsDataURL(fileToLoad);
->>>>>>> d8533afff7a9d35c04581998312cd97fadad366c
     }
 };
 
