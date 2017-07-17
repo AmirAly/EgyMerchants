@@ -142,7 +142,11 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Country/Edit', function (req, res) {
+<<<<<<< HEAD
         CountryLogic.edit(req.body._id, req.body.Name, req.body.Flag, req.body.IsoCode, req.body.WelcomeMsg).then(function (result) {
+=======
+        CountryLogic.edit(req.body._id, req.body.Name, req.body.Flag, req.body.IsoCode,req.body.WelcomeMsg).then(function (result) {
+>>>>>>> 8c81e9edf18d987302795c7d1f2a25fca82758a7
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -180,6 +184,7 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Category/Edit', function (req, res) {
+<<<<<<< HEAD
         CategoryLogic.edit(req.body._id, req.body.Name, req.body.Country).then(function (result) {
             res.json(result);
         }, function (err) {
@@ -188,11 +193,24 @@ module.exports = function (app, express) {
     })
     api.put('/Category/Remove', function (req, res) {
         CategoryLogic.remove(req.body._id).then(function (result) {
+=======
+        CategoryLogic.edit(req.body._id, req.body.Name,req.body.Country).then(function (result) {
+>>>>>>> 8c81e9edf18d987302795c7d1f2a25fca82758a7
             res.json(result);
         }, function (err) {
             res.json(err);
         });
     })
+<<<<<<< HEAD
+=======
+    api.put('/Category/Remove', function (req, res) {
+        CategoryLogic.remove(req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+>>>>>>> 8c81e9edf18d987302795c7d1f2a25fca82758a7
     api.get('/Category/GetByCountry/:_isoCode', function (req, res) {
         CategoryLogic.getByCountry(req.params._isoCode).then(function (result) {
             res.json(result);

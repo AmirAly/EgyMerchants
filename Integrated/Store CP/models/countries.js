@@ -69,7 +69,11 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
+<<<<<<< HEAD
                         Schema.findOne({ 'Name': _name, 'Status': 'Active', '_id': { $ne: _id } }, '', function (err, Objexist) {
+=======
+                        Schema.findOne({'Name': _name,'Status':'Active', '_id': { $ne: _id } }, '', function (err, Objexist) {
+>>>>>>> 8c81e9edf18d987302795c7d1f2a25fca82758a7
                             if (err)
                                 reject({
                                     code: 1,
@@ -92,7 +96,11 @@ module.exports = {
                                         else
                                             resolve({
                                                 code: 100,
+<<<<<<< HEAD
                                                 data: "Country data edited successfully"
+=======
+                                                data:"Country data edited successfully"
+>>>>>>> 8c81e9edf18d987302795c7d1f2a25fca82758a7
                                             })
                                     })
                                 }

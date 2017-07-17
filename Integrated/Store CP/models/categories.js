@@ -50,7 +50,11 @@ module.exports = {
                     }
                 }
             })
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> 8c81e9edf18d987302795c7d1f2a25fca82758a7
         })
     },
     edit: function (_id, _name, _country) {
@@ -70,22 +74,50 @@ module.exports = {
                                     data: err
                                 });
                             else {
+<<<<<<< HEAD
                                 if (Objexist)
                                     reject({ code: 22, data: 'This category already exist in this country' })
                                 else {
                                     Obj.Name = _name;
                                     Obj.Country = _country;
                                     Obj.save(function (err, Obj) {
+=======
+                                if (Obj) {
+                                    Schema.findOne({ 'Name': _name, 'Country': _country, 'Status': 'Active', '_id': { $ne: _id } }, '', function (err, Objexist) {
+>>>>>>> 8c81e9edf18d987302795c7d1f2a25fca82758a7
                                         if (err)
                                             reject({
                                                 code: 1,
                                                 data: err
                                             });
+<<<<<<< HEAD
                                         else
                                             resolve({
                                                 code: 100,
                                                 data: "Category data edited successfully"
                                             })
+=======
+                                        else {
+                                            if (Objexist)
+                                                reject({ code: 22, data: 'This category already exist in this country' })
+                                            else {
+                                                Obj.Name = _name;
+                                                Obj.Country = _country;
+                                                Obj.save(function (err, Obj) {
+                                                    if (err)
+                                                        reject({
+                                                            code: 1,
+                                                            data: err
+                                                        });
+                                                    else
+                                                        resolve({
+                                                            code: 100,
+                                                            data:"Category data edited successfully"
+                                                        })
+                                                })
+                                            }
+                                        }
+>>>>>>> 8c81e9edf18d987302795c7d1f2a25fca82758a7
                                     })
                                 }
                             }
@@ -112,8 +144,15 @@ module.exports = {
                             Expo.find({ 'Category': _id }, '', function (err, lst) {
                                 if (err)
                                     reject({ code: 1, data: err })
+<<<<<<< HEAD
                                 else {
                                     if (lst.length > 0) {
+=======
+                                else
+                                {
+                                    if (lst.length >0)
+                                    {
+>>>>>>> 8c81e9edf18d987302795c7d1f2a25fca82758a7
                                         Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "deleted" } }, { new: true }, function (err, Obj) {
                                             if (err)
                                                 reject({ code: 1, data: err })
@@ -165,7 +204,11 @@ module.exports = {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> 8c81e9edf18d987302795c7d1f2a25fca82758a7
                     if (Obj) {
                         Schema.find({ 'Country': Obj._id, 'Status': 'Active' }, '', function (err, lst) {
                             if (err)

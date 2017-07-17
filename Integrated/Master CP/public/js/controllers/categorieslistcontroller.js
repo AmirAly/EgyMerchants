@@ -99,7 +99,7 @@
         $scope.loading = true;
         var req = {
             method: 'put',
-            url: '/Category/Suspend',
+            url: '/Category/Remove',
             data: {
                 _id: $scope.categoryDelId
             }
