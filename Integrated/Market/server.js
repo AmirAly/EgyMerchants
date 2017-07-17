@@ -33,11 +33,7 @@ mongoose.connect(db.url, function (err) {
         });
         app.listen(process.env.PORT || 8080);
         app.get('*', function (req, res) {
-<<<<<<< HEAD
             //return res.redirect('/EG/Home');
-=======
-            //return res.redirect('/eg/Home');
->>>>>>> e1865de5fdce1e083c94f0ae8573aa812b31f813
             res.render('pages/404');
         });
 

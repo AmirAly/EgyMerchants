@@ -45,7 +45,7 @@ module.exports = {
                     if (expo) {
                         resolve({
                             code: 100,
-                            data: "This floor added successfully"
+                            data:"This floor added successfully"
                         })
                     }
                     else
@@ -74,37 +74,37 @@ module.exports = {
                     }
                     else {
                         Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+                else {
+                    if (Obj) {
+                        Obj.Title = _title;
+                        Obj.Banner = _banner;
+                        Obj.Category = _category;
+                        Obj.Floors = _floors;
+                        Obj.save(function (err, expo) {
                             if (err)
                                 reject({
                                     code: 1,
                                     data: err
                                 });
-                            else {
-                                if (Obj) {
-                                    Obj.Title = _title;
-                                    Obj.Banner = _banner;
-                                    Obj.Category = _category;
-                                    Obj.Floors = _floors;
-                                    Obj.save(function (err, expo) {
-                                        if (err)
-                                            reject({
-                                                code: 1,
-                                                data: err
-                                            });
-                                        else
-                                            resolve({
-                                                code: 100,
-                                                data: "Expo data edited successfully"
-                                            })
-                                    })
-                                }
-                                else
-                                    reject({
-                                        code: 21,
-                                        data: "This filteration didn't resulted in any data"
-                                    });
-                            }
+                            else
+                                resolve({
+                                    code: 100,
+                                    data: "Expo data edited successfully"
+                                })
                         })
+                    }
+                    else
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
+                }
+            })
                     }
                 }
             })
@@ -144,7 +144,7 @@ module.exports = {
                     });
                 else {
                     if (lst.length > 0) {
-                        resolve({ code: 100, data: lst })
+                        resolve({code:100,data:lst})
                     }
                     else {
                         reject({
@@ -201,9 +201,9 @@ module.exports = {
             })
         })
     },
-    getById: function (_id) {
+    getById: function (_id) { 
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate('Category', '_id Name').exec(function (err, Obj) {
+            Schema.findOne({'_id':_id, 'Status': 'Active' }, '').populate('Category', '_id Name').exec(function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
