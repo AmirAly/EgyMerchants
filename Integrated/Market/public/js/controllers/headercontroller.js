@@ -1,4 +1,5 @@
 ﻿app.controller("headerController", function ($scope, $rootScope, $timeout, API) {
+    $scope.expoHref = localStorage.getItem("expohref");
     $scope.load = function () {
 
         new WOW({

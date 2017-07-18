@@ -1799,6 +1799,10 @@ h6.mega {
     animation-fill-mode: initial;
 }
 
+.pageSearch .product-preview h3.title{
+        font-size: 20px;
+}
+
 .pageSearch h2 {
     padding-bottom: 0;
     color: #337ab7;
@@ -1875,7 +1879,7 @@ h6.mega {
 }
 
     .pageSearch .product-preview .preview .img-responsive {
-        height: auto;
+        /*height: auto;*/
     }
 
 
