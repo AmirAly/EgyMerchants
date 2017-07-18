@@ -70,27 +70,24 @@
                                     </div>
                                 </div>
                             </form>
-                            <div class="row">
+
+							<div class="row imagesContainer" id="imagesContainer">
                                 <div class="col-sm-2 text-center"
                                      ng-repeat="section in floor.Sections track by section.sectionId"
                                      id="active{{section.sectionId}}"
-                                     ng-init="this['active'+this.section.sectionId] = false;section.isBusy = false"
-                                     ng-click="this['active'+this.section.sectionId] =! this['active'+this.section.sectionId] ; section.isBusy =! section.isBusy;"
-                                     ng-class="{'active': this['active'+this.section.sectionId]}">
+                                     ng-init="section.isBusy = false"
+                                     ng-click="section.isBusy =! section.isBusy;"
+                                     ng-class="{'active': section.isBusy == true}">
                                     <div>{{section.data}}</div>
                                 </div>
                             </div>
+
                             <br /><br />
                             <button class="btn btn-primary" data-target="#modal" data-toggle="modal">Add Section to selected area</button>
 
                             <br /><hr /><br />
 
 
-                            <button class="btn btn-primary" ng-click="loadArray()">Preview</button>
-                            <br />
-                            <br />
-                            <div class="row imagesContainer" id="imagesContainer"></div>
-                            <br /><br />
                             <button class="btn btn-primary" ng-click="saveFloor()" ng-disabled="frmAddFloorName.$invalid">Save Floor</button>
 
                             <div class="row">
@@ -142,9 +139,9 @@
                                                         <div class="form-group">
                                                             <label>Choose store</label>
                                                             <br>
-                                                            <select name="country" id="selectStore" ng-model="selectedstore" class="form-control">
+                                                            <select ng-init="initStores('<%= storeslstObj %>')" name="country" id="selectStore" ng-model="selectedstore" class="form-control">
                                                                 <% storeslst.forEach(function(store){ %>
-                                                                <option value="<%= store._id %>" selected> <%= store.Name %> </option>
+                                                                <option value="<%= store._id %>"> <%= store.Name %> </option>
                                                                 <% }); %>
                                                             </select>
                                                         </div>
@@ -165,8 +162,9 @@
                                             </div>
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="title itemTitle"></h4>
-                                            <p class="category"></p>
+										<div class=" alert-danger clear text-center" ng-show="errorNonSelected">
+                                                <span class="errorFont">You should select area first.</span>
+                                            </div>
                                             <div class=" alert-danger clear text-center" id="errImgDiv">
                                                 <span class="errorFont"> Image is not suitable </span>
                                             </div>
@@ -186,6 +184,48 @@
         </div>
     </div>
     <!-- End Modal -->
+
+	<!-- Start Modal  ((cofirmation))-->
+    <div class="modal fade modalDeleteSection" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Confirm deletion</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header" data-background-color="orange">
+                                            <h4 class="title">Are you sure you want to delete this section?</h4>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class=" alert-danger clear text-center" ng-show="errdiv">
+                                                <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" ng-click="removeSection()" class="btn btn-primary" data-dismiss="modal">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End modal -->
+
+
 </div>
 <!--   Core JS Files   -->
 <% include ../partials/pagesjsfiles %>

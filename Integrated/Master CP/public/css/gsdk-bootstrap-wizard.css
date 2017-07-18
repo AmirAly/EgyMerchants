@@ -1160,9 +1160,11 @@ label {
         min-width: 140px;
     }
 }
+
 .errorFont {
     color: tomato;
 }
+
 #errImgDiv {
     display: none;
-
+}
