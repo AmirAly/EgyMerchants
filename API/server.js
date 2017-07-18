@@ -237,11 +237,11 @@ var newcategory = new categoryschema({ "Name": "gg", "Country": "5965df57fc43405
 //    console.log(err);
 //});
 var newitem = new itemschema({ "Name": "olaaa", "Description": "desconlytodo", "Pictures": [{ "URL": "C:\Users\nada\Desktop\Downloads\AAoL6pj06a.png" }], "Price": "777", "PriceBeforeSale": "800", "Rate": "56", "Sold": "200", "Badges": "#featured #modern", "Gallery": "59088e74734d1d3098a8563e", "Store": "59427a4c734d1d235a9447e3" });
-item.add(newitem).then(function (result) {
-    console.log(result);
-}, function (err) {
-    console.log(err);
-});
+//item.add(newitem).then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 //item.edit("594a710e3e856b0b684b3917", "beautiful dress", "desc", {
 //    "Title": "t5it",
 //"URL":"url"
