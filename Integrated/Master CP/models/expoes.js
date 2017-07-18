@@ -119,7 +119,7 @@ module.exports = {
                         data: err
                     });
                 else {
-                    if (lst.length > 0)
+                    if (lst.length > 0) 
                         resolve({
                             code: 100,
                             data: lst

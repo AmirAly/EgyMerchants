@@ -5819,8 +5819,9 @@ footer {
     background: beige;
     border: 1px dashed #cbcbcc;
     text-align: center;
-    height: 100px;
-    padding: 40px;
+    /*height: 100px;*/
+    height: 20%;
+    padding: 50px;
 }
 
 .pageFloors .busy {
@@ -5839,10 +5840,8 @@ footer {
     overflow: hidden;
     position: relative;
 }
-#errImgDiv{
-    display:none;
-<<<<<<< HEAD
+
+#errImgDiv {
+    display: none;
 }
-=======
-}
->>>>>>> 8c81e9edf18d987302795c7d1f2a25fca82758a7
+

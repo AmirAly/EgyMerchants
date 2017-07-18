@@ -71,14 +71,14 @@
                                 </div>
                             </form>
 
-                            <div class="row">
+                            <div class="row imagesContainer" id="imagesContainer">
                                 <div class="col-sm-2 text-center"
                                      ng-repeat="section in floor.Sections track by section.sectionId"
                                      id="active{{section.sectionId}}"
-                                     ng-init="this['active'+this.section.sectionId] = false;section.isBusy = false"
-                                     ng-click="this['active'+this.section.sectionId] =! this['active'+this.section.sectionId] ; section.isBusy =! section.isBusy;"
-                                     ng-class="{'active': this['active'+this.section.sectionId]}">
-                                    <div>{{section.data}}</div>
+                                     ng-init="section.isBusy = false"
+                                     ng-click="section.isBusy =! section.isBusy;"
+                                     ng-class="{'active': section.isBusy == true}">
+                                    <div>{{section.data}} <br/> <br/>{{section.isBusy}}</div>
                                 </div>
                             </div>
 
@@ -88,11 +88,7 @@
                             <br /><hr /><br />
 
 
-                            <button class="btn btn-primary" ng-click="loadArray()">Preview</button>
-                            <br />
-                            <br />
-                            <div class="row imagesContainer" id="imagesContainer"></div>
-                            <br /><br />
+                            
                             <button class="btn btn-primary" ng-click="saveFloor()" ng-disabled="frmAddFloorName.$invalid">Save Floor</button>
 
                             <div class="row">
