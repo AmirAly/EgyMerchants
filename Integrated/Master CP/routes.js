@@ -37,6 +37,7 @@ module.exports = function (app) {
                 expo.getAll().then(function (_expo) {
                     if (_expo.code == 100) {
                         _scope.expolist = _expo.data;
+                        console.log(_expo.data);
                         res.render('pages/exposlist', _scope);
                     }
                     else {

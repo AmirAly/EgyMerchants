@@ -8,7 +8,7 @@
 
 <!-- One column content -->
 <section class="container responsive pageSearch" ng-controller="searchController">
-    <div class="dvOptionsContainer" ng-init="init1('<%= JsonSearchResult %>')">
+    <div class="dvOptionsContainer" ng-init="init1('<%= JsonSearchResult %>' , '<%= countryIso %>')">
         <div class="row">
             <div class="col-sm-9 col-md-6">
                 <select ng-model="countries">
@@ -41,8 +41,8 @@
         <div class="spacer2"></div>
         <div class="row">
             <div class="col-sm-6 col-sm-offset-6 text-right">
-                <a href="#" ng-click="clearSearch()" class="text-muted"><i class="fa fa-close"></i> Reset Filter </a> &nbsp;
-                <button type="submit" ng-click="refineSearch()" title="Search" class="btn btn-primary"> Refine Search Result <i class="glyphicon glyphicon-search"></i> </button>
+                <a href="#" ng-click="clearSearch()" class="text-muted"><i class="fa fa-close"></i> Reset filter </a> &nbsp;
+                <button type="submit" ng-click="refineSearch()" title="Search" class="btn btn-primary"> Refine search result <i class="glyphicon glyphicon-search"></i> </button>
             </div>
         </div>
     </div>
@@ -148,7 +148,7 @@
 
     </div>
 
-    <p ng-show="!searchResult" class="txtNoData"> No Data Available </p>
+    <p ng-show="!searchResult" class="txtNoData"> No data available </p>
 
 
 </section>

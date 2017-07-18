@@ -27,6 +27,10 @@
 
     }
 
+    $scope.openExpo = function (_isoCode , _categoryId) {
+        localStorage.setItem("expohref" , "/"+_isoCode+"/Expos/"+_categoryId);
+    }
+
     $scope.changeCountry = function (_isoCode) {
         $rootScope.IsoCode = _isoCode;
         $scope.selectedCountry = ($filter('filter')($scope.allCountries, { 'IsoCode': _isoCode }))[0];

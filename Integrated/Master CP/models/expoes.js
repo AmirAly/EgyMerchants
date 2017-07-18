@@ -1,4 +1,5 @@
 var Schema = require('./models/expo');
+var Helper = require('./helper');
 module.exports = {
     add: function (_newExpo) {
         return new Promise(function (resolve, reject) {
@@ -16,6 +17,8 @@ module.exports = {
                         });
                     }
                     else {
+                        _newExpo.Banner = Helper.uploadImage(_newExpo.Banner, function (_url) {
+                            _newExpo.Banner = _url;
                         _newExpo.save(function (err, _newExpo) {
                             if (err)
                                 reject({
@@ -28,6 +31,8 @@ module.exports = {
                                     data: "This expo added successfully"
                                 });
                         })
+                        }
+                            )
                     }
                 }
             })
@@ -119,7 +124,7 @@ module.exports = {
                         data: err
                     });
                 else {
-                    if (lst.length > 0) 
+                    if (lst.length > 0)
                         resolve({
                             code: 100,
                             data: lst

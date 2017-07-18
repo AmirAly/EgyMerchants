@@ -32,20 +32,20 @@
                                     <a href="/{{selectedCountry.IsoCode}}/Home">Home</a>
                                 </li>
                                 <li>
-                                    <a href="/{{selectedCountry.IsoCode}}/Contactus">ABOUT US</a>
+                                    <a href="/{{selectedCountry.IsoCode}}/Contactus">About us</a>
                                 </li>
                                 <li>
-                                    <a href="#">MY ACCOUNT</a>
+                                    <a href="#">My account</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">MY INBOX</a>
+                                    <a href="#">My inbox</a>
                                 </li>
                                 <li data-toggle="modal" data-target="#modal-login" ng-hide="loggedUser">
-                                    <a href="#">LOG IN</a>
+                                    <a href="#">Log in</a>
                                 </li>
                                 <li ng-show="loggedUser">
-                                  <span>Welcome {{userName}} | </span> <span><a href="#"><span ng-click="logout()">LOG OUT</span></a></span>
+                                  <span>Welcome {{userName}} | </span> <span><a href="#"><span ng-click="logout()">Log out</span></a></span>
                                 </li>
                             </ul>
 
@@ -58,7 +58,7 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <h1 class="logo">
-                                    <a href="/{{selectedCountry.IsoCode}}/Home">
+                                    <a href="{{expoHref}}">
                                         <img src="/images/Expoeveryday.png" alt="Expo" />
                                     </a>
                                 </h1>
@@ -84,7 +84,7 @@
                             <div class="col-sm-3">
                                 <div class="cart-area hidden-xs">
                                     <span>
-                                        CALL US NOW<br />
+                                        Call us now<br />
                                         <b>+123 5678 890</b>
                                     </span>
                                 </div>
@@ -100,7 +100,7 @@
                             <div class="menu-wrapper">
                                 <div class="sticky-logo wow bounceInLeft">
 
-                                    <a href="/{{selectedCountry.IsoCode}}/Home">
+                                    <a href="{{expoHref}}">
                                         <img src="/images/Expoeveryday.png" class="img-responsive" alt="Expo" />
                                     </a>
 
@@ -174,7 +174,7 @@
                     <div class="clear2"></div>
                     <div class="text-center">
                         <a>
-                            <h6 ng-click="loginForm = false">... or Sign up now </h6>
+                            <h6 ng-click="loginForm = false">... or sign up now </h6>
                         </a>
                     </div>
 
@@ -206,7 +206,7 @@
                             </span>
                         </div>
                         <div class="form-group">
-                            <label class="sr-only" for="form-displayName">Display Name</label>
+                            <label class="sr-only" for="form-displayName">Display name</label>
                             <input type="text" name="displayName" ng-model="registerObj.Name" required="" placeholder="Display Name..." class="form-displayName form-control" id="form-displayName" />
                             <span ng-show="frmRegister.displayName.$touched && frmRegister.displayName.$invalid">
                                 <span class="errorFont" ng-show="frmRegister.displayName.$error.required">Display name is required</span>
@@ -221,7 +221,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="sr-only" for="form-password">Confirm Password</label>
+                            <label class="sr-only" for="form-password">Confirm password</label>
                             <input type="password" name="confirmPassword" compare-to="registerObj.Password" ng-model="registerObj.confirmPassword" required="" placeholder="Confirm Password..." class="form-confirmpassword form-control" id="form-confirmpassword" />
                             <span ng-show="frmRegister.confirmPassword.$touched && frmRegister.confirmPassword.$invalid">
                                 <span class="errorFont" ng-show="frmRegister.confirmPassword.$error.required || frmRegister.confirmPassword.$error.compareTo">Passwords must match.</span>
@@ -240,7 +240,7 @@
                     <div class="clear2"></div>
                     <div class="text-center">
                         <a>
-                            <h6 ng-click="loginForm = true">... or Log in now </h6>
+                            <h6 ng-click="loginForm = true">... or log in now </h6>
                         </a>
                     </div>
 

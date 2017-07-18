@@ -5,6 +5,7 @@
     $scope.stores = 'all';
     $scope.init1 = function (_result, _isoCode) {
         $rootScope.IsoCode = _isoCode;
+        console.log(_isoCode);
         if ( _result != '') {
             $scope.searchResult = JSON.parse(_result);
         }

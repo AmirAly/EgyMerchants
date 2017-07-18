@@ -13,7 +13,7 @@
                     <div class="col-sm-12">
                         <div class="dvProfileImgContainer">
                             <div class="dvProfileImg">
-                                <span class="icon-checkmark-2" alt="Is Visited"></span>
+                                <span class="icon-checkmark-2" alt="Is visited"></span>
                                 <img class="img-responsive" src="<%= store.ProfilePicture %>" />
                             </div>
                         </div>
@@ -47,15 +47,15 @@
                     <div class="col-sm-12">
                         <div class="dvStoreIcons">
                             <% if (store.Badges.HasFactory) { %>
-                            <img alt="Has Factory" src="/images/factory.png" />
+                            <img alt="Has factory" src="/images/factory.png" />
                             <% } else { %>
-                            <img alt="Has Factory" src="/images/nofactory.png" />
+                            <img alt="Has factory" src="/images/nofactory.png" />
                             <% } %>
 
                             <% if (store.Badges.Verified) { %>
-                            <img alt="Has Factory" src="/images/verified.png" />
+                            <img alt="Has factory" src="/images/verified.png" />
                             <% } else { %>
-                            <img alt="Has Factory" src="/images/notverified.png" />
+                            <img alt="Has factory" src="/images/notverified.png" />
                             <% } %>
                         </div>
                     </div>
@@ -85,14 +85,14 @@
                                     <h1><%= item.Name %></h1>
                                     <h6><%= item.Description %></h6>
                                     <h2>$ <%= item.Price %></h2>
-                                    <h5>Product Details</h5>
+                                    <h5>Product details</h5>
                                 </div>
                             </div>
                         </a>
                     </div>
                     <% }); %>
                     <% } else { %>
-                    <p class="txtNoData"> No Featured Products Available </p>
+                    <p class="txtNoData"> No featured products available </p>
                     <% } %>
 
                 </div>
@@ -125,7 +125,7 @@
                                         <h1>{{item.Name}}</h1>
                                         <h6>{{item.Description}}</h6>
                                         <h2>$ {{item.Price}}</h2>
-                                        <h5>Product Details</h5>
+                                        <h5>Product details</h5>
                                     </div>
                                 </div>
                             </a>
@@ -136,7 +136,7 @@
 
             </div>
 
-            <p ng-show="!GalleriesLst.length > 0" class="txtNoData"> No Galleries Available </p>
+            <p ng-show="!GalleriesLst.length > 0" class="txtNoData"> No galleries available </p>
 
             <div class="dvAdvcontainer">
                 <img class="img-responsive" src="/images/adv2.png" />

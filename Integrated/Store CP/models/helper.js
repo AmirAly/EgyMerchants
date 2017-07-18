@@ -1,5 +1,6 @@
-
+var fs = require('fs');
 var cloudinary = require('cloudinary');
+
 cloudinary.config({ 
     cloud_name: 'dce2oozza', 
     api_key: '245386291529646',
@@ -7,13 +8,15 @@ cloudinary.config({
 });
 
 module.exports = {
-    uploadImage: function (_name) {
-        cloudinary.uploader.upload(_name, function (result) {
-            console.log(result)
-        }, { public_id: _name });
-    },
-    getImage: function (_name) {
-        cloudinary.url(_name);
+    uploadImage: function (_url,callback) {
+
+        cloudinary.v2.uploader.upload(_url,function (error, result) {  callback(result.url)});
+
+        //var file_reader = fs.createReadStream(_url, { encoding: 'binary' }).on('data', function (data) { stream.write(data) }).on('end', function () { stream.end() });
+        //var stream = cloudinary.uploader.upload_stream(function (result) {
+        //    console.log(result);
+        //}, { public_id: _fileName });
+
     },
     sendEmail: function (email) {
         var smtpTransport = nodemailer.createTransport({

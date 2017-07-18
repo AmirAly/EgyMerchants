@@ -16,14 +16,13 @@ var Expo = require('./models/expo');
 var Helper = require('./helper');
 var CountriesInJson = require('./allcountries.json');
 var _ = require("underscore");
-
 module.exports = function (app, express) {
     var api = express.Router();
     
     api.get('/', function (req, res) {
         return res.json({ code: '100', data: 'This api is working great, however further calls to other endpoints require a token' });
     });
-   
+    
 
     //store API calls
     api.post('/Store/Register', function (req, res) {

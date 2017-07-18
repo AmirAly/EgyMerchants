@@ -83,7 +83,7 @@
                                             <div class="col-md-8">
                                                 <select name="country" ng-model="expo.selectedCategory" value="<%= expo.Category._id %>" ng-init="expo.selectedCategory = '<%= expo.Category._id %>'" class="form-control">
                                                     <% categorieslst.forEach(function(category){ %>
-                                                    <option value="<%= category._id %>" selected="<%= category._id %>"> <%= category.Name %> </option>
+                                                    <option value="<%= category._id %>" selected="<%= category._id %>"> <%= category.Name %> : <%= category.Country.Name %> </option>
                                                     <% }); %>
                                                 </select>
                                             </div>
