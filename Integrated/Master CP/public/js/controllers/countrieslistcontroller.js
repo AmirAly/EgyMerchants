@@ -4,8 +4,7 @@
         document.getElementById('uploadItemImage').click();
     };
 
-    $scope.init = function (_categories, _countries) {
-        $scope.categories = JSON.parse(_categories);
+    $scope.init = function (_countries) {
         $scope.countries = JSON.parse(_countries);
     };
 
@@ -15,7 +14,6 @@
         document.getElementById("frmAddCountry").reset();
         $scope.frmAddCountry.$setUntouched();
         $scope.frmAddCountry.$setPristine();
-        $('input[name=optionsCheckboxes]').prop('checked', false);
         document.getElementById("errImgDiv").style.display = 'none';
         $scope.isEmpty = true;
         $scope.errMsg = false;
@@ -24,15 +22,9 @@
         $scope.$apply();
     });
 
-    var checkboxesChecked = [];
-    $scope.addCountry = function (optionsCheckboxes) {
+    
+    $scope.addCountry = function () {
         $scope.loading = true;
-        for (var i = 0; i < $scope.categories.length; i++) {
-            if ($scope.categories[i].checked) {
-                JSON.parse(checkboxesChecked.push($scope.categories[i]._id));
-            }
-        }
-
         var req = {
             method: 'post',
             url: '/Country/Add',
@@ -42,7 +34,6 @@
                 Flag: $('#imgItem').attr('src'),
                 WelcomeMsg: $scope.country.WelcomeMsg,
                 Status: "Active",
-                Categories: checkboxesChecked
             }
         }
         API.execute(req).then(function (_res) {
@@ -64,7 +55,7 @@
         });
     };
 
-    $scope.editCountry = function (_id, categories) {
+    $scope.editCountry = function (_id) {
         window.location.href = '/country/' + _id;
     };
 
@@ -76,7 +67,7 @@
         $scope.loading = true;
         var req = {
             method: 'put',
-            url: '/Country/Suspend',
+            url: '/Country/Remove',
             data: {
                 _id: $scope.countryDelId
             }

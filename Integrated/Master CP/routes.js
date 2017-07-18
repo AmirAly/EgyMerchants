@@ -37,7 +37,6 @@ module.exports = function (app) {
                 expo.getAll().then(function (_expo) {
                     if (_expo.code == 100) {
                         _scope.expolist = _expo.data;
-                        console.log(_expo.data);
                         res.render('pages/exposlist', _scope);
                     }
                     else {
@@ -199,21 +198,7 @@ module.exports = function (app) {
             if (_country.code == 100) {
                 _scope.countrieslst = _country.data;
                 _scope.countrieslstJSON = JSON.stringify(_country.data);
-                category.getAll().then(function (_category) {
-                    if (_category.code == 100) {
-                        _scope.categorieslst = _category.data;
-                        _scope.categorieslstJSON = JSON.stringify(_category.data);
-                        res.render('pages/countrieslist', _scope);
-                    } else {
-                        _scope.categorieslst = {};
-                        res.render('pages/countrieslist', _scope);
-                    }
-                }).catch(function (_err) {
-                    console.log(_err);
-                    _scope.categorieslst = {};
-                    res.render('pages/countrieslist', _scope);
-                });
-
+                res.render('pages/countrieslist', _scope);
             } else {
                 _scope.countrieslst = [];
                 res.render('pages/countrieslist', _scope);

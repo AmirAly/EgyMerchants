@@ -1,5 +1,5 @@
 <% include ../partials/headpages %>
-<div ng-controller='countryController' ng-init="init('<%= categorieslstJSON %>','<%= countryJSON %>')">
+<div ng-controller='countryController' ng-init="init('<%= countryJSON %>')">
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -75,7 +75,7 @@
                                                         <span class="errorFont" ng-show="frmUpdateCountry.countryTitle.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmUpdateCountry.countryTitle.$error.minlength">Country name is too short </span>
                                                         <span class="errorFont" ng-show="frmUpdateCountry.countryTitle.$error.maxlength">Country name is too long</span>
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryTitle.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>
+                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryTitle.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -102,7 +102,7 @@
                                                         <span class="errorFont" ng-show="frmUpdateCountry.countryMsg.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmUpdateCountry.countryMsg.$error.minlength">Welcome message is too short </span>
                                                         <span class="errorFont" ng-show="frmUpdateCountry.countryMsg.$error.maxlength">Welcome message is too long</span>
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryMsg.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>
+                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryMsg.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -139,25 +139,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!--<div class="row">
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-header" data-background-color="orange">
-                                    <h4 class="title">List of categories</h4>
-                                </div>
-                                <div class="card-content">
-
-                                    <div class="checkbox" ng-repeat="category in categories">
-                                        <label>
-                                            <input id="chbox" type="checkbox" name="optionsCheckboxes" ng-model="category.checked" ng-checked="category.checked"><span class="checkbox-material"><span class="checkBoxSpan">{{category.Name}}</span></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
-
                 </div>
             </div>
 

@@ -4,31 +4,13 @@
         document.getElementById('uploadItemImage').click()
     };
 
-    $scope.CheckedCategoriesId = JSON.parse(localStorage.getItem('CheckedCategories'));
-
-    $scope.init = function (_categorieslst, _country) {
-        $scope.categories = JSON.parse(_categorieslst);
+    $scope.init = function (_country) {
         $scope.countryObj = JSON.parse(_country);
         $scope.countryId = $scope.countryObj._id;
-        $scope.checkedCategories = $scope.countryObj.Categories;
-        for (var i = 0; i < $scope.categories.length; i++) {
-            for (var j = 0; j < $scope.checkedCategories.length; j++) {
-                
-                if ($scope.categories[i]._id == $scope.checkedCategories[j]._id) {
-                    $scope.categories[i].checked = true;
-                }
-            }
-        }
     };
     
-    var checkboxesChecked = [];
     $scope.updateCountry = function () {
         $scope.loading = true;
-        for (var i = 0; i < $scope.categories.length; i++) {
-            if ($scope.categories[i].checked) {
-                JSON.parse(checkboxesChecked.push($scope.categories[i]._id));
-            }
-        }
         var req = {
             method: 'put',
             url: '/Country/Edit',
@@ -39,7 +21,6 @@
                 Flag: $('#imgItem').attr('src'),
                 WelcomeMsg: $scope.country.WelcomeMsg,
                 Status: "Active",
-                Categories: checkboxesChecked
             }
         }
         API.execute(req).then(function (_res) {

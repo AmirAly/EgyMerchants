@@ -1,4 +1,4 @@
-﻿egm.controller("galleriesController", ['$scope', 'API', function ($scope, API, $apply) {
+egm.controller("galleriesController", ['$scope', 'API', function ($scope, API, $apply) {
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click();
     };
@@ -8,7 +8,7 @@
             window.location.href = '/Home';
         }
     };
-
+//comment
     $('.modal').on('hidden.bs.modal', function () {
         $scope.gallery = {};
         document.getElementById("frmAddGallery").reset();

@@ -85,7 +85,7 @@
                                                         <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.minlength">Item name is too short</span>
                                                         <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.maxlength">Item name is too long</span>
-                                                        <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>
+                                                        <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -120,7 +120,7 @@
                                                         <span ng-show="frmAddItem.itemDesc.$dirty && frmAddItem.itemDesc.$invalid">
                                                             <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.required">Required</span>
                                                             <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.minlength">Item description is too short</span>
-                                                            <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>
+                                                            <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -133,7 +133,7 @@
                                                     <input type="text" class="form-control Badges" value="<%= item.Badges %>" ng-init="item.Badges = '<%= item.Badges %>'" ng-model="item.Badges" name="Badges" id="BadgesInput" data-role="tagsinput" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$">
 													<span ng-show="frmAddItem.Badges.$dirty && frmAddItem.Badges.$invalid">
                                                         <span class="errorFont" ng-show="frmAddItem.Badges.$error.minlength">Item badges is too short</span>
-                                                        <span class="errorFont" ng-show="frmAddItem.Badges.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>
+                                                        <span class="errorFont" ng-show="frmAddItem.Badges.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -145,7 +145,7 @@
                                                     <input type="text" class="form-control Tags" value="<%= item.Tags %>" ng-init="item.Tags = '<%= item.Tags %>'" ng-model="item.Tags" name="Tags" id="TagsInput" data-role="tagsinput" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                     <span ng-show="frmAddItem.Tags.$dirty && frmAddItem.Tags.$invalid">
                                                         <span class="errorFont" ng-show="frmAddItem.Tags.$error.minlength">Item tags is too short</span>
-                                                        <span class="errorFont" ng-show="frmAddItem.Tags.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>
+                                                        <span class="errorFont" ng-show="frmAddItem.Tags.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -237,7 +237,7 @@
                                                                 <span class="errorFont" ng-show="frmAddPic.picTitle.$error.required">Required</span>
                                                                 <span class="errorFont" ng-show="frmAddPic.picTitle.$error.minlength">Picture name is too short</span>
                                                                 <span class="errorFont" ng-show="frmAddPic.picTitle.$error.maxlength">Picture name is too long</span>
-                                                                <span class="errorFont" ng-show="frmAddPic.picTitle.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>
+                                                                <span class="errorFont" ng-show="frmAddPic.picTitle.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -314,7 +314,7 @@
                                                                 <span class="errorFont" ng-show="frmEditePic.picTitle.$error.required">Required</span>
                                                                 <span class="errorFont" ng-show="frmEditePic.picTitle.$error.minlength">Picture name is too short</span>
                                                                 <span class="errorFont" ng-show="frmEditePic.picTitle.$error.maxlength">Picture name is too long</span>
-                                                                <span class="errorFont" ng-show="frmEditePic.picTitle.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>
+                                                                <span class="errorFont" ng-show="frmEditePic.picTitle.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
                                                             </span>
                                                         </div>
                                                     </div>

@@ -129,7 +129,7 @@
                                                                 <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.required">Required</span>
                                                                 <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.minlength">Item name is too short</span>
                                                                 <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.maxlength">Item name is too long</span>
-                                                                <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>
+                                                                <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -155,7 +155,7 @@
                                                                 <span ng-show="frmAddItem.itemDesc.$dirty && frmAddItem.itemDesc.$invalid">
                                                                     <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.required">Required</span>
                                                                     <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.minlength">Item description is too short</span>
-                                                                    <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.pattern">Can't accept words between curly brackets {{  "{{ text }\}"   }}</span>                                                                </span>
+                                                                    <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>
