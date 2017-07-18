@@ -8,20 +8,15 @@ cloudinary.config({
 });
 
 module.exports = {
-    uploadImage: function (_name) {
-        //var stream = cloudinary.uploader.upload_stream(function (result) { console.log(result); });
-        //var file_reader = fs.createReadStream('my_picture.jpg', { encoding: 'binary' }).on('data', stream.write).on('end', stream.end);
-        //stream = cloudinary.uploader.upload_stream(function(result) {
-        //    console.log(result);
-        //}, { public_id:_name });
-        //fs.createReadStream(req.files.image.path, {encoding: 'binary'}).on('data', stream.write).on('end', stream.end);
+    uploadImage: function (_url,callback) {
 
-        cloudinary.uploader.upload(_name, function (result) {
-            console.log(result)
-        }, { public_id: _name });
-    },
-    getImage: function (_name) {
-        cloudinary.url(_name);
+        cloudinary.v2.uploader.upload(_url,function (error, result) {  callback(result.url)});
+
+        //var file_reader = fs.createReadStream(_url, { encoding: 'binary' }).on('data', function (data) { stream.write(data) }).on('end', function () { stream.end() });
+        //var stream = cloudinary.uploader.upload_stream(function (result) {
+        //    console.log(result);
+        //}, { public_id: _fileName });
+
     },
     sendEmail: function (email) {
         var smtpTransport = nodemailer.createTransport({
