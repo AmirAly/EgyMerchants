@@ -64,7 +64,7 @@
         $scope.loading = true;
         var req = {
             method: 'put',
-            url: '/Expo/Suspend',
+            url: '/Expo/Remove',
             data: {
                 _id: $scope.expoDelId
             }
