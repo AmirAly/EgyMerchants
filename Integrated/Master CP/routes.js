@@ -37,6 +37,7 @@ module.exports = function (app) {
                 expo.getAll().then(function (_expo) {
                     if (_expo.code == 100) {
                         _scope.expolist = _expo.data;
+                        console.log(_expo.data);
                         res.render('pages/exposlist', _scope);
                     }
                     else {
@@ -65,14 +66,17 @@ module.exports = function (app) {
         store.getAll().then(function (_store) {
             if (_store.code == 100) {
                 _scope.storeslst = _store.data;
+                _scope.storeslstObj = JSON.stringify(_store.data);
                 res.render('pages/floors', _scope);
             } else {
                 _scope.storeslst = [];
+                _scope.storeslstObj = [];
                 res.render('pages/floors', _scope);
             }
         }).catch(function (_err) {
             console.log(_err);
             _scope.storeslst = [];
+            _scope.storeslstObj = [];
             res.render('pages/floors', _scope);
         });
     });
@@ -86,7 +90,7 @@ module.exports = function (app) {
                 store.getAll().then(function (_store) {
                     if (_store.code == 100) {
                         _scope.storeslst = _store.data;
-
+                        _scope.storeslstObj = JSON.stringify(_store.data);
                         for (var i = 0; i < _expo.data.Floors.length; i++) {
                             if (_expo.data.Floors[i]._id == req.params.floorid) {
                                 //console.log(_expo.data.Floors[i]);
@@ -97,11 +101,13 @@ module.exports = function (app) {
                         res.render('pages/editfloor', _scope);
                     } else {
                         _scope.storeslst = [];
+                        _scope.storeslstObj = [];
                         res.render('pages/editfloor', _scope);
                     }
                 }).catch(function (_err) {
                     console.log(_err);
                     _scope.storeslst = [];
+                    _scope.storeslstObj = [];
                     res.render('pages/editfloor', _scope);
                 });
 
