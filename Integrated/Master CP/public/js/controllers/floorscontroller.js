@@ -1,8 +1,7 @@
 ﻿egm.controller("floorsController", function ($scope, API, $filter, $compile) {
 
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
-        //$scope.selectedstore = '<%= storeslst %>';
-        //console.log($scope.selectedstore);
+        $scope.selectedstore = $scope.stores[0]._id;
         document.getElementById("frmAddSection").reset();
         $scope.frmAddSection.$setUntouched();
         $scope.frmAddSection.$setPristine();
@@ -11,6 +10,10 @@
         $scope.$apply();
     });
 
+    $scope.initStores = function (_storesObj) {
+        $scope.stores = JSON.parse(_storesObj);
+        $scope.selectedstore = $scope.stores[0]._id;
+    }
 
     $scope.signOut = function () {
         window.location.href = '/Home';
@@ -49,109 +52,114 @@
                         { sectionId: 27, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "3", data: '5x3', isBusy: false },
                         { sectionId: 28, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "4", data: '5x4', isBusy: false },
                         { sectionId: 29, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "5", data: '5x5', isBusy: false },
-                        { sectionId: 30, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "6", data: '5x6', isBusy: false },
+                        { sectionId: 30, sectionCoordinateXrow: "5", sectionCoordinateYcoulmn: "6", data: '5x6', isBusy: false }
         ],
         "Coordinates": [{}],
         "Name": ""
     }
     $scope.coordinates = [];
 
+    $scope.errorNonSelected = false;
     $scope.addSection = function () {
-        $scope.getSelected();
-        $('#modal').modal('toggle');
-        //// clear modal 
-        //$('#imgItem').attr('src', '/img/add.gif');
-        $scope.loadArray();
-    }
-
-    $scope.getSelected = function () {
+       $scope.errorNonSelected = false;
         $scope.oneStoreCoordinates = {};
         // filter array by isBusy status to get selected Sections
         $scope.selectedSections = $filter('filter')($scope.floor.Sections, { isBusy: true });
-        // get lowest & highest values
-        // width
-        function findMinCoordinateYcoulmn() {
-            var result = null;
-            for (var i = 0; i < $scope.selectedSections.length; i++) {
-                var account = $scope.selectedSections[i];
-                if (result == null || account.sectionCoordinateYcoulmn < result.sectionCoordinateYcoulmn) {
-                    result = account;
-                }
-            }
-            return result;
+        console.log($scope.selectedSections);
+        if ($scope.selectedSections.length == 0) {
+            console.log('Empty Array');
+            $scope.errorNonSelected = true;
         }
-        var minW = findMinCoordinateYcoulmn().sectionCoordinateYcoulmn;
-        function findMaxCoordinateYcoulmn() {
-            var result = null;
-            for (var i = 0; i < $scope.selectedSections.length; i++) {
-                var account = $scope.selectedSections[i];
-                if (result == null || account.sectionCoordinateYcoulmn > result.sectionCoordinateYcoulmn) {
-                    result = account;
-                }
-            }
-            return result;
-        }
-        var maxW = findMaxCoordinateYcoulmn().sectionCoordinateYcoulmn;
-        sectionWidth = (maxW - minW) + 1;
-        // height
-        function findMinCoordinateXrow() {
-            var result = null;
-            for (var i = 0; i < $scope.selectedSections.length; i++) {
-                var account = $scope.selectedSections[i];
-                if (result == null || account.sectionCoordinateXrow < result.sectionCoordinateXrow) {
-                    result = account;
-                }
-            }
-            return result;
-        }
-        var minH = findMinCoordinateXrow().sectionCoordinateXrow;
-        function findMaxCoordinateXrow() {
-            var result = null;
-            for (var i = 0; i < $scope.selectedSections.length; i++) {
-                var account = $scope.selectedSections[i];
-                if (result == null || account.sectionCoordinateXrow > result.sectionCoordinateXrow) {
-                    result = account;
-                }
-            }
-            return result;
-        }
-        var maxH = findMaxCoordinateXrow().sectionCoordinateXrow;
-        sectionHeight = (maxH - minH) + 1;
+        else {
+            console.log('filled data');
+            $scope.errorNonSelected = false;
 
-        // add data to coordinates array
-        var e = document.getElementById("selectStore");
-        var strUser = e.options[e.selectedIndex].text;
-
-        $scope.oneStoreCoordinates = {
-            Top: (minH - 1),
-            Left: (minW - 1),
-            Width: sectionWidth,
-            Height: sectionHeight,
-            Img: $('#imgItem').attr('src'),
-            Store: $scope.selectedstore,
-            StoreName: strUser,
-            index:index
-        };
-        index++;
-        $scope.coordinates.push($scope.oneStoreCoordinates);
-        $scope.imgLink = '';
-        //add class busy
-        //$('.active').addClass('busy').removeClass('active');
-        $('.active').removeClass('active');
-        // clear array from active , isBusy status
-        for (var i = 0; i < $scope.floor.Sections.length; i++) {
-            if ($scope.floor.Sections[i].isBusy != false) {
-                $scope.floor.Sections[i].isBusy = false;
-                //$scope.floor.Sections[i].data = '';
+            // get lowest & highest values
+            // width
+            function findMinCoordinateYcoulmn() {
+                var result = null;
+                for (var i = 0; i < $scope.selectedSections.length; i++) {
+                    var account = $scope.selectedSections[i];
+                    if (result == null || account.sectionCoordinateYcoulmn < result.sectionCoordinateYcoulmn) {
+                        result = account;
+                    }
+                }
+                return result;
             }
+            var minW = findMinCoordinateYcoulmn().sectionCoordinateYcoulmn;
+            function findMaxCoordinateYcoulmn() {
+                var result = null;
+                for (var i = 0; i < $scope.selectedSections.length; i++) {
+                    var account = $scope.selectedSections[i];
+                    if (result == null || account.sectionCoordinateYcoulmn > result.sectionCoordinateYcoulmn) {
+                        result = account;
+                    }
+                }
+                return result;
+            }
+            var maxW = findMaxCoordinateYcoulmn().sectionCoordinateYcoulmn;
+            sectionWidth = (maxW - minW) + 1;
+            // height
+            function findMinCoordinateXrow() {
+                var result = null;
+                for (var i = 0; i < $scope.selectedSections.length; i++) {
+                    var account = $scope.selectedSections[i];
+                    if (result == null || account.sectionCoordinateXrow < result.sectionCoordinateXrow) {
+                        result = account;
+                    }
+                }
+                return result;
+            }
+            var minH = findMinCoordinateXrow().sectionCoordinateXrow;
+            function findMaxCoordinateXrow() {
+                var result = null;
+                for (var i = 0; i < $scope.selectedSections.length; i++) {
+                    var account = $scope.selectedSections[i];
+                    if (result == null || account.sectionCoordinateXrow > result.sectionCoordinateXrow) {
+                        result = account;
+                    }
+                }
+                return result;
+            }
+            var maxH = findMaxCoordinateXrow().sectionCoordinateXrow;
+            sectionHeight = (maxH - minH) + 1;
+
+            // add data to coordinates array
+            var e = document.getElementById("selectStore");
+            var strUser = e.options[e.selectedIndex].text;
+
+            $scope.oneStoreCoordinates = {
+                Top: (minH - 1),
+                Left: (minW - 1),
+                Width: sectionWidth,
+                Height: sectionHeight,
+                Img: $('#imgItem').attr('src'),
+                Store: $scope.selectedstore,
+                StoreName: strUser,
+                index: index
+            };
+            index++;
+            $scope.coordinates.push($scope.oneStoreCoordinates);
+            $scope.imgLink = '';
+            //remove class active
+            $('.active').removeClass('active');
+            // clear array from isBusy status
+            for (var i = 0; i < $scope.floor.Sections.length; i++) {
+                if ($scope.floor.Sections[i].isBusy != false) {
+                    $scope.floor.Sections[i].isBusy = false;
+                }
+            }
+            $('#modal').modal('toggle');
+            //// load floor data
+            $scope.loadArray();
+
         }
+        
     }
+
     var index = 0;
     //load from coordinates array
     $scope.loadArray = function () {
-
-        ////empty container dv
-        //document.getElementById('imagesContainer').innerHTML = "";
         // get window height & width
         var containerHeight = document.getElementById('imagesContainer').offsetHeight;
         var containerWidth = document.getElementById('imagesContainer').offsetWidth;
@@ -163,52 +171,35 @@
             var height = $scope.coordinates[i].Height * oneSectionHeight;
             var width = $scope.coordinates[i].Width * oneSectionWidth;
             var div = document.createElement('div');
-            div.innerHTML = '<div class="customSectionDv" ng-click="deleteSection(' +  $scope.coordinates[i].index  + ')" style="opacity:0.5;cursor:pointer;background-image:url(' + $scope.coordinates[i].Img + ');position:absolute;top:' + top + ';left:' + left + ';height:' + height + ';width:' + width + ';background-size: cover;background-repeat: no-repeat;"></div>';
+            div.innerHTML = '<div data-toggle="modal" data-target=".modalDeleteSection" class="customSectionDv" ng-click="deleteSection(' + $scope.coordinates[i].index + ')" style="cursor:pointer;background-image:url(' + $scope.coordinates[i].Img + ');position:absolute;top:' + top + ';left:' + left + ';height:' + height + ';width:' + width + ';background-size: cover;background-repeat: no-repeat;"></div>';
             angular.element(document.querySelector('#imagesContainer')).append($compile(div)($scope));
 
         }
     }
 
-    $scope.deleteSection = function (_objId) {
-        console.log('enter');
-        console.log(_objId);
-        console.log($scope.coordinates);
 
+    $scope.deleteSection = function (_objId) {
+        $scope.deletedSectionId = _objId;
+    }
+
+    $scope.removeSection = function () {
         $scope.coordinates = $scope.coordinates.filter(function (obj) {
-            return obj.index !== _objId;
+            return obj.index !== $scope.deletedSectionId;
         });
         console.log($scope.coordinates);
-
         $('.customSectionDv').remove();
-
         for (var i = 0; i < $scope.floor.Sections.length; i++) {
             var sec = $scope.floor.Sections[i];
             sec.isBusy = false
         }
-
         $scope.loadArray();
-        //delete confirmation
-        // delete section 
-        // reload squares
-        // reset squares text
-        // remove is busy 
     }
-
-    //$scope.selectSection = function (_section) {
-    //    console.log(_section);
-    //    if (_section.data != "") {
-    //        _section.isBusy = !_section.isBusy;
-    //        $scope['active' + _section.sectionId] = !$scope['active' + _section.sectionId];
-    //        console.log($scope['active' + _section.sectionId]);
-    //    }
-    //}
 
     var pathArray = window.location.pathname.split('/');
 
     $scope.saveFloor = function () {
         $scope.floor.Coordinates = $scope.coordinates;
         $scope.floor.Name = $scope.floorName;
-        //console.log($scope.floor);
         $scope.loading = true;
         var req = {
             method: 'put',
@@ -220,23 +211,13 @@
         }
         API.execute(req).then(function (res) {
             if (res.data.code == 100) {
-                //console.log(res);
                 window.location.href = '/expo/' + pathArray[pathArray.length - 1];
-                //localStorage.setItem('storeId', res.data._id);
-            } else {
-                //$scope.errMsg = res.data;
-                //$scope.errdiv = true;
+            }
+            else {
                 $scope.loading = false;
-                if (_res.data.code == 21) {
-                    $scope.errMsg = true;
-                    $scope.errdiv = true;
-                    $scope.errorMsg = _res.data.data;
-                } else {
-                    $scope.loading = false;
-                    $scope.errMsg = true;
-                    $scope.errdiv = true;
-                    $scope.errorMsg = _res.data.data;
-                }
+                $scope.errMsg = true;
+                $scope.errdiv = true;
+                $scope.errorMsg = _res.data.data;
             }
 
         });
@@ -247,6 +228,7 @@
     };
 
 });
+
 var _URL = window.URL || window.webkitURL;
 function convertAddFloorImgToBase64URL(event) {
     var filesSelected = document.getElementById("uploadItemImage").files;
@@ -256,7 +238,7 @@ function convertAddFloorImgToBase64URL(event) {
         var fileReader = new FileReader();
         fileReader.onload = function (fileLoadedEvent) {
             img.onload = function () {
-                if ((this.height / this.width) < 1.5 && fileToLoad.size <= 2000000) {
+                if (fileToLoad.size <= 2000000) {
                     document.getElementById("errImgDiv").style.display = 'none';
                     BaseImg64 = fileLoadedEvent.target.result;
                     UploadImage(BaseImg64);
