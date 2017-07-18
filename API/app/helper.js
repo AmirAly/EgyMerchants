@@ -9,14 +9,7 @@ cloudinary.config({
 
 module.exports = {
     uploadImage: function (_url,callback) {
-
-        cloudinary.v2.uploader.upload(_url,function (error, result) {  callback(result.url)});
-
-        //var file_reader = fs.createReadStream(_url, { encoding: 'binary' }).on('data', function (data) { stream.write(data) }).on('end', function () { stream.end() });
-        //var stream = cloudinary.uploader.upload_stream(function (result) {
-        //    console.log(result);
-        //}, { public_id: _fileName });
-
+        cloudinary.v2.uploader.upload(_url, function (error, result) { callback(result.secure_url) });
     },
     sendEmail: function (email) {
         var smtpTransport = nodemailer.createTransport({
