@@ -5,7 +5,7 @@ var _ = require("underscore");
 module.exports = {
     getAll: function () {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Status': 'Active' }, '', function (err, lst) {
+            Schema.find({ 'Status': 'Active' }, '').populate('Country', '_id Name Flag').exec(function(err, lst) {
                 if (err)
                     reject({
                         code: 1,

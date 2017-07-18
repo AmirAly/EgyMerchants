@@ -167,7 +167,7 @@
                                                             <br>
                                                             <select name="country" ng-model="expo.selectedCategory" class="form-control">
                                                                 <% categorieslst.forEach(function(category){ %>
-                                                                <option value="<%= category._id %>" selected> <%= category.Name %> </option>
+                                                                <option value="<%= category._id %>" selected> <%= category.Name %> : <%= category.Country.Name %> </option>
                                                                 <% }); %>
                                                             </select>
                                                         </div>
