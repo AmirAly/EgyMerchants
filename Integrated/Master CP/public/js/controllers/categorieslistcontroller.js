@@ -2,6 +2,7 @@
 
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
         $scope.category = {};
+        $scope.selectedCountry = $scope.countryData[0]._id;
         document.getElementById("frmAddCategory").reset();
         $scope.frmAddCategory.$setUntouched();
         $scope.frmAddCategory.$setPristine();
@@ -11,8 +12,10 @@
         $scope.$apply();
     });
 
-    $scope.init = function (_category) {
+    $scope.init = function (_category , _country) {
         $scope.categoryData = JSON.parse(_category);
+        $scope.countryData = JSON.parse(_country);
+        $scope.selectedCountry = $scope.countryData[0]._id;
     }
 
     $scope.addCategory = function () {
