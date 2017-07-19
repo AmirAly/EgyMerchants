@@ -1,4 +1,14 @@
 <div ng-controller="headerController">
+  
+  <div class="loaderContainer" ng-show="loading"></div>
+<div class="loader" ng-show="loading">
+  <div class="bubblingG">
+    <span id="bubblingG_1"> </span>
+    <span id="bubblingG_2"> </span>
+    <span id="bubblingG_3"> </span>
+  </div>
+</div>
+    
     <div class="pageHeader">
         <div class="header">
             <nav class="navbar navbar-default normal" role="navigation">
@@ -74,12 +84,13 @@
                                             <button type="submit" ng-click="search()" title="Search" class="button">
                                                 <i class="glyphicon glyphicon-search"></i>
                                             </button>
-                                            <div id="search_autocomplete" class="search-autocomplete" style="display: none;"></div>
+                                            <div id="search_autocomplete" class="search-autocomplete">
+                                            </div>
                                             <div class="clearer"></div>
                                         </div>
                                     </form>
-
                                 </div>
+                            <h6 style="padding-top: 90px;text-align: center;color: red;" ng-show="searchErr">Enter 2 characters minimum</h6>
                             </div>
                             <div class="col-sm-3">
                                 <div class="cart-area hidden-xs">

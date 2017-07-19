@@ -8,6 +8,7 @@
 
     window.onresize = function () {
         console.log('resize');
+        console.log($rootScope.loading);
         $rootScope.loading = true;
         location.reload();
     }
