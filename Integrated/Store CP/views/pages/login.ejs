@@ -43,7 +43,7 @@
                                                         Email <small>(required)</small>
                                                     </label>
                                                     <input type="email" class="form-control" ng-model="loginData.Email" placeholder="Email..." name="email" id="email" required="" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ng-minlength="6">
-                                                    <span ng-show="frmLogin.email.$dirty && frmLogin.email.$invalid">
+                                                    <span ng-show="frmLogin.email.$touched && frmLogin.email.$invalid">
                                                         <span class="errorFont" ng-show="frmLogin.email.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmLogin.email.$error.pattern">Invalid email please enter the email as example@mail.com</span>
                                                         <span class="errorFont" ng-show="frmLogin.email.$error.minlength">Email is too short</span>
@@ -56,7 +56,7 @@
                                                         Password <small>(required)</small>
                                                     </label>
                                                     <input type="password" class="form-control" ng-model="loginData.Password" ng-minlength="6" name="psw" id="psw" placeholder="password..." required="">
-                                                    <span ng-show="frmLogin.psw.$dirty && frmLogin.psw.$invalid">
+                                                    <span ng-show="frmLogin.psw.$touched && frmLogin.psw.$invalid">
                                                         <span class="errorFont" ng-show="frmLogin.psw.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmLogin.psw.$error.minlength">Password minimum length 6 Characters</span>
                                                     </span>
