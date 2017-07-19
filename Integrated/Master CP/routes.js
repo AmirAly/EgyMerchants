@@ -171,6 +171,7 @@ module.exports = function (app) {
                 country.getAll().then(function (_country) {
                     if (_country.code == 100) {
                         _scope.countrieslst = _country.data;
+                        _scope.countrieslstJSON = JSON.stringify(_country.data);
                         res.render('pages/categorieslist', _scope);
                     } else {
                         _scope.countrieslst = [];

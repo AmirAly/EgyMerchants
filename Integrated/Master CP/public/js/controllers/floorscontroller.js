@@ -65,13 +65,10 @@
         $scope.oneStoreCoordinates = {};
         // filter array by isBusy status to get selected Sections
         $scope.selectedSections = $filter('filter')($scope.floor.Sections, { isBusy: true });
-        console.log($scope.selectedSections);
         if ($scope.selectedSections.length == 0) {
-            console.log('Empty Array');
             $scope.errorNonSelected = true;
         }
         else {
-            console.log('filled data');
             $scope.errorNonSelected = false;
 
             // get lowest & highest values
@@ -186,7 +183,6 @@
         $scope.coordinates = $scope.coordinates.filter(function (obj) {
             return obj.index !== $scope.deletedSectionId;
         });
-        console.log($scope.coordinates);
         $('.customSectionDv').remove();
         for (var i = 0; i < $scope.floor.Sections.length; i++) {
             var sec = $scope.floor.Sections[i];
