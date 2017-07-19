@@ -144,6 +144,7 @@ module.exports = {
                             data: "There is item with same name in this gallery"
                         });
                     else {
+                        Helper.uploadMultipleImages(_product.Pictures);
                         _product.save(function (err, Obj) {
                             if (err)
                                 reject({
