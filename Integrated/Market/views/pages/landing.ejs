@@ -27,7 +27,7 @@
             </div>
             <div class="col-md-5 big">
                 <h1 class="wow slideInDown" data-wow-duration="2s">Welcome</h1>
-                <p class="wow slideInUp" data-wow-duration="2s">{{selectedCountry.WelcomeMsg}}</p>
+                <p class="wow slideInUp" ng-cloak data-wow-duration="2s">{{selectedCountry.WelcomeMsg}}</p>
 				
 						<div ng-cloak ng-repeat="category in allcategories track by $index" class="wow bounceInRight txtCategoryContainer" data-wow-duration="2s" ng-click="openExpo(IsoCode , category._id)">
 							<a href="/{{IsoCode}}/Expos/{{category._id}}">{{category.Name}}</a>
