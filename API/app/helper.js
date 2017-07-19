@@ -11,6 +11,9 @@ module.exports = {
     uploadImage: function (_url,callback) {
         cloudinary.v2.uploader.upload(_url, function (error, result) { callback(result.secure_url) });
     },
+    uploadMultipleImages: function (_url) {
+        cloudinary.uploader.image_upload_tag({ html: { multiple: 1 } });
+    },
     sendEmail: function (email) {
         var smtpTransport = nodemailer.createTransport({
             transport: "SMTP",
