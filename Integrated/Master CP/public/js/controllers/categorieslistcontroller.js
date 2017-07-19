@@ -52,7 +52,7 @@
     };
 
     $scope.updateCategory = function () {
-        //$scope.loading = true;
+        $scope.loading = true;
         var req = {
             method: 'put',
             url: '/Category/Edit',
@@ -63,9 +63,7 @@
             }
         }
         API.execute(req).then(function (_res) {
-            //console.log(_res);
             if (_res.data.code == 100) {
-                //console.log(_res);
                 window.location.reload();
             } else {
                 $scope.loading = false;
