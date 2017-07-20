@@ -1877,11 +1877,13 @@ h6.mega {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 290px;
+    height: 220px;
 }
 
     .pageSearch .product-preview .preview .img-responsive {
         /*height: auto;*/
+        height: 220px !important;
+        max-height: 220px !important;
     }
 
 

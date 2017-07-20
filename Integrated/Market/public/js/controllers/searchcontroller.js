@@ -3,20 +3,31 @@
     $scope.expos = 'all';
     $scope.countries = 'all';
     $scope.stores = 'all';
-    $scope.init1 = function (_result, _isoCode) {
 
-        //var data = <%- JSON.parse(JsonSearchResult) %>;
+    //console.log(window.x);
+    //var xx = window.x;
+    //var xxx = (window.x).replace(/&quot;/g, '"');
+    //console.log(xxx);
+    console.log(JSON.parse((window.x).replace(/&quot;/g, '"')));
+
+    $scope.searchResult = JSON.parse((window.x).replace(/&quot;/g, '"'));
+
+    //console.log($scope.searchResult);
+
+    $scope.init1 = function ( _isoCode) {
+
+        //var data = JSON.parse("<%= JsonSearchResult %>");
         //console.log(data);
 
         $rootScope.IsoCode = _isoCode;
         console.log($rootScope.IsoCode);
         localStorage.setItem('IsoCode', _isoCode);
-        if ( _result != '') {
-            $scope.searchResult = JSON.parse(_result);
-        }
-        else {
-            $scope.searchResult = _result;
-        }
+        //if ( _result != '') {
+        //    $scope.searchResult = JSON.parse(_result);
+        //}
+        //else {
+        //    $scope.searchResult = _result;
+        //}
     }
 
     $scope.refineSearch = function () {
