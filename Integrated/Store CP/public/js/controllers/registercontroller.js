@@ -27,8 +27,8 @@
         }
     }
 
-     function next () {
-         $scope.frmRegister.city.$validate();
+    function next() {
+        $scope.frmRegister.city.$validate();
         $scope.frmRegister.address.$validate();
         $scope.frmRegister.txtDescription.$validate();
     }

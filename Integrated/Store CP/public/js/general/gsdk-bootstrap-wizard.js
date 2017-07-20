@@ -19,11 +19,16 @@ searchVisible = 0;
 transparent = true;
 
 $(document).ready(function(){
-
+    $.validator.addMethod("customemail",
+    function (value, element) {
+        return /^\b[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}\b$/.test(value);
+    },
+    "Warning"
+);
     /*  Activate the tooltips      */
     $('[rel="tooltip"]').tooltip();
 
-    // Code for the Validator
+     //Code for the Validator
     var $validator = $('.wizard-card form').validate({
 		  rules: {
 		    firstname: {
@@ -35,12 +40,17 @@ $(document).ready(function(){
 		      minlength: 3
 		    },
 		    email: {
-		      required: true,
-		      minlength: 3,
+		        required: {
+		            depends: function () {
+		                $(this).val($.trim($(this).val()));
+		                return true;
+		            }
+		        },
+		        customemail: true
 		    }
         }
 	});
-
+    
     // Wizard Initialization
   	$('.wizard-card').bootstrapWizard({
         'tabClass': 'nav nav-pills',
