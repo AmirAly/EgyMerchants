@@ -11,7 +11,6 @@
         }
     };
 
-
     function login() {
         $scope.loading = true;
         var req = {
