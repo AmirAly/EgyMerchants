@@ -160,14 +160,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                <div class="row" ng-init="init('<%= categorieslstObj %>')">
                                                     <div class="col-md-8">
                                                         <div class="form-group">
                                                             <label>Category</label>
                                                             <br>
                                                             <select name="country" ng-model="expo.selectedCategory" class="form-control">
                                                                 <% categorieslst.forEach(function(category){ %>
-                                                                <option value="<%= category._id %>" selected> <%= category.Name %> : <%= category.Country.Name %> </option>
+                                                                <option value="<%= category._id %>"> <%= category.Name %> : <%= category.Country.Name %> </option>
                                                                 <% }); %>
                                                             </select>
                                                         </div>

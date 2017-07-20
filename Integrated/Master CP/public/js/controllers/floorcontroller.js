@@ -180,13 +180,13 @@
         $scope.loading = true;
         var req = {
             method: 'put',
-            url: '/Expo/Edit',
+            url: '/Expo/EditFloor',
             data: {
                 _id: $scope.expo._id,
-                Title: $scope.expo.Title,
-                Category: $scope.expo.Category,
+                //Title: $scope.expo.Title,
+                //Category: $scope.expo.Category,
                 Floors: $scope.expo.Floors,
-                Banner: $scope.expo.Banner
+                //Banner: $scope.expo.Banner
             }
         }
         API.execute(req).then(function (_res) {

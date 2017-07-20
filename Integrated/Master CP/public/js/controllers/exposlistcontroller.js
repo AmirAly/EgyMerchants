@@ -4,9 +4,10 @@
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click();
     };
-
+    $scope.expo = {};
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
         $scope.expo = {};
+        $scope.expo.selectedCategory = $scope.categoriesLst[0]._id;
         document.getElementById("frmAddExpo").reset();
         $scope.frmAddExpo.$setUntouched();
         $scope.frmAddExpo.$setPristine();
@@ -18,6 +19,11 @@
         $scope.$apply();
     });
 
+    $scope.init = function (_cat) {
+        $scope.categoriesLst = JSON.parse(_cat);
+        $scope.expo.selectedCategory = $scope.categoriesLst[0]._id;
+        console.log($scope.expo.selectedCategory);
+    }
 
     $scope.addExpo = function () {
         $scope.loading = true;

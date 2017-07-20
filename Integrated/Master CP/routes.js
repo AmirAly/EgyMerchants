@@ -34,6 +34,7 @@ module.exports = function (app) {
         category.getAll().then(function (_category) {
             if (_category.code == 100) {
                 _scope.categorieslst = _category.data;
+                _scope.categorieslstObj = JSON.stringify(_category.data);
                 expo.getAll().then(function (_expo) {
                     if (_expo.code == 100) {
                         _scope.expolist = _expo.data;
@@ -50,11 +51,13 @@ module.exports = function (app) {
 
             } else {
                 _scope.categorieslst = {};
+                _scope.categorieslstObj = {};
                 res.render('pages/exposlist', _scope);
             }
         }).catch(function (_err) {
             console.log(_err);
             _scope.categorieslst = {};
+            _scope.categorieslstObj = {};
             res.render('pages/exposlist', _scope);
         });
     });
