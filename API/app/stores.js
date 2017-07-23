@@ -4,6 +4,7 @@ var Gallery = require('./models/gallery');
 var Expo = require('./models/expo');
 var Item = require('./models/item');
 var Category = require('./models/category');
+var Helper = require('./helper');
 var _ = require("underscore");
 module.exports = {
     register: function (_newStore) {
@@ -22,19 +23,39 @@ module.exports = {
                         });
                     else {
                         _newStore.Type = 'store';
-                        _newStore.save(function (err, _newstore) {
-                            if (err)
-                                reject({
-                                    code: 1,
-                                    data: err
-                                });
-                            else {
-                                resolve({
-                                    code: 100,
-                                    data: { _id: _newstore._id, Name: _newstore.Name, Type: _newstore.Type }
-                                });
-                            }
-                        })
+                        if (_newStore.ProfilePicture) {
+                            Helper.uploadImage(_newStore.ProfilePicture, function (_url) {
+                                _newStore.ProfilePicture = _url;
+                                _newStore.save(function (err, _newstore) {
+                                    if (err)
+                                        reject({
+                                            code: 1,
+                                            data: err
+                                        });
+                                    else {
+                                        resolve({
+                                            code: 100,
+                                            data: { _id: _newstore._id, Name: _newstore.Name, Type: _newstore.Type }
+                                        });
+                                    }
+                                })
+                            })
+                        }
+                        else {
+                            _newStore.save(function (err, _newstore) {
+                                if (err)
+                                    reject({
+                                        code: 1,
+                                        data: err
+                                    });
+                                else {
+                                    resolve({
+                                        code: 100,
+                                        data: { _id: _newstore._id, Name: _newstore.Name, Type: _newstore.Type }
+                                    });
+                                }
+                            })
+                        }
                     }
                 }
             })
@@ -96,27 +117,80 @@ module.exports = {
                             else {
                                 if (Obj) {
                                     if (Obj.Status == "Active") {
+                                        Obj.CoverPhoto = "";
+                                        Obj.ProfilePicture = "";
                                         Obj.Email = _email;
                                         Obj.City = _city;
                                         Obj.Address = _address;
                                         Obj.Country = _country;
                                         Obj.Description = _description;
-                                        Obj.ProfilePicture = _profilePicture;
-                                        Obj.CoverPhoto = _coverPhoto;
-                                        if (_imgs)
-                                            Obj.Imgs = _imgs;
-                                        Obj.save(function (err, Obj) {
-                                            if (err)
-                                                reject({
-                                                    code: 1,
-                                                    data: err
-                                                });
-                                            else
-                                                resolve({
-                                                    code: 100,
-                                                    data: "Your profile updated successfully"
-                                                });
-                                        })
+                                        if (_profilePicture) {
+                                            Helper.uploadImage(_profilePicture, function (_url) {
+                                                Obj.ProfilePicture = _url;
+                                                if (_coverPhoto) {
+                                                    Helper.uploadImage(_coverPhoto, function (_url) {
+                                                        Obj.CoverPhoto = _url;
+                                                        Obj.save(function (err, Obj) {
+                                                            if (err)
+                                                                reject({
+                                                                    code: 1,
+                                                                    data: err
+                                                                });
+                                                            else
+                                                                resolve({
+                                                                    code: 100,
+                                                                    data: "Your profile updated successfully"
+                                                                });
+                                                        })
+                                                    })
+                                                }
+                                                else{
+                                                Obj.save(function (err, Obj) {
+                                                    if (err)
+                                                        reject({
+                                                            code: 1,
+                                                            data: err
+                                                        });
+                                                    else
+                                                        resolve({
+                                                            code: 100,
+                                                            data: "Your profile updated successfully"
+                                                        });
+                                                })
+                                            }
+                                            })
+                                        }
+                                      else  if (_coverPhoto) {
+                                            Helper.uploadImage(_coverPhoto, function (_url) {
+                                                Obj.CoverPhoto = _url;
+                                                Obj.save(function (err, Obj) {
+                                                    if (err)
+                                                        reject({
+                                                            code: 1,
+                                                            data: err
+                                                        });
+                                                    else
+                                                        resolve({
+                                                            code: 100,
+                                                            data: "Your profile updated successfully"
+                                                        });
+                                                })
+                                            })
+                                        }
+                                        else {
+                                            Obj.save(function (err, Obj) {
+                                                if (err)
+                                                    reject({
+                                                        code: 1,
+                                                        data: err
+                                                    });
+                                                else
+                                                    resolve({
+                                                        code: 100,
+                                                        data: "Your profile updated successfully"
+                                                    });
+                                            })
+                                        }
                                     }
                                     else {
                                         reject({

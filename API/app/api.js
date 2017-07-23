@@ -253,7 +253,7 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Expo/EditFloor', function (req, res) {
-        ExpoLogic.editFloor(req.body._id,req.body.Floors).then(function (result) {
+        ExpoLogic.editFloor(req.body._id, req.body.Title, req.body.Banner, req.body.Category,req.body.Floors).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
