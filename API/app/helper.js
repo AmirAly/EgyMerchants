@@ -11,8 +11,27 @@ module.exports = {
     uploadImage: function (_url,callback) {
         cloudinary.v2.uploader.upload(_url, function (error, result) { callback(result.secure_url) });
     },
-    uploadMultipleImages: function (_url) {
-        cloudinary.uploader.image_upload_tag({ html: { multiple: 1 } });
+    uploadMultipleImages: function (_url, callback) {
+        var secureUrls = [];
+        for (var i = 0; i < _url.length; i++) {
+            if (_url[i].URL) { 
+            cloudinary.v2.uploader.upload(_url[i].URL, function (error, result) {
+                secureUrls.push(result.secure_url);
+                if (secureUrls.length == _url.length) {
+                    callback(secureUrls);
+                }
+            });
+        }
+            else {
+                cloudinary.v2.uploader.upload(_url[i].Img, function (error, result) {
+                    secureUrls.push(result.secure_url);
+                    if (secureUrls.length == _url.length) {
+                        callback(secureUrls);
+                    }
+                });
+            }
+        }
+        
     },
     sendEmail: function (email) {
         var smtpTransport = nodemailer.createTransport({

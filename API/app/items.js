@@ -144,7 +144,26 @@ module.exports = {
                             data: "There is item with same name in this gallery"
                         });
                     else {
-                        Helper.uploadMultipleImages(_product.Pictures);
+                        if (_product.Pictures.length) {
+                            Helper.uploadMultipleImages(_product.Pictures, function (_url) {
+                                var i = 0;
+                                _.each(_url, function (imageurl) { if (i < _product.Pictures.length) { _product.Pictures[i].URL = imageurl; i++; } });
+                                _product.save(function (err, Obj) {
+                                    if (err)
+                                        reject({
+                                            code: 1,
+                                            data: err
+                                        });
+                                    else {
+                                        resolve({
+                                            code: 100,
+                                            data:"This item added successfully"
+                                        });
+                                    }
+                                })
+                            });
+                        }
+                        else {
                         _product.save(function (err, Obj) {
                             if (err)
                                 reject({
@@ -157,7 +176,8 @@ module.exports = {
                                     data: "This item added successfully"
                                 });
                             }
-                        })
+                            })
+                        }
                     }
                 }
             })
@@ -187,26 +207,54 @@ module.exports = {
                                         data: "There is item with the same name in this gallery"
                                     });
                                 else {
-                                    item.Name = _name;
-                                    item.Description = _description;
-                                    item.Price = _price;
-                                    item.PriceBeforeSale = _priceBeforeSale;
-                                    item.Badges = _badges;
-                                    item.Tags = _tags;
-                                    if (_imgs)
-                                        item.Pictures = _imgs;
-                                    item.save(function (err, Obj) {
-                                        if (err)
-                                            reject({
-                                                code: 1,
-                                                data: err
-                                            });
-                                        else
-                                            resolve({
-                                                code: 100,
-                                                data: "This item updated successfully"
-                                            });
-                                    })
+                                    item.Pictures = [];
+                                    if (_imgs.length) {
+                                        Helper.uploadMultipleImages(_imgs, function (_url) {
+                                            var i = 0;
+                                            var result = _imgs;
+                                            _.each(_url, function (imageurl) { if (i < _imgs.length) { result[i].URL = imageurl; i++; } });
+                                            item.Pictures = item.Pictures.concat(result);
+                                            item.Name = _name;
+                                            item.Description = _description;
+                                            item.Price = _price;
+                                            item.PriceBeforeSale = _priceBeforeSale;
+                                            item.Badges = _badges;
+                                            item.Tags = _tags;
+                                            item.save(function (err, Obj) {
+                                                if (err)
+                                                    reject({
+                                                        code: 1,
+                                                        data: err
+                                                    });
+                                                else
+                                                    resolve({
+                                                        code: 100,
+                                                        data: "This item updated successfully"
+                                                    });
+                                            })
+                                        });
+                                    }
+                                    else {
+                                        item.Name = _name;
+                                        item.Description = _description;
+                                        item.Price = _price;
+                                        item.PriceBeforeSale = _priceBeforeSale;
+                                        item.Badges = _badges;
+                                        item.Tags = _tags;
+                                        item.save(function (err, Obj) {
+                                            if (err)
+                                                reject({
+                                                    code: 1,
+                                                    data: err
+                                                });
+                                            else
+                                                resolve({
+                                                    code: 100,
+                                                    data: "This item updated successfully"
+                                                });
+                                        })
+                                    }
+                                   
                                 }
                             }
                         })
@@ -217,20 +265,5 @@ module.exports = {
                 }
             })
         })
-    },
-    suspend: function (_id) {
-        return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "Suspended" } }, { new: true }, function (err, Obj) {
-                if (err)
-                    reject({ code: 1, data: err })
-                else {
-                    if (Obj)
-                        resolve({ code: 100, data: "This item deleted successfuylly" })
-                    else
-                        reject({ code: 21, data: "This filteration didn't resulted in any data" })
-                }
-            })
-        })
-    },
-   
+    }
 }
