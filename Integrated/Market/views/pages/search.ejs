@@ -6,9 +6,11 @@
     <nav class="breadcrumbs"> <a href="/EG/Home">Home</a> <span class="divider">›</span> Search results for ' <%= searchTxt %> ' </nav>
 </section>
 
+<script>var x = <%-JSON.stringify(JsonSearchResult)%>;</script>
+
 <!-- One column content -->
 <section class="container responsive pageSearch" ng-controller="searchController">
-    <div class="dvOptionsContainer" ng-init="init1('<%= JsonSearchResult %>' , '<%= countryIso %>')">
+    <div class="dvOptionsContainer" ng-init="init1('<%= countryIso %>')">
         <div class="row">
             <div class="col-sm-9 col-md-6">
                 <select ng-model="countries">

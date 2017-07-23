@@ -60,7 +60,7 @@
                                     <a href="/gallery/{{galleryId}}">Edit Gallery</a>
                                 </li>
                                 <li>
-                                    <a href="/p/products/{{galleryId}}">Gallery Items</a>
+                                    <a href="/products/{{galleryId}}">Gallery Items</a>
                                 </li>
                                 <li class="active">Edit Item</li>
                             </ol>
@@ -101,7 +101,9 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                        </div>
+										<div class="row">
+										<div class="col-md-12">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Price Before Sale</label>
                                                     <input type="text" class="form-control" value="<%= item.PriceBeforeSale %>" ng-init="item.PriceBeforeSale = '<%= item.PriceBeforeSale %>'" ng-model="item.PriceBeforeSale" name="PriceBeforeSale" id="PriceBeforeSale" pattern="^(([0-9]*)|(([0-9]*)\.([0-9]*)))$">
@@ -110,7 +112,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                        </div>
+										</div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">

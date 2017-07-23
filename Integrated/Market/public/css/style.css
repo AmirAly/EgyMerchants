@@ -760,6 +760,8 @@ h6.mega {
     background: #fff;
     text-align: center;
     padding: 15px;
+    font-size: 20px;
+    font-family: Mavenpro, Arial, Helvetica, sans-serif;
 }
 
 .pin {
@@ -1875,11 +1877,13 @@ h6.mega {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 290px;
+    height: 220px;
 }
 
     .pageSearch .product-preview .preview .img-responsive {
         /*height: auto;*/
+        height: 220px !important;
+        max-height: 220px !important;
     }
 
 

@@ -21,7 +21,6 @@
 
     $scope.init1 = function (_expoJson) {
         $scope.expo = JSON.parse(_expoJson);
-        //console.log($scope.expo);
     }
     $scope.init2 = function (_floorJson) {
         $scope.floor = JSON.parse(_floorJson);
@@ -29,7 +28,6 @@
             $scope.floor.Coordinates[i].index = index;
             index++;
         }
-        console.log($scope.floor);
         $scope.loadArray();
     }
     $scope.signOut = function () {
@@ -43,13 +41,10 @@
         $scope.oneStoreCoordinates = {};
         // filter array by isBusy status to get selected Sections
         $scope.selectedSections = $filter('filter')($scope.floor.Sections, { isBusy: true });
-        console.log($scope.selectedSections);
         if ($scope.selectedSections.length == 0) {
-            console.log('Empty Array');
             $scope.errorNonSelected = true;
         }
         else {
-            console.log('filled data');
             $scope.errorNonSelected = false;
             // get lowest & highest values
             // width
@@ -76,7 +71,6 @@
             }
             var maxW = findMaxCoordinateYcoulmn().sectionCoordinateYcoulmn;
             sectionWidth = (maxW - minW) + 1;
-            //console.log("sectionWidth : " + sectionWidth);
             // height
             function findMinCoordinateXrow() {
                 var result = null;
@@ -166,7 +160,6 @@
         $scope.floor.Coordinates = $scope.floor.Coordinates.filter(function (obj) {
             return obj.index !== $scope.deletedSectionId;
         });
-        console.log($scope.floor.Coordinates);
         $('.customSectionDv').remove();
         for (var i = 0; i < $scope.floor.Sections.length; i++) {
             var sec = $scope.floor.Sections[i];
@@ -187,13 +180,13 @@
         $scope.loading = true;
         var req = {
             method: 'put',
-            url: '/Expo/Edit',
+            url: '/Expo/EditFloor',
             data: {
                 _id: $scope.expo._id,
-                Title: $scope.expo.Title,
-                Category: $scope.expo.Category,
+                //Title: $scope.expo.Title,
+                //Category: $scope.expo.Category,
                 Floors: $scope.expo.Floors,
-                Banner: $scope.expo.Banner
+                //Banner: $scope.expo.Banner
             }
         }
         API.execute(req).then(function (_res) {

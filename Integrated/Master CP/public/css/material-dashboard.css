@@ -2653,6 +2653,8 @@ select.form-control {
 .table > tfoot > tr > td {
     padding: 12px 8px;
     vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .table > thead > tr > th {
@@ -4285,6 +4287,7 @@ footer {
 
     .card .table {
         margin-bottom: 0;
+        table-layout: fixed;
     }
 
         .card .table tr:first-child td {

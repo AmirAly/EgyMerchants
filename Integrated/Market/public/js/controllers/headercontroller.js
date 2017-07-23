@@ -102,16 +102,22 @@
             });
         }
     }
-
+    $rootScope.IsoCode = localStorage.getItem('IsoCode');
     $scope.logout = function () {
         localStorage.clear();
         window.location.href = "/" + $rootScope.IsoCode + "/Home";
     }
 
+    $scope.searchErr = false;
     $scope.txtSearch = '';
     $scope.search = function () {
-        if ($scope.txtSearch != '') {
+        $scope.searchErr = false;
+        if ($scope.txtSearch != '' && $scope.txtSearch.length > 1) {
             window.location.href = "/" + $rootScope.IsoCode + "/Search/" + $scope.txtSearch;
+        }
+        else {
+            console.log('2 char min');
+            $scope.searchErr = true;
         }
     }
 });
