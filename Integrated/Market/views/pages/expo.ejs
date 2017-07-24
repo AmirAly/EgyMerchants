@@ -3,7 +3,8 @@
 
 <div class="expoPage" ng-controller="expoController">
     <div class="allExposView" ng-hide="showSingleExpo">
-        <div class="secondDiv" ng-init="init('<%= JsonExpos %>', '<%= countryIso %>')">
+        <div class="secondDiv" ng-init="init('<%= countryIso %>')">
+		<script>var exposObject = <%-JSON.stringify(JsonExpos)%>;</script>
 
             <% if (expos.length > 0) { %>
             <div ng-repeat="expo in exposList">
