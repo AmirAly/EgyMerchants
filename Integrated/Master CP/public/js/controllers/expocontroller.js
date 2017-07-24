@@ -3,11 +3,8 @@
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click();
     };
-
-    $scope.init = function (_floors, _expo) {
-        $scope.lstfloors = JSON.parse(_floors);
-        $scope.expoData = JSON.parse(_expo);
-    };
+    $scope.expoLst = JSON.parse((window.expoObject).replace(/&quot;/g, '"'));
+    $scope.floorLst = JSON.parse((window.floorObject).replace(/&quot;/g, '"'));
 
     $scope.floors = function (_id) {
         window.location.href = '/floors/' + _id;
@@ -20,9 +17,9 @@
             url: '/Expo/Edit',
             data: {
                 _id: _id,
-                Title: $scope.expo.Title,
-                Category: $scope.expo.selectedCategory,
-                Floors: $scope.lstfloors,
+                Title: $scope.expoLst.Title,
+                Category: $scope.expoLst.Category._id,
+                Floors: $scope.floorLst,
                 Banner: $('#imgItem').attr('src')
             }
         }
@@ -69,8 +66,8 @@
             url: '/Expo/Edit',
             data: {
                 _id: $scope.expoDelId,
-                Title: $scope.expo.Title,
-                Category: $scope.expo.selectedCategory,
+                Title: $scope.expoLst.Title,
+                Category: $scope.expoLst.Category._id,
                 Floors: $scope.lstfloors,
                 Banner: $('#imgItem').attr('src')
             }

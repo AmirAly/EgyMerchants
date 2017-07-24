@@ -1,5 +1,6 @@
 <% include ../partials/headpages %>
-<div ng-controller='countryController' ng-init="init('<%= countryJSON %>')">
+<div ng-controller='countryController'>
+	<script>var countryObject = <%-JSON.stringify(countryJSON)%>;</script>
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -70,7 +71,7 @@
                                             <div class="col-md-5">
                                                 <div class="form-group label-floating is-focused ">
                                                     <label class="control-label">Country name</label>
-                                                    <input type="text" class="form-control" ng-model="country.Name" value="<%= country.Name %>" ng-init="country.Name = '<%= country.Name %>'" name="countryTitle" id="countryTitle" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
+                                                    <input type="text" class="form-control" ng-model="currentCountry.Name" value="currentCountry.Name" name="countryTitle" id="countryTitle" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                     <span ng-show="frmUpdateCountry.countryTitle.$dirty && frmUpdateCountry.countryTitle.$invalid">
                                                         <span class="errorFont" ng-show="frmUpdateCountry.countryTitle.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmUpdateCountry.countryTitle.$error.minlength">Country name is too short </span>
@@ -84,7 +85,7 @@
                                             <div class="col-md-5">
                                                 <div class="form-group label-floating is-focused ">
                                                     <label class="control-label">Country iso code</label>
-                                                    <input type="text" class="form-control" ng-model="country.IsoCode" value="<%= country.IsoCode %>" ng-init="country.IsoCode = '<%= country.IsoCode %>'" name="countryIso" id="countryIso" required ng-minlength="2" ng-maxlength="3">
+                                                    <input type="text" class="form-control" ng-model="currentCountry.IsoCode" value="currentCountry.IsoCode" name="countryIso" id="countryIso" required ng-minlength="2" ng-maxlength="3">
                                                     <span ng-show="frmUpdateCountry.countryIso.$dirty && frmUpdateCountry.countryIso.$invalid">
                                                         <span class="errorFont" ng-show="frmUpdateCountry.countryIso.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmUpdateCountry.countryIso.$error.minlength">Iso code is too short</span>
@@ -97,7 +98,7 @@
                                             <div class="col-md-8">
                                                 <div class="form-group label-floating is-focused ">
                                                     <label class="control-label">Country welcome message</label>
-                                                    <input type="text" class="form-control" ng-model="country.WelcomeMsg" value="<%= country.WelcomeMsg %>" ng-init="country.WelcomeMsg = '<%= country.WelcomeMsg %>'" name="countryMsg" id="countryMsg" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
+                                                    <input type="text" class="form-control" ng-model="currentCountry.WelcomeMsg" value="currentCountry.WelcomeMsg" name="countryMsg" id="countryMsg" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                     <span ng-show="frmUpdateCountry.countryMsg.$dirty && frmUpdateCountry.countryMsg.$invalid">
                                                         <span class="errorFont" ng-show="frmUpdateCountry.countryMsg.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmUpdateCountry.countryMsg.$error.minlength">Welcome message is too short </span>

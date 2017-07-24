@@ -3,23 +3,19 @@
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click()
     };
+    $scope.currentCountry = JSON.parse((window.countryObject).replace(/&quot;/g, '"'));
 
-    $scope.init = function (_country) {
-        $scope.countryObj = JSON.parse(_country);
-        $scope.countryId = $scope.countryObj._id;
-    };
-    
     $scope.updateCountry = function () {
         $scope.loading = true;
         var req = {
             method: 'put',
             url: '/Country/Edit',
             data: {
-                _id: $scope.countryId,
-                Name: $scope.country.Name,
-                IsoCode: $scope.country.IsoCode,
+                _id: $scope.currentCountry._id,
+                Name: $scope.currentCountry.Name,
+                IsoCode: $scope.currentCountry.IsoCode,
                 Flag: $('#imgItem').attr('src'),
-                WelcomeMsg: $scope.country.WelcomeMsg,
+                WelcomeMsg: $scope.currentCountry.WelcomeMsg,
                 Status: "Active",
             }
         }

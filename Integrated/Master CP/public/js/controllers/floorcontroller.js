@@ -12,22 +12,25 @@
         $scope.$apply();
     });
 
-    $scope.initStores = function (_storesObj) {
-        $scope.stores = JSON.parse(_storesObj);
-        $scope.selectedstore = $scope.stores[0]._id;
-    }
+
+    $scope.stores = JSON.parse((window.storesObject).replace(/&quot;/g, '"'));
+    $scope.selectedstore = $scope.stores[0]._id;
+
 
     var index = 0;
+    $scope.expo = JSON.parse((window.expoObject).replace(/&quot;/g, '"'));
 
-    $scope.init1 = function (_expoJson) {
-        $scope.expo = JSON.parse(_expoJson);
-    }
-    $scope.init2 = function (_floorJson) {
-        $scope.floor = JSON.parse(_floorJson);
+    //$scope.init1 = function (_expoJson) {
+    //    $scope.expo = JSON.parse(_expoJson);
+    //}
+
+    $scope.init2 = function () {
+        $scope.floor = JSON.parse((window.floorsObject).replace(/&quot;/g, '"'));
         for (var i = 0; i < $scope.floor.Coordinates.length; i++) {
             $scope.floor.Coordinates[i].index = index;
             index++;
         }
+        $scope.selectedstore = $scope.stores[0]._id;
         $scope.loadArray();
     }
     $scope.signOut = function () {
@@ -148,6 +151,7 @@
 
         }
     }
+    $scope.init2();
 
 
     $scope.deleteSection = function (_objId) {

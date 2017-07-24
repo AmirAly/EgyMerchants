@@ -3,10 +3,7 @@
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click();
     };
-
-    $scope.init = function (_countries) {
-        $scope.countries = JSON.parse(_countries);
-    };
+    $scope.countries = JSON.parse((window.countriesLstObject).replace(/&quot;/g, '"'));
 
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
 

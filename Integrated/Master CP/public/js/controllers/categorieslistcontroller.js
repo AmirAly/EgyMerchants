@@ -1,4 +1,4 @@
-﻿egm.controller("categoriesListController", function ($scope, API) {
+﻿egm.controller("categoriesListController", function ($scope, API, $filter) {
 
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
         $scope.category = {};
@@ -12,8 +12,8 @@
         $scope.$apply();
     });
 
-    $scope.init = function (_category , _country) {
-        $scope.categoryData = JSON.parse(_category);
+    $scope.currentCategory = JSON.parse((window.categoryObject).replace(/&quot;/g, '"'));
+    $scope.init = function (_country) {
         $scope.countryData = JSON.parse(_country);
         $scope.selectedCountry = $scope.countryData[0]._id;
     }
@@ -48,10 +48,12 @@
         });
     };
 
-    $scope.editCategory = function (_categoryId, _categoryName, _country) {
+    $scope.editCategory = function (_categoryId) {
+        $scope.categoryLst = [];
         $scope.categoryId = _categoryId;
-        $scope.categoryName = _categoryName;
-        $scope.selectedCountryEdite = _country;
+        $scope.categoryLst = $filter('filter')($scope.currentCategory, { _id: $scope.categoryId })[0];
+        $scope.selectedCountryEdite = $scope.categoryLst.Country._id;
+        $scope.countryName = $scope.categoryLst.Name;
     };
 
     $scope.updateCategory = function () {
@@ -61,7 +63,7 @@
             url: '/Category/Edit',
             data: {
                 _id: $scope.categoryId,
-                Name: $scope.categoryName,
+                Name: $scope.countryName,
                 Country: $scope.selectedCountryEdite
             }
         }

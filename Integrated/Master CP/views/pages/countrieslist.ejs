@@ -1,5 +1,6 @@
 <% include ../partials/headpages %>
-<div ng-controller='countriesListController' ng-init="init('<%= countrieslstJSON %>')">
+<div ng-controller='countriesListController'>
+	<script>var countriesLstObject = <%-JSON.stringify(countrieslstJSON)%>;</script>
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">

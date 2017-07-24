@@ -160,7 +160,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row" ng-init="init('<%= categorieslstObj %>')">
+                                                <div class="row">
+													<script>var categoryLstObject = <%-JSON.stringify(categorieslstObj)%>;</script>
                                                     <div class="col-md-8">
                                                         <div class="form-group">
                                                             <label>Category</label>

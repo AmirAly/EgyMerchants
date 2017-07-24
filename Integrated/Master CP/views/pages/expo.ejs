@@ -1,5 +1,7 @@
 <% include ../partials/headpages %>
 <div ng-controller='expoController'>
+	<script>var expoObject = <%-JSON.stringify(expoJSON)%>;</script>
+	<script>var floorObject = <%-JSON.stringify(floorslstJSON)%>;</script>
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -70,7 +72,7 @@
                                             <div class="col-md-8">
                                                 <div class="form-group label-floating is-focused ">
                                                     <label class="control-label">Expo Name</label>
-                                                    <input type="text" class="form-control" ng-model="expo.Title" value="<%= expo.Title %>" ng-init="expo.Title = '<%= expo.Title %>'" name="expoTitle" id="expoTitle" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
+                                                    <input type="text" class="form-control" ng-model="expoLst.Title" name="expoTitle" id="expoTitle" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                     <span ng-show="frmUpdateExpo.expoTitle.$dirty && frmUpdateExpo.expoTitle.$invalid">
                                                         <span class="errorFont" ng-show="frmUpdateExpo.expoTitle.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmUpdateExpo.expoTitle.$error.minlength">Expo name is too short</span>
@@ -81,7 +83,7 @@
 
                                             </div>
                                             <div class="col-md-8">
-                                                <select name="country" ng-model="expo.selectedCategory" value="<%= expo.Category._id %>" ng-init="expo.selectedCategory = '<%= expo.Category._id %>'" class="form-control" required>
+                                                <select name="country" ng-model="expoLst.Category._id" class="form-control" required>
                                                     <% categorieslst.forEach(function(category){ %>
                                                     <option value="<%= category._id %>" selected="<%= category._id %>"> <%= category.Name %> : <%= category.Country.Name %> </option>
                                                     <% }); %>
@@ -119,9 +121,9 @@
 
                     <button type="submit" ng-click="floors('<%= expo._id %>')" class="btn btn-primary pull-right">Add floors</button>
 
-                    <div class="row" ng-init="init('<%= floorslstJSON %>', '<%= expoJSON %>')">
+                    <div class="row">
                         <div class="col-md-12">
-                            <div class="card" ng-show="lstfloors.length > 0 ">
+                            <div class="card" ng-show="floorLst.length > 0 ">
                                 <div class="card-header defaultColor">
                                     <h4 class="title">Floors List</h4>
                                     <p class="category">List of floors</p>
@@ -137,7 +139,7 @@
                                         </thead>
                                         <tbody>
 
-                                            <tr ng-repeat="floor in lstfloors">
+                                            <tr ng-repeat="floor in floorLst">
 
                                                 <td>{{floor.Name}}</td>
 

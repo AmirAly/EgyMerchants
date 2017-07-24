@@ -1,5 +1,5 @@
 <% include ../partials/headpages %>
-<div ng-controller='categoriesListController' ng-init="init('<%= categorieslsJSON %>' , '<%= countrieslstJSON %>')">
+<div ng-controller='categoriesListController' ng-init="init('<%= countrieslstJSON %>')">
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -84,7 +84,7 @@
                                             <tr>
                                                 <td><%= category.Name%> : <%= category.Country.Name%></td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" ng-click="editCategory('<%= category._id %>','<%= category.Name %>','<%= category.Country._id %>')" data-target=".bs-example-modal-lg2" data-original-title="Edit Category">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" ng-click="editCategory('<%= category._id %>')" data-target=".bs-example-modal-lg2" data-original-title="Edit Category">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -186,6 +186,7 @@
     </div>
     <!-- End Modal add-->
     <!-- Start Modal  ((edit))-->
+	<script>var categoryObject = <%-JSON.stringify(categorieslsJSON)%>;</script>
     <div class="modal fade bs-example-modal-lg2" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -211,7 +212,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Category</label>
-                                                            <input type="text" class="form-control" ng-model="categoryName" value="categoryName" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$" name="categoryTitle" id="categoryTitle">
+                                                            <input type="text" class="form-control" ng-model="countryName" value="countryName" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$" name="categoryTitle" id="categoryTitle">
                                                             <span ng-show="frmEditCategory.categoryTitle.$dirty && frmEditCategory.categoryTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmEditCategory.categoryTitle.$error.required">Required</span>
                                                                 <span class="errorFont" ng-show="frmEditCategory.categoryTitle.$error.minlength">Category name is too short</span>
@@ -229,7 +230,7 @@
                                                             <br>
                                                             <select name="country" ng-model="selectedCountryEdite" value="selectedCountryEdite" class="form-control">
                                                                 <% countrieslst.forEach(function(country){ %>
-                                                                <option value="<%= country._id %>" selected> <%= country.Name %> </option>
+                                                                <option value="<%= country._id %>"> <%= country.Name %> </option>
                                                                 <% }); %>
                                                             </select>
                                                         </div>
