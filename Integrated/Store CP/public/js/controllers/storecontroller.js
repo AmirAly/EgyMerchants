@@ -11,11 +11,12 @@
             window.location.href = '/Home';
         }
     };
-    ////do nothing
+
+    $scope.currentStore = JSON.parse((window.storeObject).replace(/&quot;/g, '"'));
+
     $scope.preload();
 
-    $scope.store = {};
-    $scope.store._id = localStorage.getItem('StoreId');
+    $scope.currentStore._id = localStorage.getItem('StoreId');
 
     $scope.signOut = function () {
         window.location.href = '/Home';
@@ -23,16 +24,16 @@
     };
 
     $scope.save = function () {
-        $scope.store.ProfilePicture = $('#imgItem').attr('src');
-        $scope.store.CoverPhoto = $('#imgItemCover').attr('src');
+        $scope.currentStore.ProfilePicture = $('#imgItem').attr('src');
+        $scope.currentStore.CoverPhoto = $('#imgItemCover').attr('src');
         $scope.loading = true;
         var req = {
             method: 'put',
             url: '/Store/EditProfile',
-            data: $scope.store
+            data: $scope.currentStore
         }
-        API.execute(req).then(function (res) {
-            if (res.data.code == 100) {
+        API.execute(req).then(function (_res) {
+            if (_res.data.code == 100) {
                 window.location.reload();
             } else {
                 $scope.loading = false;

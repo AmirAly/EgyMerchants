@@ -9,6 +9,8 @@
         }
     };
 
+    $scope.currentGallery = JSON.parse((window.galleryObject).replace(/&quot;/g, '"'));
+
     $scope.preload();
 
     $scope.storeId = localStorage.getItem('StoreId');
@@ -31,8 +33,8 @@
             url: '/Gallery/Edit',
             data: {
                 _id: $scope.galleryId,
-                Title: $scope.gallery.Title,
-                Description: $scope.gallery.Description,
+                Title: $scope.currentGallery.Title,
+                Description: $scope.currentGallery.Description,
                 Imgs: $('#imgItem').attr('src')
             }
         }

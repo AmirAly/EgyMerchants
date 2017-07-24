@@ -6,6 +6,8 @@
         }
     };
 
+    $scope.currentItem = JSON.parse((window.itemObject).replace(/&quot;/g, '"'));
+
     $scope.preload();
 
     $('.modal').on('hidden.bs.modal', function () {
@@ -26,10 +28,6 @@
     $scope.storeId = localStorage.getItem('StoreId');
     $scope.galleryId = localStorage.getItem('GalleryId');
     
-    $scope.init = function (_s) {
-        $scope.currentItem = JSON.parse(_s);
-    };
-
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click();
     };
@@ -99,13 +97,13 @@
             url: '/Item/Edit',
             data: {
                 _id: $scope.currentItem._id,
-                Name: $scope.item.Name,
-                Description: $scope.item.Description,
-                Price: $scope.item.Price,
+                Name: $scope.currentItem.Name,
+                Description: $scope.currentItem.Description,
+                Price: $scope.currentItem.Price,
                 Imgs: $scope.currentItem.Pictures,
-                Tags: $scope.item.Tags,
-                Badges: $scope.item.Badges,
-                PriceBeforeSale: $scope.item.PriceBeforeSale
+                Tags: $scope.currentItem.Tags,
+                Badges: $scope.currentItem.Badges,
+                PriceBeforeSale: $scope.currentItem.PriceBeforeSale
             }
         }
         API.execute(req).then(function (_res) {

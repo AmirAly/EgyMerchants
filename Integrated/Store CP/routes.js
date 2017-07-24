@@ -16,6 +16,7 @@ module.exports = function (app) {
         store.getById(req.params.storeId).then(function (_store) {
             if (_store.code == 100) {
                 _scope.store = _store.data;
+                _scope.storeJSON = JSON.stringify(_store.data);
                 res.render('pages/store', _scope);
             } else {
                 _scope.store = [];
@@ -33,6 +34,7 @@ module.exports = function (app) {
         gallery.getById(req.params.galleryId).then(function (_gallery) {
             if (_gallery.code == 100) {
                 _scope.gallery = _gallery.data;
+                _scope.galleryJSON = JSON.stringify(_gallery.data);
                 res.render('pages/gallery', _scope);
             } else {
                 _scope.galleries = [];

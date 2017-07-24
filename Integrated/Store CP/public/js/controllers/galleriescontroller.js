@@ -8,7 +8,7 @@ egm.controller("galleriesController", ['$scope', 'API', function ($scope, API, $
             window.location.href = '/Home';
         }
     };
-//comment
+
     $('.modal').on('hidden.bs.modal', function () {
         $scope.gallery = {};
         document.getElementById("frmAddGallery").reset();

@@ -1,5 +1,6 @@
 <% include ../partials/headpages %>
-<div ng-controller='itemController' ng-init="init('<%= itemJSON %>')">
+<div ng-controller='itemController'>
+<script>var itemObject = <%-JSON.stringify(itemJSON)%>;</script>
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -80,7 +81,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Item Name</label>
-                                                    <input type="text" class="form-control" value="<%= item.Name %>" ng-init="item.Name = '<%= item.Name %>'" ng-model="item.Name" required name="itemTitle" id="itemTitle" ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
+                                                    <input type="text" class="form-control" value="currentItem.Name" ng-model="currentItem.Name" required name="itemTitle" id="itemTitle" ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                     <span ng-show="frmAddItem.itemTitle.$dirty && frmAddItem.itemTitle.$invalid">
                                                         <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.minlength">Item name is too short</span>
@@ -94,7 +95,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Price</label>
-                                                    <input type="text" class="form-control" value="<%= item.Price %>" ng-init="item.Price = '<%= item.Price %>'" ng-model="item.Price" required name="itemPrice" id="itemPrice" pattern="^(([0-9]*)|(([0-9]*)\.([0-9]*)))$">
+                                                    <input type="text" class="form-control" value="currentItem.Price" ng-model="currentItem.Price" required name="itemPrice" id="itemPrice" pattern="^(([0-9]*)|(([0-9]*)\.([0-9]*)))$">
                                                     <span ng-show="frmAddItem.itemPrice.$dirty && frmAddItem.itemPrice.$invalid">
                                                         <span class="errorFont" ng-show="frmAddItem.itemPrice.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmAddItem.itemPrice.$error.pattern">Feild accept numbers only</span>
@@ -106,7 +107,7 @@
 										<div class="col-md-12">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Price Before Sale</label>
-                                                    <input type="text" class="form-control" value="<%= item.PriceBeforeSale %>" ng-init="item.PriceBeforeSale = '<%= item.PriceBeforeSale %>'" ng-model="item.PriceBeforeSale" name="PriceBeforeSale" id="PriceBeforeSale" pattern="^(([0-9]*)|(([0-9]*)\.([0-9]*)))$">
+                                                    <input type="text" class="form-control" value="currentItem.PriceBeforeSale" ng-model="currentItem.PriceBeforeSale" name="PriceBeforeSale" id="PriceBeforeSale" pattern="^(([0-9]*)|(([0-9]*)\.([0-9]*)))$">
                                                     <span ng-show="frmAddItem.PriceBeforeSale.$dirty && frmAddItem.PriceBeforeSale.$invalid">
                                                         <span class="errorFont" ng-show="frmAddItem.PriceBeforeSale.$error.pattern">Feild accept numbers only</span>
                                                     </span>
@@ -118,7 +119,7 @@
                                                 <div class="form-group">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">About Me</label>
-                                                        <textarea class="form-control" value="<%= item.Description %>" ng-init="item.Description = '<%= item.Description %>'" rows="3" ng-model="item.Description" required name="itemDesc" id="itemDesc" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$"><%= item.Description %></textarea>
+                                                        <textarea class="form-control"  rows="3" value="currentItem.Description" ng-model="currentItem.Description" required name="itemDesc" id="itemDesc" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$"><%= item.Description %></textarea>
                                                         <span ng-show="frmAddItem.itemDesc.$dirty && frmAddItem.itemDesc.$invalid">
                                                             <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.required">Required</span>
                                                             <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.minlength">Item description is too short</span>
@@ -132,7 +133,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group label-floating is-empty is-focused">
                                                     <label class="control-label tagslabel">Badges &emsp; ( Featured , Top rated , On sale )</label>
-                                                    <input type="text" class="form-control Badges" value="<%= item.Badges %>" ng-init="item.Badges = '<%= item.Badges %>'" ng-model="item.Badges" name="Badges" id="BadgesInput" data-role="tagsinput" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$">
+                                                    <input type="text" class="form-control Badges" value="<%= item.Badges %>" ng-model="currentItem.Badges" name="Badges" id="BadgesInput" data-role="tagsinput" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$">
 													<span ng-show="frmAddItem.Badges.$dirty && frmAddItem.Badges.$invalid">
                                                         <span class="errorFont" ng-show="frmAddItem.Badges.$error.minlength">Item badges is too short</span>
                                                         <span class="errorFont" ng-show="frmAddItem.Badges.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
@@ -144,7 +145,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group label-floating is-empty is-focused">
                                                     <label class="control-label tagslabel">Tags </label>
-                                                    <input type="text" class="form-control Tags" value="<%= item.Tags %>" ng-init="item.Tags = '<%= item.Tags %>'" ng-model="item.Tags" name="Tags" id="TagsInput" data-role="tagsinput" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$">
+                                                    <input type="text" class="form-control Tags" value="<%= item.Tags %>" ng-model="currentItem.Tags" name="Tags" id="TagsInput" data-role="tagsinput" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                     <span ng-show="frmAddItem.Tags.$dirty && frmAddItem.Tags.$invalid">
                                                         <span class="errorFont" ng-show="frmAddItem.Tags.$error.minlength">Item tags is too short</span>
                                                         <span class="errorFont" ng-show="frmAddItem.Tags.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>

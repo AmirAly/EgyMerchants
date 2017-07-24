@@ -1,5 +1,6 @@
 <% include ../partials/headpages %>
 <div ng-controller='galleryController' ng-init=" galleryId ='<%= gallery._id %>'">
+<script>var galleryObject = <%-JSON.stringify(galleryJSON)%>;</script>
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
     <div class="wrapper">
@@ -72,7 +73,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group label-floating is-focused ">
                                                     <label class="control-label">Gallery Name</label>
-                                                    <input type="text" class="form-control" value="<%= gallery.Title %>" ng-init="gallery.Title = '<%= gallery.Title %>'" ng-model="gallery.Title" name="galleryTitle" id="galleryTitle" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$" >
+                                                    <input type="text" class="form-control" ng-model="currentGallery.Title" name="galleryTitle" id="galleryTitle" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$" >
                                                     <span ng-show="frmUpdateGallery.galleryTitle.$dirty && frmUpdateGallery.galleryTitle.$invalid">
                                                         <span class="errorFont" ng-show="frmUpdateGallery.galleryTitle.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmUpdateGallery.galleryTitle.$error.minlength">Gallery name is too short</span>
@@ -87,7 +88,7 @@
                                                 <div class="form-group">
                                                     <div class="form-group label-floating is-focused ">
                                                         <label class="control-label"> About Me</label>
-                                                        <textarea class="form-control" value="<%= gallery.Description %>" ng-init="gallery.Description = '<%= gallery.Description %>'" rows="3" ng-model="gallery.Description" required name="galleryDesc" id="galleryDesc" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$" ><%= gallery.Description %></textarea>
+                                                        <textarea class="form-control" rows="3" ng-model="currentGallery.Description" required name="galleryDesc" id="galleryDesc" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$" ><%= gallery.Description %></textarea>
                                                         <span ng-show="frmUpdateGallery.galleryDesc.$dirty && frmUpdateGallery.galleryDesc.$invalid">
                                                             <span class="errorFont" ng-show="frmUpdateGallery.galleryDesc.$error.required">Required</span>
                                                             <span class="errorFont" ng-show="frmUpdateGallery.galleryDesc.$error.minlength">Gallery name is too short</span>
