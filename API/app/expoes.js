@@ -186,68 +186,9 @@ module.exports = {
             })
         })
     },
-    //editFloor: function (_expoId, _floorId,_floor) {
-    //    return new Promise(function (resolve, reject) {
-    //       // Schema.findOne({ '_id': _expoId, 'Status': 'Active' }, '', function (err, Obj) {
-    //        Schema.findOne({ '_id': _expoId, "Floors._id": _floorId, 'Status': 'Active' }, { "Floors.$": true }, function (err, Obj) {
-    //            console.log(Obj.Floors[0].Coordinates);
-    //            //var floors = JSON.parse(Obj);
-    //           // console.log(floors);
-    //            if (err)
-    //                reject({
-    //                    code: 1,
-    //                    data: err
-    //                });
-    //            else {
-    //                if (Obj) {
-    //                    Obj.Floors[0].Coordinates=[];
-    //                    if (_floor.Coordinates) {
-    //                        Helper.uploadMultipleImages(_floor.Coordinates, function (_url) {
-    //                            var i = 0;
-    //                            var result = _floor.Coordinates;
-    //                            _.each(_url, function (imageurl) { if (i < _floor.Coordinates.length) { result[i].Img = imageurl; i++; } })
-    //                        });
-    //                        Obj.Floors[0].Coordinates.push(result);
-    //                        Obj.save(function (err, expo) {
-    //                            if (err)
-    //                                reject({
-    //                                    code: 1,
-    //                                    data: err
-    //                                });
-    //                            else
-    //                                resolve({
-    //                                    code: 100,
-    //                                    data: "Expo data edited successfully"
-    //                                })
-    //                        })
-    //                    }
-    //                    else {
-    //                        Obj.save(function (err, expo) {
-    //                            if (err)
-    //                                reject({
-    //                                    code: 11,
-    //                                    data: err
-    //                                });
-    //                            else
-    //                                resolve({
-    //                                    code: 100,
-    //                                    data: "Expo data edited successfully"
-    //                                })
-    //                        })
-    //                    }
-    //                }
-    //                else
-    //                    reject({
-    //                        code: 21,
-    //                        data: "This filteration didn't resulted in any data"
-    //                    });
-    //            }
-    //        })
-    //    })
-    //},
-    editFloor: function (_id, _title, _banner, _category, _floors) {
+    editFloor: function (_expoId, _floor) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Title': _title, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
+            Schema.findOne({ '_id': _expoId, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -255,28 +196,39 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        reject({
-                            code: 21,
-                            data: "There is another expo with this title"
-                        });
-                    }
-                    else {
-                        Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
-                            if (err)
-                                reject({
-                                    code: 1,
-                                    data: err
-                                });
-                            else {
-                                if (Obj) {
-                                    Obj.Title = _title;
-                                    Obj.Banner = _banner;
-                                    Obj.Category = _category;
-                                    Obj.Floors = _floors;
+                        var editedFloor;
+                        var result = _floor.Coordinates;
+                        for (var i = 0; i < Obj.Floors.length; i++) {
+                            if (Obj.Floors[i]._id == _floor._id) {
+                                editedFloor = Obj.Floors[i];
+                                editedFloor.Coordinates = [];
+                                editedFloor.Sections = [];
+                                editedFloor.Name = _floor.Name;
+                                editedFloor.Sections = _floor.Sections;
+                                if (_floor.Coordinates) {
+                                    Helper.uploadMultipleImages(_floor.Coordinates, function (_url) {
+                                        var i = 0;
+                                        _.each(_url, function (imageurl) { if (i < _floor.Coordinates.length) { result[i].Img = imageurl; i++; } })
+                                        editedFloor.Coordinates = editedFloor.Coordinates.concat(result);
+                                        Obj.save(function (err, expo) {
+                                            if (err)
+                                                reject({
+                                                    code: 10,
+                                                    data: err
+                                                });
+                                            else
+                                                resolve({
+                                                    code: 100,
+                                                    data: "Expo data edited successfully"
+                                                })
+                                        })
+                                    });
+                                }
+                                else {
                                     Obj.save(function (err, expo) {
                                         if (err)
                                             reject({
-                                                code: 1,
+                                                code: 11,
                                                 data: err
                                             });
                                         else
@@ -286,14 +238,15 @@ module.exports = {
                                             })
                                     })
                                 }
-                                else
-                                    reject({
-                                        code: 21,
-                                        data: "This filteration didn't resulted in any data"
-                                    });
                             }
-                        })
+                        }
+                       
                     }
+                    else
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
                 }
             })
         })
