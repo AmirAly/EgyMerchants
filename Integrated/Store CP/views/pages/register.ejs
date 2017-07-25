@@ -66,7 +66,7 @@
                                                         <span class="errorFont" ng-show="frmRegister.username.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmRegister.username.$error.minlength">User name is too short</span>
                                                         <span class="errorFont" ng-show="frmRegister.username.$error.maxlength">User name is too </span>
-                                                        <span class="errorFont" ng-show="frmRegister.username.$error.pattern">Can't accept words belongtween double curly brackets {{  "{{ text }\}"   }}</span>
+                                                        <span class="errorFont" ng-show="frmRegister.username.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
                                                     </span>
                                                 </div>
                                                 <div class="form-group">
@@ -83,10 +83,9 @@
                                                     <label>
                                                         Re-enter Password <small>(required)</small>
                                                     </label>
-                                                    <input name="password2" id="password2" type="password" class="form-control" ng-model="register.rePassword" placeholder="RE-enter your password.." required="" ng-minlength="6" compare-to="register.Password">
+                                                    <input name="password2" id="password2" type="password" class="form-control" ng-model="register.rePassword" placeholder="RE-enter your password.." required="" compare-to="register.Password">
                                                     <span ng-show="frmRegister.password2.$touched && frmRegister.password2.$invalid">
                                                         <span class="errorFont" ng-show="frmRegister.password2.$error.required">Required</span>
-                                                        <span class="errorFont" ng-show="frmRegister.password2.$error.minlength">Password minimum length 6 Characters</span>
                                                         <span class="errorFont" ng-show="frmRegister.password2.$error.compareTo">Passwords must match.</span>
 													</span>
                                                 </div>
@@ -98,9 +97,8 @@
                                                     </label>
                                                     <input name="email" id="email" type="email" class="form-control" ng-model="register.Email" placeholder="Enter your email.." required="" ng-minlength="6" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                                                     <span ng-show="frmRegister.email.$touched && frmRegister.email.$invalid">
-                                                        <span class="errorFont" ng-show="frmRegister.email.$error.required">Required</span>
-                                                        <span class="errorFont" ng-show="frmRegister.email.$error.minlength">Email is too short</span>
-                                                        <span class="errorFont" ng-show="frmRegister.email.$error.pattern">Invalid email enter email as example@mail.com</span>
+                                                        <span class="errorFont" ng-show="frmRegister.email.$error.required"></span>
+                                                        <span class="errorFont" ng-show="frmRegister.email.$error.pattern || frmRegister.email.$error.minlength">Invalid email. it should be as example@mail.com</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -189,7 +187,8 @@
                                         <a class="text-center" href="/Home"> Already have an account to login </a>
                                     </div>
                                     <div class="pull-right">
-                                        <input type='button' ng-click="doNext(frmRegister)" class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Next' />
+                                        <input type='button' ng-disabled="(((frmRegister.username.$touched) && (frmRegister.username.$invalid)) || ((frmRegister.password2.$touched) && (frmRegister.password2.$invalid)))"
+										 ng-click="doNext(frmRegister)" class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Next' />
                                         <input type='button' ng-click="registerStore()" class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish' value='Finish' />
                                     </div>
                                     <div class="pull-left">
