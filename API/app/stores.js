@@ -9,7 +9,7 @@ var _ = require("underscore");
 module.exports = {
     register: function (_newStore) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ $or: [{ 'Email': _newStore.Email }, { 'Name': _newStore.Name }] }, { 'Status': 'Active' }] }, '', function (err, Obj) {
+            Schema.findOne({ $or: [{ 'Email': _newStore.Email }, { 'Name': _newStore.Name }] } , '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -80,10 +80,10 @@ module.exports = {
                         code: 22,
                         data: "This account not confirmed yet"
                     });
-                else if (Obj.Status == "Suspend")
+                else if (Obj.Status == "deleted")
                     reject({
                         code: 23,
-                        data: "This account suspended"
+                        data: "This account deleted"
                     });
                 else if (Obj.Status == "Active")
                     resolve({
@@ -95,7 +95,7 @@ module.exports = {
     },
     editProfile: function (_id, _email, _city, _address, _country, _description, _imgs, _profilePicture, _coverPhoto) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Email': _email, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
+            Schema.findOne({ 'Email': _email, '_id': { $ne: _id } }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -251,7 +251,7 @@ module.exports = {
     },
     suspend: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "Suspended" } }, { new: true }, function (err, Obj) {
+            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "deleted" } }, { new: true }, function (err, Obj) {
                 if (err)
                     reject({ code: 1, data: err })
                 else {

@@ -111,7 +111,7 @@ module.exports = {
                         if (lst.length == 1) reject({ code: 22, data: "Sorry,you can't delete this last category" })
                         else
                         {
-                            Expo.find({ 'Category': _id }, '', function (err, lst) {
+                            Expo.find({ 'Category': _id ,"Status":"Active"}, '', function (err, lst) {
                                 if (err)
                                     reject({ code: 1, data: err })
                                 else

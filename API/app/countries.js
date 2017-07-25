@@ -2,6 +2,7 @@ var Schema = require('./models/country');
 var Category = require('./models/category');
 var CountriesInJson = require('./allcountries.json');
 var _ = require("underscore");
+var Helper = require('./helper');
 module.exports = {
     add: function (_newCountry) {
         return new Promise(function (resolve, reject) {
@@ -19,17 +20,20 @@ module.exports = {
                         });
                     }
                     else {
-                        _newCountry.save(function (err, _newcountry) {
-                            if (err)
-                                reject({
-                                    code: 1,
-                                    data: err
-                                });
-                            else
-                                resolve({
-                                    code: 100,
-                                    data: _newcountry
-                                });
+                        Helper.uploadImage(_newCountry.Flag, function (_url) {
+                            _newCountry.Flag = _url;
+                            _newCountry.save(function (err, _newcountry) {
+                                if (err)
+                                    reject({
+                                        code: 1,
+                                        data: err
+                                    });
+                                else
+                                    resolve({
+                                        code: 100,
+                                        data: _newcountry
+                                    });
+                            })
                         })
                     }
                 }
@@ -79,21 +83,24 @@ module.exports = {
                                 if (Objexist)
                                     reject({ code: 22, data: 'This country name already exist' })
                                 else {
+
                                     Obj.Name = _name;
-                                    Obj.Flag = _flag;
                                     Obj.IsoCode = _isoCode;
                                     Obj.WelcomeMsg = _welcomeMsg;
-                                    Obj.save(function (err, Obj) {
-                                        if (err)
-                                            reject({
-                                                code: 1,
-                                                data: err
-                                            });
-                                        else
-                                            resolve({
-                                                code: 100,
-                                                data:"Country data edited successfully"
-                                            })
+                                    Helper.uploadImage(_flag, function (_url) {
+                                        Obj.Flag = _url;
+                                        Obj.save(function (err, Obj) {
+                                            if (err)
+                                                reject({
+                                                    code: 1,
+                                                    data: err
+                                                });
+                                            else
+                                                resolve({
+                                                    code: 100,
+                                                    data: "Country data edited successfully"
+                                                })
+                                        })
                                     })
                                 }
                             }
@@ -117,7 +124,7 @@ module.exports = {
                     if (lst.length > 0) {
                         if (lst.length == 1) reject({ code: 22, data: "Sorry,you can't delete this last country" })
                         else {
-                            Category.find({ 'Country': _id}, '', function (err, lst) {
+                            Category.find({ 'Country': _id,"Status":"Active"}, '', function (err, lst) {
                                 if (err)
                                     reject({ code: 1, data: err })
                                 else {
