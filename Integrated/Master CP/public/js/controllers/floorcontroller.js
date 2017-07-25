@@ -20,9 +20,6 @@
     var index = 0;
     $scope.expo = JSON.parse((window.expoObject).replace(/&quot;/g, '"'));
 
-    //$scope.init1 = function (_expoJson) {
-    //    $scope.expo = JSON.parse(_expoJson);
-    //}
 
     $scope.init2 = function () {
         $scope.floor = JSON.parse((window.floorsObject).replace(/&quot;/g, '"'));

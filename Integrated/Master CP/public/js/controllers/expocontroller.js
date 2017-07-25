@@ -60,7 +60,6 @@
                 $scope.floorLst.splice(i, 1);
             }
         }
-
         var req = {
             method: 'put',
             url: '/Expo/Edit',
@@ -74,6 +73,7 @@
         }
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
+                window.location.href = '/expo/' + $scope.expoDelId
             } else {
                 $scope.loading = false;
                 if (_res.data.code == 21) {

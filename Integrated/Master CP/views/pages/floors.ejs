@@ -140,8 +140,9 @@
                                                         <div class="form-group">
                                                             <label>Choose store</label>
                                                             <br>
-                                                            <select ng-init="initStores('<%= storeslstObj %>')" name="country" id="selectStore" ng-model="selectedstore" class="form-control">
-                                                                <% storeslst.forEach(function(store){ %>
+                                                            <select name="country" id="selectStore" ng-model="selectedstore" class="form-control">
+                                                                <script>var storesLstObject = <%-JSON.stringify(storeslstObj)%>;</script>
+																<% storeslst.forEach(function(store){ %>
                                                                 <option value="<%= store._id %>"> <%= store.Name %> </option>
                                                                 <% }); %>
                                                             </select>
