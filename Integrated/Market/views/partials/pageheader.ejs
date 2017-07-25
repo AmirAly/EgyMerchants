@@ -163,8 +163,7 @@
                             <input type="email" name="email" ng-model="loginObj.Email" required="" placeholder="Email..." class="form-email form-control" id="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ng-minlength="6" />
                             <span ng-show="frmLogin.email.$touched  && frmLogin.email.$invalid">
                                 <span class="errorFont" ng-show="frmLogin.email.$error.required">Email is required</span>
-                                <span class="errorFont" ng-show="frmLogin.email.$error.minlength">Email is too short</span>
-                                <span class="errorFont" ng-show="frmLogin.email.$error.pattern">Invalid email. it should be as example@mail.com </span>
+                                <span class="errorFont" ng-show="frmLogin.email.$error.pattern || frmLogin.email.$error.minlength">Invalid email. it should be as example@mail.com </span>
 
                             </span>
                         </div>
@@ -213,24 +212,28 @@
                     <form role="form" name="frmRegister" class="register-form">
                         <div class="form-group">
                             <label class="sr-only" for="form-email">Email</label>
-                            <input type="email" name="email" ng-model="registerObj.Email" required="" placeholder="Email..." class="form-email form-control" id="form-email" />
+                            <input type="email" name="email" ng-model="registerObj.Email" required="" placeholder="Email..." class="form-email form-control" id="form-email"  pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ng-minlength="6" />
                             <span ng-show="frmRegister.email.$dirty  && frmRegister.email.$invalid">
                                 <span class="errorFont" ng-show="frmRegister.email.$error.required">Email is required</span>
-                                <span class="errorFont" ng-show="frmRegister.email.$error.email">Invalid email</span>
+                                <span class="errorFont" ng-show="frmRegister.email.$error.pattern || frmRegister.email.$error.minlength">Invalid email. it should be as example@mail.com</span>
                             </span>
                         </div>
                         <div class="form-group">
                             <label class="sr-only" for="form-displayName">Display name</label>
-                            <input type="text" name="displayName" ng-model="registerObj.Name" required="" placeholder="Display Name..." class="form-displayName form-control" id="form-displayName" />
+                            <input type="text" name="displayName" ng-model="registerObj.Name" required="" placeholder="Display Name..." class="form-displayName form-control" id="form-displayName"  ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$"  />
                             <span ng-show="frmRegister.displayName.$touched && frmRegister.displayName.$invalid">
                                 <span class="errorFont" ng-show="frmRegister.displayName.$error.required">Display name is required</span>
+                                <span class="errorFont" ng-show="frmRegister.displayName.$error.minlength">Display name is too short</span>
+                                <span class="errorFont" ng-show="frmRegister.displayName.$error.maxlength">Display name is too long</span>
+                                <span class="errorFont" ng-show="frmRegister.displayName.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
                             </span>
                         </div>
                         <div class="form-group">
                             <label class="sr-only" for="form-password">Password</label>
-                            <input type="password" name="Password" ng-model="registerObj.Password" required="" placeholder="Password..." class="form-password form-control" id="form-password" />
+                            <input type="password" name="Password" ng-model="registerObj.Password" required="" placeholder="Password..." class="form-password form-control" id="form-password" ng-minlength="6"  />
                             <span ng-show="frmRegister.Password.$touched && frmRegister.Password.$invalid">
                                 <span class="errorFont" ng-show="frmRegister.Password.$error.required">Password is required</span>
+                                <span class="errorFont" ng-show="frmRegister.Password.$error.minlength">Password minimum 6 characters</span>
                             </span>
                         </div>
 

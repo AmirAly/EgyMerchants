@@ -83,10 +83,9 @@
                                                     <label>
                                                         Re-enter Password <small>(required)</small>
                                                     </label>
-                                                    <input name="password2" id="password2" type="password" class="form-control" ng-model="register.rePassword" placeholder="RE-enter your password.." required="" ng-minlength="6" compare-to="register.Password">
+                                                    <input name="password2" id="password2" type="password" class="form-control" ng-model="register.rePassword" placeholder="RE-enter your password.." required="" compare-to="register.Password">
                                                     <span ng-show="frmRegister.password2.$touched && frmRegister.password2.$invalid">
                                                         <span class="errorFont" ng-show="frmRegister.password2.$error.required">Required</span>
-                                                        <span class="errorFont" ng-show="frmRegister.password2.$error.minlength">Password minimum length 6 Characters</span>
                                                         <span class="errorFont" ng-show="frmRegister.password2.$error.compareTo">Passwords must match.</span>
 													</span>
                                                 </div>
@@ -98,9 +97,8 @@
                                                     </label>
                                                     <input name="email" id="email" type="email" class="form-control" ng-model="register.Email" placeholder="Enter your email.." required="" ng-minlength="6" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                                                     <span ng-show="frmRegister.email.$touched && frmRegister.email.$invalid">
-                                                        <span class="errorFont" ng-show="frmRegister.email.$error.required">Required</span>
-                                                        <span class="errorFont" ng-show="frmRegister.email.$error.minlength">Email is too short</span>
-                                                        <span class="errorFont" ng-show="frmRegister.email.$error.pattern">Invalid email enter email as example@mail.com</span>
+                                                        <span class="errorFont" ng-show="frmRegister.email.$error.required"></span>
+                                                        <span class="errorFont" ng-show="frmRegister.email.$error.pattern || frmRegister.email.$error.minlength">Invalid email. it should be as example@mail.com</span>
                                                     </span>
                                                 </div>
                                             </div>

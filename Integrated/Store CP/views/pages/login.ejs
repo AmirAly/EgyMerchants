@@ -44,9 +44,8 @@
                                                     </label>
                                                     <input type="text" class="form-control" ng-model="loginData.Email" placeholder="Email..." name="email" id="email" required="" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ng-minlength="6">
                                                     <span ng-show="frmLogin.email.$touched && frmLogin.email.$invalid && frmLogin.email.$dirty">
-                                                        <span class="errorFont" ng-show="frmLogin.email.$error.required"></span>
-                                                        <span class="errorFont" ng-show="frmLogin.email.$error.pattern">Invalid email please enter the email as example@mail.com</span>
-                                                        <span class="errorFont" ng-show="frmLogin.email.$error.minlength"></span>
+                                                        <span class="errorFont" ng-show="frmLogin.email.$error.required">Required</span>
+                                                        <span class="errorFont" ng-show="frmLogin.email.$error.pattern || frmLogin.email.$error.minlength">Invalid email. it should be as example@mail.com</span>
                                                     </span>
                                                 </div>
                                             </div>
