@@ -55,9 +55,9 @@
 
     $scope.deleteFloor = function () {
         $scope.loading = true;
-        for (var i = 0; i < $scope.lstfloors.length; i++) {
-            if ($scope.lstfloors[i]._id == $scope.floorDelId) {
-                $scope.lstfloors.splice(i, 1);
+        for (var i = 0; i < $scope.floorLst.length; i++) {
+            if ($scope.floorLst[i]._id == $scope.floorDelId) {
+                $scope.floorLst.splice(i, 1);
             }
         }
 
@@ -68,7 +68,7 @@
                 _id: $scope.expoDelId,
                 Title: $scope.expoLst.Title,
                 Category: $scope.expoLst.Category._id,
-                Floors: $scope.lstfloors,
+                Floors: $scope.floorLst,
                 Banner: $('#imgItem').attr('src')
             }
         }

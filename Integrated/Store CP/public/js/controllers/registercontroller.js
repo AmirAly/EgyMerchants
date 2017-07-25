@@ -21,6 +21,7 @@
     $scope.doNext = function (form) {
         angular.forEach($scope.frmRegister.$error.required, function (field) {
             field.$setDirty();
+    
         });
         if (form.$valid) {
             next();
@@ -31,6 +32,8 @@
         $scope.frmRegister.city.$validate();
         $scope.frmRegister.address.$validate();
         $scope.frmRegister.txtDescription.$validate();
+
+        
     }
 
     $scope.signOut = function () {

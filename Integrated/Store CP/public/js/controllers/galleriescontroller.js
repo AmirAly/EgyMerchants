@@ -25,7 +25,7 @@ egm.controller("galleriesController", ['$scope', 'API', function ($scope, API, $
     $scope.preload();
 
     $scope.storeId = localStorage.getItem('StoreId');
-
+    console.log($scope.storeId);
     $scope.moveToGallery = function (_galleryOfGalleries) {
         window.location.href = '/gallery/' + _galleryOfGalleries;
     };
