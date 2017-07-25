@@ -28,7 +28,7 @@ module.exports = {
     },
     add: function (_newCategory) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Name': _newCategory.Name, 'Country': _newCategory.Country }, '', function (err, Obj) {
+            Schema.findOne({ 'Name': _newCategory.Name, 'Country': _newCategory.Country,"Status":"Active" }, '', function (err, Obj) {
                 if (err)
                     reject({ code: 1, data: err });
                 else {
