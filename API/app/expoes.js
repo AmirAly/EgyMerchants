@@ -110,7 +110,7 @@ module.exports = {
             })
         })
     },
-    edit: function (_id, _title, _banner, _category) {
+    edit: function (_id, _title, _banner, _category,_Floors) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ 'Title': _title, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
@@ -136,6 +136,7 @@ module.exports = {
                     if (Obj) {
                         Obj.Title = _title;
                         Obj.Category = _category;
+                        Obj.Floors = _Floors;
                         if (_banner) {
                             Helper.uploadImage(_banner, function (_url) {
                                 Obj.Title = _title;
