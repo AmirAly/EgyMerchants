@@ -160,7 +160,7 @@ module.exports = {
                                             }
                                             })
                                         }
-                                      else  if (_coverPhoto) {
+                                        else if (_coverPhoto) {
                                             Helper.uploadImage(_coverPhoto, function (_url) {
                                                 Obj.CoverPhoto = _url;
                                                 Obj.save(function (err, Obj) {

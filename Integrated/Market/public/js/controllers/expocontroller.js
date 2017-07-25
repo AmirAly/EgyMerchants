@@ -21,16 +21,14 @@
         $scope.oneSectionWidth = $scope.containerWidth / 6;
         $rootScope.loading = false;
     }
-    var currentExpoId;
-    $scope.init = function (_list, _isoCode) {
+    var currentExpoId;   
+
+    $scope.init = function ( _isoCode) {
         $rootScope.IsoCode = _isoCode;
-        if (_list != '') {
-            $scope.exposList = JSON.parse(_list);
+
+        $scope.exposList = JSON.parse((window.exposObject).replace(/&quot;/g, '"'));
             currentExpoId = $scope.exposList[0]._id;
-        }
-        else {
-            $scope.exposList = [];
-        }
+        
         // set which activeFloorCounter for every expo
         angular.forEach($scope.exposList, function (expo) {
             var expoId = expo._id;
