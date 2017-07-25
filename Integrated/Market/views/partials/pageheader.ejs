@@ -160,17 +160,20 @@
                     <form role="form" name="frmLogin" class="login-form">
                         <div class="form-group">
                             <label class="sr-only" for="form-email">Email</label>
-                            <input type="email" name="email" ng-model="loginObj.Email" required="" placeholder="Email..." class="form-email form-control" id="form-email" />
-                            <span ng-show="frmLogin.email.$dirty  && frmLogin.email.$invalid">
+                            <input type="email" name="email" ng-model="loginObj.Email" required="" placeholder="Email..." class="form-email form-control" id="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ng-minlength="6" />
+                            <span ng-show="frmLogin.email.$touched  && frmLogin.email.$invalid">
                                 <span class="errorFont" ng-show="frmLogin.email.$error.required">Email is required</span>
-                                <span class="errorFont" ng-show="frmLogin.email.$error.email">Invalid email</span>
+                                <span class="errorFont" ng-show="frmLogin.email.$error.minlength">Email is too short</span>
+                                <span class="errorFont" ng-show="frmLogin.email.$error.pattern">Invalid email. it should be as example@mail.com </span>
+
                             </span>
                         </div>
                         <div class="form-group">
                             <label class="sr-only" for="form-password">Password</label>
-                            <input type="password" name="Password" ng-model="loginObj.Password" required="" placeholder="Password..." class="form-password form-control" id="form-password" />
-                            <span ng-show="frmLogin.Password.$touched && frmLogin.Password.$invalid">
-                                <span class="errorFont" ng-show="frmLogin.Password.$error.required">Password is required</span>
+                            <input type="password" name="password" ng-model="loginObj.Password" required="" placeholder="Password..." class="form-password form-control" id="password" ng-minlength="6" />
+                            <span ng-show="frmLogin.password.$touched && frmLogin.password.$invalid">
+                                <span class="errorFont" ng-show="frmLogin.password.$error.required">Password is required</span>
+                                <span class="errorFont" ng-show="frmLogin.password.$error.minlength">Password minimum 6 characters</span>
                             </span>
                         </div>
                         <button type="submit" ng-disabled="frmLogin.$invalid || dataLoading" ng-click="submitLogin(frmLogin)" class="btn btn-primary">

@@ -88,8 +88,7 @@
                             <br /><hr /><br />
 
 
-                            
-                            <button class="btn btn-primary" ng-click="saveFloor()" ng-disabled="frmAddFloorName.$invalid">Save Floor</button>
+                            <button class="btn btn-primary " ng-disabled="((coordinates.length == 0)||(frmAddFloorName.$invalid))" ng-click="saveFloor()">Save Floor</button>
 
                             <div class="row">
                                 <div class="col-sm-8 col-sm-offset-2">

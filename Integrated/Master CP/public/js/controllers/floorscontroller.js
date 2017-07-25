@@ -14,7 +14,7 @@
     $scope.selectedstore = $scope.stores[0]._id;
     //$scope.initStores = function (_storesObj) {
     //    $scope.stores = JSON.parse(_storesObj);
-        
+
     //}
 
     $scope.signOut = function () {
@@ -63,7 +63,7 @@
 
     $scope.errorNonSelected = false;
     $scope.addSection = function () {
-       $scope.errorNonSelected = false;
+        $scope.errorNonSelected = false;
         $scope.oneStoreCoordinates = {};
         // filter array by isBusy status to get selected Sections
         $scope.selectedSections = $filter('filter')($scope.floor.Sections, { isBusy: true });
@@ -153,7 +153,7 @@
             $scope.loadArray();
 
         }
-        
+
     }
 
     var index = 0;
