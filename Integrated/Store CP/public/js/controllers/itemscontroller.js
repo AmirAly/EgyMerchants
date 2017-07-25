@@ -56,7 +56,6 @@
             }
         }
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
                 $scope.itemId = _res.data.data._id;
                 window.location.reload();
