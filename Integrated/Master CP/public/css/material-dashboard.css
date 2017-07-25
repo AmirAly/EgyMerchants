@@ -46,7 +46,11 @@ html {
 }
 
 .tableSpan {
-    white-space: initial;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+    width: 95%;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .checkBoxWidth {
@@ -5847,4 +5851,3 @@ footer {
 #errImgDiv {
     display: none;
 }
-
