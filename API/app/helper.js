@@ -51,6 +51,34 @@ module.exports = {
            
             }
     },
+    uploadMultipleImages1: function (_url, callback) {
+        var secureUrls = [];
+        for (var i = 0; i < _url.length; i++) {
+            if (_url[i].URL) {
+                cloudinary.v2.uploader.upload(_url[i].URL, function (error, result) {
+                    if (result) {
+                        secureUrls.push(result.secure_url);
+                        if (secureUrls.length == _url.length) {
+                            callback(secureUrls);
+                        }
+                    }
+                });
+            }
+            else {
+                cloudinary.v2.uploader.upload(_url[i].Img, function (error, result) {
+                    if (result) {
+                        secureUrls.push(result.secure_url);
+                        console.log(secureUrls);
+                        console.log(i);
+                        if (secureUrls.length == _url.length) {
+                            callback(secureUrls);
+                        }
+                    }
+                });
+            }
+        }
+
+    },
     sendEmail: function (email) {
         var smtpTransport = nodemailer.createTransport({
             transport: "SMTP",

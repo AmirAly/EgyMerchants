@@ -300,7 +300,7 @@ module.exports = {
                     if (lst.length > 0) {
                         storesList = storesList.concat(lst);
                     }
-                    Expo.find(expoFilter, 'Floors Title Banner').populate('Floors.Coordinates.Store', '_id Name ProfilePicture Description Address Status Type').exec(function (err, lst) {
+                    Expo.find(expoFilter, 'Floors Title Banner Category').populate('Floors.Coordinates.Store', '_id Name ProfilePicture Description Address Status Type').exec(function (err, lst) {
                         if (err)
                             reject({
                                 code: 1,
