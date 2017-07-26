@@ -44,7 +44,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <h4>Edit Item</h4>
+                        <h4>Edit item</h4>
                     </div>
                 </div>
             </nav>
@@ -58,12 +58,12 @@
                                     <a href="/galleries/{{storeId}}">Galleries</a>
                                 </li>
                                 <li>
-                                    <a href="/gallery/{{galleryId}}">Edit Gallery</a>
+                                    <a href="/gallery/{{galleryId}}">Edit gallery</a>
                                 </li>
                                 <li>
-                                    <a href="/products/{{galleryId}}">Gallery Items</a>
+                                    <a href="/products/{{galleryId}}">Gallery items</a>
                                 </li>
-                                <li class="active">Edit Item</li>
+                                <li class="active">Edit item</li>
                             </ol>
                         </div>
                     </div>
@@ -72,15 +72,15 @@
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-header" data-background-color="orange">
-                                    <h4 class="title">Edit Item</h4>
-                                    <p class="category">Edit your Item</p>
+                                    <h4 class="title">Edit item</h4>
+                                    <p class="category">Edit this item</p>
                                 </div>
                                 <div class="card-content">
                                     <form name="frmAddItem" id="frmAddItem">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Item Name</label>
+                                                    <label class="control-label">Item name</label>
                                                     <input type="text" class="form-control" value="currentItem.Name" ng-model="currentItem.Name" required name="itemTitle" id="itemTitle" ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                     <span ng-show="frmAddItem.itemTitle.$dirty && frmAddItem.itemTitle.$invalid">
                                                         <span class="errorFont" ng-show="frmAddItem.itemTitle.$error.required">Required</span>
@@ -106,7 +106,7 @@
 										<div class="row">
 										<div class="col-md-12">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Price Before Sale</label>
+                                                    <label class="control-label">Price before sale</label>
                                                     <input type="text" class="form-control" value="currentItem.PriceBeforeSale" ng-model="currentItem.PriceBeforeSale" name="PriceBeforeSale" id="PriceBeforeSale" pattern="^(([0-9]*)|(([0-9]*)\.([0-9]*)))$">
                                                     <span ng-show="frmAddItem.PriceBeforeSale.$dirty && frmAddItem.PriceBeforeSale.$invalid">
                                                         <span class="errorFont" ng-show="frmAddItem.PriceBeforeSale.$error.pattern">Feild accept numbers only</span>
@@ -118,7 +118,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">About Me</label>
+                                                        <label class="control-label">About item</label>
                                                         <textarea class="form-control"  rows="3" value="currentItem.Description" ng-model="currentItem.Description" required name="itemDesc" id="itemDesc" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$"><%= item.Description %></textarea>
                                                         <span ng-show="frmAddItem.itemDesc.$dirty && frmAddItem.itemDesc.$invalid">
                                                             <span class="errorFont" ng-show="frmAddItem.itemDesc.$error.required">Required</span>
@@ -217,7 +217,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Add New Picture</h4>
+                    <h4 class="modal-title">Add new picture</h4>
                 </div>
                 <div class="modal-body">
                     <div class="content">
@@ -226,15 +226,15 @@
                                 <div class="col-md-8">
                                     <div class="card">
                                         <div class="card-header" data-background-color="orange">
-                                            <h4 class="title">Create Picture</h4>
-                                            <p class="category">Create A New Picture</p>
+                                            <h4 class="title">Create picture</h4>
+                                            <p class="category">Create new picture</p>
                                         </div>
                                         <div class="card-content">
                                             <form name="frmAddPic" id="frmAddPic" novalidate>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group label-floating" ng-class="{'is-empty':isEmpty == true}">
-                                                            <label class="control-label">Picture Name</label>
+                                                            <label class="control-label">Picture name</label>
                                                             <input type="text" class="form-control" ng-model="picAddModalTitle" required name="picTitle" id="picTitle" ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                             <span ng-show="frmAddPic.picTitle.$dirty && frmAddPic.picTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmAddPic.picTitle.$error.required">Required</span>
@@ -266,7 +266,7 @@
                                         <div class="card-content">
                                             <h4 class="title itemTitle">{{picAddModalTitle}}</h4>
                                             <div class=" alert-danger clear text-center" id="errImgDiv">
-                                                <span class="errorFont"> Image is not suitable </span>
+                                                <span class="errorFont"> Image is not suitable. allowed image should be wide and less than 2MB </span>
                                             </div>
                                         </div>
 
@@ -294,7 +294,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Edit Picture</h4>
+                    <h4 class="modal-title">Edit picture</h4>
                 </div>
                 <div class="modal-body">
                     <div class="content">
@@ -303,15 +303,15 @@
                                 <div class="col-md-8">
                                     <div class="card">
                                         <div class="card-header" data-background-color="orange">
-                                            <h4 class="title">Edit Picture</h4>
-                                            <p class="category">Add A New Picture Details</p>
+                                            <h4 class="title">Edit picture</h4>
+                                            <p class="category">Add new Picture details</p>
                                         </div>
                                         <div class="card-content">
                                             <form name="frmEditePic" id="frmEditePic" novalidate>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group label-floating">
-                                                            <label class="control-label">Picture Name</label>
+                                                            <label class="control-label">Picture name</label>
                                                             <input type="text" class="form-control" value="picEditModal.Title" ng-model="picEditModal.Title" required name="picTitle" id="picTitle" ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                             <span ng-show="frmEditePic.picTitle.$dirty && frmEditePic.picTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmEditePic.picTitle.$error.required">Required</span>
@@ -342,7 +342,7 @@
                                         <div class="card-content">
                                             <h4 class="title itemTitle">{{picEditModal.Title}}</h4>
                                             <div class=" alert-danger clear text-center" id="errImgDivEdit">
-                                                <span class="errorFont"> Image is not suitable </span>
+                                                <span class="errorFont"> Image is not suitable. allowed image should be wide and less than 2MB </span>
                                             </div>
                                         </div>
 

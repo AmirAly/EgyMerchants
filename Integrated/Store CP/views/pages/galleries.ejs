@@ -44,7 +44,7 @@
                         </button>
                         <h4>Galleries</h4>
                     </div>
-                    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">Add Gallery</button>
+                    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">Add gallery</button>
                 </div>
             </nav>
             <div class="content">
@@ -105,7 +105,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Add Gallery</h4>
+                    <h4 class="modal-title">Add gallery</h4>
                 </div>
                 <div class="modal-body">
                     <div class="content">
@@ -114,15 +114,15 @@
                                 <div class="col-md-8">
                                     <div class="card">
                                         <div class="card-header" data-background-color="orange">
-                                            <h4 class="title">Create Gallery</h4>
-                                            <p class="category">Create A New Gallery</p>
+                                            <h4 class="title">Create gallery</h4>
+                                            <p class="category">Create new gallery</p>
                                         </div>
                                         <div class="card-content">
                                             <form name="frmAddGallery" id="frmAddGallery">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group label-floating" ng-class="{'is-empty': isEmpty == true}">
-                                                            <label class="control-label">Gallery Name</label>
+                                                            <label class="control-label">Gallery name</label>
                                                             <input type="text" class="form-control" ng-model="gallery.Title" ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$" name="galleryTitle" id="galleryTitle">
                                                             <span ng-show="frmAddGallery.galleryTitle.$dirty && frmAddGallery.galleryTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmAddGallery.galleryTitle.$error.required">Required</span>
@@ -137,7 +137,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <div class="form-group label-floating" ng-class="{'is-empty': isEmpty == true}">
-                                                                <label class="control-label"> About Gallery</label>
+                                                                <label class="control-label"> About gallery</label>
                                                                 <textarea class="form-control" rows="3" ng-model="gallery.Description" required ng-minlength="2"  pattern="^((?!\{\{[^}]+\}\}).)*$" name="galleryDesc" id="galleryDesc"></textarea>
                                                                 <span ng-show="frmAddGallery.galleryDesc.$dirty && frmAddGallery.galleryDesc.$invalid">
                                                                 <span class="errorFont" ng-show="frmAddGallery.galleryDesc.$error.required">Required</span>
@@ -172,7 +172,7 @@
                                             <h4 class="title itemTitle">{{gallery.Title}}</h4>
                                             <p class="category">{{gallery.Description}}</p>
                                             <div class=" alert-danger clear text-center" id="errImgDiv">
-                                                <span class="errorFont"> Image is not suitable </span>
+                                                <span class="errorFont"> Image is not suitable. allowed image should be wide and less than 2MB </span>
                                             </div>
                                         </div>
 

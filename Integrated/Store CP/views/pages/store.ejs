@@ -52,14 +52,14 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-header" data-background-color="orange">
-                                <h4 class="title">Edit Profile</h4>
+                                <h4 class="title">Edit profile</h4>
                                 <p class="category">Complete your profile</p>
                             </div>
                             <div class="card-content">
                                 <form name="frmStoreData" novalidate>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label class="control-label">Store Cover Photo</label>
+                                            <label class="control-label">Store cover photo</label>
                                             <br>
                                             <div class="coverContent">
                                                 <img fallbacksrc="" id="imgItemCover" ng-click="ShowFileSelectorCover()" class="img-responsive cursorPointer imgItemCover" src="<%= store.CoverPhoto %>" />
@@ -75,7 +75,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Store Name (disabled)</label>
+                                                <label class="control-label">Store name (disabled)</label>
                                                 <input type="text" class="form-control" value="currentStore.Name" ng-model="currentStore.Name" disabled="">
                                             </div>
                                         </div>
@@ -124,7 +124,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label"> About Store</label>
+                                                    <label class="control-label"> About store</label>
                                                     <textarea class="form-control" rows="3" value="currentStore.Description" ng-model="currentStore.Description" required name="Desc" id="Desc" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                         <%= store.Description %>
                                                     </textarea>
@@ -139,7 +139,7 @@
                                     <div class=" alert-danger clear text-center" ng-show="errdiv">
                                         <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
                                     </div>
-                                    <button type="submit" ng-click="save()" ng-disabled="frmStoreData.$invalid" class="btn btn-primary pull-right">Update Profile</button>
+                                    <button type="submit" ng-click="save()" ng-disabled="frmStoreData.$invalid" class="btn btn-primary pull-right">Update profile</button>
                                     <div class="clearfix"></div>
                                 </form>
 
@@ -160,7 +160,7 @@
                                 <p class="category"><%= store.Description %></p>
 								<br>
                                 <div class=" alert-danger clear text-center" id="errImgDivEdit">
-                                    <span class="errorFont"> Image is not suitable </span>
+                                    <span class="errorFont"> Image is not suitable. allowed image should be wide and less than 2MB </span>
                                 </div>
                             </div>
                         </div>

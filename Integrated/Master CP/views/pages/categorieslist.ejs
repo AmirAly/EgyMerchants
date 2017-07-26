@@ -56,7 +56,7 @@
                             <span class="icon-bar"></span>
                         </button>
                     </div>
-                    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">Add Category</button>
+                    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">Add category</button>
                 </div>
             </nav>
 
@@ -66,7 +66,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header defaultColor">
-                                    <h4 class="title">Categories List</h4>
+                                    <h4 class="title">Categories list</h4>
                                     <p class="category">List of categories</p>
                                 </div>
                                 <div class="card-content table-responsive">
@@ -82,15 +82,15 @@
                                             <% if ( categorieslst.length > 0  ){ %>
                                             <% categorieslst.forEach(function(category){ %>
                                             <tr>
-                                                <td><%= category.Name%> : <%= category.Country.Name%></td>
+                                                <td><span class="tableSpan"><%= category.Name%> : <%= category.Country.Name%></span></td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" ng-click="editCategory('<%= category._id %>')" data-target=".bs-example-modal-lg2" data-original-title="Edit Category">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-toggle="modal" ng-click="editCategory('<%= category._id %>')" data-target=".bs-example-modal-lg2" data-original-title="Edit category">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg3" ng-click="callDelModal('<%= category._id %>')" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg3" ng-click="callDelModal('<%= category._id %>')" data-original-title="Remove category" aria-describedby="tooltip451158">
                                                         <i class="material-icons">close</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -123,7 +123,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Add Category</h4>
+                    <h4 class="modal-title">Add category</h4>
                 </div>
                 <div class="modal-body">
                     <div class="content">
@@ -132,8 +132,8 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header" data-background-color="orange">
-                                            <h4 class="title">Create Category</h4>
-                                            <p class="category">Create A New Category</p>
+                                            <h4 class="title">Create category</h4>
+                                            <p class="category">Create new category</p>
                                         </div>
                                         <div class="card-content">
                                             <form name="frmAddCategory" id="frmAddCategory">
@@ -154,7 +154,7 @@
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label>country</label>
+                                                            <label>Country</label>
                                                             <br>
                                                             <select name="country" ng-model="selectedCountry" class="form-control">
                                                                 <% countrieslst.forEach(function(country){ %>
@@ -194,7 +194,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Edit Category</h4>
+                    <h4 class="modal-title">Edit category</h4>
                 </div>
                 <div class="modal-body">
                     <div class="content">
@@ -203,8 +203,8 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header" data-background-color="orange">
-                                            <h4 class="title">Edit Category</h4>
-                                            <p class="category">Edit your category</p>
+                                            <h4 class="title">Edit category</h4>
+                                            <p class="category">Edit this category</p>
                                         </div>
                                         <div class="card-content">
                                             <form name="frmEditCategory">
@@ -226,7 +226,7 @@
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label>country</label>
+                                                            <label>Country</label>
                                                             <br>
                                                             <select name="country" ng-model="selectedCountryEdite" value="selectedCountryEdite" class="form-control">
                                                                 <% countrieslst.forEach(function(country){ %>
@@ -254,7 +254,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" ng-click="updateCategory()" ng-disabled="frmEditCategory.$invalid" class="btn btn-primary">Update Category</button>
+                    <button type="submit" ng-click="updateCategory()" ng-disabled="frmEditCategory.$invalid" class="btn btn-primary">Update category</button>
                 </div>
             </div>
         </div>

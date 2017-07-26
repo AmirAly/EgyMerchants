@@ -53,9 +53,9 @@
                     <div class="col-md-8">
                         <ol class="breadcrumb">
                             <li>
-                                <a href="/exposlist">Expos List</a>
+                                <a href="/exposlist">Expos list</a>
                             </li>
-                            <li class="active">Edit Expo</li>
+                            <li class="active">Edit expo</li>
                         </ol>
                     </div>
                     <!-- End Breadcrumbs -->
@@ -63,15 +63,15 @@
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-header" data-background-color="orange">
-                                    <h4 class="title">Edit Expo</h4>
-                                    <p class="category">Edit your Expo</p>
+                                    <h4 class="title">Edit expo</h4>
+                                    <p class="category">Edit this expo</p>
                                 </div>
                                 <div class="card-content">
                                     <form name="frmUpdateExpo">
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <div class="form-group label-floating is-focused ">
-                                                    <label class="control-label">Expo Name</label>
+                                                    <label class="control-label">Expo name</label>
                                                     <input type="text" class="form-control" ng-model="expoLst.Title" name="expoTitle" id="expoTitle" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                     <span ng-show="frmUpdateExpo.expoTitle.$dirty && frmUpdateExpo.expoTitle.$invalid">
                                                         <span class="errorFont" ng-show="frmUpdateExpo.expoTitle.$error.required">Required</span>
@@ -91,7 +91,7 @@
                                             </div>
                                         </div>
 
-                                        <button type="submit" ng-click="updateExpo('<%= expo._id %>')" class="btn btn-primary pull-right">Update Expo</button>
+                                        <button type="submit" ng-click="updateExpo('<%= expo._id %>')" class="btn btn-primary pull-right">Update expo</button>
                                         <div class="clearfix"></div>
                                         <div class=" alert-danger clear text-center" ng-show="errdiv">
                                             <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="card-content">
                                     <div class=" alert-danger clear text-center" id="errImgDiv">
-                                        <span class="errorFont"> Image is not suitable </span>
+                                        <span class="errorFont"> Image is not suitable. allowed image should be wide and less than 2MB </span>
                                     </div>
                                 </div>
                             </div>
@@ -144,13 +144,13 @@
                                                 <td>{{floor.Name}}</td>
 
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editFloor(floor._id,'<%= expo._id %>')" data-original-title="Edit">
+                                                    <button type="button" tool-tip rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editFloor(floor._id,'<%= expo._id %>')" data-original-title="Edit floor">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg3" ng-click="callDelModal(floor._id,'<%= expo._id %>')" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                    <button type="button" tool-tip rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg3" ng-click="callDelModal(floor._id,'<%= expo._id %>')" data-original-title="Remove floor" aria-describedby="tooltip451158">
                                                         <i class="material-icons">close</i>
                                                         <div class="ripple-container"></div>
                                                     </button>

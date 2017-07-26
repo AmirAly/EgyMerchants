@@ -50,22 +50,22 @@
                                                         <input type="file" onchange="convertRegisterImgToBase64URL(event)" id="uploadItemImage" accept="image/*" />
 
                                                     </div>
-                                                    <h6>Choose Picture</h6>
+                                                    <h6>Choose picture</h6>
                                                     <div class=" alert-danger clear text-center" id="errImgDiv">
-                                                        <span class="errorFont"> Image is not suitable </span>
+                                                        <span class="errorFont"> Image is not suitable. allowed image should be wide and less than 2MB </span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>
-                                                        Store Name <small>(required)</small>
+                                                        Store name <small>(required)</small>
                                                     </label>
                                                     <input name="username" id="username" type="text" class="form-control" ng-model="register.Name" placeholder="Enter your name.." required="" ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                     <span ng-show="frmRegister.username.$touched && frmRegister.username.$invalid">
                                                         <span class="errorFont" ng-show="frmRegister.username.$error.required">Required</span>
                                                         <span class="errorFont" ng-show="frmRegister.username.$error.minlength">User name is too short</span>
-                                                        <span class="errorFont" ng-show="frmRegister.username.$error.maxlength">User name is too </span>
+                                                        <span class="errorFont" ng-show="frmRegister.username.$error.maxlength">User name is too long</span>
                                                         <span class="errorFont" ng-show="frmRegister.username.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
                                                     </span>
                                                 </div>
@@ -81,7 +81,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>
-                                                        Re-enter Password <small>(required)</small>
+                                                        Re-enter password <small>(required)</small>
                                                     </label>
                                                     <input name="password2" id="password2" type="password" class="form-control" ng-model="register.rePassword" placeholder="RE-enter your password.." required="" compare-to="register.Password">
                                                     <span ng-show="frmRegister.password2.$touched && frmRegister.password2.$invalid">
@@ -147,9 +147,9 @@
                                             </div>
                                             <div class="col-sm-10 col-sm-offset-1">
                                                 <div class="form-group">
-                                                    <label>About Me</label>
+                                                    <label>About store</label>
                                                     <div class="form-group label-floating">
-                                                        <textarea class="form-control" rows="5" ng-model="register.Description" placeholder="Enter Description of your store.." name="txtDescription" id="txtDescription" required style="resize: none;" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$"></textarea>
+                                                        <textarea class="form-control" rows="5" ng-model="register.Description" placeholder="Enter description of your store.." name="txtDescription" id="txtDescription" required style="resize: none;" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$"></textarea>
                                                         <span ng-show="frmRegister.txtDescription.$touched && frmRegister.txtDescription.$invalid">
                                                             <span class="errorFont" ng-show="frmRegister.txtDescription.$error.required">Required</span>
                                                             <span class="errorFont" ng-show="frmRegister.txtDescription.$error.minlength">Description is too short</span>
@@ -162,7 +162,7 @@
                                     </div>
 
                                     <div class="tab-pane catigories" id="type">
-                                        <h4 class="info-text">Choose category for you store </h4>
+                                        <h4 class="info-text">Choose category for your store </h4>
                                         <div class="row">
                                             <div class="col-sm-10 col-sm-offset-1">
                                                 <div class="col-md-3 col-xs-6" ng-repeat="category in categoriesLst">

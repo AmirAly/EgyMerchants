@@ -36,6 +36,9 @@
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x- ng-cloak {
     display: none !important;
 }
+.ng-hide{
+    display:none !important;
+}
 
 body, .smooth-container {
     scroll-behavior: smooth;
@@ -922,6 +925,8 @@ h6.mega {
     left: 0;
     right: 0;
     height: 300px;
+    background-repeat: no-repeat !important;
+    background-size: cover !important
 }
 
 .storePage .pageBody {

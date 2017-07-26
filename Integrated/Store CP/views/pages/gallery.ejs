@@ -44,7 +44,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <h4>Edit Gallery</h4>
+                        <h4>Edit gallery</h4>
                     </div>
                 </div>
             </nav>
@@ -56,7 +56,7 @@
                             <li>
                                 <a href="/galleries/{{storeId}}">Galleries</a>
                             </li>
-                            <li class="active">Edit Gallery</li>
+                            <li class="active">Edit gallery</li>
                         </ol>
                     </div>
                     <!-- End Breadcrumbs -->
@@ -64,15 +64,15 @@
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-header" data-background-color="orange">
-                                    <h4 class="title">Edit Gallery</h4>
-                                    <p class="category">Edit your Gallery</p>
+                                    <h4 class="title">Edit gallery</h4>
+                                    <p class="category">Edit this gallery</p>
                                 </div>
                                 <div class="card-content">
                                     <form name="frmUpdateGallery">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group label-floating is-focused ">
-                                                    <label class="control-label">Gallery Name</label>
+                                                    <label class="control-label">Gallery name</label>
                                                     <input type="text" class="form-control" ng-model="currentGallery.Title" name="galleryTitle" id="galleryTitle" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$" >
                                                     <span ng-show="frmUpdateGallery.galleryTitle.$dirty && frmUpdateGallery.galleryTitle.$invalid">
                                                         <span class="errorFont" ng-show="frmUpdateGallery.galleryTitle.$error.required">Required</span>
@@ -105,7 +105,7 @@
 
 
                                         </div>
-                                        <button type="submit" ng-click="updateGallery()" ng-disabled="frmUpdateGallery.$invalid" class="btn btn-primary pull-right">Update Gallery</button>
+                                        <button type="submit" ng-click="updateGallery()" ng-disabled="frmUpdateGallery.$invalid" class="btn btn-primary pull-right">Update gallery</button>
                                         <div class="clearfix"></div>
 
 
@@ -126,7 +126,7 @@
                                     <h4 class="title itemTitle"><%= gallery.Title %></h4>
                                     <p class="category"><%= gallery.Description %></p>
 									<div class=" alert-danger clear text-center" id="errImgDiv">
-                                        <span class="errorFont"> Image is not suitable </span>
+                                        <span class="errorFont"> Image is not suitable. allowed image should be wide and less than 2MB </span>
                                     </div>
                                 </div>
                                 <div class="card-footer">

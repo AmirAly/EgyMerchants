@@ -88,7 +88,7 @@
                                                 <td>
                                                     <img class="divImgTable" src="<%= expo.Banner %>" />
                                                 </td>
-                                                <td><%= expo.Title %></td>
+                                                <td><span class="tableSpan"><%= expo.Title %></span></td>
                                                 <td class="light"><%= expo.Category.Name %></td>
                                                 <td>
                                                     <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editExpo('<%= expo._id %>')" data-original-title="Edit Expo">
@@ -197,7 +197,7 @@
                                             <h4 class="title itemTitle">{{expo.Title}}</h4>
                                             <p class="category">{{expo.Category}}</p>
                                             <div class=" alert-danger clear text-center" id="errImgDiv">
-                                                <span class="errorFont"> Image is not suitable </span>
+                                                <span class="errorFont"> Image is not suitable. allowed image should be wide and less than 2MB </span>
                                             </div>
                                         </div>
 

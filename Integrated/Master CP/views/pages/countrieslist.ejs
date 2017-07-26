@@ -58,7 +58,7 @@
                             <span class="icon-bar"></span>
                         </button>
                     </div>
-                    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">Add Country</button>
+                    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-lg">Add country</button>
                 </div>
             </nav>
 
@@ -68,7 +68,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header defaultColor">
-                                    <h4 class="title">Countries List</h4>
+                                    <h4 class="title">Countries list</h4>
                                     <p class="category">List of countries</p>
                                 </div>
                                 <div class="card-content table-responsive">
@@ -91,16 +91,16 @@
                                                 </td>
                                                 <td>{{country.Name}}</td>
                                                 <td>{{country.IsoCode}}</td>
-                                                <td class="light">{{country.WelcomeMsg}}</td>
+                                                <td class="light"><span class="tableSpan">{{country.WelcomeMsg}}</span></td>
 
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry(country._id)" data-original-title="Edit Country">
+                                                    <button type="button" tool-tip rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry(country._id)" data-original-title="Edit category">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg3" ng-click="callDelModal(country._id)" data-original-title="Remove" aria-describedby="tooltip451158">
+                                                    <button type="button" tool-tip rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg3" ng-click="callDelModal(country._id)" data-original-title="Remove category" aria-describedby="tooltip451158">
                                                         <i class="material-icons">close</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -130,7 +130,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Add Country</h4>
+                    <h4 class="modal-title">Add country</h4>
                 </div>
                 <div class="modal-body">
                     <div class="content">
@@ -139,8 +139,8 @@
                                 <div class="col-md-8">
                                     <div class="card">
                                         <div class="card-header" data-background-color="orange">
-                                            <h4 class="title">Create Country</h4>
-                                            <p class="category">Create A New Country</p>
+                                            <h4 class="title">Create country</h4>
+                                            <p class="category">Create new country</p>
                                         </div>
                                         <div class="card-content">
                                             <form name="frmAddCountry" id="frmAddCountry">
@@ -207,7 +207,7 @@
                                             <p class="category">{{country.IsoCode}}</p>
                                             <p class="category">{{country.WelcomeMsg}}</p>
                                             <div class=" alert-danger clear text-center" id="errImgDiv">
-                                                <span class="errorFont"> Image is not suitable </span>
+                                                <span class="errorFont"> Image is not suitable. allowed image should be wide and less than 2MB </span>
                                             </div>
                                         </div>
 

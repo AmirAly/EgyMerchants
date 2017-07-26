@@ -63,7 +63,7 @@
                         <div class="col-sm-12" style="display: flex;flex-wrap: wrap;align-items: stretch;">
                             <div ng-repeat="expo in searchResult.expo" class="product-preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
                                 <div class="preview wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s">
-                                    <a href="#" class="preview-image">
+                                    <a href="/{{IsoCode}}/Expos/{{expo.Category}}" class="preview-image">
                                         <img class="img-responsive wow zoomIn animated" data-wow-offset="0" data-wow-duration="1s" src="{{expo.Banner}}" width="270" height="328" alt="">
                                     </a>
                                     <ul class="product-controls-list right hide-right">
@@ -72,10 +72,10 @@
                                         <li><a href="#" class="circle"><span class="icon-justice"></span></a></li>
                                         <li><a href="#" class="cart"><span class="icon-basket"></span></a></li>
                                     </ul>
-                                    <a href="#" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
+                                    <a href="/{{IsoCode}}/Expos/{{expo.Category}}" class="quick-view  hidden-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span> View </a>
                                     <div class="quick-view visible-xs"> <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>
                                 </div>
-                                <h3 class="title"><a href="#">{{expo.Title}}</a></h3>
+                                <h3 class="title"><a href="/{{IsoCode}}/Expos/{{expo.Category}}">{{expo.Title}}</a></h3>
                             </div>
                         </div>
                     </div>

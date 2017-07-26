@@ -4,7 +4,7 @@
     $scope.loginData.Password = '';
     $scope.doLogin = function (form) {
         angular.forEach($scope.frmLogin.$error.required, function (field) {
-            field.$setDirty();
+            field.$setTouched();
         });
         if (form.$valid) {
             login();

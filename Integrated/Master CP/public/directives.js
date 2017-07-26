@@ -19,3 +19,13 @@ egm.directive('myModal2', function () {
         }
     }
 });
+egm.directive('toolTip', function () {
+    return function (scope, element, attrs) {
+
+        element.tooltip({
+            trigger: "hover",
+            placement: "top"
+        });
+
+    };
+});
