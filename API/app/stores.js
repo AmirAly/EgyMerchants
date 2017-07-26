@@ -309,7 +309,7 @@ module.exports = {
                         else {
                             if (lst.length > 0) {
                             expoList=_.map(lst,function(expo){
-                                return _.pick(_.extend({}, expo, { Type: "expo" }), '_id', 'Title', 'Banner','Type'); 
+                                return _.pick(_.extend({}, expo, { Type: "expo" }), '_id', 'Title', 'Banner','Type','Category'); 
                             })
                             if (_expo != "all") {
                                         _.each(lst, function (expo) {
