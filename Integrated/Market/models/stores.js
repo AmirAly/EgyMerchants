@@ -4,11 +4,12 @@ var Gallery = require('./models/gallery');
 var Expo = require('./models/expo');
 var Item = require('./models/item');
 var Category = require('./models/category');
+var Helper = require('./helper');
 var _ = require("underscore");
 module.exports = {
     register: function (_newStore) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ $or: [{ 'Email': _newStore.Email }, { 'Name': _newStore.Name }] }, { 'Status': 'Active' }] }, '', function (err, Obj) {
+            Schema.findOne({ $or: [{ 'Email': _newStore.Email }, { 'Name': _newStore.Name }] } , '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -22,19 +23,39 @@ module.exports = {
                         });
                     else {
                         _newStore.Type = 'store';
-                        _newStore.save(function (err, _newstore) {
-                            if (err)
-                                reject({
-                                    code: 1,
-                                    data: err
-                                });
-                            else {
-                                resolve({
-                                    code: 100,
-                                    data: { _id: _newstore._id, Name: _newstore.Name, Type: _newstore.Type }
-                                });
-                            }
-                        })
+                        if (_newStore.ProfilePicture) {
+                            Helper.uploadImage(_newStore.ProfilePicture, function (_url) {
+                                _newStore.ProfilePicture = _url;
+                                _newStore.save(function (err, _newstore) {
+                                    if (err)
+                                        reject({
+                                            code: 1,
+                                            data: err
+                                        });
+                                    else {
+                                        resolve({
+                                            code: 100,
+                                            data: { _id: _newstore._id, Name: _newstore.Name, Type: _newstore.Type }
+                                        });
+                                    }
+                                })
+                            })
+                        }
+                        else {
+                            _newStore.save(function (err, _newstore) {
+                                if (err)
+                                    reject({
+                                        code: 1,
+                                        data: err
+                                    });
+                                else {
+                                    resolve({
+                                        code: 100,
+                                        data: { _id: _newstore._id, Name: _newstore.Name, Type: _newstore.Type }
+                                    });
+                                }
+                            })
+                        }
                     }
                 }
             })
@@ -59,10 +80,10 @@ module.exports = {
                         code: 22,
                         data: "This account not confirmed yet"
                     });
-                else if (Obj.Status == "Suspend")
+                else if (Obj.Status == "deleted")
                     reject({
                         code: 23,
-                        data: "This account suspended"
+                        data: "This account deleted"
                     });
                 else if (Obj.Status == "Active")
                     resolve({
@@ -74,7 +95,7 @@ module.exports = {
     },
     editProfile: function (_id, _email, _city, _address, _country, _description, _imgs, _profilePicture, _coverPhoto) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Email': _email, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
+            Schema.findOne({ 'Email': _email, '_id': { $ne: _id } }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -96,27 +117,80 @@ module.exports = {
                             else {
                                 if (Obj) {
                                     if (Obj.Status == "Active") {
+                                        Obj.CoverPhoto = "";
+                                        Obj.ProfilePicture = "";
                                         Obj.Email = _email;
                                         Obj.City = _city;
                                         Obj.Address = _address;
                                         Obj.Country = _country;
                                         Obj.Description = _description;
-                                        Obj.ProfilePicture = _profilePicture;
-                                        Obj.CoverPhoto = _coverPhoto;
-                                        if (_imgs)
-                                            Obj.Imgs = _imgs;
-                                        Obj.save(function (err, Obj) {
-                                            if (err)
-                                                reject({
-                                                    code: 1,
-                                                    data: err
-                                                });
-                                            else
-                                                resolve({
-                                                    code: 100,
-                                                    data: "Your profile updated successfully"
-                                                });
-                                        })
+                                        if (_profilePicture) {
+                                            Helper.uploadImage(_profilePicture, function (_url) {
+                                                Obj.ProfilePicture = _url;
+                                                if (_coverPhoto) {
+                                                    Helper.uploadImage(_coverPhoto, function (_url) {
+                                                        Obj.CoverPhoto = _url;
+                                                        Obj.save(function (err, Obj) {
+                                                            if (err)
+                                                                reject({
+                                                                    code: 1,
+                                                                    data: err
+                                                                });
+                                                            else
+                                                                resolve({
+                                                                    code: 100,
+                                                                    data: "Your profile updated successfully"
+                                                                });
+                                                        })
+                                                    })
+                                                }
+                                                else{
+                                                Obj.save(function (err, Obj) {
+                                                    if (err)
+                                                        reject({
+                                                            code: 1,
+                                                            data: err
+                                                        });
+                                                    else
+                                                        resolve({
+                                                            code: 100,
+                                                            data: "Your profile updated successfully"
+                                                        });
+                                                })
+                                            }
+                                            })
+                                        }
+                                        else if (_coverPhoto) {
+                                            Helper.uploadImage(_coverPhoto, function (_url) {
+                                                Obj.CoverPhoto = _url;
+                                                Obj.save(function (err, Obj) {
+                                                    if (err)
+                                                        reject({
+                                                            code: 1,
+                                                            data: err
+                                                        });
+                                                    else
+                                                        resolve({
+                                                            code: 100,
+                                                            data: "Your profile updated successfully"
+                                                        });
+                                                })
+                                            })
+                                        }
+                                        else {
+                                            Obj.save(function (err, Obj) {
+                                                if (err)
+                                                    reject({
+                                                        code: 1,
+                                                        data: err
+                                                    });
+                                                else
+                                                    resolve({
+                                                        code: 100,
+                                                        data: "Your profile updated successfully"
+                                                    });
+                                            })
+                                        }
                                     }
                                     else {
                                         reject({
@@ -177,7 +251,7 @@ module.exports = {
     },
     suspend: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "Suspended" } }, { new: true }, function (err, Obj) {
+            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "deleted" } }, { new: true }, function (err, Obj) {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
@@ -226,7 +300,7 @@ module.exports = {
                     if (lst.length > 0) {
                         storesList = storesList.concat(lst);
                     }
-                    Expo.find(expoFilter, 'Floors Title Banner').populate('Floors.Coordinates.Store', '_id Name ProfilePicture Description Address Status Type').exec(function (err, lst) {
+                    Expo.find(expoFilter, 'Floors Title Banner Category').populate('Floors.Coordinates.Store', '_id Name ProfilePicture Description Address Status Type').exec(function (err, lst) {
                         if (err)
                             reject({
                                 code: 1,
@@ -234,36 +308,36 @@ module.exports = {
                             });
                         else {
                             if (lst.length > 0) {
-                                expoList = _.map(lst, function (expo) {
-                                    return _.pick(_.extend({}, expo, { Type: "expo" }), '_id', 'Title', 'Banner', 'Type');
-                                })
-                                if (_expo != "all") {
-                                    _.each(lst, function (expo) {
-                                        _.each(expo.Floors, function (floor) {
-                                            _.each(floor.Coordinates, function (store) {
-                                                if (store.Store.Status == "Active") expoStoresList.push(store.Store);
+                            expoList=_.map(lst,function(expo){
+                                return _.pick(_.extend({}, expo, { Type: "expo" }), '_id', 'Title', 'Banner','Type','Category'); 
+                            })
+                            if (_expo != "all") {
+                                        _.each(lst, function (expo) {
+                                            _.each(expo.Floors, function (floor) {
+                                                _.each(floor.Coordinates, function (store) {
+                                                    if (store.Store.Status == "Active") expoStoresList.push(store.Store);
+                                                })
                                             })
                                         })
-                                    })
-                                    var destinctArray = _.uniq(expoStoresList, function (x) {
-                                        return (x._id).toString();
-                                    })
-                                    var intersect = [];
-                                    _.each(destinctArray, function (a) {
-                                        _.each(storesList, function (b) {
-                                            if (a._id.toString() === b._id.toString()) {
-                                                intersect.push(a);
-                                            }
-                                        });
-                                    });
-                                    storesList = intersect;
+                                        var destinctArray = _.uniq(expoStoresList, function (x) {
+                                            return (x._id).toString();
+                                        })
+                                        var intersect=[];
+                                     _.each(destinctArray, function (a) {
+                                            _.each(storesList, function (b) {
+                                                if (a._id.toString() === b._id.toString()) {
+                                                    intersect.push(a);
+                                                }
+                                            });
+                                     });
+                                     storesList = intersect;
                                 }
-                                if (_store != "all" && _keyWord == "all") {
+                            if (_store != "all" && _keyWord == "all") {
                                     finalList = _.filter(storesList, function (store) {
                                         return (store.Name.toLowerCase().indexOf(_store.toLowerCase()) !== -1 || store.Description.toLowerCase().indexOf(_store.toLowerCase()) !== -1 || store.Address.toLowerCase().indexOf(_store.toLowerCase()) !== -1)
                                     })
-
-                                    if (_expo != "all") { finalList = finalList.concat(expoList) }
+                                    
+                                    if (_expo != "all") {finalList=finalList.concat(expoList) }
                                     if (finalList.length > 0) {
                                         resolve({ code: 100, data: _.groupBy(finalList, 'Type') });
                                     }
@@ -271,7 +345,7 @@ module.exports = {
                                         reject({ code: 21, data: "This filteration didn't result in any data" })
                                     }
                                 }
-                                if (_keyWord != "all") {
+                            if (_keyWord != "all") {
                                     Item.find({ $and: [{ $or: [{ 'Name': { "$regex": _keyWord, "$options": "i" } }, { 'Description': { "$regex": _keyWord, "$options": "i" } }] }, { 'Status': 'Active' }] }, '_id Name Pictures Store', function (err, itemLst) {
                                         if (err)
                                             reject({
@@ -284,11 +358,11 @@ module.exports = {
                                                     return _.pick(_.extend({}, item, { Type: "item" }), '_id', 'Name', 'Pictures', 'Store', 'Type');
                                                 })
                                             }
-                                            if (_expo == "all")
+                                            if (_expo == "all") 
                                                 finalList = finalList.concat(_.filter(expoList, function (expo) {
                                                     return (expo.Title.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1)
                                                 }))
-                                            else { finalList = finalList.concat(expoList) }
+                                            else { finalList = finalList.concat(expoList)}
                                             if (_store != "all" || _expo != "all" || _country != "all") {
                                                 if (_store != "all") {
                                                     storesList = _.filter(storesList, function (store) {
@@ -301,12 +375,12 @@ module.exports = {
                                                         return (store.Name.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1 || store.Description.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1 || store.Address.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1)
                                                     }))
                                                 }
-                                                _.each(storesList, function (store) {
-                                                    var res = _.filter(itemsList, function (item) {
-                                                        return item.Store == store._id.toString();
+                                                    _.each(storesList, function (store) {
+                                                        var res = _.filter(itemsList, function (item) {
+                                                            return item.Store == store._id.toString();
+                                                        })
+                                                        finalList = finalList.concat(res);
                                                     })
-                                                    finalList = finalList.concat(res);
-                                                })
                                             }
                                             else {
                                                 var filteredStores = _.filter(storesList, function (store) {
@@ -329,8 +403,18 @@ module.exports = {
                                     })
                                 }
                                 else {
-                                    if (_expo != "all") {
-                                        finalList = storesList.concat(expoList);
+                                if (_expo != "all") {
+                                    finalList = storesList.concat(expoList);
+                                    if (finalList.length > 0) {
+                                        resolve({ code: 100, data: _.groupBy(finalList, 'Type') });
+                                    }
+                                    else {
+                                        reject({ code: 21, data: "This filteration didn't result in any data" })
+                                    }
+                                    }
+                                else {
+                                    if (_country != "all") {
+                                        finalList = storesList;
                                         if (finalList.length > 0) {
                                             resolve({ code: 100, data: _.groupBy(finalList, 'Type') });
                                         }
@@ -338,23 +422,13 @@ module.exports = {
                                             reject({ code: 21, data: "This filteration didn't result in any data" })
                                         }
                                     }
-                                    else {
-                                        if (_country != "all") {
-                                            finalList = storesList;
-                                            if (finalList.length > 0) {
-                                                resolve({ code: 100, data: _.groupBy(finalList, 'Type') });
-                                            }
-                                            else {
-                                                reject({ code: 21, data: "This filteration didn't result in any data" })
-                                            }
-                                        }
-                                        else { reject({ code: 22, data: "please enter any value for search" }) }
+                                    else { reject({ code: 22, data: "please enter any value for search" }) }
                                     }
                                 }
-
+                                
                             }
                         }
-
+                       
                     })
                 }
             })
