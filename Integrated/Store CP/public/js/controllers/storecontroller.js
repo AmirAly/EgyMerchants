@@ -86,7 +86,7 @@ function convertCoverStoreImgToBase64URLCover(event) {
         var fileReader = new FileReader();
         fileReader.onload = function (fileLoadedEvent) {
             img.onload = function () {
-                if ((this.height / this.width) < 1.5 && fileToLoad.size <= 2000000) {
+                if (fileToLoad.size <= 2000000) {
                     document.getElementById("errImgDiv").style.display = 'none';
                     BaseImg64 = fileLoadedEvent.target.result;
                     UploadImageCover(BaseImg64);
