@@ -9,6 +9,10 @@ var User = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
+    FavouriteItems: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Item'
+    }],
     CoverPhoto: { type: String, min:2 },
     Description: { type: String, default: '-',min:2},
     Badges: {
