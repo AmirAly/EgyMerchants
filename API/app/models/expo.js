@@ -16,6 +16,7 @@ var Expo = new Schema({
             Store: {
                 type: Schema.Types.ObjectId,
                 ref: 'User',
+                required: "Please enter store id"
             },
             Top: { type: Number },
             Left: { type: Number },

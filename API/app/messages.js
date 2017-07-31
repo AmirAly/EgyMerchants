@@ -18,7 +18,7 @@ module.exports = {
                         var _newnotification = new Notification();
                         _newnotification.Text = "There is new message for you from" + " " +Users[0].Name;
                         _newnotification.User = _newMessage.To;
-                        _newnotification.RedirectURL = "/message/" + _newMessage.From;
+                        _newnotification.RedirectURL = "/message/" + _newMessage.To +"/"+ _newMessage.From;
                         _newnotification.save(function (err, notification) {
                             if(err)
                                 reject({

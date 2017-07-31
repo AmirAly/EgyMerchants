@@ -4,7 +4,8 @@ var Notification = new Schema({
     Text: { type: String, required: 'notification text is required' },
     User: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: "Please enter user id"
     },
     Date: { type: String, default: new Date() },
     Status: { type: String, default: 'un read' },

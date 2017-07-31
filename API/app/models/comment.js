@@ -3,11 +3,13 @@ var Schema = Mongoose.Schema;
 var Comment = new Schema({
     Item: {
         type: Schema.Types.ObjectId,
-        ref: 'Item'
+        ref: 'Item',
+        required: "Please enter item id"
     },
     User: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: "Please enter user id"
     },
     Text: { type: String, required: 'Message text is required' },
     Date: { type: String, default: new Date() }

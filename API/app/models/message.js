@@ -4,11 +4,13 @@ var Message = new Schema({
     Text: { type: String, required: 'Message text is required' },
     From: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: "Please enter user id"
     },
     To: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: "Please enter user id"
     },
     Date: { type: String, default: new Date() },
     Status: { type: String, default: 'un read' }
