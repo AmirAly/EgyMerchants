@@ -3,6 +3,7 @@ var User = require('./models/user');
 var Comment = require('./models/comment');
 var Notification = require('./models/notification');
 var _ = require("underscore");
+var Promises = require("bluebird");
 module.exports = {
     send: function (_newMessage) {
         return new Promise(function (resolve, reject) {
@@ -22,7 +23,7 @@ module.exports = {
                         _newnotification.save(function (err, notification) {
                             if(err)
                                 reject({
-                                    code: 10,
+                                    code: 1,
                                     data: err
                                 })
                         })
@@ -54,7 +55,7 @@ module.exports = {
     },
     getAll: function (_fromId,_toId) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ $or: [{ "From": _fromId, "To": _toId }, { "From": _toId, "To": _fromId }] }, '').populate('From', '_id Name ProfilePicture').populate('To', '_id Name ProfilePicture').exec(function (err, Msgs) {
+            Schema.find({ $or: [{ "From": _fromId, "To": _toId }, { "From": _toId, "To": _fromId }] }, '').populate('From', 'Name ProfilePicture').populate('To', 'Name ProfilePicture').exec(function (err, Msgs) {
                 if(err)
                     reject({
                         code: 1,
@@ -63,23 +64,26 @@ module.exports = {
                 else {
                     if (Msgs.length > 0) {
                         var result = [];
-                        result=_.each(Msgs, function (msg) {
-                            if (msg.Status == "un read") {
+                        _.each(Msgs, function (msg) {
+                             if (msg.Status == "un read") {
                                 Schema.findOneAndUpdate({ '_id': msg._id }, { $set: { 'Status': "read" } }, { new: true }, function (err, Obj) {
                                     if (err)
                                         reject({
                                             code: 1,
                                             data: err
                                         })
-                                    else  return(Obj); 
+                                    else result.push(Obj);
                                 })
                             }
-                            else return(msg);
-                        })
-                        resolve({
-                            code: 100,
-                            data: result
-                        });
+                            else result.push(msg);
+                            })
+                        if (result.length == Msgs.length) {
+                            console.log("resolved");
+                            resolve({
+                                code: 100,
+                                data: result
+                            });
+                        }
                     }
                     else
                         reject({

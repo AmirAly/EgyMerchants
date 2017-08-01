@@ -1,10 +1,12 @@
 var Schema = require('./models/comment');
 var Item = require('./models/item');
 var User = require('./models/user');
+var Notification = require('./models/notification');
+var _ = require("underscore");
 module.exports = {
     add: function (_newComment) {
         return new Promise(function (resolve, reject) {
-            Item.findOne({ "_id": _newComment.Item }, '', function (err, Obj) {
+            Item.findOne({ "_id": _newComment.Item }, 'Store Name').populate('Store', 'Name').exec(function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -12,18 +14,46 @@ module.exports = {
                     })
                 else {
                     if (Obj) {
+                        if (Obj.Store._id.toString() == _newComment.User.toString()) {
+                            Schema.find({ "Item": _newComment.Item }, 'User', function (err, Lst) {
+                                if (err)
+                                    reject({
+                                        code: 1,
+                                        data: err
+                                    })
+                                else {
+                                    if (Lst.length > 0) {
+                                        _.each(Lst, function (comment) {
+                                            if (comment.User.toString() != Obj.Store._id.toString()) {
+                                                var _newnotification = new Notification();
+                                                _newnotification.Text = "Store " + Obj.Store.Name + " commented  on " + "item " + Obj.Name;
+                                                _newnotification.User = comment.User;
+                                                _newnotification.RedirectURL = "/comments/";
+                                                _newnotification.save(function (err, notification) {
+                                                    if (err)
+                                                        reject({
+                                                            code: 1,
+                                                            data: err
+                                                        })
+                                                })
+                                            }
+                                        })
+                                    }
+                                }
+                            })
+                        }
                         _newComment.save(function (err, comment) {
                             if (err)
                                 reject({
                                     code: 1,
                                     data: err
                                 })
-                            else
-                                if (comment)
+                            else {
                                     resolve({
                                         code: 100,
                                         data: "Your comment added successfully"
                                     })
+                            }
                         })
                     }
                     else {
