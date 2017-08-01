@@ -5,12 +5,13 @@
     "azure-storage": "*",
     "base64-stream": "*",
     "body-parser": "*",
+    "cloudinary": "*",
     "express": "*",
     "file-system": "*",
     "mongoose": "*",
     "nodemailer": "*",
+    "socket.io": "^2.0.3",
     "stream": "*",
-    "underscore": "^1.8.3",
-	"cloudinary": "*"
+    "underscore": "^1.8.3"
   }
 }
