@@ -187,5 +187,36 @@ module.exports = {
                 }
             })
         })
+    },
+    getFavourites: function (_userId) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOne({ "_id": _userId, "Status": "Active" }, 'FavouriteItems').populate('FavouriteItems','Name Pictures').exec(function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    })
+                else {
+                    if (Obj){
+                    if(Obj.FavouriteItems.length)
+                        resolve({
+                            code: 100,
+                            data: Obj
+                        });
+                    else
+                        reject({
+                            code: 22,
+                            data: "There is no favourite items for you"
+                        });
+                    }
+                       
+                    else
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
+                }
+            })
+        })
     }
 }
