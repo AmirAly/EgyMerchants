@@ -69,8 +69,24 @@
                             </div>
                             <!-- //end Description -->
                         </div>
+						
+						<div class="col-xs-3 col-xs-offset-1">
 
-                        <div class="col-xs-12">
+						<a ng-click="fbshareCurrentPage('<%= product.Name %>')" class="btn btn-sm facebookShare" target="_blank" alt="Share on Facebook">
+						    <i class="fa fa-facebook-square fa-1"><span> Share</span></i>
+						</a>
+
+						</div>
+						<div class="col-xs-3">
+						   <a class="twitter-share-button"
+                            href="https://twitter.com/intent/tweet?text=<%= product.Name %>&image=https://www.booktopia.com.au/http_coversbooktopiacomau/big/9781426310140/nat-geo-little-kids-first-big-book-of-space.jpg">
+                               Tweet
+                           </a>
+	                    </div>
+
+                        <div class="spacer1"></div>
+
+						<div class="col-xs-12">
                             <section class="dvAdvertise">
                                 <img class="img-responsive" src="/images/adv3.png" />
                             </section>
