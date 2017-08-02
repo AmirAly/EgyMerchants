@@ -13,7 +13,7 @@
                     <div class="col-sm-12">
                         <div class="dvProfileImgContainer">
                             <div class="dvProfileImg">
-                                <span class="icon-checkmark-2" alt="Is visited"></span>
+                                <span class="icon-checkmark-2" ng-class="{'visitedStore': <%= isVisited %> == true}" title="{{ <%= isVisited %> ? 'Visited store' : 'Not a visited store'}}"></span>
                                 <img class="img-responsive" src="<%= store.ProfilePicture %>" />
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="dvFlagContainer">
-                            <img alt="Flag" class="img-responsive" src="https://egym.herokuapp.com/<%= store.Country %>.png" />
+                            <img alt="Flag" title="store's country flag" class="img-responsive" src="https://egym.herokuapp.com/<%= store.Country %>.png" />
                         </div>
                     </div>
                 </div>
@@ -47,15 +47,15 @@
                     <div class="col-sm-12">
                         <div class="dvStoreIcons">
                             <% if (store.Badges.HasFactory) { %>
-                            <img alt="Has factory" src="/images/factory.png" />
+                            <img title="Has factory" src="/images/factory.png" />
                             <% } else { %>
-                            <img alt="Has factory" src="/images/nofactory.png" />
+                            <img title="No factory" src="/images/nofactory.png" />
                             <% } %>
 
                             <% if (store.Badges.Verified) { %>
-                            <img alt="Has factory" src="/images/verified.png" />
+                            <img title="Verified" src="/images/verified.png" />
                             <% } else { %>
-                            <img alt="Has factory" src="/images/notverified.png" />
+                            <img title="Not verified" src="/images/notverified.png" />
                             <% } %>
                         </div>
                     </div>

@@ -68,6 +68,7 @@ module.exports = function (app) {
         console.log(req.params.countryIso);
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
+        _scope.isVisited = false;
         store.getById(req.params.storeId).then(function (_data) {
             if (_data.code == 100) {
                 _scope.store = _data.data;
