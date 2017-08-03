@@ -12,12 +12,23 @@
         <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet">
         <link href="/css/style.css" rel="stylesheet">
         <link href="/css/animation/animate.min.css" rel="stylesheet">
+		            <link href="/css/loader.css" rel="stylesheet" />
         <!--[if lt IE 9]>
           <script src="/js/general/html5shiv.min.js"></script>
           <script src="/js/general/respond.min.js"></script>
         <![endif]-->
     </head>
-<body class="pageLanding" ng-controller="landingController">      
+<body class="pageLanding" ng-controller="landingController"> 
+
+<div class="loaderContainer" ng-show="loading"></div>
+<div class="loader" ng-show="loading">
+  <div class="bubblingG">
+    <span id="bubblingG_1"> </span>
+    <span id="bubblingG_2"> </span>
+    <span id="bubblingG_3"> </span>
+  </div>
+</div>
+     
 <div class="colordLayer"></div>
 <div class="container-fluid"  ng-init="init2('<%=JsonCountries%>','<%=countryIso%>')">
     <div class="container">
@@ -26,10 +37,10 @@
                 <img src="/images/Expoeveryday.png">
             </div>
             <div class="col-md-5 big">
-                <h1 class="wow slideInDown" data-wow-duration="2s">Welcome</h1>
-                <p class="wow slideInUp" ng-cloak data-wow-duration="2s">{{selectedCountry.WelcomeMsg}}</p>
+                <h1 class="wow slideInDown" data-wow-delay="1s" data-wow-duration="2s" ng-bind="txtWelcomeHeader"></h1>
+                <p class="wow slideInUp" ng-cloak data-wow-delay="1s" data-wow-duration="2s" ng-bind="txtWelcomeMsg"></p>
 				
-						<div ng-cloak ng-repeat="category in allcategories track by $index" class="wow bounceInRight txtCategoryContainer" data-wow-duration="2s" ng-click="openExpo(IsoCode , category._id)">
+						<div ng-cloak data-wow-delay="1s" ng-repeat="category in allcategories track by $index" class="wow bounceInRight txtCategoryContainer" data-wow-duration="2s" ng-click="openExpo(IsoCode , category._id)">
 							<a href="/{{IsoCode}}/Expos/{{category._id}}">{{category.Name}}</a>
 						</div>
 					 <p ng-show="countryCategories.length > 0" class="txtNoData"> No categories available </p>

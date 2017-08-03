@@ -1,13 +1,13 @@
 <div ng-controller="headerController">
   
   <div class="loaderContainer" ng-show="loading"></div>
-<div class="loader" ng-show="loading">
-  <div class="bubblingG">
-    <span id="bubblingG_1"> </span>
-    <span id="bubblingG_2"> </span>
-    <span id="bubblingG_3"> </span>
+  <div class="loader" ng-show="loading">
+    <div class="bubblingG">
+      <span id="bubblingG_1"> </span>
+      <span id="bubblingG_2"> </span>
+      <span id="bubblingG_3"> </span>
+    </div>
   </div>
-</div>
     
     <div class="pageHeader">
         <div class="header">
@@ -44,11 +44,11 @@
                                 <li>
                                     <a href="/{{selectedCountry.IsoCode}}/Contactus">About us</a>
                                 </li>
-                                <li>
+                                <li ng-show="loggedUser">
                                     <a href="#">My account</a>
                                 </li>
 
-                                <li>
+                                <li ng-show="loggedUser">
                                     <a href="#">My inbox</a>
                                 </li>
                                 <li data-toggle="modal" data-target="#modal-login" ng-hide="loggedUser">

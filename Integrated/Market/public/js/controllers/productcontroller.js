@@ -3,6 +3,11 @@
     $scope.init = function (_isoCode) {
         $rootScope.IsoCode = _isoCode;
 
+ console.log(window.commentObject);
+        $scope.commentsList = JSON.parse(window.commentObject);
+        console.log($scope.commentsList);
+       
+
         window.twttr = (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0],
               t = window.twttr || {};
@@ -22,6 +27,16 @@
 
     }
 
+    $scope.submitComment = function () {
+        var newComment = {
+            _id: 10,
+            userName: "asmaa mohammed Gamal",
+            comment: $scope.commentTxt,
+            date :"Aug-3-2017"
+        }
+        $scope.commentsList.push(newComment);
+        $scope.commentTxt = "";
+    }
 
     $scope.fbshareCurrentPage = function (_itemName) {
         window.open("https://www.facebook.com/sharer/sharer.php?u=" + escape(window.location.href) + "&quote="+encodeURIComponent(_itemName) + "&title=" + document.title, '',

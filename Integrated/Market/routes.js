@@ -144,6 +144,16 @@ module.exports = function (app) {
            { id: 4, img: 'http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg' },
         ];
         _scope.similarProducts = similarProducts;
+
+        var comments = [
+            { _id: 1, date: "Feb-21-2014", userName: "Ahmed Mohammed Alaa", comment: "Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto." },
+            { _id: 2, date: "Feb-21-2014", userName: "fashion world", comment: "Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto." },
+            { _id: 3, date: "Feb-21-2014", userName: "Asmaa Ahmed Mohammed ", comment: "Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto." },
+            { _id: 4, date: "Feb-21-2014", userName: "Mohammed Ali Ahmed ", comment: "Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto." }
+        ];
+        _scope.comments = comments;
+        _scope.JsonComments = JSON.stringify(comments);
+
         product.getById(req.params.productId).then(function (_product) {
             if (_product.code == 100) {
                 _scope.product = _product.data;
