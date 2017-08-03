@@ -47,7 +47,7 @@
                 Name: $scope.item.Name,
                 Description: $scope.item.Description,
                 Pictures: [{
-                    Title: $scope.item.Title,
+                    Title: $scope.item.Name,
                     URL: $('#imgItem').attr('src')
                 }],
                 Price: $scope.item.Price,
