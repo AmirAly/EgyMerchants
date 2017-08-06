@@ -144,6 +144,16 @@ module.exports = function (app) {
            { id: 4, img: 'http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg' },
         ];
         _scope.similarProducts = similarProducts;
+
+        var comments = [
+            { _id: 1, date: "Feb-21-2014", userName: "Ahmed Mohammed Alaa", comment: "Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto." },
+            { _id: 2, date: "Feb-21-2014", userName: "fashion world", comment: "Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto." },
+            { _id: 3, date: "Feb-21-2014", userName: "Asmaa Ahmed Mohammed ", comment: "Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto." },
+            { _id: 4, date: "Feb-21-2014", userName: "Mohammed Ali Ahmed ", comment: "Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto." }
+        ];
+        _scope.comments = comments;
+        _scope.JsonComments = JSON.stringify(comments);
+
         product.getById(req.params.productId).then(function (_product) {
             if (_product.code == 100) {
                 _scope.product = _product.data;
@@ -253,5 +263,31 @@ module.exports = function (app) {
             res.render('pages/search', _scope);
         });
 
+    });
+
+    // inbox page
+    app.get('/:countryIso/Inbox/:user', function (req, res) {
+        console.log(req.params.countryIso);
+        var _scope = {};
+        _scope.countryIso = req.params.countryIso;
+        var usersList = [
+            { _id: "4", Name: "Gamal", HasUnreadMsgs: true, "Img": "http://ayonglobaledu.com/images/contact.png" },
+            { _id: "2", Name: "Maha", HasUnreadMsgs: false, "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-girl-outline-filled.png" },
+            { _id: "3", Name: "Bebo", HasUnreadMsgs: true, "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-outline-filled.png" }
+        ];
+        _scope.usersList = usersList;
+        // my id = 1 'ali'
+        var chatingHistory = [
+            { _id: "1", Name: "Ali", Message: "hi" , "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-flat.png"},
+            { _id: "1", Name: "Ali", Message: "Iam Ali", "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-flat.png" },
+            { _id: "2", Name: "Maha", Message: "Hi ali , i'll answer your questions", "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-girl-outline-filled.png" },
+            { _id: "1", Name: "Ali", Message: "I need help", "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-flat.png" },
+        ];
+
+        var JsonInbox = JSON.stringify(chatingHistory);
+        _scope.chatPartener = req.params.user;
+        _scope.chatingHistory = chatingHistory;
+        _scope.JsonInbox = JsonInbox;
+        res.render('pages/inbox',_scope);
     });
 }

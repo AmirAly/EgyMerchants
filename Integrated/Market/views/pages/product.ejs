@@ -1,6 +1,8 @@
 ﻿<% include ../partials/pagestart %>
 <% include ../partials/pageheader %>
 
+	   <script>var commentObject = <%-JSON.stringify(JsonComments)%>;</script>
+
 <div ng-controller="productController">
     <div ng-init="init('<%= countryIso %>')">
         <div class="clear"></div>
@@ -42,10 +44,10 @@
                                 <div class="box-content">
                                     <h2><%= product.Name %></h2>
                                     <% if (product.PriceBeforeSale) { %>
-                                    <span class="price old"><%= product.PriceBeforeSale %></span>
+                                    <span class="price old">$ <%= product.PriceBeforeSale %></span>
                                     <% }; %>
                                     <% if (product.Price) { %>
-                                    <span class="price new"><%= product.Price %></span> <br>
+                                    <span class="price new">$ <%= product.Price %></span> <br>
                                     <% }; %>
                                 </div>
                             </div>
@@ -69,24 +71,24 @@
                             </div>
                             <!-- //end Description -->
                         </div>
-						
-						<div class="col-xs-3 col-xs-offset-1">
 
-						<a ng-click="fbshareCurrentPage('<%= product.Name %>')" class="btn btn-sm facebookShare" target="_blank" alt="Share on Facebook">
-						    <i class="fa fa-facebook-square fa-1"><span> Share</span></i>
-						</a>
+                        <div class="col-xs-3 col-xs-offset-1">
 
-						</div>
-						<div class="col-xs-3">
-						   <a class="twitter-share-button"
-                            href="https://twitter.com/intent/tweet?text=<%= product.Name %>&image=https://www.booktopia.com.au/http_coversbooktopiacomau/big/9781426310140/nat-geo-little-kids-first-big-book-of-space.jpg">
-                               Tweet
-                           </a>
-	                    </div>
+                            <a ng-click="fbshareCurrentPage('<%= product.Name %>')" class="btn btn-sm facebookShare" target="_blank" alt="Share on Facebook">
+                                <i class="fa fa-facebook-square fa-1"><span> Share</span></i>
+                            </a>
+
+                        </div>
+                        <div class="col-xs-3">
+                            <a class="twitter-share-button"
+                               href="https://twitter.com/intent/tweet?text=<%= product.Name %>&image=https://www.booktopia.com.au/http_coversbooktopiacomau/big/9781426310140/nat-geo-little-kids-first-big-book-of-space.jpg">
+                                Tweet
+                            </a>
+                        </div>
 
                         <div class="spacer1"></div>
 
-						<div class="col-xs-12">
+                        <div class="col-xs-12">
                             <section class="dvAdvertise">
                                 <img class="img-responsive" src="/images/adv3.png" />
                             </section>
@@ -123,6 +125,57 @@
                 </div>
             </section>
             <!-- //end Services -->
+            <!-- comments part -->
+            <section class="container-fluid dvComments">
+
+                <div class="row">
+                    <h2>Comments</h2>
+                    <div class="timeline">
+
+
+                        <div class="timeline-item timeline-item-right" ng-repeat="comment in commentsList track by comment._id">
+                            <!--<img class="timeline-photo" src="http://www.gettyimages.com/gi-resources/images/Embed/new/embed2.jpg" />-->
+                            <div class="timeline-point timeline-point-blank"></div>
+                            <div class="timeline-event timeline-event-default">
+                                <div class="timeline-heading">
+                                    <h4>{{comment.userName}}</h4>
+									<button type="button" title="delete comment" class="btn btn-link"><span class="glyphicon glyphicon-remove"></span></button>
+                                </div>
+                                <div class="timeline-body">
+                                    <p>{{comment.comment}}</p>
+                                </div>
+                                <div class="timeline-footer">
+                                    <p class="text-right">{{comment.date}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        
+                    </div>
+                    <div class="spacer1"></div>
+
+                    <h2>Add your comment</h2>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="col-xs-8 col-xs-offset-1">
+                                <textarea placeholder="add comment" ng-model="commentTxt"></textarea>
+                            </div>
+                            <div class="col-xs-3 text-center">
+                                <button type="submit" ng-disabled="!commentTxt" ng-click="submitComment()" class="btn btn-primary">
+                                    <span class="fa fa-paper-plane-o"></span>&nbsp; Send
+                                </button>
+                            </div>
+                        </div>
+                        <div class="spacer1"></div>
+                    </div>
+                </div>
+                <hr />
+            </section>
+            <!-- // end comments part -->
+
+
+
             <!-- Upsell products -->
             <section class="slider-products content-box">
                 <h3>Simillar products</h3>

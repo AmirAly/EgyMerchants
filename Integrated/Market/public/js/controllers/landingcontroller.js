@@ -1,34 +1,39 @@
 ﻿app.controller("landingController", function ($scope, $rootScope, $timeout, API, $filter) {
-    //$rootScope.loading = true;
+    $rootScope.loading = true;
 
     $scope.init2 = function (_allcountres, _isoCode) {
-        console.log('enter');
+        //console.log('enter');
         $scope.allCountries = JSON.parse(_allcountres);
         localStorage.setItem('allCountries', (JSON.stringify($scope.allCountries)));
         $scope.selectedCountry = ($filter('filter')($scope.allCountries, { 'IsoCode': _isoCode }))[0]; //$scope.allCountries[0];
         localStorage.setItem('selectedCountry', (JSON.stringify($scope.selectedCountry)));
         $rootScope.IsoCode = _isoCode;
 
-        $scope.loading = true;
+        $rootScope.loading = true;
         var req = {
             method: 'get',
             url: '/Category/GetByCountry/' + _isoCode,
             data: {}
         }
         API.execute(req).then(function (_res) {
-            console.log(_res.data);
+            $rootScope.loading = false;
+
             if (_res.data.code == 100) {
                 $scope.allcategories = _res.data.data;
             } else {
                 $scope.allcategories = [];
             }
-            $scope.loading = false;
+
+            $scope.txtWelcomeHeader = "Welcome";
+            $scope.txtWelcomeMsg = $scope.selectedCountry.WelcomeMsg;
+
+
         });
 
     }
 
-    $scope.openExpo = function (_isoCode , _categoryId) {
-        localStorage.setItem("expohref" , "/"+_isoCode+"/Expos/"+_categoryId);
+    $scope.openExpo = function (_isoCode, _categoryId) {
+        localStorage.setItem("expohref", "/" + _isoCode + "/Expos/" + _categoryId);
     }
 
     $scope.changeCountry = function (_isoCode) {
