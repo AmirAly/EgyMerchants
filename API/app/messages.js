@@ -119,18 +119,28 @@ module.exports = {
                         data: err
                     })
                 else {
-                    var contacts = [];
+                    var Allcontacts = [],
+                        unreadcontacts = [];
                     if (Msgs.length > 0) {
                         _.each(Msgs, function (msg) {
-                            contacts.push({ _id: msg.From._id, Name: msg.From.Name, ProfilePicture: msg.From.ProfilePicture }, { _id: msg.To._id, Name: msg.To.Name, ProfilePicture: msg.To.ProfilePicture });
+                            Allcontacts.push({ _id: msg.From._id, Name: msg.From.Name, ProfilePicture: msg.From.ProfilePicture, Status: msg.Status, To: msg.To }, { _id: msg.To._id, Name: msg.To.Name, ProfilePicture: msg.To.ProfilePicture, Status: msg.Status, To: msg.To });
                         })
-                        var destinctArray = _.uniq(contacts, function (x) {
+                        var destinctArray = _.uniq(Allcontacts, function (x) {
                             return (x._id).toString()
                         })
-                        contacts = _.filter(destinctArray, function (obj) { return (obj._id != _userId) })
+                        Allcontacts = _.filter(destinctArray, function (obj) { return (obj._id != _userId) });
+                        unreadcontacts = _.filter(Allcontacts, function (status) { return (status.To._id.toString() == _userId.toString() && status.Status == 'un read') });
+                        Allcontacts = _.difference(Allcontacts, unreadcontacts);
+                        Allcontacts=_.map(Allcontacts,function(contact){
+                            return _.pick(_.extend(contact, { UnRead: false }), '_id', 'Name', 'ProfilePicture', 'UnRead');
+                        })
+                        unreadcontacts = _.map(unreadcontacts, function (contact) {
+                            return _.pick(_.extend(contact, { UnRead: true }), '_id', 'Name', 'ProfilePicture', 'UnRead');
+                        })
+                        Allcontacts = Allcontacts.concat(unreadcontacts);
                         resolve({
                             code: 100,
-                            data: contacts
+                            data: Allcontacts
                         })
                     }
                     else {
@@ -144,28 +154,28 @@ module.exports = {
             })
         })
     },
-    getUnRead: function (_userId) {
-        return new Promise(function (resolve, reject) {
-            Schema.find({ "To": _userId, "Status":"un read" }, '', function (err, Msgs) {
-                if (err)
-                    reject({
-                        code: 1,
-                        data: err
-                    })
-                else {
-                    if (Msgs.length > 0) {
-                        resolve({
-                            code: 100,
-                            data: { "unread": true, "Count": Msgs.length }
-                        })
-                    }
-                    else
-                        reject({
-                            code: 21,
-                            data: { "unread": false }
-                        })
-                }
-            })
-        })
-    }
+    //getUnRead: function (_userId) {
+    //    return new Promise(function (resolve, reject) {
+    //        Schema.find({ "To": _userId, "Status":"un read" }, '', function (err, Msgs) {
+    //            if (err)
+    //                reject({
+    //                    code: 1,
+    //                    data: err
+    //                })
+    //            else {
+    //                if (Msgs.length > 0) {
+    //                    resolve({
+    //                        code: 100,
+    //                        data: { "unread": true, "Count": Msgs.length }
+    //                    })
+    //                }
+    //                else
+    //                    reject({
+    //                        code: 21,
+    //                        data: { "unread": false }
+    //                    })
+    //            }
+    //        })
+    //    })
+    //}
 }
