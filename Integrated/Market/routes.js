@@ -264,4 +264,30 @@ module.exports = function (app) {
         });
 
     });
+
+    // inbox page
+    app.get('/:countryIso/Inbox/:user', function (req, res) {
+        console.log(req.params.countryIso);
+        var _scope = {};
+        _scope.countryIso = req.params.countryIso;
+        var usersList = [
+            { _id: "4", Name: "Gamal", HasUnreadMsgs: true, "Img": "http://ayonglobaledu.com/images/contact.png" },
+            { _id: "2", Name: "Maha", HasUnreadMsgs: false, "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-girl-outline-filled.png" },
+            { _id: "3", Name: "Bebo", HasUnreadMsgs: true, "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-outline-filled.png" }
+        ];
+        _scope.usersList = usersList;
+        // my id = 1 'ali'
+        var chatingHistory = [
+            { _id: "1", Name: "Ali", Message: "hi" , "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-flat.png"},
+            { _id: "1", Name: "Ali", Message: "Iam Ali", "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-flat.png" },
+            { _id: "2", Name: "Maha", Message: "Hi ali , i'll answer your questions", "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-girl-outline-filled.png" },
+            { _id: "1", Name: "Ali", Message: "I need help", "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-flat.png" },
+        ];
+
+        var JsonInbox = JSON.stringify(chatingHistory);
+        _scope.chatPartener = req.params.user;
+        _scope.chatingHistory = chatingHistory;
+        _scope.JsonInbox = JsonInbox;
+        res.render('pages/inbox',_scope);
+    });
 }

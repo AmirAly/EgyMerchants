@@ -1,4 +1,4 @@
-<% include ../partials/pagestart %>
+﻿<% include ../partials/pagestart %>
 <% include ../partials/pageheader %>
 
 <script>var inboxObject = <%-JSON.stringify(JsonInbox)%>;</script>
@@ -16,17 +16,13 @@
                         <% if (usersList.length > 0) { %>
                         <% usersList.forEach(function(user){ %>
 
-                        <% if (user._id == chatPartener) { %>
-                        <li class="active" ng-class="{'active' : activeUser == <%= user._id %>}" ng-click="activeUser = <%= user._id %>">
-                            <img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="<%= user.Img %>" alt="" />
-                            <h6><%= user.Name %></h6>
+                        <li ng-class="{'active' : activeUser == '<%= user._id %>'}" ng-click="activeUser = <%= user._id %>">
+                           <a href="/{{IsoCode}}/Inbox/<%= user._id %>"> 
+						       <img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="<%= user.Img %>" alt="" />
+                               <h6><%= user.Name %></h6>
+							</a>
                         </li>
-                        <% } else { %>
-                        <li ng-class="{'active' : activeUser == <%= user._id %>}" ng-click="activeUser = <%= user._id %>">
-                            <img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="<%= user.Img %>" alt="" />
-                            <h6><%= user.Name %></h6>
-                        </li>
-                        <% } %>
+                    
 
                         <% }); %>
 
@@ -36,7 +32,7 @@
 
 
                 <div class="col-sm-10 col-md-10 col-lg-10 dvMessagesBody">
-
+				 <div class="dvMessagesBodyContainer">
                     <div ng-repeat="user in inboxMesagesList track by $index">
 
                         <div ng-if="user._id == <%= chatPartener %>">
@@ -64,18 +60,14 @@
                         </div>
 
                     </div>
-
-
-                    <div class="row">
+					 </div>
+					
+                    <div class="row dvSendMessage">
                         <div class="col-xs-10">
-                            <input type="text"  required="" placeholder="Message..." class="form-email form-control" />
-
-                            <button type="submit" ng-disabled="!commentTxt" ng-click="submitComment()" class="btn btn-primary">
-                                <span class="fa fa-paper-plane-o"></span>&nbsp; Send
-                            </button>
+                            <input type="text"  required=""  ng-model="txtMessage" placeholder="Message..." class="form-email form-control" />
                         </div>
-                        <div class="col-xs-2">
-                            <button type="button" title="delete comment" class="btn btn-link"><span class="fa fa-paper-plane-o"></span></button>
+                        <div class="col-xs-2 text-center">
+                            <button type="button" title="send" ng-disabled="!txtMessage" ng-click="submitMessage()" class="btn btn-primary btn-block" ng><span class="fa fa-paper-plane-o"></span></button>
                         </div>
                     </div>
 

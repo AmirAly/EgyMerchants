@@ -44,10 +44,10 @@
                                 <div class="box-content">
                                     <h2><%= product.Name %></h2>
                                     <% if (product.PriceBeforeSale) { %>
-                                    <span class="price old"><%= product.PriceBeforeSale %></span>
+                                    <span class="price old">$ <%= product.PriceBeforeSale %></span>
                                     <% }; %>
                                     <% if (product.Price) { %>
-                                    <span class="price new"><%= product.Price %></span> <br>
+                                    <span class="price new">$ <%= product.Price %></span> <br>
                                     <% }; %>
                                 </div>
                             </div>
@@ -139,6 +139,7 @@
                             <div class="timeline-event timeline-event-default">
                                 <div class="timeline-heading">
                                     <h4>{{comment.userName}}</h4>
+									<button type="button" title="delete comment" class="btn btn-link"><span class="glyphicon glyphicon-remove"></span></button>
                                 </div>
                                 <div class="timeline-body">
                                     <p>{{comment.comment}}</p>
