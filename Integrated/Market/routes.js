@@ -1,9 +1,12 @@
-﻿var store = require('./models/stores');
+﻿var _ = require("underscore");
+var store = require('./models/stores');
 var product = require('./models/items');
 var gallery = require('./models/galleries');
 var expo = require('./models/expoes');
 var category = require('./models/categories');
 var country = require('./models/countries');
+var message = require('./models/messages');
+
 module.exports = function (app) {
     // use res.render to load up an ejs view file
     app.get('/', function (req, res) {
@@ -38,7 +41,7 @@ module.exports = function (app) {
 
     // expo page expos
     app.get('/:countryIso/Expos/:catId', function (req, res) {
-        
+
         console.log(req.params.countryIso);
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
@@ -266,28 +269,97 @@ module.exports = function (app) {
     });
 
     // inbox page
-    app.get('/:countryIso/Inbox/:user', function (req, res) {
+    app.get('/:countryIso/Inbox/:me/:user', function (req, res) {
         console.log(req.params.countryIso);
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
-        var usersList = [
-            { _id: "4", Name: "Gamal", HasUnreadMsgs: true, "Img": "http://ayonglobaledu.com/images/contact.png" },
-            { _id: "2", Name: "Maha", HasUnreadMsgs: false, "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-girl-outline-filled.png" },
-            { _id: "3", Name: "Bebo", HasUnreadMsgs: true, "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-outline-filled.png" }
-        ];
-        _scope.usersList = usersList;
-        // my id = 1 'ali'
-        var chatingHistory = [
-            { _id: "1", Name: "Ali", Message: "hi" , "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-flat.png"},
-            { _id: "1", Name: "Ali", Message: "Iam Ali", "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-flat.png" },
-            { _id: "2", Name: "Maha", Message: "Hi ali , i'll answer your questions", "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-girl-outline-filled.png" },
-            { _id: "1", Name: "Ali", Message: "I need help", "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-flat.png" },
-        ];
 
-        var JsonInbox = JSON.stringify(chatingHistory);
-        _scope.chatPartener = req.params.user;
-        _scope.chatingHistory = chatingHistory;
-        _scope.JsonInbox = JsonInbox;
-        res.render('pages/inbox',_scope);
+        message.getAllContacts(req.params.me).then(function (_listAllContacts) {
+            if (_listAllContacts.code == 100) {
+                console.log(_listAllContacts.data);
+                _scope.usersList = _listAllContacts.data;
+
+                if (req.params.user != '0') {
+                  
+                    store.getById(req.params.user).then(function (_newStore) {
+                        if (_newStore.code == 100) {
+                            // store data
+                            console.log(_newStore.data);
+                            _scope.currentMessageReceiver = JSON.stringify(_newStore.data);
+
+                            message.getAll(req.params.me, req.params.user).then(function (_data) {
+                                console.log(_data);
+                                if (_data.code == 100) {
+                                     console.log(_data.data);
+
+                                    var chatingHistory = _data.data;
+                                    var JsonInbox = JSON.stringify(chatingHistory);
+                                    _scope.chatPartener = req.params.user;
+                                    _scope.chatingHistory = chatingHistory;
+                                    _scope.JsonInbox = JsonInbox;
+                                    res.render('pages/inbox', _scope);
+                                }
+                                else {
+                                    console.log('nooooooooooooo data');
+                                    _scope.chatingHistory = [];
+                                    _scope.chatPartener = '';
+                                    _scope.JsonInbox = [];
+                                    res.render('pages/inbox', _scope);
+                                }
+                            }).catch(function (err) {
+                                console.log(err);
+                                console.log('nooooooooooooo data');
+                                _scope.chatingHistory = [];
+                                _scope.chatPartener = '';
+                                _scope.JsonInbox = [];
+                                res.render('pages/inbox', _scope);
+                            });
+
+                        }
+                        else {
+                            //store not exist
+                            _scope.currentMessageReceiver = '';
+                            _scope.chatingHistory = [];
+                            _scope.chatPartener = '';
+                            _scope.JsonInbox = [];
+                            res.render('pages/inbox', _scope);
+                        }
+                    }).catch(function () {
+                        //store not exist
+                        _scope.currentMessageReceiver = '';
+                        _scope.chatingHistory = [];
+                        _scope.chatPartener = '';
+                        _scope.JsonInbox = [];
+                        res.render('pages/inbox', _scope);
+                    });
+                }
+                else {
+                    _scope.currentMessageReceiver = '';
+                    _scope.chatingHistory = [];
+                    _scope.chatPartener = '';
+                    _scope.JsonInbox = [];
+                    res.render('pages/inbox', _scope);
+                }
+
+
+            } else {
+                _scope.currentMessageReceiver = '';
+                _scope.usersList = [];
+                _scope.chatPartener = '';
+                _scope.chatingHistory = [];
+                _scope.JsonInbox = [];
+                res.render('pages/inbox', _scope);
+            }
+        }).catch(function () {
+            _scope.currentMessageReceiver = '';
+            _scope.usersList = [];
+            _scope.chatPartener = '';
+            _scope.chatingHistory = [];
+            _scope.JsonInbox = [];
+            res.render('pages/inbox', _scope);
+        });
+
+
+
     });
 }

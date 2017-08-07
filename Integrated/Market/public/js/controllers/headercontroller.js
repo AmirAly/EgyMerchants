@@ -57,6 +57,7 @@
                     $scope.loginObj = {};
                     $rootScope.loggedUser = true;
                     $rootScope.userName = _res.data.data.Name;
+                    $rootScope.userId = _res.data.data._id;
                     localStorage.setItem('userObject', JSON.stringify(_res.data.data));
                     $scope.dismiss();
 
@@ -91,6 +92,7 @@
                     $scope.registerObj = {};
                     $rootScope.loggedUser = true;
                     $rootScope.userName = _res.data.data.Name;
+                    $rootScope.userId = _res.data.data._id;
                     localStorage.setItem('userObject', JSON.stringify(_res.data.data));
                     $scope.dismiss();
                 } else {

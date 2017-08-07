@@ -26,7 +26,7 @@ module.exports = {
                             else {
                                 resolve({
                                     code: 100,
-                                    data: { _id: _newUser._id, Name: Obj.Name, Type: Obj.Type }
+                                    data: { _id: _newUser._id, Name: Obj.Name, Type: Obj.Type, ProfilePicture: Obj.ProfilePicture }
                                 })
                             }
                         });
@@ -53,15 +53,15 @@ module.exports = {
                         code: 22,
                         data: "This account not confirmed yet"
                     });
-                else if (Obj.Status == "Suspend")
+                else if (Obj.Status == "deleted")
                     reject({
                         code: 23,
-                        data: "This account suspended"
+                        data: "This account deleted"
                     });
                 else if (Obj.Status == "Active")
                     resolve({
                         code: 100,
-                        data: { _id: Obj._id,Name:Obj.Name,Type:Obj.Type }
+                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type, FavouriteItems: Obj.FavouriteItems, VisitedStores: Obj.VisitedStores}
                     });
             })
         })
@@ -118,5 +118,105 @@ module.exports = {
             }
     })
         })
-        },
+    },
+    addToFavourites: function (_userId,_itemId) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOneAndUpdate({ "_id": _userId, "Status": "Active" }, { $addToSet: { FavouriteItems: _itemId }}, { new: true }, function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    })
+                else {
+                    if (Obj)
+                        resolve({
+                            code: 100,
+                            data: "This item added to your favourites"
+                        });
+                    else
+                        reject({
+                        code: 21,
+                        data: "This filteration didn't resulted in any data"
+                    });
+                }
+            })
+        })
+    },
+    removeFromFavourites: function (_userId, _itemId) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOneAndUpdate({ "_id": _userId, "Status": "Active" }, { $pull: { FavouriteItems: _itemId } }, { new: true }, function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    })
+                else {
+                    if (Obj)
+                        resolve({
+                            code: 100,
+                            data: "This item deleted from your favourites"
+                        });
+                    else
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
+                }
+            })
+        })
+    },
+    addToVisited: function (_userId, _storeId) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOneAndUpdate({ "_id": _userId, "Status": "Active" }, { $addToSet: { VisitedStores: _storeId } }, { new: true }, function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    })
+                else {
+                    if (Obj)
+                        resolve({
+                            code: 100,
+                            data: "This store added to your visited stores"
+                        });
+                    else
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
+                }
+            })
+        })
+    },
+    getFavourites: function (_userId) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOne({ "_id": _userId, "Status": "Active" }, 'FavouriteItems').populate('FavouriteItems','Name Pictures').exec(function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    })
+                else {
+                    if (Obj){
+                    if(Obj.FavouriteItems.length)
+                        resolve({
+                            code: 100,
+                            data: Obj
+                        });
+                    else
+                        reject({
+                            code: 22,
+                            data: "There is no favourite items for you"
+                        });
+                    }
+                       
+                    else
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        });
+                }
+            })
+        })
+    }
 }

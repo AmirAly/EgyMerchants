@@ -54,15 +54,15 @@ module.exports = {
                         code: 22,
                         data: "This account not confirmed yet"
                     });
-                else if (Obj.Status == "Suspend")
+                else if (Obj.Status == "deleted")
                     reject({
                         code: 23,
-                        data: "This account suspended"
+                        data: "This account deleted"
                     });
                 else if (Obj.Status == "Active")
                     resolve({
                         code: 100,
-                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type }
+                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type, ProfilePicture: Obj.ProfilePicture }
                     });
             })
         })
