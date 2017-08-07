@@ -306,6 +306,13 @@ module.exports = function (app) {
                                     _scope.JsonInbox = [];
                                     res.render('pages/inbox', _scope);
                                 }
+                            }).catch(function (err) {
+                                console.log(err);
+                                console.log('nooooooooooooo data');
+                                _scope.chatingHistory = [];
+                                _scope.chatPartener = '';
+                                _scope.JsonInbox = [];
+                                res.render('pages/inbox', _scope);
                             });
 
                         }
@@ -317,6 +324,13 @@ module.exports = function (app) {
                             _scope.JsonInbox = [];
                             res.render('pages/inbox', _scope);
                         }
+                    }).catch(function () {
+                        //store not exist
+                        _scope.currentMessageReceiver = '';
+                        _scope.chatingHistory = [];
+                        _scope.chatPartener = '';
+                        _scope.JsonInbox = [];
+                        res.render('pages/inbox', _scope);
                     });
                 }
                 else {
@@ -336,6 +350,13 @@ module.exports = function (app) {
                 _scope.JsonInbox = [];
                 res.render('pages/inbox', _scope);
             }
+        }).catch(function () {
+            _scope.currentMessageReceiver = '';
+            _scope.usersList = [];
+            _scope.chatPartener = '';
+            _scope.chatingHistory = [];
+            _scope.JsonInbox = [];
+            res.render('pages/inbox', _scope);
         });
 
 

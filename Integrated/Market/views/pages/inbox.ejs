@@ -18,7 +18,7 @@ var inboxObject = <%-JSON.stringify(JsonInbox)%>;
                         <% if (usersList.length > 0) { %>
                         <% usersList.forEach(function(user){ %>
 
-                        <li ng-class="{'active' : activeUser == '<%= user._id %>'}">
+                        <li ng-class="{'active' : activeUserId == '<%= user._id %>'}">
                            <a href="/{{IsoCode}}/Inbox/{{userId}}/<%= user._id %>"> 
 						       <img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="<%= user.ProfilePicture %>" alt="" />
                                <h6><%= user.Name %></h6>
@@ -66,9 +66,8 @@ var inboxObject = <%-JSON.stringify(JsonInbox)%>;
 
                     </div>
 					<div ng-show="!inboxMesagesList.length > 0">
-					
-					You have no messages with this contact  {{inboxMesagesList.length}}
-					{{currentMessageReceiver}}
+					<div class="clear"></div>
+					<h5 class="text-center">You have no messages with {{currentMessageReceiver.Name}}</h5>
 					</div>
 					<% if (!usersList.length > 0) { %>
 					   <div>You have no contacts </div>

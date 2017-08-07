@@ -53,13 +53,10 @@ module.exports = {
             })
         })
     },
-    getAll: function (_userId, _toId) {
-        console.log("111");
-        return new Promise(function (resolve, reject) {
-            console.log("222");
+    getAll: function (_userId,_toId) {
+        return new Promise(function (resolve, reject) { 
             Schema.find({ $or: [{ "From": _userId, "To": _toId }, { "From": _toId, "To": _userId }] }, '').populate('From', 'Name ProfilePicture').populate('To', 'Name ProfilePicture').exec(function (err, Msgs) {
-                console.log("333");
-                if (err)
+                if(err)
                     reject({
                         code: 1,
                         data: err
@@ -69,7 +66,7 @@ module.exports = {
                         var result = [];
                         _.each(Msgs, function (msg) {
                             if (msg.Status == "un read" && msg.To._id.toString() == _userId.toString()) {
-                                Schema.findOneAndUpdate({ '_id': msg._id }, { $set: { 'Status': "read" } }, { new: true }, function (err, Obj) {
+                                Schema.findOneAndUpdate({ '_id': msg._id }, { $set: { 'Status': "read" } }, { new: true }).populate('From', 'Name ProfilePicture').populate('To', 'Name ProfilePicture').exec(function (err, Obj) {
                                     if (err)
                                         reject({
                                             code: 1,
@@ -95,7 +92,6 @@ module.exports = {
                                     result.sort(function (a, b) {
                                         return new Date(b.date) - new Date(a.date);
                                     });
-                                    console.log("444");
                                     resolve({
                                         code: 100,
                                         data: result
@@ -104,13 +100,11 @@ module.exports = {
                             }
                             })
                     }
-                    else {
-                        console.log("555");
+                    else
                         reject({
                             code: 21,
                             data: "There is no messages"
                         })
-                    }
                 }
             })
 
