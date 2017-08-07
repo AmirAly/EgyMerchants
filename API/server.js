@@ -86,58 +86,58 @@ mongoose.connect(db.url, function (err) {
 //    })
 //});
 
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-app.get('/', function(req, res){
-  res.sendfile('index.html');
-});
-users = [];
-io.on('connection', function(socket){
-    console.log('A user connected');
-    socket.on('setUsername', function (data) {
-        var user = new Object();
-        user.id = data;
-        user.socket = socket.id;
-        users.push(user);
-        console.log(users);
-            socket.emit('userSet', {username: data});
-    });
+//var http = require('http').Server(app);
+//var io = require('socket.io')(http);
+//app.get('/', function(req, res){
+//  res.sendfile('index.html');
+//});
+//users = [];
+//io.on('connection', function(socket){
+//    console.log('A user connected');
+//    socket.on('setUsername', function (data) {
+//        var user = new Object();
+//        user.id = data;
+//        user.socket = socket.id;
+//        users.push(user);
+//        console.log(users);
+//            socket.emit('userSet', {username: data});
+//    });
 
 
-    socket.on('disconnect', function () {
-        var index = users.indexOf(socket);
-        if (index != -1) {
-            users.splice(index, 1);
-            console.info('Client gone (id=' + socket.id + ').');
-        }
-    });
+//    socket.on('disconnect', function () {
+//        var index = users.indexOf(socket);
+//        if (index != -1) {
+//            users.splice(index, 1);
+//            console.info('Client gone (id=' + socket.id + ').');
+//        }
+//    });
 
 
-    socket.on('msg', function (data) {
-        //message.send(data).then(function (result) {
-        //    console.log(result);
-        //}, function (err) {
-        //    console.log(err);
-        //});
-        //if this user still online then emit the message to him
-        //if (_.where(users, "59427908734d1d235a944767").length) {
-        for (var i = 0; i < users.length; i++) {
-            var p = users[i];
-            if (p.id == data.user) {
-                console.log(p.socket);
-                //users[data.to].emit('receivedMessage', data)
-                //io.users[i].emit('newmsg', data);
-                io.sockets.socket(p.socket).emit('newmsg', data);
-                break;
-            }
-        }
-            //io.to(p.socket).emit('newmsg', data)
-        //}
-    })
-});
-http.listen(3000, function () {
-    console.log('listening on localhost:3000');
-});
+//    socket.on('msg', function (data) {
+//        //message.send(data).then(function (result) {
+//        //    console.log(result);
+//        //}, function (err) {
+//        //    console.log(err);
+//        //});
+//        //if this user still online then emit the message to him
+//        //if (_.where(users, "59427908734d1d235a944767").length) {
+//        for (var i = 0; i < users.length; i++) {
+//            var p = users[i];
+//            if (p.id == data.user) {
+//                console.log(p.socket);
+//                //users[data.to].emit('receivedMessage', data)
+//                //io.users[i].emit('newmsg', data);
+//                io.sockets.socket(p.socket).emit('newmsg', data);
+//                break;
+//            }
+//        }
+//            //io.to(p.socket).emit('newmsg', data)
+//        //}
+//    })
+//});
+//http.listen(3000, function () {
+//    console.log('listening on localhost:3000');
+//});
 
 
 
@@ -276,3 +276,8 @@ var newuser = new userschema({ "Email": "anisa123@gmail.com", "Password": "12345
 //    console.log(err); 
 //});
 
+//store.getById("59427a4c734d1d235a9447e3").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});

@@ -164,7 +164,7 @@ module.exports = {
     },
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id, 'Status': 'Active' }, { "Password": 0 }, function (err, Obj) {
+            Schema.findOne({ '_id': _id,'Type':'store', 'Status': 'Active' }, { "Password": 0 }, function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
