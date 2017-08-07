@@ -53,10 +53,13 @@ module.exports = {
             })
         })
     },
-    getAll: function (_userId,_toId) {
-        return new Promise(function (resolve, reject) { 
+    getAll: function (_userId, _toId) {
+        console.log("111");
+        return new Promise(function (resolve, reject) {
+            console.log("222");
             Schema.find({ $or: [{ "From": _userId, "To": _toId }, { "From": _toId, "To": _userId }] }, '').populate('From', 'Name ProfilePicture').populate('To', 'Name ProfilePicture').exec(function (err, Msgs) {
-                if(err)
+                console.log("333");
+                if (err)
                     reject({
                         code: 1,
                         data: err
@@ -92,6 +95,7 @@ module.exports = {
                                     result.sort(function (a, b) {
                                         return new Date(b.date) - new Date(a.date);
                                     });
+                                    console.log("444");
                                     resolve({
                                         code: 100,
                                         data: result
@@ -100,11 +104,13 @@ module.exports = {
                             }
                             })
                     }
-                    else
+                    else {
+                        console.log("555");
                         reject({
                             code: 21,
                             data: "There is no messages"
                         })
+                    }
                 }
             })
 

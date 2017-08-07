@@ -1,9 +1,20 @@
 ﻿app.controller("inboxController", function ($scope, $rootScope, $timeout) {
-    $scope.init = function (_isoCode) {
+    $scope.init = function (_isoCode, _activeUser, _currentMessageReceiver) {
         $rootScope.IsoCode = _isoCode;
-        $scope.inboxMesagesList = JSON.parse(window.inboxObject);
+        $scope.activeUser = _activeUser;
+        console.log(JSON.parse(_currentMessageReceiver));
+        $scope.currentMessageReceiver = JSON.parse(_currentMessageReceiver);
+        console.log(inboxObject);
+        if (window.inboxObject.length > 0) {
+            $scope.inboxMesagesList = JSON.parse(window.inboxObject);
+            console.log($scope.inboxMesagesList);
+        }
+        else {
+            $scope.inboxMesagesList = [];
+        }
+
     }
-    $scope.activeUser = "2";
+   
     $scope.submitMessage = function () {
         var messageObj = { _id: "1", Name: "Ali", Message: $scope.txtMessage, "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-flat.png" };
         $scope.inboxMesagesList.push(messageObj);

@@ -1,13 +1,15 @@
 ﻿<% include ../partials/pagestart %>
 <% include ../partials/pageheader %>
 
-<script>var inboxObject = <%-JSON.stringify(JsonInbox)%>;</script>
+<script>
+var inboxObject = <%-JSON.stringify(JsonInbox)%>;
+
+</script>
 
 <div ng-controller="inboxController">
-    <div ng-init="init('<%= countryIso %>')" class="inboxPage">
+    <div ng-init="init('<%= countryIso %>', '<%= chatPartener %>' , '<%= currentMessageReceiver %>')" class="inboxPage">
         <!-- Inbox -->
         <section class="container-fluid">
-
             <!-- Product view -->
             <div class="row dvInbox">
 
@@ -16,7 +18,7 @@
                         <% if (usersList.length > 0) { %>
                         <% usersList.forEach(function(user){ %>
 
-                        <li ng-class="{'active' : activeUser == '<%= user._id %>'}" ng-click="activeUser = '<%= user._id %>'">
+                        <li ng-class="{'active' : activeUser == '<%= user._id %>'}">
                            <a href="/{{IsoCode}}/Inbox/{{userId}}/<%= user._id %>"> 
 						       <img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="<%= user.ProfilePicture %>" alt="" />
                                <h6><%= user.Name %></h6>
@@ -36,33 +38,41 @@
 				 <div class="dvMessagesBodyContainer">
                     <div ng-repeat="user in inboxMesagesList track by $index">
 
-                        <div ng-if="user._id == <%= chatPartener %>">
+                        <div ng-if="user.To._id == '<%= chatPartener %>'">
                             <!-- others texts -->
                             <div class="media othersText">
                                 <div class="media-body text-right">
-                                    <span>{{user.Message}}</span>
+                                    <span>{{user.Text}}</span>
                                 </div>
-                                <div class="media-right">
-                                    <img class="media-object" src="{{user.Img}}" alt="...">
+                                <div class="media-right text-center">
+                                    <img class="media-object" src="{{user.From.ProfilePicture}}" alt="...">
+									{{user.From.Name}}
                                 </div>
                             </div>
                         </div>
 
-                        <div ng-if="user._id != <%= chatPartener %>">
+                        <div ng-if="user.To._id != '<%= chatPartener %>'">
                             <!-- My texts -->
                             <div class="media myText">
-                                <div class="media-left">
-                                    <img class="media-object" src="{{user.Img}}" alt="...">
+                                <div class="media-left text-center">
+                                    <img class="media-object" src="{{user.From.ProfilePicture}}" alt="...">
+		                 			{{user.From.Name}}
                                 </div>
                                 <div class="media-body">
-                                    <span>{{user.Message}}</span>
+                                    <span>{{user.Text}}</span>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-
-					<div ng-show="usersList.length < 1">You have no contacts</div>
+					<div ng-show="!inboxMesagesList.length > 0">
+					
+					You have no messages with this contact  {{inboxMesagesList.length}}
+					{{currentMessageReceiver}}
+					</div>
+					<% if (!usersList.length > 0) { %>
+					   <div>You have no contacts </div>
+					<% } %>
 					 </div>
 					
                     <div class="row dvSendMessage">
