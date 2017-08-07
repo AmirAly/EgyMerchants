@@ -100,7 +100,7 @@ mongoose.connect(db.url, function (err) {
 //        user.socket = socket.id;
 //        users.push(user);
 //        console.log(users);
-//            //socket.emit('userSet', {username: data});
+//            socket.emit('userSet',data);
 //    });
 
 
@@ -114,21 +114,24 @@ mongoose.connect(db.url, function (err) {
 
 
 //    socket.on('msg', function (data) {
-//        //message.send(data).then(function (result) {
-//        //    console.log(result);
-//        //}, function (err) {
-//        //    console.log(err);
-//        //});
+//        var newmessage = new messageschema(data);
+//        console.log(newmessage);
+//        message.send(newmessage).then(function (result) {
+//            console.log(result);
+//        }, function (err) {
+//            console.log(err);
+//        });
 //        //if this user still online then emit the message to him
 //        //if (_.where(users, "59427908734d1d235a944767").length) {
 //        for (var i = 0; i < users.length; i++) {
 //            var p = users[i];
+//            console.log(users[i]);
 //            if (p.id == data.To) {
 //                console.log("exist");
 //                //users[data.to].emit('receivedMessage', data)
 //                //io.users[i].emit('newmsg', data);
 //                // io.sockets.socket(p.socket).emit('newmsg', data);
-//                io.users[i].emit('newmsg', data);
+//                io.to(p.socket).emit('newmsg', newmessage);
 //                break;
 //            }
 //            else { console.log("notexist")}
