@@ -17,6 +17,8 @@ var Helper = require('./helper');
 var CountriesInJson = require('./allcountries.json');
 var MessageLogic = require('./messages');
 var Message = require('./models/message');
+var CommentLogic = require('./comments');
+var Comment = require('./models/comment');
 var _ = require("underscore");
 module.exports = function (app, express) {
     var api = express.Router();
@@ -237,7 +239,20 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-
+    api.put('/User/AddToFavourites', function (req, res) {
+        UserLogic.addToFavourites(req.body._userid, req.body._itemid).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/User/RemoveFromFavourites', function (req, res) {
+        UserLogic.removeFromFavourites(req.body._userid, req.body._itemid).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     //expo API calls
     api.post('/Expo/Add', function (req, res) {
         var _newExpo = new Expo(req.body);
@@ -292,7 +307,6 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-
     api.get('/Message/GetAll/:_userid/:_toid', function (req, res) {
         MessageLogic.getAll(req.params._userid, req.params._toid).then(function (result) {
             res.json(result);
@@ -300,7 +314,21 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-
-
+    //comments api calls
+    api.post('/Comment/Add', function (req, res) {
+        var _newComment = new Comment(req.body);
+        CommentLogic.add(_newComment).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Comment/Remove', function (req, res) {
+        CommentLogic.remove(req.body._commentid, req.body._userid).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     return api;
 };
