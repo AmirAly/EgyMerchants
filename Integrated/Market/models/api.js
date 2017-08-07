@@ -284,6 +284,15 @@ module.exports = function (app, express) {
     })
 
     //message api calls
+    api.post('/Message/Send', function (req, res) {
+        var _newMessage = new Message(req.body);
+        MessageLogic.send(_newMessage).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+
     api.get('/Message/GetAll/:_userid/:_toid', function (req, res) {
         MessageLogic.getAll(req.params._userid, req.params._toid).then(function (result) {
             res.json(result);

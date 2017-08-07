@@ -74,7 +74,7 @@ module.exports = {
                 else if (Obj.Status == "Active")
                     resolve({
                         code: 100,
-                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type }
+                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type,ProfilePicture: Obj.ProfilePicture }
                     });
             })
         })

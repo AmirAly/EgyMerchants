@@ -26,7 +26,7 @@ module.exports = {
                             else {
                                 resolve({
                                     code: 100,
-                                    data: { _id: _newUser._id, Name: Obj.Name, Type: Obj.Type }
+                                    data: { _id: _newUser._id, Name: Obj.Name, Type: Obj.Type, ProfilePicture: Obj.ProfilePicture }
                                 })
                             }
                         });

@@ -1,4 +1,4 @@
-﻿app.controller("inboxController", function ($scope, $rootScope, $timeout) {
+﻿app.controller("inboxController", function ($scope, $rootScope, $timeout, API) {
     $scope.init = function (_isoCode, _activeUser, _currentMessageReceiver) {
         $rootScope.IsoCode = _isoCode;
         $scope.activeUserId = _activeUser;
@@ -19,9 +19,38 @@
         // to $scope.currentMessageReceiver
         // from $rootScope.userObject
         if ($rootScope.userObject != '' && $rootScope.userObject != null) {
-            var messageObj = { _id: "1", Name: "Ali", Message: $scope.txtMessage, "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-flat.png" };
-            $scope.inboxMesagesList.push(messageObj);
-            $scope.txtMessage = "";
+            $scope.messageObject = {};
+            $scope.messageObject.From = $rootScope.userObject._id;
+            $scope.messageObject.To = $scope.currentMessageReceiver._id;
+            $scope.messageObject.Text = $scope.txtMessage;
+
+            var req = {
+                method: 'post',
+                url: '/Message/Send',
+                data: $scope.messageObject
+            }
+            console.log(req);
+            API.execute(req).then(function (_res) {
+                if (_res.data.code == 100) {
+                    //$scope.dataLoading = false;
+
+                    console.log($rootScope.userObject);
+                    $scope.From = {};
+                    $scope.From.Name = $rootScope.userObject.Name;
+                    $scope.From.ProfilePicture = $rootScope.userObject.ProfilePicture;
+                    $scope.From._id = $rootScope.userObject._id;
+                    var messageObj = { _id: $rootScope.userObject._id, From: $scope.From, Text: $scope.txtMessage };
+                    console.log(messageObj);
+                    $scope.inboxMesagesList.push(messageObj);
+                    $scope.txtMessage = "";
+
+                } else {
+                    //$scope.dataLoading = false;
+
+                }
+
+            });
+
         } else {
             console.log('you have to login first');
         }
