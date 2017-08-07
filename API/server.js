@@ -94,13 +94,13 @@ mongoose.connect(db.url, function (err) {
 //users = [];
 //io.on('connection', function(socket){
 //    console.log('A user connected');
-//    socket.on('setUsername', function (data) {
+//    socket.on('adduser', function (data) {
 //        var user = new Object();
 //        user.id = data;
 //        user.socket = socket.id;
 //        users.push(user);
 //        console.log(users);
-//            socket.emit('userSet', {username: data});
+//            //socket.emit('userSet', {username: data});
 //    });
 
 
@@ -123,13 +123,15 @@ mongoose.connect(db.url, function (err) {
 //        //if (_.where(users, "59427908734d1d235a944767").length) {
 //        for (var i = 0; i < users.length; i++) {
 //            var p = users[i];
-//            if (p.id == data.user) {
-//                console.log(p.socket);
+//            if (p.id == data.To) {
+//                console.log("exist");
 //                //users[data.to].emit('receivedMessage', data)
 //                //io.users[i].emit('newmsg', data);
-//                io.sockets.socket(p.socket).emit('newmsg', data);
+//                // io.sockets.socket(p.socket).emit('newmsg', data);
+//                io.users[i].emit('newmsg', data);
 //                break;
 //            }
+//            else { console.log("notexist")}
 //        }
 //            //io.to(p.socket).emit('newmsg', data)
 //        //}
