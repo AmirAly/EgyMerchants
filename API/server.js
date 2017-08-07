@@ -156,11 +156,11 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //    }, function (err) {
 //        console.log(err);
 //    });
-//message.getAll("5980671c6e1f6f0b30dc4377", "5948d21ff17d942198191fba").then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
+message.getAll("5980671c6e1f6f0b30dc4377", "594660e5734d1d59b7895502").then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
 //message.getAllContacts("5980671c6e1f6f0b30dc4377").then(function (result) {
 //    console.log(result);
 //}, function (err) {

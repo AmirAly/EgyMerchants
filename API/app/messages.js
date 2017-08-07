@@ -66,7 +66,7 @@ module.exports = {
                         var result = [];
                         _.each(Msgs, function (msg) {
                             if (msg.Status == "un read" && msg.To._id.toString() == _userId.toString()) {
-                                Schema.findOneAndUpdate({ '_id': msg._id }, { $set: { 'Status': "read" } }, { new: true }, function (err, Obj) {
+                                Schema.findOneAndUpdate({ '_id': msg._id }, { $set: { 'Status': "read" } }, { new: true }).populate('From', 'Name ProfilePicture').populate('To', 'Name ProfilePicture').exec(function (err, Obj) {
                                     if (err)
                                         reject({
                                             code: 1,
