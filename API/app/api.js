@@ -15,6 +15,8 @@ var User = require('./models/user');
 var Expo = require('./models/expo');
 var Helper = require('./helper');
 var CountriesInJson = require('./allcountries.json');
+var MessageLogic = require('./messages');
+var Message = require('./models/message');
 var _ = require("underscore");
 module.exports = function (app, express) {
     var api = express.Router();
@@ -275,6 +277,15 @@ module.exports = function (app, express) {
     })
     api.get('/Expo/GetById/:_id', function (req, res) {
         ExpoLogic.getById(req.params._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+
+    //message api calls
+    api.get('/Message/GetAll/:_userid/:_toid', function (req, res) {
+        MessageLogic.getAll(req.params._userid, req.params._toid).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
