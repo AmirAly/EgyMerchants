@@ -16,14 +16,13 @@ var Expo = require('./models/expo');
 var Helper = require('./helper');
 var CountriesInJson = require('./allcountries.json');
 var _ = require("underscore");
-
 module.exports = function (app, express) {
     var api = express.Router();
-
+    
     api.get('/', function (req, res) {
         return res.json({ code: '100', data: 'This api is working great, however further calls to other endpoints require a token' });
     });
-
+    
 
     //store API calls
     api.post('/Store/Register', function (req, res) {
@@ -44,7 +43,7 @@ module.exports = function (app, express) {
     })
     api.put('/Store/EditProfile', function (req, res) {
         StoreLogic.editProfile(req.body._id, req.body.Email, req.body.City, req.body.Address, req.body.Country, req.body.Description, req.body.Imgs, req.body.ProfilePicture, req.body.CoverPhoto).then(function (result) {
-            res.json(result);
+            res.json(result );
         }, function (err) {
             res.json(err);
         });
@@ -111,7 +110,7 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Item/Edit', function (req, res) {
-        ItemLogic.edit(req.body._id, req.body.Name, req.body.Description, req.body.Imgs, req.body.Price, req.body.PriceBeforeSale, req.body.Badges, req.body.Tags).then(function (result) {
+        ItemLogic.edit(req.body._id, req.body.Name, req.body.Description, req.body.Imgs, req.body.Price, req.body.PriceBeforeSale, req.body.Badges,req.body.Tags).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -142,7 +141,7 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Country/Edit', function (req, res) {
-        CountryLogic.edit(req.body._id, req.body.Name, req.body.Flag, req.body.IsoCode, req.body.WelcomeMsg).then(function (result) {
+        CountryLogic.edit(req.body._id, req.body.Name, req.body.Flag, req.body.IsoCode,req.body.WelcomeMsg).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -170,7 +169,7 @@ module.exports = function (app, express) {
         });
     })
 
-    //category API calls
+   //category API calls
     api.post('/Category/Add', function (req, res) {
         var _newCategory = new Category(req.body);
         CategoryLogic.add(_newCategory).then(function (result) {
@@ -180,7 +179,7 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Category/Edit', function (req, res) {
-        CategoryLogic.edit(req.body._id, req.body.Name, req.body.Country).then(function (result) {
+        CategoryLogic.edit(req.body._id, req.body.Name,req.body.Country).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -253,8 +252,15 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.put('/Expo/EditFloor', function (req, res) {
+        ExpoLogic.editFloor(req.body._id,req.body.Floor).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     api.put('/Expo/SetFloor', function (req, res) {
-        ExpoLogic.setFloor(req.body._id, req.body.Floor).then(function (result) {
+        ExpoLogic.setFloor(req.body._id,req.body.Floor).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);

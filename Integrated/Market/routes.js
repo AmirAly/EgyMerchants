@@ -4,6 +4,8 @@ var gallery = require('./models/galleries');
 var expo = require('./models/expoes');
 var category = require('./models/categories');
 var country = require('./models/countries');
+var message = require('./models/messages');
+
 module.exports = function (app) {
     // use res.render to load up an ejs view file
     app.get('/', function (req, res) {
@@ -266,17 +268,22 @@ module.exports = function (app) {
     });
 
     // inbox page
-    app.get('/:countryIso/Inbox/:user', function (req, res) {
+    app.get('/:countryIso/Inbox/:me/:user', function (req, res) {
         console.log(req.params.countryIso);
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
-        var usersList = [
-            { _id: "4", Name: "Gamal", HasUnreadMsgs: true, "Img": "http://ayonglobaledu.com/images/contact.png" },
-            { _id: "2", Name: "Maha", HasUnreadMsgs: false, "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-girl-outline-filled.png" },
-            { _id: "3", Name: "Bebo", HasUnreadMsgs: true, "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-outline-filled.png" }
-        ];
-        _scope.usersList = usersList;
-        // my id = 1 'ali'
+        //var usersList = [
+        //    { _id: "4", Name: "Gamal", HasUnreadMsgs: true, "Img": "http://ayonglobaledu.com/images/contact.png" },
+        //    { _id: "2", Name: "Maha", HasUnreadMsgs: false, "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-girl-outline-filled.png" },
+        //    { _id: "3", Name: "Bebo", HasUnreadMsgs: true, "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-outline-filled.png" }
+        //];
+        //_scope.usersList = usersList;
+        message.getAllContacts(req.params.me).then(function (_list) {
+            if (_list.code == 100) {
+                console.log(_list.data);
+                _scope.usersList = _list.data;
+
+// my id = 1 'ali'
         var chatingHistory = [
             { _id: "1", Name: "Ali", Message: "hi" , "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-flat.png"},
             { _id: "1", Name: "Ali", Message: "Iam Ali", "Img": "https://freeiconshop.com/wp-content/uploads/edd/person-flat.png" },
@@ -289,5 +296,19 @@ module.exports = function (app) {
         _scope.chatingHistory = chatingHistory;
         _scope.JsonInbox = JsonInbox;
         res.render('pages/inbox',_scope);
+
+
+
+            } else {
+                _scope.usersList = [];
+                _scope.chatPartener = '';
+                _scope.chatingHistory = [];
+                _scope.JsonInbox = [];
+                res.render('pages/inbox', _scope);
+            }
+        });
+
+
+        
     });
 }

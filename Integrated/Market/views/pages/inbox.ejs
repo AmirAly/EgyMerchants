@@ -16,16 +16,17 @@
                         <% if (usersList.length > 0) { %>
                         <% usersList.forEach(function(user){ %>
 
-                        <li ng-class="{'active' : activeUser == '<%= user._id %>'}" ng-click="activeUser = <%= user._id %>">
-                           <a href="/{{IsoCode}}/Inbox/<%= user._id %>"> 
-						       <img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="<%= user.Img %>" alt="" />
+                        <li ng-class="{'active' : activeUser == '<%= user._id %>'}" ng-click="activeUser = '<%= user._id %>'">
+                           <a href="/{{IsoCode}}/Inbox/{{userId}}/<%= user._id %>"> 
+						       <img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="<%= user.ProfilePicture %>" alt="" />
                                <h6><%= user.Name %></h6>
 							</a>
                         </li>
                     
 
                         <% }); %>
-
+						<% } else { %>
+						<div>no contacts</div>
                         <% } %>
                     </ul>
                 </div>
@@ -60,6 +61,8 @@
                         </div>
 
                     </div>
+
+					<div ng-show="usersList.length < 1">You have no contacts</div>
 					 </div>
 					
                     <div class="row dvSendMessage">

@@ -1,4 +1,5 @@
 var Schema = require('./models/gallery');
+var Helper = require('./helper');
 module.exports = {
     getByStore: function (_storeId) {
         return new Promise(function (resolve, reject) {
@@ -69,22 +70,40 @@ module.exports = {
                                         data: "There is gallery with the same title"
                                     });
                                 else {
+                                    gallery.DisplayPicture = "";
                                     gallery.Title = _title;
                                     gallery.Description = _description;
-                                    if (_img)
-                                        gallery.DisplayPicture = _img;
-                                    gallery.save(function (err, Obj) {
-                                        if (err)
-                                            reject({
-                                                code: 1,
-                                                data: err
-                                            });
-                                        else
-                                            resolve({
-                                                code: 100,
-                                                data: "This gallery updated successfully"
-                                            });
-                                    })
+                                    if (_img) {
+                                        Helper.uploadImage(_img, function (_url) {
+                                            gallery.DisplayPicture = _url;
+                                            gallery.save(function (err, Obj) {
+                                                if (err)
+                                                    reject({
+                                                        code: 1,
+                                                        data: err
+                                                    });
+                                                else
+                                                    resolve({
+                                                        code: 100,
+                                                        data: "This gallery updated successfully"
+                                                    });
+                                            })
+                                        })
+                                    }
+                                    else {
+                                        gallery.save(function (err, Obj) {
+                                            if (err)
+                                                reject({
+                                                    code: 1,
+                                                    data: err
+                                                });
+                                            else
+                                                resolve({
+                                                    code: 100,
+                                                    data: "This gallery updated successfully"
+                                                });
+                                        })
+                                    }
                                 }
                             }
                         })
@@ -106,11 +125,29 @@ module.exports = {
                     });
                 else {
                     if(Obj)
-                       reject ({
+                        reject ({
                             code: 21,
                             data: "There is gallery with the same title"
                         });
                     else {
+                        if (_gallery.DisplayPicture) {
+                            Helper.uploadImage(_gallery.DisplayPicture, function (_url) {
+                                _gallery.DisplayPicture = _url;
+                                _gallery.save(function (err, gallery) {
+                                    if (err)
+                                        reject({
+                                            code: 1,
+                                            data: err
+                                        });
+                                    else
+                                        resolve({
+                                            code: 100,
+                                            data: "This gallery added successfully"
+                                        });
+                                })
+                            })
+                        }
+                        else{
                         _gallery.save(function (err, gallery) {
                             if (err)
                                 reject({
@@ -124,24 +161,11 @@ module.exports = {
                                 });
                         })
                     }
+                    }
                 }
             })
         })
-    },
-    suspend: function (_id) {
-        return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "Suspended" } }, { new: true }, function (err, Obj) {
-                if (err)
-                    reject({ code: 1, data: err })
-                else {
-                    if (Obj)
-                        resolve({ code: 100, data: "This gallery deleted successfuylly" })
-                    else
-                        reject({ code: 21, data: "This filteration didn't resulted in any data" })
-                }
-            })
-        })
-    },
+    }
   
 
 }
