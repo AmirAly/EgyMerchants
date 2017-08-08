@@ -144,9 +144,9 @@ module.exports = {
                         })
                     }
                     else {
-                        reject({
-                            code: 21,
-                            data: "There is no Contacts for this user"
+                        resolve({
+                            code: 100,
+                            data: []
                         })
                     }
                 }

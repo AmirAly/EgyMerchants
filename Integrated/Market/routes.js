@@ -275,13 +275,17 @@ module.exports = function (app) {
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
 
+        _scope.chatPartener = req.params.user;
+        console.log(_scope.chatPartener);
+
         message.getAllContacts(req.params.me).then(function (_listAllContacts) {
             if (_listAllContacts.code == 100) {
                 console.log(_listAllContacts.data);
-                _scope.usersList = _listAllContacts.data;
+                var allMyUsers = JSON.stringify(_listAllContacts.data);
+                _scope.usersList = allMyUsers;
 
                 if (req.params.user != '0') {
-                  
+
                     user.getById(req.params.user).then(function (_newStore) {
                         if (_newStore.code == 100) {
                             // store data
@@ -291,11 +295,9 @@ module.exports = function (app) {
                             message.getAll(req.params.me, req.params.user).then(function (_data) {
                                 console.log(_data);
                                 if (_data.code == 100) {
-                                     console.log(_data.data);
-
+                                    console.log(_data.data);
                                     var chatingHistory = _data.data;
                                     var JsonInbox = JSON.stringify(chatingHistory);
-                                    _scope.chatPartener = req.params.user;
                                     _scope.chatingHistory = chatingHistory;
                                     _scope.JsonInbox = JsonInbox;
                                     res.render('pages/inbox', _scope);
@@ -303,7 +305,6 @@ module.exports = function (app) {
                                 else {
                                     console.log('nooooooooooooo data');
                                     _scope.chatingHistory = [];
-                                    _scope.chatPartener = '';
                                     _scope.JsonInbox = [];
                                     res.render('pages/inbox', _scope);
                                 }
@@ -311,7 +312,6 @@ module.exports = function (app) {
                                 console.log(err);
                                 console.log('nooooooooooooo data');
                                 _scope.chatingHistory = [];
-                                _scope.chatPartener = '';
                                 _scope.JsonInbox = [];
                                 res.render('pages/inbox', _scope);
                             });
@@ -321,7 +321,6 @@ module.exports = function (app) {
                             //store not exist
                             _scope.currentMessageReceiver = '';
                             _scope.chatingHistory = [];
-                            _scope.chatPartener = '';
                             _scope.JsonInbox = [];
                             res.render('pages/inbox', _scope);
                         }
@@ -329,7 +328,6 @@ module.exports = function (app) {
                         //store not exist
                         _scope.currentMessageReceiver = '';
                         _scope.chatingHistory = [];
-                        _scope.chatPartener = '';
                         _scope.JsonInbox = [];
                         res.render('pages/inbox', _scope);
                     });
@@ -337,7 +335,6 @@ module.exports = function (app) {
                 else {
                     _scope.currentMessageReceiver = '';
                     _scope.chatingHistory = [];
-                    _scope.chatPartener = '';
                     _scope.JsonInbox = [];
                     res.render('pages/inbox', _scope);
                 }
@@ -346,12 +343,12 @@ module.exports = function (app) {
             } else {
                 _scope.currentMessageReceiver = '';
                 _scope.usersList = [];
-                _scope.chatPartener = '';
                 _scope.chatingHistory = [];
                 _scope.JsonInbox = [];
                 res.render('pages/inbox', _scope);
             }
-        }).catch(function () {
+        })
+            .catch(function () {
             _scope.currentMessageReceiver = '';
             _scope.usersList = [];
             _scope.chatPartener = '';
