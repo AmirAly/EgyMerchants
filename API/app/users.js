@@ -26,7 +26,7 @@ module.exports = {
                             else {
                                 resolve({
                                     code: 100,
-                                    data: { _id: _newUser._id, Name: Obj.Name, Type: Obj.Type, ProfilePicture: Obj.ProfilePicture }
+                                    data: { _id: _newUser._id, Name: Obj.Name, Type: Obj.Type }
                                 })
                             }
                         });
@@ -37,7 +37,7 @@ module.exports = {
     },
     login: function (_user) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ 'Email': _user.Email }, { 'Password': _user.Password }] }, '', function (err, Obj) {
+            Schema.findOne({ $and: [{ 'Email': _user.Email }, { 'Password': _user.Password }, { 'Type': 'user' }] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -61,7 +61,7 @@ module.exports = {
                 else if (Obj.Status == "Active")
                     resolve({
                         code: 100,
-                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type, FavouriteItems: Obj.FavouriteItems, VisitedStores: Obj.VisitedStores}
+                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type, FavouriteItems: Obj.FavouriteItems, VisitedStores: Obj.VisitedStores, ProfilePicture: Obj.ProfilePicture}
                     });
             })
         })
