@@ -1,6 +1,6 @@
 ﻿app.controller("inboxController", function ($scope, $rootScope, $timeout, API) {
 
-    var socket = io();
+    
     function addUser() {
         socket.emit('adduser', $rootScope.userObject._id);
     }

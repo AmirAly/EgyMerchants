@@ -51,7 +51,7 @@ mongoose.connect(db.url, function (err) {
         });
         app.use(express.static('public'));
         app.use('/', api);
-        app.listen(port);
+        //app.listen(port);
         console.log('connected  to  database and server is listeining ');
     }
 });
