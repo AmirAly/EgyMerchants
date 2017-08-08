@@ -103,7 +103,7 @@ io.on('connection', function(socket){
         user.id = data;
         user.socket = socket.id;
         users.push(user);
-        console.log(users);
+       // console.log(users);
             //socket.emit('userSet',data);
     });
 
@@ -129,16 +129,16 @@ io.on('connection', function(socket){
         //if (_.where(users, "59427908734d1d235a944767").length) {
         for (var i = 0; i < users.length; i++) {
             var p = users[i];
-            console.log(users[i]);
+            //console.log(users[i]);
             if (p.id == data.To) {
-                console.log("exist");
+               // console.log("exist");
                 //users[data.to].emit('receivedMessage', data)
                 //io.users[i].emit('newmsg', data);
                 // io.sockets.socket(p.socket).emit('newmsg', data);
                 io.to(p.socket).emit('newmsg', newmessage);
                 break;
             }
-            else { console.log("notexist")}
+           // else { console.log("notexist")}
         }
             //io.to(p.socket).emit('newmsg', data)
         //}
