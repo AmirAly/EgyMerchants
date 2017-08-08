@@ -37,7 +37,7 @@ module.exports = {
     },
     login: function (_user) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ 'Email': _user.Email }, { 'Password': _user.Password }, { 'Type': 'user' }] }, '', function (err, Obj) {
+            Schema.findOne({ $and: [{ 'Email': _user.Email }, { 'Password': _user.Password }] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
