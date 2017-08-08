@@ -1,6 +1,6 @@
 ﻿app.controller("inboxController", function ($scope, $rootScope, $timeout, API) {
 
-    
+
     function addUser() {
         socket.emit('adduser', $rootScope.userObject._id);
     }
@@ -8,6 +8,15 @@
 
     socket.on('newmsg', function (_data) {
         console.log(_data);
+        console.log($scope.inboxMesagesList);
+        $scope.inboxMesagesList.push(_data);
+        console.log($scope.inboxMesagesList);
+        $scope.$apply();
+    });
+
+    socket.on('messagesuccess', function (_data) {
+        console.log(_data);
+        alert('message sent !');
     });
 
     $scope.init = function (_isoCode, _activeUser, _currentMessageReceiver) {
@@ -29,14 +38,18 @@
     $scope.submitMessage = function () {
         // to $scope.currentMessageReceiver
         // from $rootScope.userObject
+        console.log($rootScope.userObject);
         if ($rootScope.userObject != '' && $rootScope.userObject != null) {
             $scope.messageObject = {};
-            $scope.messageObject.From = $rootScope.userObject._id;
-            $scope.messageObject.To = $scope.currentMessageReceiver._id;
+            $scope.messageObject.From = { _id: $rootScope.userObject._id, Name: $rootScope.userObject.Name, ProfilePicture: $rootScope.userObject.ProfilePicture };
+            $scope.messageObject.To = { _id: $scope.currentMessageReceiver._id, Name: $scope.currentMessageReceiver.Name, ProfilePicture: $scope.currentMessageReceiver.ProfilePicture };
             $scope.messageObject.Text = $scope.txtMessage;
 
             socket.emit('msg', $scope.messageObject);
 
+            console.log($scope.messageObject);
+            $scope.inboxMesagesList.push($scope.messageObject);
+            $scope.txtMessage = "";
 
             //var req = {
             //    method: 'post',

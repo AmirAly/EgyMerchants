@@ -6,6 +6,7 @@ var expo = require('./models/expoes');
 var category = require('./models/categories');
 var country = require('./models/countries');
 var message = require('./models/messages');
+var user = require('./models/users');
 
 module.exports = function (app) {
     // use res.render to load up an ejs view file
@@ -281,7 +282,7 @@ module.exports = function (app) {
 
                 if (req.params.user != '0') {
                   
-                    store.getById(req.params.user).then(function (_newStore) {
+                    user.getById(req.params.user).then(function (_newStore) {
                         if (_newStore.code == 100) {
                             // store data
                             console.log(_newStore.data);
