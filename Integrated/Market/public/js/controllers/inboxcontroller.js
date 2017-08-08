@@ -1,4 +1,15 @@
 ﻿app.controller("inboxController", function ($scope, $rootScope, $timeout, API) {
+
+    var socket = io();
+    function addUser() {
+        socket.emit('adduser', $rootScope.userObject._id);
+    }
+    addUser();
+
+    socket.on('newmsg', function (_data) {
+        console.log(_data);
+    });
+
     $scope.init = function (_isoCode, _activeUser, _currentMessageReceiver) {
         $rootScope.IsoCode = _isoCode;
         $scope.activeUserId = _activeUser;
@@ -24,32 +35,31 @@
             $scope.messageObject.To = $scope.currentMessageReceiver._id;
             $scope.messageObject.Text = $scope.txtMessage;
 
-            var req = {
-                method: 'post',
-                url: '/Message/Send',
-                data: $scope.messageObject
-            }
-            console.log(req);
-            API.execute(req).then(function (_res) {
-                if (_res.data.code == 100) {
-                    //$scope.dataLoading = false;
+            socket.emit('msg', $scope.messageObject);
 
-                    console.log($rootScope.userObject);
-                    $scope.From = {};
-                    $scope.From.Name = $rootScope.userObject.Name;
-                    $scope.From.ProfilePicture = $rootScope.userObject.ProfilePicture;
-                    $scope.From._id = $rootScope.userObject._id;
-                    var messageObj = { _id: $rootScope.userObject._id, From: $scope.From, Text: $scope.txtMessage };
-                    console.log(messageObj);
-                    $scope.inboxMesagesList.push(messageObj);
-                    $scope.txtMessage = "";
 
-                } else {
-                    //$scope.dataLoading = false;
-
-                }
-
-            });
+            //var req = {
+            //    method: 'post',
+            //    url: '/Message/Send',
+            //    data: $scope.messageObject
+            //}
+            //console.log(req);
+            //API.execute(req).then(function (_res) {
+            //    if (_res.data.code == 100) {
+            //        //$scope.dataLoading = false;
+            //        console.log($rootScope.userObject);
+            //        $scope.From = {};
+            //        $scope.From.Name = $rootScope.userObject.Name;
+            //        $scope.From.ProfilePicture = $rootScope.userObject.ProfilePicture;
+            //        $scope.From._id = $rootScope.userObject._id;
+            //        var messageObj = { _id: $rootScope.userObject._id, From: $scope.From, Text: $scope.txtMessage };
+            //        console.log(messageObj);
+            //        $scope.inboxMesagesList.push(messageObj);
+            //        $scope.txtMessage = "";
+            //    } else {
+            //        //$scope.dataLoading = false;
+            //    }
+            //});
 
         } else {
             console.log('you have to login first');
