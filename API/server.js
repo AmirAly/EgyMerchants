@@ -23,8 +23,8 @@ var itemschema = require('./app/models/item');
 var category = require('./app/categories');
 var categoryschema = require('./app/models/category');
 var master = require('./app/masters');
-var messageschema = require('./app/models/message');
-var message = require('./app/messages');
+var messageschema = require('./app/models/message');//not delete for socket.io
+var message = require('./app/messages');//not delete for socket.io
 var commentschema = require('./app/models/comment');
 var comment = require('./app/comments');
 var notificationschema = require('./app/models/notification');
@@ -73,8 +73,6 @@ io.on('connection', function(socket){
         user.socket = socket.id;
         users.push(user);
     });
-
-
     socket.on('disconnect', function () {
         var index = users.indexOf(socket);
         if (index != -1) {
@@ -90,7 +88,7 @@ io.on('connection', function(socket){
                     io.to(users[i].socket).emit('newmsg', data);
                 }
                 if (users[i].id == data.From._id) {
-                    io.to(users[i].socket).emit('messagesuccess', data);
+                    io.to(users[i].socket).emit('messagesuccess', result.data);
                 }
             }
         }, function (err) {

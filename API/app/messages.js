@@ -37,7 +37,7 @@ module.exports = {
                                 
                                 resolve({
                                     code: 100,
-                                    data: "Message sent successfully"
+                                    data: Msg
                                 });
                             }
                         })
