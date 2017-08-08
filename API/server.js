@@ -89,9 +89,7 @@ io.on('connection', function(socket){
 
     socket.on('msg', function (data) {
         var newmessage;
-        newmessage.From = data.From._id;
-        newmessage.To = data.To._id;
-        newmessage.Text = data.Text;
+        newmessage = { From: data.From._id, To: data.To._id,Text:data.Text };
         newmessage = new messageschema(newmessage);
         message.send(newmessage).then(function (result) {
             console.log(result);
