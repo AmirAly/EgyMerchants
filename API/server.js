@@ -88,8 +88,7 @@ io.on('connection', function(socket){
 
 
     socket.on('msg', function (data) {
-        var newmessage;
-        newmessage = { From: data.From._id, To: data.To._id,Text:data.Text };
+         var newmessage = { From: data.From._id, To: data.To._id, Text: data.Text };
         newmessage = new messageschema(newmessage);
         message.send(newmessage).then(function (result) {
             console.log(result);
@@ -101,7 +100,7 @@ io.on('connection', function(socket){
         for (var i = 0; i < users.length; i++) {
             var p = users[i];
             //console.log(users[i]);
-            if (p.id == data.To) {
+            if (p.id == data.To._id) {
                // console.log("exist");
                 //users[data.to].emit('receivedMessage', data)
                 //io.users[i].emit('newmsg', data);
