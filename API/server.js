@@ -86,63 +86,63 @@ mongoose.connect(db.url, function (err) {
 //    })
 //});
 
-//var http = require('http').Server(app);
-//var io = require('socket.io')(http);
-//app.get('/', function(req, res){
-//  res.sendfile('index.html');
-//});
-//users = [];
-//io.on('connection', function(socket){
-//    console.log('A user connected');
-//    socket.on('adduser', function (data) {
-//        var user = new Object();
-//        user.id = data;
-//        user.socket = socket.id;
-//        users.push(user);
-//        console.log(users);
-//            socket.emit('userSet',data);
-//    });
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+app.get('/', function(req, res){
+  res.sendfile('index.html');
+});
+users = [];
+io.on('connection', function(socket){
+    console.log('A user connected');
+    socket.on('adduser', function (data) {
+        var user = new Object();
+        user.id = data;
+        user.socket = socket.id;
+        users.push(user);
+        console.log(users);
+            //socket.emit('userSet',data);
+    });
 
 
-//    socket.on('disconnect', function () {
-//        var index = users.indexOf(socket);
-//        if (index != -1) {
-//            users.splice(index, 1);
-//            console.info('Client gone (id=' + socket.id + ').');
-//        }
-//    });
+    socket.on('disconnect', function () {
+        var index = users.indexOf(socket);
+        if (index != -1) {
+            users.splice(index, 1);
+            console.info('Client gone (id=' + socket.id + ').');
+        }
+    });
 
 
-//    socket.on('msg', function (data) {
-//        var newmessage = new messageschema(data);
-//        console.log(newmessage);
-//        message.send(newmessage).then(function (result) {
-//            console.log(result);
-//        }, function (err) {
-//            console.log(err);
-//        });
-//        //if this user still online then emit the message to him
-//        //if (_.where(users, "59427908734d1d235a944767").length) {
-//        for (var i = 0; i < users.length; i++) {
-//            var p = users[i];
-//            console.log(users[i]);
-//            if (p.id == data.To) {
-//                console.log("exist");
-//                //users[data.to].emit('receivedMessage', data)
-//                //io.users[i].emit('newmsg', data);
-//                // io.sockets.socket(p.socket).emit('newmsg', data);
-//                io.to(p.socket).emit('newmsg', newmessage);
-//                break;
-//            }
-//            else { console.log("notexist")}
-//        }
-//            //io.to(p.socket).emit('newmsg', data)
-//        //}
-//    })
-//});
-//http.listen(3000, function () {
-//    console.log('listening on localhost:3000');
-//});
+    socket.on('msg', function (data) {
+        //var newmessage = new messageschema(data);
+        //console.log(newmessage);
+        message.send(data).then(function (result) {
+            console.log(result);
+        }, function (err) {
+            console.log(err);
+        });
+        //if this user still online then emit the message to him
+        //if (_.where(users, "59427908734d1d235a944767").length) {
+        for (var i = 0; i < users.length; i++) {
+            var p = users[i];
+            console.log(users[i]);
+            if (p.id == data.To) {
+                console.log("exist");
+                //users[data.to].emit('receivedMessage', data)
+                //io.users[i].emit('newmsg', data);
+                // io.sockets.socket(p.socket).emit('newmsg', data);
+                io.to(p.socket).emit('newmsg', data);
+                break;
+            }
+            else { console.log("notexist")}
+        }
+            //io.to(p.socket).emit('newmsg', data)
+        //}
+    })
+});
+http.listen(3000, function () {
+    console.log('listening on localhost:3000');
+});
 
 
 
