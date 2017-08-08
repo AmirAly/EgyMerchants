@@ -2,6 +2,8 @@
 // modules =================================================
 var express = require('express');
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 app.use(express.static(__dirname + '/images'));
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
@@ -37,6 +39,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(bodyParser.json({ limit: '50mb' }));
 //app.use(bodyParser.json());
 var port = process.env.PORT || 8007;
+
 mongoose.connect(db.url, function (err) {
     if (err) {
         console.log(err);
@@ -51,55 +54,27 @@ mongoose.connect(db.url, function (err) {
         });
         app.use(express.static('public'));
         app.use('/', api);
-        //app.listen(port);
-        console.log('connected  to  database and server is listeining ');
+
+       // app.listen(port);
+        http.listen(port, function () {
+            console.log('listening on sockets');
+        });
+        console.log('connected to database and server is listeining ');
     }
 });
-
-
-//var http = require('http').Server(app);
-//var io = require('socket.io')(http);
-//var users = [];
-//io.on('connection', function(socket) {
-//    console.info('New client connected (id=' + socket.id + ').');
-//    users.push(socket);
-
-//     //When socket disconnects, remove it from the list:
-//    socket.on('disconnect', function() {
-//        var index = users.indexOf(socket);
-//        if (index != -1) {
-//            users.splice(index, 1);
-//            console.info('Client gone (id=' + socket.id + ').');
-//        }
-//    });
-
-//    socket.on('msg', function (data) {
-//        message.send(data).then(function (result) {
-//            console.log(result);
-//        }, function (err) {
-//            console.log(err);
-//        });
-//        //if this user still online then emit the message to him
-//        if (_.where(users, data.to).length) {
-//            io.to(users[data.to]).emit('newmsg', data)
-//        }
-//    })
-//});
-
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
 app.get('/', function(req, res){
   res.sendfile('index.html');
 });
-users = [];
+
+var users = [];
 io.on('connection', function(socket){
-    console.log('A user connected');
+    //console.log('A user connected');
     socket.on('adduser', function (data) {
         var user = new Object();
         user.id = data;
         user.socket = socket.id;
         users.push(user);
-        console.log(users);
+       // console.log(users);
             //socket.emit('userSet',data);
     });
 
@@ -108,15 +83,15 @@ io.on('connection', function(socket){
         var index = users.indexOf(socket);
         if (index != -1) {
             users.splice(index, 1);
-            console.info('Client gone (id=' + socket.id + ').');
+            //console.info('Client gone (id=' + socket.id + ').');
         }
     });
 
 
     socket.on('msg', function (data) {
-        //var newmessage = new messageschema(data);
+        var newmessage = new messageschema(data);
         //console.log(newmessage);
-        message.send(data).then(function (result) {
+        message.send(newmessage).then(function (result) {
             console.log(result);
         }, function (err) {
             console.log(err);
@@ -125,24 +100,22 @@ io.on('connection', function(socket){
         //if (_.where(users, "59427908734d1d235a944767").length) {
         for (var i = 0; i < users.length; i++) {
             var p = users[i];
-            console.log(users[i]);
+            //console.log(users[i]);
             if (p.id == data.To) {
-                console.log("exist");
+               // console.log("exist");
                 //users[data.to].emit('receivedMessage', data)
                 //io.users[i].emit('newmsg', data);
                 // io.sockets.socket(p.socket).emit('newmsg', data);
-                io.to(p.socket).emit('newmsg', data);
+                io.to(p.socket).emit('newmsg', newmessage);
                 break;
             }
-            else { console.log("notexist")}
+           // else { console.log("notexist")}
         }
             //io.to(p.socket).emit('newmsg', data)
         //}
     })
 });
-http.listen(port, function () {
-    console.log('listening on socket server');
-});
+
 
 
 
