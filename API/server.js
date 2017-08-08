@@ -86,9 +86,14 @@ io.on('connection', function(socket){
             for (var i = 0; i < users.length; i++) {
                 if (users[i].id == data.To._id) {
                     io.to(users[i].socket).emit('newmsg', data);
+                    //message.updateStatus(result.data._id).then(function (result) {
+                    //    console.log(result);
+                    //},function (err) {
+                    //    console.log(err);
+                    //})
                 }
                 if (users[i].id == data.From._id) {
-                    io.to(users[i].socket).emit('messagesuccess', result.data);
+                    io.to(users[i].socket).emit('messagesuccess',data);
                 }
             }
         }, function (err) {
@@ -120,17 +125,16 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //}, function (err) {
 //    console.log(err);
 //});
-//message.getAllContacts("5980671c6e1f6f0b30dc4377").then(function (result) {
+//message.getAllContacts("598327028563d01fecd5046d").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//message.getUnRead("5948d21ff17d942198191fba").then(function (result) {
+//message.updateStatus("5989cbc14aa4eb033c20360c").then(function (result) {
 //    console.log(result);
-//}, function (err) {
+//},function (err) {
 //    console.log(err);
-//});
-
+//})
 var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User": "594660e5734d1d59b7895502", "Text": "discount 10% for first 25 purchased" })
 //comment.add(newcomment).then(function (result) {
 //    console.log(result);
