@@ -4,12 +4,10 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-app.use(express.static(__dirname + '/images'));
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var api = require('./app/api')(app, express);
 var db = require('./config/config');
-var _ = require("underscore");
 // test ===========================================
 var user = require('./app/users');
 var userschema = require('./app/models/user');
@@ -38,6 +36,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 
 app.use(bodyParser.json({ limit: '50mb' }));
 //app.use(bodyParser.json());
+app.use(express.static(__dirname + '/images'));
 var port = process.env.PORT || 8007;
 
 mongoose.connect(db.url, function (err) {
