@@ -37,6 +37,8 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(bodyParser.json({ limit: '50mb' }));
 //app.use(bodyParser.json());
 var port = process.env.PORT || 8007;
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 mongoose.connect(db.url, function (err) {
     if (err) {
         console.log(err);
@@ -51,7 +53,10 @@ mongoose.connect(db.url, function (err) {
         });
         app.use(express.static('public'));
         app.use('/', api);
-        app.listen(port);
+       // app.listen(port);
+        http.listen(port, function () {
+            console.log('listening on socket server');
+        });
         console.log('connected  to  database and server is listeining ');
     }
 });
@@ -86,8 +91,7 @@ mongoose.connect(db.url, function (err) {
 //    })
 //});
 
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+
 app.get('/', function(req, res){
   res.sendfile('index.html');
 });
@@ -114,9 +118,9 @@ io.on('connection', function(socket){
 
 
     socket.on('msg', function (data) {
-        //var newmessage = new messageschema(data);
+        var newmessage = new messageschema(data);
         //console.log(newmessage);
-        message.send(data).then(function (result) {
+        message.send(newmessage).then(function (result) {
             console.log(result);
         }, function (err) {
             console.log(err);
@@ -131,7 +135,7 @@ io.on('connection', function(socket){
                 //users[data.to].emit('receivedMessage', data)
                 //io.users[i].emit('newmsg', data);
                 // io.sockets.socket(p.socket).emit('newmsg', data);
-                io.to(p.socket).emit('newmsg', data);
+                io.to(p.socket).emit('newmsg', newmessage);
                 break;
             }
             else { console.log("notexist")}
@@ -140,9 +144,7 @@ io.on('connection', function(socket){
         //}
     })
 });
-http.listen(port, function () {
-    console.log('listening on socket server');
-});
+
 
 
 
