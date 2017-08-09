@@ -25,23 +25,23 @@ module.exports = {
     },
     getAll: function (_userId) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ "User": _userId }, 'Text RedirectURL Status', function (err, Lst) {
+            Schema.find({ "User": _userId }, 'Text RedirectURL User', function (err, Lst) {
                 if (err)
                     reject({
                         code: 1,
                         data: err
                     })
                 else {
-                    if (Lst.length > 0)
-                        resolve({
-                            code: 100,
-                            data: Lst
-                        });
-                    else
-                        reject({
-                            code: 21,
-                            data: "There is no notifications"
+                    if (Lst.length) {
+                        Schema.updateMany({ "User": _userId }, { $set: { Status: "read" } }).exec(function (err, data) {
+                            if (err)
+                                reject({
+                                    code: 1,
+                                    data: err
+                                })
                         })
+                    }
+
                 }
             })
         })

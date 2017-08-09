@@ -190,7 +190,7 @@ module.exports = {
     },
     getFavourites: function (_userId) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ "_id": _userId, "Status": "Active" }, 'FavouriteItems').populate('FavouriteItems','Name Pictures').exec(function (err, Obj) {
+            Schema.findOne({ "_id": _userId, "Status": "Active" }, 'FavouriteItems').populate('FavouriteItems',{Name:1, Pictures: { $slice: 1 }}).exec(function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
