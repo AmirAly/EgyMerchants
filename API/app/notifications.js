@@ -25,7 +25,7 @@ module.exports = {
     },
     getAll: function (_userId) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ "User": _userId }, 'Text RedirectURL User', function (err, Lst) {
+            Schema.find({ "User": _userId }, 'Text RedirectURL User Status', function (err, Lst) {
                 if (err)
                     reject({
                         code: 1,
@@ -39,9 +39,17 @@ module.exports = {
                                     code: 1,
                                     data: err
                                 })
+                            resolve({
+                                code: 100,
+                                data: Lst
+                            })
                         })
                     }
-
+                    else
+                        resolve({
+                        code: 100,
+                        data: Lst
+                    })
                 }
             })
         })

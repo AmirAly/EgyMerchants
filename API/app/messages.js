@@ -55,7 +55,7 @@ module.exports = {
     },
     getAll: function (_userId,_toId) {
         return new Promise(function (resolve, reject) {
-            Schema.updateMany({ Status:"un read",To:_userId}, { $set: { Status: "read" } }).exec(function (err, lst) {
+            Schema.updateMany({ Status:"un read",To:_userId,From:_toId}, { $set: { Status: "read" } }).exec(function (err, lst) {
                 if (err)
                     reject({
                         code: 1,

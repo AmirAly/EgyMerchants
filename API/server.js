@@ -86,11 +86,11 @@ io.on('connection', function(socket){
             for (var i = 0; i < users.length; i++) {
                 if (users[i].id == data.To._id) {
                     io.to(users[i].socket).emit('newmsg', data);
-                    //message.updateStatus(result.data._id).then(function (result) {
-                    //    console.log(result);
-                    //},function (err) {
-                    //    console.log(err);
-                    //})
+                    message.updateStatus(result.data._id).then(function (result) {
+                        console.log(result);
+                    },function (err) {
+                        console.log(err);
+                    })
                 }
                 if (users[i].id == data.From._id) {
                     io.to(users[i].socket).emit('messagesuccess',data);
@@ -152,7 +152,7 @@ var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User":
 //}, function (err) {
 //    console.log(err);
 //});
-//notification.getAll("5948d21ff17d942198191fba").then(function (result) {
+//notification.getAll("594907b93e856b0b684b38e2").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
