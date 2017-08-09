@@ -86,11 +86,11 @@ io.on('connection', function(socket){
             for (var i = 0; i < users.length; i++) {
                 if (users[i].id == data.To._id) {
                     io.to(users[i].socket).emit('newmsg', data);
-                    //message.updateStatus(result.data._id).then(function (result) {
-                    //    console.log(result);
-                    //},function (err) {
-                    //    console.log(err);
-                    //})
+                    message.updateStatus(result.data._id).then(function (result) {
+                        console.log(result);
+                    },function (err) {
+                        console.log(err);
+                    })
                 }
                 if (users[i].id == data.From._id) {
                     io.to(users[i].socket).emit('messagesuccess',data);
@@ -120,7 +120,7 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //    }, function (err) {
 //        console.log(err);
 //    });
-//message.getAll("5980671c6e1f6f0b30dc4377", "594a67b83e856b0b684b3900").then(function (result) {
+//message.getAll("5980671c6e1f6f0b30dc4377", "5948d21ff17d942198191fba").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -152,7 +152,7 @@ var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User":
 //}, function (err) {
 //    console.log(err);
 //});
-//notification.getAll("5948d21ff17d942198191fba").then(function (result) {
+//notification.getAll("594907b93e856b0b684b38e2").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -187,7 +187,7 @@ var newuser = new userschema({ "Email": "anisa123@gmail.com", "Password": "12345
 //    console.log(err);
 //});
 //user.getFavourites("5980671c6e1f6f0b30dc4377").then(function (result) {
-//    console.log(result);
+//    console.log(result.data.FavouriteItems);
 //}, function (err) {
 //    console.log(err);
 //});
@@ -205,7 +205,7 @@ var newuser = new userschema({ "Email": "anisa123@gmail.com", "Password": "12345
 //}, function (err) {
 //    console.log(err);
 //});
-//notification.getAll("5948d21ff17d942198191fba").then(function (result) {
+//notification.getAll("594907b93e856b0b684b38e2").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
