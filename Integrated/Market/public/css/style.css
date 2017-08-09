@@ -2016,29 +2016,23 @@ h6.mega {
     padding: 10px 65px 10px 10px;
 }
 
-    .inboxPage .media.myText  {
-        /*float: left;*/
+    .inboxPage .media.myText .media-body {
+        padding: 12px;
+        border-radius: 0 30px;
+        background: #f8f7fd;
     }
 
-        .inboxPage .media.myText .media-body {
-            /*border-top: 10px solid #fff;*/
-            padding: 12px;
-            border-radius: 0 30px;
-            background: #f8f7fd;
+        .inboxPage .media.myText .media-body h6 {
+            font-size: 16px;
+            padding-right: 0px;
+            padding-right: 10px;
         }
-
-            .inboxPage .media.myText .media-body h6 {
-                font-size: 16px;
-                padding-right: 0px;
-                padding-right: 10px;
-            }
 
     .inboxPage .media.othersText {
         float: right;
     }
 
         .inboxPage .media.othersText .media-body {
-            /*border-top: 10px solid #fff;*/
             padding: 12px;
             border-radius: 30px 0px 30px 0px;
             background: #9497cc;
@@ -2048,6 +2042,52 @@ h6.mega {
     .inboxPage .media .media-object {
         width: 50px;
     }
+
+/***** Notifications page *****/
+.notificationsPage ul {
+    margin: 20px;
+    padding-left: 0px;
+}
+
+    .notificationsPage ul li {
+        list-style-type: none;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+    }
+
+        .notificationsPage ul li a,
+        .notificationsPage ul li a:active,
+        .notificationsPage ul li a:focus,
+        .notificationsPage ul li a:hover,
+        .notificationsPage ul li a:visited {
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .notificationsPage ul li:not(:last-child) {
+            border-bottom: 1px solid #eee;
+        }
+
+        .notificationsPage ul li h6 {
+            font-size: 16px;
+            padding-bottom: 0;
+            display: block;
+        }
+
+            .notificationsPage ul li h6 span {
+                padding-left: 40px;
+                vertical-align: middle;
+            }
+
+        .notificationsPage ul li .dvIcon {
+            font-size: 30px;
+            position: absolute;
+            top: 0;
+            color: #9E9E9E;
+            padding-left: 0;
+        }
 
 /***** Modal login / register *****/
 

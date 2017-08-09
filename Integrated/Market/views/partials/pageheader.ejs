@@ -38,22 +38,26 @@
                                 </div>
                             </div>
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="">
+                                <li>
                                     <a href="/{{selectedCountry.IsoCode}}/Home">Home</a>
                                 </li>
                                 <li>
                                     <a href="/{{selectedCountry.IsoCode}}/Contactus">About us</a>
                                 </li>
-                                <li ng-show="loggedUser">
-                                    <a href="#">My account</a>
-                                </li>
-
-                                <li ng-show="loggedUser">
-                                    <a href="/{{selectedCountry.IsoCode}}/Inbox/{{userId}}/0">My inbox</a>
-                                </li>
                                 <li data-toggle="modal" data-target="#modal-login" ng-hide="loggedUser">
                                     <a href="#">Log in</a>
                                 </li>
+                              
+                                <li ng-show="loggedUser">
+                                    <a href="#">My account</a>
+                                </li>
+                                <li ng-show="loggedUser">
+                                    <a href="/{{selectedCountry.IsoCode}}/Notifications/{{userId}}">My notifications</a>
+                                </li>
+                                <li ng-show="loggedUser">
+                                    <a href="/{{selectedCountry.IsoCode}}/Inbox/{{userId}}/0">My inbox</a>
+                                </li>
+                                
                                 <li ng-show="loggedUser">
                                   <span>Welcome {{userName}} | </span> <span><a href="#"><span ng-click="logout()">Log out</span></a></span>
                                 </li>

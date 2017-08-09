@@ -1,90 +1,32 @@
 <% include ../partials/pagestart %>
 <% include ../partials/pageheader %>
 
-<script>var inboxObject = <%-JSON.stringify(JsonInbox)%>;</script>
 
-<div ng-controller="inboxController">
-    <div ng-init="init('<%= countryIso %>')" class="inboxPage">
+<div ng-controller="notificationsController" ng-cloak>
+    <div ng-init="init('<%= countryIso %>')" class="notificationsPage">
         <!-- Inbox -->
         <section class="container-fluid">
+            <!-- view -->
+            <div class="row ">
 
-            <!-- Product view -->
-            <div class="row dvInbox">
-
-                <div class="col-sm-2 col-md-2 col-lg-2 dvUsersList">
+                <div class="col-sm-10 col-md-10 col-lg-10 ">
                     <ul>
-                        <% if (usersList.length > 0) { %>
-                        <% usersList.forEach(function(user){ %>
-
-                        <% if (user._id == chatPartener) { %>
-                        <li class="active" ng-class="{'active' : activeUser == <%= user._id %>}" ng-click="activeUser = <%= user._id %>">
-                            <img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="<%= user.Img %>" alt="" />
-                            <h6><%= user.Name %></h6>
+                        <li>
+                            <h6><a><span class="dvIcon glyphicon glyphicon-bell"></span> notification text</a></h6>
+                            <i class="text-right">Feb-21-2014</i>
                         </li>
-                        <% } else { %>
-                        <li ng-class="{'active' : activeUser == <%= user._id %>}" ng-click="activeUser = <%= user._id %>">
-                            <img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="<%= user.Img %>" alt="" />
-                            <h6><%= user.Name %></h6>
-                        </li>
-                        <% } %>
-
-                        <% }); %>
-
-                        <% } %>
                     </ul>
+
+                </div>
+
+                <div class="col-sm-2 col-md-2 col-lg-2 ">
+
                 </div>
 
 
-                <div class="col-sm-10 col-md-10 col-lg-10 dvMessagesBody">
-
-                    <div ng-repeat="user in inboxMesagesList track by $index">
-
-                        <div ng-if="user._id == <%= chatPartener %>">
-                            <!-- others texts -->
-                            <div class="media othersText">
-                                <div class="media-body text-right">
-                                    <span>{{user.Message}}</span>
-                                </div>
-                                <div class="media-right">
-                                    <img class="media-object" src="{{user.Img}}" alt="...">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div ng-if="user._id != <%= chatPartener %>">
-                            <!-- My texts -->
-                            <div class="media myText">
-                                <div class="media-left">
-                                    <img class="media-object" src="{{user.Img}}" alt="...">
-                                </div>
-                                <div class="media-body">
-                                    <span>{{user.Message}}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-xs-10">
-                            <input type="text"  required="" placeholder="Message..." class="form-email form-control" />
-
-                            <button type="submit" ng-disabled="!commentTxt" ng-click="submitComment()" class="btn btn-primary">
-                                <span class="fa fa-paper-plane-o"></span>&nbsp; Send
-                            </button>
-                        </div>
-                        <div class="col-xs-2">
-                            <button type="button" title="delete comment" class="btn btn-link"><span class="fa fa-paper-plane-o"></span></button>
-                        </div>
-                    </div>
-
-
-
-
-                </div>
+                
             </div>
-            <!-- //end Product view -->
+            <!-- //end view -->
 
         </section>
         <!-- //end Two columns content -->
