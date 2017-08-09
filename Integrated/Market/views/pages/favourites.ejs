@@ -26,10 +26,10 @@
                     <ul>
 					 <% listFavourites.forEach(function(fav){ %>
 
-                        <li ng-class="{'unReadNotification': '<%= fav.Status %>' == 'un read'}">
-                          <a href="/{{IsoCode}}/<%= fav.RedirectURL %>">
-						    <h6><span class="dvIcon glyphicon glyphicon-bell"></span><span> <%= fav.Text %> </span></h6>
-                            <div class="text-right"><span class="text-muted"><%= fav.Date %></span></div>
+                        <li>
+                          <a>
+						    <h6><span class="dvIcon glyphicon glyphicon-bell"></span><span> <%= fav %> </span></h6>
+                            <div class="text-right"><span class="text-muted"></span></div>
 						  </a>
                         </li>
 
@@ -37,7 +37,7 @@
 
                     </ul>
 					<% } else { %>
-					<p class="txtNoData"> No notifications found </p>
+					<p class="txtNoData"> No favorites found </p>
 					<% } %>
                 </div>
 

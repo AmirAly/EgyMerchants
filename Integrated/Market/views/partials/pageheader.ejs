@@ -13,7 +13,7 @@
         <div class="header">
             <nav class="navbar navbar-default normal" role="navigation">
                 <div class="dvTopLinks hidden-xs">
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                                 <span class="sr-only">Toggle navigation</span>
@@ -49,7 +49,7 @@
                                 </li>
                               
                                 <li ng-show="loggedUser">
-                                    <a href="#">My account</a>
+                                    <a href="/{{selectedCountry.IsoCode}}/Favorites/{{userId}}">My favourites</a>
                                 </li>
                                 <li ng-show="loggedUser">
                                     <a href="/{{selectedCountry.IsoCode}}/Notifications/{{userId}}">My notifications</a>
