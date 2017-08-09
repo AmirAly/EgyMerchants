@@ -944,10 +944,16 @@ h6.mega {
         min-height: 220px;
     }
 
+        .storePage .pageBody .dvStoreHeader .sendMsgBtn {
+            display: inline-block;
+            padding: 5px 15px;
+        }
+
         .storePage .pageBody .dvStoreHeader .dvStoreInfo {
             padding: 27px;
             padding-left: 240px;
         }
+
 
             .storePage .pageBody .dvStoreHeader .dvStoreInfo h1 {
                 font: 41px Mavenpro-black, Arial, Helvetica, sans-serif;
@@ -2051,9 +2057,14 @@ h6.mega {
 
     .notificationsPage ul li {
         list-style-type: none;
-        margin-bottom: 15px;
-        padding-bottom: 10px;
+        /*margin-bottom: 15px;*/
+        padding: 10px;
+        padding-bottom: 20px;
     }
+
+        .notificationsPage ul li.unReadNotification {
+            background-color: #e8e8e8;
+        }
 
         .notificationsPage ul li a,
         .notificationsPage ul li a:active,

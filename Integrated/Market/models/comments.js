@@ -28,7 +28,7 @@ module.exports = {
                                                 var _newnotification = new Notification();
                                                 _newnotification.Text = "Store " + Obj.Store.Name + " commented  on " + "item " + Obj.Name;
                                                 _newnotification.User = comment.User;
-                                                _newnotification.RedirectURL = "/comments/";
+                                                _newnotification.RedirectURL = "Product/" + Obj.Store.Name / Obj.Store._id;
                                                 _newnotification.save(function (err, notification) {
                                                     if (err)
                                                         reject({

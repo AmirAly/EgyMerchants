@@ -386,5 +386,28 @@ module.exports = function (app) {
         });
     });
 
+    // favorites page
+    app.get('/:countryIso/Favorites/:me', function (req, res) {
+        console.log(req.params.countryIso);
+        var _scope = {};
+        _scope.countryIso = req.params.countryIso;
+
+        user.getFavourites(req.params.me).then(function (_listAllFavourites) {
+            console.log(_listAllFavourites);
+            if (_listAllFavourites.code == 100) {
+                console.log(_listAllFavourites.data);
+                _scope.listFavourites = _listAllFavourites.data;
+                res.render('pages/favourites', _scope);
+            } else {
+                _scope.listFavourites = [];
+                res.render('pages/favourites', _scope);
+            }
+        })
+        .catch(function (err) {
+            console.log(err);
+            _scope.listFavourites = [];
+            res.render('pages/favourites', _scope);
+        });
+    });
 
 }

@@ -19,7 +19,7 @@ module.exports = {
                         var _newnotification = new Notification();
                         _newnotification.Text = "There is new message for you from" + " " +sender;
                         _newnotification.User = _newMessage.To;
-                        _newnotification.RedirectURL = "/message/" + _newMessage.To +"/"+ _newMessage.From;
+                        _newnotification.RedirectURL = "Inbox/" + _newMessage.To +"/"+ _newMessage.From;
                         _newnotification.save(function (err, notification) {
                             if(err)
                                 reject({
@@ -37,7 +37,7 @@ module.exports = {
                                 
                                 resolve({
                                     code: 100,
-                                    data: "Message sent successfully"
+                                    data: Msg
                                 });
                             }
                         })
@@ -54,60 +54,29 @@ module.exports = {
         })
     },
     getAll: function (_userId,_toId) {
-        return new Promise(function (resolve, reject) { 
-            Schema.find({ $or: [{ "From": _userId, "To": _toId }, { "From": _toId, "To": _userId }] }, '').populate('From', 'Name ProfilePicture').populate('To', 'Name ProfilePicture').exec(function (err, Msgs) {
-                if(err)
+        return new Promise(function (resolve, reject) {
+            Schema.updateMany({ Status:"un read",To:_userId,From:_toId}, { $set: { Status: "read" } }).exec(function (err, lst) {
+                if (err)
                     reject({
                         code: 1,
                         data: err
                     })
                 else {
-                    if (Msgs.length > 0) {
-                        var result = [];
-                        _.each(Msgs, function (msg) {
-                            if (msg.Status == "un read" && msg.To._id.toString() == _userId.toString()) {
-                                Schema.findOneAndUpdate({ '_id': msg._id }, { $set: { 'Status': "read" } }, { new: true }).populate('From', 'Name ProfilePicture').populate('To', 'Name ProfilePicture').exec(function (err, Obj) {
-                                    if (err)
-                                        reject({
-                                            code: 1,
-                                            data: err
-                                        })
-                                    else {
-                                        result.push(Obj);
-                                        if (result.length == Msgs.length) {
-                                            result.sort(function (a, b) {
-                                            return new Date(b.date) - new Date(a.date);
-                                        });
-                                            resolve({
-                                                code: 100,
-                                                data: result
-                                            });
-                                        }
-                                    };
-                                })
-                            }
-                            else {
-                                result.push(msg);
-                                if (result.length == Msgs.length) {
-                                    result.sort(function (a, b) {
-                                        return new Date(b.date) - new Date(a.date);
-                                    });
-                                    resolve({
-                                        code: 100,
-                                        data: result
-                                    });
-                                }
-                            }
+                    Schema.find({ $or: [{ "From": _userId, "To": _toId }, { "From": _toId, "To": _userId }] }, '').populate('From', 'Name ProfilePicture').populate('To', 'Name ProfilePicture').exec(function (err, Msgs) {
+                        if(err)
+                            reject({
+                                code: 1,
+                                data: err
                             })
-                    }
-                    else
-                        reject({
-                            code: 21,
-                            data: "There is no messages"
-                        })
+                        else {
+                                resolve({
+                                    code: 100,
+                                    data: Msgs
+                                });
+                        }
+                    })
                 }
             })
-
         })
     },
     getAllContacts: function (_userId) {
@@ -154,28 +123,27 @@ module.exports = {
             })
         })
     },
-    //getUnRead: function (_userId) {
-    //    return new Promise(function (resolve, reject) {
-    //        Schema.find({ "To": _userId, "Status":"un read" }, '', function (err, Msgs) {
-    //            if (err)
-    //                reject({
-    //                    code: 1,
-    //                    data: err
-    //                })
-    //            else {
-    //                if (Msgs.length > 0) {
-    //                    resolve({
-    //                        code: 100,
-    //                        data: { "unread": true, "Count": Msgs.length }
-    //                    })
-    //                }
-    //                else
-    //                    reject({
-    //                        code: 21,
-    //                        data: { "unread": false }
-    //                    })
-    //            }
-    //        })
-    //    })
-    //}
+    updateStatus: function (_id) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "read" } }, { new: true }, function (err, Obj) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    })
+                else {
+                    if (Obj)
+                        resolve({
+                            code: 100,
+                            data: "Message status changed successfully"
+                        });
+                    else
+                        reject({
+                            code: 21,
+                            data: "This filteration didn't resulted in any data"
+                        })
+                }
+            })
+        })
+    },
 }
