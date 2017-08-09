@@ -2051,9 +2051,14 @@ h6.mega {
 
     .notificationsPage ul li {
         list-style-type: none;
-        margin-bottom: 15px;
-        padding-bottom: 10px;
+        /*margin-bottom: 15px;*/
+        padding: 10px;
+        padding-bottom: 20px;
     }
+
+        .notificationsPage ul li.unReadNotification {
+            background-color: #e8e8e8;
+        }
 
         .notificationsPage ul li a,
         .notificationsPage ul li a:active,

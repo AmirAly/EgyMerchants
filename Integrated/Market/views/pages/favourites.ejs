@@ -2,34 +2,34 @@
 <% include ../partials/pageheader %>
 
 
-<div ng-controller="notificationsController">
-    <div ng-init="init('<%= countryIso %>')" class="notificationsPage">
+<div ng-controller="favouritesController">
+    <div ng-init="init('<%= countryIso %>')" class="favouritesPage">
 
 	    <div class="clear"></div>
         <!-- Breadcrumbs -->
         <section class="container">
             <nav class="breadcrumbs">
                 <span class="maincrumb"><a href="/{{IsoCode}}/Home">Home</a></span>
-                <span class="maincrumb"><span class="divider">›</span><span href="#"><span> Notifications</span></span></span>
+                <span class="maincrumb"><span class="divider">›</span><span href="#"><span> Favourites</span></span></span>
             </nav>
         </section>
         <!-- //end Breadcrumbs -->
 
-        <!-- notifications -->
+        <!-- Favourites -->
         <section class="container-fluid">
             <!-- view -->
             <div class="row ">
 
                 <div class="col-sm-10 col-sm-offset-1 ">
 
-				<% if(listNotifications.length > 0){ %>
+				<% if(listFavourites.length > 0){ %>
                     <ul>
-					 <% listNotifications.forEach(function(notification){ %>
+					 <% listFavourites.forEach(function(fav){ %>
 
-                        <li ng-class="{'unReadNotification': '<%= notification.Status %>' == 'un read'}">
-                          <a href="/{{IsoCode}}/<%= notification.RedirectURL %>">
-						    <h6><span class="dvIcon glyphicon glyphicon-bell"></span><span> <%= notification.Text %> </span></h6>
-                            <div class="text-right"><span class="text-muted"><%= notification.Date %></span></div>
+                        <li ng-class="{'unReadNotification': '<%= fav.Status %>' == 'un read'}">
+                          <a href="/{{IsoCode}}/<%= fav.RedirectURL %>">
+						    <h6><span class="dvIcon glyphicon glyphicon-bell"></span><span> <%= fav.Text %> </span></h6>
+                            <div class="text-right"><span class="text-muted"><%= fav.Date %></span></div>
 						  </a>
                         </li>
 

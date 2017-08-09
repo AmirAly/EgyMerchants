@@ -253,6 +253,13 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.put('/User/AddToVisited', function (req, res) {
+        UserLogic.addToVisited(req.body._userid, req.body._storeid).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     //expo API calls
     api.post('/Expo/Add', function (req, res) {
         var _newExpo = new Expo(req.body);
