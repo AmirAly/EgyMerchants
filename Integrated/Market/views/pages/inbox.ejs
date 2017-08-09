@@ -3,7 +3,7 @@
 
 <script>
 var inboxObject = <%-JSON.stringify(JsonInbox)%>;
-
+var usersListObject = <%- JSON.stringify(usersList) %>
 </script>
 
 <div ng-controller="inboxController">
@@ -15,34 +15,29 @@ var inboxObject = <%-JSON.stringify(JsonInbox)%>;
 
                 <div class="col-sm-2 col-md-2 col-lg-2 dvUsersList">
                     <ul>
-                        <% if (usersList.length > 0) { %>
-                        <% usersList.forEach(function(user){ %>
 
-                        <li ng-class="{'active' : activeUserId == '<%= user._id %>'}">
-                           <a href="/{{IsoCode}}/Inbox/{{userId}}/<%= user._id %>"> 
-						       <img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="<%= user.ProfilePicture %>" alt="" />
-                               <h6><%= user.Name %></h6>
+                        <li ng-repeat="user in usersList track by $index" ng-class="{'active' : activeUserId == user._id}">
+                           <a href="/{{IsoCode}}/Inbox/{{userId}}/{{user._id}}"> 
+						       <img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="{{user.ProfilePicture}}" alt="" />
+                               <h6>{{user.Name}}</h6>
 							</a>
                         </li>
                     
 
-                        <% }); %>
-						<% } else { %>
-						<div>no contacts</div>
-                        <% } %>
                     </ul>
                 </div>
 
 
                 <div class="col-sm-10 col-md-10 col-lg-10 dvMessagesBody">
-				 <div class="dvMessagesBodyContainer">
-                    <div ng-repeat="user in inboxMesagesList track by $index">
+				 <div class="dvMessagesBodyContainer">  
+                    <div ng-cloak ng-repeat="user in inboxMesagesList track by $index">
 
-                        <div ng-if="user.To._id == '<%= chatPartener %>'">
+                        <div class="row" ng-if="user.To._id === '<%= chatPartener %>'">
                             <!-- others texts -->
-                            <div class="media othersText">
+                            <div class="media othersText col-xs-10">
                                 <div class="media-body text-right">
                                     <span>{{user.Text}}</span>
+									<h6 ng-show="user.showMe" class="text-left"><span title="message sent" class="glyphicon glyphicon-ok text-success"></span></h6>
                                 </div>
                                 <div class="media-right text-center">
                                     <img class="media-object" src="{{user.From.ProfilePicture}}" alt="...">
@@ -51,9 +46,9 @@ var inboxObject = <%-JSON.stringify(JsonInbox)%>;
                             </div>
                         </div>
 
-                        <div ng-if="user.To._id != '<%= chatPartener %>'">
+                        <div class="row" ng-if="user.To._id !== '<%= chatPartener %>'">
                             <!-- My texts -->
-                            <div class="media myText">
+                            <div class="media myText col-xs-10">
                                 <div class="media-left text-center">
                                     <img class="media-object" src="{{user.From.ProfilePicture}}" alt="...">
 		                 			{{user.From.Name}}
@@ -67,11 +62,15 @@ var inboxObject = <%-JSON.stringify(JsonInbox)%>;
                     </div>
 					<div ng-show="!inboxMesagesList.length > 0">
 					<div class="clear"></div>
+
+					<% if (!currentMessageReceiver == '' ) { %>
 					<h5 class="text-center">You have no messages with {{currentMessageReceiver.Name}}</h5>
-					</div>
-					<% if (!usersList.length > 0) { %>
-					   <div>You have no contacts </div>
 					<% } %>
+
+					</div>
+
+					   <div ng-show="!usersList.length && currentMessageReceiver == '0' "><h5 class="text-center"> You have no contacts </h5></div>
+					
 					 </div>
 					
                     <div class="row dvSendMessage">
@@ -79,7 +78,7 @@ var inboxObject = <%-JSON.stringify(JsonInbox)%>;
                             <input type="text"  required=""  ng-model="txtMessage" placeholder="Message..." class="form-email form-control" />
                         </div>
                         <div class="col-xs-2 text-center">
-                            <button type="button" title="send" ng-disabled="!txtMessage" ng-click="submitMessage()" class="btn btn-primary btn-block" ng><span class="fa fa-paper-plane-o"></span></button>
+                            <button type="button" title="send" ng-disabled="!txtMessage || currentMessageReceiver == '0'" ng-click="submitMessage()" class="btn btn-primary btn-block" ng><span class="fa fa-paper-plane-o"></span></button>
                         </div>
                     </div>
 
