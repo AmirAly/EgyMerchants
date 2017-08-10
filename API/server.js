@@ -114,7 +114,7 @@ io.on('connection', function(socket){
 
 
 //594660e5734d1d59b7895502,5946db5aa7eee71550d33dfc,5948d21ff17d942198191fba,5980671c6e1f6f0b30dc4377
-var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "5948d21ff17d942198191fba", "Text": "thanks" });
+var newmessage = new messageschema({ "From": "5946db5aa7eee71550d33dfc", "To": "5980671c6e1f6f0b30dc4377", "Text": "you are right" });
 //message.send(newmessage).then(function (result) {
 //        console.log(result);
 //    }, function (err) {
@@ -147,7 +147,11 @@ var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User":
 //}, function (err) {
 //    console.log(err);
 //});
-
+//comment.getByItem("59466cd6ca6b1c049c494b72").then(function (result) {
+//    console.log(result.data);
+//}, function (err) {
+//    console.log(err);
+//});
 //notification.updateStatus("5981c6c603fc4a1170d828be").then(function (result) {
 //    console.log(result);
 //}, function (err) {
