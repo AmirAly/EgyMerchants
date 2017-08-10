@@ -137,13 +137,13 @@ var newmessage = new messageschema({ "From": "5946db5aa7eee71550d33dfc", "To": "
 //    console.log(err);
 //})
 //5980671c6e1f6f0b30dc4377,594660e5734d1d59b7895502
-var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User": "594660e5734d1d59b7895502", "Text": "format discount 10% for first 25 purchased" })
+var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User": "594660e5734d1d59b7895502", "Text": "format discount 60% for first 25 purchased" })
 //comment.add(newcomment).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//comment.remove("5981caedc83e09027c676358", "59427908734d1d235a944767").then(function (result) {
+//comment.remove("598c5dd9937c540eb8cc78b6", "594660e5734d1d59b7895502").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -153,7 +153,7 @@ var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User":
 //}, function (err) {
 //    console.log(err);
 //});
-//notification.updateStatus("5981c6c603fc4a1170d828be").then(function (result) {
+//notification.updateStatus("598c41c201a9fb1220b10396").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
