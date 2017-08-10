@@ -70,9 +70,9 @@ module.exports = {
                         })
                     }
                     else
-                        reject({
+                        resolve({
                             code: 21,
-                            data: { "unread": false }
+                            data: { "unread": false, "Count":0 }
                         })
                 }
             })

@@ -7,7 +7,7 @@
         $scope.commentsList = JSON.parse(window.commentObject);
         console.log($scope.commentsList);
 
-
+        $scope.itemId = _itemId;
         $scope.favList = JSON.parse(localStorage.getItem('userObject')).FavouriteItems;
         console.log($scope.favList);
         if ($scope.favList.indexOf(_itemId) !== -1) {
@@ -19,8 +19,8 @@
             $scope.IsFav = false;
         }
         console.log($scope.message);
-        
-        
+
+
 
         window.twttr = (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0],
@@ -41,7 +41,12 @@
 
     }
 
-   
+    $scope.fbshareCurrentPage = function (_itemName) {
+        window.open("https://www.facebook.com/sharer/sharer.php?u=" + escape(window.location.href) + "&quote=" + encodeURIComponent(_itemName) + "&title=" + document.title, '',
+    'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+        return false;
+    }
+
 
     $scope.addToFavorites = function (_itemId) {
         $rootScope.loading = true;
@@ -60,7 +65,7 @@
                 $rootScope.loading = false;
                 $scope.IsFav = true;
                 console.log('is fav');
-                //$scope.favList.push()
+                localStorage.setItem('userObject', JSON.stringify(_res.data.data));
 
             } else {
                 $rootScope.loading = false;
@@ -72,19 +77,56 @@
     }
 
     $scope.submitComment = function () {
-        var newComment = {
-            _id: 10,
-            userName: "asmaa mohammed Gamal",
-            comment: $scope.commentTxt,
-            date: "Aug-3-2017"
+
+        $scope.newComment = {
+            User: $rootScope.userId,
+            Item: $scope.itemId,
+            Text: $scope.commentTxt
         }
-        $scope.commentsList.push(newComment);
-        $scope.commentTxt = "";
+
+        var req = {
+            method: 'post',
+            url: '/Comment/Add',
+            data: $scope.newComment
+        }
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 100) {
+                $rootScope.loading = false;
+                $scope.commentsList.push(_res.data.data);
+                $scope.commentTxt = "";
+
+            } else {
+                $rootScope.loading = false;
+                console.log('fail');
+            }
+
+        });
     }
 
-    $scope.fbshareCurrentPage = function (_itemName) {
-        window.open("https://www.facebook.com/sharer/sharer.php?u=" + escape(window.location.href) + "&quote=" + encodeURIComponent(_itemName) + "&title=" + document.title, '',
-    'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
-        return false;
+    $scope.deleteComment = function (_commentId) {
+        $scope.newComment = {
+            _userid: $rootScope.userId,
+            _commentid: _commentId,
+        }
+
+        var req = {
+            method: 'post',
+            url: '/Comment/Add',
+            data: $scope.newComment
+        }
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 100) {
+                $rootScope.loading = false;
+                window.location.reload();
+
+            } else {
+                $rootScope.loading = false;
+                console.log('fail');
+            }
+
+        });
     }
+
 });

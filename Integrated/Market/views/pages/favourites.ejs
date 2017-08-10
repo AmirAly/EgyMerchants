@@ -26,12 +26,12 @@
 				<% if(listFavourites.length > 0){ %>
                     <ul>
 					 <% listFavourites.forEach(function(fav){ %>
-                        <li ng-click="redirectToItem('<%= fav.Name %>', '<%= fav._id %>')">
-						   <div title="click to view item" class="col-xs-3">
+                        <li>
+						   <div ng-click="redirectToItem('<%= fav.Name %>', '<%= fav._id %>')" title="click to view item" class="col-xs-3">
                              <img class="img-responsive wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="<%= fav.Pictures[0].URL %>" />
                            </div>
-						   <div title="click to view item" class="col-xs-3"> <h6> <%= fav.Name %> </h6> </div>
-						   <div class="col-xs-3" title="un favorite this item"><span class="dvIcon glyphicon glyphicon-heart-empty iconFav"></span></div>
+						   <div ng-click="redirectToItem('<%= fav.Name %>', '<%= fav._id %>')" title="click to view item" class="col-xs-3"> <h6> <%= fav.Name %> </h6> </div>
+						   <div class="col-xs-3" ng-click="removeFromFavorites('<%= fav._id %>')" title="un favorite this item"><span  class="dvIcon glyphicon glyphicon-heart-empty iconFav"></span></div>
 					    </li>
                      <% }); %>
 

@@ -7,13 +7,13 @@
         <div class="pageCover" style="background: url(<%= store.CoverPhoto %>);">
 
         </div>
-        <div class="pageBody" ng-init="init(<%= GalleriesJson %>, '<%= countryIso %>')">
+        <div class="pageBody" ng-init="init(<%= GalleriesJson %>, '<%= countryIso %>', '<%= store._id %>')">
             <div class="dvStoreHeader">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="dvProfileImgContainer">
                             <div class="dvProfileImg">
-                                <span class="icon-checkmark-2" ng-class="{'visitedStore': <%= isVisited %> == true}" title="{{ <%= isVisited %> ? 'Visited store' : 'Not a visited store'}}"></span>
+                                <span class="icon-checkmark-2" ng-class="{'visitedStore': isVisited == true}" title="{{ isVisited ? 'Visited store' : 'Not a visited store'}}"></span>
                                 <img class="img-responsive" src="<%= store.ProfilePicture %>" />
                             </div>
                         </div>

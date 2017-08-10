@@ -92,18 +92,24 @@ module.exports = {
                         unreadcontacts = [];
                     if (Msgs.length > 0) {
                         _.each(Msgs, function (msg) {
-                            Allcontacts.push({ _id: msg.From._id, Name: msg.From.Name, ProfilePicture: msg.From.ProfilePicture, Status: msg.Status, To: msg.To }, { _id: msg.To._id, Name: msg.To.Name, ProfilePicture: msg.To.ProfilePicture, Status: msg.Status, To: msg.To });
+                            Allcontacts.push({ _id: msg.From._id, Name: msg.From.Name, ProfilePicture: msg.From.ProfilePicture }, { _id: msg.To._id, Name: msg.To.Name, ProfilePicture: msg.To.ProfilePicture });
+                            if(msg.To._id.toString()==_userId.toString()&&msg.Status=='un read')
+                                unreadcontacts.push({ _id: msg.From._id, Name: msg.From.Name, ProfilePicture: msg.From.ProfilePicture })
                         })
-                        var destinctArray = _.uniq(Allcontacts, function (x) {
+                        var destinctArrayOfAll = _.uniq(Allcontacts, function (x) {
                             return (x._id).toString()
                         })
-                        Allcontacts = _.filter(destinctArray, function (obj) { return (obj._id != _userId) });
-                        unreadcontacts = _.filter(Allcontacts, function (status) { return (status.To._id.toString() == _userId.toString() && status.Status == 'un read') });
-                        Allcontacts = _.difference(Allcontacts, unreadcontacts);
-                        Allcontacts=_.map(Allcontacts,function(contact){
+                        var destinctArrayOfUnRead = _.uniq(unreadcontacts, function (x) {
+                            return (x._id).toString()
+                        })
+                        Allcontacts = _.filter(destinctArrayOfAll, function (obj) { return (obj._id != _userId) });
+                        var ids = [];
+                        _.each(_.pluck(destinctArrayOfUnRead, "_id"), function (item) { ids.push(item.toString()) })
+                        var AllcontactsFiltered = _.filter(Allcontacts, function (el) { return !_.contains(ids, el._id.toString()); })
+                        Allcontacts = _.map(AllcontactsFiltered, function (contact) {
                             return _.pick(_.extend(contact, { UnRead: false }), '_id', 'Name', 'ProfilePicture', 'UnRead');
                         })
-                        unreadcontacts = _.map(unreadcontacts, function (contact) {
+                        unreadcontacts = _.map(destinctArrayOfUnRead, function (contact) {
                             return _.pick(_.extend(contact, { UnRead: true }), '_id', 'Name', 'ProfilePicture', 'UnRead');
                         })
                         Allcontacts = Allcontacts.concat(unreadcontacts);

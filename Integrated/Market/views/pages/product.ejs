@@ -138,18 +138,18 @@
 
 
                         <div class="timeline-item timeline-item-right" ng-repeat="comment in commentsList track by comment._id">
-                            <!--<img class="timeline-photo" src="http://www.gettyimages.com/gi-resources/images/Embed/new/embed2.jpg" />-->
+                            <img class="timeline-photo" src="{{comment.User.ProfilePicture}}" />
                             <div class="timeline-point timeline-point-blank"></div>
                             <div class="timeline-event timeline-event-default">
                                 <div class="timeline-heading">
-                                    <h4>{{comment.userName}}</h4>
-									<button type="button" title="delete comment" class="btn btn-link"><span class="glyphicon glyphicon-remove"></span></button>
+                                    <h4>{{comment.User.Name}}</h4>
+									<button type="button" ng-click="deleteComment(comment._id)" ng-show="comment.User.Type == 'master' || comment.User._id == userId" title="delete comment" class="btn btn-link"><span class="glyphicon glyphicon-remove"></span></button>
                                 </div>
                                 <div class="timeline-body">
-                                    <p>{{comment.comment}}</p>
+                                    <p>{{comment.Text}}</p>
                                 </div>
                                 <div class="timeline-footer">
-                                    <p class="text-right">{{comment.date}}</p>
+                                    <p class="text-right">{{ comment.Date | myDateFormat }}</p>
                                 </div>
                             </div>
                         </div>

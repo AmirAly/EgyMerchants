@@ -15,20 +15,22 @@ module.exports = {
                 else {
                     if (Obj) {
                         if (Obj.Store._id.toString() == _newComment.User.toString()) {
-                            Schema.find({ "Item": _newComment.Item }, 'User', function (err, Lst) {
+                            Schema.find({ "Item": _newComment.Item }, 'User', function (err, usersLst) {
                                 if (err)
                                     reject({
                                         code: 1,
                                         data: err
                                     })
                                 else {
-                                    if (Lst.length > 0) {
-                                        _.each(Lst, function (comment) {
-                                            if (comment.User.toString() != Obj.Store._id.toString()) {
+                                    if (usersLst.length > 0) {
+                                        var ids = [];
+                                        _.each(usersLst, function (comment) {
+                                            if (comment.User.toString() != Obj.Store._id.toString() && !_.contains(ids, comment.User.toString())) {
+                                                ids.push(comment.User.toString());
                                                 var _newnotification = new Notification();
                                                 _newnotification.Text = "Store " + Obj.Store.Name + " commented  on " + "item " + Obj.Name;
                                                 _newnotification.User = comment.User;
-                                                _newnotification.RedirectURL = "Product/" + Obj.Store.Name / Obj.Store._id;
+                                                _newnotification.RedirectURL = "Product/" + Obj.Name +"/"+ Obj._id;
                                                 _newnotification.save(function (err, notification) {
                                                     if (err)
                                                         reject({
@@ -139,6 +141,25 @@ module.exports = {
                             data: "This filteration didn't resulted in any data"
                         })
                     }
+            })
+        })
+    },
+    getByItem: function (_itemId) {
+        return new Promise(function (resolve, reject) {
+            Schema.find({ "Item": _itemId }, '').populate('User', 'Type Name ProfilePicture').exec(function (err, lst) {
+                if (err)
+                    reject({
+                        code: 1,
+                        data: err
+                    })
+                else {
+                    if (lst.length) {
+                        resolve({
+                            code: 100,
+                            data: lst
+                        })
+                    }
+                }
             })
         })
     }
