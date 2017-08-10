@@ -121,7 +121,7 @@ module.exports = {
     },
     addToFavourites: function (_userId,_itemId) {
         return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ "_id": _userId, "Status": "Active" }, { $addToSet: { FavouriteItems: _itemId }}, { new: true }, function (err, Obj) {
+            Schema.findOneAndUpdate({ "_id": _userId, "Status": "Active" }, { $addToSet: { FavouriteItems: _itemId } }, { new: true, fields: '_id Name Type FavouriteItems VisitedStores ProfilePicture' }, function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -131,7 +131,7 @@ module.exports = {
                     if (Obj)
                         resolve({
                             code: 100,
-                            data: "This item added to your favourites"
+                            data: Obj
                         });
                     else
                         reject({
@@ -144,7 +144,7 @@ module.exports = {
     },
     removeFromFavourites: function (_userId, _itemId) {
         return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ "_id": _userId, "Status": "Active" }, { $pull: { FavouriteItems: _itemId } }, { new: true }, function (err, Obj) {
+            Schema.findOneAndUpdate({ "_id": _userId, "Status": "Active" }, { $pull: { FavouriteItems: _itemId } }, { new: true, fields: '_id Name Type FavouriteItems VisitedStores ProfilePicture' }, function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -154,7 +154,7 @@ module.exports = {
                     if (Obj)
                         resolve({
                             code: 100,
-                            data: "This item deleted from your favourites"
+                            data: Obj
                         });
                     else
                         reject({
@@ -167,7 +167,7 @@ module.exports = {
     },
     addToVisited: function (_userId, _storeId) {
         return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ "_id": _userId, "Status": "Active" }, { $addToSet: { VisitedStores: _storeId } }, { new: true }, function (err, Obj) {
+            Schema.findOneAndUpdate({ "_id": _userId, "Status": "Active" }, { $addToSet: { VisitedStores: _storeId } }, { new: true, fields: '_id Name Type FavouriteItems VisitedStores ProfilePicture' }, function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -177,7 +177,7 @@ module.exports = {
                     if (Obj)
                         resolve({
                             code: 100,
-                            data: "This store added to your visited stores"
+                            data: Obj
                         });
                     else
                         reject({
@@ -204,7 +204,7 @@ module.exports = {
                             data: Obj
                         });
                     else
-                        reject({
+                        resolve({
                             code: 22,
                             data: "There is no favourite items for you"
                         });

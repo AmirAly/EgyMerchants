@@ -23,6 +23,8 @@ module.exports = {
                                     })
                                 else {
                                     if (Lst.length > 0) {
+                                        //var uniqList = _.uniq(Lst.User);
+                                        //comsole.log(uniqList);
                                         _.each(Lst, function (comment) {
                                             if (comment.User.toString() != Obj.Store._id.toString()) {
                                                 var _newnotification = new Notification();
