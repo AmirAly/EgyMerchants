@@ -52,11 +52,28 @@ module.exports = {
                                     data: err
                                 })
                             else {
-                                comment.Date = Helper.formatdate(comment.Date);
-                                    resolve({
-                                        code: 100,
-                                        data: comment
-                                    })
+                                Schema.findOne({ "_id": comment._id }, '').populate('User','Type Name ProfilePicture').exec(function (err, Obj) {
+                                    if (err)
+                                        reject({
+                                            code: 1,
+                                            data: err
+                                        })
+                                    else {
+                                        if (Obj) {
+                                            Obj.Date = Helper.formatdate(Obj.Date);
+                                            resolve({
+                                                code: 100,
+                                                data: Obj
+                                            })
+                                        }
+                                        else
+                                            reject({
+                                                code: 21,
+                                                data: "This filteration didn't resulted in any data"
+                                            })
+                                    }
+                                })
+                                   
                             }
                         })
                     }
@@ -131,7 +148,7 @@ module.exports = {
                                     else
                                         reject({
                                             code: 22,
-                                            data: "This filteration didn't resulted in any data"
+                                            data: "This user not exist any more"
                                         })
                                 }
                             })
