@@ -2,6 +2,7 @@ var Schema = require('./models/comment');
 var Item = require('./models/item');
 var User = require('./models/user');
 var Notification = require('./models/notification');
+var Helper = require('./helper');
 var _ = require("underscore");
 module.exports = {
     add: function (_newComment) {
@@ -51,9 +52,10 @@ module.exports = {
                                     data: err
                                 })
                             else {
+                                comment.Date = Helper.formatdate(comment.Date);
                                     resolve({
                                         code: 100,
-                                        data: "Your comment added successfully"
+                                        data: comment
                                     })
                             }
                         })
@@ -153,7 +155,8 @@ module.exports = {
                         data: err
                     })
                 else {
-                    if (lst.length) {
+                    if (lst.length>0) {
+                        _.each(lst, function (comment) {comment.Date= Helper.formatdate(comment.Date) })
                         resolve({
                             code: 100,
                             data: lst

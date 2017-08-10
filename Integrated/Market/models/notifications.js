@@ -1,4 +1,6 @@
 var Schema = require('./models/notification');
+var Helper = require('./helper');
+var _ = require("underscore");
 module.exports = {
     updateStatus: function (_id) {
         return new Promise(function (resolve, reject) {
@@ -32,17 +34,20 @@ module.exports = {
                         data: err
                     })
                 else {
-                    if (Lst.length) {
+                    if (Lst.length>0) {
                         Schema.updateMany({ "User": _userId }, { $set: { Status: "read" } }).exec(function (err, data) {
                             if (err)
                                 reject({
                                     code: 1,
                                     data: err
                                 })
-                            resolve({
-                                code: 100,
-                                data: Lst
-                            })
+                            else {
+                                _.each(Lst, function (notification) { notification.Date = Helper.formatdate(notification.Date) })
+                                resolve({
+                                    code: 100,
+                                    data: Lst
+                                })
+                            }
                         })
                     }
                     else

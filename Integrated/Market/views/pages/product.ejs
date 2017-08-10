@@ -142,8 +142,8 @@
                             <div class="timeline-point timeline-point-blank"></div>
                             <div class="timeline-event timeline-event-default">
                                 <div class="timeline-heading">
-                                    <h4>{{comment.User.Name}}</h4>
-									<button type="button" ng-click="deleteComment(comment._id)" ng-show="comment.User.Type == 'master' || comment.User._id == userId" title="delete comment" class="btn btn-link"><span class="glyphicon glyphicon-remove"></span></button>
+                                    <h4>{{comment.User.Name}}</h4>{{userType}}
+									<button type="button" ng-click="deleteComment(comment._id)" ng-show="userType == 'master' || comment.User._id == userId" title="delete comment" class="btn btn-link"><span class="glyphicon glyphicon-remove"></span></button>
                                 </div>
                                 <div class="timeline-body">
                                     <p>{{comment.Text}}</p>
@@ -224,7 +224,6 @@
 </div>
 <% include ../partials/pagefooter %>
 <% include ../partials/pageend %>
-<script src="/scripts/product.js"></script>
 <% include ../partials/pagesocial %>
 </body>
 

@@ -20,8 +20,8 @@
         }
         console.log($scope.message);
 
-
-
+        $scope.userType = JSON.parse(localStorage.getItem('userObject')).Type;
+        console.log($scope.userType);
         window.twttr = (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0],
               t = window.twttr || {};
@@ -77,7 +77,7 @@
     }
 
     $scope.submitComment = function () {
-
+        $rootScope.loading = true;
         $scope.newComment = {
             User: $rootScope.userId,
             Item: $scope.itemId,
@@ -105,20 +105,19 @@
     }
 
     $scope.deleteComment = function (_commentId) {
+        $rootScope.loading = true;
         $scope.newComment = {
             _userid: $rootScope.userId,
             _commentid: _commentId,
         }
-
         var req = {
-            method: 'post',
-            url: '/Comment/Add',
+            method: 'put',
+            url: '/Comment/Remove',
             data: $scope.newComment
         }
         API.execute(req).then(function (_res) {
             console.log(_res);
             if (_res.data.code == 100) {
-                $rootScope.loading = false;
                 window.location.reload();
 
             } else {
