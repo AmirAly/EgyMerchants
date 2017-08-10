@@ -135,6 +135,7 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //},function (err) {
 //    console.log(err);
 //})
+//5980671c6e1f6f0b30dc4377,594660e5734d1d59b7895502
 var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User": "594660e5734d1d59b7895502", "Text": "discount 10% for first 25 purchased" })
 //comment.add(newcomment).then(function (result) {
 //    console.log(result);
@@ -186,7 +187,7 @@ var newuser = new userschema({ "Email": "anisa123@gmail.com", "Password": "12345
 //}, function (err) {
 //    console.log(err);
 //});
-//user.getFavourites("5980671c6e1f6f0b30dc4377").then(function (result) {
+//user.getFavourites("594660e5734d1d59b7895502").then(function (result) {
 //    console.log(result.data.FavouriteItems);
 //}, function (err) {
 //    console.log(err);

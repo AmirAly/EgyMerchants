@@ -96,7 +96,6 @@ module.exports = {
                             if(msg.To._id.toString()==_userId.toString()&&msg.Status=='un read')
                                 unreadcontacts.push({ _id: msg.From._id, Name: msg.From.Name, ProfilePicture: msg.From.ProfilePicture })
                         })
-                        
                         var destinctArrayOfAll = _.uniq(Allcontacts, function (x) {
                             return (x._id).toString()
                         })
@@ -104,27 +103,9 @@ module.exports = {
                             return (x._id).toString()
                         })
                         Allcontacts = _.filter(destinctArrayOfAll, function (obj) { return (obj._id != _userId) });
-                        console.log(Allcontacts);
-                        console.log(destinctArrayOfUnRead);
-                        var bIds=[];
-                        var i = 0;
-                        destinctArrayOfUnRead.forEach(function (obj) {
-                            bIds[i] = obj._id;
-                            i++;
-});
-                        console.log(bIds);
-// Return all elements in A, unless in B
-                        var AllcontactsFiltered =   _.filter(Allcontacts,function (obj) {
-    return !(obj.id in bIds);
-});
-                        //var AllcontactsFiltered = _.filter(Allcontacts, function (obj) {
-                        //    console.log(obj);
-                        //    return !destinctArrayOfUnRead.some(function (obj2) {
-                        //        console.log(obj2);
-                        //        return obj.value == obj2.value;
-                        //    });
-                        //});
-                        console.log(AllcontactsFiltered);
+                        var ids = [];
+                        _.each(_.pluck(destinctArrayOfUnRead, "_id"), function (item) { ids.push(item.toString()) })
+                        var AllcontactsFiltered = _.filter(Allcontacts, function (el) { return !_.contains(ids, el._id.toString()); })
                         Allcontacts = _.map(AllcontactsFiltered, function (contact) {
                             return _.pick(_.extend(contact, { UnRead: false }), '_id', 'Name', 'ProfilePicture', 'UnRead');
                         })
