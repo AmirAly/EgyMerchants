@@ -143,7 +143,7 @@ var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User":
 //}, function (err) {
 //    console.log(err);
 //});
-//comment.remove("598c5dd9937c540eb8cc78b6", "594660e5734d1d59b7895502").then(function (result) {
+//comment.remove("598c5aaf63b3130f3cc9139f", "59427908734d1d235a944767").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
