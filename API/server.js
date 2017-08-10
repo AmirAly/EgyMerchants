@@ -2,8 +2,8 @@
 // modules =================================================
 var express = require('express');
 var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var api = require('./app/api')(app, express);
@@ -55,16 +55,14 @@ mongoose.connect(db.url, function (err) {
         app.use(express.static('public'));
         app.use('/', api);
 
-       // app.listen(port);
-        http.listen(port, function () {
+        //app.listen(port);
+        server.listen(port, function () {
             console.log('listening on sockets');
         });
         console.log('connected to database and server is listeining ');
     }
 });
-app.get('/', function(req, res){
-  res.sendfile('index.html');
-});
+
 
 var users = [];
 io.on('connection', function(socket){
