@@ -29,6 +29,7 @@ var commentschema = require('./app/models/comment');
 var comment = require('./app/comments');
 var notificationschema = require('./app/models/notification');
 var notification = require('./app/notifications');
+var Helper = require('./app/helper');
 // configuration ===========================================
 // config files
 // check data conection
@@ -136,7 +137,7 @@ var newmessage = new messageschema({ "From": "5946db5aa7eee71550d33dfc", "To": "
 //    console.log(err);
 //})
 //5980671c6e1f6f0b30dc4377,594660e5734d1d59b7895502
-var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User": "594660e5734d1d59b7895502", "Text": "discount 10% for first 25 purchased" })
+var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User": "594660e5734d1d59b7895502", "Text": "format discount 10% for first 25 purchased" })
 //comment.add(newcomment).then(function (result) {
 //    console.log(result);
 //}, function (err) {
@@ -148,7 +149,7 @@ var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User":
 //    console.log(err);
 //});
 //comment.getByItem("59466cd6ca6b1c049c494b72").then(function (result) {
-//    console.log(result.data);
+//    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
