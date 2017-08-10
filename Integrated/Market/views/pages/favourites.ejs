@@ -18,21 +18,21 @@
         <!-- Favourites -->
         <section class="container-fluid">
             <!-- view -->
-            <div class="row ">
+            <div class="row
+			">
 
                 <div class="col-sm-10 col-sm-offset-1 ">
-
+				
 				<% if(listFavourites.length > 0){ %>
                     <ul>
 					 <% listFavourites.forEach(function(fav){ %>
-
-                        <li>
-                          <a>
-						    <h6><span class="dvIcon glyphicon glyphicon-bell"></span><span> <%= fav %> </span></h6>
-                            <div class="text-right"><span class="text-muted"></span></div>
-						  </a>
-                        </li>
-
+                        <li ng-click="redirectToItem('<%= fav.Name %>', '<%= fav._id %>')">
+						   <div title="click to view item" class="col-xs-3">
+                             <img class="img-responsive wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="<%= fav.Pictures[0].URL %>" />
+                           </div>
+						   <div title="click to view item" class="col-xs-3"> <h6> <%= fav.Name %> </h6> </div>
+						   <div class="col-xs-3" title="un favorite this item"><span class="dvIcon glyphicon glyphicon-heart-empty iconFav"></span></div>
+					    </li>
                      <% }); %>
 
                     </ul>

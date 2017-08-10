@@ -2100,6 +2100,38 @@ h6.mega {
             padding-left: 0;
         }
 
+
+/************* favourites Page **************/
+.favouritesPage li {
+    display: flex;
+    list-style-type: none;
+    margin-bottom: 15px;
+    padding: 10px;
+    padding-bottom: 20px;
+    cursor:pointer;
+}
+
+    .favouritesPage li:not(:last-child) {
+        border-bottom: 1px solid #eee;
+    }
+
+    .favouritesPage li .col-xs-3 {
+        display: block;
+        margin: auto;
+    }
+
+        .favouritesPage li .col-xs-3 h6 {
+            display: table;
+            margin: auto;
+            padding: 0;
+        }
+
+        .favouritesPage li .col-xs-3 img {
+            max-height: 100px;
+            margin: auto;
+        }
+
+
 /***** Modal login / register *****/
 
 .modal-content {
@@ -2460,7 +2492,7 @@ h6.mega {
 }
 
     .facebookShare .fa {
-        font-size: 15px;
+        font-size: 13px;
         padding: 2px;
     }
 
@@ -2468,3 +2500,13 @@ h6.mega {
             font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
             font-size: 11px;
         }
+
+.iconFav {
+    font-size: 26px;
+    cursor: pointer;
+    top: -2px;
+}
+
+    .iconFav.IsFavItem {
+        color: #ee3b27;
+    }

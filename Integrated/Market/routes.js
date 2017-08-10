@@ -392,11 +392,11 @@ module.exports = function (app) {
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
 
-        user.getFavourites(req.params.me).then(function (_listAllFavourites) {
-            console.log(_listAllFavourites);
-            if (_listAllFavourites.code == 100) {
-                console.log(_listAllFavourites.data);
-                _scope.listFavourites = _listAllFavourites.data;
+        user.getFavourites(req.params.me).then(function (_list) {
+            console.log(_list);
+            if (_list.code == 100) {
+                console.log(_list.data);
+                _scope.listFavourites = _list.data.FavouriteItems;
                 res.render('pages/favourites', _scope);
             } else {
                 _scope.listFavourites = [];

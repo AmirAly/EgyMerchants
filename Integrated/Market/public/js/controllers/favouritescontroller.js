@@ -5,4 +5,8 @@
         $rootScope.IsoCode = _isoCode;
     }
 
+
+    $scope.redirectToItem = function (_name, _id) {
+        window.location.href = '/' + $rootScope.IsoCode + '/Product/' + _name + '/' + _id;
+    }
 });
