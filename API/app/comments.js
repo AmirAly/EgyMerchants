@@ -172,13 +172,11 @@ module.exports = {
                         data: err
                     })
                 else {
-                    if (lst.length>0) {
                         _.each(lst, function (comment) {comment.Date= Helper.formatdate(comment.Date) })
                         resolve({
                             code: 100,
                             data: lst
                         })
-                    }
                 }
             })
         })
