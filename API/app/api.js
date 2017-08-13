@@ -20,7 +20,7 @@ var Message = require('./models/message');
 var CommentLogic = require('./comments');
 var Comment = require('./models/comment');
 var NotificationLogic = require('./notifications');
-var Notification = require('./models/notifications');
+var Notification = require('./models/notification');
 var _ = require("underscore");
 module.exports = function (app, express) {
     var api = express.Router();
@@ -348,7 +348,7 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-    getUnRead
+    
 
     return api;
 };
