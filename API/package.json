@@ -13,7 +13,6 @@
     "socket.io": "^2.0.3",
     "stream": "*",
     "underscore": "^1.8.3",
-	"socket.io-client":"*",
-	"dateformat":"*"
+	"socket.io-client":"*"
   }
 }

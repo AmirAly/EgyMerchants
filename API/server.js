@@ -113,13 +113,13 @@ io.on('connection', function(socket){
 
 
 //594660e5734d1d59b7895502,5946db5aa7eee71550d33dfc,5948d21ff17d942198191fba,5980671c6e1f6f0b30dc4377
-var newmessage = new messageschema({ "From": "5946db5aa7eee71550d33dfc", "To": "5980671c6e1f6f0b30dc4377", "Text": "you are right" });
+var newmessage = new messageschema({ "From": "5946db5aa7eee71550d33dfc", "To": "594660e5734d1d59b7895502", "Text": "dates 21" });
 //message.send(newmessage).then(function (result) {
 //        console.log(result);
 //    }, function (err) {
 //        console.log(err);
 //    });
-//message.getAll("5980671c6e1f6f0b30dc4377", "5948d21ff17d942198191fba").then(function (result) {
+//message.getAll("5980671c6e1f6f0b30dc4377", "594660e5734d1d59b7895502").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -135,7 +135,7 @@ var newmessage = new messageschema({ "From": "5946db5aa7eee71550d33dfc", "To": "
 //    console.log(err);
 //})
 //5980671c6e1f6f0b30dc4377,594660e5734d1d59b7895502
-var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User": "594660e5734d1d59b7895502", "Text": "format discount 60% for first 25 purchased" })
+var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User": "594660e5734d1d59b7895502", "Text": "format time discount 60% for first 25 purchased" })
 //comment.add(newcomment).then(function (result) {
 //    console.log(result);
 //}, function (err) {
@@ -146,7 +146,7 @@ var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User":
 //}, function (err) {
 //    console.log(err);
 //});
-//comment.getByItem("59466cd6ca6b1c049c494b72").then(function (result) {
+//comment.getByItem("594a7ae13e856b0b684b3938").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -156,7 +156,7 @@ var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User":
 //}, function (err) {
 //    console.log(err);
 //});
-//notification.getAll("594907b93e856b0b684b38e2").then(function (result) {
+//notification.getAll("594660e5734d1d59b7895502").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
