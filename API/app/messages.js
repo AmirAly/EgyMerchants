@@ -69,9 +69,6 @@ module.exports = {
                                 data: err
                             })
                         else {
-                            Msgs.sort(function (a, b) {
-                                return a.Date-b.Date;
-                            });
                                 resolve({
                                     code: 100,
                                     data: Msgs

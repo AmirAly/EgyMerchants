@@ -12,6 +12,6 @@ var Comment = new Schema({
         required: "Please enter user id"
     },
     Text: { type: String, required: 'comment text is required' },
-    Date: { type: String, default: new Date() }
+    Date: { type: String, default: new Date().getTime() }
 });
 module.exports = Mongoose.model('Comment', Comment);

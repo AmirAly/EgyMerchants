@@ -17,18 +17,21 @@ module.exports = {
                         });
                     else {
                         _newMaster.Type = 'master';
-                        _newMaster.save(function (err, _newMaster) {
-                            if (err)
-                                reject({
-                                    code: 1,
-                                    data: err
-                                });
-                            else {
-                                resolve({
-                                    code: 100,
-                                    data: { _id: _newMaster._id, Name: _newMaster.Name, Type: _newMaster.Type }
-                                });
-                            }
+                        Helper.uploadImage(_newMaster.ProfilePicture, function (_url) {
+                            _newMaster.ProfilePicture = _url;
+                            _newMaster.save(function (err, _newmaster) {
+                                if (err)
+                                    reject({
+                                        code: 1,
+                                        data: err
+                                    });
+                                else {
+                                    resolve({
+                                        code: 100,
+                                        data: { _id: _newmaster._id, Name: _newmaster.Name, Type: _newmaster.Type }
+                                    });
+                                }
+                            })
                         })
                     }
                 }

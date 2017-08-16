@@ -2,7 +2,6 @@ var Schema = require('./models/comment');
 var Item = require('./models/item');
 var User = require('./models/user');
 var Notification = require('./models/notification');
-var Helper = require('./helper');
 var _ = require("underscore");
 module.exports = {
     add: function (_newComment) {
@@ -60,7 +59,6 @@ module.exports = {
                                         })
                                     else {
                                         if (Obj) {
-                                            Obj.Date = Helper.formatdate(Obj.Date);
                                             resolve({
                                                 code: 100,
                                                 data: Obj
@@ -172,7 +170,6 @@ module.exports = {
                         data: err
                     })
                 else {
-                        _.each(lst, function (comment) {comment.Date= Helper.formatdate(comment.Date) })
                         resolve({
                             code: 100,
                             data: lst

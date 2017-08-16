@@ -41,9 +41,6 @@ module.exports = {
                                     data: err
                                 })
                             else {
-                                Lst.sort(function (a, b) {
-                                    return a.Date - b.Date;
-                                });
                                 resolve({
                                     code: 100,
                                     data: Lst
