@@ -1,5 +1,4 @@
 
-var format = require('dateformat');
 var fs = require('fs');
 var cloudinary = require('cloudinary');
 
@@ -143,9 +142,6 @@ module.exports = {
         var day = d.getDay(),
             diff = d.getDate() - day;//+ (day == 0 ? -6 : 1); // adjust when day is sunday
         return new Date(d.setDate(diff));
-    },
-    formatdate: function (date) {
-        return format(date, "mmm d, yyyy h:MM:ss TT");
     }
 }
 

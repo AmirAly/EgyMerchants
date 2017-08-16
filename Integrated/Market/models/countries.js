@@ -6,7 +6,7 @@ var Helper = require('./helper');
 module.exports = {
     add: function (_newCountry) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({'Name': _newCountry.Name,'Status':'Active'}, '', function (err, Obj) {
+            Schema.findOne({ $or: [{ 'Name': _newCountry.Name, 'Status': 'Active' }, { 'IsoCode': _newCountry.IsoCode, 'Status': 'Active' }] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -16,7 +16,7 @@ module.exports = {
                     if (Obj) {
                         reject({
                             code: 21,
-                            data: "This country already exist"
+                            data: "This country name or Isocode already exist"
                         });
                     }
                     else {
@@ -73,7 +73,7 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        Schema.findOne({'Name': _name,'Status':'Active', '_id': { $ne: _id } }, '', function (err, Objexist) {
+                        Schema.findOne({ $or: [{ 'Name': _name }, { 'IsoCode': _isoCode }], 'Status': 'Active', '_id': { $ne: _id } }, '', function (err, Objexist) {
                             if (err)
                                 reject({
                                     code: 1,
@@ -98,7 +98,7 @@ module.exports = {
                                             else
                                                 resolve({
                                                     code: 100,
-                                                    data: "Country data edited successfully"
+                                                    data: Obj//"Country data edited successfully"
                                                 })
                                         })
                                     })

@@ -1,4 +1,5 @@
 var Schema = require('./models/user');
+var Helper = require('./helper');
 module.exports = {
     register: function (_newUser) {
         return new Promise(function (resolve, reject) {
@@ -17,19 +18,22 @@ module.exports = {
                     }
                     else {
                         _newUser.Type = 'user';
-                        _newUser.save(function (err, Obj) {
-                            if (err)
-                                reject({
-                                    code: 1,
-                                    data: err
+                        Helper.uploadImage(_newUser.ProfilePicture, function (_url) {
+                            _newUser.ProfilePicture = _url;
+                            _newUser.save(function (err, _newuser) {
+                                    if (err)
+                                        reject({
+                                            code: 1,
+                                            data: err
+                                        });
+                                    else {
+                                        resolve({
+                                            code: 100,
+                                            data: { _id: _newuser._id, Name: _newuser.Name, Type: _newuser.Type }
+                                        });
+                                    }
                                 })
-                            else {
-                                resolve({
-                                    code: 100,
-                                    data: { _id: _newUser._id, Name: Obj.Name, Type: Obj.Type }
-                                })
-                            }
-                        });
+                            })
                     }
                 }
             })

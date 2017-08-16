@@ -1,5 +1,4 @@
 var Schema = require('./models/notification');
-var Helper = require('./helper');
 var _ = require("underscore");
 module.exports = {
     updateStatus: function (_id) {
@@ -42,7 +41,6 @@ module.exports = {
                                     data: err
                                 })
                             else {
-                                _.each(Lst, function (notification) { notification.Date = Helper.formatdate(notification.Date) })
                                 resolve({
                                     code: 100,
                                     data: Lst

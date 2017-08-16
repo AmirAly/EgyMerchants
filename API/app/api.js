@@ -19,6 +19,8 @@ var MessageLogic = require('./messages');
 var Message = require('./models/message');
 var CommentLogic = require('./comments');
 var Comment = require('./models/comment');
+var NotificationLogic = require('./notifications');
+var Notification = require('./models/notification');
 var _ = require("underscore");
 module.exports = function (app, express) {
     var api = express.Router();
@@ -337,5 +339,16 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+
+    //notifications api calls
+    api.get('/Message/GetUnRead/:_userid', function (req, res) {
+        NotificationLogic.getUnRead(req.params._userid).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    
+
     return api;
 };
