@@ -2,6 +2,7 @@
 
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
         $scope.selectedstore = $scope.stores[0]._id;
+        $scope.errorNonSelected = false;
         document.getElementById("frmAddSection").reset();
         $scope.frmAddSection.$setUntouched();
         $scope.frmAddSection.$setPristine();
