@@ -12,19 +12,18 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        reject({
+                        resolve({
                             code: 21,
                             data: "There is another expo with this title"
                         });
                     }
                     else {
-                        if (_newExpo.Banner) {
                             Helper.uploadImage(_newExpo.Banner, function (_url) {
                                 _newExpo.Banner = _url;
                                 _newExpo.save(function (err, _newExpo) {
                                     if (err)
                                         reject({
-                                            code: 1,
+                                            code: 2,
                                             data: err
                                         });
                                     else
@@ -34,21 +33,6 @@ module.exports = {
                                         });
                                 })
                             })
-                        }
-                        else {
-                            _newExpo.save(function (err, _newExpo) {
-                                if (err)
-                                    reject({
-                                        code: 1,
-                                        data: err
-                                    });
-                                else
-                                    resolve({
-                                        code: 100,
-                                        data: "This expo added successfully"
-                                    });
-                            })
-                        }
                     }
                 }
             })
@@ -73,7 +57,7 @@ module.exports = {
                                 expo.save(function (err, _newExpo) {
                                     if (err)
                                         reject({
-                                            code: 1,
+                                            code: 2,
                                             data: err
                                         });
                                     else
@@ -90,7 +74,7 @@ module.exports = {
                             expo.save(function (err, _newExpo) {
                                 if (err)
                                     reject({
-                                        code: 1,
+                                        code: 3,
                                         data: err
                                     });
                                 else
@@ -104,7 +88,7 @@ module.exports = {
                     else
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "This expo not exist"
                         });
                 }
             })
@@ -137,7 +121,6 @@ module.exports = {
                         Obj.Title = _title;
                         Obj.Category = _category;
                         Obj.Floors = _Floors;
-                        if (_banner) {
                             Helper.uploadImage(_banner, function (_url) {
                                 Obj.Title = _title;
                                 Obj.Banner = _url;
@@ -155,25 +138,6 @@ module.exports = {
                                         })
                                 })
                             });
-                        }
-                        else {
-                            Obj.Title = _title;
-                            Obj.Banner = "";
-                            Obj.Category = _category;
-                            Obj.save(function (err, expo) {
-                                if (err)
-                                    reject({
-                                        code: 1,
-                                        data: err
-                                    });
-                                else
-                                    resolve({
-                                        code: 100,
-                                        data: "Expo data edited successfully"
-                                    })
-                            })
-                        }
-                     
                     }
                     else
                         reject({
@@ -261,22 +225,15 @@ module.exports = {
                         data: err
                     });
                 else {
-                    if (lst.length > 0)
                         resolve({
                             code: 100,
                             data: lst
-                        });
-                    else
-                        reject({
-                            code: 21,
-                            data: "This filteration didn't resulted in any data"
                         });
                 }
             })
         })
     },
     getByCategory: function (_categoryId) {
-        var finalLst = [];
         return new Promise(function (resolve, reject) {
             Schema.find({ 'Category': _categoryId, 'Status': 'Active' }, '_id Title Banner Floors').populate('Floors.Coordinates.Store', '_id Name Type Badges').exec(function (err, lst) {
                 if (err)
@@ -285,15 +242,7 @@ module.exports = {
                         data: err
                     });
                 else {
-                    if (lst.length > 0) {
                         resolve({code:100,data:lst})
-                    }
-                    else {
-                        reject({
-                            code: 21,
-                            data: "This filteration didn't resulted in any data"
-                        });
-                    }
                 }
             })
         })
@@ -308,21 +257,15 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        if (Obj.Floors.length > 0)
                             resolve({
                                 code: 100,
                                 data: Obj
                             });
-                        else
-                            reject({
-                                code: 21,
-                                data: "There is no stores in this expo yet"
-                            });
                     }
                     else {
                         reject({
-                            code: 22,
-                            data: "This filteration didn't resulted in any data"
+                            code: 21,
+                            data: "This expo not exist"
                         });
                     }
                 }
@@ -338,7 +281,7 @@ module.exports = {
                     if (Obj)
                         resolve({ code: 100, data: "This expo deleted successfully" })
                     else
-                        reject({ code: 21, data: "This filteration didn't resulted in any data" })
+                        reject({ code: 21, data: "This expo not exist" })
                 }
             })
         })
@@ -360,7 +303,7 @@ module.exports = {
                     else
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "This expo not exist"
                         });
                 }
             })

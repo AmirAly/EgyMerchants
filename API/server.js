@@ -136,16 +136,16 @@ var newmessage = new messageschema({ "From": "5946db5aa7eee71550d33dfc", "To": "
 //})
 //5980671c6e1f6f0b30dc4377,594660e5734d1d59b7895502
 var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User": "594660e5734d1d59b7895502", "Text": "format time discount 60% for first 25 purchased" })
-//comment.add(newcomment).then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
-//comment.remove("598c5aaf63b3130f3cc9139f", "59427908734d1d235a944767").then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
+  // comment.add(newcomment).then(function (result) {
+   // console.log(result);
+// }, function (err) {
+   // console.log(err);
+// });
+// comment.remove("5995868303454a1a1ce5f148", "594660e5734d1d59b7895502").then(function (result) {
+   // console.log(result);
+// }, function (err) {
+   // console.log(err);
+// });
 //comment.getByItem("594a7ae13e856b0b684b3938").then(function (result) {
 //    console.log(result);
 //}, function (err) {
@@ -182,6 +182,12 @@ var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User":
 //}, function (err) {
 //    console.log(err);
 //});
+
+// master.login({"Email":"admin@mail.com","Password":"1234567"}).then(function (result) {
+   // console.log(result);
+// }, function (err) {
+   // console.log(err);
+// });
 
 //user.addToFavourites("5980671c6e1f6f0b30dc4377", "59466f9cca6b1c049c494b81").then(function (result) {
 //    console.log(result);
