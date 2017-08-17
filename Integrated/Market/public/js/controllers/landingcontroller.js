@@ -42,6 +42,8 @@
         localStorage.setItem('selectedCountry', (JSON.stringify($scope.selectedCountry)));
         window.location.href = '/' + _isoCode + '/Home';
     }
+
+
 });
 
 

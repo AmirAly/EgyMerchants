@@ -133,7 +133,7 @@
                                         </div>
                                         <div class="card-content">
                                             <form name="frmAddSection" id="frmAddSection">
-									
+
                                                 <div class="row">
                                                     <div class="col-md-8">
                                                         <div class="form-group">
@@ -141,7 +141,7 @@
                                                             <br>
                                                             <select name="country" id="selectStore" ng-model="selectedstore" class="form-control">
                                                                 <script>var storesLstObject = <%-JSON.stringify(storeslstObj)%>;</script>
-																<% storeslst.forEach(function(store){ %>
+                                                                <% storeslst.forEach(function(store){ %>
                                                                 <option value="<%= store._id %>"> <%= store.Name %> </option>
                                                                 <% }); %>
                                                             </select>
@@ -163,9 +163,7 @@
                                             </div>
                                         </div>
                                         <div class="card-content">
-                                           <div class=" alert-danger clear text-center" ng-show="errorNonSelected">
-                                                <span class="errorFont">You should select area first.</span>
-                                            </div>
+                                           
                                             <div class=" alert-danger clear text-center" id="errImgDiv">
                                                 <span class="errorFont"> Image is not suitable. allowed image should be wide and less than 2MB </span>
                                             </div>
@@ -173,6 +171,9 @@
 
                                     </div>
                                 </div>
+                            </div>
+                            <div class=" alert-danger clear text-center" ng-show="errorNonSelected">
+                                <span class="errorFont">You should select area first.</span>
                             </div>
                         </div>
                     </div>
@@ -185,9 +186,7 @@
         </div>
     </div>
     <!-- End Modal -->
-
-	
-	<!-- Start Modal  ((cofirmation))-->
+    <!-- Start Modal  ((cofirmation))-->
     <div class="modal fade modalDeleteSection" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
