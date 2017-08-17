@@ -1,4 +1,4 @@
-﻿app.controller("headerController", function ($scope, $rootScope, $timeout, API) {
+﻿app.controller("headerController", function ($scope, $rootScope, $timeout, API, socket) {
     $scope.expoHref = localStorage.getItem("expohref");
     $scope.load = function () {
 
@@ -14,7 +14,7 @@
                     checkScrollTop();
                 });
                 function checkScrollTop() {
-                    if ($(window).scrollTop() < 100) {    
+                    if ($(window).scrollTop() < 100) {
                         $('.header-wrapper').attr('style', 'position: static !important;background-color: #2f3946 !important;'); // .removeClass('isScrolled');
                     }
                     else {
@@ -127,4 +127,16 @@
             $scope.searchErr = true;
         }
     }
+
+
+    // Socket listeners
+    // ================
+    function addUser() {
+        console.log('enter ' + $rootScope.userObject._id);
+        socket.emit('adduser', $rootScope.userObject._id);
+    }
+    $timeout(function () {
+        addUser();
+    }, 5000)
+
 });
