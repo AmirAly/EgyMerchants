@@ -13,5 +13,6 @@ var Comment = new Schema({
     },
     Text: { type: String, required: 'comment text is required' },
     Date: { type: String, default: new Date().getTime() }
+	//Date:{ type : Date, default: Date.now }
 });
 module.exports = Mongoose.model('Comment', Comment);

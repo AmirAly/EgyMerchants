@@ -262,6 +262,13 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+	  api.get('/GetFavourites/:_userId', function (req, res) {
+        UserLogic.getFavourites(req.params._userId).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     //expo API calls
     api.post('/Expo/Add', function (req, res) {
         var _newExpo = new Expo(req.body);
