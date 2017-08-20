@@ -70,9 +70,9 @@ module.exports = {
             })
         })
     },
-    editProfile: function (_id, _email, _displayName, _profilePicture) {
+    editProfile: function (_id, _email, _name, _profilePicture) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $or: [{ 'Email': _email }, { 'Name': _displayName }] , '_id': { $ne: _id }}, '', function (err, Obj) {
+            Schema.findOne({ $or: [{ 'Email': _email }, { 'Name': _name }] , '_id': { $ne: _id }}, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -95,21 +95,23 @@ module.exports = {
                 else {
                     if (Obj) {
                         Obj.Email = _email;
-                        Obj.DisplayName = _displayName;
-                        if (_profilePicture)
-                            Obj.ProfilePicture = _profilePicture;
-                        Obj.save(function (err, Obj) {
-                            if (err)
-                                reject({
-                                    code: 1,
-                                    data: err
-                                });
-                            else
-                                resolve({
-                                    code: 100,
-                                    data: "Your profile updated successfully"
-                                });
-                        })
+                        Obj.Name = _name;
+                        Helper.uploadImage(_profilePicture, function (_url) {
+                            Obj.ProfilePicture = _url;
+                            Obj.save(function (err, _newuser) {
+                                    if (err)
+                                        reject({
+                                            code: 1,
+                                            data: err
+                                        });
+                                    else {
+                                        resolve({
+                                            code: 100,
+                                            data: "Your profile updated successfully"
+                                        });
+                                    }
+                                })
+                            })
                     }
                     else 
                         reject({
