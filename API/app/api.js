@@ -346,6 +346,13 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    //api.get('/Comment/getByItem/:_itemId', function (req, res) {
+    //    CommentLogic.getByItem(req.params._itemId).then(function (result) {
+    //        res.json(result);
+    //    }, function (err) {
+    //        res.json(err);
+    //    });
+    //})
 
     //notifications api calls
     api.get('/Message/GetUnRead/:_userid', function (req, res) {
