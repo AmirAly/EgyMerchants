@@ -135,15 +135,15 @@
 
         var req = {
             method: 'get',
-            url: '/User/RemoveFromFavourites',
-            data: $rootScope.userId
+            url: '/GetFavourites/'+$rootScope.userId,
+            data: {}
         }
         API.execute(req).then(function (_res) {
             console.log(_res);
             if (_res.data.code == 100) {
                 $rootScope.loading = false;
                 console.log('get fav');
-                //window.location.reload();
+                $scope.listFavourites = _res.data.data.FavouriteItems;
 
             } else {
                 $rootScope.loading = false;

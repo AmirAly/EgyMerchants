@@ -15,15 +15,13 @@ var usersListObject = <%- JSON.stringify(usersList) %>
 
                 <div class="col-sm-2 col-md-2 col-lg-2 dvUsersList">
                     <ul>
-
-                        <li ng-repeat="user in usersList track by $index" ng-class="{'active' : activeUserId == user._id}">
+                        <li class="dvUserMessages" ng-repeat="user in usersList track by $index" ng-class="{'active' : activeUserId == user._id}">
                            <a href="/{{IsoCode}}/Inbox/{{userId}}/{{user._id}}"> 
-						       <img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="{{user.ProfilePicture}}" alt="" />
+							   <img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="{{user.ProfilePicture}}" alt="" />
                                <h6>{{user.Name}}</h6>
+							   <div class="notificationPoint" ng-show="user.UnRead"></div>
 							</a>
                         </li>
-                    
-
                     </ul>
                 </div>
 

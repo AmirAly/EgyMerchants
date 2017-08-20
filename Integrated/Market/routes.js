@@ -396,7 +396,7 @@ module.exports = function (app) {
         });
     });
 
-    // favorites page
+    //// favorites page
     app.get('/:countryIso/Favorites/:me', function (req, res) {
         //console.log(req.params.countryIso);
         var _scope = {};

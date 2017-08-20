@@ -2047,7 +2047,25 @@ h6.mega {
 
     .inboxPage .media .media-object {
         width: 50px;
+        height: 50px;
+        border-radius: 50%;
     }
+
+.inboxPage .dvUserMessages img {
+    position: relative;
+}
+
+.inboxPage .dvUserMessages .notificationPoint {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 10px;
+    height: 10px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background: #ec0e18;
+}
 
 /***** Notifications page *****/
 .notificationsPage ul {
@@ -2102,35 +2120,62 @@ h6.mega {
 
 
 /************* favourites Page **************/
-.favouritesPage li {
-    display: flex;
-    list-style-type: none;
-    margin-bottom: 15px;
-    padding: 10px;
-    padding-bottom: 20px;
-    cursor: pointer;
+.favouritesPage {
+    background: white;
+    width: 400px;
+    margin: auto;
+    border: 1px solid #ccc;
+    /*padding: 10px 20px;*/
+    position: absolute;
+    z-index: 100;
+    left: 50%;
+    height: 400px;
+    max-height: 400px;
+    overflow: hidden;
+    overflow-y: auto;
 }
 
-    .favouritesPage li:not(:last-child) {
-        border-bottom: 1px solid #eee;
+    .favouritesPage ul {
+        padding-left: 0;
     }
 
-    .favouritesPage li .col-xs-3 {
-        display: block;
-        margin: auto;
+    .favouritesPage li {
+        display: flex;
+        list-style-type: none;
+        /*margin-bottom: 15px;*/
+        padding: 10px;
+        /*padding-bottom: 20px;*/
+        cursor: pointer;
+        height: 80px;
     }
 
-        .favouritesPage li .col-xs-3 h6 {
-            display: table;
-            margin: auto;
-            padding: 0;
+        .favouritesPage li:not(:last-child) {
+            border-bottom: 1px solid #eee;
         }
 
-        .favouritesPage li .col-xs-3 img {
-            max-height: 100px;
+        .favouritesPage li .col {
+            display: block;
             margin: auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
+            .favouritesPage li .col h6 {
+                display: table;
+                margin: auto;
+                padding: 0;
+            }
+
+            .favouritesPage li .col img {
+                max-height: 60px;
+                max-width: 60px;
+                margin: auto;
+            }
+
+            .favouritesPage li .col .iconFav {
+                top: auto;
+            }
 
 /***** Modal login / register *****/
 
@@ -2515,6 +2560,10 @@ h6.mega {
         color: #ee3b27;
     }
 
+        .iconFav.IsFavItem:hover {
+            color: #565656;
+        }
+
 
 /****** Message toast *******/
 /* The snackbar - position it at the bottom and in the middle of the screen */
@@ -2592,8 +2641,8 @@ However, delay the fade out process for 2.5 seconds */
 }
 
 
-.showFavorites {
-    background: coral;
+/*.showFavorites {
+    background: #fff;
     width: 400px;
     margin: auto;
     border: 1px solid #ccc;
@@ -2604,4 +2653,4 @@ However, delay the fade out process for 2.5 seconds */
     height: 400px;
     max-height: 400px;
     overflow: auto;
-}
+}*/

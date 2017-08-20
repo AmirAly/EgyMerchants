@@ -156,7 +156,7 @@
                     <div class="timeline">
 
 
-                        <div class="timeline-item timeline-item-right" ng-repeat="comment in commentsList track by comment._id | orderBy:comment.Date:true">
+                        <div class="timeline-item timeline-item-right" ng-repeat="comment in commentsList track by comment._id | orderBy:'comment.Date':false">
                             <img class="timeline-photo" src="{{comment.User.ProfilePicture}}" />
                             <div class="timeline-point timeline-point-blank"></div>
                             <div class="timeline-event timeline-event-default">
@@ -167,7 +167,7 @@
                                 <div class="timeline-body">
                                     <p>{{comment.Text}}</p>
                                 </div>
-                                <div class="timeline-footer">
+                                <div class="timeline-footer">{{comment.Date}}
                                     <p class="text-right">{{ comment.Date | date:'MMM d, y @ h:mma' }}</p>
                                 </div>
                             </div>

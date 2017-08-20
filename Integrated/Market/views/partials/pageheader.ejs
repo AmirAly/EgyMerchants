@@ -74,30 +74,30 @@
           </div>
         </div>
         <div ng-show="showFavorites" class="showFavorites favouritesPage">
-          <h6>Favorites List</h6>
+          <h6 class="txtNoData">Favorites List</h6>
           <!-- Favourites -->
-          <section class="container-fluid">
+          <section>
             <!-- view -->
             <div class="row">
 
-              <div class="col-sm-10 col-sm-offset-1 ">
+              <div class="col-xs-12">
 
-                <ul ng-show="listFavourites.length>0" ng-cloack="">
+                <ul ng-show="listFavourites.length>0" ng-cloack>
 
                   <li ng-repeat=" fav in listFavourites">
-                    <div ng-click="redirectToItem({{fav.Name}}, {{fav._id}})" title="click to view item" class="col-xs-3">
+                    <div ng-click="redirectToItem(fav.Name, fav._id)" title="click to view item" class="col-xs-3 col">
                       <img class="img-responsive wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="{{fav.Pictures[0].URL}}" />
                     </div>
-                    <div ng-click="redirectToItem({{fav.Name}}, {{fav._id}})" title="click to view item" class="col-xs-3">
-                      <h6>{{fav.Name}}</h6>
+                    <div ng-click="redirectToItem(fav.Name,fav._id)" title="click to view item" class="col-xs-7 col">
+                      <span>{{fav.Name}}</span>
                     </div>
-                    <div class="col-xs-3" ng-click="removeFromFavorites({{fav._id}})" title="un favorite this item">
-                      <span  class="dvIcon glyphicon glyphicon-heart-empty iconFav"></span>
+                    <div class="col-xs-2 col" ng-click="removeFromFavorites(fav._id)" title="un favorite this item">
+                      <span  class="dvIcon glyphicon glyphicon-heart iconFav IsFavItem "></span>
                     </div>
                   </li>
                 </ul>
 
-                <p ng-show="listFavourites.length>0" class="txtNoData"> No favorites found </p>
+                <p ng-show="!listFavourites.length>0" class="txtNoData"> No favorites found </p>
 
               </div>
 

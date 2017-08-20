@@ -47,6 +47,7 @@
         console.log(JSON.parse(window.usersListObject));
         if (JSON.parse(window.usersListObject).length > 0) {
             $scope.usersList = JSON.parse(window.usersListObject);
+            console.log($scope.usersList);
             console.log('if');
         }
         else {
