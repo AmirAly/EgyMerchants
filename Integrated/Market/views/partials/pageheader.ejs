@@ -1,5 +1,5 @@
 <div ng-controller="headerController">
-  
+
   <div class="loaderContainer" ng-show="loading"></div>
   <div class="loader" ng-show="loading">
     <div class="bubblingG">
@@ -8,270 +8,313 @@
       <span id="bubblingG_3"> </span>
     </div>
   </div>
-    
-    <div class="pageHeader">
-        <div class="header">
-            <nav class="navbar navbar-default normal" role="navigation">
-                <div class="dvTopLinks hidden-xs">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div id="navbar" class="collapse navbar-collapse">
-                            <div class="navbar-left">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="countryDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <img class="pin" src="{{selectedCountry.Flag}}" />  <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="countryDropdownMenu">
-                                        <li ng-repeat="country in allCountriesGeneralList">
-                                            <a href="/{{country.IsoCode}}/Home">
-                                                <img class="pin" src="{{country.Flag}}" />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="/{{selectedCountry.IsoCode}}/Home">Home</a>
-                                </li>
-                                <li>
-                                    <a href="/{{selectedCountry.IsoCode}}/Contactus">About us</a>
-                                </li>
-                                <li data-toggle="modal" data-target="#modal-login" ng-hide="loggedUser">
-                                    <a href="#">Log in</a>
-                                </li>
-                              
-                                <li ng-show="loggedUser">
-                                    <a href="/{{selectedCountry.IsoCode}}/Favorites/{{userId}}">My favourites</a>
-                                </li>
-                                <li ng-show="loggedUser">
-                                    <a href="/{{selectedCountry.IsoCode}}/Notifications/{{userId}}">My notifications</a>
-                                </li>
-                                <li ng-show="loggedUser">
-                                    <a href="/{{selectedCountry.IsoCode}}/Inbox/{{userId}}/0">My inbox</a>
-                                </li>
-                                
-                                <li ng-show="loggedUser">
-                                  <span>Welcome {{userName}} | </span> <span><a href="#"><span ng-click="logout()">Log out</span></a></span>
-                                </li>
-                            </ul>
 
-                        </div>
-                        <!--/.nav-collapse -->
-                    </div>
+  <div class="pageHeader">
+    <div class="header">
+      <nav class="navbar navbar-default normal" role="navigation">
+        <div class="dvTopLinks hidden-xs">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+              <div class="navbar-left">
+                <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="countryDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <img class="pin" src="{{selectedCountry.Flag}}" />
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="countryDropdownMenu">
+                    <li ng-repeat="country in allCountriesGeneralList">
+                      <a href="/{{country.IsoCode}}/Home">
+                        <img class="pin" src="{{country.Flag}}" />
+                      </a>
+                    </li>
+                  </ul>
                 </div>
-                <div class="dvMiddlePart  hidden-xs">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h1 class="logo">
-                                    <a href="{{expoHref}}">
-                                        <img src="/images/Expoeveryday.png" alt="Expo" />
-                                    </a>
-                                </h1>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="search-area">
-                                    <a class="search-icon visible-xs">
-                                        <i class="glyphicon glyphicon-search"></i>
-                                    </a>
-                                    <form id="search_mini_form" class="hidden-xs">
-                                        <div class="form-search ">
-                                            <input id="search" type="text" name="txtSearch" placeholder="Search" ng-model="txtSearch" class="input-text" autocomplete="off" />
-                                            <button type="submit" ng-click="search()" title="Search" class="button">
-                                                <i class="glyphicon glyphicon-search"></i>
-                                            </button>
-                                            <div id="search_autocomplete" class="search-autocomplete">
-                                            </div>
-                                            <div class="clearer"></div>
-                                        </div>
-                                    </form>
-                                </div>
-                            <h6 style="padding-top: 90px;text-align: center;color: red;" ng-show="searchErr">Enter 2 characters minimum</h6>
-                            </div>
-                            <div class="col-sm-3">
+              </div>
+              <ul class="nav navbar-nav navbar-right">
+                <li>
+                  <a href="/{{selectedCountry.IsoCode}}/Home">Home</a>
+                </li>
+                <li>
+                  <a href="/{{selectedCountry.IsoCode}}/Contactus">About us</a>
+                </li>
+                <li data-toggle="modal" data-target="#modal-login" ng-hide="loggedUser">
+                  <a href="#">Log in</a>
+                </li>
 
-                                <div class="cart-area hidden-xs">
-                                    <span>
-                                      Call us now<br />
-                                        <b>+123 5678 890</b>
-                                    </span>
-                                </div>
-                            </div>
+                <li ng-show="loggedUser">
+                  <a href="#" ng-click="showFavorites=!showFavorites;getFavorites();">Favourites</a>
+                </li>
+                <li ng-show="loggedUser">
+                  <a href="/{{selectedCountry.IsoCode}}/Notifications/{{userId}}">Notifications</a>
+                </li>
+                <li ng-show="loggedUser">
+                  <a href="/{{selectedCountry.IsoCode}}/Inbox/{{userId}}/0">Inbox</a>
+                </li>
 
-                            <!--<div class="menu-icon"><a  title="Menu"><i class="fa fa-bars"></i></a></div>-->
-                        </div>
-                    </div>
-                </div>
-                <div class="header-wrapper">
-                    <div class="main-nav ">
-                        <div class="">
-                            <div class="menu-wrapper">
-                                <div class="sticky-logo wow bounceInLeft">
-
-                                    <a href="{{expoHref}}">
-                                        <img src="/images/Expoeveryday.png" class="img-responsive" alt="Expo" />
-                                    </a>
-
-                                </div>
-                                <div class="menu-all-pages-container">
-                                    <ul class="menu">
-                                        <li class="act">
-                                            <a href="/{{selectedCountry.IsoCode}}/Home">
-                                                <span>Home</span>
-                                            </a>
-                                        </li>
-                                        <li class="act">
-                                            <a href="/{{selectedCountry.IsoCode}}/Contactus">
-                                                <span>Contact us</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </nav>
-        </div>
-    </div>
-
-    <!-- MODAL -->
-    <div class="modal fade" my-modal id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content bounceInUp animated" data-wow-duration="0.1s" data-wow-delay="0.1s" ng-show="loginForm">
-                <!--login-->
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <h3 class="modal-title" id="modal-login-label">Login to our site</h3>
-                    <span class="fa fa-key frmIcon"></span>
-                    <p>Enter your email and password to log in:</p>
-                </div>
-
-                <div class="modal-body">
-
-                    <form role="form" name="frmLogin" class="login-form">
-                        <div class="form-group">
-                            <label class="sr-only" for="form-email">Email</label>
-                            <input type="email" name="email" ng-model="loginObj.Email" required="" placeholder="Email..." class="form-email form-control" id="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ng-minlength="6" />
-                            <span ng-show="frmLogin.email.$touched  && frmLogin.email.$invalid">
-                                <span class="errorFont" ng-show="frmLogin.email.$error.required">Email is required</span>
-                                <span class="errorFont" ng-show="frmLogin.email.$error.pattern || frmLogin.email.$error.minlength">Invalid email. it should be as example@mail.com </span>
-
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="form-password">Password</label>
-                            <input type="password" name="password" ng-model="loginObj.Password" required="" placeholder="Password..." class="form-password form-control" id="password" ng-minlength="6" />
-                            <span ng-show="frmLogin.password.$touched && frmLogin.password.$invalid">
-                                <span class="errorFont" ng-show="frmLogin.password.$error.required">Password is required</span>
-                                <span class="errorFont" ng-show="frmLogin.password.$error.minlength">Password minimum 6 characters</span>
-                            </span>
-                        </div>
-                        <button type="submit" ng-disabled="frmLogin.$invalid || dataLoading" ng-click="submitLogin(frmLogin)" class="btn btn-primary">
-                            <span class="fa fa-key"></span>&nbsp; Log in
-                            <img ng-show="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                        </button>
-
-                        <span class="errorFont text-center">{{afterLoginError}}</span>
-                    </form>
-
-
-                    <div class="clear2"></div>
-                    <div class="text-center">
-                        <a>
-                            <h6 ng-click="loginForm = false">... or sign up now </h6>
-                        </a>
-                    </div>
-
-                </div>
+                <li ng-show="loggedUser">
+                  <span>Welcome {{userName}} | </span>
+                  <span>
+                    <a href="#">
+                      <span ng-click="logout()">Log out</span>
+                    </a>
+                  </span>
+                </li>
+              </ul>
 
             </div>
+            <!--/.nav-collapse -->
+          </div>
+        </div>
+        <div ng-show="showFavorites" class="showFavorites favouritesPage">
+          <h6>Favorites List</h6>
+          <!-- Favourites -->
+          <section class="container-fluid">
+            <!-- view -->
+            <div class="row">
 
-            <div class="modal-content bounceInUp animated" data-wow-duration="0.1s" data-wow-delay="0.1s" ng-show="!loginForm">
-                <!--register-->
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <h3 class="modal-title" id="modal-login-label">Register to our site</h3>
-                    <span class="fa fa-pencil frmIcon"></span>
-                    <p>Fill the following data to register:</p>
-                </div>
+              <div class="col-sm-10 col-sm-offset-1 ">
 
-                <div class="modal-body">
+                <ul ng-show="listFavourites.length>0" ng-cloack="">
 
-                    <form role="form" name="frmRegister" class="register-form">
-                        <div class="form-group">
-                            <label class="sr-only" for="form-email">Email</label>
-                            <input type="email" name="email" ng-model="registerObj.Email" required="" placeholder="Email..." class="form-email form-control" id="form-email"  pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ng-minlength="6" />
-                            <span ng-show="frmRegister.email.$dirty  && frmRegister.email.$invalid">
-                                <span class="errorFont" ng-show="frmRegister.email.$error.required">Email is required</span>
-                                <span class="errorFont" ng-show="frmRegister.email.$error.pattern || frmRegister.email.$error.minlength">Invalid email. it should be as example@mail.com</span>
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="form-displayName">Display name</label>
-                            <input type="text" name="displayName" ng-model="registerObj.Name" required="" placeholder="Display Name..." class="form-displayName form-control" id="form-displayName"  ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$"  />
-                            <span ng-show="frmRegister.displayName.$touched && frmRegister.displayName.$invalid">
-                                <span class="errorFont" ng-show="frmRegister.displayName.$error.required">Display name is required</span>
-                                <span class="errorFont" ng-show="frmRegister.displayName.$error.minlength">Display name is too short</span>
-                                <span class="errorFont" ng-show="frmRegister.displayName.$error.maxlength">Display name is too long</span>
-                                <span class="errorFont" ng-show="frmRegister.displayName.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="form-password">Password</label>
-                            <input type="password" name="Password" ng-model="registerObj.Password" required="" placeholder="Password..." class="form-password form-control" id="form-password" ng-minlength="6"  />
-                            <span ng-show="frmRegister.Password.$touched && frmRegister.Password.$invalid">
-                                <span class="errorFont" ng-show="frmRegister.Password.$error.required">Password is required</span>
-                                <span class="errorFont" ng-show="frmRegister.Password.$error.minlength">Password minimum 6 characters</span>
-                            </span>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="sr-only" for="form-password">Confirm password</label>
-                            <input type="password" name="confirmPassword" compare-to="registerObj.Password" ng-model="registerObj.confirmPassword" required="" placeholder="Confirm Password..." class="form-confirmpassword form-control" id="form-confirmpassword" />
-                            <span ng-show="frmRegister.confirmPassword.$touched && frmRegister.confirmPassword.$invalid">
-                                <span class="errorFont" ng-show="frmRegister.confirmPassword.$error.required || frmRegister.confirmPassword.$error.compareTo">Passwords must match.</span>
-                            </span>
-                        </div>
-
-                        <button type="submit" ng-disabled="frmRegister.$invalid || dataLoading" ng-click="submitRegister(frmRegister)" class="btn btn-primary">
-                            <span class="fa fa-pencil"></span>&nbsp; Sign up
-                            <img ng-show="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                        </button>
-
-                        <span class="errorFont text-center">{{afterRegisterError}}</span>
-                    </form>
-
-
-                    <div class="clear2"></div>
-                    <div class="text-center">
-                        <a>
-                            <h6 ng-click="loginForm = true">... or log in now </h6>
-                        </a>
+                  <li ng-repeat=" fav in listFavourites">
+                    <div ng-click="redirectToItem({{fav.Name}}, {{fav._id}})" title="click to view item" class="col-xs-3">
+                      <img class="img-responsive wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="{{fav.Pictures[0].URL}}" />
                     </div>
+                    <div ng-click="redirectToItem({{fav.Name}}, {{fav._id}})" title="click to view item" class="col-xs-3">
+                      <h6>{{fav.Name}}</h6>
+                    </div>
+                    <div class="col-xs-3" ng-click="removeFromFavorites({{fav._id}})" title="un favorite this item">
+                      <span  class="dvIcon glyphicon glyphicon-heart-empty iconFav"></span>
+                    </div>
+                  </li>
+                </ul>
 
-                </div>
+                <p ng-show="listFavourites.length>0" class="txtNoData"> No favorites found </p>
+
+              </div>
+
+
 
             </div>
+            <!-- //end view -->
+
+          </section>
+
 
         </div>
+        <div class="dvMiddlePart  hidden-xs">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-3">
+                <h1 class="logo">
+                  <a href="{{expoHref}}">
+                    <img src="/images/Expoeveryday.png" alt="Expo" />
+                  </a>
+                </h1>
+              </div>
+              <div class="col-sm-6">
+                <div class="search-area">
+                  <a class="search-icon visible-xs">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </a>
+                  <form id="search_mini_form" class="hidden-xs">
+                    <div class="form-search ">
+                      <input id="search" type="text" name="txtSearch" placeholder="Search" ng-model="txtSearch" class="input-text" autocomplete="off" />
+                      <button type="submit" ng-click="search()" title="Search" class="button">
+                        <i class="glyphicon glyphicon-search"></i>
+                      </button>
+                      <div id="search_autocomplete" class="search-autocomplete">
+                      </div>
+                      <div class="clearer"></div>
+                    </div>
+                  </form>
+                </div>
+                <h6 style="padding-top: 90px;text-align: center;color: red;" ng-show="searchErr">Enter 2 characters minimum</h6>
+              </div>
+              <div class="col-sm-3">
+
+                <div class="cart-area hidden-xs">
+                  <span>
+                    Call us now<br />
+                    <b>+123 5678 890</b>
+                  </span>
+                </div>
+              </div>
+
+              <!--<div class="menu-icon"><a  title="Menu"><i class="fa fa-bars"></i></a></div>-->
+            </div>
+          </div>
+        </div>
+        <div class="header-wrapper">
+          <div class="main-nav ">
+            <div class="">
+              <div class="menu-wrapper">
+                <div class="sticky-logo wow bounceInLeft">
+
+                  <a href="{{expoHref}}">
+                    <img src="/images/Expoeveryday.png" class="img-responsive" alt="Expo" />
+                  </a>
+
+                </div>
+                <div class="menu-all-pages-container">
+                  <ul class="menu">
+                    <li class="act">
+                      <a href="/{{selectedCountry.IsoCode}}/Home">
+                        <span>Home</span>
+                      </a>
+                    </li>
+                    <li class="act">
+                      <a href="/{{selectedCountry.IsoCode}}/Contactus">
+                        <span>Contact us</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </nav>
     </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal fade" my-modal="" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bounceInUp animated" data-wow-duration="0.1s" data-wow-delay="0.1s" ng-show="loginForm">
+        <!--login-->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h3 class="modal-title" id="modal-login-label">Login to our site</h3>
+          <span class="fa fa-key frmIcon"></span>
+          <p>Enter your email and password to log in:</p>
+        </div>
+
+        <div class="modal-body">
+
+          <form role="form" name="frmLogin" class="login-form">
+            <div class="form-group">
+              <label class="sr-only" for="form-email">Email</label>
+              <input type="email" name="email" ng-model="loginObj.Email" required="" placeholder="Email..." class="form-email form-control" id="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ng-minlength="6" />
+              <span ng-show="frmLogin.email.$touched  && frmLogin.email.$invalid">
+                <span class="errorFont" ng-show="frmLogin.email.$error.required">Email is required</span>
+                <span class="errorFont" ng-show="frmLogin.email.$error.pattern || frmLogin.email.$error.minlength">Invalid email. it should be as example@mail.com </span>
+
+              </span>
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="form-password">Password</label>
+              <input type="password" name="password" ng-model="loginObj.Password" required="" placeholder="Password..." class="form-password form-control" id="password" ng-minlength="6" />
+              <span ng-show="frmLogin.password.$touched && frmLogin.password.$invalid">
+                <span class="errorFont" ng-show="frmLogin.password.$error.required">Password is required</span>
+                <span class="errorFont" ng-show="frmLogin.password.$error.minlength">Password minimum 6 characters</span>
+              </span>
+            </div>
+            <button type="submit" ng-disabled="frmLogin.$invalid || dataLoading" ng-click="submitLogin(frmLogin)" class="btn btn-primary">
+              <span class="fa fa-key"></span>&nbsp; Log in
+              <img ng-show="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </button>
+
+            <span class="errorFont text-center">{{afterLoginError}}</span>
+          </form>
+
+
+          <div class="clear2"></div>
+          <div class="text-center">
+            <a>
+              <h6 ng-click="loginForm = false">... or sign up now </h6>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-content bounceInUp animated" data-wow-duration="0.1s" data-wow-delay="0.1s" ng-show="!loginForm">
+        <!--register-->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h3 class="modal-title" id="modal-login-label">Register to our site</h3>
+          <span class="fa fa-pencil frmIcon"></span>
+          <p>Fill the following data to register:</p>
+        </div>
+
+        <div class="modal-body">
+
+          <form role="form" name="frmRegister" class="register-form">
+            <div class="form-group">
+              <label class="sr-only" for="form-email">Email</label>
+              <input type="email" name="email" ng-model="registerObj.Email" required="" placeholder="Email..." class="form-email form-control" id="form-email"  pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ng-minlength="6" />
+              <span ng-show="frmRegister.email.$dirty  && frmRegister.email.$invalid">
+                <span class="errorFont" ng-show="frmRegister.email.$error.required">Email is required</span>
+                <span class="errorFont" ng-show="frmRegister.email.$error.pattern || frmRegister.email.$error.minlength">Invalid email. it should be as example@mail.com</span>
+              </span>
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="form-displayName">Display name</label>
+              <input type="text" name="displayName" ng-model="registerObj.Name" required="" placeholder="Display Name..." class="form-displayName form-control" id="form-displayName"  ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$"  />
+              <span ng-show="frmRegister.displayName.$touched && frmRegister.displayName.$invalid">
+                <span class="errorFont" ng-show="frmRegister.displayName.$error.required">Display name is required</span>
+                <span class="errorFont" ng-show="frmRegister.displayName.$error.minlength">Display name is too short</span>
+                <span class="errorFont" ng-show="frmRegister.displayName.$error.maxlength">Display name is too long</span>
+                <span class="errorFont" ng-show="frmRegister.displayName.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
+              </span>
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="form-password">Password</label>
+              <input type="password" name="Password" ng-model="registerObj.Password" required="" placeholder="Password..." class="form-password form-control" id="form-password" ng-minlength="6"  />
+              <span ng-show="frmRegister.Password.$touched && frmRegister.Password.$invalid">
+                <span class="errorFont" ng-show="frmRegister.Password.$error.required">Password is required</span>
+                <span class="errorFont" ng-show="frmRegister.Password.$error.minlength">Password minimum 6 characters</span>
+              </span>
+            </div>
+
+            <div class="form-group">
+              <label class="sr-only" for="form-password">Confirm password</label>
+              <input type="password" name="confirmPassword" compare-to="registerObj.Password" ng-model="registerObj.confirmPassword" required="" placeholder="Confirm Password..." class="form-confirmpassword form-control" id="form-confirmpassword" />
+              <span ng-show="frmRegister.confirmPassword.$touched && frmRegister.confirmPassword.$invalid">
+                <span class="errorFont" ng-show="frmRegister.confirmPassword.$error.required || frmRegister.confirmPassword.$error.compareTo">Passwords must match.</span>
+              </span>
+            </div>
+
+            <button type="submit" ng-disabled="frmRegister.$invalid || dataLoading" ng-click="submitRegister(frmRegister)" class="btn btn-primary">
+              <span class="fa fa-pencil"></span>&nbsp; Sign up
+              <img ng-show="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </button>
+
+            <span class="errorFont text-center">{{afterRegisterError}}</span>
+          </form>
+
+
+          <div class="clear2"></div>
+          <div class="text-center">
+            <a>
+              <h6 ng-click="loginForm = true">... or log in now </h6>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
 
 
 </div>

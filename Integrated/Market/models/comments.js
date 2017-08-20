@@ -18,11 +18,10 @@ module.exports = {
                             Schema.find({ "Item": _newComment.Item }, 'User', function (err, usersLst) {
                                 if (err)
                                     reject({
-                                        code: 1,
+                                        code: 2,
                                         data: err
                                     })
                                 else {
-                                    if (usersLst.length > 0) {
                                         var ids = [];
                                         _.each(usersLst, function (comment) {
                                             if (comment.User.toString() != Obj.Store._id.toString() && !_.contains(ids, comment.User.toString())) {
@@ -34,27 +33,23 @@ module.exports = {
                                                 _newnotification.save(function (err, notification) {
                                                     if (err)
                                                         reject({
-                                                            code: 1,
+                                                            code: 3,
                                                             data: err
                                                         })
                                                 })
                                             }
                                         })
-                                    }
-                                }
-                            })
-                        }
-                        _newComment.save(function (err, comment) {
+										_newComment.save(function (err, comment) {
                             if (err)
                                 reject({
-                                    code: 1,
+                                    code: 4,
                                     data: err
                                 })
                             else {
                                 Schema.findOne({ "_id": comment._id }, '').populate('User','Type Name ProfilePicture').exec(function (err, Obj) {
                                     if (err)
                                         reject({
-                                            code: 1,
+                                            code: 5,
                                             data: err
                                         })
                                     else {
@@ -67,17 +62,21 @@ module.exports = {
                                         else
                                             reject({
                                                 code: 21,
-                                                data: "This filteration didn't resulted in any data"
+                                                data: "This comment not exist any more"
                                             })
                                     }
                                 })
                                    
                             }
                         })
+                                }
+                            })
+                        }
+                        
                     }
                     else {
                         reject({
-                            code: 21,
+                            code: 22,
                             data: "This item not exist any more"
                         })
                     }
@@ -96,10 +95,11 @@ module.exports = {
                 else {
                     if (Obj) {
                         if (Obj.User == _userId) {
+							// module.exports.schemaRemove(_commentId);
                             Schema.findOneAndRemove({ "_id": _commentId }, function (err, Obj) {
                                 if (err)
                                     reject({
-                                        code: 1,
+                                        code: 2,
                                         data: err
                                     })
                                 else {
@@ -113,19 +113,19 @@ module.exports = {
 
                         }
                         else {
-                            User.findOne({ "_id": _userId }, '', function (err, user) {
+                            User.findOne({ "_id": _userId ,'Type':'master','Status':'Active'}, '', function (err, user) {
                                 if (err)
                                     reject({
-                                        code: 1,
+                                        code: 3,
                                         data: err
                                     })
                                 else {
                                     if (user) {
-                                        if (user.Type == "master") {
+										 // module.exports.schemaRemove(_commentId);
                                             Schema.findOneAndRemove({ "_id": _commentId }, function (err, Obj) {
                                                 if (err)
                                                     reject({
-                                                        code: 1,
+                                                        code: 4,
                                                         data: err
                                                     })
                                                 else {
@@ -136,18 +136,12 @@ module.exports = {
                                                         })
                                                 }
                                             });
-                                        }
-                                        else 
-                                            reject({
-                                                code: 21,
+                                    }
+									else 
+                                            resolve({
+                                                code: 22,
                                                 data: "Sorry,you can't delete this comment"
                                             })
-                                    }
-                                    else
-                                        reject({
-                                            code: 22,
-                                            data: "This user not exist any more"
-                                        })
                                 }
                             })
                         }
@@ -155,7 +149,7 @@ module.exports = {
                     else
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "This comment not exist"
                         })
                     }
             })
@@ -177,5 +171,28 @@ module.exports = {
                 }
             })
         })
-    }
+    },
+	// schemaRemove:function(_commentId ){
+		 // return new Promise(function (resolve, reject) {
+		 // Schema.findOneAndRemove({ "_id": _commentId }, function (err, Obj) {
+			 // console.log("query");
+                                                // if (err)
+                                                   // return reject({
+                                                        // code: 4,
+                                                        // data: err
+                                                    // })
+                                                // else {
+													// console.log("else");
+                                                    // if (Obj){
+														// console.log("resolve");
+                                                     // return  resolve({
+                                                            // code: 100,
+                                                            // data: "Your comment deleted successfully"
+                                                        // })
+													// }
+                                                // }
+                                            // });
+											// });
+		
+	// }
 }

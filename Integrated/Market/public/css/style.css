@@ -2108,7 +2108,7 @@ h6.mega {
     margin-bottom: 15px;
     padding: 10px;
     padding-bottom: 20px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
     .favouritesPage li:not(:last-child) {
@@ -2408,61 +2408,70 @@ h6.mega {
     min-width: auto;
 }
 
-.timeline .timeline-item > .timeline-event .timeline-heading {
-    padding: 4px 10px;
-    padding-top: 13px;
-    position: relative;
+.timeline {
+    margin-top: 30px;
 }
 
-    .timeline .timeline-item > .timeline-event .timeline-heading h4 {
-        padding-bottom: 0px;
+    .timeline .timeline-item > .timeline-event .timeline-heading {
+        padding: 4px 10px;
+        padding-top: 13px;
+        position: relative;
     }
 
-    .timeline .timeline-item > .timeline-event .timeline-heading .btn {
-        position: absolute;
-        top: 10px;
-        right: 0;
-        color: #e40404;
-    }
+        .timeline .timeline-item > .timeline-event .timeline-heading h4 {
+            padding-bottom: 0px;
+        }
 
-.dvComments textarea,
-.dvComments textarea.form-control {
-    width: 100% !important;
-    height: 50px;
-    margin: 0;
-    padding: 0 20px;
-    vertical-align: middle;
-    background: #f8f8f8;
-    border: 1px solid #ddd;
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 50px;
-    color: #888;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    -o-transition: all .3s;
-    -moz-transition: all .3s;
-    -webkit-transition: all .3s;
-    -ms-transition: all .3s;
-    transition: all .3s;
+        .timeline .timeline-item > .timeline-event .timeline-heading .btn {
+            position: absolute;
+            top: 10px;
+            right: 0;
+            color: #e40404;
+        }
+
+
+.dvComments .dvSendMessage {
+    display: flex;
+    padding-right: 20px;
 }
 
-    .dvComments textarea,
-    .dvComments textarea.form-control {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        line-height: 30px;
-        height: 100px;
-        resize: none;
+    .dvComments .dvSendMessage .btn {
+        height: 100%;
     }
 
-        .dvComments textarea:focus,
-        .dvComments textarea.form-control:focus {
+        .dvComments .dvSendMessage .btn .fa {
+            font-size: 20px;
+        }
+
+    .dvComments .dvSendMessage input[type="text"] {
+        width: 100% !important;
+        height: 50px;
+        margin: 0;
+        padding: 0 20px;
+        vertical-align: middle;
+        background: #f8f8f8;
+        border: 1px solid #ddd;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 50px;
+        color: #888;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        -o-transition: all .3s;
+        -moz-transition: all .3s;
+        -webkit-transition: all .3s;
+        -ms-transition: all .3s;
+        transition: all .3s;
+    }
+
+
+        .dvComments .dvSendMessage input[type="text"]:focus,
+        .dvComments .dvSendMessage input[type="text"].form-control:focus {
             outline: 0;
             background: #fff;
             border: 3px solid #ccc;
@@ -2471,19 +2480,14 @@ h6.mega {
             box-shadow: none;
         }
 
-        .dvComments textarea:-moz-placeholder,
-        .dvComments textarea.form-control:-moz-placeholder,
-        .dvComments textarea:-ms-input-placeholder,
-        .dvComments textarea.form-control:-ms-input-placeholder,
-        .dvComments textarea::-webkit-input-placeholder,
-        .dvComments textarea.form-control::-webkit-input-placeholder {
+        .dvComments .dvSendMessage input[type="text"]:-moz-placeholder,
+        .dvComments .dvSendMessage input[type="text"].form-control:-moz-placeholder,
+        .dvComments .dvSendMessage input[type="text"]:-ms-input-placeholder,
+        .dvComments .dvSendMessage input[type="text"].form-control:-ms-input-placeholder,
+        .dvComments .dvSendMessage input[type="text"]::-webkit-input-placeholder,
+        .dvComments .dvSendMessage input[type="text"].form-control::-webkit-input-placeholder {
             color: #888;
         }
-
-.dvComments .row .col-xs-12 {
-    display: flex;
-    align-items: center;
-}
 
 .facebookShare, .facebookare.focus, .facebookare:focus, .facebookare:hover {
     background: #4267b2;
@@ -2529,35 +2533,75 @@ h6.mega {
     bottom: 30px; /* 30px from the bottom */
 }
 
-/* Show the snackbar when clicking on a button (class added with JavaScript) */
-#snackbar.show {
-    visibility: visible; /* Show the snackbar */
-
-/* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+    /* Show the snackbar when clicking on a button (class added with JavaScript) */
+    #snackbar.show {
+        visibility: visible; /* Show the snackbar */
+        /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
 However, delay the fade out process for 2.5 seconds */
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
 
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;} 
-    to {bottom: 30px; opacity: 1;}
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
 }
 
 @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
 }
 
 @-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;} 
-    to {bottom: 0; opacity: 0;}
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }
 
 @keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }
 
 
+.showFavorites {
+    background: coral;
+    width: 400px;
+    margin: auto;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    position: absolute;
+    z-index: 100;
+    left: 50%;
+    height: 400px;
+    max-height: 400px;
+    overflow: auto;
+}
