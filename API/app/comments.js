@@ -30,7 +30,8 @@ module.exports = {
                                                 var _newnotification = new Notification();
                                                 _newnotification.Text = "Store " + Obj.Store.Name + " commented  on " + "item " + Obj.Name;
                                                 _newnotification.User = comment.User;
-                                                _newnotification.RedirectURL = "Product/" + Obj.Name +"/"+ Obj._id;
+                                                _newnotification.RedirectURL = "Product/" + Obj.Name + "/" + Obj._id;
+                                                _newnotification.NotificationDate = new Date().getTime();
                                                 _newnotification.save(function (err, notification) {
                                                     if (err)
                                                         reject({
@@ -172,11 +173,12 @@ module.exports = {
                     })
                 else {
                      lst.sort(function (a, b) {
-                        return a.Date - b.Date;
-                    });
+                        return b.CommentDate - a.CommentDate;
+                     });
+                     var res = lst.slice(0,10);
                         resolve({
                             code: 100,
-                            data: lst
+                            data: res
                         })
                 }
             })

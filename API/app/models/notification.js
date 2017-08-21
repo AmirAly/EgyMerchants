@@ -7,7 +7,7 @@ var Notification = new Schema({
         ref: 'User',
         required: "Please enter user id"
     },
-    NotificationDate: { type: Number, default: new Date().getTime() },
+    NotificationDate: { type: Number},
     Status: { type: String, default: 'un read' },
     RedirectURL: { type: String, required: 'redirect url is required' }
 });

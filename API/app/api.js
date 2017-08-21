@@ -355,7 +355,7 @@ module.exports = function (app, express) {
     //})
 
     //notifications api calls
-    api.get('/Message/GetUnRead/:_userid', function (req, res) {
+    api.get('/Notification/GetUnRead/:_userid', function (req, res) {
         NotificationLogic.getUnRead(req.params._userid).then(function (result) {
             res.json(result);
         }, function (err) {
@@ -363,6 +363,13 @@ module.exports = function (app, express) {
         });
     })
     
+    //api.get('/Notification/GetAll/:_userid', function (req, res) {
+    //    NotificationLogic.getAll(req.params._userid).then(function (result) {
+    //        res.json(result);
+    //    }, function (err) {
+    //        res.json(err);
+    //    });
+    //})
 
     return api;
 };

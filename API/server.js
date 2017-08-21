@@ -134,7 +134,7 @@ var newmessage = new messageschema({ "From": "5946db5aa7eee71550d33dfc", "To": "
 //    console.log(err);
 //})
 //5980671c6e1f6f0b30dc4377,594660e5734d1d59b7895502
-var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User": "594660e5734d1d59b7895502", "Text": "format time discount 60% for first 2526 purchased" })
+var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User": "594660e5734d1d59b7895502", "Text": "format time discount 80% for first 2526 purchased" })
 //  comment.add(newcomment).then(function (result) {
 //	  console.log(new Date(result.data.CommentDate));
 //   console.log(result.data.CommentDate);
@@ -146,7 +146,7 @@ var newcomment = new commentschema({ "Item": "59466cd6ca6b1c049c494b72", "User":
 // }, function (err) {
    // console.log(err);
 // });
-//comment.getByItem("594a7ae13e856b0b684b3938").then(function (result) {
+//comment.getByItem("59466cd6ca6b1c049c494b72").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
