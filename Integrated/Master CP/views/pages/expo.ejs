@@ -91,7 +91,7 @@
                                             </div>
                                         </div>
 
-                                        <button type="submit" ng-click="updateExpo('<%= expo._id %>')" class="btn btn-primary pull-right">Update expo</button>
+                                        <button type="submit" ng-disabled="frmUpdateExpo.$invalid" ng-click="updateExpo('<%= expo._id %>')" class="btn btn-primary pull-right">Update expo</button>
                                         <div class="clearfix"></div>
                                         <div class=" alert-danger clear text-center" ng-show="errdiv">
                                             <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>

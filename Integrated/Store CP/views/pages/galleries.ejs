@@ -123,7 +123,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group label-floating" ng-class="{'is-empty': isEmpty == true}">
                                                             <label class="control-label">Gallery name</label>
-                                                            <input type="text" class="form-control" ng-model="gallery.Title" ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$" name="galleryTitle" id="galleryTitle">
+                                                            <input type="text" class="form-control" ng-model="gallery.Title" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$" name="galleryTitle" id="galleryTitle">
                                                             <span ng-show="frmAddGallery.galleryTitle.$dirty && frmAddGallery.galleryTitle.$invalid">
                                                                 <span class="errorFont" ng-show="frmAddGallery.galleryTitle.$error.required">Required</span>
                                                                 <span class="errorFont" ng-show="frmAddGallery.galleryTitle.$error.minlength">Gallery name is too short</span>
