@@ -18,10 +18,11 @@ module.exports = {
                             Schema.find({ "Item": _newComment.Item }, 'User', function (err, usersLst) {
                                 if (err)
                                     reject({
-                                        code: 2,
+                                        code: 1,
                                         data: err
                                     })
                                 else {
+                                    if (usersLst.length > 0) {
                                         var ids = [];
                                         _.each(usersLst, function (comment) {
                                             if (comment.User.toString() != Obj.Store._id.toString() && !_.contains(ids, comment.User.toString())) {
@@ -29,27 +30,33 @@ module.exports = {
                                                 var _newnotification = new Notification();
                                                 _newnotification.Text = "Store " + Obj.Store.Name + " commented  on " + "item " + Obj.Name;
                                                 _newnotification.User = comment.User;
-                                                _newnotification.RedirectURL = "Product/" + Obj.Name +"/"+ Obj._id;
+                                                _newnotification.RedirectURL = "Product/" + Obj.Name + "/" + Obj._id;
+                                                _newnotification.NotificationDate = new Date().getTime();
                                                 _newnotification.save(function (err, notification) {
                                                     if (err)
                                                         reject({
-                                                            code: 3,
+                                                            code: 1,
                                                             data: err
                                                         })
                                                 })
                                             }
                                         })
-										_newComment.save(function (err, comment) {
+                                    }
+                                }
+                            })
+                        }
+                        _newComment.CommentDate = new Date().getTime();
+                        _newComment.save(function (err, comment) {
                             if (err)
                                 reject({
-                                    code: 4,
+                                    code: 1,
                                     data: err
                                 })
                             else {
                                 Schema.findOne({ "_id": comment._id }, '').populate('User','Type Name ProfilePicture').exec(function (err, Obj) {
                                     if (err)
                                         reject({
-                                            code: 5,
+                                            code: 1,
                                             data: err
                                         })
                                     else {
@@ -62,21 +69,17 @@ module.exports = {
                                         else
                                             reject({
                                                 code: 21,
-                                                data: "This comment not exist any more"
+                                                data: "This filteration didn't resulted in any data"
                                             })
                                     }
                                 })
                                    
                             }
                         })
-                                }
-                            })
-                        }
-                        
                     }
                     else {
                         reject({
-                            code: 22,
+                            code: 21,
                             data: "This item not exist any more"
                         })
                     }
@@ -95,11 +98,10 @@ module.exports = {
                 else {
                     if (Obj) {
                         if (Obj.User == _userId) {
-							// module.exports.schemaRemove(_commentId);
                             Schema.findOneAndRemove({ "_id": _commentId }, function (err, Obj) {
                                 if (err)
                                     reject({
-                                        code: 2,
+                                        code: 1,
                                         data: err
                                     })
                                 else {
@@ -113,19 +115,19 @@ module.exports = {
 
                         }
                         else {
-                            User.findOne({ "_id": _userId ,'Type':'master','Status':'Active'}, '', function (err, user) {
+                            User.findOne({ "_id": _userId }, '', function (err, user) {
                                 if (err)
                                     reject({
-                                        code: 3,
+                                        code: 1,
                                         data: err
                                     })
                                 else {
                                     if (user) {
-										 // module.exports.schemaRemove(_commentId);
+                                        if (user.Type == "master") {
                                             Schema.findOneAndRemove({ "_id": _commentId }, function (err, Obj) {
                                                 if (err)
                                                     reject({
-                                                        code: 4,
+                                                        code: 1,
                                                         data: err
                                                     })
                                                 else {
@@ -136,12 +138,18 @@ module.exports = {
                                                         })
                                                 }
                                             });
-                                    }
-									else 
-                                            resolve({
-                                                code: 22,
+                                        }
+                                        else 
+                                            reject({
+                                                code: 21,
                                                 data: "Sorry,you can't delete this comment"
                                             })
+                                    }
+                                    else
+                                        reject({
+                                            code: 22,
+                                            data: "This user not exist any more"
+                                        })
                                 }
                             })
                         }
@@ -149,7 +157,7 @@ module.exports = {
                     else
                         reject({
                             code: 21,
-                            data: "This comment not exist"
+                            data: "This filteration didn't resulted in any data"
                         })
                     }
             })
@@ -164,35 +172,16 @@ module.exports = {
                         data: err
                     })
                 else {
+                     lst.sort(function (a, b) {
+                        return b.CommentDate - a.CommentDate;
+                     });
+                     var res = lst.slice(0,10);
                         resolve({
                             code: 100,
-                            data: lst
+                            data: res
                         })
                 }
             })
         })
-    },
-	// schemaRemove:function(_commentId ){
-		 // return new Promise(function (resolve, reject) {
-		 // Schema.findOneAndRemove({ "_id": _commentId }, function (err, Obj) {
-			 // console.log("query");
-                                                // if (err)
-                                                   // return reject({
-                                                        // code: 4,
-                                                        // data: err
-                                                    // })
-                                                // else {
-													// console.log("else");
-                                                    // if (Obj){
-														// console.log("resolve");
-                                                     // return  resolve({
-                                                            // code: 100,
-                                                            // data: "Your comment deleted successfully"
-                                                        // })
-													// }
-                                                // }
-                                            // });
-											// });
-		
-	// }
+    }
 }

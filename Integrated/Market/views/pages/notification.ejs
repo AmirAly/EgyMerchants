@@ -29,7 +29,7 @@
                         <li ng-class="{'unReadNotification': '<%= notification.Status %>' == 'un read'}">
                           <a href="/{{IsoCode}}/<%= notification.RedirectURL %>">
 						    <h6><span class="dvIcon glyphicon glyphicon-bell"></span><span> <%= notification.Text %> </span></h6>
-                            <div class="text-right"><span class="text-muted"><%= notification.Date %></span></div>
+                            <div class="text-right"><span class="text-muted"><%= moment(notification.NotificationDate).format('MMM D, YYYY @ h:mmA') %></span></div>
 						  </a>
                         </li>
 

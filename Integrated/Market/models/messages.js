@@ -19,7 +19,8 @@ module.exports = {
                         var _newnotification = new Notification();
                         _newnotification.Text = "There is new message for you from" + " " +sender;
                         _newnotification.User = _newMessage.To;
-                        _newnotification.RedirectURL = "Inbox/" + _newMessage.To +"/"+ _newMessage.From;
+                        _newnotification.RedirectURL = "Inbox/" + _newMessage.To + "/" + _newMessage.From;
+                        _newnotification.NotificationDate = new Date().getTime();
                         _newnotification.save(function (err, notification) {
                             if(err)
                                 reject({
@@ -27,6 +28,7 @@ module.exports = {
                                     data: err
                                 })
                         })
+                        _newMessage.MessageDate = new Date().getTime();
                         _newMessage.save(function (err, Msg) {
                             if (err)
                                 reject({
@@ -69,9 +71,13 @@ module.exports = {
                                 data: err
                             })
                         else {
+                            Msgs.sort(function (a, b) {
+                                return b.MessageDate - a.MessageDate;
+                            });
+                            var res = Msgs.slice(0, 10);
                                 resolve({
                                     code: 100,
-                                    data: Msgs
+                                    data: res
                                 });
                         }
                     })

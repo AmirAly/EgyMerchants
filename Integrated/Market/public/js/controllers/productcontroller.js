@@ -93,7 +93,7 @@
             console.log(_res);
             if (_res.data.code == 100) {
                 $rootScope.loading = false;
-                $scope.commentsList.push(_res.data.data);
+                $scope.commentsList.unshift(_res.data.data);
                 $scope.commentTxt = "";
 
             } else {

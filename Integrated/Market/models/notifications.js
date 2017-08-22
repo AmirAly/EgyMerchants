@@ -41,9 +41,13 @@ module.exports = {
                                     data: err
                                 })
                             else {
+                                Lst.sort(function (a, b) {
+                                    return b.NotificationDate - a.NotificationDate;
+                     });
+                                var res = Lst.slice(0, 10);
                                 resolve({
                                     code: 100,
-                                    data: Lst
+                                    data: res
                                 })
                             }
                         })

@@ -9,6 +9,7 @@ var message = require('./models/messages');
 var user = require('./models/users');
 var notification = require('./models/notifications');
 var comment = require('./models/comments');
+var moment = require('moment');
 
 module.exports = function (app) {
     // use res.render to load up an ejs view file
@@ -376,6 +377,7 @@ module.exports = function (app) {
     app.get('/:countryIso/Notifications/:me', function (req, res) {
         //console.log(req.params.countryIso);
         var _scope = {};
+        _scope.moment = moment;
         _scope.countryIso = req.params.countryIso;
 
         notification.getAll(req.params.me).then(function (_listAllNotifications) {
