@@ -12,7 +12,7 @@ var express = require('express'),
 var app = express();
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
-
+var _ = require("underscore");
 // Configuration
 
 var mongoose = require('mongoose');
@@ -69,20 +69,36 @@ mongoose.connect(db.url, function (err) {
 var users = [];
 
 io.sockets.on('connection', function (socket) {
-    console.log(socket);
-    console.log('coneeeeeeeeeeeeeeected');
+   // console.log(socket);
+   // console.log('coneeeeeeeeeeeeeeected');
     socket.on('adduser', function (data) {
-        console.log('***************************');
-        console.log(data);
-        console.log('***************************');
-
-        if (!users.indexOf(data) > -1) {
-            console.log('if');
+        if (users.length) {
+            if (!(_.find(users, function (user) { return (user.id.toString() == data.toString()) }))) {
+                var user = new Object();
+                user.id = data;
+                user.socket = socket.id;
+                users.push(user);
+            }
+            else console.log("exist");
+        }
+        else {
+            console.log("add new");
             var user = new Object();
             user.id = data;
             user.socket = socket.id;
             users.push(user);
         }
+      //  console.log('***************************');
+       // console.log(data);
+       // console.log('***************************');
+
+        //if (!users.indexOf(data) > -1) {
+        //    console.log('if');
+        //    var user = new Object();
+        //    user.id = data;
+        //    user.socket = socket.id;
+        //    users.push(user);
+        //}
 
         //if (users.length>0) {
         //    for (var i = 0; i < users.length; i++) {
