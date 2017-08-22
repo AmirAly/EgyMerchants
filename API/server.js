@@ -112,13 +112,13 @@ io.on('connection', function(socket){
 
 
 //594660e5734d1d59b7895502,5946db5aa7eee71550d33dfc,5948d21ff17d942198191fba,5980671c6e1f6f0b30dc4377
-var newmessage = new messageschema({ "From": "5946db5aa7eee71550d33dfc", "To": "594660e5734d1d59b7895502", "Text": "dates 21" });
+var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "5948d21ff17d942198191fba", "Text": "hello welcome" });
 //message.send(newmessage).then(function (result) {
 //        console.log(result);
 //    }, function (err) {
 //        console.log(err);
 //    });
-//message.getAll("5980671c6e1f6f0b30dc4377", "594660e5734d1d59b7895502").then(function (result) {
+//message.getAll("5980671c6e1f6f0b30dc4377", "5948d21ff17d942198191fba").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
