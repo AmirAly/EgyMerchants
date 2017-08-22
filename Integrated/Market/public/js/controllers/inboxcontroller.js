@@ -68,6 +68,7 @@
 
             socket.emit('msg', $scope.messageObject);
             $scope.messageObject.showMe = false;
+            $scope.messageObject.MessageDate = new Date();
             $scope.inboxMesagesList.push($scope.messageObject);
 
             console.log($scope.messageObject);

@@ -75,10 +75,36 @@ io.sockets.on('connection', function (socket) {
         console.log('***************************');
         console.log(data);
         console.log('***************************');
-        var user = new Object();
-        user.id = data;
-        user.socket = socket.id;
-        users.push(user);
+
+        if (!users.indexOf(data) > -1) {
+            console.log('if');
+            var user = new Object();
+            user.id = data;
+            user.socket = socket.id;
+            users.push(user);
+        }
+
+        //if (users.length>0) {
+        //    for (var i = 0; i < users.length; i++) {
+        //        console.log(users[i].id.toString());
+        //        console.log(data.toString());
+        //        console.log('---------------------------');
+        //        if ((users[i].id).toString() !== data.toString()) {
+        //            console.log('if');
+        //            var user = new Object();
+        //            user.id = data;
+        //            user.socket = socket.id;
+        //            users.push(user);
+        //        }
+        //    }
+        //}
+        //else {
+        //    var user = new Object();
+        //    user.id = data;
+        //    user.socket = socket.id;
+        //    users.push(user);
+        //}
+
         console.log(users);
     });
     socket.on('disconnect', function () {
@@ -93,6 +119,7 @@ io.sockets.on('connection', function (socket) {
         message.send(newmessage).then(function (result) {
             for (var i = 0; i < users.length; i++) {
                 if (users[i].id == data.To._id) {
+                    data.MessageDate = result.data.MessageDate;
                     io.to(users[i].socket).emit('newmsg', data);
                     message.updateStatus(result.data._id).then(function (result) {
                         console.log(result);
@@ -101,6 +128,7 @@ io.sockets.on('connection', function (socket) {
                     })
                 }
                 if (users[i].id == data.From._id) {
+                    data.MessageDate = result.data.MessageDate;
                     io.to(users[i].socket).emit('messagesuccess', data);
                 }
             }

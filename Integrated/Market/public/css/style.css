@@ -1934,14 +1934,27 @@ h6.mega {
                     box-shadow: 0px 0px 1px 1px #ffffff;
                 }
 
+                .inboxPage .dvInbox .dvUsersList ul li a {
+                    display: inline-flex;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 100%;
+                }
+
                 .inboxPage .dvInbox .dvUsersList ul li img {
-                    width: 70px;
-                    height: 70px;
+                    width: 40px;
+                    height: 40px;
                     border-radius: 50%;
+                    float: left;
                 }
 
                 .inboxPage .dvInbox .dvUsersList ul li h6 {
-                    padding: 10px 0;
+                    padding: 10px 5px;
+                    float: left;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
 
 .inboxPage .dvMessagesBody {
@@ -2020,6 +2033,7 @@ h6.mega {
 
 .inboxPage .media {
     padding: 10px 65px 10px 10px;
+    position: relative;
 }
 
     .inboxPage .media.myText .media-body {
@@ -2051,20 +2065,37 @@ h6.mega {
         border-radius: 50%;
     }
 
+    .inboxPage .media.myText .dvMessageDate {
+        position: absolute;
+        bottom: 12px;
+        right: 75px;
+        overflow: visible;
+        white-space: nowrap;
+    }
+
+    .inboxPage .media.othersText .dvMessageDate {
+        position: absolute;
+        bottom: 12px;
+        left: 20px;
+        overflow: visible;
+        white-space: nowrap;
+    }
+
 .inboxPage .dvUserMessages img {
     position: relative;
 }
 
 .inboxPage .dvUserMessages .notificationPoint {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 7px;
+    left: 13px;
     width: 10px;
     height: 10px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
     background: #ec0e18;
+    border: 2px solid #fff;
 }
 
 /***** Notifications page *****/

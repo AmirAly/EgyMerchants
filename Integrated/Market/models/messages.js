@@ -72,9 +72,9 @@ module.exports = {
                             })
                         else {
                             Msgs.sort(function (a, b) {
-                                return b.MessageDate - a.MessageDate;
+                                return a.MessageDate - b.MessageDate;
                             });
-                            var res = Msgs.slice(0, 10);
+                            var res = Msgs.slice(-10);
                                 resolve({
                                     code: 100,
                                     data: res

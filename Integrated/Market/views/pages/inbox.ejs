@@ -19,7 +19,7 @@ var usersListObject = <%- JSON.stringify(usersList) %>
                            <a href="/{{IsoCode}}/Inbox/{{userId}}/{{user._id}}"> 
 							   <img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="{{user.ProfilePicture}}" alt="" />
                                <h6>{{user.Name}}</h6>
-							   <div class="notificationPoint" ng-show="user.UnRead"></div>
+							   <div class="notificationPoint animated infinite bounce" ng-show="user.UnRead"></div>
 							</a>
                         </li>
                     </ul>
@@ -36,12 +36,15 @@ var usersListObject = <%- JSON.stringify(usersList) %>
                                 <div class="media-body text-right">
                                     <span>{{user.Text}}</span>
 									<h6 ng-show="user.showMe" class="text-left"><span title="message sent" class="glyphicon glyphicon-ok text-success"></span></h6>
+									<div class="dvMessageDate">{{ user.MessageDate | date : 'MMM d, y @ h:mma'}}</div>
                                 </div>
+								
                                 <div class="media-right text-center">
                                     <img class="media-object" src="{{user.From.ProfilePicture}}" alt="...">
 									{{user.From.Name}}
                                 </div>
                             </div>
+							
                         </div>
 
                         <div class="row" ng-if="user.To._id !== '<%= chatPartener %>'">
@@ -54,7 +57,9 @@ var usersListObject = <%- JSON.stringify(usersList) %>
                                 <div class="media-body">
                                     <span>{{user.Text}}</span>
                                 </div>
+								<div class="dvMessageDate">{{ user.MessageDate | date : 'MMM d, y @ h:mma'}}</div>
                             </div>
+							
                         </div>
 
                     </div>
