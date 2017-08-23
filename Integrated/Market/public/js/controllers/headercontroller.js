@@ -129,10 +129,11 @@
     }
 
     $scope.getFavorites = function () {
+        if ($scope.showFavorites) {
+            $scope.showFavorites = false;
+        } else {
         // fill listFavourites
         $rootScope.loading = true;
-      
-
         var req = {
             method: 'get',
             url: '/GetFavourites/'+$rootScope.userId,
@@ -144,14 +145,14 @@
                 $rootScope.loading = false;
                 console.log('get fav');
                 $scope.listFavourites = _res.data.data.FavouriteItems;
-
+                
             } else {
                 $rootScope.loading = false;
-                
                 console.log('err');
             }
-
+            $scope.showFavorites = true;
         });
+        }
     }
 
     $scope.removeFromFavorites = function (_itemId) {

@@ -691,7 +691,7 @@ h6.mega {
     .pageLanding .container-fluid p {
         font-size: 45px;
         font-weight: 100;
-        font-family: "Century Gothic";
+        font-family: "Mavenpro";
         line-height: .9;
         margin-bottom: 7vh;
         color: #2b2b2b;
@@ -708,7 +708,8 @@ h6.mega {
         text-decoration: underline;
         color: black;
         padding-left: 50px;
-        font-family: "Century Gothic";
+        font-family: "Mavenpro";
+            text-transform: capitalize;
         text-transform: capitalize;
     }
 
@@ -2202,6 +2203,9 @@ h6.mega {
                 max-height: 60px;
                 max-width: 60px;
                 margin: auto;
+                border-radius: 50%;
+                height: 60px;
+                width: 60px;
             }
 
             .favouritesPage li .col .iconFav {

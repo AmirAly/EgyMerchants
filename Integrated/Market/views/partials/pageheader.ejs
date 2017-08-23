@@ -40,17 +40,17 @@
               </div>
               <ul class="nav navbar-nav navbar-right">
                 <li>
-                  <a href="/{{selectedCountry.IsoCode}}/Home">Home</a>
+                  <a href="/{{selectedCountry.IsoCode}}/Home" ng-hide="loggedUser">Home</a>
                 </li>
                 <li>
-                  <a href="/{{selectedCountry.IsoCode}}/Contactus">About us</a>
+                  <a href="/{{selectedCountry.IsoCode}}/Contactus" ng-hide="loggedUser">About us</a>
                 </li>
                 <li data-toggle="modal" data-target="#modal-login" ng-hide="loggedUser">
                   <a href="#">Log in</a>
                 </li>
 
                 <li ng-show="loggedUser">
-                  <a href="#" ng-click="showFavorites=!showFavorites;getFavorites();">Favourites</a>
+                  <a href="#" ng-click="getFavorites()">Favourites</a>
                 </li>
                 <li ng-show="loggedUser">
                   <a href="/{{selectedCountry.IsoCode}}/Notifications/{{userId}}">Notifications</a>
