@@ -204,22 +204,15 @@ module.exports = {
                     })
                 else {
                     if (Obj){
-                    if(Obj.FavouriteItems.length)
                         resolve({
                             code: 100,
                             data: Obj
                         });
-                    else
-                        resolve({
-                            code: 22,
-                            data: "There is no favourite items for you"
-                        });
                     }
-                       
                     else
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "Thisuser not exist"
                         });
                 }
             })
