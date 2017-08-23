@@ -69,59 +69,17 @@ mongoose.connect(db.url, function (err) {
 var users = [];
 
 io.sockets.on('connection', function (socket) {
-   // console.log(socket);
-   // console.log('coneeeeeeeeeeeeeeected');
     socket.on('adduser', function (data) {
-        if (users.length) {
-            if (!(_.find(users, function (user) { return (user.id.toString() == data.toString()) }))) {
+        console.log(_.find(users, function (user) { return (user.id.toString() == data.toString()) }));
+        if ((!(_.find(users, function (user) { return (user.id.toString() == data.toString()) })) && users.length) || users.length == 0) {
+            console.log("add new");
                 var user = new Object();
                 user.id = data;
                 user.socket = socket.id;
                 users.push(user);
             }
-            else console.log("exist");
-        }
-        else {
-            console.log("add new");
-            var user = new Object();
-            user.id = data;
-            user.socket = socket.id;
-            users.push(user);
-        }
-      //  console.log('***************************');
-       // console.log(data);
-       // console.log('***************************');
-
-        //if (!users.indexOf(data) > -1) {
-        //    console.log('if');
-        //    var user = new Object();
-        //    user.id = data;
-        //    user.socket = socket.id;
-        //    users.push(user);
-        //}
-
-        //if (users.length>0) {
-        //    for (var i = 0; i < users.length; i++) {
-        //        console.log(users[i].id.toString());
-        //        console.log(data.toString());
-        //        console.log('---------------------------');
-        //        if ((users[i].id).toString() !== data.toString()) {
-        //            console.log('if');
-        //            var user = new Object();
-        //            user.id = data;
-        //            user.socket = socket.id;
-        //            users.push(user);
-        //        }
-        //    }
-        //}
-        //else {
-        //    var user = new Object();
-        //    user.id = data;
-        //    user.socket = socket.id;
-        //    users.push(user);
-        //}
-
-        console.log(users);
+            else console.log("This user already exist");
+            console.log(users);
     });
     socket.on('disconnect', function () {
         var index = users.indexOf(socket);
