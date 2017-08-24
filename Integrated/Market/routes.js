@@ -220,7 +220,7 @@ module.exports = function (app) {
                                         res.render('pages/search', _scope);
                                     } else {
                                         _scope.lstSearchResult = [];
-                                        _scope.JsonSearchResult = [];
+                                        _scope.JsonSearchResult = '';
                                         res.render('pages/search', _scope);
                                     }
                                 }).catch(function (err) {
