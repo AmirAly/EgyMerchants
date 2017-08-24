@@ -15,7 +15,7 @@
         //setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 
 
-        $scope.$apply();
+        //$scope.$apply();
 
     });
 
@@ -23,7 +23,7 @@
         for (var i = 0; i < $scope.inboxMesagesList.length; i++) {
             if ($scope.inboxMesagesList[i].showMe == false) {
                 $scope.inboxMesagesList[i].showMe = true;
-                $scope.$apply();
+                //$scope.$apply();
             }
         }
         

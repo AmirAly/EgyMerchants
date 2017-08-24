@@ -1,20 +1,8 @@
 ﻿var app = angular.module("app", ['ngAnimate']);
 
-app.run(function ($rootScope, socket) {
+app.run(function ($rootScope) {
     
-    socket.on('newmsg', function (_data) {
-        // Get the snackbar DIV
-        var x = document.getElementById("snackbar");
 
-        // Add the "show" class to DIV
-        x.className = "show";
-
-        // After 3 seconds, remove the show class from DIV
-        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-
-        //$scope.$apply();
-
-    });
 
     $rootScope.$on('$stateChangeSuccess', function () {
         document.body.scrollTop = document.documentElement.scrollTop = 0;

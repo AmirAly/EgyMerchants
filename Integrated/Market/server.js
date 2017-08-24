@@ -34,6 +34,8 @@ app.use(express.static('public'));
 
 var port = process.env.PORT || 8080;
 
+io.heartbeatTimeout = 20000;
+
 mongoose.connect(db.url, function (err) {
     if (err) {
         console.log(err);
@@ -70,6 +72,7 @@ var users = [];
 
 io.sockets.on('connection', function (socket) {
     socket.on('adduser', function (data) {
+        console.log(socket);
         console.log(_.find(users, function (user) { return (user.id.toString() == data.toString()) }));
         if ((!(_.find(users, function (user) { return (user.id.toString() == data.toString()) })) && users.length) || users.length == 0) {
             console.log("add new");
@@ -91,10 +94,11 @@ io.sockets.on('connection', function (socket) {
         var newmessage = { From: data.From._id, To: data.To._id, Text: data.Text };
         newmessage = new messageschema(newmessage);
         message.send(newmessage).then(function (result) {
+            data.MessageDate = result.data.MessageDate;
+
             for (var i = 0; i < users.length; i++) {
+                io.to(users[i].socket).emit('newmsg', data);
                 if (users[i].id == data.To._id) {
-                    data.MessageDate = result.data.MessageDate;
-                    io.to(users[i].socket).emit('newmsg', data);
                     message.updateStatus(result.data._id).then(function (result) {
                         console.log(result);
                     }, function (err) {
@@ -102,7 +106,6 @@ io.sockets.on('connection', function (socket) {
                     })
                 }
                 if (users[i].id == data.From._id) {
-                    data.MessageDate = result.data.MessageDate;
                     io.to(users[i].socket).emit('messagesuccess', data);
                 }
             }
