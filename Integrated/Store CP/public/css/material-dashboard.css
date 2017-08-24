@@ -4015,6 +4015,8 @@ footer {
     .card .title {
         margin-top: 0;
         margin-bottom: 5px;
+        display: block;
+        word-break: break-word;
     }
 
     .card .card-image {
@@ -4051,20 +4053,20 @@ footer {
         padding: 15px 20px;
     }
 
-        .card .card-content .category , .price {
+        .card .card-content .category, .price {
             margin-bottom: 0;
             text-overflow: ellipsis;
             width: 95%;
             white-space: nowrap;
             overflow: hidden;
         }
-        
+
         .card .card-content .itemTitle {
             margin-bottom: 0;
-            text-overflow: ellipsis;
+            /*text-overflow: ellipsis;*/
             width: 95%;
-            white-space: nowrap;
-            overflow: hidden;
+            /*white-space: nowrap;
+            overflow: hidden;*/
         }
 
     .card .card-header {
@@ -5776,6 +5778,7 @@ footer {
 #errImgDiv {
     display: none;
 }
+
 #errImgDivEdit {
     display: none;
 }

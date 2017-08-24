@@ -709,7 +709,7 @@ h6.mega {
         color: black;
         padding-left: 50px;
         font-family: "Mavenpro";
-            text-transform: capitalize;
+        text-transform: capitalize;
         text-transform: capitalize;
     }
 
@@ -1593,6 +1593,15 @@ h6.mega {
     max-height: 500px;
 }
 
+.product-view .flexslider-thumb {
+    max-width: 350px;
+    max-width: 347px;
+}
+
+.accordion-simple .panel-body {
+    display: block;
+    word-break: break-word;
+}
 
 /*animation general*/
 .ng-enter:not(.animated) {
@@ -1820,6 +1829,9 @@ h6.mega {
 
 .pageSearch .product-preview h3.title {
     font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .pageSearch h2 {

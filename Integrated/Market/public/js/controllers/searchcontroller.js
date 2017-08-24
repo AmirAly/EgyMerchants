@@ -4,8 +4,12 @@
     $scope.countries = 'all';
     $scope.stores = 'all';
 
-    console.log(JSON.parse((window.x).replace(/&quot;/g, '"')));
+    console.log(window.x);
+    if (window.x.length > 2) {
+console.log(JSON.parse((window.x).replace(/&quot;/g, '"')));
     $scope.searchResult = JSON.parse((window.x).replace(/&quot;/g, '"'));
+    }
+    
 
     $scope.init1 = function ( _isoCode) {
         $rootScope.IsoCode = _isoCode;
@@ -45,7 +49,8 @@
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
                 $scope.searchResult = _res.data.data;
-                $rootScope.loading = false;
+                //$rootScope.loading = false;
+                window.location.href = "/" + $rootScope.IsoCode + "/Search/" + keyword;
             } else {
                 $scope.searchResult = '';
                 $rootScope.loading = false;
