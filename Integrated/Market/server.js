@@ -70,9 +70,9 @@ var users = [];
 
 io.sockets.on('connection', function (socket) {
     socket.on('adduser', function (data) {
-        console.log(_.find(users, function (user) { return (user.id.toString() == data.toString()) }));
-        if ((!(_.find(users, function (user) { return (user.id.toString() == data.toString()) })) && users.length) || users.length == 0) {
-            console.log("add new");
+        if (users.length) {
+            if (!(_.find(users, function (user) { return (user.id.toString() == data.toString()) }))) {
+                console.log("add new1");
                 var user = new Object();
                 user.id = data;
                 user.socket = socket.id;
@@ -80,12 +80,19 @@ io.sockets.on('connection', function (socket) {
             }
             else console.log("This user already exist");
             console.log(users);
+        }
+        else {
+            var user = new Object();
+            user.id = data;
+            user.socket = socket.id;
+            users.push(user);
+            console.log(users);
+        }
     });
     socket.on('disconnect', function () {
-        var index = users.indexOf(socket);
-        if (index != -1) {
-            users.splice(index, 1);
-        }
+        console.log('Got disconnect!');
+        var i = users.indexOf(socket);
+        users.splice(i, 1);
     });
     socket.on('msg', function (data) {
         var newmessage = { From: data.From._id, To: data.To._id, Text: data.Text };
