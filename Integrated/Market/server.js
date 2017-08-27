@@ -66,6 +66,91 @@ mongoose.connect(db.url, function (err) {
     }
 });
 
+
+
+
+
+
+//var users = [];
+//var connectionsockets = [];
+//io.sockets.on('connection', function (socket) {
+//  //  console.log(socket);
+//    socket.on('adduser', function (data) {
+//        if (users.length) {
+//            if (!(_.find(users, function (user) { return (user.id.toString() == data.toString()) }))) {
+//                console.log("add new1");
+//                //var user = new Object();
+//                //user.id = data;
+//                //user.socket = socket.id;
+//                socket.username = data;
+//                users.push(socket.username);
+//                connectionsockets.push(socket);
+//            }
+//            else console.log("This user already exist");
+//            console.log(users);
+//        }
+//        else {
+//            console.log("add new0");
+//            socket.username = data;
+//            users.push(socket.username);
+//            connectionsockets.push(socket);
+//            console.log(users);
+//        }
+//    });
+//    socket.on('disconnect', function () {
+//        if (!socket.username) return;
+//        console.log('Got disconnect!');
+//        connectionsockets.splice(connectionsockets.indexOf(socket), 1);
+//        users.splice(users.indexOf(socket.username), 1);
+//    });
+//    socket.on('msg', function (data) {
+//        var newmessage = { From: data.From._id, To: data.To._id, Text: data.Text };
+//        newmessage = new messageschema(newmessage);
+//        message.send(newmessage).then(function (result) {
+//            for (var i = 0; i < users.length; i++) {
+//                if (users[i].id == data.To._id) {
+//                    data.MessageDate = result.data.MessageDate;
+//                    io.to(users[i].socket).emit('newmsg', data);
+//                    message.updateStatus(result.data._id).then(function (result) {
+//                        console.log(result);
+//                    }, function (err) {
+//                        console.log(err);
+//                    })
+//                }
+//                if (users[i].id == data.From._id) {
+//                    data.MessageDate = result.data.MessageDate;
+//                    io.to(users[i].socket).emit('messagesuccess', data);
+//                }
+//            }
+//        }, function (err) {
+//            console.log(err);
+//        });
+//    })
+//});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Socket.io Communication
 
 var users = [];
