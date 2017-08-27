@@ -49,31 +49,53 @@
 
 
     $scope.addToFavorites = function (_itemId) {
-        $rootScope.loading = true;
+        $rootScope.favoritesLoader = true;
         $scope.favData = {};
         $scope.favData._userid = $rootScope.userId;
         $scope.favData._itemid = _itemId;
 
-        var req = {
-            method: 'put',
-            url: '/User/AddToFavourites',
-            data: $scope.favData
-        }
-        API.execute(req).then(function (_res) {
-            console.log(_res);
-            if (_res.data.code == 100) {
-                $rootScope.loading = false;
-                $scope.IsFav = true;
-                console.log('is fav');
-                localStorage.setItem('userObject', JSON.stringify(_res.data.data));
-
-            } else {
-                $rootScope.loading = false;
-                $scope.IsFav = false;
-                console.log('not fav');
+        if ($scope.IsFav) {
+            var req = {
+                method: 'put',
+                url: '/User/RemoveFromFavourites',
+                data: $scope.favData
             }
+            API.execute(req).then(function (_res) {
+                console.log(_res);
+                if (_res.data.code == 100) {
+                    $rootScope.favoritesLoader = false;
+                    $scope.IsFav = false;
+                    localStorage.setItem('userObject', JSON.stringify(_res.data.data));
+                } else {
+                    $rootScope.favoritesLoader = false;
+                    $scope.IsFav = true;
+                    console.log('not fav');
+                }
 
-        });
+            });
+        }
+        else {
+            var req = {
+                method: 'put',
+                url: '/User/AddToFavourites',
+                data: $scope.favData
+            }
+            API.execute(req).then(function (_res) {
+                console.log(_res);
+                if (_res.data.code == 100) {
+                    $rootScope.favoritesLoader = false;
+                    $scope.IsFav = true;
+                    console.log('is fav');
+                    localStorage.setItem('userObject', JSON.stringify(_res.data.data));
+
+                } else {
+                    $rootScope.favoritesLoader = false;
+                    $scope.IsFav = false;
+                    console.log('not fav');
+                }
+
+            });
+        }
     }
 
     $scope.submitComment = function () {

@@ -2613,10 +2613,14 @@ h6.mega {
         color: #ee3b27;
     }
 
-        .iconFav.IsFavItem:hover {
+        /*.iconFav.IsFavItem:hover {
             color: #565656;
-        }
+        }*/
 
+.itemsSeprator {
+    padding: 1px 5px;
+    font-size: 18px;
+}
 
 /****** Message toast *******/
 /* The snackbar - position it at the bottom and in the middle of the screen */

@@ -161,8 +161,9 @@
         if ($scope.showFavorites) {
             $scope.showFavorites = false;
         } else {
+            $scope.showFavorites = true;
             // fill listFavourites
-            $rootScope.loading = true;
+            $rootScope.favoritesDataLoading = true;
             var req = {
                 method: 'get',
                 url: '/GetFavourites/' + $rootScope.userId,
@@ -171,21 +172,20 @@
             API.execute(req).then(function (_res) {
                 console.log(_res);
                 if (_res.data.code == 100) {
-                    $rootScope.loading = false;
                     console.log('get fav');
                     $scope.listFavourites = _res.data.data.FavouriteItems;
-
+                    $rootScope.favoritesDataLoading = false;
                 } else {
-                    $rootScope.loading = false;
+                    $rootScope.favoritesDataLoading = false;
+                    $scope.listFavourites = [];
                     console.log('err');
                 }
-                $scope.showFavorites = true;
             });
         }
     }
 
     $scope.removeFromFavorites = function (_itemId) {
-        $rootScope.loading = true;
+        $rootScope.favoritesDataLoading = true;
         $scope.favData = {};
         $scope.favData._userid = $rootScope.userId;
         $scope.favData._itemid = _itemId;
@@ -198,15 +198,14 @@
         API.execute(req).then(function (_res) {
             console.log(_res);
             if (_res.data.code == 100) {
-                //$rootScope.loading = false;
-                $scope.IsFav = true;
+                $rootScope.favoritesDataLoading = false;
                 console.log('removed fav');
                 localStorage.setItem('userObject', JSON.stringify(_res.data.data));
-                window.location.reload();
-
+                $scope.listFavourites = $scope.listFavourites.filter(function (obj) {
+                    return obj._id !== _itemId;
+                });
             } else {
-                $rootScope.loading = false;
-                $scope.IsFav = false;
+                $rootScope.favoritesDataLoading = false;
                 console.log('not removed fav');
             }
 

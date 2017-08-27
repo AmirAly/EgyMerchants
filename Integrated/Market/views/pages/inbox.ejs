@@ -36,7 +36,7 @@ var usersListObject = <%- JSON.stringify(usersList) %>
                                 <div class="media-body text-right">
                                     <span>{{user.Text}}</span>
 									<h6 ng-show="user.showMe" class="text-left"><span title="message sent" class="glyphicon glyphicon-ok text-success"></span></h6>
-									<div class="dvMessageDate">{{ user.MessageDate | date : 'MMM d, y @ h:mma'}}</div>
+									<div class="dvMessageDate" title="{{user.MessageDate | date : 'EEEE MMM d, y @ h:mma'}}">{{ user.MessageDate | date : "d MMM 'at' h:mma"}}</div>
                                 </div>
 								
                                 <div class="media-right text-center">
@@ -57,7 +57,7 @@ var usersListObject = <%- JSON.stringify(usersList) %>
                                 <div class="media-body">
                                     <span>{{user.Text}}</span>
                                 </div>
-								<div class="dvMessageDate">{{ user.MessageDate | date : 'MMM d, y @ h:mma'}}</div>
+								<div class="dvMessageDate" title="{{user.MessageDate | date : 'EEEE MMM d, y @ h:mma'}}">{{ user.MessageDate | date : "d MMM 'at' h:mma"}}</div>
                             </div>
 							
                         </div>
