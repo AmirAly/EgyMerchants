@@ -1937,6 +1937,7 @@ h6.mega {
                 background: #edebf9;
                 padding: 10px;
                 text-align: center;
+                cursor:pointer;
                 /*box-shadow: 1px 0px 1px 1px #edebf9;*/
             }
 
@@ -1953,6 +1954,7 @@ h6.mega {
                     overflow: hidden;
                     text-overflow: ellipsis;
                     width: 100%;
+                    text-decoration: none;
                 }
 
                 .inboxPage .dvInbox .dvUsersList ul li img {
@@ -2498,6 +2500,10 @@ h6.mega {
 
 .pageHeader .dropdown-menu {
     min-width: auto;
+}
+
+.pageHeader .badge {
+        background-color: #d9534f !important;
 }
 
 .timeline {

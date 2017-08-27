@@ -53,7 +53,7 @@
                   <a href="#" ng-click="getFavorites()">Favourites</a>
                 </li>
                 <li ng-show="loggedUser">
-                  <a href="/{{selectedCountry.IsoCode}}/Notifications/{{userId}}">Notifications</a>
+                  <a href="/{{selectedCountry.IsoCode}}/Notifications/{{userId}}">Notifications <span ng-show="showNotificationsCounter" class="badge">{{nonificationsCounter}}</span></a>
                 </li>
                 <li ng-show="loggedUser">
                   <a href="/{{selectedCountry.IsoCode}}/Inbox/{{userId}}/0">Inbox</a>

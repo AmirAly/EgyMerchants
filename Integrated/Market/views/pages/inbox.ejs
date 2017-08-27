@@ -16,10 +16,10 @@ var usersListObject = <%- JSON.stringify(usersList) %>
                 <div class="col-sm-2 col-md-2 col-lg-2 dvUsersList">
                     <ul>
                         <li class="dvUserMessages" ng-repeat="user in usersList track by $index" ng-class="{'active' : activeUserId == user._id}">
-                           <a href="/{{IsoCode}}/Inbox/{{userId}}/{{user._id}}"> 
+                           <a href="/{{IsoCode}}/Inbox/{{userId}}/{{user._id}}" ng-click="redirectToMsg(userId,user._id)"> 
 							   <img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="{{user.ProfilePicture}}" alt="" />
                                <h6>{{user.Name}}</h6>
-							   <div class="notificationPoint animated infinite bounce" ng-show="user.UnRead"></div>
+							   <div class="notificationPoint animated infinite bounce" ng-show="user.UnRead && user._id != '<%= chatPartener %>'"></div>
 							</a>
                         </li>
                     </ul>

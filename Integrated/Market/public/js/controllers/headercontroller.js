@@ -35,6 +35,35 @@
     }
     $scope.load();
 
+
+    $scope.showNotificationsCounter = false;
+    $scope.getUnreadNotifications = function () {
+        $rootScope.loading = true;
+        var req = {
+            method: 'get',
+            url: '/Notification/GetUnRead/' + $rootScope.userId,
+            data: {}
+        }
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 100) {
+                $rootScope.loading = false;
+                if (_res.data.data.unread) {
+                    $scope.nonificationsCounter = _res.data.data.Count;
+                    $scope.showNotificationsCounter = true;
+                }
+                else {
+                    $scope.nonificationsCounter = 0;
+                    $scope.showNotificationsCounter = false;
+                }
+            } else {
+                $rootScope.loading = false;
+                console.log('err');
+            }
+        });
+    }
+    $scope.getUnreadNotifications();
+
     $scope.loginForm = true;
     $scope.afterLoginError = "";
     $scope.loginObj = {};
@@ -132,26 +161,26 @@
         if ($scope.showFavorites) {
             $scope.showFavorites = false;
         } else {
-        // fill listFavourites
-        $rootScope.loading = true;
-        var req = {
-            method: 'get',
-            url: '/GetFavourites/'+$rootScope.userId,
-            data: {}
-        }
-        API.execute(req).then(function (_res) {
-            console.log(_res);
-            if (_res.data.code == 100) {
-                $rootScope.loading = false;
-                console.log('get fav');
-                $scope.listFavourites = _res.data.data.FavouriteItems;
-                
-            } else {
-                $rootScope.loading = false;
-                console.log('err');
+            // fill listFavourites
+            $rootScope.loading = true;
+            var req = {
+                method: 'get',
+                url: '/GetFavourites/' + $rootScope.userId,
+                data: {}
             }
-            $scope.showFavorites = true;
-        });
+            API.execute(req).then(function (_res) {
+                console.log(_res);
+                if (_res.data.code == 100) {
+                    $rootScope.loading = false;
+                    console.log('get fav');
+                    $scope.listFavourites = _res.data.data.FavouriteItems;
+
+                } else {
+                    $rootScope.loading = false;
+                    console.log('err');
+                }
+                $scope.showFavorites = true;
+            });
         }
     }
 
@@ -191,11 +220,27 @@
     // Socket listeners
     // ================
     function addUser() {
-        console.log('enter ' + $rootScope.userObject._id);
-        socket.emit('adduser', $rootScope.userObject._id);
+        if ($rootScope.userObject) {
+            console.log('enter ' + $rootScope.userObject._id);
+            socket.emit('adduser', $rootScope.userObject._id);
+        }
     }
     $timeout(function () {
         addUser();
-    }, 5000)
+    }, 5000);
+
+    socket.on('newmsg', function (_data) {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar");
+
+        // Add the "show" class to DIV
+        x.className = "show";
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+
+        //$scope.$apply();
+
+    });
 
 });
