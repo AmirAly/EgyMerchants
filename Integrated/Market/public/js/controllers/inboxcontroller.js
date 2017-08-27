@@ -1,6 +1,6 @@
 ﻿app.controller("inboxController", function ($scope, $rootScope, $timeout, API, $filter, socket) {
 
-    
+
 
     socket.on('newmsg', function (_data) {
         $scope.inboxMesagesList.push(_data);
@@ -26,7 +26,7 @@
                 //$scope.$apply();
             }
         }
-        
+
     });
 
     $scope.init = function (_isoCode, _activeUser, _currentMessageReceiver) {
@@ -86,4 +86,17 @@
         }
 
     }
+
+    $scope.redirectToMsg = function (_me, _partener) {
+
+        window.location = "/" + $rootScope.IsoCode + "/Inbox/" + _me + "/" + _partener;
+        console.log('Change URL');
+        //$scope.$apply();
+
+        $timeout(function () {
+            console.log('timeout');
+            window.location.reload();
+        }, 2000);
+    }
+
 });

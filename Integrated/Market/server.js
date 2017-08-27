@@ -103,10 +103,9 @@ io.sockets.on('connection', function (socket) {
         newmessage = new messageschema(newmessage);
         message.send(newmessage).then(function (result) {
             data.MessageDate = result.data.MessageDate;
-
             for (var i = 0; i < users.length; i++) {
-                io.to(users[i].socket).emit('newmsg', data);
                 if (users[i].id == data.To._id) {
+                    io.to(users[i].socket).emit('newmsg', data);
                     message.updateStatus(result.data._id).then(function (result) {
                         console.log(result);
                     }, function (err) {
