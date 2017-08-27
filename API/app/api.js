@@ -330,6 +330,13 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.get('/Message/GetAllContacts/:_userid', function (req, res) {
+        MessageLogic.getAllContacts(req.params._userid).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     //comments api calls
     api.post('/Comment/Add', function (req, res) {
         var _newComment = new Comment(req.body);
