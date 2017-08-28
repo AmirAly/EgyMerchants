@@ -1,5 +1,5 @@
 ﻿app.controller("productController", function ($scope, $rootScope, $timeout, API) {
-    //$scope.x = { "name": "ali", "password": "123456" };
+    
     $scope.init = function (_isoCode, _itemId) {
         $rootScope.IsoCode = _isoCode;
 
@@ -99,7 +99,7 @@
     }
 
     $scope.submitComment = function () {
-        $rootScope.loading = true;
+        $scope.newCommentLoading = true;
         $scope.newComment = {
             User: $rootScope.userId,
             Item: $scope.itemId,
@@ -114,36 +114,43 @@
         API.execute(req).then(function (_res) {
             console.log(_res);
             if (_res.data.code == 100) {
-                $rootScope.loading = false;
+                $scope.newCommentLoading = false;
                 $scope.commentsList.unshift(_res.data.data);
                 $scope.commentTxt = "";
-
             } else {
-                $rootScope.loading = false;
+                $scope.newCommentLoading = false;
                 console.log('fail');
             }
-
         });
     }
 
-    $scope.deleteComment = function (_commentId) {
-        $rootScope.loading = true;
-        $scope.newComment = {
+    $scope.openModal = function (_commentId) {
+        console.log(_commentId);
+        $scope.selectedComment = _commentId;
+    }
+
+    $scope.deleteComment = function () {
+        $scope['deleteCommentLoading' + $scope.selectedComment] = true;
+        $scope.commentToDelete = {
             _userid: $rootScope.userId,
-            _commentid: _commentId,
+            _commentid: $scope.selectedComment,
         }
         var req = {
             method: 'put',
             url: '/Comment/Remove',
-            data: $scope.newComment
+            data: $scope.commentToDelete
         }
         API.execute(req).then(function (_res) {
             console.log(_res);
             if (_res.data.code == 100) {
-                window.location.reload();
+                $scope.dismiss();
+                $scope['deleteCommentLoading' + $scope.selectedComment] = false;
+                $scope.commentsList = $scope.commentsList.filter(function (obj) {
+                    return obj._id !== $scope.selectedComment;
+                });
 
             } else {
-                $rootScope.loading = false;
+                $scope['deleteCommentLoading' + $scope.selectedComment] = false;
                 console.log('fail');
             }
 

@@ -53,10 +53,10 @@
                   <a href="#" ng-click="getFavorites()">Favourites</a>
                 </li>
                 <li ng-show="loggedUser">
-                  <a href="/{{selectedCountry.IsoCode}}/Notifications/{{userId}}">Notifications <span ng-show="showNotificationsCounter" class="badge">{{nonificationsCounter}}</span></a>
+                  <a href="/{{selectedCountry.IsoCode}}/Notifications/{{userId}}">Notifications <span title="You have {{nonificationsCounter}} unread notifications" ng-show="showNotificationsCounter" class="badge">{{nonificationsCounter}}</span></a>
                 </li>
                 <li ng-show="loggedUser">
-                  <a href="/{{selectedCountry.IsoCode}}/Inbox/{{userId}}/0">Inbox</a>
+                  <a href="/{{selectedCountry.IsoCode}}/Inbox/{{userId}}/0">Inbox <span title="You have unread messages from {{unreadMessagesCounter}} user" ng-show="showUnReadMessagesCounter" class="badge">{{unreadMessagesCounter}}</span></a>
                 </li>
 
                 <li ng-show="loggedUser">
@@ -94,8 +94,9 @@
                     <div ng-click="redirectToItem(fav.Name,fav._id)" title="click to view item" class="col-xs-7 col">
                       <span>{{fav.Name}}</span>
                     </div>
-                    <div class="col-xs-2 col" ng-click="removeFromFavorites(fav._id)" title="un favorite this item">
-                      <span  class="dvIcon glyphicon glyphicon-heart iconFav IsFavItem "></span>
+                    <div class="col-xs-2 col colIcon" ng-click="removeFromFavorites(fav._id)" title="un favorite this item">
+                      <span ng-hide="favoritesDataLoading{{fav._id}}" class="dvIcon glyphicon glyphicon-heart iconFav IsFavItem "></span> 
+                      &nbsp;<img ng-show="favoritesDataLoading{{fav._id}}" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                     </div>
                   </li>
                 </ul>
@@ -187,7 +188,7 @@
   </div>
 
   <!-- MODAL -->
-  <div class="modal fade" my-modal="" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
+  <div class="modal fade modalLogin" my-modal="" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content bounceInUp animated" data-wow-duration="0.1s" data-wow-delay="0.1s" ng-show="loginForm">
         <!--login-->
