@@ -182,7 +182,26 @@ io.sockets.on('connection', function (socket) {
         users.splice(i, 1);
     });
     socket.on('msg', function (data) {
-        io.emit('adduser', data.From._id);
+        // add user if disconnected
+        if (users.length) {
+            if (!(_.find(users, function (user) { return (user.id.toString() == data.From._id.toString()) }))) {
+                console.log("add new1");
+                var user = new Object();
+                user.id = data.From._id;
+                user.socket = socket.id;
+                users.push(user);
+            }
+            else console.log("This user already exist");
+            console.log(users);
+        }
+        else {
+            var user = new Object();
+            user.id = data.From._id;
+            user.socket = socket.id;
+            users.push(user);
+            console.log(users);
+        }
+        //send msg
         var newmessage = { From: data.From._id, To: data.To._id, Text: data.Text };
         newmessage = new messageschema(newmessage);
         message.send(newmessage).then(function (result) {
