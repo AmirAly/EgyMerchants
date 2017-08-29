@@ -188,8 +188,8 @@ io.sockets.on('connection', function (socket) {
             data.MessageDate = result.data.MessageDate;
             for (var i = 0; i < users.length; i++) {
                 if (users[i].id == data.To._id) {
-                    io.sockets.socket(users[i]).emit('newmsg', data);
-                    //io.to(users[i].socket).emit('newmsg', data);
+                    //io.sockets.socket(users[i]).emit('newmsg', data);
+                    io.to(users[i].socket).emit('newmsg', data);
                     message.updateStatus(result.data._id).then(function (result) {
                         console.log(result);
                     }, function (err) {
@@ -197,8 +197,8 @@ io.sockets.on('connection', function (socket) {
                     })
                 }
                 if (users[i].id == data.From._id) {
-                    io.sockets.socket(users[i]).emit('newmsg', data);
-                   // io.to(users[i].socket).emit('messagesuccess', data);
+                    //io.sockets.socket(users[i]).emit('newmsg', data);
+                    io.to(users[i].socket).emit('messagesuccess', data);
                 }
             }
         }, function (err) {
