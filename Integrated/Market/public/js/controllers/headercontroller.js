@@ -46,7 +46,7 @@
         }
         API.execute(req).then(function (_res) {
             console.log(_res);
-            if (_res.data.code == 100) {
+            if (_res.data.code == 100 || _res.data.code == 21) {
                 $rootScope.loading = false;
                 if (_res.data.data.unread) {
                     $scope.nonificationsCounter = _res.data.data.Count;
@@ -63,6 +63,44 @@
         });
     }
     $scope.getUnreadNotifications();
+
+
+    $scope.getUnreadMessages = function () {
+        $rootScope.loading = true;
+        var req = {
+            method: 'get',
+            url: '/Message/GetAllContacts/' + $rootScope.userId,
+            data: {}
+        }
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 100) {
+                $rootScope.loading = false;
+                $scope.unreadMessagesCounterArray = _res.data.data;
+                $scope.unreadMessagesCounterArray = $scope.unreadMessagesCounterArray.filter(function (obj) {
+                    return obj.UnRead == true;
+                });
+                console.log($scope.unreadMessagesCounterArray);
+                $scope.unreadMessagesCounter = $scope.unreadMessagesCounterArray.length;
+
+                if ($scope.unreadMessagesCounter && $scope.unreadMessagesCounter > 0) {
+                    $scope.showUnReadMessagesCounter = true;
+                }
+                else {
+                    $scope.showUnReadMessagesCounter = false;
+                }
+            } else {
+                $rootScope.loading = false;
+                $scope.showUnReadMessagesCounter = false;
+                console.log('err');
+            }
+        });
+    }
+    $scope.getUnreadMessages();
+
+
+
+
 
     $scope.loginForm = true;
     $scope.afterLoginError = "";
@@ -161,8 +199,9 @@
         if ($scope.showFavorites) {
             $scope.showFavorites = false;
         } else {
+            $scope.showFavorites = true;
             // fill listFavourites
-            $rootScope.loading = true;
+            $rootScope.favoritesDataLoading = true;
             var req = {
                 method: 'get',
                 url: '/GetFavourites/' + $rootScope.userId,
@@ -171,21 +210,21 @@
             API.execute(req).then(function (_res) {
                 console.log(_res);
                 if (_res.data.code == 100) {
-                    $rootScope.loading = false;
                     console.log('get fav');
                     $scope.listFavourites = _res.data.data.FavouriteItems;
-
+                    $rootScope.favoritesDataLoading = false;
                 } else {
-                    $rootScope.loading = false;
+                    $rootScope.favoritesDataLoading = false;
+                    $scope.listFavourites = [];
                     console.log('err');
                 }
-                $scope.showFavorites = true;
             });
         }
     }
 
     $scope.removeFromFavorites = function (_itemId) {
-        $rootScope.loading = true;
+
+        $scope['favoritesDataLoading' + _itemId] = true;
         $scope.favData = {};
         $scope.favData._userid = $rootScope.userId;
         $scope.favData._itemid = _itemId;
@@ -198,18 +237,16 @@
         API.execute(req).then(function (_res) {
             console.log(_res);
             if (_res.data.code == 100) {
-                //$rootScope.loading = false;
-                $scope.IsFav = true;
+                $scope['favoritesDataLoading' + _itemId] = false;
                 console.log('removed fav');
                 localStorage.setItem('userObject', JSON.stringify(_res.data.data));
-                window.location.reload();
-
+                $scope.listFavourites = $scope.listFavourites.filter(function (obj) {
+                    return obj._id !== _itemId;
+                });
             } else {
-                $rootScope.loading = false;
-                $scope.IsFav = false;
+                $scope['favoritesDataLoading' + _itemId] = false;
                 console.log('not removed fav');
             }
-
         });
     }
 
@@ -217,30 +254,5 @@
         window.location.href = '/' + $rootScope.IsoCode + '/Product/' + _name + '/' + _id;
     }
 
-    // Socket listeners
-    // ================
-    function addUser() {
-        if ($rootScope.userObject) {
-            console.log('enter ' + $rootScope.userObject._id);
-            socket.emit('adduser', $rootScope.userObject._id);
-        }
-    }
-    $timeout(function () {
-        addUser();
-    }, 5000);
-
-    socket.on('newmsg', function (_data) {
-        // Get the snackbar DIV
-        var x = document.getElementById("snackbar");
-
-        // Add the "show" class to DIV
-        x.className = "show";
-
-        // After 3 seconds, remove the show class from DIV
-        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-
-        //$scope.$apply();
-
-    });
 
 });

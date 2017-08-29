@@ -1,8 +1,33 @@
 ﻿var app = angular.module("app", ['ngAnimate']);
 
-app.run(function ($rootScope) {
+app.run(function ($rootScope,$timeout, socket) {
     
 
+    // Socket listeners
+    // ================
+    function addUser() {
+        if ($rootScope.userObject) {
+            console.log('enter ' + $rootScope.userObject._id);
+            socket.emit('adduser', $rootScope.userObject._id);
+        }
+    }
+    $timeout(function () {
+        addUser();
+    }, 5000);
+
+    socket.on('newmsg', function (_data) {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar");
+
+        // Add the "show" class to DIV
+        x.className = "show";
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+
+        //$scope.$apply();
+
+    });
 
     $rootScope.$on('$stateChangeSuccess', function () {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
