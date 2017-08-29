@@ -182,6 +182,7 @@ io.sockets.on('connection', function (socket) {
         users.splice(i, 1);
     });
     socket.on('msg', function (data) {
+        io.emit('adduser', data.From._id);
         var newmessage = { From: data.From._id, To: data.To._id, Text: data.Text };
         newmessage = new messageschema(newmessage);
         message.send(newmessage).then(function (result) {
