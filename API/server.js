@@ -84,13 +84,15 @@ io.on('connection', function(socket){
             for (var i = 0; i < users.length; i++) {
                 if (users[i].id == data.To._id) {
                     io.to(users[i].socket).emit('newmsg', data);
-                    message.updateStatus(result.data._id).then(function (result) {
-                        console.log(result);
-                    },function (err) {
-                        console.log(err);
-                    })
+                    //message.updateStatus(result.data._id).then(function (result) {
+                    //    console.log(result);
+                    //},function (err) {
+                    //    console.log(err);
+                    //})
                 }
                 if (users[i].id == data.From._id) {
+                    //data.Msgid = result.data._id;
+                    //console.log(data);
                     io.to(users[i].socket).emit('messagesuccess',data);
                 }
             }
