@@ -337,6 +337,13 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.put('/Message/UpdateStatus', function (req, res) {
+        MessageLogic.updateStatus(req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     //comments api calls
     api.post('/Comment/Add', function (req, res) {
         var _newComment = new Comment(req.body);
