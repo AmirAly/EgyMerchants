@@ -3,7 +3,41 @@
 
 
     socket.on('newmsg', function (_data) {
-        $scope.inboxMesagesList.push(_data);
+        // check if from = opend inbox page  ------   push msg & emit or call msg is read
+
+        if (_data.From._id == $scope.activeUserId) {
+            $scope.inboxMesagesList.push(_data);
+            var req = {
+                method: 'put',
+                url: '/Message/UpdateStatus',
+                data: { _id: _data.msgId }
+            }
+            API.execute(req).then(function (_res) {
+                console.log(_res);
+                if (_res.data.code == 100) {
+                    console.log('msg is read');
+
+                } else {
+                    console.log('msg un read');
+                }
+
+            });
+        }
+        else {
+            var sender = ($filter('filter')($scope.usersList, { _id: _data.From._id }))[0];
+            if (sender) {
+                console.log('exist sender');
+                ($filter('filter')($scope.usersList, { _id: _data.From._id }))[0].UnRead = true;
+            }
+            else {
+                // add new sender
+                console.log('new sender');
+                $scope.usersList.push(_data.From);
+                ($filter('filter')($scope.usersList, { _id: _data.From._id }))[0].UnRead = true;
+            }
+        }
+
+       
 
         //// Get the snackbar DIV
         //var x = document.getElementById("snackbar");
@@ -91,7 +125,7 @@
 
         window.location = "/" + $rootScope.IsoCode + "/Inbox/" + _me + "/" + _partener;
         console.log('Change URL');
-        //$scope.$apply();
+        $scope.$apply();
 
         $timeout(function () {
             console.log('timeout');

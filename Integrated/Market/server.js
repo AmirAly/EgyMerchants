@@ -207,17 +207,12 @@ io.sockets.on('connection', function (socket) {
         message.send(newmessage).then(function (result) {
             data.MessageDate = result.data.MessageDate;
             for (var i = 0; i < users.length; i++) {
-                if (users[i].id == data.To._id) {
-                    //io.sockets.socket(users[i]).emit('newmsg', data);
+                if (users[i].id == data.To._id) { // i received the msg
+                    data.msgId = result.data._id;
+                    console.log(data);
                     io.to(users[i].socket).emit('newmsg', data);
-                    message.updateStatus(result.data._id).then(function (result) {
-                        console.log(result);
-                    }, function (err) {
-                        console.log(err);
-                    })
                 }
-                if (users[i].id == data.From._id) {
-                    //io.sockets.socket(users[i]).emit('newmsg', data);
+                if (users[i].id == data.From._id) { // i send the msg
                     io.to(users[i].socket).emit('messagesuccess', data);
                 }
             }

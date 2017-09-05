@@ -2286,7 +2286,7 @@ h6.mega {
     text-transform: capitalize;
 }
 
-.modalLogin .modal p {
+.modalLogin.modal p {
     font-weight: 300;
     color: #888;
     line-height: 30px;
@@ -2311,11 +2311,11 @@ h6.mega {
         height: 100px;
     }
 
-.modalLogin .modal input[type="text"],
-.modalLogin .modal input[type="email"],
-.modalLogin .modal input[type="password"],
-.modalLogin .modal textarea,
-.modalLogin .modal textarea.form-control {
+.modalLogin.modal input[type="text"],
+.modalLogin.modal input[type="email"],
+.modalLogin.modal input[type="password"],
+.modalLogin.modal textarea,
+.modalLogin.modal textarea.form-control {
     width: 100% !important;
     height: 50px;
     margin: 0;
@@ -2341,18 +2341,18 @@ h6.mega {
     transition: all .3s;
 }
 
-    .modalLogin .modal textarea,
-    .modalLogin .modal textarea.form-control {
+    .modalLogin.modal textarea,
+    .modalLogin.modal textarea.form-control {
         padding-top: 10px;
         padding-bottom: 10px;
         line-height: 30px;
     }
 
-        .modalLogin .modal input[type="text"]:focus,
-        .modalLogin .modal input[type="email"]:focus,
-        .modalLogin .modal input[type="password"]:focus,
-        .modalLogin .modal textarea:focus,
-        .modalLogin .modal textarea.form-control:focus {
+        .modalLogin.modal input[type="text"]:focus,
+        .modalLogin.modal input[type="email"]:focus,
+        .modalLogin.modal input[type="password"]:focus,
+        .modalLogin.modal textarea:focus,
+        .modalLogin.modal textarea.form-control:focus {
             outline: 0;
             background: #fff;
             border: 3px solid #ccc;
@@ -2361,33 +2361,33 @@ h6.mega {
             box-shadow: none;
         }
 
-        .modalLogin .modal input[type="text"]:-moz-placeholder,
-        .modalLogin .modal input[type="email"]:-moz-placeholder,
-        .modalLogin .modal input[type="password"]:-moz-placeholder,
-        .modalLogin .modal textarea:-moz-placeholder,
-        .modalLogin .modal textarea.form-control:-moz-placeholder {
+        .modalLogin.modal input[type="text"]:-moz-placeholder,
+        .modalLogin.modal input[type="email"]:-moz-placeholder,
+        .modalLogin.modal input[type="password"]:-moz-placeholder,
+        .modalLogin.modal textarea:-moz-placeholder,
+        .modalLogin.modal textarea.form-control:-moz-placeholder {
             color: #888;
         }
 
-        .modalLogin .modal input[type="text"]:-ms-input-placeholder,
-        .modalLogin .modal input[type="email"]:-ms-input-placeholder,
-        .modalLogin .modal input[type="password"]:-ms-input-placeholder,
-        .modalLogin .modal textarea:-ms-input-placeholder,
-        .modalLogin .modal textarea.form-control:-ms-input-placeholder {
+        .modalLogin.modal input[type="text"]:-ms-input-placeholder,
+        .modalLogin.modal input[type="email"]:-ms-input-placeholder,
+        .modalLogin.modal input[type="password"]:-ms-input-placeholder,
+        .modalLogin.modal textarea:-ms-input-placeholder,
+        .modalLogin.modal textarea.form-control:-ms-input-placeholder {
             color: #888;
         }
 
-        .modalLogin .modal input[type="text"]::-webkit-input-placeholder,
-        .modalLogin .modal input[type="email"]::-webkit-input-placeholder,
-        .modalLogin .modal input[type="password"]::-webkit-input-placeholder,
-        .modalLogin .modal textarea::-webkit-input-placeholder,
-        .modalLogin .modal textarea.form-control::-webkit-input-placeholder {
+        .modalLogin.modal input[type="text"]::-webkit-input-placeholder,
+        .modalLogin.modal input[type="email"]::-webkit-input-placeholder,
+        .modalLogin.modal input[type="password"]::-webkit-input-placeholder,
+        .modalLogin.modal textarea::-webkit-input-placeholder,
+        .modalLogin.modal textarea.form-control::-webkit-input-placeholder {
             color: #888;
         }
 
 
 
-.modalLogin .modal button.btn {
+.modalLogin.modal button.btn {
     width: 100%;
     height: 50px;
     margin: 0;
@@ -2413,12 +2413,12 @@ h6.mega {
     transition: all .3s;
 }
 
-    .modalLogin .modal button.btn:hover {
+    .modalLogin.modal button.btn:hover {
         opacity: 0.6;
         color: #fff;
     }
 
-    .modalLogin .modal button.btn:active {
+    .modalLogin.modal button.btn:active {
         outline: 0;
         opacity: 0.6;
         color: #fff;
@@ -2427,32 +2427,32 @@ h6.mega {
         box-shadow: none;
     }
 
-    .modalLogin .modal button.btn:focus {
+    .modalLogin.modal button.btn:focus {
         outline: 0;
         opacity: 0.6;
         color: #fff;
     }
 
-    .modalLogin .modal button.btn:active:focus,
-    .modalLogin .modal button.btn.active:focus {
+    .modalLogin.modal button.btn:active:focus,
+    .modalLogin.modal button.btn.active:focus {
         outline: 0;
         opacity: 0.6;
         color: #fff;
     }
 
-.modalLogin .modal h6 {
+.modalLogin.modal h6 {
     font-size: 16px;
     text-decoration: underline;
     cursor: pointer;
 }
 
-.modalLogin .modal .errorFont {
+.modalLogin.modal .errorFont {
     display: block;
     color: #e40808;
     padding: 10px;
 }
 
-.modalLogin .modal .frmIcon {
+.modalLogin.modal .frmIcon {
     position: absolute;
     top: 30px;
     right: 50px;

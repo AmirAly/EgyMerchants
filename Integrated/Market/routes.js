@@ -80,7 +80,11 @@ module.exports = function (app) {
                 _scope.store = _data.data;
                 product.getByStore(req.params.storeId).then(function (_galleriesData) {
                     if (_galleriesData.code == 100) {
-                        _scope.GalleriesJson = JSON.stringify(_galleriesData.data);
+                        if (_galleriesData.data) {
+                            _scope.GalleriesJson = JSON.stringify(_galleriesData.data);
+                        } else {
+                            _scope.GalleriesJson = '';
+                        }
                         _scope.Galleries = _galleriesData.data;
                         product.getFeatured(req.params.storeId).then(function (_featuredItemsData) {
                             if (_featuredItemsData.code == 100) {
