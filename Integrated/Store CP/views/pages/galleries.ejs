@@ -85,6 +85,29 @@
                         <% } %>
                     </div>
 
+                    <!--test sorting-->
+                    <div class="row">
+                        <div class="floatleft listContainer">
+                            <ul ui-sortable="sortableOptions" ng-model="list" class="list">
+                                <li ng-repeat="item in list" class="item">
+                                    {{item.text}}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="floatleft" style="margin-left: 20px;">
+                            <ul class="list logList">
+                                <li ng-repeat="entry in sortingLog track by $index" class="logItem">
+                                    {{entry}}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="clear"></div>
+
+                        <script src="https://cdn.jsdelivr.net/g/jquery@1,jquery.ui@1.10%28jquery.ui.core.min.js+jquery.ui.widget.min.js+jquery.ui.mouse.min.js+jquery.ui.sortable.min.js%29,angularjs@1.2,angular.ui-sortable"></script>
+
+                    </div>
 
                 </div>
 
@@ -138,11 +161,11 @@
                                                         <div class="form-group">
                                                             <div class="form-group label-floating" ng-class="{'is-empty': isEmpty == true}">
                                                                 <label class="control-label"> About gallery</label>
-                                                                <textarea class="form-control" rows="3" ng-model="gallery.Description" required ng-minlength="2"  pattern="^((?!\{\{[^}]+\}\}).)*$" name="galleryDesc" id="galleryDesc"></textarea>
+                                                                <textarea class="form-control" rows="3" ng-model="gallery.Description" required ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$" name="galleryDesc" id="galleryDesc"></textarea>
                                                                 <span ng-show="frmAddGallery.galleryDesc.$dirty && frmAddGallery.galleryDesc.$invalid">
-                                                                <span class="errorFont" ng-show="frmAddGallery.galleryDesc.$error.required">Required</span>
-                                                                <span class="errorFont" ng-show="frmAddGallery.galleryDesc.$error.minlength">Gallery description is too short</span>
-                                                                <span class="errorFont" ng-show="frmAddGallery.galleryDesc.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
+                                                                    <span class="errorFont" ng-show="frmAddGallery.galleryDesc.$error.required">Required</span>
+                                                                    <span class="errorFont" ng-show="frmAddGallery.galleryDesc.$error.minlength">Gallery description is too short</span>
+                                                                    <span class="errorFont" ng-show="frmAddGallery.galleryDesc.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -150,7 +173,7 @@
                                                 </div>
 
                                                 <div class=" alert-danger clear text-center" ng-show="errdiv">
-                                                    <span class="errorFont ng-show="errMsg">{{errorMsg}}</span>
+                                                    <span class="errorFont ng-show=" errmsg">{{errorMsg}}</span>
                                                 </div>
 
                                                 <div class="clearfix"></div>

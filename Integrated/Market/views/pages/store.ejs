@@ -1,13 +1,16 @@
 ﻿<% include ../partials/pagestart %>
 <% include ../partials/pageheader %>
 
+<script>
+var GalleriesJson = <%-JSON.stringify(GalleriesJson)%>;
+</script>
 
 <div class="storePage"  ng-controller="storeController">
     <div class="container">
         <div class="pageCover" style="background: url(<%= store.CoverPhoto %>);">
 
         </div>
-        <div class="pageBody" ng-init="init(<%= GalleriesJson %>, '<%= countryIso %>', '<%= store._id %>')">
+        <div class="pageBody" ng-init="init('<%= countryIso %>', '<%= store._id %>')">
             <div class="dvStoreHeader">
                 <div class="row">
                     <div class="col-sm-12">
@@ -79,7 +82,7 @@
             <div class="dvProductsBlock row">
                 <div class="col-sm-12">
 
-                    <% if (featured.length > 0) { %>
+                    <% if (featured.length > 0) { %> 
                     <% featured.forEach(function(item){ %>
                     <div class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
                         <a href="/{{IsoCode}}/Product/<%= item.Name %>/<%= item._id %>">

@@ -83,7 +83,7 @@ module.exports = function (app) {
                         if (_galleriesData.data) {
                             _scope.GalleriesJson = JSON.stringify(_galleriesData.data);
                         } else {
-                            _scope.GalleriesJson = '';
+                            _scope.GalleriesJson = [];
                         }
                         _scope.Galleries = _galleriesData.data;
                         product.getFeatured(req.params.storeId).then(function (_featuredItemsData) {
@@ -158,6 +158,7 @@ module.exports = function (app) {
         product.getById(req.params.productId).then(function (_product) {
             if (_product.code == 100) {
                 _scope.product = _product.data;
+                _scope.JsonProductName = JSON.stringify(_product.data.Name);
 
                 comment.getByItem(req.params.productId).then(function (_commentsList) {
                     if (_commentsList.code == 100) {
@@ -181,11 +182,13 @@ module.exports = function (app) {
             }
             else {
                 _scope.product = [];
+                _scope.JsonProductName = "";
                 res.render('pages/product', _scope);
             }
         }).catch(function (_err) {
             //console.log(_err);
             _scope.product = [];
+            _scope.JsonProductName = "";
             res.render('pages/product', _scope);
         });
 
