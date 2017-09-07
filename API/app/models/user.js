@@ -20,6 +20,13 @@ var User = new Schema({
         HasFactory: { type: Boolean, default: false },
         Featured: { type: Boolean, default: false }
     },
+    adminNotifications: [{
+        Admin: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required:true
+        }, Text: { type: String }, Status: { type: Boolean, default: false }
+    }],
     Category: {
         type: String
     },

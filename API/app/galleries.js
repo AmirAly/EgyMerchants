@@ -1,4 +1,5 @@
 var Schema = require('./models/gallery');
+var Item = require('./models/item');
 var Helper = require('./helper');
 module.exports = {
     getByStore: function (_storeId) {
@@ -165,7 +166,28 @@ module.exports = {
                 }
             })
         })
-    }
-  
+    },
+    remove: function (_id) {
+    return new Promise(function (resolve, reject) {
+        Schema.findOneAndRemove({ '_id': _id }, function (err, Obj) {
+            if (err)
+                reject({ code: 1, data: err })
+            else {
+                if (Obj) {
+                    Item.remove({ 'Gallery': _id }, function (err,res) {
+                        if(err)
+                            reject({ code: 2, data: err })
+                        else
+                            resolve({
+                                code: 100, data: "This gallery deleted successfuylly"
+                            })
+                    })
+                }
+                else
+                    reject({ code: 22, data: "This gallery not exist" })
+            }
+        })
+    })
+},
 
 }

@@ -45,6 +45,20 @@ module.exports = {
                                 }
                             })
                         }
+                        else {
+                            var _newnotification = new Notification();
+                            _newnotification.Text = "you have new comment on item " + Obj.Name;
+                            _newnotification.User = Obj.Store._id;
+                            _newnotification.RedirectURL = "Product/" + Obj.Name + "/" + Obj._id;
+                            _newnotification.NotificationDate = new Date().getTime();
+                            _newnotification.save(function (err, notification) {
+                                if (err)
+                                    reject({
+                                        code: 1,
+                                        data: err
+                                    })
+                            })
+                        }
                         _newComment.CommentDate = new Date().getTime();
                         _newComment.save(function (err, comment) {
                             if (err)
