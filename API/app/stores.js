@@ -197,7 +197,7 @@ module.exports = {
                 else {
                     if (Obj) {
                         //.update({},{ $pull: {"results":{"answers": {$elemMatch:{q:1} }} }},{ multi: true }, { "$pull": {"Floors":{"Coordinates": {$elemMatch:{Store:_id} }} }},
-                        Expo.findAndUpdate({'Status':'Active'},{$pull:{Coordinates:{Store:_id}}}, { multi: true }, false, true, function (err, editedobj) {
+                        Expo.update({},{$pull:{Floors:{'Coordinates.Store':_id}}}, function (err, editedobj) {
                             if (err)
                                 reject({
                                     code: 1,
