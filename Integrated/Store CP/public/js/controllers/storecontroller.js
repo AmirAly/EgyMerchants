@@ -14,7 +14,6 @@
 
     $scope.currentStore = JSON.parse((window.storeObject).replace(/&quot;/g, '"'));
 
-    alert(new Date(1504685889842));
     $scope.preload();
 
     $scope.currentStore._id = localStorage.getItem('StoreId');

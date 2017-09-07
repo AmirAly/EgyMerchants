@@ -1,38 +1,43 @@
 egm.controller("galleriesController", ['$scope', 'API', function ($scope, API, $apply) {
 
 
-    var tmpList = [];
-
-    for (var i = 1; i <= 6; i++) {
-        tmpList.push({
-            text: 'Item ' + i,
-            value: i
-        });
-    }
-
-    $scope.list = tmpList;
 
 
+    // new galleries array
     $scope.sortingLog = [];
 
     $scope.sortableOptions = {
-        update: function (e, ui) {
-            var logEntry = tmpList.map(function (i) {
-                return i.value;
-            }).join(', ');
-            $scope.sortingLog.push('Update: ' + logEntry);
-        },
-        stop: function (e, ui) {
-            // this callback has the changed model
-            var logEntry = tmpList.map(function (i) {
-                return i.value;
-            }).join(', ');
-            $scope.sortingLog.push('Stop: ' + logEntry);
-        }
+        //update: function (e, ui) {
+        //    var logEntry = $scope.galleriesObject.map(function (i) {
+        //        return i;
+        //    }).join(', ');
+        //    $scope.sortingLog.push('Update: ' + logEntry);
+        //    console.log($scope.sortingLog);
+        //    console.log($scope.galleriesObject);
+
+        //},
+        //stop: function (e, ui) {
+        //    // this callback has the changed model
+        //    var logEntry = $scope.galleriesObject.map(function (i) {
+        //        return i;
+        //    }).join(', ');
+        //    $scope.sortingLog.push('Stop: ' + logEntry);
+        //    console.log($scope.sortingLog);
+        //    console.log($scope.galleriesObject);
+
+        //}
     };
 
+    $scope.load = function () {
+        if (window.galleriesObject) {
+            $scope.galleriesObject = JSON.parse(window.galleriesObject);
+        }
+    }
+    $scope.load();
 
-
+    $scope.saveGalleries = function () {
+        console.log($scope.galleriesObject);
+    }
 
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click();

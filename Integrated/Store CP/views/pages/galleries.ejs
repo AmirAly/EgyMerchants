@@ -1,4 +1,9 @@
 <% include ../partials/headpages %>
+
+<script>
+var galleriesObject = <%-JSON.stringify(galleriesObject)%>;
+</script>
+
 <div ng-controller='galleriesController'>
     <div class="loaderContainer" ng-show="loading"></div>
     <div class="loader" ng-show="loading"></div>
@@ -58,35 +63,32 @@
                         </div>
                     </div>
                     <!-- End Breadcrumbs -->
-                    <div class="row">
+                    <div class="row" ui-sortable="sortableOptions" ng-model="galleriesObject">
                         <% if ( galleries.length > 0  ){ %>
-                        <% galleries.forEach(function(gallery){ %>
-                        <div class="col-md-4">
-                            <div class="card">
+                        <div class="col-md-4" ng-repeat="gallery in galleriesObject track by $index">
+                            <div class="card" style="cursor: move;">
                                 <div class="card-header card-chart">
-                                    <img src="<%=gallery.DisplayPicture%>">
+                                    <img src="{{ gallery.DisplayPicture }}">
                                 </div>
                                 <div class="card-content">
-                                    <h4 class="title itemTitle"><%= gallery.Title %></h4>
-                                    <p class="category"><%= gallery.Description %></p>
+                                    <h4 class="title itemTitle">{{ gallery.Title }}</h4>
+                                    <p class="category">{{ gallery.Description }}</p>
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
-                                        <a ng-click="moveToGallery('<%=gallery._id%>')" class="cursorPointer">
+                                        <a ng-click="moveToGallery(gallery._id)" class="cursorPointer">
                                             <i class="fa fa-cogs" aria-hidden="true"></i> Edit
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <% }); %>
                         <% }else{ %>
                         <p class="text-center">There is no galleries</p>
                         <% } %>
                     </div>
 
-                    
-
+					<button type="button" class="btn btn-primary pull-right" ng-click="saveGalleries()">Save galleries order</button>
                 </div>
 
             </div>

@@ -70,14 +70,17 @@ module.exports = function (app) {
         gallery.getByStore(req.params.storeId).then(function (_galleryLst) {
             if (_galleryLst.code == 100) {
                 _scope.galleries = _galleryLst.data;
+                _scope.galleriesObject = JSON.stringify(_galleryLst.data);
                 res.render('pages/galleries', _scope);
             } else {
                 _scope.galleries = [];
+                _scope.galleriesObject = "";
                 res.render('pages/galleries', _scope);
             }
         }).catch(function (_err) {
             console.log(_err);
             _scope.galleries = [];
+            _scope.galleriesObject = "";
             res.render('pages/galleries', _scope);
         });
     });

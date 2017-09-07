@@ -16,6 +16,7 @@ app.run(function ($rootScope,$timeout, socket) {
     }, 5000);
 
     socket.on('newmsg', function (_data) {
+        console.log('new msg ***************************************');
         // Get the snackbar DIV
         var x = document.getElementById("snackbar");
 
@@ -25,7 +26,7 @@ app.run(function ($rootScope,$timeout, socket) {
         // After 3 seconds, remove the show class from DIV
         setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 
-        //$scope.$apply();
+        $scope.$apply();
 
     });
 
