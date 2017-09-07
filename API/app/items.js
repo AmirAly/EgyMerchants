@@ -265,5 +265,37 @@ module.exports = {
                 }
             })
         })
+    },
+    remove: function (_id) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOneAndRemove({ '_id': _id }, function (err, Obj) {
+                if (err)
+                    reject({ code: 1, data: err })
+                else {
+                    if (Obj)
+                        resolve({
+                            code: 100, data: "This item deleted successfuylly"
+                        })
+                    else
+                        reject({ code: 22, data: "This item not exist" })
+                }
+            })
+        })
+    },
+    removeImage: function (_itemid,_imageid) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOneAndUpdate({ '_id': _itemid }, { $pull: { "Pictures": { "_id": _imageid } } }, function (err, Obj) {
+                if (err)
+                    reject({ code: 1, data: err })
+                else {
+                    if(Obj)
+                        resolve({
+                            code: 100, data: "This item image deleted successfuylly"
+                        })
+                    else
+                        reject({ code: 22, data: "This item not exist" })
+                }
+            })
+        })
     }
 }

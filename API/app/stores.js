@@ -74,7 +74,7 @@ module.exports = {
                 else if (Obj.Status == "Active")
                     resolve({
                         code: 100,
-                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type,ProfilePicture: Obj.ProfilePicture }
+                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type, ProfilePicture: Obj.ProfilePicture, adminNotifications: Obj.adminNotifications }
                     });
             })
         })
@@ -162,6 +162,9 @@ module.exports = {
             })
         })
     },
+    //setAdminNotifications: function () {
+
+    //},
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _id,'Type':'store', 'Status': 'Active' }, { "Password": 0 }, function (err, Obj) {
@@ -186,31 +189,84 @@ module.exports = {
             })
         })
     },
-    suspend: function (_id) {
+    remove: function (_id) {
         return new Promise(function (resolve, reject) {
             Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "deleted" } }, { new: true }, function (err, Obj) {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
-                    if (Obj)
-                        resolve({ code: 100, data: "This store deleted successfuylly" })
+                    if (Obj) {
+                        //.update({},{ $pull: {"results":{"answers": {$elemMatch:{q:1} }} }},{ multi: true }, { "$pull": {"Floors":{"Coordinates": {$elemMatch:{Store:_id} }} }},
+                        Expo.findAndUpdate({'Status':'Active'},{$pull:{Coordinates:{Store:_id}}}, { multi: true }, false, true, function (err, editedobj) {
+                            if (err)
+                                reject({
+                                    code: 1,
+                                    data: err
+                                });
+                            else {
+                                resolve({
+                                    code: 100,
+                                    data: "This store deleted successfuylly"
+                                });
+                            }
+                        });
+                       // resolve({ code: 100, data: "This store deleted successfuylly" })
+                    }
                     else
-                        reject({ code: 21, data: "This filteration didn't resulted in any data" })
+                        reject({ code: 21, data: "This store not exist" })
+                }
+            })
+        })
+    },
+    suspend: function (_id) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "suspended" } }, { new: true }, function (err, Obj) {
+                if (err)
+                    reject({ code: 1, data: err })
+                else {
+                    if (Obj)
+                        resolve({ code: 100, data: "This store suspended successfuylly" })
+                    else
+                        reject({ code: 21, data: "This store not exist" })
+                }
+            })
+        })
+    },
+    active: function (_id) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "Active" } }, { new: true }, function (err, Obj) {
+                if (err)
+                    reject({ code: 1, data: err })
+                else {
+                    if (Obj)
+                        resolve({ code: 100, data: "This store actived successfuylly" })
+                    else
+                        reject({ code: 21, data: "This store not exist" })
                 }
             })
         })
     },
     getAll: function () {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Status': 'Active', 'Type': 'store' }, 'Name Description ProfilePicture Badges Category', function (err, lst) {
+            Schema.find({ $or: [{ 'Status': 'Active' }, { 'Status': 'suspended' }], 'Type': 'store' }, 'Name Description ProfilePicture Badges Category Status', function (err, lst) {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
-                    if (lst.length > 0)
                         resolve({ code: 100, data: lst })
-                    else
-                        reject({ code: 21, data: "This filteration didn't resulted in any data" })
                 }
+            })
+        })
+    },
+    addAdminNotification:function(_id,_notification) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOneAndUpdate({ '_id': _id }, { $addToSet: { adminNotifications: _notification } }, { new: true }, function (err, Obj) {
+                if(err)
+                    reject({ code: 1, data: err })
+                else
+                    if(Obj)
+                        resolve({ code: 100, data: "notification added successfully" })
+                    else
+                        reject({code:21,data:"This store not exist"})
             })
         })
     },
