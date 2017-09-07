@@ -38,63 +38,67 @@
 
     $scope.showNotificationsCounter = false;
     $scope.getUnreadNotifications = function () {
-        $rootScope.loading = true;
-        var req = {
-            method: 'get',
-            url: '/Notification/GetUnRead/' + $rootScope.userId,
-            data: {}
-        }
-        API.execute(req).then(function (_res) {
-            console.log(_res);
-            if (_res.data.code == 100 || _res.data.code == 21) {
-                $rootScope.loading = false;
-                if (_res.data.data.unread) {
-                    $scope.nonificationsCounter = _res.data.data.Count;
-                    $scope.showNotificationsCounter = true;
-                }
-                else {
-                    $scope.nonificationsCounter = 0;
-                    $scope.showNotificationsCounter = false;
-                }
-            } else {
-                $rootScope.loading = false;
-                console.log('err');
+        if ($rootScope.userId) {
+            $rootScope.loading = true;
+            var req = {
+                method: 'get',
+                url: '/Notification/GetUnRead/' + $rootScope.userId,
+                data: {}
             }
-        });
+            API.execute(req).then(function (_res) {
+                console.log(_res);
+                if (_res.data.code == 100 || _res.data.code == 21) {
+                    $rootScope.loading = false;
+                    if (_res.data.data.unread) {
+                        $scope.nonificationsCounter = _res.data.data.Count;
+                        $scope.showNotificationsCounter = true;
+                    }
+                    else {
+                        $scope.nonificationsCounter = 0;
+                        $scope.showNotificationsCounter = false;
+                    }
+                } else {
+                    $rootScope.loading = false;
+                    console.log('err');
+                }
+            });
+        }
     }
     $scope.getUnreadNotifications();
 
 
     $scope.getUnreadMessages = function () {
-        $rootScope.loading = true;
-        var req = {
-            method: 'get',
-            url: '/Message/GetAllContacts/' + $rootScope.userId,
-            data: {}
-        }
-        API.execute(req).then(function (_res) {
-            console.log(_res);
-            if (_res.data.code == 100) {
-                $rootScope.loading = false;
-                $scope.unreadMessagesCounterArray = _res.data.data;
-                $scope.unreadMessagesCounterArray = $scope.unreadMessagesCounterArray.filter(function (obj) {
-                    return obj.UnRead == true;
-                });
-                console.log($scope.unreadMessagesCounterArray);
-                $scope.unreadMessagesCounter = $scope.unreadMessagesCounterArray.length;
-
-                if ($scope.unreadMessagesCounter && $scope.unreadMessagesCounter > 0) {
-                    $scope.showUnReadMessagesCounter = true;
-                }
-                else {
-                    $scope.showUnReadMessagesCounter = false;
-                }
-            } else {
-                $rootScope.loading = false;
-                $scope.showUnReadMessagesCounter = false;
-                console.log('err');
+        if ($rootScope.userId) {
+            $rootScope.loading = true;
+            var req = {
+                method: 'get',
+                url: '/Message/GetAllContacts/' + $rootScope.userId,
+                data: {}
             }
-        });
+            API.execute(req).then(function (_res) {
+                console.log(_res);
+                if (_res.data.code == 100) {
+                    $rootScope.loading = false;
+                    $scope.unreadMessagesCounterArray = _res.data.data;
+                    $scope.unreadMessagesCounterArray = $scope.unreadMessagesCounterArray.filter(function (obj) {
+                        return obj.UnRead == true;
+                    });
+                    console.log($scope.unreadMessagesCounterArray);
+                    $scope.unreadMessagesCounter = $scope.unreadMessagesCounterArray.length;
+
+                    if ($scope.unreadMessagesCounter && $scope.unreadMessagesCounter > 0) {
+                        $scope.showUnReadMessagesCounter = true;
+                    }
+                    else {
+                        $scope.showUnReadMessagesCounter = false;
+                    }
+                } else {
+                    $rootScope.loading = false;
+                    $scope.showUnReadMessagesCounter = false;
+                    console.log('err');
+                }
+            });
+        }
     }
     $scope.getUnreadMessages();
 

@@ -1,16 +1,26 @@
 ﻿app.controller("storeController", function ($scope, $rootScope, $timeout, API) {
-    $scope.init = function (_galleriesJson, _isoCode, _storeId) {
+    $scope.init = function (_isoCode, _storeId) {
         $rootScope.IsoCode = _isoCode;
+
+        if (window.GalleriesJson.length > 0) {
+            $scope.GalleriesJson = JSON.parse(window.GalleriesJson);
+        }
+        else {
+            $scope.GalleriesJson = [];
+        }
+
+
         $scope.GalleriesLst = [];
-        for (var i = 0; i < _galleriesJson.length; i++) {
-            var result = _galleriesJson[i].gallery.slice(1, -1);
+        for (var i = 0; i < $scope.GalleriesJson.length; i++) {
+            console.log($scope.GalleriesJson);
+            var result = $scope.GalleriesJson[i].gallery.slice(1, -1);
             var result2 = $.trim(result.substring(result.indexOf("Title:") + 6));
             var result3 = result2.slice(1, -1);
-            _galleriesJson[i].gallery = result3;
+            $scope.GalleriesJson[i].gallery = result3;
         }
-        $scope.GalleriesLst = _galleriesJson;
+        $scope.GalleriesLst = $scope.GalleriesJson;
 
-
+        console.log($scope.GalleriesLst);
 
         if ($rootScope.loggedUser) {
             $scope.visitedList = JSON.parse(localStorage.getItem('userObject')).VisitedStores;

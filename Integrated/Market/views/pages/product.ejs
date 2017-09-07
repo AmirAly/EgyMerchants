@@ -1,7 +1,10 @@
 ﻿<% include ../partials/pagestart %>
 <% include ../partials/pageheader %>
 
-<script>var commentObject = <%-JSON.stringify(JsonComments)%>;</script>
+<script>
+var commentObject = <%-JSON.stringify(JsonComments)%>;
+var itemName = <%-JSON.stringify(JsonProductName)%>;
+</script>
 
 <div ng-controller="productController">
     <div ng-init="init('<%= countryIso %>','<%= product._id %>')">
@@ -84,7 +87,7 @@
 								</div>
                                 <div ng-show="loggedUser" class="itemsSeprator"> | </div>
                                 <div class="">
-                                    <a ng-click="fbshareCurrentPage('<%= product.Name %>')" class="btn btn-sm facebookShare" target="_blank" alt="Share on Facebook">
+                                    <a ng-click="fbshareCurrentPage(itemName)" class="btn btn-sm facebookShare" target="_blank" alt="Share on Facebook">
                                         <i class="fa fa-facebook-square fa-1"><span> Share</span></i>
                                     </a>
                                 </div>

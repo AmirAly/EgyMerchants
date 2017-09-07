@@ -1,5 +1,5 @@
 ﻿app.controller("productController", function ($scope, $rootScope, $timeout, API) {
-    
+
     $scope.init = function (_isoCode, _itemId) {
         $rootScope.IsoCode = _isoCode;
 
@@ -7,8 +7,16 @@
         $scope.commentsList = JSON.parse(window.commentObject);
         console.log($scope.commentsList);
 
+        $scope.itemName = JSON.parse(window.itemName);
+
         $scope.itemId = _itemId;
-        $scope.favList = JSON.parse(localStorage.getItem('userObject')).FavouriteItems;
+
+        if (localStorage.getItem('userObject')) {
+            $scope.favList = JSON.parse(localStorage.getItem('userObject')).FavouriteItems;
+        } else {
+            $scope.favList = [];
+        }
+
         console.log($scope.favList);
         if ($scope.favList.indexOf(_itemId) !== -1) {
             $scope.message = 'artNr already exists!';
@@ -20,7 +28,14 @@
         }
         console.log($scope.message);
 
-        $scope.userType = JSON.parse(localStorage.getItem('userObject')).Type;
+
+        if (localStorage.getItem('userObject')) {
+            $scope.userType = JSON.parse(localStorage.getItem('userObject')).Type;
+        } else {
+            $scope.userType = [];
+        }
+
+
         console.log($scope.userType);
         window.twttr = (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0],
