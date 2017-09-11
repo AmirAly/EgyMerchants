@@ -259,13 +259,19 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //    console.log(err);
 //});
 
-//item.removeImage("59afb91e4d4fea0011c2cc0b", "59afb9834d4fea0011c2cc0e").then(function (result) {
+//item.removeImage("59afb91e4d4fea0011c2cc0b", "59b12cf5ab49580011b54ae2").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
 //store.addAdminNotification("59afc6554d4fea0011c2cc23", { Text: "new not", Admin: "59427908734d1d235a944767" }).then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+
+//store.setAdminNotifications("59afc6554d4fea0011c2cc23", [{ "_id": "59afe4d55051d50bdc7feef8" }, { "_id": "59afe4d55051d50bdc7feef9" }]).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -290,3 +296,14 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //}, function (err) {
 //    console.log(err);
 //});
+//gallery.order([{ "_id": "59a29e1dbfa8140011a2b476" }, { "_id": "59a3d78b00b9940011fcd91b" }, { "_id": "599e9c9fbae7500011ced979" }]).then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//gallery.getByStore("59a29dd9bfa8140011a2b474").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+

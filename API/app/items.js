@@ -284,18 +284,40 @@ module.exports = {
     },
     removeImage: function (_itemid,_imageid) {
         return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ '_id': _itemid }, { $pull: { "Pictures": { "_id": _imageid } } }, function (err, Obj) {
+            Schema.findOne({ '_id': _itemid }, 'Pictures', function (err, Obj) {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
-                    if(Obj)
-                        resolve({
-                            code: 100, data: "This item image deleted successfuylly"
-                        })
+                    if (Obj)
+                    {
+                        if (Obj.Pictures.length > 1)
+                        {
+                            Schema.update({ '_id': _itemid }, { $pull: { "Pictures": { "_id": _imageid } } }, function (err, Obj) {
+                                if (err)
+                                    reject({ code: 2, data: err })
+                                else
+                                    resolve({code: 100, data: "This item image deleted successfuylly"})
+                            })
+                        }
+                        else
+                            resolve({ code: 101, data: "Sorry not allowed to delete the last item image" })
+                    }
                     else
                         reject({ code: 22, data: "This item not exist" })
-                }
+                        }
             })
+            //Schema.findOneAndUpdate({ '_id': _itemid }, { $pull: { "Pictures": { "_id": _imageid } } }, function (err, Obj) {
+            //    if (err)
+            //        reject({ code: 1, data: err })
+            //    else {
+            //        if(Obj)
+            //            resolve({
+            //                code: 100, data: "This item image deleted successfuylly"
+            //            })
+            //        else
+            //            reject({ code: 22, data: "This item not exist" })
+            //    }
+            //})
         })
     }
 }

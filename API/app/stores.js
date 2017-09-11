@@ -162,9 +162,25 @@ module.exports = {
             })
         })
     },
-    //setAdminNotifications: function () {
-
-    //},
+    setAdminNotifications: function (_id, _notifications) {
+        return new Promise(function (resolve, reject) {
+            var i = 0;
+            _.each(_notifications, function (notification) {
+                            Schema.findOneAndUpdate({ "_id": _id, 'AdminNotifications._id': notification._id }, { $set: { 'AdminNotifications.$.Status':true} }, function (err, Obj) {
+                                if (err)
+                                    reject({ code: 1, data: err })
+                                else {
+                                    i++;
+                                    if ( i== _notifications.length)
+                                        resolve({
+                                            code: 100,
+                                            data: "Admin notifications updated successfully"
+                                        });
+                                }
+                            })
+                        })
+        })
+    },
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _id,'Type':'store', 'Status': 'Active' }, { "Password": 0 }, function (err, Obj) {
@@ -196,21 +212,22 @@ module.exports = {
                     reject({ code: 1, data: err })
                 else {
                     if (Obj) {
-                        //.update({},{ $pull: {"results":{"answers": {$elemMatch:{q:1} }} }},{ multi: true }, { "$pull": {"Floors":{"Coordinates": {$elemMatch:{Store:_id} }} }},
-                        Expo.update({},{$pull:{Floors:{'Coordinates.Store':_id}}}, function (err, editedobj) {
+                        Expo.find({ 'Status': 'Active', 'Floors.Coordinates.Store': _id }, function (err, allexpoes) {
                             if (err)
                                 reject({
                                     code: 1,
                                     data: err
                                 });
                             else {
+                                _.each(allexpoes, function (expo) {
+                                    _.each(expo.Floors, function (floor) { _.each(floor.Coordinates, function (coordinate) {if(coordinate.Store==_id) Expo.update({ "Floors._id": floor._id }, { $pull:{'Floors.$.Coordinates._id':coordinate._id} }) }) })
+                                })
                                 resolve({
                                     code: 100,
-                                    data: "This store deleted successfuylly"
+                                    data: "ok"
                                 });
                             }
                         });
-                       // resolve({ code: 100, data: "This store deleted successfuylly" })
                     }
                     else
                         reject({ code: 21, data: "This store not exist" })

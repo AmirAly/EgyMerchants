@@ -20,7 +20,7 @@ var User = new Schema({
         HasFactory: { type: Boolean, default: false },
         Featured: { type: Boolean, default: false }
     },
-    adminNotifications: [{
+    AdminNotifications: [{
         Admin: {
             type: Schema.Types.ObjectId,
             ref: 'User',
