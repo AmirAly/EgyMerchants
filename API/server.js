@@ -59,6 +59,8 @@ mongoose.connect(db.url, function (err) {
             console.log('listening on sockets');
         });
         console.log('connected to database and server is listeining ');
+        //console.log(new Date("9/11/2017 10:00:00").getTime());
+        //console.log(new Date(1505116800000));
     }
 });
 
@@ -281,7 +283,7 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //}, function (err) {
 //    console.log(err);
 //});
-//store.remove("59a29dd9bfa8140011a2b474").then(function (result) {
+//store.remove("599e9a97bae7500011ced976").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -303,6 +305,11 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //});
 //gallery.getByStore("59a29dd9bfa8140011a2b474").then(function (result) {
 //    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//expo.getByCategory("59a3d43e00b9940011fcd913").then(function (result) {
+//    console.log(result.data[0].Floors[0].Coordinates);
 //}, function (err) {
 //    console.log(err);
 //});

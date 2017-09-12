@@ -212,6 +212,20 @@ module.exports = {
                     reject({ code: 1, data: err })
                 else {
                     if (Obj) {
+                        Gallery.updateMany({ "Store": _id }, { $set: { Status: "deleted" } }).exec(function (err, lst) {
+                            if (err)
+                                reject({
+                                    code: 3,
+                                    data: err
+                                })
+                        })
+                        Item.updateMany({ "Store": _id }, { $set: { Status: "deleted" } }).exec(function (err, lst) {
+                            if (err)
+                                reject({
+                                    code: 4,
+                                    data: err
+                                })
+                        })
                         Expo.find({ 'Status': 'Active', 'Floors.Coordinates.Store': _id }, function (err, allexpoes) {
                             if (err)
                                 reject({
@@ -219,15 +233,30 @@ module.exports = {
                                     data: err
                                 });
                             else {
-                                _.each(allexpoes, function (expo) {
-                                    _.each(expo.Floors, function (floor) { _.each(floor.Coordinates, function (coordinate) {if(coordinate.Store==_id) Expo.update({ "Floors._id": floor._id }, { $pull:{'Floors.$.Coordinates._id':coordinate._id} }) }) })
-                                })
-                                resolve({
-                                    code: 100,
-                                    data: "ok"
-                                });
+                                if (allexpoes.length) {
+                                    _.each(allexpoes, function (expo) {
+                                        _.each(expo.Floors, function (floor) {
+                                            _.each(floor.Coordinates, function (coordinate) {
+                                                if (coordinate.Store == _id) {
+                                                    Expo.findOneAndUpdate({ '_id': expo._id, "Floors._id": floor._id },
+                                                        { $pull: { 'Floors.$.Coordinates': { "_id": coordinate._id } } },function (err, data) {
+                                                          if (err) { reject({ code: 2, data: err }) }
+                                                          else {
+                                                              //console.log(data);
+                                                              //this if check to confirm that when resolve happen the data already updated in database
+                                                              if (expo._id == allexpoes[allexpoes.length - 1]._id)
+                                                                  resolve({ code: 100, data: "This store deleted successfully" });
+                                                          }
+                                                      })
+                                                }
+                                            })
+                                        })
+                                    })
+                                }
+                                else { resolve({ code: 100, data: "This store deleted successfully" }); }
                             }
                         });
+
                     }
                     else
                         reject({ code: 21, data: "This store not exist" })
@@ -241,8 +270,26 @@ module.exports = {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
-                    if (Obj)
-                        resolve({ code: 100, data: "This store suspended successfuylly" })
+                    if (Obj) {
+                        Gallery.updateMany({ "Store": _id }, { $set: { Status: "suspended" } }).exec(function (err) {
+                            if (err)
+                                reject({
+                                    code: 2,
+                                    data: err
+                                })
+                            else
+                            {
+                                Item.updateMany({ "Store": _id }, { $set: { Status: "suspended" } }).exec(function (err) {
+                                    if (err)
+                                        reject({
+                                            code: 3,
+                                            data: err
+                                        })
+                                    else resolve({ code: 100, data: "This store suspended successfuylly" })
+                                })
+                            }
+                        })
+                    }
                     else
                         reject({ code: 21, data: "This store not exist" })
                 }
@@ -255,8 +302,27 @@ module.exports = {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
-                    if (Obj)
-                        resolve({ code: 100, data: "This store actived successfuylly" })
+                    if (Obj){
+                        Gallery.updateMany({ "Store": _id }, { $set: { Status: "Active" } }).exec(function (err) {
+                            if (err)
+                                reject({
+                                    code: 2,
+                                    data: err
+                                })
+                            else
+                            {
+                                Item.updateMany({ "Store": _id }, { $set: { Status: "Active" } }).exec(function (err) {
+                                    if (err)
+                                        reject({
+                                            code: 3,
+                                            data: err
+                                        })
+                                    else resolve({ code: 100, data: "This store actived successfuylly" })
+                                })
+                            }
+                        })
+                    }
+                        
                     else
                         reject({ code: 21, data: "This store not exist" })
                 }
