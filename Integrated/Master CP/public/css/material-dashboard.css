@@ -5824,13 +5824,27 @@ footer {
 }
 
 
-.pageFloors .col-sm-2 {
+.pageFloors .col-xs-2 {
     background: beige;
     border: 1px dashed #cbcbcc;
     text-align: center;
     /*height: 100px;*/
     height: 20%;
-    padding: 50px;
+    /*padding: 50px;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pageFloors .container-fluid {
+    padding: 0;
+}
+
+.pageFloors .main-panel {
+    width: 100%;
+}
+.pageFloors .card .card-content{
+    padding:15px;
 }
 
 .pageFloors .busy {
@@ -5848,6 +5862,11 @@ footer {
     /*width: 1600px;*/
     overflow: hidden;
     position: relative;
+}
+
+/*modal*/
+.md-datepicker-calendar-pane.md-pane-open{
+      z-index: 1050;
 }
 
 #errImgDiv {

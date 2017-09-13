@@ -1,1 +1,1 @@
-﻿var egm = angular.module('egm', []);
+﻿var egm = angular.module('egm', ['ngMaterial']);
