@@ -78,7 +78,7 @@
             }
         });
     }
-
+    
     $scope.suspendStore = function () {
         console.log('suspendStore');
         console.log($scope.selectedStore);
@@ -87,6 +87,31 @@
         var req = {
             method: 'put',
             url: '/Store/suspend',
+            data: {
+                _id: $scope.selectedStore,
+            }
+        }
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 100) {
+                window.location.reload();
+            } else {
+                $scope.loading = false;
+                $scope.errMsg = true;
+                $scope.errdiv = true;
+                $scope.errorMsg = _res.data.data;
+            }
+        });
+    }
+
+    $scope.deleteStore = function () {
+        console.log('deleteStore');
+        console.log($scope.selectedStore);
+        // store [] is suspended now 
+        $scope.loading = true;
+        var req = {
+            method: 'put',
+            url: '/Store/delete',
             data: {
                 _id: $scope.selectedStore,
             }
