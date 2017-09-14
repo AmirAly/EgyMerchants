@@ -4,8 +4,8 @@
         $scope.storeId = _id;
         $scope.storeName = store;
         if (Verified == 'true')
-            $scope.verified = true;            
-        else 
+            $scope.verified = true;
+        else
             $scope.verified = false;
         if (HasFactory == 'true')
             $scope.hasFactory = true;
@@ -54,4 +54,78 @@
         localStorage.clear();
     };
 
+    $scope.activateStore = function () {
+        console.log('activateStore');
+        console.log($scope.selectedStore);
+        // store [] is enabled now 
+        $scope.loading = true;
+        var req = {
+            method: 'put',
+            url: '/Store/active',
+            data: {
+                _id: $scope.selectedStore,
+            }
+        }
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 100) {
+                window.location.reload();
+            } else {
+                $scope.loading = false;
+                $scope.errMsg = true;
+                $scope.errdiv = true;
+                $scope.errorMsg = _res.data.data;
+            }
+        });
+    }
+    
+    $scope.suspendStore = function () {
+        console.log('suspendStore');
+        console.log($scope.selectedStore);
+        // store [] is suspended now 
+        $scope.loading = true;
+        var req = {
+            method: 'put',
+            url: '/Store/suspend',
+            data: {
+                _id: $scope.selectedStore,
+            }
+        }
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 100) {
+                window.location.reload();
+            } else {
+                $scope.loading = false;
+                $scope.errMsg = true;
+                $scope.errdiv = true;
+                $scope.errorMsg = _res.data.data;
+            }
+        });
+    }
+
+    $scope.deleteStore = function () {
+        console.log('deleteStore');
+        console.log($scope.selectedStore);
+        // store [] is suspended now 
+        $scope.loading = true;
+        var req = {
+            method: 'put',
+            url: '/Store/delete',
+            data: {
+                _id: $scope.selectedStore,
+            }
+        }
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 100) {
+                window.location.reload();
+            } else {
+                $scope.loading = false;
+                $scope.errMsg = true;
+                $scope.errdiv = true;
+                $scope.errorMsg = _res.data.data;
+            }
+        });
+    }
 });

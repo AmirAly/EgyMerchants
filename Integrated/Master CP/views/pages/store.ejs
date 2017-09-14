@@ -78,6 +78,8 @@
                                                 <th></th>
                                                 <th></th>
                                                 <th></th>
+                                                <th></th>
+											    <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -113,6 +115,27 @@
                                                 <td>
                                                     <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click='editStore("<%= store._id %>","<%= store.Name %>", "<%= store.Badges.Featured %>","<%= store.Badges.HasFactory %>","<%= store.Badges.Verified %>")' data-target=".bs-example-modal-lg" data-toggle="modal" data-original-title="Edit store">
                                                         <i class="material-icons">edit</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
+                                                </td>
+                                                <% if(store.enabled){ %>
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-info btn-simple btn-xs" data-target=".suspendModal" data-toggle="modal" ng-click='selectedStore = "<%= store._id %>"' data-original-title="suspend store">
+                                                        <i class="material-icons">pause</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
+                                                </td>
+                                                <% } else{ %>
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-success btn-simple btn-xs" data-target=".activateModal" data-toggle="modal" ng-click='selectedStore = "<%= store._id %>"' data-original-title="activate store">
+                                                        <i class="material-icons">play_arrow</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
+                                                </td>
+                                                <% } %>
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-target=".deleteModal" data-toggle="modal" ng-click='selectedStore = "<%= store._id %>"' data-original-title="delete store">
+                                                        <i class="material-icons">close</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
@@ -188,6 +211,121 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit" ng-click="save()" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+    <!-- Start Modal -->
+    <div class="modal fade suspendModal" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="card">
+                                <div class="card-header" data-background-color="orange">
+                                    <h4 class="title">suspend store</h4>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12">
+                                        <h5> Are you sure you want to suspend this store ? </h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class=" alert-danger clear text-center" ng-show="errdiv">
+                                <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-click="suspendStore()" class="btn btn-primary">Suspend</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+    <!-- Start Modal -->
+    <div class="modal fade activateModal" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="card">
+                                <div class="card-header" data-background-color="orange">
+                                    <h4 class="title">activate store</h4>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12">
+                                        <h5> Are you sure you want to activate this store ? </h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class=" alert-danger clear text-center" ng-show="errdiv">
+                                <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-click="activateStore()" class="btn btn-primary">Activate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+
+    <!-- Start Modal -->
+    <div class="modal fade deleteModal" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="card">
+                                <div class="card-header" data-background-color="orange">
+                                    <h4 class="title">delete store</h4>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12">
+                                        <h5> Are you sure you want to delete this store ? </h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class=" alert-danger clear text-center" ng-show="errdiv">
+                                <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-click="deleteStore()" class="btn btn-primary">Delete</button>
                 </div>
             </div>
         </div>
