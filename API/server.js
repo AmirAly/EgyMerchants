@@ -59,7 +59,8 @@ mongoose.connect(db.url, function (err) {
             console.log('listening on sockets');
         });
         console.log('connected to database and server is listeining ');
-        //console.log(new Date("9/11/2017 10:00:00").getTime());
+        //console.log(mongoose.Types.ObjectId('578df3efb618f5141202a196'));
+        //console.log(new Date("9/20/2017 10:00:00").getTime());
         //console.log(new Date(1505116800000));
     }
 });
@@ -261,24 +262,24 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //    console.log(err);
 //});
 
-//item.removeImage("59afb91e4d4fea0011c2cc0b", "59b12cf5ab49580011b54ae2").then(function (result) {
+//item.removeImage("59a29e84bfa8140011a2b477", "59a2a09cbfa8140011a2b480").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
-//store.addAdminNotification("59afc6554d4fea0011c2cc23", { Text: "new not", Admin: "59427908734d1d235a944767" }).then(function (result) {
+//store.addAdminNotification("59ba1227ff8e760012987122", { Text: "new noti test", Admin: "59427908734d1d235a944767" }).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
 
-//store.setAdminNotifications("59afc6554d4fea0011c2cc23", [{ "_id": "59afe4d55051d50bdc7feef8" }, { "_id": "59afe4d55051d50bdc7feef9" }]).then(function (result) {
+//store.setAdminNotifications("59ba1227ff8e760012987122", [{ "_id": "59ba5126771e890d848c84e2" }, { "_id": "59ba518673e15f071c60f4fc" }]).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//store.login({ "Email": "testhello1@mail.com", "Password": "testhello" }).then(function (result) {
+//store.login({ "Email": "testff@mail.com", "Password": "testff" }).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -293,12 +294,12 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //}, function (err) {
 //    console.log(err);
 //});
-//gallery.remove("59afc73d4d4fea0011c2cc2d").then(function (result) {
+//gallery.remove("59a3d78b00b9940011fcd91b").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
 //});
-//gallery.order([{ "_id": "59a29e1dbfa8140011a2b476" }, { "_id": "59a3d78b00b9940011fcd91b" }, { "_id": "599e9c9fbae7500011ced979" }]).then(function (result) {
+//gallery.order([ { "_id": "59a29e1dbfa8140011a2b476" },{ "_id": "59afb8cf4d4fea0011c2cc0a" }, { "_id": "59a3d78b00b9940011fcd91b" }, { "_id": "599e9c9fbae7500011ced979" }]).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -309,7 +310,8 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //    console.log(err);
 //});
 //expo.getByCategory("59a3d43e00b9940011fcd913").then(function (result) {
-//    console.log(result.data[0].Floors[0].Coordinates);
+//    console.log(result)
+//    console.log(result.data[1].Floors[0].Coordinates);
 //}, function (err) {
 //    console.log(err);
 //});

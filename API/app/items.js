@@ -306,18 +306,6 @@ module.exports = {
                         reject({ code: 22, data: "This item not exist" })
                         }
             })
-            //Schema.findOneAndUpdate({ '_id': _itemid }, { $pull: { "Pictures": { "_id": _imageid } } }, function (err, Obj) {
-            //    if (err)
-            //        reject({ code: 1, data: err })
-            //    else {
-            //        if(Obj)
-            //            resolve({
-            //                code: 100, data: "This item image deleted successfuylly"
-            //            })
-            //        else
-            //            reject({ code: 22, data: "This item not exist" })
-            //    }
-            //})
         })
     }
 }
