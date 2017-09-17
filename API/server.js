@@ -308,6 +308,7 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //}, function (err) {
 //    console.log(err);
 //});
+//,mmmmmmm
 //expo.getByCategory("59a3d43e00b9940011fcd913").then(function (result) {
 //    console.log(result.data[0].Floors[0].Coordinates);
 //}, function (err) {
