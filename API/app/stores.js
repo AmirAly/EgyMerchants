@@ -50,7 +50,7 @@ module.exports = {
     },
     login: function (_store) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ 'Email': _store.Email }, { 'Password': _store.Password }, { 'Type': 'store' }] }, '', function (err, Obj) {
+            Schema.findOne({ $and: [{ 'Email': _store.Email }, { 'Password': _store.Password }, { 'Type': 'store' }, {'Status':'Active'}] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -74,7 +74,7 @@ module.exports = {
                 else if (Obj.Status == "Active")
                     resolve({
                         code: 100,
-                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type, ProfilePicture: Obj.ProfilePicture, adminNotifications: Obj.adminNotifications }
+                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type, ProfilePicture: Obj.ProfilePicture, AdminNotifications: Obj.AdminNotifications }
                     });
             })
         })
@@ -234,7 +234,11 @@ module.exports = {
                                 });
                             else {
                                 if (allexpoes.length) {
-                                    _.each(allexpoes, function (expo) {
+                                      var coordinatesfiltered = [];
+                                        //added to determine the last coordinate will updated so that used in if condition that resolve after ensure all updates finished
+                                      _.each(allexpoes,function(expo){_.each(expo.Floors, function (floor) { _.each(floor.Coordinates, function (coordinate) { if (coordinate.Store ==_id) coordinatesfiltered.push(coordinate); }) })});
+                                      console.log(coordinatesfiltered);
+                                      _.each(allexpoes, function (expo) {
                                         _.each(expo.Floors, function (floor) {
                                             _.each(floor.Coordinates, function (coordinate) {
                                                 if (coordinate.Store == _id) {
@@ -242,9 +246,9 @@ module.exports = {
                                                         { $pull: { 'Floors.$.Coordinates': { "_id": coordinate._id } } },function (err, data) {
                                                           if (err) { reject({ code: 2, data: err }) }
                                                           else {
-                                                              //console.log(data);
+                                                             // console.log(coordinate._id);
                                                               //this if check to confirm that when resolve happen the data already updated in database
-                                                              if (expo._id == allexpoes[allexpoes.length - 1]._id)
+                                                              if (expo._id == allexpoes[allexpoes.length - 1]._id && coordinate._id == coordinatesfiltered[coordinatesfiltered.length - 1]._id)
                                                                   resolve({ code: 100, data: "This store deleted successfully" });
                                                           }
                                                       })
@@ -342,7 +346,7 @@ module.exports = {
     },
     addAdminNotification:function(_id,_notification) {
         return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ '_id': _id }, { $addToSet: { adminNotifications: _notification } }, { new: true }, function (err, Obj) {
+            Schema.findOneAndUpdate({ '_id': _id,'Type':'store','Status':'Active' }, { $addToSet: { AdminNotifications: _notification } }, { new: true }, function (err, Obj) {
                 if(err)
                     reject({ code: 1, data: err })
                 else

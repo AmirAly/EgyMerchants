@@ -199,7 +199,7 @@ module.exports = {
                     if (err)
                         reject({ code: 1, data: err })
                     else {
-                        if(Obj&&Obj.Order==_galleries.length)
+                        if(Obj.Order==_galleries.length)
                             resolve({
                                 code: 100,
                                 data: "Galleries ordered successfully"
