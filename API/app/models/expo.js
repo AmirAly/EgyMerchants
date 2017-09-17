@@ -24,7 +24,7 @@ var Expo = new Schema({
             Height: { type: Number },
             Img: { type: String },
             StoreName: { type: String, min: 2, max: 50 },
-            ExpiryDate: { type: Number }
+            ExpiryDate: { type: Number, default:0 }
         }],
     }],
     FlipTime: { type: Number , default:0}

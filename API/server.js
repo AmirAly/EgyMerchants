@@ -309,10 +309,24 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //}, function (err) {
 //    console.log(err);
 //});
-//expo.getByCategory("59a3d43e00b9940011fcd913").then(function (result) {
-//    console.log(result)
-//    console.log(result.data[1].Floors[0].Coordinates);
+//expo.getByCategory2("59a3d43e00b9940011fcd913").then(function (result) {
+//   // console.log(result)
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
+//expo.getById("599eb1b1f82415001127f01f").then(function (result) {
+//    // console.log(result)
+//    console.log(result.data.Floors[0].Coordinates);
+//    console.log(result.data.Floors[1].Coordinates);
 //}, function (err) {
 //    console.log(err);
 //});
 
+//expo.getStores("599eb1b1f82415001127f01f").then(function (result) {
+//     console.log(result)
+//    console.log(result.data.Floors[0].Coordinates);
+//    console.log(result.data.Floors[1].Coordinates[0]);
+//}, function (err) {
+//    console.log(err);
+//});

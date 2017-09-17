@@ -10,8 +10,7 @@ var user = require('./models/users');
 var notification = require('./models/notifications');
 var comment = require('./models/comments');
 var moment = require('moment');
-//comment
-//huhkjlkjl;kjl;jl;
+
 module.exports = function (app) {
     // use res.render to load up an ejs view file
     app.get('/', function (req, res) {

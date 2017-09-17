@@ -233,69 +233,9 @@ module.exports = {
             })
         })
     },
-    getByCategory: function (_categoryId) {
-        return new Promise(function (resolve, reject) {
-            Schema.find({ 'Category': _categoryId, 'Status': 'Active', 'Floors.Coordinates.ExpiryDate': { '$lt': new Date().getTime() } }, function (err, lstexpos) {
-                if (err)
-                    reject({
-                        code: 1,
-                        data: err
-                    });
-                else {
-                    if (lstexpos.length) {
-                        var coordinatesfiltered = [];
-                        //added to determine the last coordinate will updated so that used in if condition that resolve after ensure all updates finished
-                        _.each(lstexpos, function (expo) { _.each(expo.Floors, function (floor) { _.each(floor.Coordinates, function (coordinate) { if (coordinate.ExpiryDate < new Date().getTime()) coordinatesfiltered.push(coordinate); }) }) });
-                        console.log(coordinatesfiltered);
-                        _.each(lstexpos, function (expo) {
-                                _.each(expo.Floors, function (floor) {
-                                _.each(floor.Coordinates, function (coordinate) {
-                                    if (coordinate.ExpiryDate < new Date().getTime()) {
-                                        var floorid = floor._id;
-                                        Schema.findOneAndUpdate({ '_id': expo._id, "Floors._id": floor._id },
-                                                        { $pull: { 'Floors.$.Coordinates': { "_id": coordinate._id } } },
-                                                      { new: true }, function (err, Obj) {
-                                                          if (err) { reject({ code: 2, data: err }) }
-                                                          else {
-                                                              console.log(coordinate._id);
-                                                              if (expo._id == lstexpos[lstexpos.length - 1]._id&&coordinate._id==coordinatesfiltered[coordinatesfiltered.length-1]._id) {
-                                                                  Schema.find({ 'Category': _categoryId, 'Status': 'Active' }, '_id Title Banner Floors').populate('Floors.Coordinates.Store', '_id Name Type Badges Status').exec(function (err, lst) {
-                                                                      if (err)
-                                                                          reject({
-                                                                              code: 2,
-                                                                              data: err
-                                                                          });
-                                                                      else {
-                                                                          resolve({ code: 100, data: lst })
-                                                                      }
-                                                                  })
-                                                              }
-                                                          }
-                                                      })
-                                    }
-                                })
-                            })
-                        })
-                    }
-                    else {
-                        Schema.find({ 'Category': _categoryId, 'Status': 'Active' }, '_id Title Banner Floors').populate('Floors.Coordinates.Store', '_id Name Type Badges Status').exec(function (err, lst) {
-                            if (err)
-                                reject({
-                                    code: 2,
-                                    data: err
-                                });
-                            else {
-                                resolve({ code: 100, data: lst })
-                            }
-                        })
-                    }
-                }
-            })
-        })
-    },
     getStores: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id, 'Status': 'Active' }).populate('Floors.Coordinates.Store', '_id Name Type Badges Status').exec(function (err, Obj) {
+            Schema.findOne({ '_id': _id, 'Status': 'Active' },function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -303,9 +243,25 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        resolve({
-                            code: 100,
-                            data: Obj
+                        var expos = [];
+                        expos.push(Obj);
+                        module.exports.filterByExpiryDate(expos).then(function (data) {
+                            if (data.code == 100) {
+                                Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate('Floors.Coordinates.Store', '_id Name Type Badges Status').exec(function (err, expo) {
+                                    if (err)
+                                        reject({
+                                            code: 2,
+                                            data: err
+                                        });
+                                    else {
+                                        resolve({ code: 100, data: expo })
+                                    }
+                                })
+                            }
+                            else reject({
+                                code: 3,
+                                data: err
+                            })
                         });
                     }
                     else {
@@ -334,7 +290,7 @@ module.exports = {
     },
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate('Category', '_id Name').exec(function (err, Obj) {
+            Schema.findOne({ '_id': _id, 'Status': 'Active' },function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -342,10 +298,28 @@ module.exports = {
                     });
                 else {
                     if (Obj)
-                        resolve({
-                            code: 100,
-                            data: Obj
+                    {
+                        var expos = [];
+                        expos.push(Obj);
+                        module.exports.filterByExpiryDate(expos).then(function (data) {
+                            if (data.code == 100) {
+                                Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate('Category', '_id Name').exec(function (err, expo) {
+                                    if (err)
+                                        reject({
+                                            code: 2,
+                                            data: err
+                                        });
+                                    else {
+                                        resolve({ code: 100, data: expo })
+                                    }
+                                })
+                            }
+                            else reject({
+                                code: 3,
+                                data: err
+                            })
                         });
+                    }
                     else
                         reject({
                             code: 21,
@@ -355,7 +329,7 @@ module.exports = {
             })
         })
     },
-    getByCategory2: function (_categoryId) {
+    getByCategory: function (_categoryId) {
         return new Promise(function (resolve, reject) {
             Schema.find({ 'Category': _categoryId, 'Status': 'Active', 'Floors.Coordinates.ExpiryDate': { '$lt': new Date().getTime() } }, function (err, lstexpos) {
                 if (err)
@@ -365,7 +339,24 @@ module.exports = {
                     });
                 else {
                     if (lstexpos.length) {
-                        module.exports.filterByExpiryDate(lstexpos);
+                        module.exports.filterByExpiryDate(lstexpos).then(function (data) {
+                            if (data.code == 100) {
+                                Schema.find({ 'Category': _categoryId, 'Status': 'Active' }, '_id Title Banner Floors').populate('Floors.Coordinates.Store', '_id Name Type Badges Status').exec(function (err, lst) {
+                                    if (err)
+                                        reject({
+                                            code: 2,
+                                            data: err
+                                        });
+                                    else {
+                                        resolve({ code: 100, data: lst })
+                                    }
+                                })
+                            }
+                            else reject({
+                                code: 3,
+                                data: err
+                            })
+                        });
                     }
                     else {
                         Schema.find({ 'Category': _categoryId, 'Status': 'Active' }, '_id Title Banner Floors').populate('Floors.Coordinates.Store', '_id Name Type Badges Status').exec(function (err, lst) {
@@ -401,16 +392,7 @@ module.exports = {
                                               else {
                                                   console.log(coordinate._id);
                                                   if (expo._id == lstexpos[lstexpos.length - 1]._id && coordinate._id == coordinatesfiltered[coordinatesfiltered.length - 1]._id) {
-                                                      Schema.find({ 'Category': _categoryId, 'Status': 'Active' }, '_id Title Banner Floors').populate('Floors.Coordinates.Store', '_id Name Type Badges Status').exec(function (err, lst) {
-                                                          if (err)
-                                                              reject({
-                                                                  code: 2,
-                                                                  data: err
-                                                              });
-                                                          else {
-                                                              resolve({ code: 100, data: lst })
-                                                          }
-                                                      })
+                                                      resolve({ code:100});
                                                   }
                                               }
                                           })
@@ -419,5 +401,65 @@ module.exports = {
                 })
             })
         })
-    }
+    },
+    //getByCategory2: function (_categoryId) {
+    //    return new Promise(function (resolve, reject) {
+    //        Schema.find({ 'Category': _categoryId, 'Status': 'Active', 'Floors.Coordinates.ExpiryDate': { '$lt': new Date().getTime() } }, function (err, lstexpos) {
+    //            if (err)
+    //                reject({
+    //                    code: 1,
+    //                    data: err
+    //                });
+    //            else {
+    //                if (lstexpos.length) {
+    //                    var coordinatesfiltered = [];
+    //                    //added to determine the last coordinate will updated so that used in if condition that resolve after ensure all updates finished
+    //                    _.each(lstexpos, function (expo) { _.each(expo.Floors, function (floor) { _.each(floor.Coordinates, function (coordinate) { if (coordinate.ExpiryDate < new Date().getTime()) coordinatesfiltered.push(coordinate); }) }) });
+    //                    console.log(coordinatesfiltered);
+    //                    _.each(lstexpos, function (expo) {
+    //                            _.each(expo.Floors, function (floor) {
+    //                            _.each(floor.Coordinates, function (coordinate) {
+    //                                if (coordinate.ExpiryDate < new Date().getTime()) {
+    //                                    var floorid = floor._id;
+    //                                    Schema.findOneAndUpdate({ '_id': expo._id, "Floors._id": floor._id },
+    //                                                    { $pull: { 'Floors.$.Coordinates': { "_id": coordinate._id } } },
+    //                                                  { new: true }, function (err, Obj) {
+    //                                                      if (err) { reject({ code: 2, data: err }) }
+    //                                                      else {
+    //                                                          console.log(coordinate._id);
+    //                                                          if (expo._id == lstexpos[lstexpos.length - 1]._id&&coordinate._id==coordinatesfiltered[coordinatesfiltered.length-1]._id) {
+    //                                                              Schema.find({ 'Category': _categoryId, 'Status': 'Active' }, '_id Title Banner Floors').populate('Floors.Coordinates.Store', '_id Name Type Badges Status').exec(function (err, lst) {
+    //                                                                  if (err)
+    //                                                                      reject({
+    //                                                                          code: 2,
+    //                                                                          data: err
+    //                                                                      });
+    //                                                                  else {
+    //                                                                      resolve({ code: 100, data: lst })
+    //                                                                  }
+    //                                                              })
+    //                                                          }
+    //                                                      }
+    //                                                  })
+    //                                }
+    //                            })
+    //                        })
+    //                    })
+    //                }
+    //                else {
+    //                    Schema.find({ 'Category': _categoryId, 'Status': 'Active' }, '_id Title Banner Floors').populate('Floors.Coordinates.Store', '_id Name Type Badges Status').exec(function (err, lst) {
+    //                        if (err)
+    //                            reject({
+    //                                code: 2,
+    //                                data: err
+    //                            });
+    //                        else {
+    //                            resolve({ code: 100, data: lst })
+    //                        }
+    //                    })
+    //                }
+    //            }
+    //        })
+    //    })
+    //},
 }
