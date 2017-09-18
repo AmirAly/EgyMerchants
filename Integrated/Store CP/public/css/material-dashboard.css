@@ -5782,3 +5782,8 @@ footer {
 #errImgDivEdit {
     display: none;
 }
+
+.ui-sortable-placeholder {
+    border: 2px dashed #3c4858;
+    visibility:visible !important;
+}

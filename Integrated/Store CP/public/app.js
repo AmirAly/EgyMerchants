@@ -1,1 +1,3 @@
-﻿var egm = angular.module('egm', ['ui.sortable']);
+﻿
+var egm = angular.module('egm', ['ui.sortable']);
+
