@@ -28,6 +28,24 @@
         
     });
 
+    $scope.delete = function (_id) {
+        $scope.loading = true;
+        var req = {
+            method: 'post',
+            url: '/Item/Delete/' + _id,
+            data: {}
+        }
+        API.execute(req).then(function (_res) {
+            if (_res.data.code == 100) {
+                window.location.reload();
+            } else {
+                $scope.loading = false;
+                $scope.galleryerrMsg = true;
+                $scope.galleryerrdiv = true;
+                $scope.galleryerrorMsg = _res.data.data;
+            }
+        });
+    }
 
     $scope.moveToItem = function (_itemId) {
         window.location.href = '/product/' + _itemId;
@@ -61,16 +79,10 @@
                 window.location.reload();
             } else {
                 $scope.loading = false;
-                if (_res.data.code == 21) {
                     $scope.errMsg = true;
                     $scope.errdiv = true;
                     $scope.errorMsg = _res.data.data;
-                } else {
-                    $scope.loading = false;
-                    $scope.errMsg = true;
-                    $scope.errdiv = true;
-                    $scope.errorMsg = _res.data.data;
-                }
+                
             }
         });
     };
