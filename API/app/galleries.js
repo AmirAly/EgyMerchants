@@ -180,7 +180,7 @@ module.exports = {
                             reject({ code: 2, data: err })
                         else
                             resolve({
-                                code: 100, data: "This gallery deleted successfuylly"
+                                code: 100, data: "This gallery deleted successfully"
                             })
                     })
                 }

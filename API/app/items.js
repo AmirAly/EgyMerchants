@@ -98,7 +98,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "This item not exist"
                         });
                     }
                 }
@@ -274,7 +274,7 @@ module.exports = {
                 else {
                     if (Obj)
                         resolve({
-                            code: 100, data: "This item deleted successfuylly"
+                            code: 100, data: "This item deleted successfully"
                         })
                     else
                         reject({ code: 22, data: "This item not exist" })
@@ -296,7 +296,7 @@ module.exports = {
                                 if (err)
                                     reject({ code: 2, data: err })
                                 else
-                                    resolve({code: 100, data: "This item image deleted successfuylly"})
+                                    resolve({code: 100, data: "This item image deleted successfully"})
                             })
                         }
                         else

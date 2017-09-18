@@ -76,7 +76,7 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Store/SetAdminNotifications', function (req, res) {
-        StoreLogic.setAdminNotifications(req.body._id, req.body.notifications).then(function (result) {
+        StoreLogic.setAdminNotifications(req.body._id, req.body._notifications).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);

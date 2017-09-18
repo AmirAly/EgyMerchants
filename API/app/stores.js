@@ -237,7 +237,6 @@ module.exports = {
                                       var coordinatesfiltered = [];
                                         //added to determine the last coordinate will updated so that used in if condition that resolve after ensure all updates finished
                                       _.each(allexpoes,function(expo){_.each(expo.Floors, function (floor) { _.each(floor.Coordinates, function (coordinate) { if (coordinate.Store ==_id) coordinatesfiltered.push(coordinate); }) })});
-                                      console.log(coordinatesfiltered);
                                       _.each(allexpoes, function (expo) {
                                         _.each(expo.Floors, function (floor) {
                                             _.each(floor.Coordinates, function (coordinate) {
@@ -246,7 +245,6 @@ module.exports = {
                                                         { $pull: { 'Floors.$.Coordinates': { "_id": coordinate._id } } },function (err, data) {
                                                           if (err) { reject({ code: 2, data: err }) }
                                                           else {
-                                                             // console.log(coordinate._id);
                                                               //this if check to confirm that when resolve happen the data already updated in database
                                                               if (expo._id == allexpoes[allexpoes.length - 1]._id && coordinate._id == coordinatesfiltered[coordinatesfiltered.length - 1]._id)
                                                                   resolve({ code: 100, data: "This store deleted successfully" });
@@ -289,7 +287,7 @@ module.exports = {
                                             code: 3,
                                             data: err
                                         })
-                                    else resolve({ code: 100, data: "This store suspended successfuylly" })
+                                    else resolve({ code: 100, data: "This store suspended successfully" })
                                 })
                             }
                         })
@@ -321,7 +319,7 @@ module.exports = {
                                             code: 3,
                                             data: err
                                         })
-                                    else resolve({ code: 100, data: "This store actived successfuylly" })
+                                    else resolve({ code: 100, data: "This store activated successfully" })
                                 })
                             }
                         })
@@ -395,7 +393,7 @@ module.exports = {
                                         _.each(lst, function (expo) {
                                             _.each(expo.Floors, function (floor) {
                                                 _.each(floor.Coordinates, function (store) {
-                                                    if (store.Store.Status == "Active") expoStoresList.push(store.Store);
+                                                    if (store.Store.Status == "Active" && store.ExpiryDate >= new Date().getTime()) expoStoresList.push(store.Store);
                                                 })
                                             })
                                         })

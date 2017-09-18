@@ -379,7 +379,6 @@ module.exports = {
             var coordinatesfiltered = [];
             //added to determine the last coordinate will updated so that used in if condition that resolve after ensure all updates finished
             _.each(lstexpos, function (expo) { _.each(expo.Floors, function (floor) { _.each(floor.Coordinates, function (coordinate) { if (coordinate.ExpiryDate < new Date().getTime()) coordinatesfiltered.push(coordinate); }) }) });
-            console.log(coordinatesfiltered);
             _.each(lstexpos, function (expo) {
                 _.each(expo.Floors, function (floor) {
                     _.each(floor.Coordinates, function (coordinate) {
@@ -390,7 +389,6 @@ module.exports = {
                                           { new: true }, function (err, Obj) {
                                               if (err) { reject({ code: 2, data: err }) }
                                               else {
-                                                  console.log(coordinate._id);
                                                   if (expo._id == lstexpos[lstexpos.length - 1]._id && coordinate._id == coordinatesfiltered[coordinatesfiltered.length - 1]._id) {
                                                       resolve({ code:100});
                                                   }
@@ -402,64 +400,4 @@ module.exports = {
             })
         })
     },
-    //getByCategory2: function (_categoryId) {
-    //    return new Promise(function (resolve, reject) {
-    //        Schema.find({ 'Category': _categoryId, 'Status': 'Active', 'Floors.Coordinates.ExpiryDate': { '$lt': new Date().getTime() } }, function (err, lstexpos) {
-    //            if (err)
-    //                reject({
-    //                    code: 1,
-    //                    data: err
-    //                });
-    //            else {
-    //                if (lstexpos.length) {
-    //                    var coordinatesfiltered = [];
-    //                    //added to determine the last coordinate will updated so that used in if condition that resolve after ensure all updates finished
-    //                    _.each(lstexpos, function (expo) { _.each(expo.Floors, function (floor) { _.each(floor.Coordinates, function (coordinate) { if (coordinate.ExpiryDate < new Date().getTime()) coordinatesfiltered.push(coordinate); }) }) });
-    //                    console.log(coordinatesfiltered);
-    //                    _.each(lstexpos, function (expo) {
-    //                            _.each(expo.Floors, function (floor) {
-    //                            _.each(floor.Coordinates, function (coordinate) {
-    //                                if (coordinate.ExpiryDate < new Date().getTime()) {
-    //                                    var floorid = floor._id;
-    //                                    Schema.findOneAndUpdate({ '_id': expo._id, "Floors._id": floor._id },
-    //                                                    { $pull: { 'Floors.$.Coordinates': { "_id": coordinate._id } } },
-    //                                                  { new: true }, function (err, Obj) {
-    //                                                      if (err) { reject({ code: 2, data: err }) }
-    //                                                      else {
-    //                                                          console.log(coordinate._id);
-    //                                                          if (expo._id == lstexpos[lstexpos.length - 1]._id&&coordinate._id==coordinatesfiltered[coordinatesfiltered.length-1]._id) {
-    //                                                              Schema.find({ 'Category': _categoryId, 'Status': 'Active' }, '_id Title Banner Floors').populate('Floors.Coordinates.Store', '_id Name Type Badges Status').exec(function (err, lst) {
-    //                                                                  if (err)
-    //                                                                      reject({
-    //                                                                          code: 2,
-    //                                                                          data: err
-    //                                                                      });
-    //                                                                  else {
-    //                                                                      resolve({ code: 100, data: lst })
-    //                                                                  }
-    //                                                              })
-    //                                                          }
-    //                                                      }
-    //                                                  })
-    //                                }
-    //                            })
-    //                        })
-    //                    })
-    //                }
-    //                else {
-    //                    Schema.find({ 'Category': _categoryId, 'Status': 'Active' }, '_id Title Banner Floors').populate('Floors.Coordinates.Store', '_id Name Type Badges Status').exec(function (err, lst) {
-    //                        if (err)
-    //                            reject({
-    //                                code: 2,
-    //                                data: err
-    //                            });
-    //                        else {
-    //                            resolve({ code: 100, data: lst })
-    //                        }
-    //                    })
-    //                }
-    //            }
-    //        })
-    //    })
-    //},
 }
