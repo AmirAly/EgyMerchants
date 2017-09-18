@@ -75,6 +75,41 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.put('/Store/SetAdminNotifications', function (req, res) {
+        StoreLogic.setAdminNotifications(req.body._id, req.body.notifications).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Store/Remove', function (req, res) {
+        StoreLogic.remove(req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Store/Suspend', function (req, res) {
+        StoreLogic.suspend(req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Store/Active', function (req, res) {
+        StoreLogic.active(req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Store/AddAdminNotification', function (req, res) {
+        StoreLogic.addAdminNotification(req.body._id, req.body._notification).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     //gallery API calls
     api.post('/Gallery/Add', function (req, res) {
         var _newGallery = new Gallery(req.body);
@@ -105,7 +140,20 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-
+    api.put('/Gallery/Order', function (req, res) {
+        GalleryLogic.order(req.body._galleries).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Gallery/Remove', function (req, res) {
+        GalleryLogic.remove(req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     //item API calls
     api.post('/Item/Add', function (req, res) {
         var _newitem = new Item(req.body);
@@ -136,7 +184,20 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-
+    api.put('/Item/Remove', function (req, res) {
+        ItemLogic.remove( req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Item/RemoveImage', function (req, res) {
+        ItemLogic.removeImage(req.body._itemid, req.body._imageid).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     //country API calls
     api.post('/Country/Add', function (req, res) {
         var _newCountry = new Country(req.body);
