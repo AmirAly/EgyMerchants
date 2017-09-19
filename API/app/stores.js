@@ -6,6 +6,7 @@ var Item = require('./models/item');
 var Category = require('./models/category');
 var Helper = require('./helper');
 var _ = require("underscore");
+
 module.exports = {
     register: function (_newStore) {
         return new Promise(function (resolve, reject) {
@@ -74,7 +75,7 @@ module.exports = {
                 else if (Obj.Status == "Active")
                     resolve({
                         code: 100,
-                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type, ProfilePicture: Obj.ProfilePicture, AdminNotifications: Obj.AdminNotifications }
+                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type, ProfilePicture: Obj.ProfilePicture }
                     });
             })
         })
@@ -179,6 +180,27 @@ module.exports = {
                                 }
                             })
                         })
+        })
+    },
+    getAdminNotifications: function (_id) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOne({ "_id": _id, "Status": "Active"}, 'AdminNotifications', function (err, Obj) {
+                    if (err)
+                        reject({ code: 1, data: err })
+                    else {
+                        if (Obj)
+                        {
+                           var result= _.filter(Obj.AdminNotifications, function (notification) {
+                                return(notification.Status==false)
+                            })
+                            resolve({
+                                code: 100,
+                                data: { 'AdminNotifications': result }
+                            });
+                            }
+                        else reject({code:21,data:"This store not exist"})
+                    }
+                })
         })
     },
     getById: function (_id) {
@@ -393,7 +415,7 @@ module.exports = {
                                         _.each(lst, function (expo) {
                                             _.each(expo.Floors, function (floor) {
                                                 _.each(floor.Coordinates, function (store) {
-                                                    if (store.Store.Status == "Active" && store.ExpiryDate >= new Date().getTime()) expoStoresList.push(store.Store);
+                                                    if (store.Store.Status == "Active" && store.ExpiryDate >= new Date().getTime()) { expoStoresList.push(store.Store); };
                                                 })
                                             })
                                         })
