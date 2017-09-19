@@ -29,6 +29,7 @@
                                                             <a href="/{{IsoCode}}/Store/{{sec.StoreName}}/{{sec.Store._id}}"><div class="image-hover"><i class="icon-zoom-in-2"></i></div></a><div class="image-title">{{sec.StoreName}}</div>
                                                         </div>
                                                     </div>
+													<h6>Floor {{$index + 1}} of {{expo.Floors.length}}</h6>
 													 <h4>{{floor.Name}}</h4>
                                                 </div>
 
@@ -37,7 +38,7 @@
 
                                         </div>
 
-                                        <div class="expoDetails">
+                                        <div class="expoDetails" ng-hide="expo.Floors.length == 1">
                                             <!-- Pagination -->
                                            
 											<h5 class="text-center light dvNextPage" ng-click="nextPage(expo._id,expo.Floors.length)">

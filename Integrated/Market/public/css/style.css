@@ -1222,7 +1222,7 @@ h6.mega {
     }
 
     .expoPage .outerContainer:hover .image-hover {
-        background: rgba(0, 0, 0, 0.74);
+        background: linear-gradient(to top, rgba(41, 41, 41, 0.75) 0%, transparent 30%,transparent 70%, rgba(41, 41, 41, 0.75) 100%);
         cursor: pointer;
     }
 
@@ -1512,14 +1512,81 @@ h6.mega {
         box-shadow: 0 0 0px 5px #2f3946;
     }
 
-    .expoPage article .expoData h1 {
-        color: #fff;
-        text-align: left;
-        font-weight: bolder;
-        font-size: 45px;
-        padding-bottom: 5px;
-        text-align: center;
+    .expoPage article .expoData h6 {
+        position: absolute;
+        z-index: 100;
+        cursor: default;
+        bottom: 24px;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-transform: none;
+        font-size: 16px;
+        background: #2f3946;
+        padding: 10px;
+        border: 3px solid #fff;
+        box-shadow: 0 0 4px 1px #2f3946;
+        -moz-animation: cssAnimation 3s ease-in-out 0.5s both;
+        /* Firefox */
+        -webkit-animation: cssAnimation 3s ease-in-out 0.5s both;
+        /* Safari and Chrome */
+        -o-animation: cssAnimation 3s ease-in-out 0.5s both;
+        /* Opera */
+        animation: cssAnimation 3s ease-in-out 0.5s both;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
     }
+
+
+@keyframes cssAnimation {
+    0% {
+        left: calc(100% - 150px);
+        visibility: hidden;
+        opacity: 0.5;
+    }
+
+    10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90% {
+        left: 50%;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    100% {
+        left: -100%;
+        visibility: hidden;
+        opacity: 0.5;
+    }
+}
+
+@-webkit-keyframes cssAnimation {
+    0% {
+        left: calc(100% - 150px);
+        visibility: hidden;
+        opacity: 0.5;
+    }
+
+    10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90% {
+        left: 50%;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    100% {
+        left: -100%;
+        visibility: hidden;
+        opacity: 0.5;
+    }
+}
+
+.expoPage article .expoData h1 {
+    color: #fff;
+    text-align: left;
+    font-weight: bolder;
+    font-size: 45px;
+    padding-bottom: 5px;
+    text-align: center;
+}
 
 .expoPage section:first-child article .expoData h1 {
     padding-top: 30px;
