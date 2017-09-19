@@ -110,6 +110,13 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.get('/Store/GetAdminNotifications/:_id', function (req, res) {
+        StoreLogic.getAdminNotifications(req.params._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     //gallery API calls
     api.post('/Gallery/Add', function (req, res) {
         var _newGallery = new Gallery(req.body);
