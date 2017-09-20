@@ -78,7 +78,7 @@
             }
         });
     }
-    
+
     $scope.suspendStore = function () {
         console.log('suspendStore');
         console.log($scope.selectedStore);
@@ -115,6 +115,30 @@
             data: {
                 _id: $scope.selectedStore,
             }
+        }
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 100) {
+                window.location.reload();
+            } else {
+                $scope.loading = false;
+                $scope.errMsg = true;
+                $scope.errdiv = true;
+                $scope.errorMsg = _res.data.data;
+            }
+        });
+    }
+
+    $scope.sendmessage = function () {
+        console.log('sendmessage');
+        console.log($scope.selectedStore);
+        console.log($scope.adminMessage);
+        // store [] is suspended now 
+        $scope.loading = true;
+        var req = {
+            method: 'put',
+            url: '/Store/send' + $scope.selectedStore,
+            data: { message: $scope.adminMessage }
         }
         API.execute(req).then(function (_res) {
             console.log(_res);

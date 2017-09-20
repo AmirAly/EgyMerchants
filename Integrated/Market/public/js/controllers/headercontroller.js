@@ -103,17 +103,6 @@
     $scope.getUnreadMessages();
 
 
-    // open admin notifications modal
-    $scope.getAdminNotifications = function () {
-        // check if there is looged user
-        if ($rootScope.loggedUser) {
-            //// call get admin notifications api
-            //console.log($rootScope.userObject.adminNotifications);
-            //// open modal
-        }
-    }
-    $scope.getAdminNotifications();
-
 
     $scope.loginForm = true;
     $scope.afterLoginError = "";

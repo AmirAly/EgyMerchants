@@ -26,3 +26,45 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'/>
      </head>
  <body ng-app='egm' >
+
+   
+  <div >
+  <!-- MODAL Admin notifications -->
+  <div class="modal fade modalLogin" my-modal="" id="modalAdminNotifications" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
+      <div class="modal-dialog  modal-lg">
+        <div class="modal-content bounceInUp animated" data-wow-duration="0.1s" data-wow-delay="0.1s">
+          <!--login-->
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
+            <h3 class="modal-title" id="modal-login-label">Attention!</h3>
+          </div>
+
+          <div class="modal-body">
+			  <div class="card">
+				<div class="card-header" data-background-color="orange">
+				  <h4 class="title">You got notifications from site admin</h4>
+				</div>
+				<div class="card-content">
+				   <h5 class="text-warning title">Please Note That:</h5>
+				   <ul>
+				      <li ng-repeat="data in adminNotificationsData">{{data.title}}</li>
+				   <ul>
+				</div>
+			  </div>
+          </div>
+
+		  <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" ng-click="readNotifications()" class="btn btn-primary">I got it</button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>  
+  <!-- MODAL -->
+  </div>
+  

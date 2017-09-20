@@ -321,7 +321,7 @@ h6.mega {
     background-color: #fff;
     border-bottom: 2px solid #eee;
     margin-bottom: 0;
-    position: relative;
+    /*position: relative;*/
     left: 0;
     right: 0;
     max-height: 185px;
@@ -535,6 +535,7 @@ h6.mega {
         margin: 0 auto;
         background-color: transparent;
         height: 100%;
+        position: relative;
     }
 
         .header-wrapper .main-nav.container .menu-wrapper {
@@ -2248,11 +2249,10 @@ h6.mega {
     width: 400px;
     margin: auto;
     border: 1px solid #ccc;
-    /*padding: 10px 20px;*/
     position: absolute;
     z-index: 100;
-    left: 50%;
-    /*height: 400px;*/
+    top: 47px;
+    left: 47px;
     max-height: 400px;
     overflow: hidden;
     overflow-y: auto;

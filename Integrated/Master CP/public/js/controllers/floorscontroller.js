@@ -135,7 +135,8 @@
                 Img: $('#imgItem').attr('src'),
                 Store: $scope.selectedstore,
                 StoreName: strUser,
-                index: index
+                index: index,
+                ExpiryDate: ($scope.myDate).valueOf()
             };
             index++;
             $scope.coordinates.push($scope.oneStoreCoordinates);
