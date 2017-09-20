@@ -37,6 +37,26 @@ egm.controller("galleriesController", ['$scope', 'API', function ($scope, API) {
         // save new order
         //..
         console.log($scope.galleriesObject);
+
+        $scope.loading = true;
+        var req = {
+            method: 'put',
+            url: '/Gallery/Order',
+            data: {
+                _galleries: $scope.galleriesObject
+            }
+        }
+        API.execute(req).then(function (_res) {
+            if (_res.data.code == 100) {
+                window.location.reload();
+            } else {
+                $scope.loading = false;
+                $scope.errMsg = true;
+                $scope.errdiv = true;
+                $scope.errorMsg = _res.data.data;
+
+            }
+        });
     }
 
     $scope.delete = function (_id) {

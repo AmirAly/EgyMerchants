@@ -98,7 +98,7 @@ var galleriesObject = <%-JSON.stringify(galleriesObject)%>;
                          <span class="errorFont ng-show="galleryerrmsg">{{galleryerrorMsg}}</span>
                     </div>
 
-					<button type="button" class="btn btn-primary pull-right" ng-click="saveGalleries()">Save galleries order</button>
+					<button ng-show="<%= galleries.length %> > 0" type="button" class="btn btn-primary pull-right" ng-click="saveGalleries()">Save galleries order</button>
                 </div>
 
             </div>

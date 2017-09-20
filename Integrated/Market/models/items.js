@@ -98,7 +98,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "This item not exist"
                         });
                     }
                 }
@@ -263,6 +263,48 @@ module.exports = {
                         reject({ code: 21, data: "This filteration didn't resulted in any data" })
                     }
                 }
+            })
+        })
+    },
+    remove: function (_id) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOneAndRemove({ '_id': _id }, function (err, Obj) {
+                if (err)
+                    reject({ code: 1, data: err })
+                else {
+                    if (Obj)
+                        resolve({
+                            code: 100, data: "This item deleted successfully"
+                        })
+                    else
+                        reject({ code: 22, data: "This item not exist" })
+                }
+            })
+        })
+    },
+    removeImage: function (_itemid,_imageid) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOne({ '_id': _itemid }, 'Pictures', function (err, Obj) {
+                if (err)
+                    reject({ code: 1, data: err })
+                else {
+                    if (Obj)
+                    {
+                        if (Obj.Pictures.length > 1)
+                        {
+                            Schema.update({ '_id': _itemid }, { $pull: { "Pictures": { "_id": _imageid } } }, function (err, Obj) {
+                                if (err)
+                                    reject({ code: 2, data: err })
+                                else
+                                    resolve({code: 100, data: "This item image deleted successfully"})
+                            })
+                        }
+                        else
+                            resolve({ code: 101, data: "Sorry not allowed to delete the last item image" })
+                    }
+                    else
+                        reject({ code: 22, data: "This item not exist" })
+                        }
             })
         })
     }

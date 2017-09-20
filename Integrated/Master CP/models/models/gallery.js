@@ -9,7 +9,7 @@ var Gallery = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User',
         required:"Please add store id"
-    }
-    
+    },
+    Order: { type: Number , default:0}
 });
 module.exports = Mongoose.model('Gallery', Gallery);

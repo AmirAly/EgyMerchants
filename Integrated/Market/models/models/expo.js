@@ -23,8 +23,10 @@ var Expo = new Schema({
             Width: { type: Number },
             Height: { type: Number },
             Img: { type: String },
-            StoreName: { type: String,min:2,max:50 }
+            StoreName: { type: String, min: 2, max: 50 },
+            ExpiryDate: { type: Number, default:0 }
         }],
-    }]
+    }],
+    FlipTime: { type: Number , default:0}
 });
 module.exports = Mongoose.model('Expo', Expo);

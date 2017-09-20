@@ -1,21 +1,84 @@
+
 var fs = require('fs');
 var cloudinary = require('cloudinary');
 
-cloudinary.config({ 
-    cloud_name: 'dce2oozza', 
+
+cloudinary.config({
+    cloud_name: 'dce2oozza',
     api_key: '245386291529646',
-    api_secret: 'HoxadU9ZcgWxIREdqb45QzDJo-I' 
+    api_secret: 'HoxadU9ZcgWxIREdqb45QzDJo-I'
 });
 
 module.exports = {
-    uploadImage: function (_url,callback) {
-
-        cloudinary.v2.uploader.upload(_url,function (error, result) {  callback(result.url)});
-
-        //var file_reader = fs.createReadStream(_url, { encoding: 'binary' }).on('data', function (data) { stream.write(data) }).on('end', function () { stream.end() });
-        //var stream = cloudinary.uploader.upload_stream(function (result) {
-        //    console.log(result);
-        //}, { public_id: _fileName });
+    uploadImage: function (_url, callback) {
+        cloudinary.v2.uploader.upload(_url, function (error, result) { callback(result.secure_url) });
+    },
+    uploadMultipleImages: function (_url, callback) {
+        var secureUrls = [];
+        var i = 0;
+        //this condition added as the expoes floor coordinates images has url but items pictures has img in schema
+        if (_url[0].URL) {
+            function uploadeurl(i) {
+                if (i < _url.length) {
+                    cloudinary.v2.uploader.upload(_url[i].URL, function (error, result) {
+                        if (error) { console.log(error); }
+                        else {
+                            secureUrls.push(result.secure_url);
+                            uploadeurl(i + 1);
+                        }
+                    })
+                }
+                else {
+                    callback(secureUrls);
+                }
+            }
+            uploadeurl(0);
+            }
+        else {
+            function uploadeimg(i) {
+                if (i < _url.length) {
+                    cloudinary.v2.uploader.upload(_url[i].Img, function (error, result) {
+                        if (error) { console.log(error); }
+                        else {
+                            secureUrls.push(result.secure_url);
+                            uploadeimg(i + 1);
+                        }
+                    })
+                }
+                else {
+                    callback(secureUrls);
+                }
+            }
+            uploadeimg(0);
+           
+            }
+    },
+    uploadMultipleImages1: function (_url, callback) {
+        var secureUrls = [];
+        for (var i = 0; i < _url.length; i++) {
+            if (_url[i].URL) {
+                cloudinary.v2.uploader.upload(_url[i].URL, function (error, result) {
+                    if (result) {
+                        secureUrls.push(result.secure_url);
+                        if (secureUrls.length == _url.length) {
+                            callback(secureUrls);
+                        }
+                    }
+                });
+            }
+            else {
+                cloudinary.v2.uploader.upload(_url[i].Img, function (error, result) {
+                    if (result) {
+                        secureUrls.push(result.secure_url);
+                        console.log(secureUrls);
+                        console.log(i);
+                        if (secureUrls.length == _url.length) {
+                            callback(secureUrls);
+                        }
+                    }
+                });
+            }
+        }
 
     },
     sendEmail: function (email) {
