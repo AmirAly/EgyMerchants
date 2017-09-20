@@ -6,7 +6,7 @@ var Item = require('./models/item');
 var Category = require('./models/category');
 var Helper = require('./helper');
 var _ = require("underscore");
-
+var Mongoose = require("mongoose");
 module.exports = {
     register: function (_newStore) {
         return new Promise(function (resolve, reject) {
