@@ -243,26 +243,29 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        var expos = [];
-                        expos.push(Obj);
-                        module.exports.filterByExpiryDate(expos).then(function (data) {
-                            if (data.code == 100) {
-                                Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate('Floors.Coordinates.Store', '_id Name Type Badges Status').exec(function (err, expo) {
-                                    if (err)
-                                        reject({
-                                            code: 2,
-                                            data: err
-                                        });
-                                    else {
-                                        resolve({ code: 100, data: expo })
-                                    }
+                        if (Obj.Floors) {
+                            var expos = [];
+                            expos.push(Obj);
+                            module.exports.filterByExpiryDate(expos).then(function (data) {
+                                if (data.code == 100) {
+                                    Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate('Floors.Coordinates.Store', '_id Name Type Badges Status').exec(function (err, expo) {
+                                        if (err)
+                                            reject({
+                                                code: 2,
+                                                data: err
+                                            });
+                                        else {
+                                            resolve({ code: 100, data: expo })
+                                        }
+                                    })
+                                }
+                                else reject({
+                                    code: 3,
+                                    data: err
                                 })
-                            }
-                            else reject({
-                                code: 3,
-                                data: err
-                            })
-                        });
+                            });
+                        }
+                        else resolve({ code: 100, data: Obj })
                     }
                     else {
                         reject({
@@ -299,26 +302,29 @@ module.exports = {
                 else {
                     if (Obj)
                     {
-                        var expos = [];
-                        expos.push(Obj);
-                        module.exports.filterByExpiryDate(expos).then(function (data) {
-                            if (data.code == 100) {
-                                Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate('Category', '_id Name').populate('Floors.Coordinates.Store', '_id Name Status').exec(function (err, expo) {
-                                    if (err)
-                                        reject({
-                                            code: 2,
-                                            data: err
-                                        });
-                                    else {
-                                        resolve({ code: 100, data: expo })
-                                    }
+                        if (Obj.Floors) {
+                            var expos = [];
+                            expos.push(Obj);
+                            module.exports.filterByExpiryDate(expos).then(function (data) {
+                                if (data.code == 100) {
+                                    Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate('Category', '_id Name').populate('Floors.Coordinates.Store', '_id Name Status').exec(function (err, expo) {
+                                        if (err)
+                                            reject({
+                                                code: 2,
+                                                data: err
+                                            });
+                                        else {
+                                            resolve({ code: 100, data: expo })
+                                        }
+                                    })
+                                }
+                                else reject({
+                                    code: 3,
+                                    data: err
                                 })
-                            }
-                            else reject({
-                                code: 3,
-                                data: err
-                            })
-                        });
+                            });
+                        }
+                        else resolve({ code: 100, data: Obj })
                     }
                     else
                         reject({
@@ -379,25 +385,28 @@ module.exports = {
             var coordinatesfiltered = [];
             //added to determine the last coordinate will updated so that used in if condition that resolve after ensure all updates finished
             _.each(lstexpos, function (expo) { _.each(expo.Floors, function (floor) { _.each(floor.Coordinates, function (coordinate) { if (coordinate.ExpiryDate < new Date().getTime()) coordinatesfiltered.push(coordinate); }) }) });
-            _.each(lstexpos, function (expo) {
-                _.each(expo.Floors, function (floor) {
-                    _.each(floor.Coordinates, function (coordinate) {
-                        if (coordinate.ExpiryDate < new Date().getTime()) {
-                            var floorid = floor._id;
-                            Schema.findOneAndUpdate({ '_id': expo._id, "Floors._id": floor._id },
-                                            { $pull: { 'Floors.$.Coordinates': { "_id": coordinate._id } } },
-                                          { new: true }, function (err, Obj) {
-                                              if (err) { reject({ code: 2, data: err }) }
-                                              else {
-                                                  if (expo._id == lstexpos[lstexpos.length - 1]._id && coordinate._id == coordinatesfiltered[coordinatesfiltered.length - 1]._id) {
-                                                      resolve({ code:100});
+            if (coordinatesfiltered.length) {
+                _.each(lstexpos, function (expo) {
+                    _.each(expo.Floors, function (floor) {
+                        _.each(floor.Coordinates, function (coordinate) {
+                            if (coordinate.ExpiryDate < new Date().getTime()) {
+                                var floorid = floor._id;
+                                Schema.findOneAndUpdate({ '_id': expo._id, "Floors._id": floor._id },
+                                                { $pull: { 'Floors.$.Coordinates': { "_id": coordinate._id } } },
+                                              { new: true }, function (err, Obj) {
+                                                  if (err) { reject({ code: 2, data: err }) }
+                                                  else {
+                                                      if (expo._id == lstexpos[lstexpos.length - 1]._id && coordinate._id == coordinatesfiltered[coordinatesfiltered.length - 1]._id) {
+                                                          resolve({ code: 100 });
+                                                      }
                                                   }
-                                              }
-                                          })
-                        }
+                                              })
+                            }
+                        })
                     })
                 })
-            })
+            }
+            else { resolve({ code: 100 }); }
         })
     },
 }
