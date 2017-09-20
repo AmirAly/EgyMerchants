@@ -104,8 +104,6 @@
 
 
 
-
-
     $scope.loginForm = true;
     $scope.afterLoginError = "";
     $scope.loginObj = {};

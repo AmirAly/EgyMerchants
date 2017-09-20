@@ -79,6 +79,8 @@
                                                 <th></th>
                                                 <th></th>
                                                 <th></th>
+                                                <th></th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -119,22 +121,28 @@
                                                 </td>
                                                 <% if(store.enabled){ %>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-target=".suspendModal" data-toggle="modal" ng-click='selectedStore = "<%= store._id %>"' data-original-title="suspend store">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-info btn-simple btn-xs" data-target=".suspendModal" data-toggle="modal" ng-click='selectedStore = "<%= store._id %>"' data-original-title="suspend store">
                                                         <i class="material-icons">pause</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
                                                 <% } else{ %>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-target=".activateModal" data-toggle="modal" ng-click='selectedStore = "<%= store._id %>"' data-original-title="activate store">
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-success btn-simple btn-xs" data-target=".activateModal" data-toggle="modal" ng-click='selectedStore = "<%= store._id %>"' data-original-title="activate store">
                                                         <i class="material-icons">play_arrow</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
                                                 <% } %>
                                                 <td>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-target=".deleteModal" data-toggle="modal" ng-click='selectedStore = "<%= store._id %>"' data-original-title="delete store">
-                                                        <i class="material-icons">delete_forever</i>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-target=".deleteModal" data-toggle="modal" ng-click='selectedStore = "<%= store._id %>"' data-original-title="delete store">
+                                                        <i class="material-icons">close</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" rel="tooltip" title="" class="btn btn-twitter btn-simple btn-xs" data-target=".messageModal" data-toggle="modal" ng-click='selectedStore = "<%= store._id %>"' data-original-title="message to store">
+                                                        <i class="material-icons">announcement</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
@@ -291,7 +299,6 @@
         </div>
     </div>
     <!-- End Modal -->
-
     <!-- Start Modal -->
     <div class="modal fade deleteModal" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document">
@@ -330,7 +337,62 @@
         </div>
     </div>
     <!-- End Modal -->
+    <!-- Start Modal -->
+    <div class="modal fade messageModal" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
 
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="card">
+                                <div class="card-header" data-background-color="orange">
+                                    <h4 class="title">Send a message to this store</h4>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12">
+                                        <form name="frmSendMsg" id="frmSendMsg" novalidate>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group label-floating" ng-class="{'is-empty':isEmpty == true}">
+                                                        <label class="control-label">Message</label>
+                                                        <input type="text" class="form-control" ng-model="adminMessage" required name="txtAdminMessage" id="txtAdminMessage" ng-minlength="2" pattern="^((?!\{\{[^}]+\}\}).)*$">
+                                                        <span ng-show="frmSendMsg.picTitle.$dirty && frmSendMsg.picTitle.$invalid">
+                                                            <span class="errorFont" ng-show="frmSendMsg.txtAdminMessage.$error.required">Required</span>
+                                                            <span class="errorFont" ng-show="frmSendMsg.txtAdminMessage.$error.minlength">Message is too short</span>
+                                                            <span class="errorFont" ng-show="frmSendMsg.txtAdminMessage.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </form>
+
+                                        <div class=" alert-danger clear text-center" id="errImgDiv" ng-show="messageError">
+                                            <span class="errorFont">something went wrong please try again later</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-click="sendmessage(frmSendMsg)" ng-disabled="frmSendMsg.$invalid" class="btn btn-primary">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
 </div>
 <!--   Core JS Files   -->
     <% include ../partials/pagesjsfiles %>
