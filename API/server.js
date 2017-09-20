@@ -309,12 +309,12 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //}, function (err) {
 //    console.log(err);
 //});
-//gallery.getByStore("59a29dd9bfa8140011a2b474").then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
-//expo.getByCategory("59a3d43e00b9940011fcd913").then(function (result) {
+item.getByStore("59c27f25f000ef0012d39c29").then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
+//expo.getByCategory("599d4a96727a860011f8c955").then(function (result) {
 //    console.log(result.data)
 //   console.log(result.data[0].Floors[0].Coordinates)
 //   console.log(result.data[1].Floors[0].Coordinates);
@@ -323,18 +323,18 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //}, function (err) {
 //    console.log(err);
 //});
-//expo.getById("599eb1b1f82415001127f01f").then(function (result) {
+//expo.getById("599d4acd727a860011f8c956").then(function (result) {
 //     console.log(result)
-//    console.log(result.data.Floors[0].Coordinates);
-//    console.log(result.data.Floors[1].Coordinates);
+//    //console.log(result.data.Floors[0].Coordinates);
+//    //console.log(result.data.Floors[1].Coordinates);
 //}, function (err) {
 //    console.log(err);
 //});
 
-//expo.getStores("599eb1b1f82415001127f01f").then(function (result) {
+//expo.getStores("599d4acd727a860011f8c956").then(function (result) {
 //     console.log(result)
-//    console.log(result.data.Floors[0].Coordinates);
-//    console.log(result.data.Floors[1].Coordinates[0]);
+//    //console.log(result.data.Floors[0].Coordinates);
+//    //console.log(result.data.Floors[1].Coordinates[0]);
 //}, function (err) {
 //    console.log(err);
 //});
