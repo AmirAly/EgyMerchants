@@ -8,20 +8,13 @@
         else {
             $scope.GalleriesJson = [];
         }
-
-
         $scope.GalleriesLst = [];
         for (var i = 0; i < $scope.GalleriesJson.length; i++) {
-            console.log($scope.GalleriesJson);
-            var result = $scope.GalleriesJson[i].gallery.slice(1, -1);
-            var result2 = $.trim(result.substring(result.indexOf("Title:") + 6));
-            var result3 = result2.slice(1, -1);
-            $scope.GalleriesJson[i].gallery = result3;
+            var result = ($scope.GalleriesJson[i].Gallery).split(',')[1].split(':')[1].slice(2, -1);
+            $scope.GalleriesJson[i].Gallery = result;
         }
         $scope.GalleriesLst = $scope.GalleriesJson;
-
         console.log($scope.GalleriesLst);
-
         if ($rootScope.loggedUser) {
             $scope.visitedList = JSON.parse(localStorage.getItem('userObject')).VisitedStores;
             console.log($scope.visitedList);

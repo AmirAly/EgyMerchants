@@ -106,7 +106,7 @@ var GalleriesJson = <%-JSON.stringify(GalleriesJson)%>;
             </div>
            
             <div ng-repeat="gallery in GalleriesLst">
-
+			
                 <div class="dvAdvcontainer">
                     <img class="img-responsive" src="/images/adv1.png" />
                 </div>
@@ -115,7 +115,7 @@ var GalleriesJson = <%-JSON.stringify(GalleriesJson)%>;
                     <div class="row">
                         <div class="col-sm-12 text-left">
                             <div class="labelContainer">
-                                <h4>{{gallery.gallery}}</h4>
+                                <h4>{{gallery.Gallery}}</h4>
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@ var GalleriesJson = <%-JSON.stringify(GalleriesJson)%>;
                 <div class="dvProductsBlock row">
                     <div class="col-sm-12">
 
-                        <div ng-repeat="item in gallery.items" class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <div ng-repeat="item in gallery.Items" class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
                             <a href="/{{IsoCode}}/Product/{{item.Name}}/{{item._id}}">
                                 <div class="dvItemContainer text-center">
                                     <img src="{{item.Pictures[0].URL}}" class="img-responsive" />
