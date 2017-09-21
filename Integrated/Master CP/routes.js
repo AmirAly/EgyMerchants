@@ -134,7 +134,9 @@ module.exports = function (app) {
 
     app.get('/expo/:expoId', function (req, res) {
         var _scope = {};
+        console.log('000000000000');
         expo.getById(req.params.expoId).then(function (_expo) {
+            console.log('ssssssssssssssssssssssss');
             if (_expo.code == 100) {
                 _scope.expo = _expo.data;
                 _scope.floorslstJSON = JSON.stringify(_expo.data.Floors);

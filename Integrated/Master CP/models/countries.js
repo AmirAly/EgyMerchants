@@ -2,10 +2,11 @@ var Schema = require('./models/country');
 var Category = require('./models/category');
 var CountriesInJson = require('./allcountries.json');
 var _ = require("underscore");
+var Helper = require('./helper');
 module.exports = {
     add: function (_newCountry) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({'Name': _newCountry.Name,'Status':'Active'}, '', function (err, Obj) {
+            Schema.findOne({ $or: [{ 'Name': _newCountry.Name, 'Status': 'Active' }, { 'IsoCode': _newCountry.IsoCode, 'Status': 'Active' }] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -13,23 +14,26 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        reject({
-                            code: 21,
-                            data: "This country already exist"
+                        resolve({
+                            code: 22,
+                            data: "This country name or Isocode already exist"
                         });
                     }
                     else {
-                        _newCountry.save(function (err, _newcountry) {
-                            if (err)
-                                reject({
-                                    code: 1,
-                                    data: err
-                                });
-                            else
-                                resolve({
-                                    code: 100,
-                                    data: _newcountry
-                                });
+                        Helper.uploadImage(_newCountry.Flag, function (_url) {
+                            _newCountry.Flag = _url;
+                            _newCountry.save(function (err, _newcountry) {
+                                if (err)
+                                    reject({
+                                        code: 2,
+                                        data: err
+                                    });
+                                else
+                                    resolve({
+                                        code: 100,
+                                        data: _newcountry
+                                    });
+                            })
                         })
                     }
                 }
@@ -45,15 +49,9 @@ module.exports = {
                         data: err
                     });
                 else {
-                    if (lst.length > 0)
                         resolve({
                             code: 100,
                             data: lst
-                        });
-                    else
-                        reject({
-                            code: 21,
-                            data: "This filteration didn't resulted in any data"
                         });
                 }
             })
@@ -69,41 +67,31 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        Schema.findOne({'Name': _name,'Status':'Active', '_id': { $ne: _id } }, '', function (err, Objexist) {
+                        Schema.findOne({ $or: [{ 'Name': _name }, { 'IsoCode': _isoCode }], 'Status': 'Active', '_id': { $ne: _id } }, '', function (err, Objexist) {
                             if (err)
-                                reject({
-                                    code: 1,
-                                    data: err
-                                });
+                                reject({code: 2,data: err});
                             else {
                                 if (Objexist)
-                                    reject({ code: 22, data: 'This country name already exist' })
+                                    resolve({ code: 22, data: 'This country name or iso code already exist' })
                                 else {
                                     Obj.Name = _name;
-                                    Obj.Flag = _flag;
                                     Obj.IsoCode = _isoCode;
                                     Obj.WelcomeMsg = _welcomeMsg;
-                                    Obj.save(function (err, Obj) {
-                                        if (err)
-                                            reject({
-                                                code: 1,
-                                                data: err
-                                            });
-                                        else
-                                            resolve({
-                                                code: 100,
-                                                data:"Country data edited successfully"
-                                            })
+                                    Helper.uploadImage(_flag, function (_url) {
+                                        Obj.Flag = _url;
+                                        Obj.save(function (err, Obj) {
+                                            if (err)
+                                                reject({code: 3, data: err});
+                                            else
+                                                resolve({code: 100,data:"Country data edited successfully"})
+                                        })
                                     })
                                 }
                             }
                         })
                     }
                     else
-                        reject({
-                            code: 21,
-                            data: "This filteration didn't resulted in any data"
-                        });
+                        reject({code: 21,data: "This country not exist any more"});
                 }
             })
         })
@@ -115,22 +103,22 @@ module.exports = {
                     reject({ code: 1, data: err })
                 else {
                     if (lst.length > 0) {
-                        if (lst.length == 1) reject({ code: 22, data: "Sorry,you can't delete this last country" })
+                        if (lst.length == 1) resolve({ code: 22, data: "Sorry,you can't delete this last country" })
                         else {
-                            Category.find({ 'Country': _id }, '', function (err, lst) {
+                            Category.find({ 'Country': _id,"Status":"Active"}, '', function (err, lst) {
                                 if (err)
-                                    reject({ code: 1, data: err })
+                                    reject({ code: 2, data: err })
                                 else {
                                     if (lst.length > 0) {
                                         Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "deleted" } }, { new: true }, function (err, Obj) {
                                             if (err)
-                                                reject({ code: 1, data: err })
+                                                reject({ code: 3, data: err })
                                             else {
                                                 if (Obj) {
                                                     _.each(lst, function (category) {
                                                         Category.findOneAndUpdate({ '_id': category._id }, { $set: { 'Status': "deleted" } }, { new: true }, function (err, Obj) {
                                                             if (err)
-                                                                reject({ code: 1, data: err })
+                                                                reject({ code: 4, data: err })
                                                         })
                                                     })
                                                     resolve({
@@ -138,7 +126,7 @@ module.exports = {
                                                     })
                                                 }
                                                 else
-                                                    reject({ code: 21, data: "This filteration didn't resulted in any data" })
+                                                    reject({ code: 21, data: "This country not exist" })
                                             }
                                         })
                                     }
@@ -153,7 +141,7 @@ module.exports = {
                                                 code: 100, data: "This country deleted successfuylly"
                                             })
                                             else
-                                                    reject({ code: 21, data: "This filteration didn't resulted in any data" })
+                                                    reject({ code: 22, data: "This country not exist" })
                                         }
                                         })
 
@@ -184,7 +172,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "This country not exist"
                         });
                     }
                 }

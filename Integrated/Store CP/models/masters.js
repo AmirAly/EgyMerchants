@@ -17,18 +17,21 @@ module.exports = {
                         });
                     else {
                         _newMaster.Type = 'master';
-                        _newMaster.save(function (err, _newMaster) {
-                            if (err)
-                                reject({
-                                    code: 1,
-                                    data: err
-                                });
-                            else {
-                                resolve({
-                                    code: 100,
-                                    data: { _id: _newMaster._id, Name: _newMaster.Name, Type: _newMaster.Type }
-                                });
-                            }
+                        Helper.uploadImage(_newMaster.ProfilePicture, function (_url) {
+                            _newMaster.ProfilePicture = _url;
+                            _newMaster.save(function (err, _newmaster) {
+                                if (err)
+                                    reject({
+                                        code: 1,
+                                        data: err
+                                    });
+                                else {
+                                    resolve({
+                                        code: 100,
+                                        data: { _id: _newmaster._id, Name: _newmaster.Name, Type: _newmaster.Type }
+                                    });
+                                }
+                            })
                         })
                     }
                 }
@@ -54,15 +57,15 @@ module.exports = {
                         code: 22,
                         data: "This account not confirmed yet"
                     });
-                else if (Obj.Status == "Suspend")
+                else if (Obj.Status == "deleted")
                     reject({
                         code: 23,
-                        data: "This account suspended"
+                        data: "This account deleted"
                     });
                 else if (Obj.Status == "Active")
                     resolve({
                         code: 100,
-                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type }
+                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type, ProfilePicture: Obj.ProfilePicture }
                     });
             })
         })

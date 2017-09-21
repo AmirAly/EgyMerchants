@@ -15,6 +15,12 @@ var User = require('./models/user');
 var Expo = require('./models/expo');
 var Helper = require('./helper');
 var CountriesInJson = require('./allcountries.json');
+var MessageLogic = require('./messages');
+var Message = require('./models/message');
+var CommentLogic = require('./comments');
+var Comment = require('./models/comment');
+var NotificationLogic = require('./notifications');
+var Notification = require('./models/notification');
 var _ = require("underscore");
 module.exports = function (app, express) {
     var api = express.Router();
@@ -69,6 +75,48 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.put('/Store/SetAdminNotifications', function (req, res) {
+        StoreLogic.setAdminNotifications(req.body._id, req.body._notifications).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Store/Remove', function (req, res) {
+        StoreLogic.remove(req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Store/Suspend', function (req, res) {
+        StoreLogic.suspend(req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Store/Active', function (req, res) {
+        StoreLogic.active(req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Store/AddAdminNotification', function (req, res) {
+        StoreLogic.addAdminNotification(req.body._id, req.body._notification).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.get('/Store/GetAdminNotifications/:_id', function (req, res) {
+        StoreLogic.getAdminNotifications(req.params._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     //gallery API calls
     api.post('/Gallery/Add', function (req, res) {
         var _newGallery = new Gallery(req.body);
@@ -99,7 +147,20 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-
+    api.put('/Gallery/Order', function (req, res) {
+        GalleryLogic.order(req.body._galleries).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Gallery/Remove', function (req, res) {
+        GalleryLogic.remove(req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     //item API calls
     api.post('/Item/Add', function (req, res) {
         var _newitem = new Item(req.body);
@@ -130,7 +191,20 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-
+    api.put('/Item/Remove', function (req, res) {
+        ItemLogic.remove( req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Item/RemoveImage', function (req, res) {
+        ItemLogic.removeImage(req.body._itemid, req.body._imageid).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     //country API calls
     api.post('/Country/Add', function (req, res) {
         var _newCountry = new Country(req.body);
@@ -235,7 +309,34 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-
+    api.put('/User/AddToFavourites', function (req, res) {
+        UserLogic.addToFavourites(req.body._userid, req.body._itemid).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/User/RemoveFromFavourites', function (req, res) {
+        UserLogic.removeFromFavourites(req.body._userid, req.body._itemid).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/User/AddToVisited', function (req, res) {
+        UserLogic.addToVisited(req.body._userid, req.body._storeid).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+	  api.get('/GetFavourites/:_userId', function (req, res) {
+        UserLogic.getFavourites(req.params._userId).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     //expo API calls
     api.post('/Expo/Add', function (req, res) {
         var _newExpo = new Expo(req.body);
@@ -246,7 +347,14 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Expo/Edit', function (req, res) {
-        ExpoLogic.edit(req.body._id, req.body.Title,req.body.Banner,req.body.Category,req.body.Floors).then(function (result) {
+        ExpoLogic.edit(req.body._id, req.body.Title, req.body.Banner, req.body.Category, req.body.Floors).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Expo/EditFloor', function (req, res) {
+        ExpoLogic.editFloor(req.body._id,req.body.Floor).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -274,6 +382,76 @@ module.exports = function (app, express) {
         });
     })
 
+    //message api calls
+    api.post('/Message/Send', function (req, res) {
+        var _newMessage = new Message(req.body);
+        MessageLogic.send(_newMessage).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.get('/Message/GetAll/:_userid/:_toid', function (req, res) {
+        MessageLogic.getAll(req.params._userid, req.params._toid).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.get('/Message/GetAllContacts/:_userid', function (req, res) {
+        MessageLogic.getAllContacts(req.params._userid).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Message/UpdateStatus', function (req, res) {
+        MessageLogic.updateStatus(req.body._id).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    //comments api calls
+    api.post('/Comment/Add', function (req, res) {
+        var _newComment = new Comment(req.body);
+        CommentLogic.add(_newComment).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.put('/Comment/Remove', function (req, res) {
+        CommentLogic.remove(req.body._commentid, req.body._userid).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    //api.get('/Comment/getByItem/:_itemId', function (req, res) {
+    //    CommentLogic.getByItem(req.params._itemId).then(function (result) {
+    //        res.json(result);
+    //    }, function (err) {
+    //        res.json(err);
+    //    });
+    //})
+
+    //notifications api calls
+    api.get('/Notification/GetUnRead/:_userid', function (req, res) {
+        NotificationLogic.getUnRead(req.params._userid).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    
+    //api.get('/Notification/GetAll/:_userid', function (req, res) {
+    //    NotificationLogic.getAll(req.params._userid).then(function (result) {
+    //        res.json(result);
+    //    }, function (err) {
+    //        res.json(err);
+    //    });
+    //})
 
     return api;
 };

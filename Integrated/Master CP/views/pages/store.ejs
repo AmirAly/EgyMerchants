@@ -119,14 +119,14 @@
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
-                                                <% if(store.enabled){ %>
+                                                <% if(store.Status == 'Active'){ %>
                                                 <td>
                                                     <button type="button" rel="tooltip" title="" class="btn btn-info btn-simple btn-xs" data-target=".suspendModal" data-toggle="modal" ng-click='selectedStore = "<%= store._id %>"' data-original-title="suspend store">
                                                         <i class="material-icons">pause</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
-                                                <% } else{ %>
+                                                <% } if(store.Status == 'suspended'){ %>
                                                 <td>
                                                     <button type="button" rel="tooltip" title="" class="btn btn-success btn-simple btn-xs" data-target=".activateModal" data-toggle="modal" ng-click='selectedStore = "<%= store._id %>"' data-original-title="activate store">
                                                         <i class="material-icons">play_arrow</i>

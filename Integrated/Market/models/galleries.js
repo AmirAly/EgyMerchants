@@ -1,9 +1,11 @@
 var Schema = require('./models/gallery');
+var Item = require('./models/item');
 var Helper = require('./helper');
+var _ = require('underscore');
 module.exports = {
     getByStore: function (_storeId) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Store': _storeId, 'Status': 'Active' }, '_id Title DisplayPicture Description Badges', function (err, lst) {
+            Schema.find({ 'Store': _storeId, 'Status': 'Active' }, '_id Title DisplayPicture Description Badges Order', function (err, lst) {
                 if (err)
                     reject({
                         code: 1,
@@ -21,7 +23,7 @@ module.exports = {
                             data: "This filteration didn't resulted in any data"
                         });
                 }
-            });
+            }).sort({ Order: 1 });
         })
     },
     getById: function (_id) {
@@ -165,7 +167,47 @@ module.exports = {
                 }
             })
         })
+    },
+    remove: function (_id) {
+    return new Promise(function (resolve, reject) {
+        Schema.findOneAndRemove({ '_id': _id }, function (err, Obj) {
+            if (err)
+                reject({ code: 1, data: err })
+            else {
+                if (Obj) {
+                    Item.remove({ 'Gallery': _id }, function (err,res) {
+                        if(err)
+                            reject({ code: 2, data: err })
+                        else
+                            resolve({
+                                code: 100, data: "This gallery deleted successfully"
+                            })
+                    })
+                }
+                else
+                    reject({ code: 22, data: "This gallery not exist" })
+            }
+        })
+    })
+},
+    order: function (_galleries) {
+        return new Promise(function (resolve, reject) {
+            var i=0;
+            _.each(_galleries, function (gallery) {
+                i++;
+                Schema.findOneAndUpdate({ '_id': gallery._id }, { $set: { Order: i } }, function (err, Obj) {
+                    if (err)
+                        reject({ code: 1, data: err })
+                    else {
+                        if(Obj.Order==_galleries.length)
+                            resolve({
+                                code: 100,
+                                data: "Galleries ordered successfully"
+                            });
+                            }
+                })
+            })
+           
+        })
     }
-  
-
 }

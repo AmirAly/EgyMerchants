@@ -9,6 +9,10 @@ var User = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
+    FavouriteItems: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Item'
+    }],
     CoverPhoto: { type: String, min:2 },
     Description: { type: String, default: '-',min:2},
     Badges: {
@@ -16,6 +20,13 @@ var User = new Schema({
         HasFactory: { type: Boolean, default: false },
         Featured: { type: Boolean, default: false }
     },
+    AdminNotifications: [{
+        Admin: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required:true
+        }, Text: { type: String }, Status: { type: Boolean, default: false }
+    }],
     Category: {
         type: String
     },
