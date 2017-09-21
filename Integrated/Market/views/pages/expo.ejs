@@ -4,83 +4,84 @@
 <div class="expoPage" ng-controller="expoController">
     <div class="allExposView" ng-hide="showSingleExpo">
         <div class="secondDiv" ng-init="init('<%= countryIso %>')">
-		<script>var exposObject = <%-JSON.stringify(JsonExpos)%>;</script>
+            <script>var exposObject = <%-JSON.stringify(JsonExpos)%>;</script>
 
             <% if (expos.length > 0) { %>
-            <div ng-repeat="expo in exposList" ng-show="expo.Floors.length > 0">
-                <section swinch-duration="1000" data-scroll
-                         class="secondExpo repeated-item" id="expo{{expo._id}}">
-                    <article>
+            <div ng-repeat="expo in exposList">
+                <div ng-if="expo.Floors.length > 0">
+                    <section swinch-duration="1000" data-scroll
+                             class="secondExpo repeated-item" id="expo{{expo._id}}">
+                        <article>
 
-                        <div class="expoData">
+                            <div class="expoData">
 
-                            <div>
-                                <div class="singleExpoView" id="expo{{expo._id}}">
-                                    <div class="container-fluid">
+                                <div>
+                                    <div class="singleExpoView" id="expo{{expo._id}}">
+                                        <div class="container-fluid">
 
-                                        <div class="row" ng-init="loadArray(expo._id)">
+                                            <div class="row" ng-init="loadArray(expo._id)">
 
-                                            <!-- floors -->
-                                            <div ng-repeat="floor in expo.Floors" class="boxme" ng-show="activePageNumber{{expo._id}} == {{$index}}" ng-init="initfirstPage(expo._id,0)">
-                                                <div class="imagesContainer" id="imagesContainer{{expo._id}}">
+                                                <!-- floors -->
+                                                <div ng-repeat="floor in expo.Floors" class="boxme" ng-show="activePageNumber{{expo._id}} == {{$index}}" ng-init="initfirstPage(expo._id,0)">
+                                                    <div class="imagesContainer" id="imagesContainer{{expo._id}}">
 
-                                                    <div class="outerContainer" ng-repeat="sec in floor.Coordinates">
-                                                        <div class=" repeated-item" ng-style="{'background-image': 'url({{sec.Img}})','position':'absolute','background-size': 'cover','background-repeat': 'no-repeat','top':{{sec.Top * oneSectionHeight}} +'px','left':{{sec.Left * oneSectionWidth}} +'px','height':{{sec.Height * oneSectionHeight}} - 3 +'px', 'width':{{sec.Width * oneSectionWidth}} - 3 +'px'}">
-                                                            <a href="/{{IsoCode}}/Store/{{sec.StoreName}}/{{sec.Store._id}}"><div class="image-hover"><i class="icon-zoom-in-2"></i></div></a><div class="image-title">{{sec.StoreName}}</div>
+                                                        <div class="outerContainer" ng-repeat="sec in floor.Coordinates">
+                                                            <div class=" repeated-item" ng-style="{'background-image': 'url({{sec.Img}})','position':'absolute','background-size': 'cover','background-repeat': 'no-repeat','top':{{sec.Top * oneSectionHeight}} +'px','left':{{sec.Left * oneSectionWidth}} +'px','height':{{sec.Height * oneSectionHeight}} - 3 +'px', 'width':{{sec.Width * oneSectionWidth}} - 3 +'px'}">
+                                                                <a href="/{{IsoCode}}/Store/{{sec.StoreName}}/{{sec.Store._id}}"><div class="image-hover"><i class="icon-zoom-in-2"></i></div></a><div class="image-title">{{sec.StoreName}}</div>
+                                                            </div>
                                                         </div>
+                                                        <h6>Floor {{$index + 1}} of {{expo.Floors.length}}</h6>
+                                                        <h4>{{floor.Name}}</h4>
                                                     </div>
-													<h6>Floor {{$index + 1}} of {{expo.Floors.length}}</h6>
-													 <h4>{{floor.Name}}</h4>
-                                                </div>
 
+
+                                                </div>
 
                                             </div>
 
+                                            <div class="expoDetails" ng-hide="expo.Floors.length == 1">
+                                                <!-- Pagination -->
+
+                                                <h5 class="text-center light dvNextPage" ng-click="nextPage(expo._id,expo.Floors.length)">
+                                                    <img src="/images/rightarrow.png" />
+                                                </h5>
+
+                                                <h5 class="text-center light dvPrePage" ng-click="previousPage(expo._id,expo.Floors.length)">
+                                                    <img src="/images/leftarrow.png" />
+                                                </h5>
+
+                                            </div>
+                                            <!-- //end Pagination -->
                                         </div>
-
-                                        <div class="expoDetails" ng-hide="expo.Floors.length == 1">
-                                            <!-- Pagination -->
-                                           
-											<h5 class="text-center light dvNextPage" ng-click="nextPage(expo._id,expo.Floors.length)">
-                                               <img src="/images/rightarrow.png" />
-                                            </h5>
-
-											<h5 class="text-center light dvPrePage" ng-click="previousPage(expo._id,expo.Floors.length)">
-                                               <img src="/images/leftarrow.png" />
-                                            </h5>
-
-                                        </div>
-                                        <!-- //end Pagination -->
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </article>
-                </section>
+                        </article>
+                    </section>
 
-
-
-                <div class="homepage-bar">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <i class="icon-shipping"></i>
-                                <div class="text-area"><h3>Free shipping &amp, return</h3><p>Free shipping on all orders over $99.</p></div>
-                            </div>
-                            <div class="col-md-4">
-                                <i class="icon-money-bag"></i>
-                                <div class="text-area"><h3>Money back guarantee</h3><p>100% money back guarantee.</p></div>
-                            </div>
-                            <div class="col-md-4">
-                                <i class="icon-support"></i>
-                                <div class="text-area"><h3>Online support 24/7</h3><p>Lorem ipsum dolor sit amet.</p></div>
+                    <div class="homepage-bar">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <i class="icon-shipping"></i>
+                                    <div class="text-area"><h3>Free shipping &amp, return</h3><p>Free shipping on all orders over $99.</p></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <i class="icon-money-bag"></i>
+                                    <div class="text-area"><h3>Money back guarantee</h3><p>100% money back guarantee.</p></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <i class="icon-support"></i>
+                                    <div class="text-area"><h3>Online support 24/7</h3><p>Lorem ipsum dolor sit amet.</p></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <div ng-if="!expo.Floors.length > 0" class="dvNoFloors">
+                    There is no floors currently <br /> in the expo {{expo.Title}} :(
+                </div>
             </div>
-
             <div class="brands-slide">
                 <div class="container">
                     <div>

@@ -84,7 +84,7 @@
                                         </a>
                                     </div>
 									<div class="stats pull-right">
-                                        <a ng-click="delete('<%= item._id %>')" class="cursorPointer" title="delete item">
+                                        <a data-target=".deleteModal" data-toggle="modal" ng-click="setItem('<%= item._id %>')"  class="cursorPointer" title="delete item">
                                             <i class="fa fa-times" aria-hidden="true"></i> Delete
                                         </a>
                                     </div>
@@ -204,6 +204,45 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit" ng-click="addItem()" ng-disabled="frmAddItem.$invalid" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+
+	<!-- Start Modal -->
+    <div class="modal fade deleteModal" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="card">
+                                <div class="card-header" data-background-color="orange">
+                                    <h4 class="title">delete item</h4>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12">
+                                        <h5> Are you sure you want to delete this item ? </h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class=" alert-danger clear text-center" ng-show="errdiv">
+                                <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-click="delete()" class="btn btn-primary">Delete</button>
                 </div>
             </div>
         </div>

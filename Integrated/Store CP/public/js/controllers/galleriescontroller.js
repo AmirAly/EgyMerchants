@@ -59,12 +59,17 @@ egm.controller("galleriesController", ['$scope', 'API', function ($scope, API) {
         });
     }
 
-    $scope.delete = function (_id) {
+
+    $scope.setGallery = function (_id) {
+        $scope.selectedGallery = _id;
+    }
+
+    $scope.delete = function () {
         $scope.loading = true;
         var req = {
-            method: 'post',
-            url: '/Gallery/Delete/' + _id,
-            data: {}
+            method: 'put',
+            url: '/Gallery/Remove',
+            data: { _id: $scope.selectedGallery }
         }
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
@@ -128,10 +133,9 @@ egm.controller("galleriesController", ['$scope', 'API', function ($scope, API) {
                 window.location.reload();
             } else {
                 $scope.loading = false;
-                    $scope.errMsg = true;
-                    $scope.errdiv = true;
-                    $scope.errorMsg = _res.data.data;
-                
+                $scope.errMsg = true;
+                $scope.errdiv = true;
+                $scope.errorMsg = _res.data.data;
             }
         });
     };

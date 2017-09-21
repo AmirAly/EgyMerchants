@@ -20,8 +20,9 @@
         }
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
+                console.log(_res.data.data._id);
+                localStorage.setItem('admin', _res.data.data._id);
                 window.location.href = '/store';
-                localStorage.setItem('storeId', _res.data._id);
             } else {
                 $scope.loading = false;
                 $scope.errMsg = true;

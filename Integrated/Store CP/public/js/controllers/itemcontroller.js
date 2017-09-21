@@ -28,6 +28,37 @@
     $scope.storeId = localStorage.getItem('StoreId');
     $scope.galleryId = localStorage.getItem('GalleryId');
     
+    $scope.setItem = function (_id, _obj) {
+        $scope.selectedItem = _id;
+        $scope.imgObj = _obj;
+    }
+
+    $scope.delete = function () {
+        if (typeof $scope.selectedItem == 'undefined') {
+            // delete $scope.imgObj
+            $scope.currentItem.Pictures.splice($scope.currentItem.Pictures.indexOf($scope.imgObj), 1);
+            angular.element('.deleteModal').modal('hide');
+        } else {        
+        $scope.loading = true;
+        var req = {
+            method: 'put',
+            url: '/Item/RemoveImage',
+            data: { _imageid: $scope.selectedItem, _itemid:$scope.currentItem._id }
+        }
+        API.execute(req).then(function (_res) {
+            if (_res.data.code == 100) {
+                window.location.reload();
+            } else {
+                $scope.loading = false;
+                $scope.galleryerrMsg = true;
+                $scope.galleryerrdiv = true;
+                $scope.galleryerrorMsg = _res.data.data;
+            }
+        });
+        }
+    }
+
+
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click();
     };

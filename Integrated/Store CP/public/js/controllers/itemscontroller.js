@@ -28,12 +28,17 @@
         
     });
 
-    $scope.delete = function (_id) {
+
+    $scope.setItem = function (_id) {
+        $scope.selectedItem = _id;
+    }
+
+    $scope.delete = function () {
         $scope.loading = true;
         var req = {
-            method: 'post',
-            url: '/Item/Delete/' + _id,
-            data: {}
+            method: 'put',
+            url: '/Item/Remove',
+            data: { _id: $scope.selectedItem }
         }
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {

@@ -1,7 +1,7 @@
 <% include ../partials/headpages %>
 
 <script>
-var galleriesObject = <%-JSON.stringify(galleriesObject)%>;
+    var galleriesObject = <%-JSON.stringify(galleriesObject)%>;
 </script>
 
 <div ng-controller='galleriesController'>
@@ -82,7 +82,7 @@ var galleriesObject = <%-JSON.stringify(galleriesObject)%>;
                                     </div>
 
                                     <div class="stats pull-right">
-                                        <a ng-click="delete(gallery._id)" class="cursorPointer" title="delete gallery">
+                                        <a data-target=".deleteModal" data-toggle="modal" ng-click="setGallery(gallery._id)" class="cursorPointer" title="delete gallery">
                                             <i class="fa fa-times" aria-hidden="true"></i> Delete
                                         </a>
                                     </div>
@@ -94,11 +94,11 @@ var galleriesObject = <%-JSON.stringify(galleriesObject)%>;
                         <% } %>
                     </div>
 
-					<div class=" alert-danger clear text-center" ng-show="galleryerrdiv">
-                         <span class="errorFont ng-show="galleryerrmsg">{{galleryerrorMsg}}</span>
+                    <div class=" alert-danger clear text-center" ng-show="galleryerrdiv">
+                        <span class="errorFont" ng-show="galleryerrmsg">{{galleryerrorMsg}}</span>
                     </div>
 
-					<button ng-show="<%= galleries.length %> > 0" type="button" class="btn btn-primary pull-right" ng-click="saveGalleries()">Save galleries order</button>
+                    <button ng-show="<%= galleries.length %> > 0" type="button" class="btn btn-primary pull-right" ng-click="saveGalleries()">Save galleries order</button>
                 </div>
 
             </div>
@@ -198,6 +198,45 @@ var galleriesObject = <%-JSON.stringify(galleriesObject)%>;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit" ng-click="addGallery()" ng-disabled="frmAddGallery.$invalid" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+
+    <!-- Start Modal -->
+    <div class="modal fade deleteModal" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="card">
+                                <div class="card-header" data-background-color="orange">
+                                    <h4 class="title">delete gallery</h4>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12">
+                                        <h5> Are you sure you want to delete this gallery ? </h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class=" alert-danger clear text-center" ng-show="errdiv">
+                                <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-click="delete()" class="btn btn-primary">Delete</button>
                 </div>
             </div>
         </div>

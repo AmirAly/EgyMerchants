@@ -21,14 +21,15 @@
         $scope.oneSectionWidth = $scope.containerWidth / 6;
         $rootScope.loading = false;
     }
-    var currentExpoId;   
+    var currentExpoId;
 
-    $scope.init = function ( _isoCode) {
+    $scope.init = function (_isoCode) {
         $rootScope.IsoCode = _isoCode;
 
         $scope.exposList = JSON.parse((window.exposObject).replace(/&quot;/g, '"'));
-            currentExpoId = $scope.exposList[0]._id;
-        
+        currentExpoId = $scope.exposList[0]._id;
+
+        console.log($scope.exposList);
         // set which activeFloorCounter for every expo
         angular.forEach($scope.exposList, function (expo) {
             var expoId = expo._id;
@@ -60,7 +61,7 @@
     $scope.initfirstPage = function (_expoId, _floorId) {
         $scope['activePageNumber' + _expoId] = _floorId;
     }
-     
+
     $(document).ready(function () {
         swinch.init(null, {
             onSnapped: function (current, previous, direction) {
@@ -81,8 +82,8 @@
             $scope.nextPage(currentExpoId, $scope.selectedExpo.Floors.length);
             $scope.$apply();
         }
-        
-       // e.preventDefault(); // prevent the default action (scroll / move caret)
+
+        // e.preventDefault(); // prevent the default action (scroll / move caret)
     });
 
 });

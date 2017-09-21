@@ -61,7 +61,7 @@
         $scope.loading = true;
         var req = {
             method: 'put',
-            url: '/Store/active',
+            url: '/Store/Active',
             data: {
                 _id: $scope.selectedStore,
             }
@@ -86,7 +86,7 @@
         $scope.loading = true;
         var req = {
             method: 'put',
-            url: '/Store/suspend',
+            url: '/Store/Suspend',
             data: {
                 _id: $scope.selectedStore,
             }
@@ -111,7 +111,7 @@
         $scope.loading = true;
         var req = {
             method: 'put',
-            url: '/Store/delete',
+            url: '/Store/Remove',
             data: {
                 _id: $scope.selectedStore,
             }
@@ -137,8 +137,8 @@
         $scope.loading = true;
         var req = {
             method: 'put',
-            url: '/Store/send' + $scope.selectedStore,
-            data: { message: $scope.adminMessage }
+            url: '/Store/AddAdminNotification',
+            data: { _id: $scope.selectedStore, _notification:{ Text:$scope.adminMessage, Admin:localStorage.getItem('admin') }}
         }
         API.execute(req).then(function (_res) {
             console.log(_res);
