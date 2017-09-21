@@ -60,7 +60,7 @@ mongoose.connect(db.url, function (err) {
         });
         console.log('connected to database and server is listeining ');
         //console.log(mongoose.Types.ObjectId('578df3efb618f5141202a196'));
-        //console.log(new Date("9/20/2017 10:00:00").getTime());
+       // console.log(new Date("9/25/2017 10:00:00").getTime());
         //console.log(new Date(1505116800000));
     }
 });
@@ -309,7 +309,7 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //}, function (err) {
 //    console.log(err);
 //});
-//item.getByStore("59a29dd9bfa8140011a2b474").then(function (result) {
+//item.getByStore("59c3c2637b777c0012de5a86").then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
