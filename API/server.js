@@ -268,7 +268,7 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //    console.log(err);
 //});
 
-//store.addAdminNotification("59ba1227ff8e760012987122", { Text: "new noti false", Admin: "59427908734d1d235a944767" }).then(function (result) {
+//store.addAdminNotification("594660e5734d1d59b7895502", { Text: "new noti false", Admin: "59427908734d1d235a944767" }).then(function (result) {
 //    console.log(result);
 //}, function (err) {
 //    console.log(err);
@@ -309,11 +309,11 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //}, function (err) {
 //    console.log(err);
 //});
-item.getByStore("59c27f25f000ef0012d39c29").then(function (result) {
-    console.log(result);
-}, function (err) {
-    console.log(err);
-});
+//item.getByStore("59a29dd9bfa8140011a2b474").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 //expo.getByCategory("599d4a96727a860011f8c955").then(function (result) {
 //    console.log(result.data)
 //   console.log(result.data[0].Floors[0].Coordinates)

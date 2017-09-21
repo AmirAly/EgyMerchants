@@ -28,7 +28,7 @@ module.exports = {
     },
     getByStore: function (_storeId) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ 'Store': _storeId,'Status': 'Active' }, '_id Name Pictures Price Description Gallery').populate('Gallery','Title').exec(function(err, lst){
+            Schema.find({ 'Store': _storeId, 'Status': 'Active' }, '_id Name Pictures Price Description Gallery').populate('Gallery', 'Title Order').exec(function (err, lst) {
                 if (err)
                     reject({
                         code: 1,
@@ -38,10 +38,16 @@ module.exports = {
                     if (lst.length > 0)
                     {
                         var result = _.chain(lst)
-                         .groupBy("Gallery").pairs()
-                         .map(function (currentItem) {
-                          return _.object(_.zip(["gallery", "items"], currentItem));
-                          }).value();
+                                    .groupBy('Gallery')
+                                   .map(function (value, key) {
+                                       return {
+                                       Gallery: key,
+                                        Items: value
+                                             }
+                                   }).value();
+                        result.sort(function (a, b) {
+                            return parseInt(a.Gallery.split(":")[3].split(" ")[1]) - parseInt(b.Gallery.split(":")[3].split(" ")[1]);
+                        });
                         resolve({
                             code: 100,
                             data: result
