@@ -195,7 +195,7 @@ module.exports = {
             var i=0;
             _.each(_galleries, function (gallery) {
                 i++;
-                Schema.findOneAndUpdate({ '_id': gallery._id }, { $set: { Order: i } }, function (err, Obj) {
+                Schema.findOneAndUpdate({ '_id': gallery._id }, { $set: { Order: i } },{new:true}, function (err, Obj) {
                     if (err)
                         reject({ code: 1, data: err })
                     else {

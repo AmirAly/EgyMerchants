@@ -279,7 +279,7 @@ module.exports = {
     },
     remove: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "deleted" } }, { new: true }, function (err, Obj) {
+            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "Deleted" } }, { new: true }, function (err, Obj) {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
