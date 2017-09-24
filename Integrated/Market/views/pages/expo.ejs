@@ -26,8 +26,8 @@
                                                     <div class="imagesContainer" id="imagesContainer{{expo._id}}">
 
                                                         <div class="outerContainer" ng-repeat="sec in floor.Coordinates">
-                                                            <div class=" repeated-item" ng-style="{'background-image': 'url({{sec.Img}})','position':'absolute','background-size': 'cover','background-repeat': 'no-repeat','top':{{sec.Top * oneSectionHeight}} +'px','left':{{sec.Left * oneSectionWidth}} +'px','height':{{sec.Height * oneSectionHeight}} - 3 +'px', 'width':{{sec.Width * oneSectionWidth}} - 3 +'px'}">
-                                                                <a href="/{{IsoCode}}/Store/{{sec.StoreName}}/{{sec.Store._id}}"><div class="image-hover"><i class="icon-zoom-in-2"></i></div></a><div class="image-title">{{sec.StoreName}}</div>
+                                                            <div ng-class="{'suspendedstore':sec.Store.Status == 'suspended'}" class=" repeated-item" ng-style="{'background-image': 'url({{sec.Img}})','position':'absolute','background-size': 'cover','background-repeat': 'no-repeat','top':{{sec.Top * oneSectionHeight}} +'px','left':{{sec.Left * oneSectionWidth}} +'px','height':{{sec.Height * oneSectionHeight}} - 3 +'px', 'width':{{sec.Width * oneSectionWidth}} - 3 +'px'}">
+                                                                <a ng-if="sec.Store.Status != 'suspended'" href="/{{IsoCode}}/Store/{{sec.StoreName}}/{{sec.Store._id}}"><div class="image-hover"><i class="icon-zoom-in-2"></i></div></a><div class="image-title">{{sec.StoreName}}</div>
                                                             </div>
                                                         </div>
                                                         <h6>Floor {{$index + 1}} of {{expo.Floors.length}}</h6>

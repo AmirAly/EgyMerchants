@@ -1227,6 +1227,14 @@ h6.mega {
         cursor: pointer;
     }
 
+    .expoPage .outerContainer .suspendedstore {
+        background-color: rgba(255, 255, 255, 0.8);
+        background-blend-mode: overlay;
+    }
+
+        .expoPage .outerContainer .suspendedstore .image-title {
+            opacity: 0.3;
+        }
 
 /*.expoPage .expoDetails {
     position: absolute;
