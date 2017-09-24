@@ -4,7 +4,7 @@ var gallery = require('./models/galleries');
 var category = require('./models/categories');
 var country = require('./models/countries');
 module.exports = function (app) {
-    // use res.render to load up an ejs view file
+    // use res.render to load up an ejs view file //test
     // index page 
     app.get('/', function (req, res) {
         return res.redirect('/Home');
