@@ -1227,25 +1227,28 @@ h6.mega {
         cursor: pointer;
     }
 
+    .expoPage .outerContainer .suspendedstore {
+        background-color: rgba(255, 255, 255, 0.95);
+        background-blend-mode: overlay;
+        cursor: not-allowed;
+    }
 
-/*.expoPage .expoDetails {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-}
+        .expoPage .outerContainer .suspendedstore .image-title {
+            opacity: 0.3;
+        }
 
-    .expoPage .expoDetails .whiteLayer {
-        width: 86px;
-        opacity: 0.75;
-        background: #fff;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        z-index: 1;
-        box-shadow: 1px 1px 7px 2px #444;
-    }*/
+        .expoPage .outerContainer .suspendedstore .suspendMsg {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+            .expoPage .outerContainer .suspendedstore .suspendMsg h5 {
+                text-align: center;
+                text-transform: none;
+                margin: auto;
+            }
+
 
 .whiteLayerContainer {
     left: -100px;
