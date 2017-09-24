@@ -61,7 +61,7 @@ mongoose.connect(db.url, function (err) {
         console.log('connected to database and server is listeining ');
         //console.log(mongoose.Types.ObjectId('578df3efb618f5141202a196'));
        // console.log(new Date("9/25/2017 10:00:00").getTime());
-        console.log(new Date(1506376800000));
+        //console.log(new Date(1505116800000));
     }
 });
 
@@ -279,11 +279,11 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //}, function (err) {
 //    console.log(err);
 //});
-store.login({ "Email": "nbc@mail.com", "Password": "123456" }).then(function (result) {
-   console.log(result.data.AdminNotifications);
-}, function (err) {
-   console.log(err);
-});
+//store.login({ "Email": "testff@mail.com", "Password": "testff" }).then(function (result) {
+//    console.log(result.data.AdminNotifications);
+//}, function (err) {
+//    console.log(err);
+//});
 //store.getById("59b143baab49580011b54af5").then(function (result) {
 //    console.log(result);
 //}, function (err) {

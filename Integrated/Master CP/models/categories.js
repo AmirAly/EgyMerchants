@@ -112,13 +112,13 @@ module.exports = {
                                 {
                                     if (lst.length >0)
                                     {
-                                        Schema.findOneAndUpdate({ '_id': _id}, { $set: { 'Status': "deleted" } }, { new: true }, function (err, Obj) {
+                                        Schema.findOneAndUpdate({ '_id': _id}, { $set: { 'Status': "Deleted" } }, { new: true }, function (err, Obj) {
                                             if (err)
                                                 reject({ code: 3, data: err })
                                             else {
                                                 if (Obj) {
                                                     _.each(lst, function (expo) {
-                                                        Expo.findOneAndUpdate({ '_id': expo._id }, { $set: { 'Status': "deleted" } }, { new: true }, function (err, Obj) {
+                                                        Expo.findOneAndUpdate({ '_id': expo._id }, { $set: { 'Status': "Deleted" } }, { new: true }, function (err, Obj) {
                                                             if (err)
                                                                 reject({ code: 4, data: err })
                                                         })

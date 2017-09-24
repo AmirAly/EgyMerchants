@@ -52,12 +52,12 @@ module.exports = {
                         code: 21,
                         data: "This email or password incorrect"
                     });
-                else if (Obj.Status == "Unconfirmed")
+                else if (Obj.Status == "Suspended")
                     reject({
                         code: 22,
                         data: "This account not confirmed yet"
                     });
-                else if (Obj.Status == "deleted")
+                else if (Obj.Status == "Deleted")
                     reject({
                         code: 23,
                         data: "This account deleted"

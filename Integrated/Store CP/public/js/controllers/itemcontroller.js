@@ -46,6 +46,7 @@
             data: { _imageid: $scope.selectedItem, _itemid:$scope.currentItem._id }
         }
         API.execute(req).then(function (_res) {
+            console.log(_res);
             if (_res.data.code == 100) {
                 window.location.reload();
             } else {

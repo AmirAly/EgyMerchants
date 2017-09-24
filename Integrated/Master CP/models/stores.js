@@ -51,7 +51,7 @@ module.exports = {
     },
     login: function (_store) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ 'Email': _store.Email }, { 'Password': _store.Password }, { 'Type': 'store' }, {'Status':'Active'}] }, '', function (err, Obj) {
+            Schema.findOne({ $and: [{ 'Email': _store.Email }, { 'Password': _store.Password }, { 'Type': 'store' }] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -62,12 +62,12 @@ module.exports = {
                         code: 21,
                         data: "This email or password incorrect"
                     });
-                else if (Obj.Status == "Unconfirmed")
+                else if (Obj.Status == "Suspended")
                     reject({
                         code: 22,
-                        data: "This account not confirmed yet"
+                        data: "This account suspended "
                     });
-                else if (Obj.Status == "deleted")
+                else if (Obj.Status == "Deleted")
                     reject({
                         code: 23,
                         data: "This account deleted"
@@ -205,7 +205,7 @@ module.exports = {
     },
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id,'Type':'store', 'Status': 'Active' }, { "Password": 0 }, function (err, Obj) {
+            Schema.findOne({ '_id': _id,'Type':'store'}, { "Password": 0 }, function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -213,15 +213,21 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        resolve({
-                            code: 100,
-                            data: Obj
-                        });
+                        if (Obj.Status == "Active")
+                            resolve({
+                                code: 100,
+                                data: Obj
+                            });
+                        if (Obj.Status == "Suspended" || Obj.Status == "Deleted")
+                            resolve({
+                                code: 101,
+                                data: Obj
+                            });
                     }
                     else
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "This store not exist"
                         });
                 }
             })
@@ -229,19 +235,19 @@ module.exports = {
     },
     remove: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "deleted" } }, { new: true }, function (err, Obj) {
+            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "Deleted" } }, { new: true }, function (err, Obj) {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
                     if (Obj) {
-                        Gallery.updateMany({ "Store": _id }, { $set: { Status: "deleted" } }).exec(function (err, lst) {
+                        Gallery.updateMany({ "Store": _id }, { $set: { Status: "Deleted" } }).exec(function (err, lst) {
                             if (err)
                                 reject({
                                     code: 3,
                                     data: err
                                 })
                         })
-                        Item.updateMany({ "Store": _id }, { $set: { Status: "deleted" } }).exec(function (err, lst) {
+                        Item.updateMany({ "Store": _id }, { $set: { Status: "Deleted" } }).exec(function (err, lst) {
                             if (err)
                                 reject({
                                     code: 4,
@@ -290,12 +296,12 @@ module.exports = {
     },
     suspend: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "suspended" } }, { new: true }, function (err, Obj) {
+            Schema.findOneAndUpdate({ '_id': _id }, { $set: { 'Status': "Suspended" } }, { new: true }, function (err, Obj) {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
                     if (Obj) {
-                        Gallery.updateMany({ "Store": _id }, { $set: { Status: "suspended" } }).exec(function (err) {
+                        Gallery.updateMany({ "Store": _id }, { $set: { Status: "Suspended" } }).exec(function (err) {
                             if (err)
                                 reject({
                                     code: 2,
@@ -303,13 +309,13 @@ module.exports = {
                                 })
                             else
                             {
-                                Item.updateMany({ "Store": _id }, { $set: { Status: "suspended" } }).exec(function (err) {
+                                Item.updateMany({ "Store": _id }, { $set: { Status: "Suspended" } }).exec(function (err) {
                                     if (err)
                                         reject({
                                             code: 3,
                                             data: err
                                         })
-                                    else resolve({ code: 100, data: "This store suspended successfully" })
+                                    else resolve({ code: 100, data: "This store Suspended successfully" })
                                 })
                             }
                         })
@@ -355,7 +361,7 @@ module.exports = {
     },
     getAll: function () {
         return new Promise(function (resolve, reject) {
-            Schema.find({ $or: [{ 'Status': 'Active' }, { 'Status': 'suspended' }], 'Type': 'store' }, 'Name Description ProfilePicture Badges Category Status', function (err, lst) {
+            Schema.find({ $or: [{ 'Status': 'Active' }, { 'Status': 'Suspended' }], 'Type': 'store' }, 'Name Description ProfilePicture Badges Category Status', function (err, lst) {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
