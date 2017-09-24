@@ -76,6 +76,8 @@ module.exports = function (app) {
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
         store.getById(req.params.storeId).then(function (_data) {
+            console.log('**************************************************************');
+            console.debug(_data);
             if (_data.code == 100) {
                 _scope.store = _data.data;
                 product.getByStore(req.params.storeId).then(function (_galleriesData) {
@@ -112,7 +114,11 @@ module.exports = function (app) {
                     _scope.featured = [];
                     res.render('pages/store', _scope);
                 });
-            } else {
+            }
+            else if (_data.code == 101) { // suspended store
+                res.render('pages/404');
+            }
+            else {
                 _scope.store = {};
                 _scope.Galleries = [];
                 _scope.GalleriesJson = [];
