@@ -1,5 +1,5 @@
 ﻿egm.controller("floorsController", function ($scope, API, $filter, $compile) {
-
+    $scope.myDate = new Date();
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
         $scope.selectedstore = $scope.stores[0]._id;
         $scope.errorNonSelected = false;
