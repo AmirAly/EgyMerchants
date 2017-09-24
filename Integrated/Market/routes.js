@@ -77,7 +77,7 @@ module.exports = function (app) {
         _scope.countryIso = req.params.countryIso;
         store.getById(req.params.storeId).then(function (_data) {
             console.log('**************************************************************');
-            console.debug(_data);
+            console.log(_data);
             if (_data.code == 100) {
                 _scope.store = _data.data;
                 product.getByStore(req.params.storeId).then(function (_galleriesData) {

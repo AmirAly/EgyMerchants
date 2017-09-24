@@ -205,7 +205,7 @@ module.exports = {
     },
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id,'Type':'store', 'Status': 'Active' }, { "Password": 0 }, function (err, Obj) {
+            Schema.findOne({ '_id': _id,'Type':'store'}, { "Password": 0 }, function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -213,15 +213,21 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        resolve({
-                            code: 100,
-                            data: Obj
-                        });
+                        if (Obj.Status == "Active")
+                            resolve({
+                                code: 100,
+                                data: Obj
+                            });
+                        if (Obj.Status == "suspended" || Obj.Status == "deleted")
+                            resolve({
+                                code: 101,
+                                data: Obj
+                            });
                     }
                     else
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "This store not exist"
                         });
                 }
             })

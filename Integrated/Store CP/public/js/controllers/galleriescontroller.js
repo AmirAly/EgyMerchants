@@ -47,6 +47,8 @@ egm.controller("galleriesController", ['$scope', 'API', function ($scope, API) {
             }
         }
         API.execute(req).then(function (_res) {
+            console.log('enter fun with res');
+            console.log(_res);
             if (_res.data.code == 100) {
                 window.location.reload();
             } else {
