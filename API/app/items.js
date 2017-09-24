@@ -45,6 +45,8 @@ module.exports = {
                                         Items: value
                                              }
                                    }).value();
+								   // _.each(result,function(x){console.log(x.Gallery)})
+								   // console.log(result);
                         result.sort(function (a, b) {
                             return parseInt(a.Gallery.split(":")[3].split(" ")[1]) - parseInt(b.Gallery.split(":")[3].split(" ")[1]);
                         });
