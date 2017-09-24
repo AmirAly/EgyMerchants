@@ -284,6 +284,11 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //}, function (err) {
 //    console.log(err);
 //});
+//store.getById("59b143baab49580011b54af5").then(function (result) {
+//    console.log(result);
+//}, function (err) {
+//    console.log(err);
+//});
 //store.active("59a29dd9bfa8140011a2b474").then(function (result) {
 //    console.log(result);
 //}, function (err) {
@@ -309,11 +314,11 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 //}, function (err) {
 //    console.log(err);
 //});
-//item.getByStore("59c3c2637b777c0012de5a86").then(function (result) {
-//    console.log(result);
-//}, function (err) {
-//    console.log(err);
-//});
+// item.getByStore("594660e5734d1d59b7895502").then(function (result) {
+   // console.log(result);
+// }, function (err) {
+   // console.log(err);
+// });
 //expo.getByCategory("599d4a96727a860011f8c955").then(function (result) {
 //    console.log(result.data)
 //   console.log(result.data[0].Floors[0].Coordinates)
