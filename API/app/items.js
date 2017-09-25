@@ -19,7 +19,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         });
                     }
                 }
@@ -58,7 +58,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         });
                     }
                 }
@@ -82,7 +82,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         });
                     }
                 }
@@ -106,7 +106,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This item not exist"
+                            data: "This item doesn't exist"
                         });
                     }
                 }
@@ -130,7 +130,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         });
                     }
                 }
@@ -149,7 +149,7 @@ module.exports = {
                     if (Obj)
                         reject({
                             code: 21,
-                            data: "There is item with same name in this gallery"
+                            data: "There is item with the same name in this gallery"
                         });
                     else {
                         if (_product.Pictures.length) {
@@ -165,7 +165,7 @@ module.exports = {
                                     else {
                                         resolve({
                                             code: 100,
-                                            data:"This item added successfully"
+                                            data:"This item is added successfully"
                                         });
                                     }
                                 })
@@ -181,7 +181,7 @@ module.exports = {
                             else {
                                 resolve({
                                     code: 100,
-                                    data: "This item added successfully"
+                                    data: "This item is added successfully"
                                 });
                             }
                             })
@@ -237,7 +237,7 @@ module.exports = {
                                                 else
                                                     resolve({
                                                         code: 100,
-                                                        data: "This item updated successfully"
+                                                        data: "This item  is updated successfully"
                                                     });
                                             })
                                         });
@@ -258,7 +258,7 @@ module.exports = {
                                             else
                                                 resolve({
                                                     code: 100,
-                                                    data: "This item updated successfully"
+                                                    data: "This item  is updated successfully"
                                                 });
                                         })
                                     }
@@ -268,7 +268,7 @@ module.exports = {
                         })
                     }
                     else {
-                        reject({ code: 21, data: "This filteration didn't resulted in any data" })
+                        reject({ code: 21, data: "No results" })
                     }
                 }
             })
@@ -282,10 +282,10 @@ module.exports = {
                 else {
                     if (Obj)
                         resolve({
-                            code: 100, data: "This item deleted successfully"
+                            code: 100, data: "This item is deleted successfully"
                         })
                     else
-                        reject({ code: 22, data: "This item not exist" })
+                        reject({ code: 22, data: "This item doesn't exist" })
                 }
             })
         })
@@ -304,14 +304,14 @@ module.exports = {
                                 if (err)
                                     reject({ code: 2, data: err })
                                 else
-                                    resolve({code: 100, data: "This item image deleted successfully"})
+                                    resolve({code: 100, data: "This item image is deleted successfully"})
                             })
                         }
                         else
                             resolve({ code: 101, data: "Sorry not allowed to delete the last item image" })
                     }
                     else
-                        reject({ code: 22, data: "This item not exist" })
+                        reject({ code: 22, data: "This item doesn't exist" })
                         }
             })
         })

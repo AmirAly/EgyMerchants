@@ -83,7 +83,7 @@ module.exports = {
                                             if (err)
                                                 reject({code: 3, data: err});
                                             else
-                                                resolve({code: 100,data:"Country data edited successfully"})
+                                                resolve({code: 100,data:"Country data is edited successfully"})
                                         })
                                     })
                                 }
@@ -91,7 +91,7 @@ module.exports = {
                         })
                     }
                     else
-                        reject({code: 21,data: "This country not exist any more"});
+                        reject({code: 21,data: "This country won't exist any more"});
                 }
             })
         })
@@ -103,7 +103,7 @@ module.exports = {
                     reject({ code: 1, data: err })
                 else {
                     if (lst.length > 0) {
-                        if (lst.length == 1) resolve({ code: 22, data: "Sorry,you can't delete this last country" })
+                        if (lst.length == 1) resolve({ code: 22, data: "Sorry,you can't delete the last country" })
                         else {
                             Category.find({ 'Country': _id,"Status":"Active"}, '', function (err, lst) {
                                 if (err)
@@ -122,11 +122,11 @@ module.exports = {
                                                         })
                                                     })
                                                     resolve({
-                                                        code: 100, data: "This country deleted successfuylly"
+                                                        code: 100, data: "This country is deleted successfuylly"
                                                     })
                                                 }
                                                 else
-                                                    reject({ code: 21, data: "This country not exist" })
+                                                    reject({ code: 21, data: "This country doesn't exist" })
                                             }
                                         })
                                     }
@@ -138,10 +138,10 @@ module.exports = {
                                             {
                                                 if (Obj)
                                             resolve({
-                                                code: 100, data: "This country deleted successfuylly"
+                                                code: 100, data: "This country is deleted successfuylly"
                                             })
                                             else
-                                                    reject({ code: 22, data: "This country not exist" })
+                                                    reject({ code: 22, data: "This country doesn't exist" })
                                         }
                                         })
 
@@ -172,7 +172,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This country not exist"
+                            data: "This country doesn't exist"
                         });
                     }
                 }

@@ -14,7 +14,7 @@ module.exports = {
                     if (Obj) {
                         resolve({
                             code: 21,
-                            data: "There is another expo with this title"
+                            data: "There is another expo with the same title"
                         });
                     }
                     else {
@@ -29,7 +29,7 @@ module.exports = {
                                 else
                                     resolve({
                                         code: 100,
-                                        data: "This expo added successfully"
+                                        data: "This expo is added successfully"
                                     });
                             })
                         })
@@ -63,7 +63,7 @@ module.exports = {
                                     else
                                         resolve({
                                             code: 100,
-                                            data: "This floor added successfully"
+                                            data: "This floor is added successfully"
                                         })
                                 })
 
@@ -80,7 +80,7 @@ module.exports = {
                                 else
                                     resolve({
                                         code: 100,
-                                        data: "This floor added successfully"
+                                        data: "This floor is added successfully"
                                     })
                             })
                         }
@@ -88,7 +88,7 @@ module.exports = {
                     else
                         reject({
                             code: 21,
-                            data: "This expo not exist"
+                            data: "This expo doesn't exist"
                         });
                 }
             })
@@ -106,7 +106,7 @@ module.exports = {
                     if (Obj) {
                         reject({
                             code: 21,
-                            data: "There is another expo with this title"
+                            data: "There is another expo with the same  title"
                         });
                     }
                     else {
@@ -134,7 +134,7 @@ module.exports = {
                                             else
                                                 resolve({
                                                     code: 100,
-                                                    data: "Expo data edited successfully"
+                                                    data: "Expo data is edited successfully"
                                                 })
                                         })
                                     });
@@ -142,7 +142,7 @@ module.exports = {
                                 else
                                     reject({
                                         code: 21,
-                                        data: "This filteration didn't resulted in any data"
+                                        data: "No results"
                                     });
                             }
                         })
@@ -184,7 +184,7 @@ module.exports = {
                                             else
                                                 resolve({
                                                     code: 100,
-                                                    data: "Expo data edited successfully"
+                                                    data: "Expo data is edited successfully"
                                                 })
                                         })
                                     });
@@ -199,7 +199,7 @@ module.exports = {
                                         else
                                             resolve({
                                                 code: 100,
-                                                data: "Expo data edited successfully"
+                                                data: "Expo data is edited successfully"
                                             })
                                     })
                                 }
@@ -210,7 +210,7 @@ module.exports = {
                     else
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         });
                 }
             })
@@ -270,7 +270,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This expo not exist"
+                            data: "This expo doesn't exist"
                         });
                     }
                 }
@@ -284,9 +284,9 @@ module.exports = {
                     reject({ code: 1, data: err })
                 else {
                     if (Obj)
-                        resolve({ code: 100, data: "This expo deleted successfully" })
+                        resolve({ code: 100, data: "This expo is deleted successfully" })
                     else
-                        reject({ code: 21, data: "This expo not exist" })
+                        reject({ code: 21, data: "This expo doesn't exist" })
                 }
             })
         })
@@ -329,7 +329,7 @@ module.exports = {
                     else
                         reject({
                             code: 21,
-                            data: "This expo not exist"
+                            data: "This expo doesn't exist"
                         });
                 }
             })

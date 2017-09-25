@@ -60,17 +60,17 @@ module.exports = {
                 else if (!Obj)
                     reject({
                         code: 21,
-                        data: "This email or password incorrect"
+                        data: "This email or password is incorrect"
                     });
                 else if (Obj.Status == "Suspended")
                     reject({
                         code: 22,
-                        data: "This account suspended "
+                        data: "This account is suspended "
                     });
                 else if (Obj.Status == "Deleted")
                     reject({
                         code: 23,
-                        data: "This account deleted"
+                        data: "This account is deleted"
                     });
                 else if (Obj.Status == "Active")
                     resolve({
@@ -124,7 +124,7 @@ module.exports = {
                                                             else
                                                                 resolve({
                                                                     code: 100,
-                                                                    data: "Your profile updated successfully"
+                                                                    data: "Your profile is updated successfully"
                                                                 });
                                                         })
                                                     })
@@ -140,7 +140,7 @@ module.exports = {
                                 else
                                     reject({
                                         code: 21,
-                                        data: "There is no such store"
+                                        data: "There is not store"
                                     });
                             }
                         })
@@ -156,9 +156,9 @@ module.exports = {
                     reject({ code: 1, data: err })
                 else {
                     if (Obj)
-                        resolve({ code: 100, data: "Store badges edited successfully" })
+                        resolve({ code: 100, data: "Store badges is edited successfully" })
                     else
-                        reject({ code: 21, data: "This filteration didn't resulted in any data" })
+                        reject({ code: 21, data: "No result" })
                 }
             })
         })
@@ -175,7 +175,7 @@ module.exports = {
                                     if ( i== _notifications.length)
                                         resolve({
                                             code: 100,
-                                            data: "Admin notifications updated successfully"
+                                            data: "Admin notifications is updated successfully"
                                         });
                                 }
                             })
@@ -198,7 +198,7 @@ module.exports = {
                                 data: { 'AdminNotifications': result }
                             });
                             }
-                        else reject({code:21,data:"This store not exist"})
+                        else reject({code:21,data:"This store doesn't exist"})
                     }
                 })
         })
@@ -227,7 +227,7 @@ module.exports = {
                     else
                         reject({
                             code: 21,
-                            data: "This store not exist"
+                            data: "This store doesn't exist"
                         });
                 }
             })
@@ -275,7 +275,7 @@ module.exports = {
                                                           else {
                                                               //this if check to confirm that when resolve happen the data already updated in database
                                                               if (expo._id == allexpoes[allexpoes.length - 1]._id && coordinate._id == coordinatesfiltered[coordinatesfiltered.length - 1]._id)
-                                                                  resolve({ code: 100, data: "This store deleted successfully" });
+                                                                  resolve({ code: 100, data: "This store is deleted successfully" });
                                                           }
                                                       })
                                                 }
@@ -283,7 +283,7 @@ module.exports = {
                                         })
                                     })
                                 }
-                                else { resolve({ code: 100, data: "This store deleted successfully" }); }
+                                else { resolve({ code: 100, data: "This store is deleted successfully" }); }
                             }
                         });
 
@@ -314,14 +314,15 @@ module.exports = {
                                         reject({
                                             code: 3,
                                             data: err
-                                        })
-                                    else resolve({ code: 100, data: "This store Suspended successfully" })
+                                        });
+                                    else resolve({ code: 100, data: "This store is suspended successfully" });
                                 })
                             }
                         })
                     }
+                
                     else
-                        reject({ code: 21, data: "This store not exist" })
+                        reject({ code: 21, data: "This store doesn't exist" })
                 }
             })
         })
@@ -347,14 +348,14 @@ module.exports = {
                                             code: 3,
                                             data: err
                                         })
-                                    else resolve({ code: 100, data: "This store activated successfully" })
+                                    else resolve({ code: 100, data: "This store is activated successfully" })
                                 })
                             }
                         })
                     }
                         
                     else
-                        reject({ code: 21, data: "This store not exist" })
+                        reject({ code: 21, data: "This store doesn't exist" })
                 }
             })
         })
@@ -377,9 +378,9 @@ module.exports = {
                     reject({ code: 1, data: err })
                 else
                     if(Obj)
-                        resolve({ code: 100, data: "notification added successfully" })
+                        resolve({ code: 100, data: "Notification added successfully" })
                     else
-                        reject({code:21,data:"This store not exist"})
+                        reject({code:21,data:"This store doesn't exist"})
             })
         })
     },
@@ -503,7 +504,7 @@ module.exports = {
                                                 resolve({ code: 100, data: _.groupBy(finalList, 'Type') });
                                             }
                                             else {
-                                                reject({ code: 21, data: "This filteration didn't result in any data" })
+                                                reject({ code: 21, data: "No results" })
                                             }
                                         }
                                     })
@@ -515,7 +516,7 @@ module.exports = {
                                         resolve({ code: 100, data: _.groupBy(finalList, 'Type') });
                                     }
                                     else {
-                                        reject({ code: 21, data: "This filteration didn't result in any data" })
+                                        reject({ code: 21, data: "No results" })
                                     }
                                     }
                                 else {
@@ -525,10 +526,10 @@ module.exports = {
                                             resolve({ code: 100, data: _.groupBy(finalList, 'Type') });
                                         }
                                         else {
-                                            reject({ code: 21, data: "This filteration didn't result in any data" })
+                                            reject({ code: 21, data: "No results" })
                                         }
                                     }
-                                    else { reject({ code: 22, data: "please enter any value for search" }) }
+                                    else { reject({ code: 22, data: "Please enter any value " }) }
                                     }
                                 }
                                 

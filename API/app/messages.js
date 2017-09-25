@@ -47,7 +47,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This user not exist"
+                            data: "This user doesn't exist"
                         })
                     }
                 }
@@ -147,12 +147,12 @@ module.exports = {
                     if (Obj)
                         resolve({
                             code: 100,
-                            data: "Message status changed successfully"
+                            data: "Message status is changed successfully"
                         });
                     else
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         })
                 }
             })

@@ -83,7 +83,7 @@ module.exports = {
                                         else
                                             reject({
                                                 code: 21,
-                                                data: "This filteration didn't resulted in any data"
+                                                data: "No results"
                                             })
                                     }
                                 })
@@ -94,7 +94,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This item not exist any more"
+                            data: "This item won't exist any more"
                         })
                     }
                 }
@@ -122,7 +122,7 @@ module.exports = {
                                     if (Obj)
                                         resolve({
                                             code: 100,
-                                            data: "Your comment deleted successfully"
+                                            data: "Your comment is deleted successfully"
                                         })
                                 }
                             });
@@ -148,7 +148,7 @@ module.exports = {
                                                     if (Obj)
                                                         resolve({
                                                             code: 100,
-                                                            data: "Your comment deleted successfully"
+                                                            data: "Your comment is deleted successfully"
                                                         })
                                                 }
                                             });
@@ -162,7 +162,7 @@ module.exports = {
                                     else
                                         reject({
                                             code: 22,
-                                            data: "This user not exist any more"
+                                            data: "This user won't  exist any more"
                                         })
                                 }
                             })
@@ -171,7 +171,7 @@ module.exports = {
                     else
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         })
                     }
             })
