@@ -13,12 +13,12 @@ module.exports = {
                     if(Obj)
                         resolve({
                             code: 100,
-                            data: "Notification status changed successfully"
+                            data: "Notification status is changed successfully"
                         });
                     else
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         })
                 }
             })

@@ -55,12 +55,12 @@ module.exports = {
                 else if (Obj.Status == "Suspended")
                     reject({
                         code: 22,
-                        data: "This account not confirmed yet"
+                        data: "This account is suspended "
                     });
                 else if (Obj.Status == "Deleted")
                     reject({
                         code: 23,
-                        data: "This account deleted"
+                        data: "This account is deleted"
                     });
                 else if (Obj.Status == "Active")
                     resolve({
@@ -107,7 +107,7 @@ module.exports = {
                                     else {
                                         resolve({
                                             code: 100,
-                                            data: "Your profile updated successfully"
+                                            data: "Your profile is updated successfully"
                                         });
                                     }
                                 })
@@ -116,7 +116,7 @@ module.exports = {
                     else 
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         });
                     }
                 })
@@ -142,7 +142,7 @@ module.exports = {
                     else
                         reject({
                         code: 21,
-                        data: "This filteration didn't resulted in any data"
+                        data: "No results"
                     });
                 }
             })
@@ -165,7 +165,7 @@ module.exports = {
                     else
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         });
                 }
             })
@@ -188,7 +188,7 @@ module.exports = {
                     else
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No result"
                         });
                 }
             })
@@ -212,7 +212,7 @@ module.exports = {
                     else
                         reject({
                             code: 21,
-                            data: "Thisuser not exist"
+                            data: "This user doesn't exist"
                         });
                 }
             })
@@ -236,7 +236,7 @@ module.exports = {
                     else
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         });
                 }
             })

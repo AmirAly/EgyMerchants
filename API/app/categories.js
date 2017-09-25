@@ -78,7 +78,7 @@ module.exports = {
                                                     else
                                                         resolve({
                                                             code: 100,
-                                                            data:"Category data edited successfully"
+                                                            data:"Category data is edited successfully"
                                                         })
                                                 })
                                             }
@@ -88,7 +88,7 @@ module.exports = {
                                 else
                                     reject({
                                         code: 21,
-                                        data: "This category not exist"
+                                        data: "This category doesn't exist"
                                     });
                             }
                         })
@@ -102,7 +102,7 @@ module.exports = {
                 else {
                     if (lst.length > 0)
                     {
-                        if (lst.length == 1) resolve({ code: 22, data: "Sorry,you can't delete this last category" })
+                        if (lst.length == 1) resolve({ code: 22, data: "Sorry,you can't delete the last category" })
                         else
                         {
                             Expo.find({ 'Category': _id ,"Status":"Active"}, '', function (err, lst) {
@@ -124,11 +124,11 @@ module.exports = {
                                                         })
                                                     })
                                                     resolve({
-                                                        code: 100, data: "This category deleted successfuylly"
+                                                        code: 100, data: "This category is deleted successfuylly"
                                                     })
                                                 }
                                                 else
-                                                    reject({ code: 21, data: "This category not exist" })
+                                                    reject({ code: 21, data: "This category doesn't exist" })
                                             }
                                         })
                                     }
@@ -140,10 +140,10 @@ module.exports = {
                                             {
                                                 if (Obj)
                                                     resolve({
-                                                    code: 100, data: "This category deleted successfuylly"
+                                                    code: 100, data: "This category is deleted successfuylly"
                                                 })
                                                 else
-                                                    reject({ code: 22, data: "This category not exist" })
+                                                    reject({ code: 22, data: "This category doesn't exist" })
                                             }
                                                 
                                         })

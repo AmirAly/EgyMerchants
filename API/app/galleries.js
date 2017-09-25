@@ -20,7 +20,7 @@ module.exports = {
                     else 
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         });
                 }
             }).sort({ Order: 1 });
@@ -43,7 +43,7 @@ module.exports = {
                     else 
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         });
                 }
             });
@@ -69,7 +69,7 @@ module.exports = {
                                 if (Obj)
                                     reject({
                                         code: 21,
-                                        data: "There is gallery with the same title"
+                                        data: "There is a gallery with the same title"
                                     });
                                 else {
                                     gallery.DisplayPicture = "";
@@ -87,7 +87,7 @@ module.exports = {
                                                 else
                                                     resolve({
                                                         code: 100,
-                                                        data: "This gallery updated successfully"
+                                                        data: "This galleryis  updated successfully"
                                                     });
                                             })
                                         })
@@ -102,7 +102,7 @@ module.exports = {
                                             else
                                                 resolve({
                                                     code: 100,
-                                                    data: "This gallery updated successfully"
+                                                    data: "This gallery is updated successfully"
                                                 });
                                         })
                                     }
@@ -111,7 +111,7 @@ module.exports = {
                         })
                     }
                     else {
-                        reject({ code: 21, data: "This filteration didn't resulted in any data" })
+                        reject({ code: 21, data: "No results"})
                     }
                 }
             })
@@ -129,7 +129,7 @@ module.exports = {
                     if(Obj)
                         reject ({
                             code: 21,
-                            data: "There is gallery with the same title"
+                            data: "There is a gallery with the same title"
                         });
                     else {
                         if (_gallery.DisplayPicture) {
@@ -144,7 +144,7 @@ module.exports = {
                                     else
                                         resolve({
                                             code: 100,
-                                            data: "This gallery added successfully"
+                                            data: "This gallery is added successfully"
                                         });
                                 })
                             })
@@ -159,7 +159,7 @@ module.exports = {
                             else 
                                 resolve({
                                     code: 100,
-                                    data:"This gallery added successfully"
+                                    data:"This gallery is added successfully"
                                 });
                         })
                     }
@@ -180,12 +180,12 @@ module.exports = {
                             reject({ code: 2, data: err })
                         else
                             resolve({
-                                code: 100, data: "This gallery deleted successfully"
+                                code: 100, data: "This gallery is deleted successfully"
                             })
                     })
                 }
                 else
-                    reject({ code: 22, data: "This gallery not exist" })
+                    reject({ code: 22, data: "This gallery doesn't exist" })
             }
         })
     })
@@ -202,7 +202,7 @@ module.exports = {
                         if(Obj.Order==_galleries.length)
                             resolve({
                                 code: 100,
-                                data: "Galleries ordered successfully"
+                                data: "Galleries are ordered successfully"
                             });
                             }
                 })
