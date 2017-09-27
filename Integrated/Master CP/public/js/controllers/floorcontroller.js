@@ -4,8 +4,10 @@
     var theDate = new Date();
     var myNewDate = new Date(theDate);
     myNewDate.setDate(myNewDate.getDate() + 30);
-    console.log(myNewDate);
     $scope.myDate = myNewDate;
+    var limitDate = new Date(theDate);
+    limitDate.setDate(limitDate.getDate() + 1);
+    $scope.limitDate = limitDate;
 
 
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {

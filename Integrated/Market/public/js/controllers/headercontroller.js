@@ -186,6 +186,7 @@
 
     $scope.searchErr = false;
     $scope.txtSearch = '';
+    //$scope.regex = "^\!%()*+,-./@:;<=>[\\]^_`{|}~";
     $scope.search = function () {
         $scope.searchErr = false;
         if ($scope.txtSearch != '' && $scope.txtSearch.length > 1) {

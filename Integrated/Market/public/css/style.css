@@ -935,6 +935,7 @@ h6.mega {
 .storePage .pageBody {
     background: #f9f8f8;
     z-index: 99;
+    position: relative;
     position: sticky;
     margin-top: 130px;
     border: 1px solid #f9f9f9;

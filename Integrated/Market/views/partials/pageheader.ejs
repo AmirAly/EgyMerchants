@@ -77,10 +77,16 @@
                   <a class="search-icon visible-xs">
                     <i class="glyphicon glyphicon-search"></i>
                   </a>
-                  <form id="search_mini_form" class="hidden-xs">
+                  <form id="search_mini_form" name="frmSearch" class="hidden-xs">
                     <div class="form-search ">
-                      <input id="search" type="text" name="txtSearch" placeholder="Search" ng-model="txtSearch" class="input-text" autocomplete="off" />
-                      <button type="submit" ng-click="search()" title="Search" class="button">
+                      <input id="search" type="text" required name="txtSearch" placeholder="Search" ng-model="txtSearch" pattern="[A-z\d_@.#$=!%^)(\]:\*;\?\*$/" class="input-text" autocomplete="off" />
+                      <span ng-show="frmSearch.txtSearch.$dirty">
+                          <span class="errorFont" ng-show="frmSearch.txtSearch.$error.required">Required</span>
+                          <span class="errorFont" ng-show="frmSearch.txtSearch.$error.minlength">Expo name is too short</span>
+                          <span class="errorFont" ng-show="frmSearch.txtSearch.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
+                      </span>
+                      
+                      <button type="submit" form="frmSearch" ng-click="search()" title="Search" class="button">
                         <i class="glyphicon glyphicon-search"></i>
                       </button>
                       <div id="search_autocomplete" class="search-autocomplete">
