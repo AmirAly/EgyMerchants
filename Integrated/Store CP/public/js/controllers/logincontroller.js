@@ -1,4 +1,13 @@
 ﻿egm.controller("loginController", function ($scope, $rootScope, API) {
+
+    console.log(localStorage.getItem('StoreId'));
+    $scope.preload = function () {
+        if (localStorage.getItem('StoreId') !== null && localStorage.getItem('StoreId') !== '') {
+            window.location.href = '/galleries/' + localStorage.getItem('StoreId');
+        }
+    };
+    $scope.preload();
+
     $scope.loginData = {};
     $scope.loginData.Email = '';
     $scope.loginData.Password = '';

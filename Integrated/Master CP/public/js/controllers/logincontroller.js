@@ -1,4 +1,12 @@
 ﻿egm.controller("loginController", function ($scope, API) {
+    console.log(localStorage.getItem('admin'));
+    $scope.preload = function () {
+        if (localStorage.getItem('admin') !== null && localStorage.getItem('admin') !== '') {
+            window.location.href = '/store';
+        }
+    };
+    $scope.preload();
+
     $scope.loginData = {};
     $scope.loginData.Email = '';
     $scope.loginData.Password = '';

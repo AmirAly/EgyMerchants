@@ -1,5 +1,12 @@
 ﻿egm.controller("storeController", function ($scope, API) {
 
+    $scope.preload = function () {
+        if (localStorage.getItem('admin') == null || localStorage.getItem('admin') == '') {
+            window.location.href = '/Home';
+        }
+    };
+    $scope.preload();
+
     $scope.editStore = function (_id, store, Featured, HasFactory, Verified) {
         $scope.storeId = _id;
         $scope.storeName = store;

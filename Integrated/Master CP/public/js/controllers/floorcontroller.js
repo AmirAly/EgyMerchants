@@ -1,5 +1,10 @@
 ﻿egm.controller("floorController", function ($scope, API, $filter, $compile) {
-    //myDate.setDate(myDate.getDate() + n);
+    $scope.preload = function () {
+        if (localStorage.getItem('admin') == null || localStorage.getItem('admin') == '') {
+            window.location.href = '/Home';
+        }
+    };
+    $scope.preload();
 
     var theDate = new Date();
     var myNewDate = new Date(theDate);

@@ -587,7 +587,7 @@ h6.mega {
 }
 
     .main-nav ul.menu > li > a {
-        font-family: 'Oswald';
+        /*font-family: 'Oswald';*/
         font-size: 12.5px;
         letter-spacing: 0.025em;
         font-weight: 400;
@@ -1704,7 +1704,7 @@ h6.mega {
 
 .accordion-simple .panel-body {
     display: block;
-    word-break: break-word;
+    word-break: break-all;
 }
 
 /*animation general*/
@@ -2564,7 +2564,11 @@ h6.mega {
     opacity: 0.4;
 }
 
-
+.errorFont {
+    display: block;
+    color: #e40808;
+    padding: 10px;
+}
 .boxme.ng-hide-add {
     -webkit-animation: fadeOutLeftBig 0.4s;
     /*display: block!important;*/

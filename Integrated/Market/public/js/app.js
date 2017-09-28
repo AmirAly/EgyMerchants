@@ -23,6 +23,8 @@ app.run(function ($rootScope, $timeout, socket) {
             $rootScope.newMsgReceived = false;
         }, 3000);
 
+        $rootScope.getUnreadMessages();
+
         //// Get the snackbar DIV
         //var x = document.getElementById("snackbar");
         //// Add the "show" class to DIV
@@ -35,7 +37,7 @@ app.run(function ($rootScope, $timeout, socket) {
 
     socket.on('ping', function (data) {
         console.log("Ping received from server");
-        if (data) {
+        if (data && $rootScope.loggedUser) {
             console.log(data.beat);
             socket.emit('pong', "pong");
             socket.emit('adduser', $rootScope.userObject._id);

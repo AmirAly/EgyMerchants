@@ -1,4 +1,10 @@
 ﻿egm.controller("countryController", function ($scope, API) {
+    $scope.preload = function () {
+        if (localStorage.getItem('admin') == null || localStorage.getItem('admin') == '') {
+            window.location.href = '/Home';
+        }
+    };
+    $scope.preload();
 
     $scope.ShowFileSelector = function () {
         document.getElementById('uploadItemImage').click()
