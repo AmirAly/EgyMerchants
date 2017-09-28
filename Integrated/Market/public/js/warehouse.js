@@ -18,7 +18,7 @@ app.factory('socket', ['$rootScope', function ($rootScope) {
     
     //var socket = io.connect('http://localhost:8080/');
     var socket = io.connect();
-    console.log('enterrrrrrrrrrrr00');
+    console.log('enterrrrrrrrrrrr Sockets connect');
     return {
         on: function (eventName, callback) {
             console.log('OOOOOOOOONNN');

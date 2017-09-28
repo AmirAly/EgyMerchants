@@ -187,13 +187,15 @@
     $scope.searchErr = false;
     $scope.txtSearch = '';
     //$scope.regex = "^\!%()*+,-./@:;<=>[\\]^_`{|}~";
-    $scope.search = function () {
+    $scope.search = function (form) {
+        angular.forEach($scope.frmSearch.$error.required, function (field) {
+            field.$setDirty();
+        });
         $scope.searchErr = false;
-        if ($scope.txtSearch != '' && $scope.txtSearch.length > 1) {
+        if (form.$valid) {
             window.location.href = "/" + $rootScope.IsoCode + "/Search/" + $scope.txtSearch;
         }
         else {
-            console.log('2 char min');
             $scope.searchErr = true;
         }
     }

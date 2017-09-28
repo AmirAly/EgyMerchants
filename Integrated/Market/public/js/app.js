@@ -1,6 +1,6 @@
 ﻿var app = angular.module("app", ['ngAnimate']);
 
-app.run(function ($rootScope,$timeout, socket) {
+app.run(function ($rootScope, $timeout, socket) {
     
 
     // Socket listeners
@@ -17,17 +17,30 @@ app.run(function ($rootScope,$timeout, socket) {
 
     socket.on('newmsg', function (_data) {
         console.log('new msg ***************************************');
-        // Get the snackbar DIV
-        var x = document.getElementById("snackbar");
 
-        // Add the "show" class to DIV
-        x.className = "show";
+        $rootScope.newMsgReceived = true;
+        $timeout(function () {
+            $rootScope.newMsgReceived = false;
+        }, 3000);
 
-        // After 3 seconds, remove the show class from DIV
-        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+        //// Get the snackbar DIV
+        //var x = document.getElementById("snackbar");
+        //// Add the "show" class to DIV
+        //x.className = "show";
+        //// After 3 seconds, remove the show class from DIV
+        //setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+        //$rootScope.$apply();
 
-        $scope.$apply();
+    });
 
+    socket.on('ping', function (data) {
+        console.log("Ping received from server");
+        if (data) {
+            console.log(data.beat);
+            socket.emit('pong', "pong");
+            socket.emit('adduser', $rootScope.userObject._id);
+        }
+        
     });
 
     $rootScope.$on('$stateChangeSuccess', function () {

@@ -420,7 +420,12 @@ h6.mega {
         }
 
 
-
+    .dvMiddlePart .errorFont {
+        padding-left: 30px;
+        line-height: 1.4;
+        text-align: center;
+        color: red;
+    }
 
     .dvMiddlePart .search-area {
         position: static;
