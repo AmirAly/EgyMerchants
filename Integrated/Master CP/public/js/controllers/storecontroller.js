@@ -1,7 +1,7 @@
 ﻿egm.controller("storeController", function ($scope, API) {
 
     $scope.preload = function () {
-        if (localStorage.getItem('admin') == null || localStorage.getItem('admin') == '') {
+        if (localStorage.getItem('admin') === null || localStorage.getItem('admin') === '') {
             window.location.href = '/Home';
         }
     };
