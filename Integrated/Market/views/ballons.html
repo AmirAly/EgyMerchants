@@ -2,7 +2,7 @@
 <head>
     <title></title>
     <style>
-/*------------------------------------ Balloons------------------------------------*/
+        /*------------------------------------ Balloons------------------------------------*/
 
         .balloon {
             position: absolute;
@@ -30,36 +30,37 @@
                 opacity: .7;
             }
 
- /*------------------------------------Starting Ballons - 1 iteration ------------------------------------*/
+            /*------------------------------------Starting Ballons - 1 iteration ------------------------------------*/
             .balloon:nth-child(1) {
                 background: yellow;
                 background-size: cover;
                 background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
-                bottom: 55%;
-                left: 50%;
-                animation: once-1 8s 1 ease-in forwards;
+                visibility: hidden;
+                animation: once-1 8s 1 ease-in-out forwards;
             }
-
-        
 
         @keyframes once-1 {
             0% {
-                left: 0;
-                bottom: 0;
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
                 transform: translateY(0) rotate(8deg);
             }
+
             20% {
                 bottom: 20%;
                 transform: translateY(12px) rotate(4deg);
             }
+
             50% {
-                
                 transform: translateY( -15px) rotate(-12deg);
             }
+
             80% {
                 bottom: 60%;
                 transform: translateY(17px) rotate(10deg);
             }
+
             100% {
                 left: 80%;
                 bottom: 0;
@@ -72,15 +73,15 @@
             background: blue;
             background-size: cover;
             background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
-            bottom: 35%;
-            left: 20%;
-            animation: once-2 10s 1 ease-in forwards;
+            visibility: hidden;
+            animation: once-2 10s 1 ease-in-out forwards;
         }
 
         @keyframes once-2 {
             0% {
-                left: 0%;
-                bottom:0;
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
                 -webkit-transform: translateY(0) rotate(0deg);
             }
 
@@ -88,6 +89,7 @@
                 bottom: 50%;
                 -webkit-transform: translateY(-10px) rotate(-8deg);
             }
+
             50% {
                 -webkit-transform: translateY(-20px) rotate(10deg);
             }
@@ -100,7 +102,7 @@
             100% {
                 left: 80%;
                 bottom: 0;
-                visibility:hidden;
+                visibility: hidden;
                 -webkit-transform: translateY(0) rotate(8deg);
             }
         }
@@ -109,15 +111,15 @@
             background: purple;
             background-size: cover;
             background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
-            bottom: 15%;
-            left: 30%;
-            animation: once-3 11s 1 ease-in forwards;
+            visibility: hidden;
+            animation: once-3 11s 1 ease-in-out forwards;
         }
 
         @keyframes once-3 {
             0% {
-                left: 0;
-                bottom: 0;
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
                 -webkit-transform: translateY(0) rotate(0deg);
             }
 
@@ -126,7 +128,7 @@
             }
 
             50% {
-                bottom:60%;
+                bottom: 60%;
                 -webkit-transform: translateY(8px) rotate(-8deg);
             }
 
@@ -146,22 +148,20 @@
             background: red;
             background-size: cover;
             background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
-            bottom: 5%;
-            left: 55%;
             visibility: hidden;
-            animation: once-4 10s 1 ease-in forwards;
+            animation: once-4 10s 1 ease-in-out forwards;
         }
 
         @keyframes once-4 {
             0% {
-                left: 0;
-                bottom: 0%;
+                left: -60px;
+                bottom: -125px;
                 visibility: visible;
                 -webkit-transform: translateY(0) rotate(-4deg);
             }
 
             40% {
-                bottom:70%;
+                bottom: 70%;
                 -webkit-transform: translateY(-8px) rotate(10deg);
             }
 
@@ -181,15 +181,15 @@
             background: cyan;
             background-size: cover;
             background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
-            bottom: 10%;
-            left: 75%;
-            animation: once-5 10s 1 ease-in forwards;
+            visibility: hidden;
+            animation: once-5 10s 1 ease-in-out forwards;
         }
 
         @keyframes once-5 {
             0% {
-                left:0;
-                bottom: 0%;
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
                 -webkit-transform: translateY(0) rotate(-4deg);
             }
 
@@ -198,7 +198,7 @@
             }
 
             85% {
-                bottom:70%;
+                bottom: 70%;
                 -webkit-transform: translateY(10px) rotate(-8deg);
             }
 
@@ -215,13 +215,11 @@
         .balloon:nth-child(6) {
             background: yellow;
             background-size: cover;
-            /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
-            bottom: 0%;
-            left: 0%;
+            background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
             visibility: hidden;
-            /*-webkit-animation: once-a 8s 1 ease-in forwards;*/
-            animation: once-6 8s 1 ease-in forwards;
-            animation-delay: 3s;
+            /*-webkit-animation: once-a 8s 1 ease-in-out forwards;*/
+            animation: once-6 8s 1 ease-in-out forwards;
+            animation-delay: 0.7s;
         }
 
         /*@-webkit-keyframes once-a {
@@ -252,8 +250,8 @@
 
         @keyframes once-6 {
             0% {
-                left: 0;
-                bottom: 0;
+                left: -60px;
+                bottom: -125px;
                 visibility: visible;
                 transform: translateY(0) rotate(8deg);
             }
@@ -283,18 +281,16 @@
         .balloon:nth-child(7) {
             background: blue;
             background-size: cover;
-            /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
-            bottom: 0%;
-            left: 0%;
+            background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
             visibility: hidden;
-            animation: once-7 10s 1 ease-in forwards;
-            animation-delay: 3s;
+            animation: once-7 10s 1 ease-in-out forwards;
+            animation-delay: 0.7s;
         }
 
         @keyframes once-7 {
             0% {
-                left: 0%;
-                bottom: 0;
+                left: -60px;
+                bottom: -125px;
                 visibility: visible;
                 -webkit-transform: translateY(0) rotate(0deg);
             }
@@ -324,18 +320,16 @@
         .balloon:nth-child(8) {
             background: purple;
             background-size: cover;
-            /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
-            bottom: 0%;
-            left: 0%;
+            background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
             visibility: hidden;
-            animation: once-8 11s 1 ease-in forwards;
-            animation-delay: 3s;
+            animation: once-8 10.2s 1 ease-in-out forwards;
+            animation-delay: 0.7s;
         }
 
         @keyframes once-8 {
             0% {
-                left: 0;
-                bottom: 0;
+                left: -60px;
+                bottom: -125px;
                 visibility: visible;
                 -webkit-transform: translateY(0) rotate(0deg);
             }
@@ -364,24 +358,22 @@
         .balloon:nth-child(9) {
             background: red;
             background-size: cover;
-            /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
-            bottom: 5%;
-            left: 55%;
+            background-image: url(http://www.mybligr.com/wp-content/uploads/2017/01/most-beautiful-tiger-animals-pics-images-photos-pictures-6.jpg);
             visibility: hidden;
-            animation: once-9 11s 1 ease-in forwards;
-            animation-delay: 3s;
+            animation: once-9 10.3s 1 ease-in-out forwards;
+            animation-delay: 0.7s;
         }
 
         @keyframes once-9 {
             0% {
-                left: 0;
-                bottom: 0%;
+                left: -60px;
+                bottom: -125px;
                 visibility: visible;
                 -webkit-transform: translateY(0) rotate(-4deg);
             }
 
             40% {
-                bottom: 70%;
+                bottom: 40%;
                 -webkit-transform: translateY(-8px) rotate(10deg);
             }
 
@@ -400,18 +392,16 @@
         .balloon:nth-child(10) {
             background: cyan;
             background-size: cover;
-            /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
-            bottom: 0%;
-            left: 0%;
+            background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
             visibility: hidden;
-            animation: once-10 10s 1 ease-in forwards;
-            animation-delay: 3s;
+            animation: once-10 10s 1 ease-in-out forwards;
+            animation-delay: 0.7s;
         }
 
         @keyframes once-10 {
             0% {
-                left: 0;
-                bottom: 0%;
+                left: -60px;
+                bottom: -125px;
                 visibility: visible;
                 -webkit-transform: translateY(0) rotate(-4deg);
             }
@@ -435,6 +425,811 @@
 
 
 
+
+
+
+        /*11-20*/
+        .balloon:nth-child(11) {
+            background: yellow;
+            background-size: cover;
+            background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+            visibility: hidden;
+            animation: once-11 8s 1 ease-in-out forwards;
+            animation-delay: 1.4s;
+        }
+
+        @keyframes once-11 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                transform: translateY(0) rotate(8deg);
+            }
+
+            20% {
+                bottom: 20%;
+                transform: translateY(12px) rotate(4deg);
+            }
+
+            50% {
+                transform: translateY( -15px) rotate(-12deg);
+            }
+
+            80% {
+                bottom: 60%;
+                transform: translateY(17px) rotate(10deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                transform: translateY(-10px) rotate(10deg);
+            }
+        }
+
+        .balloon:nth-child(12) {
+            background: blue;
+            background-size: cover;
+            background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+            visibility: hidden;
+            animation: once-12 10s 1 ease-in-out forwards;
+            animation-delay: 1.4s;
+        }
+
+        @keyframes once-12 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                -webkit-transform: translateY(0) rotate(0deg);
+            }
+
+            20% {
+                bottom: 50%;
+                -webkit-transform: translateY(-10px) rotate(-8deg);
+            }
+
+            50% {
+                -webkit-transform: translateY(-20px) rotate(10deg);
+            }
+
+            75% {
+                bottom: 20%;
+                -webkit-transform: translateY(5px) rotate(-8deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                -webkit-transform: translateY(0) rotate(8deg);
+            }
+        }
+
+        .balloon:nth-child(13) {
+            background: purple;
+            background-size: cover;
+            background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+            visibility: hidden;
+            animation: once-13 11s 1 ease-in-out forwards;
+            animation-delay: 1.4s;
+        }
+
+        @keyframes once-13 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                -webkit-transform: translateY(0) rotate(0deg);
+            }
+
+            20% {
+                -webkit-transform: translateY(-4px) rotate(4deg);
+            }
+
+            50% {
+                bottom: 60%;
+                -webkit-transform: translateY(8px) rotate(-8deg);
+            }
+
+            75% {
+                -webkit-transform: translateY(-10px) rotate(10deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                -webkit-transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        .balloon:nth-child(14) {
+            background: red;
+            background-size: cover;
+            background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+            visibility: hidden;
+            animation: once-14 10s 1 ease-in-out forwards;
+            animation-delay: 1.4s;
+        }
+
+        @keyframes once-14 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                -webkit-transform: translateY(0) rotate(-4deg);
+            }
+
+            40% {
+                bottom: 70%;
+                -webkit-transform: translateY(-8px) rotate(10deg);
+            }
+
+            85% {
+                -webkit-transform: translateY(10px) rotate(-8deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                -webkit-transform: translateY(0) rotate(0);
+            }
+        }
+
+        .balloon:nth-child(15) {
+            background: cyan;
+            background-size: cover;
+            background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+            visibility: hidden;
+            animation: once-15 10s 1 ease-in-out forwards;
+            animation-delay: 1.4s;
+        }
+
+        @keyframes once-15 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                -webkit-transform: translateY(0) rotate(-4deg);
+            }
+
+            40% {
+                -webkit-transform: translateY(-8px) rotate(10deg);
+            }
+
+            85% {
+                bottom: 70%;
+                -webkit-transform: translateY(10px) rotate(-8deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                -webkit-transform: translateY(0) rotate(0);
+            }
+        }
+
+
+
+        .balloon:nth-child(16) {
+            background: yellow;
+            background-size: cover;
+            background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+            visibility: hidden;
+            /*-webkit-animation: once-a 8s 1 ease-in-out forwards;*/
+            animation: once-16 8s 1 ease-in-out forwards;
+            animation-delay: 2.1s;
+        }
+
+        /*@-webkit-keyframes once-16 {
+            0% {
+                left: 0%;
+                -webkit-transform: translateY(0) rotate(8deg);
+            }
+
+            20% {
+                -webkit-transform: translateY(12px) rotate(4deg);
+            }
+
+            50% {
+                -webkit-transform: translateY( -15px) rotate(-12deg);
+            }
+
+            80% {
+                -webkit-transform: translateY(17px) rotate(10deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                -webkit-transform: translateY(-10px) rotate(10deg);
+                visibility: hidden;
+            }
+        }*/
+
+        @keyframes once-16 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                transform: translateY(0) rotate(8deg);
+            }
+
+            20% {
+                bottom: 20%;
+                transform: translateY(12px) rotate(4deg);
+            }
+
+            50% {
+                transform: translateY( -15px) rotate(-12deg);
+            }
+
+            80% {
+                bottom: 60%;
+                transform: translateY(17px) rotate(10deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                transform: translateY(-10px) rotate(10deg);
+            }
+        }
+
+        .balloon:nth-child(17) {
+            background: blue;
+            background-size: cover;
+            background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+            visibility: hidden;
+            animation: once-17 10s 1 ease-in-out forwards;
+            animation-delay: 2.1s;
+        }
+
+        @keyframes once-17 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                -webkit-transform: translateY(0) rotate(0deg);
+            }
+
+            20% {
+                bottom: 50%;
+                -webkit-transform: translateY(-10px) rotate(-8deg);
+            }
+
+            50% {
+                -webkit-transform: translateY(-20px) rotate(10deg);
+            }
+
+            75% {
+                bottom: 20%;
+                -webkit-transform: translateY(5px) rotate(-8deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                -webkit-transform: translateY(0) rotate(8deg);
+            }
+        }
+
+        .balloon:nth-child(18) {
+            background: purple;
+            background-size: cover;
+            background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+            visibility: hidden;
+            animation: once-18 10.2s 1 ease-in-out forwards;
+            animation-delay: 2.1s;
+        }
+
+        @keyframes once-18 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                -webkit-transform: translateY(0) rotate(0deg);
+            }
+
+            20% {
+                -webkit-transform: translateY(-4px) rotate(4deg);
+            }
+
+            50% {
+                bottom: 60%;
+                -webkit-transform: translateY(8px) rotate(-8deg);
+            }
+
+            75% {
+                -webkit-transform: translateY(-10px) rotate(10deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                -webkit-transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        .balloon:nth-child(19) {
+            background: red;
+            background-size: cover;
+            background-image: url(http://www.mybligr.com/wp-content/uploads/2017/01/most-beautiful-tiger-animals-pics-images-photos-pictures-6.jpg);
+            visibility: hidden;
+            animation: once-19 10.3s 1 ease-in-out forwards;
+            animation-delay: 2.1s;
+        }
+
+        @keyframes once-19 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                -webkit-transform: translateY(0) rotate(-4deg);
+            }
+
+            40% {
+                bottom: 40%;
+                -webkit-transform: translateY(-8px) rotate(10deg);
+            }
+
+            85% {
+                -webkit-transform: translateY(10px) rotate(-8deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                -webkit-transform: translateY(0) rotate(0);
+            }
+        }
+
+        .balloon:nth-child(20) {
+            background: cyan;
+            background-size: cover;
+            background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+            visibility: hidden;
+            animation: once-20 10s 1 ease-in-out forwards;
+            animation-delay: 2.1s;
+        }
+
+        @keyframes once-20 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                -webkit-transform: translateY(0) rotate(-4deg);
+            }
+
+            40% {
+                -webkit-transform: translateY(-8px) rotate(10deg);
+            }
+
+            85% {
+                bottom: 70%;
+                -webkit-transform: translateY(10px) rotate(-8deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                -webkit-transform: translateY(0) rotate(0);
+            }
+        }
+
+
+
+
+
+
+
+
+        /*21-30*/
+        .balloon:nth-child(21) {
+            background: yellow;
+            background-size: cover;
+            background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+            visibility: hidden;
+            animation: once-21 8s 1 ease-in-out forwards;
+            animation-delay: 2.8s;
+        }
+
+        @keyframes once-21 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                transform: translateY(0) rotate(8deg);
+            }
+
+            20% {
+                bottom: 20%;
+                transform: translateY(12px) rotate(4deg);
+            }
+
+            50% {
+                transform: translateY( -15px) rotate(-12deg);
+            }
+
+            80% {
+                bottom: 60%;
+                transform: translateY(17px) rotate(10deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                transform: translateY(-10px) rotate(10deg);
+            }
+        }
+
+        .balloon:nth-child(22) {
+            background: blue;
+            background-size: cover;
+            background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+            visibility: hidden;
+            animation: once-22 10s 1 ease-in-out forwards;
+            animation-delay: 2.8s;
+        }
+
+        @keyframes once-22 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                -webkit-transform: translateY(0) rotate(0deg);
+            }
+
+            20% {
+                bottom: 50%;
+                -webkit-transform: translateY(-10px) rotate(-8deg);
+            }
+
+            50% {
+                -webkit-transform: translateY(-20px) rotate(10deg);
+            }
+
+            75% {
+                bottom: 20%;
+                -webkit-transform: translateY(5px) rotate(-8deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                -webkit-transform: translateY(0) rotate(8deg);
+            }
+        }
+
+        .balloon:nth-child(23) {
+            background: purple;
+            background-size: cover;
+            background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+            visibility: hidden;
+            animation: once-23 11s 1 ease-in-out forwards;
+            animation-delay: 2.8s;
+        }
+
+        @keyframes once-23 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                -webkit-transform: translateY(0) rotate(0deg);
+            }
+
+            20% {
+                -webkit-transform: translateY(-4px) rotate(4deg);
+            }
+
+            50% {
+                bottom: 60%;
+                -webkit-transform: translateY(8px) rotate(-8deg);
+            }
+
+            75% {
+                -webkit-transform: translateY(-10px) rotate(10deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                -webkit-transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        .balloon:nth-child(24) {
+            background: red;
+            background-size: cover;
+            background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+            visibility: hidden;
+            animation: once-24 10s 1 ease-in-out forwards;
+            animation-delay: 2.8s;
+        }
+
+        @keyframes once-24 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                -webkit-transform: translateY(0) rotate(-4deg);
+            }
+
+            40% {
+                bottom: 70%;
+                -webkit-transform: translateY(-8px) rotate(10deg);
+            }
+
+            85% {
+                -webkit-transform: translateY(10px) rotate(-8deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                -webkit-transform: translateY(0) rotate(0);
+            }
+        }
+
+        .balloon:nth-child(25) {
+            background: cyan;
+            background-size: cover;
+            background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+            visibility: hidden;
+            animation: once-25 10s 1 ease-in-out forwards;
+            animation-delay: 2.8s;
+        }
+
+        @keyframes once-25 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                -webkit-transform: translateY(0) rotate(-4deg);
+            }
+
+            40% {
+                -webkit-transform: translateY(-8px) rotate(10deg);
+            }
+
+            85% {
+                bottom: 70%;
+                -webkit-transform: translateY(10px) rotate(-8deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                -webkit-transform: translateY(0) rotate(0);
+            }
+        }
+
+
+
+        .balloon:nth-child(26) {
+            background: yellow;
+            background-size: cover;
+            background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+            visibility: hidden;
+            /*-webkit-animation: once-a 8s 1 ease-in-out forwards;*/
+            animation: once-26 8s 1 ease-in-out forwards;
+            animation-delay: 3.5s;
+        }
+
+        /*@-webkit-keyframes once-26 {
+            0% {
+                left: 0%;
+                -webkit-transform: translateY(0) rotate(8deg);
+            }
+
+            20% {
+                -webkit-transform: translateY(12px) rotate(4deg);
+            }
+
+            50% {
+                -webkit-transform: translateY( -15px) rotate(-12deg);
+            }
+
+            80% {
+                -webkit-transform: translateY(17px) rotate(10deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                -webkit-transform: translateY(-10px) rotate(10deg);
+                visibility: hidden;
+            }
+        }*/
+
+        @keyframes once-26 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                transform: translateY(0) rotate(8deg);
+            }
+
+            20% {
+                bottom: 20%;
+                transform: translateY(12px) rotate(4deg);
+            }
+
+            50% {
+                transform: translateY( -15px) rotate(-12deg);
+            }
+
+            80% {
+                bottom: 60%;
+                transform: translateY(17px) rotate(10deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                transform: translateY(-10px) rotate(10deg);
+            }
+        }
+
+        .balloon:nth-child(27) {
+            background: blue;
+            background-size: cover;
+            background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+            visibility: hidden;
+            animation: once-27 10s 1 ease-in-out forwards;
+            animation-delay: 3.5s;
+        }
+
+        @keyframes once-27 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                -webkit-transform: translateY(0) rotate(0deg);
+            }
+
+            20% {
+                bottom: 50%;
+                -webkit-transform: translateY(-10px) rotate(-8deg);
+            }
+
+            50% {
+                -webkit-transform: translateY(-20px) rotate(10deg);
+            }
+
+            75% {
+                bottom: 20%;
+                -webkit-transform: translateY(5px) rotate(-8deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                -webkit-transform: translateY(0) rotate(8deg);
+            }
+        }
+
+        .balloon:nth-child(28) {
+            background: purple;
+            background-size: cover;
+            background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+            visibility: hidden;
+            animation: once-28 10.2s 1 ease-in-out forwards;
+            animation-delay: 3.5s;
+        }
+
+        @keyframes once-28 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                -webkit-transform: translateY(0) rotate(0deg);
+            }
+
+            20% {
+                -webkit-transform: translateY(-4px) rotate(4deg);
+            }
+
+            50% {
+                bottom: 60%;
+                -webkit-transform: translateY(8px) rotate(-8deg);
+            }
+
+            75% {
+                -webkit-transform: translateY(-10px) rotate(10deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                -webkit-transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        .balloon:nth-child(29) {
+            background: red;
+            background-size: cover;
+            background-image: url(http://www.mybligr.com/wp-content/uploads/2017/01/most-beautiful-tiger-animals-pics-images-photos-pictures-6.jpg);
+            visibility: hidden;
+            animation: once-29 10.3s 1 ease-in-out forwards;
+            animation-delay: 3.5s;
+        }
+
+        @keyframes once-29 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                -webkit-transform: translateY(0) rotate(-4deg);
+            }
+
+            40% {
+                bottom: 40%;
+                -webkit-transform: translateY(-8px) rotate(10deg);
+            }
+
+            85% {
+                -webkit-transform: translateY(10px) rotate(-8deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                -webkit-transform: translateY(0) rotate(0);
+            }
+        }
+
+        .balloon:nth-child(30) {
+            background: cyan;
+            background-size: cover;
+            background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+            visibility: hidden;
+            animation: once-30 10s 1 ease-in-out forwards;
+            animation-delay: 3.5s;
+        }
+
+        @keyframes once-30 {
+            0% {
+                left: -60px;
+                bottom: -125px;
+                visibility: visible;
+                -webkit-transform: translateY(0) rotate(-4deg);
+            }
+
+            40% {
+                -webkit-transform: translateY(-8px) rotate(10deg);
+            }
+
+            85% {
+                bottom: 70%;
+                -webkit-transform: translateY(10px) rotate(-8deg);
+            }
+
+            100% {
+                left: 80%;
+                bottom: 0;
+                visibility: hidden;
+                -webkit-transform: translateY(0) rotate(0);
+            }
+        }
     </style>
 </head>
 <body>
@@ -449,11 +1244,35 @@
             <div class="balloon red"></div>
             <div class="balloon cyan"></div>
 
+            <!--<div class="balloon yellow"></div>
+            <div class="balloon blue"></div>
+            <div class="balloon purple"></div>
+            <div class="balloon red"></div>
+            <div class="balloon cyan"></div>
+
             <div class="balloon yellow"></div>
             <div class="balloon blue"></div>
             <div class="balloon purple"></div>
             <div class="balloon red"></div>
-            <div class="balloon cyan"></div><!-- -->
+            <div class="balloon cyan"></div>
+
+            <div class="balloon yellow"></div>
+            <div class="balloon blue"></div>
+            <div class="balloon purple"></div>
+            <div class="balloon red"></div>
+            <div class="balloon cyan"></div>
+
+            <div class="balloon yellow"></div>
+            <div class="balloon blue"></div>
+            <div class="balloon purple"></div>
+            <div class="balloon red"></div>
+            <div class="balloon cyan"></div>
+
+            <div class="balloon yellow"></div>
+            <div class="balloon blue"></div>
+            <div class="balloon purple"></div>
+            <div class="balloon red"></div>
+            <div class="balloon cyan"></div>-->
 
         </section>
 
