@@ -3,7 +3,7 @@ var Helper = require('./helper');
 module.exports = {
     register: function (_newUser) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $or: [{ 'Email': _newUser.Email }, { 'Name': _newUser.Name }] }, '', function (err, Obj) {
+            Schema.findOne({ $or: [{ 'Email': {$regex: new RegExp('^' + _newUser.Email+"$" , 'i')} }, { 'Name':  {$regex: new RegExp('^' + _newUser.Name+"$" , 'i')} }] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -41,7 +41,7 @@ module.exports = {
     },
     login: function (_user) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ 'Email': _user.Email }, { 'Password': _user.Password }] }, '', function (err, Obj) {
+            Schema.findOne({ $and: [{ 'Email':{$regex: new RegExp('^' + _user.Email+"$" , 'i')} }, { 'Password':{$regex: new RegExp('^' + _user.Password+"$" , 'i')}}] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -72,7 +72,7 @@ module.exports = {
     },
     editProfile: function (_id, _email, _name, _profilePicture) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $or: [{ 'Email': _email }, { 'Name': _name }] , '_id': { $ne: _id }}, '', function (err, Obj) {
+            Schema.findOne({ $or: [{ 'Email': {$regex: new RegExp('^' + _email+"$" , 'i')} }, { 'Name': {$regex: new RegExp('^' + _name+"$" , 'i')}}] , '_id': { $ne: _id }}, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,

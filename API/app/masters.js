@@ -3,7 +3,7 @@ module.exports = {
     //added for test
     register: function (_newMaster) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $or: [{ 'Email': _newMaster.Email }, { 'Name': _newMaster.Name }] }, '', function (err, Obj) {
+            Schema.findOne({ $or: [{ 'Email': {$regex: new RegExp('^' + _newMaster.Email+"$" , 'i')} }, { 'Name': {$regex: new RegExp('^' + _newMaster.Name+"$" , 'i')} }] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -41,7 +41,7 @@ module.exports = {
     },
     login: function (_master) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ 'Email': _master.Email }, { 'Password': _master.Password }, { 'Type': 'master' }] }, '', function (err, Obj) {
+            Schema.findOne({ $and: [{ 'Email': {$regex: new RegExp('^' + _master.Email+"$" , 'i')} }, { 'Password': {$regex: new RegExp('^' + _master.Password+"$" , 'i')} }, { 'Type': 'master' }] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,

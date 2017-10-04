@@ -59,23 +59,32 @@ module.exports = {
                     });
                 else {
                     if (gallery) {
-                        Schema.findOne({ 'Title': _title, 'Store': gallery.Store, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
+                        Schema.findOne({ 'Title': {$regex: new RegExp('^' + _title+"$" , 'i')}, 'Store': gallery.Store, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
                             if (err)
                                 reject({
                                     code: 1,
                                     data: err
                                 });
                             else {
-                                if (Obj)
+                                
+                                if (Obj){
+                                console.log(obj)
+                                
                                     reject({
                                         code: 21,
                                         data: "There is a gallery with the same title"
                                     });
+                                }
                                 else {
+                                    console.log(obj)
+                                  
                                     gallery.DisplayPicture = "";
                                     gallery.Title = _title;
                                     gallery.Description = _description;
+                                   
+                                    
                                     if (_img) {
+                                        console.log(_img)
                                         Helper.uploadImage(_img, function (_url) {
                                             gallery.DisplayPicture = _url;
                                             gallery.save(function (err, Obj) {
@@ -119,7 +128,7 @@ module.exports = {
     },
     add: function (_gallery) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ 'Store': _gallery.Store }, { 'Title': _gallery.Title }, {'Status':'Active'}] }, '', function (err, Obj) {
+            Schema.findOne({ $and: [{ 'Store': _gallery.Store }, { 'Title':  {$regex: new RegExp('^' + _gallery.Title+"$" , 'i')} }, {'Status':'Active'}] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,

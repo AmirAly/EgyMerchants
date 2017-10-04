@@ -139,13 +139,14 @@ module.exports = {
     },
     add: function (_product) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Name': _product.Name, 'Gallery': _product.Gallery, 'Status': 'Active' }, '', function (err, Obj) {
+            Schema.findOne({ 'Name': {$regex: new RegExp('^' + _product.Name+"$" , 'i')}, 'Gallery': _product.Gallery, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
                         data: err
                     });
                 else {
+                   
                     if (Obj)
                         reject({
                             code: 21,
@@ -202,19 +203,26 @@ module.exports = {
                     });
                 else {
                     if (item) {
-                        Schema.findOne({ 'Name': _name, 'Gallery': item.Gallery, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
+                        Schema.findOne({ 'Name': {$regex: new RegExp('^' + _name+"$" , 'i')}, 'Gallery': item.Gallery, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
+                            console.log(Obj)
                             if (err)
                                 reject({
                                     code: 1,
                                     data: err
                                 });
                             else {
+                            
                                 if (Obj)
+                                {
+                                   // console.log(Obj)
                                     reject({
                                         code: 21,
                                         data: "There is item with the same name in this gallery"
                                     });
+                                }
                                 else {
+                                
+                                    
                                     item.Pictures = [];
                                     if (_imgs.length) {
                                         Helper.uploadMultipleImages(_imgs, function (_url) {
@@ -222,9 +230,12 @@ module.exports = {
                                             var result = _imgs;
                                             _.each(_url, function (imageurl) { if (i < _imgs.length) { result[i].URL = imageurl; i++; } });
                                             item.Pictures = item.Pictures.concat(result);
+                                            
+                                            
                                             item.Name = _name;
                                             item.Description = _description;
                                             item.Price = _price;
+                                            
                                             item.PriceBeforeSale = _priceBeforeSale;
                                             item.Badges = _badges;
                                             item.Tags = _tags;
