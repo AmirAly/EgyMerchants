@@ -1514,6 +1514,7 @@ h6.mega {
         bottom: 45px;
         right: 120px;
         min-width: 0px;
+        min-height: 0px;
         background: #2f3946;
         background: rgba(47, 57, 70, 0.7);
         padding: 10px;
@@ -1521,19 +1522,19 @@ h6.mega {
         border-radius: 0 30px;
         box-shadow: 0 0 4px 1px #2f3946;
         box-shadow: 0 0 0px 5px #2f3946;
-        transition: min-width 2s;
+        transition: min-width 2s, min-height 2s;
+        overflow-x: auto;
+        text-align: center;
     }
 
         .expoPage article .expoData h4:hover {
             min-width: calc(100% - 120px - 20px);
+            /*min-height: 160px;*/
+            min-height: 115px;
+            overflow-x: auto;
+            text-align: center;
         }
 
-
-
-            .expoPage article .expoData h4:hover span {
-                visibility: visible;
-                opacity: 1;
-            }
 
         .expoPage article .expoData h4 span {
             -webkit-transition: all 1.3s ease .15s;
@@ -1544,12 +1545,41 @@ h6.mega {
             opacity: 0;
             clear: both;
             visibility: hidden;
-            position:absolute;
+            position: absolute;
         }
 
-            .expoPage article .expoData h4 span:hover {
-                visibility: visible;
-            }
+        .expoPage article .expoData h4:hover span {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .expoPage article .expoData h4 span:hover {
+            visibility: visible;
+        }
+
+        .expoPage article .expoData h4 .flexContainer {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .expoPage article .expoData h4 .dvFloorLogo {
+            padding: 7px 5px;
+            box-sizing: border-box;
+            width: 0;
+            -webkit-transition: all .5s ease .15s;
+            -moz-transition: all .5s ease .15s;
+            -o-transition: all .5s ease .15s;
+            -ms-transition: all .5s ease .15s;
+            transition: all .5s ease .15s;
+        }
+
+        .expoPage article .expoData h4:hover .dvFloorLogo {
+            padding: 7px 5px;
+            box-sizing: border-box;
+            width: calc(100% / 9);
+        }
+
+
 
     .expoPage article .expoData h6 {
         position: absolute;
@@ -1641,6 +1671,7 @@ h6.mega {
 
 .expoPage article div p {
     padding-left: 10px;
+    display: inline-block;
 }
 
 
