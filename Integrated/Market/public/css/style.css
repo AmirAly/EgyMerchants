@@ -420,7 +420,12 @@ h6.mega {
         }
 
 
-
+    .dvMiddlePart .errorFont {
+        padding-left: 30px;
+        line-height: 1.4;
+        text-align: center;
+        color: red;
+    }
 
     .dvMiddlePart .search-area {
         position: static;
@@ -582,7 +587,7 @@ h6.mega {
 }
 
     .main-nav ul.menu > li > a {
-        font-family: 'Oswald';
+        /*font-family: 'Oswald';*/
         font-size: 12.5px;
         letter-spacing: 0.025em;
         font-weight: 400;
@@ -935,6 +940,7 @@ h6.mega {
 .storePage .pageBody {
     background: #f9f8f8;
     z-index: 99;
+    position: relative;
     position: sticky;
     margin-top: 130px;
     border: 1px solid #f9f9f9;
@@ -1507,6 +1513,7 @@ h6.mega {
         cursor: default;
         bottom: 45px;
         right: 120px;
+        min-width: 0px;
         background: #2f3946;
         background: rgba(47, 57, 70, 0.7);
         padding: 10px;
@@ -1514,7 +1521,35 @@ h6.mega {
         border-radius: 0 30px;
         box-shadow: 0 0 4px 1px #2f3946;
         box-shadow: 0 0 0px 5px #2f3946;
+        transition: min-width 2s;
     }
+
+        .expoPage article .expoData h4:hover {
+            min-width: calc(100% - 120px - 20px);
+        }
+
+
+
+            .expoPage article .expoData h4:hover span {
+                visibility: visible;
+                opacity: 1;
+            }
+
+        .expoPage article .expoData h4 span {
+            -webkit-transition: all 1.3s ease .15s;
+            -moz-transition: all 1.3s ease .15s;
+            -o-transition: all 1.3s ease .15s;
+            -ms-transition: all 1.3s ease .15s;
+            transition: all 1.3s ease .15s;
+            opacity: 0;
+            clear: both;
+            visibility: hidden;
+            position:absolute;
+        }
+
+            .expoPage article .expoData h4 span:hover {
+                visibility: visible;
+            }
 
     .expoPage article .expoData h6 {
         position: absolute;
@@ -1698,7 +1733,7 @@ h6.mega {
 
 .accordion-simple .panel-body {
     display: block;
-    word-break: break-word;
+    word-break: break-all;
 }
 
 /*animation general*/
@@ -2558,6 +2593,11 @@ h6.mega {
     opacity: 0.4;
 }
 
+.errorFont {
+    display: block;
+    color: #e40808;
+    padding: 10px;
+}
 
 .boxme.ng-hide-add {
     -webkit-animation: fadeOutLeftBig 0.4s;
@@ -2832,3 +2872,5 @@ However, delay the fade out process for 2.5 seconds */
     max-height: 400px;
     overflow: auto;
 }*/
+
+

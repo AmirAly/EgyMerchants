@@ -67,9 +67,8 @@
     $scope.getUnreadNotifications();
 
 
-    $scope.getUnreadMessages = function () {
+    $rootScope.getUnreadMessages = function () {
         if ($rootScope.userId) {
-            $rootScope.loading = true;
             var req = {
                 method: 'get',
                 url: '/Message/GetAllContacts/' + $rootScope.userId,
@@ -78,29 +77,27 @@
             API.execute(req).then(function (_res) {
                 console.log(_res);
                 if (_res.data.code == 100) {
-                    $rootScope.loading = false;
                     $scope.unreadMessagesCounterArray = _res.data.data;
                     $scope.unreadMessagesCounterArray = $scope.unreadMessagesCounterArray.filter(function (obj) {
                         return obj.UnRead == true;
                     });
                     console.log($scope.unreadMessagesCounterArray);
-                    $scope.unreadMessagesCounter = $scope.unreadMessagesCounterArray.length;
+                    $rootScope.unreadMessagesCounter = $scope.unreadMessagesCounterArray.length;
 
-                    if ($scope.unreadMessagesCounter && $scope.unreadMessagesCounter > 0) {
-                        $scope.showUnReadMessagesCounter = true;
+                    if ($rootScope.unreadMessagesCounter && $rootScope.unreadMessagesCounter > 0) {
+                        $rootScope.showUnReadMessagesCounter = true;
                     }
                     else {
-                        $scope.showUnReadMessagesCounter = false;
+                        $rootScope.showUnReadMessagesCounter = false;
                     }
                 } else {
-                    $rootScope.loading = false;
-                    $scope.showUnReadMessagesCounter = false;
+                    $rootScope.showUnReadMessagesCounter = false;
                     console.log('err');
                 }
             });
         }
     }
-    $scope.getUnreadMessages();
+    $rootScope.getUnreadMessages();
 
 
 
@@ -186,13 +183,16 @@
 
     $scope.searchErr = false;
     $scope.txtSearch = '';
-    $scope.search = function () {
+    //$scope.regex = "^\!%()*+,-./@:;<=>[\\]^_`{|}~";
+    $scope.search = function (form) {
+        angular.forEach($scope.frmSearch.$error.required, function (field) {
+            field.$setDirty();
+        });
         $scope.searchErr = false;
-        if ($scope.txtSearch != '' && $scope.txtSearch.length > 1) {
+        if (form.$valid) {
             window.location.href = "/" + $rootScope.IsoCode + "/Search/" + $scope.txtSearch;
         }
         else {
-            console.log('2 char min');
             $scope.searchErr = true;
         }
     }

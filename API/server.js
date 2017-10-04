@@ -60,45 +60,11 @@ mongoose.connect(db.url, function (err) {
         });
         console.log('connected to database and server is listeining ');
         //console.log(mongoose.Types.ObjectId('578df3efb618f5141202a196'));
-       // console.log(new Date("9/25/2017 10:00:00").getTime());
+        //console.log(new Date("9/30/2017 10:00:00").getTime());
         //console.log(new Date(1505116800000));
     }
 });
 
-
-var users = [];
-io.on('connection', function(socket){
-    socket.on('adduser', function (data) {
-        var user = new Object();
-        user.id = data;
-        user.socket = socket.id;
-        users.push(user);
-    });
-    socket.on('disconnect', function () {
-        var index = users.indexOf(socket);
-        if (index != -1) {
-            users.splice(index, 1);
-        }
-    });
-    socket.on('msg', function (data) {
-         var newmessage = { From: data.From._id, To: data.To._id, Text: data.Text };
-        newmessage = new messageschema(newmessage);
-        message.send(newmessage).then(function (result) {
-            for (var i = 0; i < users.length; i++) {
-                if (users[i].id == data.To._id) {
-                    data.Msgid = result.data._id;
-                    console.log(data);
-                    io.to(users[i].socket).emit('newmsg', data);
-                }
-                if (users[i].id == data.From._id) {
-                    io.to(users[i].socket).emit('messagesuccess',data);
-                }
-            }
-        }, function (err) {
-            console.log(err);
-        });
-    })
-});
 
 
 

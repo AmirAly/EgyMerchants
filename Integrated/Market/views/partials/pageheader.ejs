@@ -48,14 +48,14 @@
                 <li data-toggle="modal" data-target="#modal-login" ng-hide="loggedUser">
                   <a href="#">Log in</a>
                 </li>
-               <li ng-show="loggedUser">
-                      <span>Welcome {{userName}} | </span>
-                      <span>
-                        <a href="#">
-                          <span ng-click="logout()">Log out</span>
-                        </a>
-                      </span>
-                    </li>
+                <li ng-show="loggedUser">
+                  <span>Welcome {{userName}} | </span>
+                  <span>
+                    <a href="#">
+                      <span ng-click="logout()">Log out</span>
+                    </a>
+                  </span>
+                </li>
               </ul>
 
             </div>
@@ -77,19 +77,25 @@
                   <a class="search-icon visible-xs">
                     <i class="glyphicon glyphicon-search"></i>
                   </a>
-                  <form id="search_mini_form" class="hidden-xs">
+                  <form id="search_mini_form" name="frmSearch" class="hidden-xs">
                     <div class="form-search ">
-                      <input id="search" type="text" name="txtSearch" placeholder="Search" ng-model="txtSearch" class="input-text" autocomplete="off" />
-                      <button type="submit" ng-click="search()" title="Search" class="button">
+                      <input id="search" type="text" required="" name="txtSearch" minlength="2" placeholder="Search" ng-model="txtSearch" pattern="[a-zA-Z0-9-]+" class="input-text" autocomplete="off" />
+
+                      <button type="submit" form="frmSearch" ng-click="search(frmSearch)" title="Search" class="button">
                         <i class="glyphicon glyphicon-search"></i>
                       </button>
-                      <div id="search_autocomplete" class="search-autocomplete">
-                      </div>
-                      <div class="clearer"></div>
                     </div>
+
                   </form>
+                  <span ng-show="frmSearch.txtSearch.$dirty && frmSearch.txtSearch.$invalid">
+                    <span class="errorFont" ng-show="frmSearch.txtSearch.$error.required">Enter 2 characters minimum</span>
+                    <span class="errorFont" ng-show="frmSearch.txtSearch.$error.minlength">Enter 2 characters minimum</span>
+                    <span class="errorFont" ng-show="frmSearch.txtSearch.$error.pattern">Letters and numbers only</span>
+                  </span>
+                  <!--<span class="errorFont" ng-show="searchErr">Enter 2 characters minimum</span>-->
+
                 </div>
-                <h6 style="padding-top: 90px;text-align: center;color: red;" ng-show="searchErr">Enter 2 characters minimum</h6>
+
               </div>
               <div class="col-sm-3">
 
@@ -107,44 +113,46 @@
         </div>
         <div class="header-wrapper">
           <div class="main-nav ">
-            
+
             <div ng-show="showFavorites" class="showFavorites favouritesPage">
-          <h6 class="txtNoData">Favorites List <span ng-click="getFavorites()" title="close" class="cursorPointer fa fa-close pull-right text-danger"></span></h6>
-          <!-- Favourites -->
-          <section>
-            <!-- view -->
-            <div class="row" ng-show="favoritesDataLoading">
-              <div class="col-xs-12 text-center">
-                  <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-              </div>
+              <h6 class="txtNoData">
+                Favorites List <span ng-click="getFavorites()" title="close" class="cursorPointer fa fa-close pull-right text-danger"></span>
+              </h6>
+              <!-- Favourites -->
+              <section>
+                <!-- view -->
+                <div class="row" ng-show="favoritesDataLoading">
+                  <div class="col-xs-12 text-center">
+                    <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-xs-12">
+                    <ul ng-show="listFavourites.length>0" ng-disable="favoritesDataLoading" ng-cloack="">
+                      <li ng-repeat=" fav in listFavourites">
+                        <div ng-click="redirectToItem(fav.Name, fav._id)" title="click to view item" class="col-xs-3 col">
+                          <img class="img-responsive wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="{{fav.Pictures[0].URL}}" />
+                        </div>
+                        <div ng-click="redirectToItem(fav.Name,fav._id)" title="click to view item" class="col-xs-7 col">
+                          <span>{{fav.Name}}</span>
+                        </div>
+                        <div class="col-xs-2 col colIcon" ng-click="removeFromFavorites(fav._id)" title="un favorite this item">
+                          <span ng-hide="favoritesDataLoading{{fav._id}}" class="dvIcon glyphicon glyphicon-heart iconFav IsFavItem "></span>
+                          &nbsp;<img ng-show="favoritesDataLoading{{fav._id}}" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        </div>
+                      </li>
+                    </ul>
+                    <p ng-hide="favoritesDataLoading || listFavourites.length>0" class="txtNoData"> No favorites found </p>
+                  </div>
+                </div>
+                <!-- //end view -->
+
+              </section>
+
+
             </div>
-              
-            <div class="row">
-              <div class="col-xs-12">
-                <ul ng-show="listFavourites.length>0" ng-disable="favoritesDataLoading" ng-cloack>
-                  <li ng-repeat=" fav in listFavourites">
-                    <div ng-click="redirectToItem(fav.Name, fav._id)" title="click to view item" class="col-xs-3 col">
-                      <img class="img-responsive wow zoomIn" data-wow-offset="30" data-wow-duration="1s" src="{{fav.Pictures[0].URL}}" />
-                    </div>
-                    <div ng-click="redirectToItem(fav.Name,fav._id)" title="click to view item" class="col-xs-7 col">
-                      <span>{{fav.Name}}</span>
-                    </div>
-                    <div class="col-xs-2 col colIcon" ng-click="removeFromFavorites(fav._id)" title="un favorite this item">
-                      <span ng-hide="favoritesDataLoading{{fav._id}}" class="dvIcon glyphicon glyphicon-heart iconFav IsFavItem "></span> 
-                      &nbsp;<img ng-show="favoritesDataLoading{{fav._id}}" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                    </div>
-                  </li>
-                </ul>
-                <p ng-hide="favoritesDataLoading || listFavourites.length>0" class="txtNoData"> No favorites found </p>
-              </div>
-            </div>
-            <!-- //end view -->
 
-          </section>
-
-
-        </div>
-            
             <div class="">
               <div class="menu-wrapper">
                 <div class="sticky-logo wow bounceInLeft">
@@ -163,20 +171,24 @@
                       <a href="#" ng-click="getFavorites()">Favourites</a>
                     </li>
                     <li class="act" ng-show="loggedUser">
-                      <a href="/{{selectedCountry.IsoCode}}/Notifications/{{userId}}">Notifications <span title="You have {{nonificationsCounter}} unread notifications" ng-show="showNotificationsCounter" class="badge">{{nonificationsCounter}}</span></a>
+                      <a href="/{{selectedCountry.IsoCode}}/Notifications/{{userId}}">
+                        Notifications <span title="You have {{nonificationsCounter}} unread notifications" ng-show="showNotificationsCounter" class="badge">{{nonificationsCounter}}</span>
+                      </a>
                     </li>
                     <li class="act" ng-show="loggedUser">
-                      <a href="/{{selectedCountry.IsoCode}}/Inbox/{{userId}}/0">Inbox <span title="You have unread messages from {{unreadMessagesCounter}} user" ng-show="showUnReadMessagesCounter" class="badge">{{unreadMessagesCounter}}</span></a>
+                      <a href="/{{selectedCountry.IsoCode}}/Inbox/{{userId}}/0">
+                        Inbox <span title="You have unread messages from {{unreadMessagesCounter}} user" ng-show="showUnReadMessagesCounter" class="badge">{{unreadMessagesCounter}}</span>
+                      </a>
                     </li>
-                    
+
                   </ul>
                 </div>
 
               </div>
             </div>
-        
-          
-        
+
+
+
           </div>
         </div>
 

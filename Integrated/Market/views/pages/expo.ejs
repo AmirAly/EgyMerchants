@@ -24,16 +24,58 @@
                                                 <!-- floors -->
                                                 <div ng-repeat="floor in expo.Floors" class="boxme" ng-show="activePageNumber{{expo._id}} == {{$index}}" ng-init="initfirstPage(expo._id,0)">
                                                     <div class="imagesContainer" id="imagesContainer{{expo._id}}">
+													     
+
+														 <section>
+															<div class="balloon yellow"></div>
+															<div class="balloon blue"></div>
+															<div class="balloon purple"></div>
+															<div class="balloon red"></div>
+															<div class="balloon cyan"></div>
+
+															<div class="balloon yellow"></div>
+															<div class="balloon blue"></div>
+															<div class="balloon purple"></div>
+															<div class="balloon red"></div>
+															<div class="balloon cyan"></div>
+
+															<div class="balloon yellow"></div>
+															<div class="balloon blue"></div>
+															<div class="balloon purple"></div>
+															<div class="balloon red"></div>
+															<div class="balloon cyan"></div>
+
+															<div class="balloon yellow"></div>
+															<div class="balloon blue"></div>
+															<div class="balloon purple"></div>
+															<div class="balloon red"></div>
+															<div class="balloon cyan"></div>
+
+															<div class="balloon yellow"></div>
+															<div class="balloon blue"></div>
+															<div class="balloon purple"></div>
+															<div class="balloon red"></div>
+															<div class="balloon cyan"></div>
+
+															<div class="balloon yellow"></div>
+															<div class="balloon blue"></div>
+															<div class="balloon purple"></div>
+															<div class="balloon red"></div>
+															<div class="balloon cyan"></div>
+														</section>
+
 
                                                         <div class="outerContainer" ng-repeat="sec in floor.Coordinates">
                                                             <div ng-class="{'suspendedstore':sec.Store.Status == 'Suspended'}" class=" repeated-item" ng-style="{'background-image': 'url({{sec.Img}})','position':'absolute','background-size': 'cover','background-repeat': 'no-repeat','top':{{sec.Top * oneSectionHeight}} +'px','left':{{sec.Left * oneSectionWidth}} +'px','height':{{sec.Height * oneSectionHeight}} - 3 +'px', 'width':{{sec.Width * oneSectionWidth}} - 3 +'px'}">
                                                                 <a ng-if="sec.Store.Status != 'Suspended'" href="/{{IsoCode}}/Store/{{sec.StoreName}}/{{sec.Store._id}}"><div class="image-hover"><i class="icon-zoom-in-2"></i></div></a>
 																<div class="image-title">{{sec.StoreName}}</div>
-																<div class="suspendMsg" ng-if="sec.Store.Status == 'Suspended'"><h5>This store is disabled for now</h5></div>
+																<div class="suspendMsg" ng-if="sec.Store.Status == 'Suspended'"><h5>This store is disabled</h5></div>
                                                             </div>
                                                         </div>
                                                         <h6>Floor {{$index + 1}} of {{expo.Floors.length}}</h6>
-                                                        <h4>{{floor.Name}}</h4>
+                                                        <h4>
+														    {{floor.Name}}  <span>: hhh , jjj , jjj</span> 
+														</h4>
                                                     </div>
 
 

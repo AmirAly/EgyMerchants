@@ -1,4 +1,10 @@
 ﻿egm.controller("categoriesListController", function ($scope, API, $filter) {
+    $scope.preload = function () {
+        if (localStorage.getItem('admin') == null || localStorage.getItem('admin') == '') {
+            window.location.href = '/Home';
+        }
+    };
+    $scope.preload();
 
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
         $scope.category = {};

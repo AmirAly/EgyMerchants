@@ -1,10 +1,11 @@
 app.factory('API', function ($http) {
-    //var _url = 'http://localhost:8007';
-    var _url = 'https://egym.herokuapp.com';
+   //var _url = 'http://localhost:8007';
+     var _url = 'https://egym.herokuapp.com';
     return {
         name: 'API',
         execute: function (_req) {
             _req.url = _url + _req.url;
+            console.log(_req.url);
             _req.headers = { 'Content-Type': 'application/json' };
             var result = $http(_req);
             return result;
@@ -17,7 +18,7 @@ app.factory('socket', ['$rootScope', function ($rootScope) {
     
     //var socket = io.connect('http://localhost:8080/');
     var socket = io.connect();
-    console.log('enterrrrrrrrrrrr00');
+    console.log('enterrrrrrrrrrrr Sockets connect');
     return {
         on: function (eventName, callback) {
             console.log('OOOOOOOOONNN');

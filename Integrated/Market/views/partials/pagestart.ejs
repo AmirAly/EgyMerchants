@@ -23,6 +23,7 @@
             <link href="/css/megatron-template.css" rel="stylesheet" />
             <link rel="stylesheet" href="/css/timeline.css" />
 			<link rel="stylesheet" href="/css/style.css" />
+			<link rel="stylesheet" href="/css/ballons.css" />
           </head>
   <body ng-app="app"  ng-keyup="event=$event" tabindex="1">
 <div class="loaderContainer" ng-show="loading"></div>
@@ -33,4 +34,4 @@
     <span id="bubblingG_3"> </span>
   </div>
 </div>
-<div id="snackbar">You have new message..</div>
+<div id="snackbar" ng-class="{'show':newMsgReceived}">You have new message..</div>

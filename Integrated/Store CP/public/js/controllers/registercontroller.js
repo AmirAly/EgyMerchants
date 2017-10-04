@@ -1,4 +1,12 @@
 ﻿egm.controller("registerController", function ($scope, API) {
+    console.log(localStorage.getItem('StoreId'));
+    $scope.preload = function () {
+        if (localStorage.getItem('StoreId') !== null && localStorage.getItem('StoreId') !== '') {
+            window.location.href = '/galleries/' + localStorage.getItem('StoreId');
+        }
+    };
+    $scope.preload();
+
     $scope.categories = [];
     $scope.register = {};
     $scope.categoriesLst = [
