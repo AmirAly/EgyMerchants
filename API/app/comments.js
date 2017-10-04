@@ -94,7 +94,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This item won't exist any more"
+                            data: "This item doesn't exist"
                         })
                     }
                 }
@@ -162,7 +162,7 @@ module.exports = {
                                     else
                                         reject({
                                             code: 22,
-                                            data: "This user won't  exist any more"
+                                            data: "This user doesn't  exist "
                                         })
                                 }
                             })
@@ -197,5 +197,157 @@ module.exports = {
                 }
             })
         })
+    },
+    getTenItems : function (_itemId,_key){
+        return new Promise(function (resolve, reject) {
+    Schema.find({"Item": _itemId },function(err,Obj){
+        if(err){
+            reject({
+                code: 1,
+                data: err
+            });
+
+        }
+        if (Obj)
+        {
+           
+          
+           var _tenItems=[];
+                for (var i =0 ; i<=_key.length; i++)
+                {
+                    console.log(i)
+                    console.log("_key"+_key[i])
+                    if(_key[i]==_key)
+                    {
+                      
+                        _tenItems=Obj.slice(i*10,i+1*10);
+                            resolve({
+                            code: 100,
+                            data: _tenItems
+                                });
+                              
+                    }
+                    else if(_key<0){
+                        reject({
+                        code: 21,
+                        data: "You should write a number doesn't less than 0"
+                            });
+
+                    }
+                    else if(_tenItems.length<=0){
+                        reject({
+                            code: 22,
+                            data: "No result"
+                                });
+
+                    }
+
+
+
+       }
+        
+
+        }
+    });
+
+        });
     }
-}
+
+
+
+// getTenItems: function (_itemId) {
+//           return new Promise(function (resolve, reject) {
+
+//           Schema.find({"Item": _itemId},function(err,obj){
+
+// if (err) throw err;
+// console.log(obj)
+
+
+//           }).sort({ CommentDate:-1}).limit(10)
+
+
+            
+
+
+
+
+
+
+
+
+
+
+//     })
+
+// //         }
+// }
+
+// var firstItems =[];
+// var  secondItems =[]
+// var  thirdItems =[]
+// var  forthItems =[]
+// var  fifthItems =[]
+
+// if(_keyword<=0 || _keyword>4)
+// {
+//   reject({
+//       code: 21,
+//       data: "please enter the right number from 1 to 4"
+//   })
+// }
+// else{
+//                           if(_keyword==1)
+//                       {
+//                           firstItems=Obj.slice(0,10)
+//                               resolve({
+//                                   code: 100,
+//                                   data: firstItems
+//                               })
+                          
+//                       }
+//                       else if (_keyword==2){
+//                           secondItems=Obj.slice(10,20)
+                      
+//                           resolve({
+//                               code: 101,
+//                               data: secondItems
+//                           })
+                      
+
+//                       }
+//                       else if(_keyword==3){
+
+//                           thirdItems=Obj.slice(20,30)
+                          
+//                           resolve({
+//                               code: 102,
+//                               data: thirdItems
+//                           })
+                      
+//                       }
+//                       else if (_keyword==4){
+//                           forthItems=Obj.slice(30,40)
+                          
+//                           resolve({
+//                               code: 103,
+//                               data: forthItems
+//                           })
+
+//                               }
+//                       else if (_keyword==5){
+//                           fifthItems=Obj.slice(40,50)
+//                           resolve({
+//                               code: 104,
+//                               data: fifthItems
+//                           })
+//                       }
+// else{ 
+// resolve({
+// code: 22,
+// data: fifthItems
+// });
+// }
+// }
+                            
+ }

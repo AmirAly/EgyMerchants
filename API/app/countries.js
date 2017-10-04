@@ -6,12 +6,13 @@ var Helper = require('./helper');
 module.exports = {
     add: function (_newCountry) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $or: [{ 'Name': _newCountry.Name, 'Status': 'Active' }, { 'IsoCode': _newCountry.IsoCode, 'Status': 'Active' }] }, '', function (err, Obj) {
+          
+            Schema.findOne({ $or: [{ 'Name':  {$regex: new RegExp('^' + _newCountry.Name+"$" , 'i')} , 'Status': 'Active' }, { 'IsoCode':{$regex: new RegExp('^' + _newCountry.IsoCode+"$" , 'i')}, 'Status': 'Active' }] }, '', function (err, Obj) {
                 if (err)
-                    reject({
+                    reject({               
                         code: 1,
                         data: err
-                    });
+                    });                      
                 else {
                     if (Obj) {
                         resolve({
@@ -26,7 +27,7 @@ module.exports = {
                                 if (err)
                                     reject({
                                         code: 2,
-                                        data: err
+                                        data: err             
                                     });
                                 else
                                     resolve({
@@ -67,12 +68,14 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        Schema.findOne({ $or: [{ 'Name': _name }, { 'IsoCode': _isoCode }], 'Status': 'Active', '_id': { $ne: _id } }, '', function (err, Objexist) {
+                        Schema.findOne({ $or: [{ 'Name': {$regex: new RegExp('^' + _name+"$" , 'i')}}, { 'IsoCode':{$regex: new RegExp('^' + _isoCode+"$" , 'i')} }], 'Status': 'Active', '_id': { $ne: _id } }, '', function (err, Objexist) {
                             if (err)
                                 reject({code: 2,data: err});
                             else {
+                                
                                 if (Objexist)
                                     resolve({ code: 22, data: 'This country name or iso code already exist' })
+                                    
                                 else {
                                     Obj.Name = _name;
                                     Obj.IsoCode = _isoCode;
@@ -91,7 +94,7 @@ module.exports = {
                         })
                     }
                     else
-                        reject({code: 21,data: "This country won't exist any more"});
+                        reject({code: 21,data: "This country doesn't exist "});
                 }
             })
         })

@@ -10,7 +10,7 @@ var Mongoose = require("mongoose");
 module.exports = {
     register: function (_newStore) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $or: [{ 'Email': _newStore.Email }, { 'Name': _newStore.Name }] } , '', function (err, Obj) {
+            Schema.findOne({ $or: [{ 'Email': {$regex: new RegExp('^' + _newStore.Email+"$" , 'i')} }, { 'Name': {$regex: new RegExp('^' + _newStore.Name+"$" , 'i')} }] } , '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -51,7 +51,7 @@ module.exports = {
     },
     login: function (_store) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ 'Email': _store.Email }, { 'Password': _store.Password }, { 'Type': 'store' }] }, '', function (err, Obj) {
+            Schema.findOne({ $and: [{ 'Email': {$regex: new RegExp('^' + _store.Email+"$" , 'i')}}, { 'Password': {$regex: new RegExp('^' + _store.Password+"$" , 'i')} }, { 'Type': 'store' }] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -82,7 +82,7 @@ module.exports = {
     },
     editProfile: function (_id, _email, _city, _address, _country, _description, _imgs, _profilePicture, _coverPhoto) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Email': _email, '_id': { $ne: _id } }, '', function (err, Obj) {
+            Schema.findOne({ 'Email': {$regex: new RegExp('^' + _email+"$" , 'i')}, '_id': { $ne: _id } }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -452,6 +452,9 @@ module.exports = {
                                         reject({ code: 21, data: "This filteration didn't result in any data" })
                                     }
                                 }
+                                
+                               
+                              
                             if (_keyWord != "all") {
                                     Item.find({ $and: [{ $or: [{ 'Name': { "$regex": _keyWord, "$options": "i" } }, { 'Description': { "$regex": _keyWord, "$options": "i" } }] }, { 'Status': 'Active' }] }, '_id Name Pictures Store', function (err, itemLst) {
                                         if (err)
@@ -460,6 +463,7 @@ module.exports = {
                                                 data: err
                                             });
                                         else {
+                                      
                                             if (itemLst.length > 0) {
                                                 itemsList = _.map(itemLst, function (item) {
                                                     return _.pick(_.extend({}, item, { Type: "item" }), '_id', 'Name', 'Pictures', 'Store', 'Type');
@@ -482,6 +486,7 @@ module.exports = {
                                                         return (store.Name.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1 || store.Description.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1 || store.Address.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1)
                                                     }))
                                                 }
+
                                                     _.each(storesList, function (store) {
                                                         var res = _.filter(itemsList, function (item) {
                                                             return item.Store == store._id.toString();
@@ -541,4 +546,40 @@ module.exports = {
             })
         })
     },
+//     search:function(_store, _expo, _keyWord, _country){
+//         return new Promise(function (resolve, reject) {
+        
+// var countrySearch = {'Country':{'$regex':_country, $options: "x" }, 'Status': 'Active', 'Type': 'store' }
+// Schema.find(countrySearch,'_id Name ProfilePicture Description Address Status Type Country',function(err,lst){
+  
+// if(err)
+// {
+//     reject({ code: 0, data: err });
+// }
+// else{
+//     resolve({ code: 100, data: lst });
+// }
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
 }

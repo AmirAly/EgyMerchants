@@ -2,7 +2,7 @@ var Mongoose = require("mongoose");
 var Schema = Mongoose.Schema;
 var User = new Schema({
     Name: { type: String, min:2,max:50,required: 'Name is required' },
-    Email: { type: String, required: 'Email is required', min: 6, match: /[A-Za-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$/ },
+    Email: { type: String, required: 'Email is required', min: 6, match: /[A-Za-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$/  },
     Password: { type: String, required: 'Password is required',min:6},
     ProfilePicture: { type:String, min:2 },
     VisitedStores: [{

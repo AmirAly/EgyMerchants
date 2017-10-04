@@ -11,7 +11,9 @@ cloudinary.config({
 
 module.exports = {
     uploadImage: function (_url, callback) {
-        cloudinary.v2.uploader.upload(_url, function (error, result) { callback(result.secure_url) });
+       
+        cloudinary.v2.uploader.upload(_url, function (error, result) {console.log(result); callback(result.secure_url)});
+        
     },
     uploadMultipleImages: function (_url, callback) {
         var secureUrls = [];
@@ -25,6 +27,7 @@ module.exports = {
                         else {
                             secureUrls.push(result.secure_url);
                             uploadeurl(i + 1);
+                            console.log("secureUrls is"+secureUrls);
                         }
                     })
                 }
@@ -38,10 +41,11 @@ module.exports = {
             function uploadeimg(i) {
                 if (i < _url.length) {
                     cloudinary.v2.uploader.upload(_url[i].Img, function (error, result) {
-                        if (error) { console.log(error); }
+                        if (error) {   console.log(error); }
                         else {
                             secureUrls.push(result.secure_url);
                             uploadeimg(i + 1);
+                            console.log("secureUrls is"+secureUrls);
                         }
                     })
                 }
