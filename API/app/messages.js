@@ -144,6 +144,7 @@ module.exports = {
                         data: err
                     })
                 else {
+                    
                     if (Obj)
                         resolve({
                             code: 100,
@@ -158,4 +159,48 @@ module.exports = {
             })
         })
     },
+
+
+
+
+getTenMessages: function (_userTo,_userFrom, _key) {
+    return new Promise(function (resolve, reject) {
+            
+
+                Schema.find({ $or: [{ "From": _userFrom, "To": _userTo }, { "From": _userTo, "To": _userFrom }] }, '',function (err, Msgs) {
+                    if(err)
+                    {
+                        reject({
+                            code: 2,
+                            data:  err
+                        });
+                    }
+                    else{
+                var _tenMessages = [];
+console.log(Msgs.length)
+_tenMessages = Msgs.slice(_key * 10, (_key + 1) * 10);
+
+                if (_tenMessages.length <= 0) {
+
+                    resolve({
+                        code: 101,
+                        data: "No comments here"
+                    });
+                }
+                else {
+                    resolve({
+                        code: 100,
+                        data: _tenMessages
+                    });
+
+                }
+            }
+            }).sort({ MessageDate: -1 });
+            
+        
+        })
+
+    
+}
+
 }

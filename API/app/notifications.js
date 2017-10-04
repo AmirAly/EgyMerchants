@@ -84,5 +84,46 @@ module.exports = {
                 }
             })
         })
-    }
+    },
+
+
+getTenNotifications: function (_userId, _key) {
+    return new Promise(function (resolve, reject) {
+        Schema.find({ "User": _userId }, function (err, lst) {
+            console.log(`list ${lst.length}`)
+            if (err) {
+                reject({
+                    code: 1,
+                    data: err
+                });
+
+            }
+            else {
+
+
+                var _tenNotifications = [];
+
+                _tenNotifications = lst.slice(_key * 10, (_key + 1) * 10);
+
+                if (_tenNotifications.length <= 0) {
+
+                    resolve({
+                        code: 101,
+                        data: "No comments here"
+                    });
+                }
+                else {
+                    resolve({
+                        code: 100,
+                        data: _tenNotifications
+                    });
+
+                }
+
+            }
+
+        }).sort({ NotificationDate: -1 });
+
+    });
+}
 }
