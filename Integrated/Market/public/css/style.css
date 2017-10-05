@@ -539,7 +539,8 @@ h6.mega {
     .header-wrapper .main-nav {
         margin: 0 auto;
         background-color: transparent;
-        height: 100%;
+        /*height: 100%;*/
+        height: 50px;
         position: relative;
     }
 
@@ -780,152 +781,6 @@ h6.mega {
     max-height: 15px;
     width: 20px;
 }
-
-/*Welcome Page*/
-.welcomePage .welcomeImgContainer {
-    text-align: center;
-    background: #000;
-    height: 800px;
-    min-height: 50vh;
-    width: 100%;
-    display: flex;
-    transition: all linear 0.5s;
-    -moz-animation: cssAnimation 1s ease-in 3s forwards;
-    /* Firefox */
-    -webkit-animation: cssAnimation 1s ease-in 3s forwards;
-    /* Safari and Chrome */
-    -o-animation: cssAnimation 1s ease-in 3s forwards;
-    /* Opera */
-    animation: cssAnimation 1s ease-in 3s forwards;
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-}
-
-@keyframes cssAnimation {
-    from {
-        height: 800px;
-    }
-
-    to {
-        height: 300px;
-    }
-}
-
-@-webkit-keyframes cssAnimation {
-    from {
-        height: 800px;
-    }
-
-    to {
-        height: 300px;
-    }
-}
-
-.welcomePage .welcomeImgContainer:hover .imgShadow {
-    background: transparent;
-}
-
-.welcomePage .welcomeImgContainer .imgShadow {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 300px;
-    color: #d9d9d9;
-    opacity: 0.5;
-    background-size: cover;
-    z-index: 999;
-    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-}
-
-.welcomePage .welcomeImgContainer img {
-    vertical-align: middle;
-    max-height: 100%;
-    z-index: 1;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin: auto;
-    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-}
-
-.welcomePage .txtChooseCat {
-    text-shadow: 1px 1px 1px white;
-    color: #585857;
-    padding-top: 0;
-}
-
-
-.welcomePage .categoryContainer {
-    padding: 30px;
-    min-height: 50vh;
-    display: flex;
-    flex-wrap: wrap;
-    background-image: url("../images/paper.gif");
-    background-repeat: repeat;
-}
-
-    .welcomePage .categoryContainer .singleCategory {
-        padding: 10px;
-        transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-    }
-
-
-        .welcomePage .categoryContainer .singleCategory .imgContainer {
-            border-radius: 50%;
-            height: 150px;
-            width: 150px;
-            margin: auto;
-            background: lightseagreen;
-            background-size: cover !important;
-            position: relative;
-        }
-
-        .welcomePage .categoryContainer .singleCategory .categoryTxt {
-            position: absolute;
-            top: 0;
-            text-align: center;
-            width: 100%;
-            opacity: 0;
-            transition-delay: 0.1s;
-            transition-duration: 0.2s;
-            -webkit-transition: all 300ms ease-out;
-            -moz-transition: all 300ms ease-out;
-            -o-transition: all 300ms ease-out;
-            -ms-transition: all 300ms ease-out;
-            transition: all 300ms ease-out;
-            transform: translateY(150px);
-            -webkit-transform: translateY(150px);
-        }
-
-        .welcomePage .categoryContainer .singleCategory:hover .blackLayer {
-            background-color: rgba(76, 76, 73, 0.7);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-        }
-
-        .welcomePage .categoryContainer .singleCategory:hover .categoryTxt {
-            top: calc(50% - 12px);
-            left: 0px;
-            font-size: 20px;
-            display: block;
-            opacity: 1;
-            color: #fff;
-            text-transform: uppercase;
-            text-align: center;
-            transform: translateY(0px);
-            -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-            -webkit-transform: translateY(0px);
-        }
-
-        .welcomePage .categoryContainer .singleCategory:hover .imgContainer {
-            border: 1px solid #ccc;
-        }
 
 /*store page*/
 .storePage .pageCover {
@@ -1229,7 +1084,7 @@ h6.mega {
     }
 
     .expoPage .outerContainer:hover .image-hover {
-        background: linear-gradient(to top, rgba(41, 41, 41, 0.75) 0%, transparent 30%,transparent 70%, rgba(41, 41, 41, 0.75) 100%);
+        background: linear-gradient(to top, rgba(41, 41, 41, 0.3) 0%, transparent 15%,transparent 85%, rgba(41, 41, 41, 0.3) 100%);
         cursor: pointer;
     }
 
@@ -1522,26 +1377,26 @@ h6.mega {
         border-radius: 0 30px;
         box-shadow: 0 0 4px 1px #2f3946;
         box-shadow: 0 0 0px 5px #2f3946;
-        transition: min-width 2s, min-height 2s;
-        overflow-x: auto;
+        transition: all ease-out .5s;
         text-align: center;
+        overflow: hidden;
     }
 
         .expoPage article .expoData h4:hover {
             min-width: calc(100% - 120px - 20px);
-            /*min-height: 160px;*/
-            min-height: 115px;
-            overflow-x: auto;
+            min-height: 100px;
+            overflow: auto;
             text-align: center;
+            border-radius: 10px;
         }
 
 
         .expoPage article .expoData h4 span {
-            -webkit-transition: all 1.3s ease .15s;
-            -moz-transition: all 1.3s ease .15s;
-            -o-transition: all 1.3s ease .15s;
-            -ms-transition: all 1.3s ease .15s;
-            transition: all 1.3s ease .15s;
+            -webkit-transition: all .5s ease-in-out 0s;
+            -moz-transition: all .5s ease-in-out 0s;
+            -o-transition: all .5s ease-in-out 0s;
+            -ms-transition: all .5s ease-in-out 0s;
+            transition: all .5s ease-in-out 0s;
             opacity: 0;
             clear: both;
             visibility: hidden;
@@ -1557,6 +1412,30 @@ h6.mega {
             visibility: visible;
         }
 
+        .expoPage article .expoData h4 .dvExpoFloorName {
+            display:inline-block;
+        }
+        .expoPage article .expoData h4 .dvExpoFloorName .dvExpoName {
+            opacity: 0;
+            display: none;
+        }
+
+        .expoPage article .expoData h4 .dvExpoFloorName .dvFloorName,
+        .expoPage article .expoData h4 .dvExpoFloorName .dvExpoName {
+            transition: opacity 0.5s;
+        }
+
+        .expoPage article .expoData h4:hover .dvExpoFloorName .dvFloorName {
+            opacity: 0;
+            display: none;
+        }
+
+        .expoPage article .expoData h4:hover .dvExpoFloorName .dvExpoName {
+            opacity: 1;
+            display: block;
+        }
+
+
         .expoPage article .expoData h4 .flexContainer {
             display: flex;
             flex-wrap: wrap;
@@ -1566,17 +1445,17 @@ h6.mega {
             padding: 7px 5px;
             box-sizing: border-box;
             width: 0;
-            -webkit-transition: all .5s ease .15s;
-            -moz-transition: all .5s ease .15s;
-            -o-transition: all .5s ease .15s;
-            -ms-transition: all .5s ease .15s;
-            transition: all .5s ease .15s;
+            -webkit-transition: all .5s ease-in-out 0s;
+            -moz-transition: all .5s ease-in-out 0s;
+            -o-transition: all .5s ease-in-out 0s;
+            -ms-transition: all .5s ease-in-out 0s;
+            transition: all .5s ease-in-out 0s;
         }
 
         .expoPage article .expoData h4:hover .dvFloorLogo {
             padding: 7px 5px;
             box-sizing: border-box;
-            width: calc(100% / 9);
+            width: calc(100% / 10);
         }
 
 
@@ -1585,17 +1464,17 @@ h6.mega {
         position: absolute;
         z-index: 100;
         cursor: default;
-        bottom: 24px;
-        left: 50%;
         margin-right: -50%;
         transform: translate(-50%, -50%);
         color: white;
         text-transform: none;
         font-size: 16px;
-        background: #2f3946;
+        background: rgba(47, 57, 70, 0.7);
         padding: 10px;
         border: 3px solid #fff;
+        border-radius: 30px 0;
         box-shadow: 0 0 4px 1px #2f3946;
+        box-shadow: 0 0 0px 5px #2f3946;
         -moz-animation: cssAnimation 3s ease-in-out 0.5s both;
         /* Firefox */
         -webkit-animation: cssAnimation 3s ease-in-out 0.5s both;
@@ -1610,21 +1489,24 @@ h6.mega {
 
 @keyframes cssAnimation {
     0% {
-        left: calc(100% - 150px);
+        bottom: 24px;
+        left: calc(100% - 30px);
         visibility: hidden;
-        opacity: 0.5;
+        opacity: 0;
     }
 
     10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90% {
-        left: 50%;
+        bottom: calc(24px + 80px);
+        left: calc(100% - 150px);
         visibility: visible;
         opacity: 1;
     }
 
     100% {
-        left: -100%;
+        bottom: 24px;
+        left: calc(100% - 30px);
         visibility: hidden;
-        opacity: 0.5;
+        opacity: 0;
     }
 }
 
@@ -2904,4 +2786,7 @@ However, delay the fade out process for 2.5 seconds */
     overflow: auto;
 }*/
 
-
+/*hide item controls search page*/
+.product-controls-list.right {
+    display: none !important;
+}

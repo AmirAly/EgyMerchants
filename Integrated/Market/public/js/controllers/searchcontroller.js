@@ -49,8 +49,8 @@ console.log(JSON.parse((window.x).replace(/&quot;/g, '"')));
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
                 $scope.searchResult = _res.data.data;
-                //$rootScope.loading = false;
-                window.location.href = "/" + $rootScope.IsoCode + "/Search/" + keyword;
+                $rootScope.loading = false;
+                window.location = "/" + $rootScope.IsoCode + "/Search/" + keyword;
             } else {
                 $scope.searchResult = '';
                 $rootScope.loading = false;
