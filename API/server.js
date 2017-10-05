@@ -59,9 +59,11 @@ mongoose.connect(db.url, function (err) {
             console.log('listening on sockets');
         });
         console.log('connected to database and server is listeining ');
-        //console.log(mongoose.Types.ObjectId('578df3efb618f5141202a196'));
-        //console.log(new Date("9/30/2017 10:00:00").getTime());
-        //console.log(new Date(1505116800000));
+        // console.log(mongoose.Types.ObjectId('578df3efb618f5141202a196'));
+        // console.log(new Date("1/9/2017 4:00:00").getTime());
+        // console.log(new Date(  1506600924382));
+      
+        
     }
 });
 
@@ -78,17 +80,17 @@ mongoose.connect(db.url, function (err) {
 
 
 //594660e5734d1d59b7895502,5946db5aa7eee71550d33dfc,5948d21ff17d942198191fba,5980671c6e1f6f0b30dc4377
-var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "5948d21ff17d942198191fba", "Text": "hello welcome" });
+// var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "5948d21ff17d942198191fba", "Text": "hello welcome" });
 //message.send(newmessage).then(function (result) {
 //        console.log(result);
 //    }, function (err) {
 //        console.log(err);
 //    });
-//message.getAll("5980671c6e1f6f0b30dc4377", "5948d21ff17d942198191fba").then(function (result) {
+// message.getTenMessages("594660e5734d1d59b7895502", "5980671c6e1f6f0b30dc4377",0).then(function (result) {
 //    console.log(result);
-//}, function (err) {
+// }, function (err) {
 //    console.log(err);
-//});
+// });
 //message.getAllContacts("5980671c6e1f6f0b30dc4377").then(function (result) {
 //    console.log(result);
 //}, function (err) {
@@ -293,12 +295,12 @@ var newmessage = new messageschema({ "From": "5980671c6e1f6f0b30dc4377", "To": "
 // }, function (err) {
    // console.log(err);
 // });
-expo.getByCategory("594287ac734d1d235a944ea6").then(function (result) {
-   console.log(result.data[0].Floors[0].Coordinates[0].Store)
+// expo.getByCategory("594287ac734d1d235a944ea6").then(function (result) {
+//    console.log(result.data[0].Floors[0].Coordinates[0].Store)
 
-}, function (err) {
-   console.log(err);
-});
+// }, function (err) {
+//    console.log(err);
+// });
 //expo.getById("599d4acd727a860011f8c956").then(function (result) {
 //     console.log(result)
 //    //console.log(result.data.Floors[0].Coordinates);
@@ -435,7 +437,7 @@ expo.getByCategory("594287ac734d1d235a944ea6").then(function (result) {
 // }, function (err) {
 //     console.log(err);
 // });
-// comment.getTenItems("59466cd6ca6b1c049c494b72","1").then(function (result) {
+// notification.getTenNotifications("594660e5734d1d59b7895502",5).then(function (result) {
 //    console.log(result);
 // }, function (err) {
 //    console.log(err);

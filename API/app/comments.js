@@ -67,7 +67,7 @@ module.exports = {
                                     data: err
                                 })
                             else {
-                                Schema.findOne({ "_id": comment._id }, '').populate('User','Type Name ProfilePicture').exec(function (err, Obj) {
+                                Schema.findOne({ "_id": comment._id }, '').populate('User', 'Type Name ProfilePicture').exec(function (err, Obj) {
                                     if (err)
                                         reject({
                                             code: 1,
@@ -87,7 +87,7 @@ module.exports = {
                                             })
                                     }
                                 })
-                                   
+
                             }
                         })
                     }
@@ -98,10 +98,10 @@ module.exports = {
                         })
                     }
                 }
-                })
+            })
         })
     },
-    remove: function (_commentId,_userId) {
+    remove: function (_commentId, _userId) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ "_id": _commentId }, '', function (err, Obj) {
                 if (err)
@@ -153,7 +153,7 @@ module.exports = {
                                                 }
                                             });
                                         }
-                                        else 
+                                        else
                                             reject({
                                                 code: 21,
                                                 data: "Sorry,you can't delete this comment"
@@ -173,7 +173,7 @@ module.exports = {
                             code: 21,
                             data: "No results"
                         })
-                    }
+                }
             })
         })
     },
@@ -186,168 +186,55 @@ module.exports = {
                         data: err
                     })
                 else {
-                     lst.sort(function (a, b) {
+                    lst.sort(function (a, b) {
                         return b.CommentDate - a.CommentDate;
-                     });
-                     var res = lst.slice(0,10);
-                        resolve({
-                            code: 100,
-                            data: res
-                        })
+                    });
+                    var res = lst.slice(0, 10);
+                    resolve({
+                        code: 100,
+                        data: res
+                    })
                 }
             })
         })
     },
-    getTenItems : function (_itemId,_key){
+    getTenItems: function (_itemId, _key) {
         return new Promise(function (resolve, reject) {
-    Schema.find({"Item": _itemId },function(err,Obj){
-        if(err){
-            reject({
-                code: 1,
-                data: err
-            });
+            Schema.find({ "Item": _itemId }, function (err, lst) {
+                // console.log(`list ${lst.length}`)
+                if (err) {
+                    reject({
+                        code: 1,
+                        data: err
+                    });
 
-        }
-        if (Obj)
-        {
-           
-          
-           var _tenItems=[];
-                for (var i =0 ; i<=_key.length; i++)
-                {
-                    console.log(i)
-                    console.log("_key"+_key[i])
-                    if(_key[i]==_key)
-                    {
-                      
-                        _tenItems=Obj.slice(i*10,i+1*10);
-                            resolve({
+                }
+                else {
+
+
+                    var _tenItems = [];
+
+                    _tenItems = lst.slice(_key * 10, (_key + 1) * 10);
+
+                    if (_tenItems.length <= 0) {
+
+                        resolve({
+                            code: 101,
+                            data: "No comments here"
+                        });
+                    }
+                    else {
+                        resolve({
                             code: 100,
                             data: _tenItems
-                                });
-                              
-                    }
-                    else if(_key<0){
-                        reject({
-                        code: 21,
-                        data: "You should write a number doesn't less than 0"
-                            });
-
-                    }
-                    else if(_tenItems.length<=0){
-                        reject({
-                            code: 22,
-                            data: "No result"
-                                });
+                        });
 
                     }
 
+                }
 
-
-       }
-        
-
-        }
-    });
+            }).sort({ CommentDate: -1 });
 
         });
     }
-
-
-
-// getTenItems: function (_itemId) {
-//           return new Promise(function (resolve, reject) {
-
-//           Schema.find({"Item": _itemId},function(err,obj){
-
-// if (err) throw err;
-// console.log(obj)
-
-
-//           }).sort({ CommentDate:-1}).limit(10)
-
-
-            
-
-
-
-
-
-
-
-
-
-
-//     })
-
-// //         }
-// }
-
-// var firstItems =[];
-// var  secondItems =[]
-// var  thirdItems =[]
-// var  forthItems =[]
-// var  fifthItems =[]
-
-// if(_keyword<=0 || _keyword>4)
-// {
-//   reject({
-//       code: 21,
-//       data: "please enter the right number from 1 to 4"
-//   })
-// }
-// else{
-//                           if(_keyword==1)
-//                       {
-//                           firstItems=Obj.slice(0,10)
-//                               resolve({
-//                                   code: 100,
-//                                   data: firstItems
-//                               })
-                          
-//                       }
-//                       else if (_keyword==2){
-//                           secondItems=Obj.slice(10,20)
-                      
-//                           resolve({
-//                               code: 101,
-//                               data: secondItems
-//                           })
-                      
-
-//                       }
-//                       else if(_keyword==3){
-
-//                           thirdItems=Obj.slice(20,30)
-                          
-//                           resolve({
-//                               code: 102,
-//                               data: thirdItems
-//                           })
-                      
-//                       }
-//                       else if (_keyword==4){
-//                           forthItems=Obj.slice(30,40)
-                          
-//                           resolve({
-//                               code: 103,
-//                               data: forthItems
-//                           })
-
-//                               }
-//                       else if (_keyword==5){
-//                           fifthItems=Obj.slice(40,50)
-//                           resolve({
-//                               code: 104,
-//                               data: fifthItems
-//                           })
-//                       }
-// else{ 
-// resolve({
-// code: 22,
-// data: fifthItems
-// });
-// }
-// }
-                            
- }
+}
