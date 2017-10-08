@@ -9,8 +9,7 @@
             <% if (expos.length > 0) { %>
             <div ng-repeat="expo in exposList">
                 <div ng-if="expo.Floors.length > 0">
-                    <section swinch-duration="1000" data-scroll
-                             class="secondExpo repeated-item" id="expo{{expo._id}}">
+                    <section swinch-duration="1000" class="secondExpo repeated-item smooth-container" id="expo{{expo._id}}">
                         <article>
 
                             <div class="expoData">
@@ -128,29 +127,34 @@
                         </article>
                     </section>
 
-                    <div class="homepage-bar">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <i class="icon-shipping"></i>
-                                    <div class="text-area"><h3>Free shipping &amp, return</h3><p>Free shipping on all orders over $99.</p></div>
-                                </div>
-                                <div class="col-md-4">
-                                    <i class="icon-money-bag"></i>
-                                    <div class="text-area"><h3>Money back guarantee</h3><p>100% money back guarantee.</p></div>
-                                </div>
-                                <div class="col-md-4">
-                                    <i class="icon-support"></i>
-                                    <div class="text-area"><h3>Online support 24/7</h3><p>Lorem ipsum dolor sit amet.</p></div>
-                                </div>
-                            </div>
+			<div class="homepage-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <i class="icon-shipping"></i>
+                            <div class="text-area"><h3>Free shipping &amp, return</h3><p>Free shipping on all orders over $99.</p></div>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="icon-money-bag"></i>
+                            <div class="text-area"><h3>Money back guarantee</h3><p>100% money back guarantee.</p></div>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="icon-support"></i>
+                            <div class="text-area"><h3>Online support 24/7</h3><p>Lorem ipsum dolor sit amet.</p></div>
                         </div>
                     </div>
+                </div>
+            </div>
+                    
                 </div>
                 <div ng-if="!expo.Floors.length > 0" class="dvNoFloors">
                     There is no floors currently <br /> in the expo {{expo.Title}} :(
                 </div>
             </div>
+
+
+
+
             <div class="brands-slide">
                 <div class="container">
                     <div>

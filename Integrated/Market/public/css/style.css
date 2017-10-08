@@ -1413,17 +1413,18 @@ h6.mega {
         }
 
         .expoPage article .expoData h4 .dvExpoFloorName {
-            display:inline-block;
-        }
-        .expoPage article .expoData h4 .dvExpoFloorName .dvExpoName {
-            opacity: 0;
-            display: none;
+            display: inline-block;
         }
 
-        .expoPage article .expoData h4 .dvExpoFloorName .dvFloorName,
-        .expoPage article .expoData h4 .dvExpoFloorName .dvExpoName {
-            transition: opacity 0.5s;
-        }
+            .expoPage article .expoData h4 .dvExpoFloorName .dvExpoName {
+                opacity: 0;
+                display: none;
+            }
+
+            .expoPage article .expoData h4 .dvExpoFloorName .dvFloorName,
+            .expoPage article .expoData h4 .dvExpoFloorName .dvExpoName {
+                transition: opacity 0.5s;
+            }
 
         .expoPage article .expoData h4:hover .dvExpoFloorName .dvFloorName {
             opacity: 0;
@@ -1512,21 +1513,24 @@ h6.mega {
 
 @-webkit-keyframes cssAnimation {
     0% {
-        left: calc(100% - 150px);
+        bottom: 24px;
+        left: calc(100% - 30px);
         visibility: hidden;
-        opacity: 0.5;
+        opacity: 0;
     }
 
     10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90% {
-        left: 50%;
+        bottom: calc(24px + 80px);
+        left: calc(100% - 150px);
         visibility: visible;
         opacity: 1;
     }
 
     100% {
-        left: -100%;
+        bottom: 24px;
+        left: calc(100% - 30px);
         visibility: hidden;
-        opacity: 0.5;
+        opacity: 0;
     }
 }
 
@@ -2772,19 +2776,25 @@ However, delay the fade out process for 2.5 seconds */
 }
 
 
-/*.showFavorites {
-    background: #fff;
-    width: 400px;
-    margin: auto;
-    border: 1px solid #ccc;
-    padding: 10px 20px;
-    position: absolute;
-    z-index: 100;
-    left: 50%;
-    height: 400px;
-    max-height: 400px;
-    overflow: auto;
-}*/
+/*social*/
+.social-widgets .twitter-widget {
+    height: 300px;
+    overflow-y: scroll;
+    padding-top: 0px;
+    padding-right: 10px;
+}
+
+.social-widgets .twitter .tab-content {
+    height: 360px;
+    overflow-y: auto;
+    padding-top: 0px;
+    padding-right: 5px;
+}
+
+    .social-widgets .twitter .tab-content .title {
+        padding-top: 10px;
+        padding-left: 10px;
+    }
 
 /*hide item controls search page*/
 .product-controls-list.right {

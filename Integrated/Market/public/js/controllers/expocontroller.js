@@ -35,6 +35,9 @@
             var expoId = expo._id;
             $scope['activeFloorCounter' + expoId] = 0;
         });
+        if (true) { // parameter of expo
+            //setInterval(function () { alert("Interval reached"); }, 60000);
+        }
     }
 
     //// swipe floors 1 ,  2
@@ -64,7 +67,24 @@
 
     $(document).ready(function () {
         swinch.init(null, {
+            offset:-50,
+            snapTo: 'top',
+            scrollToElem:'section',
+            onBeforeSnap: function onBeforeSnap(currentSection, nextSection, scrollDirection) {
+                //
+            },
+
+            /**
+             * Called after the snapping completes
+             *
+             * @param  {Node}   currentSection
+             * @param  {Node}   previousSection
+             * @param  {Object} scrollDirection {isUp: <boolean>, isDown: <boolean>}
+             *
+             * @return {void}
+             */
             onSnapped: function (current, previous, direction) {
+                console.log('onSnapped');
                 currentExpoId = (current.id).slice(4);
                 $scope.$apply();
             }
