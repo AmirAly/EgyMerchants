@@ -22,12 +22,14 @@
         $rootScope.loading = false;
     }
     var currentExpoId;
-
+    var floorsCounter;
+    var intervalPeriod = 5000;
     $scope.init = function (_isoCode) {
         $rootScope.IsoCode = _isoCode;
 
         $scope.exposList = JSON.parse((window.exposObject).replace(/&quot;/g, '"'));
         currentExpoId = $scope.exposList[0]._id;
+        floorsCounter = $scope.exposList[0].Floors.length;
 
         console.log($scope.exposList);
         // set which activeFloorCounter for every expo
@@ -42,6 +44,8 @@
 
     //// swipe floors 1 ,  2
     $scope.nextPage = function (_expoId, _floorsCounter) {
+        console.log('enter Next');
+        console.log($scope['activeFloorCounter' + _expoId]);
         $scope['activeFloorCounter' + _expoId]++;
         if ($scope['activeFloorCounter' + _expoId] < _floorsCounter) {
             $scope['activePageNumber' + _expoId] = $scope['activeFloorCounter' + _expoId];
@@ -66,29 +70,90 @@
     }
 
     $(document).ready(function () {
+        var interval;
         swinch.init(null, {
-            offset:-50,
-            snapTo: 'top',
-            scrollToElem:'section',
+            snapTo: 'bottom',
+            scrollToElem: '.secondExpo',
             onBeforeSnap: function onBeforeSnap(currentSection, nextSection, scrollDirection) {
                 //
             },
-
-            /**
-             * Called after the snapping completes
-             *
-             * @param  {Node}   currentSection
-             * @param  {Node}   previousSection
-             * @param  {Object} scrollDirection {isUp: <boolean>, isDown: <boolean>}
-             *
-             * @return {void}
-             */
             onSnapped: function (current, previous, direction) {
+                /**
+                 * Called after the snapping completes
+                 *
+                 * @param  {Node}   currentSection
+                 * @param  {Node}   previousSection
+                 * @param  {Object} scrollDirection {isUp: <boolean>, isDown: <boolean>}
+                 *
+                 * @return {void}
+                 */
+                clearInterval(interval);
                 console.log('onSnapped');
+                console.log(direction);
                 currentExpoId = (current.id).slice(4);
+                console.log(current);
+                var floorsCounter = current.getAttribute('data-floors'); // no need for it now
+                console.log(floorsCounter);
+                interval = setInterval(function () {
+                    $('#nextFloor' + currentExpoId).click();
+                }, intervalPeriod);
+
                 $scope.$apply();
             }
         });
+
+        window.tour = new Tour({
+            padding: 0,
+            nextText: 'More',
+            doneText: 'Done',
+            prevText: 'Less',
+            tipClasses: 'tip-class active',
+            steps: [
+              {
+                  element: "#one",
+                  title: "Tourquoise",
+                  description: "This box is tourqoise!",
+                  data: "Custom Data",
+                  position: "top"
+              },
+              {
+                  element: "#two",
+                  title: "Red",
+                  description: "Look how red this box is!",
+                  data: "Custom Data",
+                  position: "top"
+              }
+              //,{
+              //    element: ".three",
+              //    title: "Blue",
+              //    description: "Almost too blue! Reminds of a default anchor tag.",
+              //    data: "Custom Data",
+              //    position: "top"
+              //}
+              //,{
+              //    element: ".four",
+              //    title: "Green",
+              //    description: "Trees!",
+              //    position: "left"
+              //},
+              //{
+              //    element: ".five",
+              //    title: "Purple",
+              //    description: "Because there should probably be five of these.",
+              //    position: "top"
+              //}
+            ]
+        });
+
+        tour.override('showStep', function (self, step) {
+            self(step);
+        })
+
+        tour.override('end', function (self, step) {
+            self(step);
+        })
+
+        tour.start();
     });
 
     $(document).keydown(function (e) {

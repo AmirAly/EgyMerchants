@@ -2800,3 +2800,16 @@ However, delay the fade out process for 2.5 seconds */
 .product-controls-list.right {
     display: none !important;
 }
+.ttour-overlay{
+        left: 0px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 99999999999999;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.ttour-tip.top .ttour-arrow {
+    left: auto;
+    right: 25px;
+}

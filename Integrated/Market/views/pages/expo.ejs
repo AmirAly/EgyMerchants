@@ -3,13 +3,13 @@
 
 <div class="expoPage" ng-controller="expoController">
     <div class="allExposView" ng-hide="showSingleExpo">
-        <div class="secondDiv" ng-init="init('<%= countryIso %>')">
+        <div class="secondDiv" ng-init="init('<%= countryIso %>')" id="one">
             <script>var exposObject = <%-JSON.stringify(JsonExpos)%>;</script>
 
             <% if (expos.length > 0) { %>
             <div ng-repeat="expo in exposList">
                 <div ng-if="expo.Floors.length > 0">
-                    <section swinch-duration="1000" class="secondExpo repeated-item smooth-container" id="expo{{expo._id}}">
+                    <section swinch-duration="2000" swinch-delay="500" ng-attr-swinch-offset="{{ $first ? 0 : 0 }}" data-floors="{{expo.Floors.length}}" class="secondExpo repeated-item smooth-container" id="expo{{expo._id}}">
                         <article>
 
                             <div class="expoData">
@@ -25,7 +25,7 @@
                                                     <div class="imagesContainer" id="imagesContainer{{expo._id}}">
 													     
 
-														 <section>
+														 <div>
 															<div class="balloon yellow"></div>
 															<div class="balloon blue"></div>
 															<div class="balloon purple"></div>
@@ -61,7 +61,7 @@
 															<div class="balloon purple"></div>
 															<div class="balloon red"></div>
 															<div class="balloon cyan"></div>
-														</section>
+														</div>
 
 
                                                         <div class="outerContainer" ng-repeat="sec in floor.Coordinates">
@@ -107,11 +107,11 @@
 
                                             </div>
 
-                                            <div class="expoDetails" ng-hide="expo.Floors.length == 1">
+                                            <div class="expoDetails" id="two" ng-hide="expo.Floors.length == 1">
                                                 <!-- Pagination -->
 
-                                                <h5 class="text-center light dvNextPage" ng-click="nextPage(expo._id,expo.Floors.length)">
-                                                    <img src="/images/rightarrow.png" />
+                                                <h5 id="nextFloor{{expo._id}}" class="text-center light dvNextPage" ng-click="nextPage(expo._id,expo.Floors.length)">
+                                                    <img src="/images/rightarrow.png"  />
                                                 </h5>
 
                                                 <h5 class="text-center light dvPrePage" ng-click="previousPage(expo._id,expo.Floors.length)">
