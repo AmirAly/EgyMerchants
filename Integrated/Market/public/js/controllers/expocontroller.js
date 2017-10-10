@@ -71,89 +71,65 @@
 
     $(document).ready(function () {
         var interval;
-        swinch.init(null, {
-            snapTo: 'bottom',
-            scrollToElem: '.secondExpo',
-            onBeforeSnap: function onBeforeSnap(currentSection, nextSection, scrollDirection) {
-                //
-            },
-            onSnapped: function (current, previous, direction) {
-                /**
-                 * Called after the snapping completes
-                 *
-                 * @param  {Node}   currentSection
-                 * @param  {Node}   previousSection
-                 * @param  {Object} scrollDirection {isUp: <boolean>, isDown: <boolean>}
-                 *
-                 * @return {void}
-                 */
-                clearInterval(interval);
-                console.log('onSnapped');
-                console.log(direction);
-                currentExpoId = (current.id).slice(4);
-                console.log(current);
-                var floorsCounter = current.getAttribute('data-floors'); // no need for it now
-                console.log(floorsCounter);
-                interval = setInterval(function () {
-                    $('#nextFloor' + currentExpoId).click();
-                }, intervalPeriod);
+        $scope.startShowLogos = false;
+        $scope.startScroll = function () {
+            swinch.init(null, {
+                snapTo: 'bottom',
+                scrollToElem: '.secondExpo',
+                onBeforeSnap: function onBeforeSnap(currentSection, nextSection, scrollDirection) {
+                    //
+                },
+                onSnapped: function (current, previous, direction) {
+                    /**
+                     * Called after the snapping completes
+                     *
+                     * @param  {Node}   currentSection
+                     * @param  {Node}   previousSection
+                     * @param  {Object} scrollDirection {isUp: <boolean>, isDown: <boolean>}
+                     *
+                     * @return {void}
+                     */
+                    clearInterval(interval);
+                    console.log('onSnapped');
+                    console.log(direction);
+                    currentExpoId = (current.id).slice(4);
+                    console.log(current);
+                    var floorsCounter = current.getAttribute('data-floors'); // no need for it now
+                    console.log(floorsCounter);
+                    interval = setInterval(function () {
+                        $('#nextFloor' + currentExpoId).click();
+                    }, intervalPeriod);
 
-                $scope.$apply();
-            }
-        });
+                    $scope.$apply();
+                }
+            });
+        }
 
-        window.tour = new Tour({
-            padding: 0,
-            nextText: 'More',
-            doneText: 'Done',
-            prevText: 'Less',
-            tipClasses: 'tip-class active',
-            steps: [
-              {
-                  element: "#one",
-                  title: "Tourquoise",
-                  description: "This box is tourqoise!",
-                  data: "Custom Data",
-                  position: "top"
-              },
-              {
-                  element: "#two",
-                  title: "Red",
-                  description: "Look how red this box is!",
-                  data: "Custom Data",
-                  position: "top"
-              }
-              //,{
-              //    element: ".three",
-              //    title: "Blue",
-              //    description: "Almost too blue! Reminds of a default anchor tag.",
-              //    data: "Custom Data",
-              //    position: "top"
-              //}
-              //,{
-              //    element: ".four",
-              //    title: "Green",
-              //    description: "Trees!",
-              //    position: "left"
-              //},
-              //{
-              //    element: ".five",
-              //    title: "Purple",
-              //    description: "Because there should probably be five of these.",
-              //    position: "top"
-              //}
-            ]
-        });
 
-        tour.override('showStep', function (self, step) {
-            self(step);
-        })
+        //var curStep = $cookies.get('myTour');
+        //if (typeof curStep === 'string')
+        //    curStep = parseInt(curStep);
+        //$scope.currentStep = curStep || 0;
 
-        tour.override('end', function (self, step) {
-            self(step);
-        })
+        $timeout(function () {
+            $scope.currentStep = 0;
+        }, 1000);
 
-        tour.start();
+        $scope.postTourCallback = function () {//close
+            console.log('tour closes');
+            $scope.startScroll();
+            $scope.startShowLogos = true;
+        };
+
+        $scope.tourCompleteCallback = function () {// complete
+            console.log('tour completed');
+        }
+
+        $scope.postStepCallback = function () {// one step
+            console.log('Tour - Update Step', $scope.currentStep);
+            //$cookies.put('myTour', $scope.currentStep);
+        };
+
     });
 
     $(document).keydown(function (e) {
