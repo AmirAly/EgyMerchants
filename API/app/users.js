@@ -1,5 +1,7 @@
 var Schema = require('./models/user');
+var Rate = require('./models/rate');
 var Helper = require('./helper');
+
 module.exports = {
     register: function (_newUser) {
         return new Promise(function (resolve, reject) {
@@ -27,9 +29,23 @@ module.exports = {
                                             data: err
                                         });
                                     else {
+                                        var link ="http://localhost:8007/User/SetToActive/"+_newuser._id
+                                        console.log(_newUser._id);
+                                        var data = {
+                                            to: _newUser.Email,
+                                            subject: "Please confirm your e-mail address ",
+                                            html: 'Dear '+_newuser.Name+'<br />'+
+                                            'Welcome to EgyMerchant'+'<br />'+
+                                           ' You are almost ready to start interacting with our web site...'+'<br />'
+                                         +'  Please confirm your email address by clicking the link below'+'<br />'+
+                                         '<a href='+link+'>Confirm your e-mail</a>'
+                                        }
+                                       
+                                                Helper.sendEmail(data);
+                                                console.log(data)
                                         resolve({
                                             code: 100,
-                                            data: { _id: _newuser._id, Name: _newuser.Name, Type: _newuser.Type }
+                                            data: { _id: _newuser._id, Name: _newuser.Name, Type: _newuser.Type , Email: _newuser.Email }
                                         });
                                     }
                                 })
@@ -70,9 +86,9 @@ module.exports = {
             })
         })
     },
-    editProfile: function (_id, _email, _name, _profilePicture) {
+    editProfile: function (_id, _name, _profilePicture) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $or: [{ 'Email': {$regex: new RegExp('^' + _email+"$" , 'i')} }, { 'Name': {$regex: new RegExp('^' + _name+"$" , 'i')}}] , '_id': { $ne: _id }}, '', function (err, Obj) {
+            Schema.findOne({ $or: [{ 'Name': {$regex: new RegExp('^' + _name+"$" , 'i')}}] , '_id': { $ne: _id }}, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -80,9 +96,10 @@ module.exports = {
                     })
                 else {
                     if (Obj) {
+                      
                         reject({
                             code: 21,
-                            data: "This email or name already exist"
+                            data: "This name already exists"
                         });
                     }
                     else {
@@ -94,10 +111,13 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        Obj.Email = _email;
+                        console.log(`obj is ${Obj}`)
                         Obj.Name = _name;
+                        console.log(`name is  ${_name}`)
                         Helper.uploadImage(_profilePicture, function (_url) {
                             Obj.ProfilePicture = _url;
+                            console.log(`Obj.ProfilePicture is  ${ Obj.ProfilePicture}`)
+                            console.log(`img is  ${_url}`)
                             Obj.save(function (err, _newuser) {
                                     if (err)
                                         reject({
@@ -173,7 +193,7 @@ module.exports = {
     },
     addToVisited: function (_userId, _storeId) {
         return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ "_id": _userId, "Status": "Active" }, { $addToSet: { VisitedStores: _storeId } }, { new: true, fields: '_id Name Type FavouriteItems VisitedStores ProfilePicture' }, function (err, Obj) {
+            Schema.findOneAndUpdate({ "_id": _userId }, { $addToSet: { VisitedStores: _storeId } }, { new: true, fields: '_id Name Type FavouriteItems VisitedStores ProfilePicture' }, function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -220,7 +240,7 @@ module.exports = {
     },
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id,'Status': 'Active' }, { "Password": 0 }, function (err, Obj) {
+            Schema.findOne({ '_id': _id}, { "Password": 0 }, function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -241,5 +261,104 @@ module.exports = {
                 }
             })
         })
-    }
+    },
+
+setToActive:function(_userId){
+return new Promise(function (resolve, reject) {
+    console.log(_userId);
+Schema.findOneAndUpdate({"_id":_userId },{$set:{'Status':'Active'}},{ new: true},function(err,Obj){
+    console.log(Obj)
+if (err) {
+    reject({
+        code: 1,
+        data: err
+    });
 }
+else{
+    resolve({
+        code: 100,
+        data: Obj
+    });
+
+}
+});
+})
+},
+
+addRating:function(_userId,_storeId,_value){
+    
+   return new Promise(function (resolve, reject) {
+        
+    
+      Schema.findOne({"_id":_userId,"Rate.Store":_storeId},function(err,_user){
+    
+     if(err)
+     reject({ code: 1, data: err});
+     else  if(_user)
+     resolve({ code: 100, data: "You can't rate twice"});
+     else{
+       
+        Schema.findOne({"_id":_userId },function(err,Obj){
+                                    
+                        if(err)
+                        reject({ code: 1, data: err});
+                        else
+                        {
+                        var a={"Store":_storeId};
+                        var b={"Value":_value};
+                        Obj.Rate.push(a,b)
+
+                            Obj.save(function(err,res){
+                        if(err)  
+
+                        reject({ code: 1, data: err});
+                        else
+                        resolve({ code: 100, data:res});
+
+                        })
+                        }
+        })
+        }
+    })
+})
+},
+
+rateAverage:function(_storeId){
+    return new Promise(function (resolve, reject) {
+        
+        Schema.find({"Rate.Store":_storeId},function(err,_lst){
+            console.log(`lst is ${_lst} ..................................................`)
+            console.log(`list length is ${_lst.length}`);
+            
+            var sum=[]; 
+            var constant=0;
+            for (var i=0 ; i< _lst.length; i++){
+                //check first that they are the same store then sum
+                sum= _lst[i].Rate[0].Value;
+            }
+            sum+=constant;
+            console.log(sum);
+ 
+}) ;
+
+    }) ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+};

@@ -23,9 +23,12 @@ module.exports = {
                             data: "This email or store name already exist"
                         });
                     else {
+                      
+                        
                         _newStore.Type = 'store';
                             Helper.uploadImage(_newStore.ProfilePicture, function (_url) {
                                 _newStore.ProfilePicture = _url;
+                                
                                 Helper.uploadImage(_newStore.CoverPhoto, function (_url) {
                                     _newStore.CoverPhoto = _url;
                                 _newStore.save(function (err, _newstore) {
@@ -35,6 +38,20 @@ module.exports = {
                                             data: err
                                         });
                                     else {
+                                        var link ="http://localhost:8007/Store/SetToActive/"+_newStore._id
+                                        console.log(_newStore._id);
+                                        var data = {
+                                            to: _newStore.Email,
+                                            subject: "Please confirm your e-mail address ",
+                                            html: 'Dear '+_newStore.Name+" store"+'<br />'+
+                                            'Welcome to EgyMerchant'+'<br />'+
+                                           ' You are almost ready to start interacting with our web site...'+'<br />'
+                                         +'  Please confirm your email address by clicking the link below'+'<br />'+
+                                         '<a href='+link+'>Confirm your e-mail</a>'
+                                        }
+                                       
+                                                Helper.sendEmail(data);
+                                                console.log(data)
                                         resolve({
                                             code: 100,
                                             data: { _id: _newstore._id, Name: _newstore.Name, Type: _newstore.Type }
@@ -167,7 +184,7 @@ module.exports = {
         return new Promise(function (resolve, reject) {
             var i = 0;
             _.each(_notifications, function (notification) {
-                            Schema.findOneAndUpdate({ "_id": _id, 'AdminNotifications._id': notification._id }, { $set: { 'AdminNotifications.$.Status':true} }, function (err, Obj) {
+                            Schema.findOneAndUpdate({ "_id": _id, 'Status': 'Active', 'AdminNotifications._id': notification._id }, { $set: { 'AdminNotifications.$.Status':true} }, function (err, Obj) {
                                 if (err)
                                     reject({ code: 1, data: err })
                                 else {
@@ -546,21 +563,49 @@ module.exports = {
             })
         })
     },
-//     search:function(_store, _expo, _keyWord, _country){
-//         return new Promise(function (resolve, reject) {
-        
-// var countrySearch = {'Country':{'$regex':_country, $options: "x" }, 'Status': 'Active', 'Type': 'store' }
-// Schema.find(countrySearch,'_id Name ProfilePicture Description Address Status Type Country',function(err,lst){
-  
-// if(err)
-// {
-//     reject({ code: 0, data: err });
-// }
-// else{
-//     resolve({ code: 100, data: lst });
-// }
-// });
 
+   addRating:function(_userId,_storeId,_rateValue,_newRate){
+     
+    return new Promise(function (resolve, reject) {
+
+       Schema.findOne({"_id":_userId,"Rate.Store":_storeId},function(err,obj){
+
+        if(err)
+        reject({ code: 1, data: err});
+        if(obj){
+            obj.Rate.Value+=_rateValue;
+            obj.Rate.Counter=obj.Rate.Counter++;
+            var Average=obj.Rate.Value/obj.Rate.Counter
+            obj.save(function(err){
+                if (err)
+                reject({ code: 1, data: err});
+                else
+                resolve({ code: 100, data: "Rating has been updated successfuly"});
+
+            })
+           
+        }
+        else{
+            _newRate.Rate.Value=_rateValue
+            _newRate.save(function(err){
+                if (err)
+                reject({ code: 1, data: err});
+                else
+                resolve({ code: 101, data: "Rating has been added successfuly"});
+                Schema.findOneAndUpdate({ "_id": _storeId }, { $addToSet: { RatedStores: _storeId } }, { new: true, fields: '_id Name Type RatedStores ProfilePicture' }, function (err, Obj) {
+                    if (err)
+                    reject({ code: 1, data: err});
+                    else
+                    resolve({ code: 102, data: obj});
+            })
+           
+
+            })
+            }
+        
+        })    
+    })
+},
 
 
 

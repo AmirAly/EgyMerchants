@@ -1,7 +1,7 @@
 
 var fs = require('fs');
 var cloudinary = require('cloudinary');
-
+var nodemailer = require('nodemailer')
 
 cloudinary.config({
     cloud_name: 'dce2oozza',
@@ -11,9 +11,16 @@ cloudinary.config({
 
 module.exports = {
     uploadImage: function (_url, callback) {
-       
-        cloudinary.v2.uploader.upload(_url, function (error, result) {console.log(result); callback(result.secure_url)});
-        
+        console.log("url is "+_url)
+        cloudinary.v2.uploader.upload(_url, function (error, result)
+         { 
+             if(error) console.log(error);
+             else {
+             console.log("url  inside function is "+result.secure_url)
+             callback(result.secure_url)
+            }
+         });
+         
     },
     uploadMultipleImages: function (_url, callback) {
         var secureUrls = [];

@@ -9,6 +9,10 @@ var User = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
+    RatedStores:[{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     FavouriteItems: [{
         type: Schema.Types.ObjectId,
         ref: 'Item'
@@ -36,16 +40,35 @@ var User = new Schema({
     LastActivity: { type: Number },
     Imgs: [{ URL: { type: String } }],
     CreateDate: { type: String, default: new Date().getTime() },
-    Rate: { type: Number },
-    Contacts: [
+
+
+    Rate:[{
+       Store: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+       
+       },
+     Value:{type:Number }
+   
+    }],
+    // Contacts: [
+    //     {
+    //         Label: { type: String },
+    //         Value: { type: String }
+    //     }
+    // ],
+    City: { type: String, default: 'Cairo',min:2,max:25},
+    
+    Contacts:[
         {
-            Label: { type: String },
-            Value: { type: String }
+        Addresses: [{ type: String, default: '',min:2}],
+        Others:[{ type: String, default: ''}],
+        Facebook:{type: String},
+        Twitter:{type: String}
         }
     ],
-    City: { type: String, default: 'Cairo',min:2,max:25},
-    Address: { type: String, default: '',min:2},
+   
     Type:{type: String},
-    Status: { type: String, default: 'Active' },
+    Status: { type: String, default: 'Inactive' },
 });
 module.exports = Mongoose.model('User', User);
