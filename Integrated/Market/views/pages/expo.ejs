@@ -2,15 +2,16 @@
 <% include ../partials/pageheader %>
 
 <div class="expoPage" ng-controller="expoController">
+
+
     <div class="allExposView" ng-hide="showSingleExpo">
-        <div class="secondDiv" ng-init="init('<%= countryIso %>')">
+        <div class="secondDiv" ng-init="init('<%= countryIso %>')" id="one">
             <script>var exposObject = <%-JSON.stringify(JsonExpos)%>;</script>
 
             <% if (expos.length > 0) { %>
             <div ng-repeat="expo in exposList">
                 <div ng-if="expo.Floors.length > 0">
-                    <section swinch-duration="1000" data-scroll
-                             class="secondExpo repeated-item" id="expo{{expo._id}}">
+                    <section swinch-duration="2000" swinch-delay="1500" ng-attr-swinch-offset="{{ $first ? 0 : 0 }}" data-floors="{{expo.Floors.length}}" class="secondExpo repeated-item smooth-container" id="expo{{expo._id}}">
                         <article>
 
                             <div class="expoData">
@@ -26,7 +27,7 @@
                                                     <div class="imagesContainer" id="imagesContainer{{expo._id}}">
 													     
 
-														 <section>
+														 <div ng-show="startShowLogos">
 															<div class="balloon yellow"></div>
 															<div class="balloon blue"></div>
 															<div class="balloon purple"></div>
@@ -62,7 +63,7 @@
 															<div class="balloon purple"></div>
 															<div class="balloon red"></div>
 															<div class="balloon cyan"></div>
-														</section>
+														</div>
 
 
                                                         <div class="outerContainer" ng-repeat="sec in floor.Coordinates">
@@ -73,27 +74,34 @@
                                                             </div>
                                                         </div>
                                                         <h6>Floor {{$index + 1}} of {{expo.Floors.length}}</h6>
-                                                        <h4>{{floor.Name}}<span class="flexContainer">
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<br/>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														 </span></h4>
+                                                        <h4  id="two"> 
+															<div class="dvExpoFloorName">
+																<div class="dvExpoName">Expo: {{expo.Title}}</div>
+																<div class="dvFloorName">{{floor.Name}}</div>
+															</div>
+
+															<span class="flexContainer">
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+														
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+															</span>
+														</h4>
                                                     </div>
 
 
@@ -104,12 +112,12 @@
                                             <div class="expoDetails" ng-hide="expo.Floors.length == 1">
                                                 <!-- Pagination -->
 
-                                                <h5 class="text-center light dvNextPage" ng-click="nextPage(expo._id,expo.Floors.length)">
+                                                <h5 id="nextFloor{{expo._id}}" class="text-center light dvNextPage" ng-click="nextPage(expo._id,expo.Floors.length)">
                                                     <img src="/images/rightarrow.png" />
                                                 </h5>
 
                                                 <h5 class="text-center light dvPrePage" ng-click="previousPage(expo._id,expo.Floors.length)">
-                                                    <img src="/images/leftarrow.png" />
+                                                    <img src="/images/leftarrow.png" id="three" />
                                                 </h5>
 
                                             </div>
@@ -121,29 +129,34 @@
                         </article>
                     </section>
 
-                    <div class="homepage-bar">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <i class="icon-shipping"></i>
-                                    <div class="text-area"><h3>Free shipping &amp, return</h3><p>Free shipping on all orders over $99.</p></div>
-                                </div>
-                                <div class="col-md-4">
-                                    <i class="icon-money-bag"></i>
-                                    <div class="text-area"><h3>Money back guarantee</h3><p>100% money back guarantee.</p></div>
-                                </div>
-                                <div class="col-md-4">
-                                    <i class="icon-support"></i>
-                                    <div class="text-area"><h3>Online support 24/7</h3><p>Lorem ipsum dolor sit amet.</p></div>
-                                </div>
-                            </div>
+			<div class="homepage-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <i class="icon-shipping"></i>
+                            <div class="text-area"><h3>Free shipping &amp, return</h3><p>Free shipping on all orders over $99.</p></div>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="icon-money-bag"></i>
+                            <div class="text-area"><h3>Money back guarantee</h3><p>100% money back guarantee.</p></div>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="icon-support"></i>
+                            <div class="text-area"><h3>Online support 24/7</h3><p>Lorem ipsum dolor sit amet.</p></div>
                         </div>
                     </div>
+                </div>
+            </div>
+                    
                 </div>
                 <div ng-if="!expo.Floors.length > 0" class="dvNoFloors">
                     There is no floors currently <br /> in the expo {{expo.Title}} :(
                 </div>
             </div>
+
+
+
+
             <div class="brands-slide">
                 <div class="container">
                     <div>
@@ -161,6 +174,46 @@
             <% } %>
         </div>
     </div>
+
+   <tour step="currentStep" post-tour="postTourCallback()" post-step="postStepCallback()" tour-complete="tourCompleteCallback()">
+      <virtual-step
+      tourtip="Expos with floors."
+	  tourtip-title="Welcome to the expo"
+      tourtip-next-label="Learn more"
+      tourtip-placement="top"
+      tourtip-step="0"
+      tourtip-element="#one"></virtual-step>
+
+	  <virtual-step
+      tourtip="Floor name"
+	  tourtip-next-label="Next"
+      tourtip-placement="top"
+      tourtip-step="1"
+      tourtip-element="#two"></virtual-step>
+
+	  <virtual-step
+      tourtip="hover to see expo name with participated stores"
+	  tourtip-next-label="Next"
+      tourtip-placement="left"
+      tourtip-step="2"
+      tourtip-element="#two"></virtual-step>
+
+	  <virtual-step
+      tourtip="use arrows to navigate between expo floors"
+	  tourtip-next-label="Next"
+      tourtip-placement="left"
+      tourtip-step="3"
+      tourtip-element="#three"></virtual-step>
+
+	  <virtual-step
+	  tourtip="finally"
+      tourtip-title="enjoy!"
+	  tourtip-next-label="Done"
+      tourtip-placement="top"
+      tourtip-step="4"
+      tourtip-element="#one"></virtual-step>
+   </tour>
+
 
 
 
