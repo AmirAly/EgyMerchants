@@ -19,6 +19,7 @@ var MessageLogic = require('./messages');
 var Message = require('./models/message');
 var CommentLogic = require('./comments');
 var Comment = require('./models/comment');
+var Rate = require('./models/rate');
 var NotificationLogic = require('./notifications');
 var Notification = require('./models/notification');
 var _ = require("underscore");
@@ -117,6 +118,16 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.get('/Store/SetToActive/:_store_id', function (req, res) {
+        UserLogic.setToActive(req.params._storeid).then(function (result) {
+            console.log(req.params._storeId)
+            res.redirect("https://egymarket.herokuapp.com");
+        }, function (err) {
+            res.json(err);
+        });
+    })
+
+    
     //gallery API calls
     api.post('/Gallery/Add', function (req, res) {
         var _newGallery = new Gallery(req.body);
@@ -330,6 +341,24 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.get('/User/SetToActive/:_userId', function (req, res) {
+        UserLogic.setToActive(req.params._userId).then(function (result) {
+            console.log(req.params._userId)
+            res.redirect("https://egymarket.herokuapp.com");
+        }, function (err) {
+            res.json(err);
+        });
+    })
+
+    api.put('/User/EditProfile', function (req, res) {
+        UserLogic.editProfile(req.body._userid, req.body._name , req.body._profilePicture).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+
+
 	  api.get('/GetFavourites/:_userId', function (req, res) {
         UserLogic.getFavourites(req.params._userId).then(function (result) {
             res.json(result);
@@ -366,7 +395,8 @@ module.exports = function (app, express) {
         }, function (err) {
             res.json(err);
         });
-    })
+    });
+
     api.put('/Expo/Remove', function (req, res) {
         ExpoLogic.remove(req.body._id).then(function (result) {
             res.json(result);
@@ -444,7 +474,46 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-    
+
+
+
+
+        api.post('/User/AddRating', function (req, res) {
+
+    Rate.findOne({"Store":req.body._id},function(err,obj){
+        console.log(obj)
+        
+                if(err)
+                reject({ code: 1, data: err});
+                if(obj){
+                    obj.Value+= req.body._value;
+                    obj.Counter+=1;
+                    obj.save(function(err,result){
+                        if(err) throw err
+                        else{
+                            res.json(result)
+                        }
+                    })
+        
+                }
+                else{
+        var _newRate = new Rate();
+        _newRate.Value=req.body._value;
+        _newRate.Counter=req.body._counter;
+        
+        _newRate.save(function(err,rate){
+
+            if(err) throw err
+            else{
+                res.json(rate)
+                
+            }
+        })
+                }
+                
+                }) 
+            })  
+            
     //api.get('/Notification/GetAll/:_userid', function (req, res) {
     //    NotificationLogic.getAll(req.params._userid).then(function (result) {
     //        res.json(result);
