@@ -27,7 +27,7 @@ var usersListObject = <%- JSON.stringify(usersList) %>
 
 
                 <div class="col-sm-10 col-md-10 col-lg-10 dvMessagesBody">
-				 <div id="dvMessagesBodyContainer" class="dvMessagesBodyContainer">  
+				 <div id="dvMessagesBodyContainer" class="dvMessagesBodyContainer" tabindex="-1">  
                     <div ng-cloak ng-repeat="user in inboxMesagesList track by $index">
 
                         <div class="row" ng-if="user.To._id === '<%= chatPartener %>'">
