@@ -62,7 +62,7 @@ module.exports = {
                         code: 23,
                         data: "This account is  deleted"
                     });
-                else if (Obj.Status == "Active")
+                else 
                     resolve({
                         code: 100,
                         data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type, ProfilePicture: Obj.ProfilePicture }

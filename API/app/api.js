@@ -19,7 +19,6 @@ var MessageLogic = require('./messages');
 var Message = require('./models/message');
 var CommentLogic = require('./comments');
 var Comment = require('./models/comment');
-var Rate = require('./models/rate');
 var NotificationLogic = require('./notifications');
 var Notification = require('./models/notification');
 var _ = require("underscore");
@@ -358,7 +357,14 @@ module.exports = function (app, express) {
         });
     })
 
-
+    api.put('/User/AddRating', function (req, res) {
+        UserLogic.addRating(req.body._userId, req.body._storeId , req.body._value).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+        
+    })
 	  api.get('/GetFavourites/:_userId', function (req, res) {
         UserLogic.getFavourites(req.params._userId).then(function (result) {
             res.json(result);
@@ -403,14 +409,14 @@ module.exports = function (app, express) {
         }, function (err) {
             res.json(err);
         });
-    })
+    });
     api.get('/Expo/GetById/:_id', function (req, res) {
         ExpoLogic.getById(req.params._id).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
         });
-    })
+    });
 
     //message api calls
     api.post('/Message/Send', function (req, res) {
@@ -478,41 +484,6 @@ module.exports = function (app, express) {
 
 
 
-        api.post('/User/AddRating', function (req, res) {
-
-    Rate.findOne({"Store":req.body._id},function(err,obj){
-        console.log(obj)
-        
-                if(err)
-                reject({ code: 1, data: err});
-                if(obj){
-                    obj.Value+= req.body._value;
-                    obj.Counter+=1;
-                    obj.save(function(err,result){
-                        if(err) throw err
-                        else{
-                            res.json(result)
-                        }
-                    })
-        
-                }
-                else{
-        var _newRate = new Rate();
-        _newRate.Value=req.body._value;
-        _newRate.Counter=req.body._counter;
-        
-        _newRate.save(function(err,rate){
-
-            if(err) throw err
-            else{
-                res.json(rate)
-                
-            }
-        })
-                }
-                
-                }) 
-            })  
             
     //api.get('/Notification/GetAll/:_userid', function (req, res) {
     //    NotificationLogic.getAll(req.params._userid).then(function (result) {

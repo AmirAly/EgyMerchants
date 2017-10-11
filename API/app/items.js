@@ -1,6 +1,6 @@
 var Schema = require('./models/item');
 var _ = require("underscore");
-var Helper= require('./helper');
+var Helper = require('./helper');
 module.exports = {
     getFeatured: function (_storeId) {
         return new Promise(function (resolve, reject) {
@@ -35,18 +35,17 @@ module.exports = {
                         data: err
                     });
                 else {
-                    if (lst.length > 0)
-                    {
+                    if (lst.length > 0) {
                         var result = _.chain(lst)
-                                    .groupBy('Gallery')
-                                   .map(function (value, key) {
-                                       return {
-                                       Gallery: key,
-                                        Items: value
-                                             }
-                                   }).value();
-								   // _.each(result,function(x){console.log(x.Gallery)})
-								   // console.log(result);
+                            .groupBy('Gallery')
+                            .map(function (value, key) {
+                                return {
+                                    Gallery: key,
+                                    Items: value
+                                }
+                            }).value();
+                        // _.each(result,function(x){console.log(x.Gallery)})
+                        // console.log(result);
                         result.sort(function (a, b) {
                             return parseInt(a.Gallery.split(":")[3].split(" ")[1]) - parseInt(b.Gallery.split(":")[3].split(" ")[1]);
                         });
@@ -91,7 +90,7 @@ module.exports = {
     },
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate({ path: 'Gallery',select:'Store _id', populate: { path: 'Store', model: 'User', select: 'Name' } }).exec(function (err, Obj) {
+            Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate({ path: 'Gallery', select: 'Store _id', populate: { path: 'Store', model: 'User', select: 'Name' } }).exec(function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -139,14 +138,14 @@ module.exports = {
     },
     add: function (_product) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Name': {$regex: new RegExp('^' + _product.Name+"$" , 'i')}, 'Gallery': _product.Gallery, 'Status': 'Active' }, '', function (err, Obj) {
+            Schema.findOne({ 'Name': { $regex: new RegExp('^' + _product.Name + "$", 'i') }, 'Gallery': _product.Gallery, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
                         data: err
                     });
                 else {
-                   
+
                     if (Obj)
                         reject({
                             code: 21,
@@ -166,25 +165,25 @@ module.exports = {
                                     else {
                                         resolve({
                                             code: 100,
-                                            data:"This item is added successfully"
+                                            data: "This item is added successfully"
                                         });
                                     }
                                 })
                             });
                         }
                         else {
-                        _product.save(function (err, Obj) {
-                            if (err)
-                                reject({
-                                    code: 1,
-                                    data: err
-                                });
-                            else {
-                                resolve({
-                                    code: 100,
-                                    data: "This item is added successfully"
-                                });
-                            }
+                            _product.save(function (err, Obj) {
+                                if (err)
+                                    reject({
+                                        code: 1,
+                                        data: err
+                                    });
+                                else {
+                                    resolve({
+                                        code: 100,
+                                        data: "This item is added successfully"
+                                    });
+                                }
                             })
                         }
                     }
@@ -203,7 +202,7 @@ module.exports = {
                     });
                 else {
                     if (item) {
-                        Schema.findOne({ 'Name': {$regex: new RegExp('^' + _name+"$" , 'i')}, 'Gallery': item.Gallery, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
+                        Schema.findOne({ 'Name': { $regex: new RegExp('^' + _name + "$", 'i') }, 'Gallery': item.Gallery, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
                             console.log(Obj)
                             if (err)
                                 reject({
@@ -211,18 +210,17 @@ module.exports = {
                                     data: err
                                 });
                             else {
-                            
-                                if (Obj)
-                                {
-                                   // console.log(Obj)
+
+                                if (Obj) {
+                                    // console.log(Obj)
                                     reject({
                                         code: 21,
                                         data: "There is item with the same name in this gallery"
                                     });
                                 }
                                 else {
-                                
-                                    
+
+
                                     item.Pictures = [];
                                     if (_imgs.length) {
                                         Helper.uploadMultipleImages(_imgs, function (_url) {
@@ -230,12 +228,12 @@ module.exports = {
                                             var result = _imgs;
                                             _.each(_url, function (imageurl) { if (i < _imgs.length) { result[i].URL = imageurl; i++; } });
                                             item.Pictures = item.Pictures.concat(result);
-                                            
-                                            
+
+
                                             item.Name = _name;
                                             item.Description = _description;
                                             item.Price = _price;
-                                            
+
                                             item.PriceBeforeSale = _priceBeforeSale;
                                             item.Badges = _badges;
                                             item.Tags = _tags;
@@ -273,7 +271,7 @@ module.exports = {
                                                 });
                                         })
                                     }
-                                   
+
                                 }
                             }
                         })
@@ -301,30 +299,55 @@ module.exports = {
             })
         })
     },
-    removeImage: function (_itemid,_imageid) {
+    removeImage: function (_itemid, _imageid) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _itemid }, 'Pictures', function (err, Obj) {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
-                    if (Obj)
-                    {
-                        if (Obj.Pictures.length > 1)
-                        {
+                    if (Obj) {
+                        if (Obj.Pictures.length > 1) {
                             Schema.update({ '_id': _itemid }, { $pull: { "Pictures": { "_id": _imageid } } }, function (err, Obj) {
                                 if (err)
                                     reject({ code: 2, data: err })
                                 else
-                                    resolve({code: 100, data: "This item image is deleted successfully"})
+                                    resolve({ code: 100, data: "This item image is deleted successfully" })
                             })
                         }
                         else
                             resolve({ code: 101, data: "Sorry not allowed to delete the last item image" })
                     }
                     else
-                        reject({ code: 22, data: "This item doesn't exist" })
-                        }
+                        resolve({ code: 22, data: "This item doesn't exist" })
+                }
             })
         })
-    }
+    },
+    getSimilarItems: function (_itemId) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOne({ '_id': _itemId }, '', function (err, Obj) {
+                if (err)
+                    reject({ code: 0, data: err })
+                else {
+                    var _res = []
+                    var filter = []
+                    for (var i = 0; i < Obj.Tags.length; i++) {
+                        filter = { 'Tags': { "$regex": Obj.Tags[i], "$options": "i" }, 'Status': 'Active' };
+                        Schema.find(filter, function (err, _res) {
+                            if(err)
+                            reject({ code: 1, data: err })
+                            else
+                            resolve({ code: 100, data: res })
+                            
+                        })
+
+                    }
+
+                }
+            })
+
+        })
+
+    },
+
 }

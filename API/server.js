@@ -29,7 +29,6 @@ var comment = require('./app/comments');
 var notificationschema = require('./app/models/notification');
 var notification = require('./app/notifications');
 var Helper = require('./app/helper');
-var rateschema = require('./app/models/rate');
 // configuration ===========================================
 // config files
 // check data conection
@@ -139,7 +138,7 @@ mongoose.connect(db.url, function (err) {
 //});
 
 // var newuser = new userschema({
-//    "Email": "amrelshenawy@gmail.com", "Password": "123456", "Name": "amr elshenawy",
+//    "Email": "khaled@gmail.com", "Password": "123456", "Name": "Khaled",
 //    "ProfilePicture": "https://www.w3schools.com/css/img_lights.jpg","Contacts":[{"Addresses":["hafez wahby"]}]
 
 
@@ -176,11 +175,11 @@ mongoose.connect(db.url, function (err) {
 //    console.log(err);
 // });
 
-//user.login({"Email":"amir@mail.com","Password":"123456"}).then(function (result) {
+// user.login({"Email":"eslam@gmail.com","Password":"123456"}).then(function (result) {
 //    console.log(result);
-//}, function (err) {
+// }, function (err) {
 //    console.log(err);
-//});
+// });
 
 
 // user.editProfile("59d0b74ac9ca2b0012b1802d","Ahmed ",
@@ -383,13 +382,13 @@ mongoose.connect(db.url, function (err) {
    
     
       
-//         "Name": "g,lghmj",
-//         "Description": "ghg",
+//         "Name": "Black hair",
+//         "Description": "knkngkfnhklfnhkgnhknkghn",
 //         "Store": "59c7936090c6da00124050e6"
 //         ,
 //         "Gallery": "59c79bbc90c6da00124050f3"
 //         ,
-//         "Status": "Deleted",
+//         "Status": "Active",
 //         "PriceBeforeSale": 0,
 //         "Price": 55,
 //         "Pictures": [
@@ -503,11 +502,10 @@ mongoose.connect(db.url, function (err) {
     // ],
 
     // user.addRating(
-    //   "59dd412a0d58941e2c0ef60c",
-    //  "59464b5aa7eee71550d33db9",
-    //  44
+    //   "59dddbef9693f520f4050cce",
+    //  "59464b5aa7eee71550d33dc1",
+    //  40
         
-            
     // ).then(function (result) {
     //         console.log(result);
     //     }, function (err) {
@@ -519,27 +517,42 @@ mongoose.connect(db.url, function (err) {
         //     default: 0,
         //     ref: 'User'
         // }]
-        
-//     var newRate = new rateschema({
-//       "_id" : "59dcadae6513b52678ddb546",
-//         "Rating.Store" : "59464b5aa7eee71550d33dfc",
-//         "Value":5
-         
-// });
-// user.addRating(newRate).then(function (result) {
-//    console.log(result); 
-// }, function(err) {
-//    console.log(err); 
-// });
+  
+// user.rateAverage(
 
-user.rateAverage(
-
-   "59464b5aa7eee71550d33db9"
+//    "59464b5aa7eee71550d33db8"
    
       
           
-  ).then(function (result) {
-          console.log(result);
-      }, function (err) {
-          console.log(err);
-      });
+//   ).then(function (result) {
+//           console.log(result);
+//       }, function (err) {
+//           console.log(err);
+    //   });
+    
+    
+//     user.getAllRatedStores(
+
+//    "59dddbbb41e1661e9827e816"
+   
+      
+          
+//   ).then(function (result) {
+//           console.log(result);
+//       }, function (err) {
+//           console.log(err);
+//       });
+
+
+// item.getSimilarItems(
+
+//    "59b12029ab49580011b54ad6"
+   
+      
+          
+//   ).then(function (result) {
+//           console.log(result);
+//       }, function (err) {
+//           console.log(err);
+//       });
+    

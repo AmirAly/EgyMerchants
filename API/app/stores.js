@@ -89,7 +89,7 @@ module.exports = {
                         code: 23,
                         data: "This account is deleted"
                     });
-                else if (Obj.Status == "Active")
+               else
                     resolve({
                         code: 100,
                         data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type, ProfilePicture: Obj.ProfilePicture }
@@ -563,51 +563,6 @@ module.exports = {
             })
         })
     },
-
-   addRating:function(_userId,_storeId,_rateValue,_newRate){
-     
-    return new Promise(function (resolve, reject) {
-
-       Schema.findOne({"_id":_userId,"Rate.Store":_storeId},function(err,obj){
-
-        if(err)
-        reject({ code: 1, data: err});
-        if(obj){
-            obj.Rate.Value+=_rateValue;
-            obj.Rate.Counter=obj.Rate.Counter++;
-            var Average=obj.Rate.Value/obj.Rate.Counter
-            obj.save(function(err){
-                if (err)
-                reject({ code: 1, data: err});
-                else
-                resolve({ code: 100, data: "Rating has been updated successfuly"});
-
-            })
-           
-        }
-        else{
-            _newRate.Rate.Value=_rateValue
-            _newRate.save(function(err){
-                if (err)
-                reject({ code: 1, data: err});
-                else
-                resolve({ code: 101, data: "Rating has been added successfuly"});
-                Schema.findOneAndUpdate({ "_id": _storeId }, { $addToSet: { RatedStores: _storeId } }, { new: true, fields: '_id Name Type RatedStores ProfilePicture' }, function (err, Obj) {
-                    if (err)
-                    reject({ code: 1, data: err});
-                    else
-                    resolve({ code: 102, data: obj});
-            })
-           
-
-            })
-            }
-        
-        })    
-    })
-},
-
-
 
 
 

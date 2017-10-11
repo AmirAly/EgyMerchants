@@ -1,5 +1,4 @@
 var Schema = require('./models/user');
-var Rate = require('./models/rate');
 var Helper = require('./helper');
 
 module.exports = {
@@ -57,7 +56,7 @@ module.exports = {
     },
     login: function (_user) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ 'Email':{$regex: new RegExp('^' + _user.Email+"$" , 'i')} }, { 'Password':{$regex: new RegExp('^' + _user.Password+"$" , 'i')}}] }, '', function (err, Obj) {
+            Schema.findOne({ $and: [{ 'Email':{$regex: new RegExp('^' + _user.Email+"$" , 'i')} }, { 'Password':{$regex: new RegExp('^' + _user.Password+"$" , 'i')}}] }, '_id Name Type FavouriteItems VisitedStores ProfilePicture Rate.Store', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -78,11 +77,17 @@ module.exports = {
                         code: 23,
                         data: "This account is deleted"
                     });
-                else if (Obj.Status == "Active")
+                else 
                     resolve({
                         code: 100,
-                        data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type, FavouriteItems: Obj.FavouriteItems, VisitedStores: Obj.VisitedStores, ProfilePicture: Obj.ProfilePicture}
+                        data: Obj
                     });
+                    // Rate:[{
+                    //     Store: {
+                    //      type: Schema.Types.ObjectId,
+                    //      ref: 'User',
+                        
+                    //     }
             })
         })
     },
@@ -288,9 +293,15 @@ else{
 addRating:function(_userId,_storeId,_value){
     
    return new Promise(function (resolve, reject) {
-        
+    Schema.findOne({"_id":_userId, "Status":"Active"},function(err,_obj){
     
-      Schema.findOne({"_id":_userId,"Rate.Store":_storeId},function(err,_user){
+    if(!_obj){
+        console.log(_obj)
+        resolve({ code: 21, data:"No user found"});
+        
+    }
+    else{
+      Schema.findOne({"_id":_userId,"Rate.Store":_storeId },function(err,_user){
     
      if(err)
      reject({ code: 1, data: err});
@@ -298,67 +309,71 @@ addRating:function(_userId,_storeId,_value){
      resolve({ code: 100, data: "You can't rate twice"});
      else{
        
-        Schema.findOne({"_id":_userId },function(err,Obj){
+        Schema.findOne({"_id":_userId  ,"Status":"Active"},function(err,Obj){
                                     
                         if(err)
                         reject({ code: 1, data: err});
                         else
                         {
-                        var a={"Store":_storeId};
-                        var b={"Value":_value};
-                        Obj.Rate.push(a,b)
+                        var _object={"Store":_storeId,"Value":_value};
+                       
+                        Obj.Rate.push(_object);
 
                             Obj.save(function(err,res){
                         if(err)  
 
                         reject({ code: 1, data: err});
-                        else
-                        resolve({ code: 100, data:res});
+                        else{
+                            Schema.find({"Rate.Store":_storeId},'Rate Name',function(err,_lst){
+                                
+                                   if(err)
+                                   reject({ code: 1, data: err});
 
+                                   else{
+                                   var sum=[]; 
+                                   var constant=0;
+                                  
+                                   
+                                   for (var i=0 ; i< _lst.length; i++){
+                                       for(var f = 0 ;f<_lst[i].Rate.length; f++)
+                                       {
+                                           if(_lst[i].Rate[f].Store==_storeId)
+                                           sum =(_lst[i].Rate[f].Value);
+                                       }
+                                       constant+=sum;
+                                   }
+                                
+                                   var average = constant/_lst.length;
+                                                             
+                                   resolve({ code: 100, data: average});
+                                   console.log(average)
+                                   
+                                }
+                       }) ;
+                        
+                        resolve({ code: 100, data:res});
+                        }
                         })
                         }
         })
         }
     })
+}
+})
+
 })
 },
 
-rateAverage:function(_storeId){
+
+getAllRatedStores:function(_userId){
     return new Promise(function (resolve, reject) {
-        
-        Schema.find({"Rate.Store":_storeId},function(err,_lst){
-            console.log(`lst is ${_lst} ..................................................`)
-            console.log(`list length is ${_lst.length}`);
-            
-            var sum=[]; 
-            var constant=0;
-            for (var i=0 ; i< _lst.length; i++){
-                //check first that they are the same store then sum
-                sum= _lst[i].Rate[0].Value;
-            }
-            sum+=constant;
-            console.log(sum);
- 
-}) ;
+  Schema.find({"_id":_userId},'Rate.Store',function(err,_lst){
+    if(err)
+    reject({ code: 1, data: err })
+    else
+    resolve({ code: 100, data: _lst });
 
-    }) ;
+  });
+});
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 };
