@@ -5,7 +5,7 @@
 var GalleriesJson = <%-JSON.stringify(GalleriesJson)%>;
 </script>
 
-<div class="storePage"  ng-controller="storeController">
+<div class="storePage"  ng-controller="storeController"> <!--style="background-image: url(<%= store.CoverPhoto %>);"-->
     <div class="container">
         <div class="pageCover" style="background: url(<%= store.CoverPhoto %>);">
 
@@ -24,11 +24,10 @@ var GalleriesJson = <%-JSON.stringify(GalleriesJson)%>;
                         <div class="dvStoreInfo">
                             <h1><%= store.Name %></h1>
                             <span class="dvRating">
-                                <span class="icon-star-3"></span>
-                                <span class="icon-star-3"></span>
-                                <span class="icon-star-3"></span>
-                                <span class="icon-star-3"></span>
-                                <span class="icon-star-empty"></span>
+                                <star-rating ng-model="rating" readonly="isReadonly" on-rating-selected="rateFunction(rating)"></star-rating>
+								<label>
+								<!-- <input type="checkbox" ng-model="isReadonly"/> Is Readonly  {{rating}} -->
+								</label>
                             </span>
                         </div>
 

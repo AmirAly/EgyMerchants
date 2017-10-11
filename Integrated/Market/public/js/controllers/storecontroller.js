@@ -2,6 +2,18 @@
     $scope.init = function (_isoCode, _storeId) {
         $rootScope.IsoCode = _isoCode;
 
+        // rating default _storeAvgRate
+        $scope.rating = 2;
+        // set true if user is not logged
+        $scope.isReadonly = false;
+        if (!$rootScope.loggedUser) {
+            $scope.isReadonly = true;
+        } else {
+            // set true if user rated before
+        }
+
+
+
         if (window.GalleriesJson.length > 0) {
             $scope.GalleriesJson = JSON.parse(window.GalleriesJson);
         }
@@ -29,10 +41,14 @@
                 $scope.addToVisited(_storeId);
             }
             console.log($scope.message);
-
         }
-
     }
+
+    //set new rate
+    $scope.rateFunction = function (rating) {
+        console.log('Rating selected: ' + rating);
+    };
+
     $scope.addToVisited = function (_storeId) {
         $scope.storeData = {};
         $scope.storeData._userid = $rootScope.userId;
