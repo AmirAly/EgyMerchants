@@ -37,7 +37,7 @@
             }
         }
 
-       
+
 
         //// Get the snackbar DIV
         //var x = document.getElementById("snackbar");
@@ -64,6 +64,7 @@
     });
 
     $scope.init = function (_isoCode, _activeUser, _currentMessageReceiver) {
+
         $rootScope.IsoCode = _isoCode;
         $scope.activeUserId = _activeUser;
         if (_currentMessageReceiver != '') {
@@ -90,7 +91,14 @@
 
         }
         console.log($scope.usersList);
+        $timeout(function () {
+            var objDiv = document.getElementById("dvMessagesBodyContainer");
+            $('#' + 'dvMessagesBodyContainer').animate({
+                scrollTop: objDiv.scrollHeight
+            },1500);
+            console.log('hhhhhhh');
 
+        }, 2000);
     }
 
     $scope.submitMessage = function () {
