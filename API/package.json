@@ -10,9 +10,7 @@
     "file-system": "*",
     "mongoose": "*",
     "nodemailer": "*",
-    "socket.io": "^2.0.3",
     "stream": "*",
-    "underscore": "^1.8.3",
-	"socket.io-client":"*"
+    "underscore": "^1.8.3"
   }
 }

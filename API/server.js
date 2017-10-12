@@ -2,7 +2,7 @@
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
-var io = require('socket.io').listen(server);
+// var io = require('socket.io').listen(server);
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var api = require('./app/api')(app, express);
@@ -56,13 +56,13 @@ mongoose.connect(db.url, function (err) {
 
         //app.listen(port);
         server.listen(port, function () {
-            console.log('listening on sockets');
+            console.log('listening on 8007');
         });
         console.log('connected to database and server is listeining ');
         // console.log(mongoose.Types.ObjectId('578df3efb618f5141202a196'));
         // console.log(new Date("1/9/2017 4:00:00").getTime());
         // console.log(new Date(  1506600924382));
-      
+
         
     }
 });
@@ -74,6 +74,7 @@ mongoose.connect(db.url, function (err) {
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -341,6 +342,8 @@ mongoose.connect(db.url, function (err) {
 
 
 
+=======
+>>>>>>> 55086a674052b340e232faf559437925a8cd390f
 // userschema.find({"Country":  {"$regex":'?'}},'_id Name ProfilePicture Description Address Status Type Country',function(err,lst){
         
 //     if(err)
@@ -531,17 +534,17 @@ mongoose.connect(db.url, function (err) {
     //   });
     
     
-    user.getAllRatedStores(
+//     user.getAllRatedStores(
 
-   "59df3668040c370924cf871a"
+//    "59df3668040c370924cf871a"
    
       
           
-  ).then(function (result) {
-          console.log(result);
-      }, function (err) {
-          console.log(err);
-      });
+//   ).then(function (result) {
+//           console.log(result);
+//       }, function (err) {
+//           console.log(err);
+//       });
 
 
 // item.getSimilarItems(

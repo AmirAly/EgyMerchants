@@ -117,6 +117,16 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.get('/Store/SetToActive/:_store_id', function (req, res) {
+        UserLogic.setToActive(req.params._storeid).then(function (result) {
+            console.log(req.params._storeId)
+            res.redirect("https://egymarket.herokuapp.com");
+        }, function (err) {
+            res.json(err);
+        });
+    })
+
+    
     //gallery API calls
     api.post('/Gallery/Add', function (req, res) {
         var _newGallery = new Gallery(req.body);
@@ -330,6 +340,31 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.get('/User/SetToActive/:_userId', function (req, res) {
+        UserLogic.setToActive(req.params._userId).then(function (result) {
+            console.log(req.params._userId)
+            res.redirect("https://egymarket.herokuapp.com");
+        }, function (err) {
+            res.json(err);
+        });
+    })
+
+    api.put('/User/EditProfile', function (req, res) {
+        UserLogic.editProfile(req.body._userid, req.body._name , req.body._profilePicture).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+
+    api.put('/User/AddRating', function (req, res) {
+        UserLogic.addRating(req.body._userId, req.body._storeId , req.body._value).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+        
+    })
 	  api.get('/GetFavourites/:_userId', function (req, res) {
         UserLogic.getFavourites(req.params._userId).then(function (result) {
             res.json(result);
@@ -366,21 +401,22 @@ module.exports = function (app, express) {
         }, function (err) {
             res.json(err);
         });
-    })
+    });
+
     api.put('/Expo/Remove', function (req, res) {
         ExpoLogic.remove(req.body._id).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
         });
-    })
+    });
     api.get('/Expo/GetById/:_id', function (req, res) {
         ExpoLogic.getById(req.params._id).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
         });
-    })
+    });
 
     //message api calls
     api.post('/Message/Send', function (req, res) {
@@ -444,7 +480,11 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-    
+
+
+
+
+            
     //api.get('/Notification/GetAll/:_userid', function (req, res) {
     //    NotificationLogic.getAll(req.params._userid).then(function (result) {
     //        res.json(result);
