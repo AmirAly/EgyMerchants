@@ -381,39 +381,39 @@ mongoose.connect(db.url, function (err) {
 //     console.log(err);
 // });
 
-var _newitem = new itemschema({
+// var _newitem = new itemschema({
    
     
       
-        "Name": "Marlboro",
-        "Description": "knkngkfnhklfnhkgnhknkghn",
-        "Store": "59c7936090c6da00124050e6"
-        ,
-        "Gallery": "59c79bbc90c6da00124050f3"
-        ,
-        "Status": "Active",
-        "PriceBeforeSale": 0,
-        "Price": 55,
-        "Pictures": [
-            {
-                "Title": "lklk",
-                "URL": "https://res.cloudinary.com/dce2oozza/image/upload/v1506255372/xfohu6dqiz80y9sinrs7.jpg",
+//         "Name": "Marlboro",
+//         "Description": "knkngkfnhklfnhkgnhknkghn",
+//         "Store": "59c7936090c6da00124050e6"
+//         ,
+//         "Gallery": "59c79bbc90c6da00124050f3"
+//         ,
+//         "Status": "Active",
+//         "PriceBeforeSale": 0,
+//         "Price": 55,
+//         "Pictures": [
+//             {
+//                 "Title": "lklk",
+//                 "URL": "https://res.cloudinary.com/dce2oozza/image/upload/v1506255372/xfohu6dqiz80y9sinrs7.jpg",
                
-            }
-        ],
-        "Tags":[
-            "lighter",
-            "case"
-        ]
+//             }
+//         ],
+//         "Tags":[
+//             "lighter",
+//             "case"
+//         ]
       
     
   
-});
-item.add(_newitem).then(function (result) {
-    console.log(result);
-}, function (err) {
-    console.log(err);
-});
+// });
+// item.add(_newitem).then(function (result) {
+//     console.log(result);
+// }, function (err) {
+//     console.log(err);
+// });
 // item.edit("599d4633727a860011f8c950", "beauTiful dRess", "all colors here", [{"Title":"jgg","URL":"http://html.com/wp-content/uploads/very-large-flamingo.jpg"}], 300,10,"jbjjjh" ,"jghjff").then(function (result) {
 //     console.log(result);
 // }, function (err) {
