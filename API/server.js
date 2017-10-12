@@ -138,7 +138,7 @@ mongoose.connect(db.url, function (err) {
 //});
 
 // var newuser = new userschema({
-//    "Email": "khaled@gmail.com", "Password": "123456", "Name": "Khaled",
+//    "Email": "mohamedelarosy@gmail.com", "Password": "123456", "Name": "mohamed elarosy",
 //    "ProfilePicture": "https://www.w3schools.com/css/img_lights.jpg","Contacts":[{"Addresses":["hafez wahby"]}]
 
 
