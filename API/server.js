@@ -74,7 +74,7 @@ mongoose.connect(db.url, function (err) {
 
 
 
-<<<<<<< HEAD
+// <<<<<<< HEAD
 
 
 
@@ -342,9 +342,9 @@ mongoose.connect(db.url, function (err) {
 
 
 
-=======
->>>>>>> 55086a674052b340e232faf559437925a8cd390f
-// userschema.find({"Country":  {"$regex":'?'}},'_id Name ProfilePicture Description Address Status Type Country',function(err,lst){
+// =======
+// >>>>>>> 55086a674052b340e232faf559437925a8cd390f
+// // userschema.find({"Country":  {"$regex":'?'}},'_id Name ProfilePicture Description Address Status Type Country',function(err,lst){
         
 //     if(err)
 //     {
@@ -381,35 +381,39 @@ mongoose.connect(db.url, function (err) {
 //     console.log(err);
 // });
 
-// var _newitem = new itemschema({
+var _newitem = new itemschema({
    
     
       
-//         "Name": "Black hair",
-//         "Description": "knkngkfnhklfnhkgnhknkghn",
-//         "Store": "59c7936090c6da00124050e6"
-//         ,
-//         "Gallery": "59c79bbc90c6da00124050f3"
-//         ,
-//         "Status": "Active",
-//         "PriceBeforeSale": 0,
-//         "Price": 55,
-//         "Pictures": [
-//             {
-//                 "Title": "lklk",
-//                 "URL": "https://res.cloudinary.com/dce2oozza/image/upload/v1506255372/xfohu6dqiz80y9sinrs7.jpg",
+        "Name": "Marlboro",
+        "Description": "knkngkfnhklfnhkgnhknkghn",
+        "Store": "59c7936090c6da00124050e6"
+        ,
+        "Gallery": "59c79bbc90c6da00124050f3"
+        ,
+        "Status": "Active",
+        "PriceBeforeSale": 0,
+        "Price": 55,
+        "Pictures": [
+            {
+                "Title": "lklk",
+                "URL": "https://res.cloudinary.com/dce2oozza/image/upload/v1506255372/xfohu6dqiz80y9sinrs7.jpg",
                
-//             }
-//         ],
+            }
+        ],
+        "Tags":[
+            "lighter",
+            "case"
+        ]
       
     
   
-// });
-// item.add(_newitem).then(function (result) {
-//     console.log(result);
-// }, function (err) {
-//     console.log(err);
-// });
+});
+item.add(_newitem).then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
 // item.edit("599d4633727a860011f8c950", "beauTiful dRess", "all colors here", [{"Title":"jgg","URL":"http://html.com/wp-content/uploads/very-large-flamingo.jpg"}], 300,10,"jbjjjh" ,"jghjff").then(function (result) {
 //     console.log(result);
 // }, function (err) {
@@ -536,7 +540,7 @@ mongoose.connect(db.url, function (err) {
     
 //     user.getAllRatedStores(
 
-//    "59df3668040c370924cf871a"
+//    "59df398a7073171e2c59fd36"
    
       
           
