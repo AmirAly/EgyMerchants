@@ -483,15 +483,28 @@ module.exports = function (app, express) {
 
 
 
-
+//    api.get('/User/AllRatedStores, function (req, res) {
+      
+//       User.find({"_id":req.body._id},'Rate.Store',function(err,_lst){
+//         if(err)
+//         reject({ code: 1, data: err })
+//         else
+//         resolve({ code: 100, data: _lst });
+//         console.log(_lst);
+    
+//       });
+    
+//     }
+// });
+// }); 
             
-    //api.get('/Notification/GetAll/:_userid', function (req, res) {
-    //    NotificationLogic.getAll(req.params._userid).then(function (result) {
+    // api.get('/User/AllRatedStores', function (req, res) {
+    //    UserLogic.getAllRatedStores(req.params._userid).then(function (result) {
     //        res.json(result);
     //    }, function (err) {
     //        res.json(err);
     //    });
-    //})
+    // })
 
     return api;
 };
