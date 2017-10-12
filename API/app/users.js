@@ -344,7 +344,7 @@ addRating:function(_userId,_storeId,_value){
                                         }
                                         
                                         var average = constant/_lst.length;
-                                                                    
+                                        average=   average .toFixed(1) ;                      
                                         resolve({ code: 100, data: average});
                                         console.log(average)
                                         
@@ -367,9 +367,11 @@ addRating:function(_userId,_storeId,_value){
 
 getAllRatedStores:function(_userId){
     return new Promise(function (resolve, reject) {
-  Schema.find({"_id":_userId},'Rate.Store',function(err,_lst){
+  Schema.findOne({"_id":_userId},'Rate.Store',function(err,_lst){
+    
+
     if(err)
-    reject({ code: 1, data: err })
+    reject({ code: 1, data: err });
     else
     resolve({ code: 100, data: _lst });
 

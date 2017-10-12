@@ -138,7 +138,7 @@ mongoose.connect(db.url, function (err) {
 //});
 
 // var newuser = new userschema({
-//    "Email": "mohamedelarosy@gmail.com", "Password": "123456", "Name": "mohamed elarosy",
+//    "Email": "amir@gmail.com", "Password": "123456", "Name": "Amir",
 //    "ProfilePicture": "https://www.w3schools.com/css/img_lights.jpg","Contacts":[{"Addresses":["hafez wahby"]}]
 
 
@@ -501,16 +501,16 @@ mongoose.connect(db.url, function (err) {
     //     }
     // ],
 
-    // user.addRating(
-    //   "59dddbef9693f520f4050cce",
-    //  "59464b5aa7eee71550d33dc1",
-    //  40
+//     user.addRating(
+//       "59df3668040c370924cf871a",
+//      "59464b5aa7eee71550d33dc4",
+//   1000000000
         
-    // ).then(function (result) {
-    //         console.log(result);
-    //     }, function (err) {
-    //         console.log(err);
-    //     });
+//     ).then(function (result) {
+//             console.log(result);
+//         }, function (err) {
+//             console.log(err);
+//         });
 
         // Rate: [{
         //     type: Schema.Types.ObjectId,
@@ -531,17 +531,17 @@ mongoose.connect(db.url, function (err) {
     //   });
     
     
-//     user.getAllRatedStores(
+    user.getAllRatedStores(
 
-//    "59dddbbb41e1661e9827e816"
+   "59df3668040c370924cf871a"
    
       
           
-//   ).then(function (result) {
-//           console.log(result);
-//       }, function (err) {
-//           console.log(err);
-//       });
+  ).then(function (result) {
+          console.log(result);
+      }, function (err) {
+          console.log(err);
+      });
 
 
 // item.getSimilarItems(
