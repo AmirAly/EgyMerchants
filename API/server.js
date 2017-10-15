@@ -287,11 +287,11 @@ mongoose.connect(db.url, function (err) {
 // }, function (err) {
 //    console.log(err);
 // });
-//store.getById("59b143baab49580011b54af5").then(function (result) {
+// store.getById("59e34e1ad8d4e302b00ca219").then(function (result) {
 //    console.log(result);
-//}, function (err) {
+// }, function (err) {
 //    console.log(err);
-//});
+// });
 //store.active("59a29dd9bfa8140011a2b474").then(function (result) {
 //    console.log(result);
 //}, function (err) {
@@ -358,11 +358,11 @@ mongoose.connect(db.url, function (err) {
 // }
 //    });
 
-// store.search("all", "all", "all" ,".").then(function (result) {
-//    console.log(result.data);
-// }, function (err) {
-//    console.log(err);
-// });
+store.search("all", "all", "all" ,"all").then(function (result) {
+   console.log(result.data);
+}, function (err) {
+   console.log(err);
+});
 // var _newMaster=new countryschema({
 
 //     "Type": "master",
@@ -379,25 +379,25 @@ mongoose.connect(db.url, function (err) {
 // }, function (err) {
 //    console.log(err);
 // });
-store.editProfile("59e3361a2a7d2a2c3076dceb", "mo7a@yahoo.com", "cairo", "addr", "Egypt", "your phone only here", ["hnfhnynhnhtjn"],  "https://res.cloudinary.com/dce2oozza/image/upload/v1501143473/zn8jnd2ef97tesrovqhm.gif", "https://res.cloudinary.com/dce2oozza/image/upload/v1501143474/wdofbrwfgeo4dgtr5qzd.png",
+// store.editProfile("59e3361a2a7d2a2c3076dceb", "mo7a@yahoo.com", "cairo", "addr", "Egypt", "your phone only here", ["hnfhnynhnhtjn"],  "https://res.cloudinary.com/dce2oozza/image/upload/v1501143473/zn8jnd2ef97tesrovqhm.gif", "https://res.cloudinary.com/dce2oozza/image/upload/v1501143474/wdofbrwfgeo4dgtr5qzd.png",
 
-        [ {
-        "Label":"Fax",
-        "Value":"122",
-        "Facebook":"ahmedfb",
-        "Twitter":"ahmedtwitt"
-         }]
-
-
+//         [ {
+//         "Label":"Fax",
+//         "Value":"122",
+//         "Facebook":"ahmedfb",
+//         "Twitter":"ahmedtwitt"
+//          }]
 
 
 
 
-).then(function (result) {
-   console.log(result );
-}, function (err) {
-    console.log(err);
-});
+
+
+// ).then(function (result) {
+//    console.log(result );
+// }, function (err) {
+//     console.log(err);
+// });
 
 // var _newitem = new itemschema({
    
@@ -502,16 +502,8 @@ store.editProfile("59e3361a2a7d2a2c3076dceb", "mo7a@yahoo.com", "cairo", "addr",
 // });
 
 
-    // var _newstore = new userschema({"Name":"Ahmed elmonshareh3","Email":"AhmedelMonshareh3@gmail.com","Password":"hfhjfgh","ProfilePicture":"https://tammypatterson.files.wordpress.com/2011/09/img_2852c_lg.jpg","CoverPhoto":"https://tammypatterson.files.wordpress.com/2011/09/img_2852c_lg.jpg",
-    // "Contacts": [
-    //      {
-    //     "Addresses":["78 hafez wahby street" ,"78 hafez wahby street"],
-    //     "Others":[ "01090405045","234567"], 
-    //     "Facebook":"ahmed elmonshareh@facebook.com",
-    //     "Twitter": "ahmed elmonshareh@twitter.com"
-    // }
-    //     ]
-
+//     var _newstore = new userschema({"Name":" anisa","Email":"anisa@gmail.com","Password":"123456","Status":"Inctive","ProfilePicture":"https://tammypatterson.files.wordpress.com/2011/09/img_2852c_lg.jpg","CoverPhoto":"https://tammypatterson.files.wordpress.com/2011/09/img_2852c_lg.jpg"
+    
     
 // });
 //    store.register(_newstore).then(function (result) {
@@ -531,9 +523,9 @@ store.editProfile("59e3361a2a7d2a2c3076dceb", "mo7a@yahoo.com", "cairo", "addr",
     // ],
 
 //     user.addRating(
-//       "594a6dd13e856b0b684b390c",
-//      "594660e5734d1d59b7895502",
-//   1000000000
+//       "59e34ff4e9efe91d8846a8ff",
+//      "59da07cd62f38f1ca083f022",
+// 2
         
 //     ).then(function (result) {
 //             console.log(result);

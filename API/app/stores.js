@@ -225,6 +225,7 @@ module.exports = {
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _id,'Type':'store'}, { "Password": 0 }, function (err, Obj) {
+              
                 if (err)
                     reject({
                         code: 1,
@@ -232,11 +233,31 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
+                      
                         if (Obj.Status == "Active")
+                        {
+                            
+                           
+                                 var sum=[]; 
+                                 var constant=0;
+                                                                        
+                                                                        
+                                for (var i=0 ; i< Obj.length; i++){
+                               
+                              
+                                    sum =(Obj.Rate[i].Value);
+                                
+                                constant+=sum;
+                                 }
+                                                                        
+                                var average = constant/Obj.length;
+                               average=   average .toFixed(1) ;  
+                               console.log("average is "+average)                 
                             resolve({
                                 code: 100,
                                 data: Obj
                             });
+                        }
                         if (Obj.Status == "Suspended" || Obj.Status == "Deleted")
                             resolve({
                                 code: 101,
@@ -567,21 +588,5 @@ module.exports = {
     },
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
 }
