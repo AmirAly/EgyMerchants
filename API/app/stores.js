@@ -242,21 +242,29 @@ module.exports = {
                                  var constant=0;
                                                                         
                                                                         
-                                for (var i=0 ; i< Obj.length; i++){
+                                for (var i=0 ; i< Obj.Rate.length; i++){
                                
                               
                                     sum =(Obj.Rate[i].Value);
                                 
                                 constant+=sum;
                                  }
+                                
                                                                         
-                                var average = constant/Obj.length;
+                                var average = constant/Obj.Rate.length;
                                average=   average .toFixed(1) ;  
-                               console.log("average is "+average)                 
-                            resolve({
-                                code: 100,
-                                data: Obj
-                            });
+                             
+                         
+                            Obj.Average=   average;   
+                         Obj.save(function(err,_result){
+                        if(err) 
+                        reject({code: 1, data: err});
+                else
+                {
+                    resolve({code: 100, data: _result}); 
+                }
+                         })    
+                         
                         }
                         if (Obj.Status == "Suspended" || Obj.Status == "Deleted")
                             resolve({

@@ -358,7 +358,7 @@ store.getById("59e34e1ad8d4e302b00ca219").then(function (result) {
 // }
 //    });
 
-// store.search("all", "all", "all" ,".").then(function (result) {
+// store.search("all", "all", "." ,"all").then(function (result) {
 //    console.log(result.data);
 // }, function (err) {
 //    console.log(err);
@@ -567,12 +567,12 @@ store.getById("59e34e1ad8d4e302b00ca219").then(function (result) {
 
 // item.getSimilar(
 
-//    "59df58d548cb7032e045f5e1"
+//    "59df57444763f320f47f987a"
    
       
           
 //   ).then(function (result) {
-//           console.log(result);
+//           console.log(result.data);
 //       }, function (err) {
 //           console.log(err);
 //       });
