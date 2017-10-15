@@ -49,7 +49,7 @@
                   <a href="#">Log in</a>
                 </li>
                 <li ng-show="loggedUser">
-                  <span class="dvUserDataModal" data-toggle="modal" data-target="#modal-profile">Welcome {{userName}} | </span>
+                  <span class="dvUserDataModal cursorPointer" ng-click="openProfileModal()">Welcome {{userName}} | </span>
                   <span>
                     <a href="#">
                       <span ng-click="logout()">Log out</span>
@@ -336,7 +336,7 @@
             <span class="sr-only">Close</span>
           </button>
           <h3 class="modal-title" id="modal-profile-label">profile</h3>
-          <span class="fa fa-check frmIcon"></span>
+          <span class="fa fa-file-text-o frmIcon"></span>
           <p>Edit your profile data</p>
         </div>
 
@@ -346,14 +346,17 @@
 
             <div class="row">
               <div class="col-xs-12 text-center">
-                <img src="{{imgProfile}}" class="dvProfileImg"></img>
-              </div>
+                
+                <img src="{{imgProfile}}" id="imgItemCover" ng-click="ShowFileSelectorUser()" class="dvProfileImg cursorPointer"></img>
+                <input type="file" onchange="convertUserImgToBase64URL(event)" id="uploadUserImg" class="hide" accept="image/*" />
+                   
+            </div>
             </div>
             <div class="clear2"></div>
             
             <div class="form-group">
               <label class="sr-only" for="form-username">username</label>
-              <input type="text" name="username" ng-model="loginObj.username" required="" placeholder="username..." class="form-email form-control" id="username" ng-minlength="2" />
+              <input type="text" name="username" ng-model="userNametxt" required="" placeholder="username..." class="form-email form-control" id="usernametxt" ng-minlength="2" />
               <span ng-show="frmProfile.username.$touched  && frmProfile.username.$invalid">
                 <span class="errorFont" ng-show="frmProfile.username.$error.required">username is required</span>
                 <span class="errorFont" ng-show="frmProfile.username.$error.minlength">username is too short</span>
@@ -365,7 +368,7 @@
               <img ng-show="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
             </button>
 
-            <span class="errorFont text-center">{{afterLoginError}}</span>
+            <span class="errorFont text-center">{{afterProfileError}}</span>
           </form>
 
 

@@ -67,7 +67,7 @@ var User = new Schema({
         Twitter:{type: String}
         }
     ],
-   
+    Address: { type: String, default: '', min: 2 },// samar
     Type:{type: String},
     Status: { type: String, default: 'Inactive' },
 });

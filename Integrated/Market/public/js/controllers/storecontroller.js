@@ -2,16 +2,18 @@
     $scope.init = function (_isoCode, _storeId) {
         $rootScope.IsoCode = _isoCode;
 
-        // rating default _storeAvgRate
-        $scope.rating = 2;
-        // set true if user is not logged
-        $scope.isReadonly = false;
-        if (!$rootScope.loggedUser) {
-            $scope.isReadonly = true;
-        } else {
-            // set true if user rated before
-        }
 
+
+        $scope.isRatedBefore = false;
+
+        var ratings = document.getElementsByClassName('rating');
+        for (var i = 0; i < ratings.length; i++) {
+            var r = new SimpleStarRating(ratings[i]);
+            ratings[i].addEventListener('rate', function (e) {
+                $scope.isRatedBefore = true;
+                console.log('Rating: ' + e.detail);
+            });
+        }
 
 
         if (window.GalleriesJson.length > 0) {

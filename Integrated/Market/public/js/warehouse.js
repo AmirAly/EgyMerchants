@@ -15,8 +15,6 @@ app.factory('API', function ($http) {
 
 
 app.factory('socket', ['$rootScope', function ($rootScope) {
-    
-    //var socket = io.connect('http://localhost:8080/');
     var socket = io.connect();
     console.log('enterrrrrrrrrrrr Sockets connect');
     return {

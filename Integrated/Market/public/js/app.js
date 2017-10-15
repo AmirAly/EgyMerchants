@@ -62,8 +62,9 @@ app.run(function ($rootScope, $timeout, socket) {
     if ($rootScope.userObject != '' && $rootScope.userObject != null) {
         $rootScope.userName = $rootScope.userObject.Name;
         $rootScope.userId = $rootScope.userObject._id;
+        $rootScope.ProfilePicture = $rootScope.userObject.ProfilePicture;
         $rootScope.loggedUser = true;
-
+        $rootScope.$apply();
         //$rootScope.addUserToSockets();
     }
     else {

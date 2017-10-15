@@ -36,6 +36,9 @@
     $scope.load();
 
     $scope.imgProfile = 'data:image/jpeg;base64,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';
+    $scope.ShowFileSelectorUser = function () {
+        document.getElementById('uploadUserImg').click();
+    };
 
     $scope.showNotificationsCounter = false;
     $scope.getUnreadNotifications = function () {
@@ -117,6 +120,7 @@
                 data: $scope.loginObj
             }
             API.execute(req).then(function (_res) {
+                console.log(_res.data.data);
                 if (_res.data.code == 100) {
                     $scope.dataLoading = false;
                     $scope.frmLogin.$setPristine();
@@ -125,6 +129,7 @@
                     $rootScope.loggedUser = true;
                     $rootScope.userName = _res.data.data.Name;
                     $rootScope.userId = _res.data.data._id;
+                    $rootScope.ProfilePicture = _res.data.data.ProfilePicture;
                     localStorage.setItem('userObject', JSON.stringify(_res.data.data));
                     console.log(_res.data.data);
                     $scope.dismiss();
@@ -162,6 +167,7 @@
                     $scope.registerObj = {};
                     $rootScope.loggedUser = true;
                     $rootScope.userName = _res.data.data.Name;
+                    $rootScope.ProfilePicture = _res.data.data.ProfilePicture;
                     $rootScope.userId = _res.data.data._id;
                     localStorage.setItem('userObject', JSON.stringify(_res.data.data));
                     $scope.dismiss();
@@ -257,5 +263,87 @@
         window.location.href = '/' + $rootScope.IsoCode + '/Product/' + _name + '/' + _id;
     }
 
+    $scope.openProfileModal = function () {
+        $('#modal-profile').modal('show');
+        console.log($rootScope.userName);
+        $scope.userNametxt = $rootScope.userName;
+        $('#imgItemCover').attr('src', $rootScope.ProfilePicture);
+    }
 
+    $scope.afterProfileError = "";
+    $scope.submitProfilesData = function (form) {
+        $rootScope.ProfilePicture = $('#imgItemCover').attr('src');
+        $scope.Data = {
+            _userid: $rootScope.userId,
+            _name: $scope.userNametxt,
+            _profilePicture: $rootScope.ProfilePicture
+        }
+        console.log($scope.Data);
+
+        $scope.afterProfileError = "";
+        if (form.$valid) {
+            // call loader , login , hide modal & add user name
+            $scope.dataLoading = true;
+
+            var req = {
+                method: 'put',
+                url: '/User/EditProfile',
+                data: $scope.Data
+            }
+            API.execute(req).then(function (_res) {
+                console.log(_res.data.data);
+                if (_res.data.code == 100) {
+                    $scope.dataLoading = false;
+                    $scope.frmProfile.$setPristine();
+                    $scope.frmProfile.$setUntouched();
+                    $rootScope.userName = $scope.userNametxt;
+
+                    var userObj = JSON.parse(localStorage.getItem('userObject'));
+                    userObj.Name = $rootScope.userName;
+                    userObj.ProfilePicture = $rootScope.ProfilePicture;
+                    localStorage.setItem('userObject', JSON.stringify(userObj));
+                    //$rootScope.$apply();
+                    // new data
+                    //$rootScope.userName = _res.data.data.Name;
+                    //$rootScope.userId = _res.data.data._id;
+                    //$rootScope.ProfilePicture = _res.data.data.ProfilePicture;
+                    //localStorage.setItem('userObject', JSON.stringify(_res.data.data));
+                    //console.log(_res.data.data);
+                    $scope.dismiss();
+                    
+                } else {
+                    $scope.dataLoading = false;
+                    $scope.afterProfileError = _res.data.data;
+                }
+
+            });
+        }
+
+
+        //$('#modal-profile').modal('hide');
+    }
 });
+var BaseImg64;
+function convertUserImgToBase64URL(event) {
+    var filesSelected = document.getElementById("uploadUserImg").files;
+    var img = new Image();
+    if (filesSelected.length > 0) {
+        var fileToLoad = filesSelected[0];
+        var fileReader = new FileReader();
+        fileReader.onload = function (fileLoadedEvent) {
+            img.onload = function () {
+                BaseImg64 = fileLoadedEvent.target.result;
+                //UploadImageUser(BaseImg64);
+                $('#imgItemCover').attr('src', BaseImg64);
+                console.log('Here');
+            };
+
+        };
+        fileReader.readAsDataURL(fileToLoad);
+        img.src = URL.createObjectURL(fileToLoad);
+    }
+};
+
+//function UploadImageUser(_BaseImg64) {
+//    $('#imgItemCover').attr('src', _BaseImg64);
+//};
