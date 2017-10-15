@@ -303,60 +303,62 @@ addRating:function(_userId,_storeId,_value){
     else{
       Schema.findOne({"_id":_userId,"Rate.Store":_storeId },function(err,_user){
     
-     if(err)
-     reject({ code: 1, data: err});
-     else  if(_user)
-     resolve({ code: 100, data: "You can't rate twice"});
-     else{
-       
-        Schema.findOne({"_id":_userId  ,"Status":"Active"},function(err,Obj){
-                                    
-                        if(err)
-                        reject({ code: 1, data: err});
-                        else
-                        {
-                        var _object={"Store":_storeId,"Value":_value};
-                       
-                        Obj.Rate.push(_object);
+            if(err)
+            reject({ code: 1, data: err});
+            else  if(_user){
+            console.log(_user);
+            resolve({ code: 100, data: "You can't rate twice"});
+            }
+            else{
+            
+                Schema.findOne({"_id":_userId  },function(err,Obj){
+                                            
+                                if(err)
+                                reject({ code: 1, data: err});
+                                else
+                                {
+                                var _object={"Store":_storeId,"Value":_value};
+                            
+                                Obj.Rate.push(_object);
 
-                            Obj.save(function(err,res){
-                        if(err)  
+                                    Obj.save(function(err,res){
+                                if(err)  
 
-                        reject({ code: 1, data: err});
-                        else{
-                            Schema.find({"Rate.Store":_storeId},'Rate Name',function(err,_lst){
+                                reject({ code: 1, data: err});
+                                else{
+                                    Schema.find({"Rate.Store":_storeId},'Rate Name',function(err,_lst){
+                                        
+                                        if(err)
+                                        reject({ code: 1, data: err});
+
+                                        else{
+                                        var sum=[]; 
+                                        var constant=0;
+                                        
+                                        
+                                        for (var i=0 ; i< _lst.length; i++){
+                                            for(var f = 0 ;f<_lst[i].Rate.length; f++)
+                                            {
+                                                if(_lst[i].Rate[f].Store==_storeId)
+                                                sum =(_lst[i].Rate[f].Value);
+                                            }
+                                            constant+=sum;
+                                        }
+                                        
+                                        var average = constant/_lst.length;
+                                        average=   average .toFixed(1) ;                      
+                                        resolve({ code: 100, data: average});
+                                        console.log(average)
+                                        
+                                        }
+                            }) ;
                                 
-                                   if(err)
-                                   reject({ code: 1, data: err});
-
-                                   else{
-                                   var sum=[]; 
-                                   var constant=0;
-                                  
-                                   
-                                   for (var i=0 ; i< _lst.length; i++){
-                                       for(var f = 0 ;f<_lst[i].Rate.length; f++)
-                                       {
-                                           if(_lst[i].Rate[f].Store==_storeId)
-                                           sum =(_lst[i].Rate[f].Value);
-                                       }
-                                       constant+=sum;
-                                   }
-                                
-                                   var average = constant/_lst.length;
-                                                             
-                                   resolve({ code: 100, data: average});
-                                   console.log(average)
-                                   
+                                resolve({ code: 100, data:res});
                                 }
-                       }) ;
-                        
-                        resolve({ code: 100, data:res});
-                        }
-                        })
-                        }
-        })
-        }
+                                })
+                                }
+                })
+                }
     })
 }
 })
@@ -367,12 +369,24 @@ addRating:function(_userId,_storeId,_value){
 
 getAllRatedStores:function(_userId){
     return new Promise(function (resolve, reject) {
-  Schema.find({"_id":_userId},'Rate.Store',function(err,_lst){
-    if(err)
-    reject({ code: 1, data: err })
-    else
-    resolve({ code: 100, data: _lst });
+  Schema.findOne({"_id":_userId , "Status":"Active"},'Rate.Store',function(err,_lst){
+      console.log(_lst)
+    
 
+    if(err){
+    console.log("if");
+
+    reject({ code: 1, data: err });
+    }
+   else if( _lst){
+   console.log("else if");
+    resolve({ code: 100, data: _lst });
+   }
+    else
+    {
+    console.log("else");
+    resolve({ code: 21, data: 'User not found' });
+    }
   });
 });
 }

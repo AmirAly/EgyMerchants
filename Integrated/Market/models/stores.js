@@ -97,7 +97,7 @@ module.exports = {
             })
         })
     },
-    editProfile: function (_id, _email, _city, _address, _country, _description, _imgs, _profilePicture, _coverPhoto) {
+    editProfile: function (_id, _email, _city, _address, _country, _description, _imgs, _profilePicture, _coverPhoto,_contacts) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ 'Email': {$regex: new RegExp('^' + _email+"$" , 'i')}, '_id': { $ne: _id } }, '', function (err, Obj) {
                 if (err)
@@ -128,6 +128,8 @@ module.exports = {
                                         Obj.Address = _address;
                                         Obj.Country = _country;
                                         Obj.Description = _description;
+                                        Obj.Contacts=_contacts;
+                                        
                                             Helper.uploadImage(_profilePicture, function (_url) {
                                                 Obj.ProfilePicture = _url;
                                                     Helper.uploadImage(_coverPhoto, function (_url) {

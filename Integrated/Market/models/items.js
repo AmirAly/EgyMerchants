@@ -1,6 +1,7 @@
 var Schema = require('./models/item');
 var _ = require("underscore");
 var Helper = require('./helper');
+var async=require('async');
 module.exports = {
     getFeatured: function (_storeId) {
         return new Promise(function (resolve, reject) {
@@ -323,26 +324,22 @@ module.exports = {
             })
         })
     },
-    getSimilarItems: function (_itemId) {
+    getSimilar: function (_itemId) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _itemId }, '', function (err, Obj) {
                 if (err)
                     reject({ code: 0, data: err })
                 else {
-                    var _res = []
-                    var filter = []
-                    for (var i = 0; i < Obj.Tags.length; i++) {
-                        filter = { 'Tags': { "$regex": Obj.Tags[i], "$options": "i" }, 'Status': 'Active' };
-                        Schema.find(filter, function (err, _res) {
-                            if(err)
-                            reject({ code: 1, data: err })
-                            else
-                            resolve({ code: 100, data: res })
-                            
-                        })
-
-                    }
-
+        
+                    var _arr =[];
+                    var _arr1 =[];
+                    
+                    _.each(Obj.Tags, function (_tag) {
+                        Schema.find({ Tags: { $regex: _tag, $options: "i" }}, function ( _lst) {
+                         console.log(_lst)                             
+     });
+            
+    });
                 }
             })
 
