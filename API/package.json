@@ -2,6 +2,7 @@
   "name": "DSA-API",
   "main": "server.js",
   "dependencies": {
+    "async": "^2.5.0",
     "azure-storage": "*",
     "base64-stream": "*",
     "body-parser": "*",
