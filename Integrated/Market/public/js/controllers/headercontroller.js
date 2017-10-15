@@ -265,17 +265,18 @@
 
     $scope.openProfileModal = function () {
         $('#modal-profile').modal('show');
-        document.getElementById("usernametxt").value = $rootScope.userName;
         console.log($rootScope.userName);
+        $scope.userNametxt = $rootScope.userName;
         $('#imgItemCover').attr('src', $rootScope.ProfilePicture);
     }
 
     $scope.afterProfileError = "";
-    $scope.submitProfilesData = function () {
+    $scope.submitProfilesData = function (form) {
         $rootScope.ProfilePicture = $('#imgItemCover').attr('src');
         $scope.Data = {
-            ProfilePicture: $rootScope.ProfilePicture,
-            Name: $rootScope.userName
+            _userid: $rootScope.userId,
+            _name: $scope.userNametxt,
+            _profilePicture: $rootScope.ProfilePicture
         }
         console.log($scope.Data);
 
@@ -285,7 +286,7 @@
             $scope.dataLoading = true;
 
             var req = {
-                method: 'post',
+                method: 'put',
                 url: '/User/EditProfile',
                 data: $scope.Data
             }
@@ -295,6 +296,13 @@
                     $scope.dataLoading = false;
                     $scope.frmProfile.$setPristine();
                     $scope.frmProfile.$setUntouched();
+                    $rootScope.userName = $scope.userNametxt;
+
+                    var userObj = JSON.parse(localStorage.getItem('userObject'));
+                    userObj.Name = $rootScope.userName;
+                    userObj.ProfilePicture = $rootScope.ProfilePicture;
+                    localStorage.setItem('userObject', JSON.stringify(userObj));
+                    //$rootScope.$apply();
                     // new data
                     //$rootScope.userName = _res.data.data.Name;
                     //$rootScope.userId = _res.data.data._id;

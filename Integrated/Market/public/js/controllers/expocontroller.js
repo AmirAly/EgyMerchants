@@ -9,8 +9,7 @@
     window.onresize = function () {
         console.log('resize');
         console.log($rootScope.loading);
-        $rootScope.loading = true;
-        location.reload();
+        $scope.exposList = JSON.parse((window.exposObject).replace(/&quot;/g, '"'));
     }
 
     $scope.loadArray = function (_expoID) {

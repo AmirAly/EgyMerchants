@@ -842,38 +842,18 @@ h6.mega {
                     padding: 15px 10px;
                 }
 
-                    .storePage .pageBody .dvStoreHeader .dvStoreInfo .dvRating .star-rating {
-                        margin: 0;
-                        padding: 0;
-                        display: inline-block;
+                    .storePage .pageBody .dvStoreHeader .dvStoreInfo .dvRating .golden {
+                        color: gold;
+                        font-size: 26px !important;
                     }
 
-                        .storePage .pageBody .dvStoreHeader .dvStoreInfo .dvRating .star-rating .star {
-                            padding: 1px;
-                            color: #ddd;
-                            font-size: 20px;
-                            text-shadow: 0.05em 0.05em #aaa;
-                            list-style-type: none;
-                            display: inline-block;
-                            cursor: pointer;
-                        }
-
-                            .storePage .pageBody .dvStoreHeader .dvStoreInfo .dvRating .star-rating .star.filled {
-                                color: #fd0;
-                            }
-
-                        .storePage .pageBody .dvStoreHeader .dvStoreInfo .dvRating .star-rating.readonly .star {
-                            /*color: #666;*/
+                        .storePage .pageBody .dvStoreHeader .dvStoreInfo .dvRating .golden.disabled {
                             cursor: no-drop;
                         }
 
-            /*.storePage .pageBody .dvStoreHeader .dvStoreInfo .dvRating .icon-star-3 {
-                    color: gold;
-                }
-
-                .storePage .pageBody .dvStoreHeader .dvStoreInfo .dvRating .icon-star-empty {
-                    color: #ccc;
-                }*/
+                    .storePage .pageBody .dvStoreHeader .dvStoreInfo .dvRating .rating .star.active.half::after {
+                        width: 0.45em !important;
+                    }
 
             .storePage .pageBody .dvStoreHeader .dvFlagContainer {
                 position: absolute;
@@ -2389,6 +2369,7 @@ h6.mega {
     .modalLogin .modal-body .dvProfileImg {
         width: 150px;
         height: 150px;
+        background: #fff;
     }
 
     .modalLogin .modal-body img {

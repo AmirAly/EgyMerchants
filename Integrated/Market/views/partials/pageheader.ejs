@@ -356,7 +356,7 @@
             
             <div class="form-group">
               <label class="sr-only" for="form-username">username</label>
-              <input type="text" name="username" ng-bind="userName" required="" placeholder="username..." class="form-email form-control" id="usernametxt" ng-minlength="2" />
+              <input type="text" name="username" ng-model="userNametxt" required="" placeholder="username..." class="form-email form-control" id="usernametxt" ng-minlength="2" />
               <span ng-show="frmProfile.username.$touched  && frmProfile.username.$invalid">
                 <span class="errorFont" ng-show="frmProfile.username.$error.required">username is required</span>
                 <span class="errorFont" ng-show="frmProfile.username.$error.minlength">username is too short</span>
