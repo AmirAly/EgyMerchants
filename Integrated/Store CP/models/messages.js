@@ -47,7 +47,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This user not exist"
+                            data: "This user doesn't exist"
                         })
                     }
                 }
@@ -144,18 +144,63 @@ module.exports = {
                         data: err
                     })
                 else {
+                    
                     if (Obj)
                         resolve({
                             code: 100,
-                            data: "Message status changed successfully"
+                            data: "Message status is changed successfully"
                         });
                     else
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         })
                 }
             })
         })
     },
+
+
+
+
+getTenMessages: function (_userTo,_userFrom, _key) {
+    return new Promise(function (resolve, reject) {
+            
+
+                Schema.find({ $or: [{ "From": _userFrom, "To": _userTo }, { "From": _userTo, "To": _userFrom }] }, '',function (err, Msgs) {
+                    if(err)
+                    {
+                        reject({
+                            code: 2,
+                            data:  err
+                        });
+                    }
+                    else{
+                var _tenMessages = [];
+console.log(Msgs.length)
+_tenMessages = Msgs.slice(_key * 10, (_key + 1) * 10);
+
+                if (_tenMessages.length <= 0) {
+
+                    resolve({
+                        code: 101,
+                        data: "No comments here"
+                    });
+                }
+                else {
+                    resolve({
+                        code: 100,
+                        data: _tenMessages
+                    });
+
+                }
+            }
+            }).sort({ MessageDate: -1 });
+            
+        
+        })
+
+    
+}
+
 }

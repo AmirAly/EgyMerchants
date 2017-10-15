@@ -11,7 +11,7 @@ var Item = new Schema({
     PriceBeforeSale: { type: Number, default:0},
     Rate: { type: Number },
     Sold: { type: Number },
-    Tags: { type: String },
+    Tags: [{ type: String }],
     Badges: { type: String },
     Status: { type: String, default: 'Active' },
     Gallery: {
@@ -20,6 +20,11 @@ var Item = new Schema({
         required: "Please add gallery id"
     },
     Store: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: "Please add store id"
+    },
+    User: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: "Please add store id"

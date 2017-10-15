@@ -67,19 +67,14 @@ var User = new Schema({
            {
             Label: { type: String },
             Value: { type: String }
+       
         }
     ]
     ,
     City: { type: String, default: 'Cairo',min:2,max:25},
     
-    // Communicate:
-    //     {
-       
-    //     Facebook:{type: String},
-    //     Twitter:{type: String}
-    //     }
-    // ,
-    Address: [{ type: String, default: '',min:2}],
+
+    Address: { type: String, default: '',min:2},
     Type:{type: String},
     Status: { type: String, default: 'Inactive' },
 });
