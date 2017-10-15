@@ -42,32 +42,46 @@ var User = new Schema({
     CreateDate: { type: String, default: new Date().getTime() },
 
 
-    Rate:[{
-       Store: {
+    // Rate:[{
+    //    Store: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User',
+       
+    //    },
+
+
+       Rate:[{
+       User: {
         type: Schema.Types.ObjectId,
         ref: 'User',
        
        },
+
+
      Value:{type:Number }
    
     }],
-    // Contacts: [
-    //     {
-    //         Label: { type: String },
-    //         Value: { type: String }
-    //     }
-    // ],
+    
+    Contacts: 
+      [ 
+           {
+            Label: { type: String },
+            Value: { type: String },
+            Facebook:{type: String},
+            Twitter:{type: String}
+        }
+    ]
+    ,
     City: { type: String, default: 'Cairo',min:2,max:25},
     
-    Contacts:[
-        {
-        Addresses: [{ type: String, default: '',min:2}],
-        Others:[{ type: String, default: ''}],
-        Facebook:{type: String},
-        Twitter:{type: String}
-        }
-    ],
-   
+    // Communicate:
+    //     {
+       
+    //     Facebook:{type: String},
+    //     Twitter:{type: String}
+    //     }
+    // ,
+    Address: [{ type: String, default: '',min:2}],
     Type:{type: String},
     Status: { type: String, default: 'Inactive' },
 });

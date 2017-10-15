@@ -305,8 +305,10 @@ addRating:function(_userId,_storeId,_value){
     
             if(err)
             reject({ code: 1, data: err});
-            else  if(_user)
+            else  if(_user){
+            console.log(_user);
             resolve({ code: 100, data: "You can't rate twice"});
+            }
             else{
             
                 Schema.findOne({"_id":_userId  },function(err,Obj){

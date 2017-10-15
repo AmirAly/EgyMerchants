@@ -224,7 +224,11 @@ mongoose.connect(db.url, function (err) {
 //    console.log(err);
 //});
 
-
+// user.getById("594660e5734d1d59b7895502").then(function (result) {
+//    console.log(result);
+// }, function (err) {
+//    console.log(err);
+// });
 
 
 //notification.updateStatus("597f49114a9beb13782d1a09").then(function (result) {
@@ -375,25 +379,32 @@ mongoose.connect(db.url, function (err) {
 // }, function (err) {
 //    console.log(err);
 // });
-// store.editProfile("59427a4c734d1d235a9447e3", "Gamila@mail.com", "cairo", "addr", "Egypt", "your phone only here", ["hnfhnynhnhtjn"],  "https://res.cloudinary.com/dce2oozza/image/upload/v1501143473/zn8jnd2ef97tesrovqhm.gif", "https://res.cloudinary.com/dce2oozza/image/upload/v1501143474/wdofbrwfgeo4dgtr5qzd.png").then(function (result) {
-//    console.log(result );
-// }, function (err) {
-//     console.log(err);
-// });
+store.editProfile("59e3361a2a7d2a2c3076dceb", "mo7a@yahoo.com", "cairo", "addr", "Egypt", "your phone only here", ["hnfhnynhnhtjn"],  "https://res.cloudinary.com/dce2oozza/image/upload/v1501143473/zn8jnd2ef97tesrovqhm.gif", "https://res.cloudinary.com/dce2oozza/image/upload/v1501143474/wdofbrwfgeo4dgtr5qzd.png",
+
+        [ {
+        "Label":"Fax",
+        "Value":"122",
+        "Facebook":"ahmedfb",
+        "Twitter":"ahmedtwitt"
+         }]
+
+
+
+
+
+
+).then(function (result) {
+   console.log(result );
+}, function (err) {
+    console.log(err);
+});
 
 // var _newitem = new itemschema({
    
     
       
-//         "Name": "Marlboro",
+//         "Name": "dell",
 //         "Description": "knkngkfnhklfnhkgnhknkghn",
-//         "Store": "59c7936090c6da00124050e6"
-//         ,
-//         "Gallery": "59c79bbc90c6da00124050f3"
-//         ,
-//         "Status": "Active",
-//         "PriceBeforeSale": 0,
-//         "Price": 55,
 //         "Pictures": [
 //             {
 //                 "Title": "lklk",
@@ -401,11 +412,22 @@ mongoose.connect(db.url, function (err) {
                
 //             }
 //         ],
+//         "Price": 55,
+//         "PriceBeforeSale": 0,
 //         "Tags":[
-//             "lighter",
+//             "ram",
 //             "case"
-//         ]
-      
+//         ],
+        
+//         "Gallery": "59c79bbc90c6da00124050f3",
+//         "Store": "59c79bbc90c6da00124050f2",
+//         "User":"59c79bbc90c6da00124050f1",
+       
+//         "Status": "Active"
+       
+       
+       
+        
     
   
 // });
@@ -509,8 +531,8 @@ mongoose.connect(db.url, function (err) {
     // ],
 
 //     user.addRating(
-//       "59df3668040c370924cf871a",
-//      "59464b5aa7eee71550d33dc4",
+//       "594a6dd13e856b0b684b390c",
+//      "594660e5734d1d59b7895502",
 //   1000000000
         
 //     ).then(function (result) {
@@ -540,7 +562,7 @@ mongoose.connect(db.url, function (err) {
     
 //     user.getAllRatedStores(
 
-//    "59df398a7073171e2c59fd36"
+//    "594660e5734d1d59b7895502"
    
       
           
@@ -551,9 +573,9 @@ mongoose.connect(db.url, function (err) {
 //       });
 
 
-// item.getSimilarItems(
+// item.getSimilar(
 
-//    "59b12029ab49580011b54ad6"
+//    "59df58d548cb7032e045f5e1"
    
       
           
