@@ -6,6 +6,7 @@
         document.getElementById('uploadItemImageCover').click()
     };
 
+
     $scope.preload = function () {
         if (localStorage.getItem('StoreId') == null || localStorage.getItem('StoreId') == '') {
             window.location.href = '/Home';
@@ -50,6 +51,20 @@
             }
         });
     };
+
+
+    $scope.currentStore.Contacts = [
+        { Label: 'Facebook', Value: 'https://www.facebook.com/TwitterInc/' },
+        { Label: 'Twitter', Value: '@Twitter' }
+    ];
+    $scope.contactData = {};
+
+    $scope.addContactData = function () {
+        $scope.currentStore.Contacts.push($scope.contactData);
+        console.log($scope.currentStore.Contacts);
+        $scope.contactData = {};
+    }
+
 });
 function convertProfileStoreImgToBase64URL(event) {
     var filesSelected = document.getElementById("uploadItemImage").files;
@@ -94,7 +109,7 @@ function convertCoverStoreImgToBase64URLCover(event) {
                     document.getElementById("errImgDiv").style.display = 'block';
                 }
             };
-            
+
         };
         fileReader.readAsDataURL(fileToLoad);
         img.src = _URL.createObjectURL(fileToLoad);

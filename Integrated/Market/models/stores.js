@@ -97,7 +97,7 @@ module.exports = {
             })
         })
     },
-    editProfile: function (_id, _email, _city, _address, _country, _description, _imgs, _profilePicture, _coverPhoto) {
+    editProfile: function (_id, _email, _city, _address, _country, _description, _imgs, _profilePicture, _coverPhoto,_contacts) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ 'Email': {$regex: new RegExp('^' + _email+"$" , 'i')}, '_id': { $ne: _id } }, '', function (err, Obj) {
                 if (err)
@@ -128,6 +128,8 @@ module.exports = {
                                         Obj.Address = _address;
                                         Obj.Country = _country;
                                         Obj.Description = _description;
+                                        Obj.Contacts=_contacts;
+                                        
                                             Helper.uploadImage(_profilePicture, function (_url) {
                                                 Obj.ProfilePicture = _url;
                                                     Helper.uploadImage(_coverPhoto, function (_url) {
@@ -223,6 +225,7 @@ module.exports = {
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _id,'Type':'store'}, { "Password": 0 }, function (err, Obj) {
+              
                 if (err)
                     reject({
                         code: 1,
@@ -230,11 +233,31 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
+                      
                         if (Obj.Status == "Active")
+                        {
+                            
+                           
+                                 var sum=[]; 
+                                 var constant=0;
+                                                                        
+                                                                        
+                                for (var i=0 ; i< Obj.length; i++){
+                               
+                              
+                                    sum =(Obj.Rate[i].Value);
+                                
+                                constant+=sum;
+                                 }
+                                                                        
+                                var average = constant/Obj.length;
+                               average=   average .toFixed(1) ;  
+                               console.log("average is "+average)                 
                             resolve({
                                 code: 100,
                                 data: Obj
                             });
+                        }
                         if (Obj.Status == "Suspended" || Obj.Status == "Deleted")
                             resolve({
                                 code: 101,
@@ -309,7 +332,7 @@ module.exports = {
                         reject({ code: 21, data: "This store not exist" })
                 }
             })
-        })
+        });
     },
     suspend: function (_id) {
         return new Promise(function (resolve, reject) {
@@ -565,21 +588,5 @@ module.exports = {
     },
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
 }

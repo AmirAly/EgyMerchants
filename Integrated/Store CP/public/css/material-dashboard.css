@@ -4100,6 +4100,7 @@ footer {
                 height: 200px;
                 display: flex;
                 justify-content: center;
+                background:#fff;
             }
 
             .card .card-header.card-chart + .content h4 {
@@ -5786,4 +5787,16 @@ footer {
 .ui-sortable-placeholder {
     border: 2px dashed #3c4858;
     visibility:visible !important;
+}
+
+i.fa.fa-twitter-square {
+    font-size: 40px;
+    padding: 25px;
+    color: #55acee;
+}
+
+i.fa.fa-facebook-square {
+    font-size: 40px;
+    padding: 25px;
+    color: #4267b2;
 }
