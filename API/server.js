@@ -287,11 +287,11 @@ mongoose.connect(db.url, function (err) {
 // }, function (err) {
 //    console.log(err);
 // });
-// store.getById("59e34e1ad8d4e302b00ca219").then(function (result) {
-//    console.log(result);
-// }, function (err) {
-//    console.log(err);
-// });
+store.getById("59e34e1ad8d4e302b00ca219").then(function (result) {
+   console.log(result);
+}, function (err) {
+   console.log(err);
+});
 //store.active("59a29dd9bfa8140011a2b474").then(function (result) {
 //    console.log(result);
 //}, function (err) {
@@ -358,11 +358,11 @@ mongoose.connect(db.url, function (err) {
 // }
 //    });
 
-store.search("all", "all", "all" ,"all").then(function (result) {
-   console.log(result.data);
-}, function (err) {
-   console.log(err);
-});
+// store.search("all", "all", "all" ,".").then(function (result) {
+//    console.log(result.data);
+// }, function (err) {
+//    console.log(err);
+// });
 // var _newMaster=new countryschema({
 
 //     "Type": "master",

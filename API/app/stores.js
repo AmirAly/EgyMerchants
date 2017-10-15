@@ -332,7 +332,7 @@ module.exports = {
                         reject({ code: 21, data: "This store not exist" })
                 }
             })
-        })
+        });
     },
     suspend: function (_id) {
         return new Promise(function (resolve, reject) {
