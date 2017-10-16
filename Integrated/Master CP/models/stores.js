@@ -240,7 +240,7 @@ module.exports = {
                             
                            if(Obj.Rate.length>0)
                            {
-                            console.log(Obj)                      
+                                             
                             
                                  var sum=[]; 
                                  var constant=0;
@@ -276,12 +276,12 @@ module.exports = {
                         }
                         if (Obj.Status == "Suspended" || Obj.Status == "Deleted")
                             resolve({
-                                code: 101,
+                                code: 100,
                                 data: Obj
                             });
                     }
                     else
-                        reject({
+                        resolve({
                             code: 21,
                             data: "This store doesn't exist"
                         });
