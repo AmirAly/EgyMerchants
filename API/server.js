@@ -138,17 +138,17 @@ mongoose.connect(db.url, function (err) {
 //    console.log(err);
 //});
 
-var newuser = new userschema({
-   "Email": "ahmedelmonshareh@gmail.com", "Password": "123456", "Name": "ghgk",
-   "ProfilePicture": "https://www.w3schools.com/css/img_lights.jpg","Contacts":[{"Addresses":["hafez wahby"]}]
+// var newuser = new userschema({
+//    "Email": "ahmedelmonshareh@gmail.com", "Password": "123456", "Name": "ghgk",
+//    "ProfilePicture": "https://www.w3schools.com/css/img_lights.jpg","Contacts":[{"Addresses":["hafez wahby"]}]
 
 
-});
-user.register(newuser).then(function (result) {
-   console.log(result); 
-}, function(err) {
-   console.log(err); 
-});
+// });
+// user.register(newuser).then(function (result) {
+//    console.log(result); 
+// }, function(err) {
+//    console.log(err); 
+// });
 
 
 // Rate:[{
@@ -403,7 +403,7 @@ user.register(newuser).then(function (result) {
    
     
       
-//         "Name": "dell",
+//         "Name": "black fan",
 //         "Description": "knkngkfnhklfnhkgnhknkghn",
 //         "Pictures": [
 //             {
@@ -415,8 +415,7 @@ user.register(newuser).then(function (result) {
 //         "Price": 55,
 //         "PriceBeforeSale": 0,
 //         "Tags":[
-//             "ram",
-//             "case"
+            
 //         ],
         
 //         "Gallery": "59c79bbc90c6da00124050f3",
@@ -425,11 +424,6 @@ user.register(newuser).then(function (result) {
        
 //         "Status": "Active"
        
-       
-       
-        
-    
-  
 // });
 // item.add(_newitem).then(function (result) {
 //     console.log(result);
@@ -567,10 +561,8 @@ user.register(newuser).then(function (result) {
 
 // item.getSimilar(
 
-//    "59df57444763f320f47f987a"
+//    "59e4c98e0c7eba32d43f7858"
    
-      
-          
 //   ).then(function (result) {
 //           console.log(result.data);
 //       }, function (err) {
