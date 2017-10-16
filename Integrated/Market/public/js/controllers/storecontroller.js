@@ -1,19 +1,12 @@
 ﻿app.controller("storeController", function ($scope, $rootScope, $timeout, API) {
     $scope.init = function (_isoCode, _storeId) {
         $rootScope.IsoCode = _isoCode;
+        $scope.storeId = _storeId;
 
 
+        $scope.isRatedBefore = false;// get users array and check me
 
-        $scope.isRatedBefore = false;
 
-        var ratings = document.getElementsByClassName('rating');
-        for (var i = 0; i < ratings.length; i++) {
-            var r = new SimpleStarRating(ratings[i]);
-            ratings[i].addEventListener('rate', function (e) {
-                $scope.isRatedBefore = true;
-                console.log('Rating: ' + e.detail);
-            });
-        }
 
 
         if (window.GalleriesJson.length > 0) {
@@ -46,10 +39,48 @@
         }
     }
 
+
+
+
+    var ratings = document.getElementsByClassName('rating');
+    for (var i = 0; i < ratings.length; i++) {
+        var r = new SimpleStarRating(ratings[i]);
+        ratings[i].addEventListener('rate', function (e) {
+            $scope.isRatedBefore = true;
+            console.log('Rating: ' + e.detail);
+
+            var req = {
+                method: 'put',
+                url: '/User/AddRating',
+                data: {
+                    _userId: $rootScope.userId,
+                    _storeId: $scope.storeId,
+                    _value: e.detail
+                }
+            }
+            API.execute(req).then(function (_res) {
+                console.log(_res);
+                if (_res.data.code == 100) {
+                    console.log('rate added');
+                    location.reload(true);
+                } else {
+                    console.log('rate NOT added');
+                }
+
+            });
+
+
+        });
+    }
+
+
+
+
+
     //set new rate
-    $scope.rateFunction = function (rating) {
-        console.log('Rating selected: ' + rating);
-    };
+    //$scope.rateFunction = function (rating) {
+    //    console.log('Rating selected: ' + rating);
+    //};
 
     $scope.addToVisited = function (_storeId) {
         $scope.storeData = {};

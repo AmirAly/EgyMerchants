@@ -21,14 +21,10 @@ var GalleriesJson = <%-JSON.stringify(GalleriesJson)%>;
                             </div>
                         </div>
 						
-                        <div class="dvStoreInfo" title="<%= store.Name %> rate is 3.5 star">
-                            <h1><%= store.Name %></h1>"<%= store %>"
+                        <div class="dvStoreInfo" title="<%= store.Name %> rate is <%= store.Average %> star">
+                            <h1><%= store.Name %></h1>
                             <span class="dvRating">
-                                <!-- <star-rating ng-model="rating" readonly="isReadonly" on-rating-selected="rateFunction(rating)"></star-rating>
-								<label>
-								 <input type="checkbox" ng-model="isReadonly"/> Is Readonly  {{rating}} 
-								</label>-->
-								<span class="rating golden" data-default-rating="3.3" data-step="0.1"  ng-disabled="isRatedBefore" ></span>
+								<span class="rating golden" data-default-rating="<%= store.Average %>" data-step="0.1"  ng-disabled="isRatedBefore" ></span>
                             </span>
                         </div>
 

@@ -332,25 +332,31 @@ module.exports = {
                     reject({ code: 0, data: err });
                 else {
                   
-                    var _arr =[];
-                    var _arr1 =[];
-                   var x=0;
-                    _.each(Obj.Tags, function (_tag) {
-                        Schema.find( { Tags: { $regex: _tag, $options: 'i' } }, function (err, _lst) {
+                  
+                //     var _arr =[];
+                //    var x=0;
+                    // _.each(Obj.Tags, function (_tag) {
+                        Schema.find( { Tags: { $in: Obj.Tags }} , function (err, _lst) {
                             if (err)
                             reject({ code: 0, data: err });  
                             else{
-                                x=x+_lst.length;
-                                console.log(x);
-                                _arr.concat(_lst);
-                                 if(_arr.length==x){
-                                 resolve({code:100,data:_arr})
-                                }  
+                               
+                        //    x+=_lst.length;
+                         
+                        //         _arr.push(_lst);
+                            
+                        //          if(x==_arr.length){
+                        //              console.log(x)
+                        //              console.log(_arr.length)
+                                   
+                                 resolve({code:100,data: _lst});
+                            //   console.log(_lst);
+                                // }  
                             }
                                               
      });
             
-    });
+    // });
       
     
                 }
