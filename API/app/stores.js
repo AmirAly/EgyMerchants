@@ -39,7 +39,7 @@ module.exports = {
                                         });
                                     else {
                                         console.log("here")
-                                        var link ="https://egym.herokuapp.com/"+_newStore._id;
+                                        var link ="http://localhost:8007/Store/SetToActive/"+_newStore._id;
                                         console.log(_newStore._id);
                                         var data = {
                                             to: _newStore.Email,
@@ -234,11 +234,14 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                      
                         if (Obj.Status == "Active")
                         {
                             
-                           
+                            
+                           if(Obj.Rate.length>0)
+                           {
+                            console.log(Obj)                      
+                            
                                  var sum=[]; 
                                  var constant=0;
                                                                         
@@ -257,15 +260,19 @@ module.exports = {
                              
                          
                             Obj.Average=   average;   
-                         Obj.save(function(err,_result){
-                        if(err) 
-                        reject({code: 1, data: err});
-                else
-                {
-                    resolve({code: 100, data: _result}); 
-                }
-                         })    
-                         
+                                    Obj.save(function(err,_result){
+                                    if(err) 
+                                    reject({code: 1, data: err});
+                                    else
+                                    {
+                                        resolve({code: 100, data: _result}); 
+                                    }
+                                            })    
+                                        }
+                         else{
+                            resolve({code: 100, data: Obj}); 
+                            
+                         }
                         }
                         if (Obj.Status == "Suspended" || Obj.Status == "Deleted")
                             resolve({
