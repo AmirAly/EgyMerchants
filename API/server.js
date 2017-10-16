@@ -287,11 +287,11 @@ mongoose.connect(db.url, function (err) {
 // }, function (err) {
 //    console.log(err);
 // });
-store.getById("59e34e1ad8d4e302b00ca219").then(function (result) {
-   console.log(result);
-}, function (err) {
-   console.log(err);
-});
+// store.getById("594660e5734d1d59b7895502").then(function (result) {
+//    console.log(result);
+// }, function (err) {
+//    console.log(err);
+// });
 //store.active("59a29dd9bfa8140011a2b474").then(function (result) {
 //    console.log(result);
 //}, function (err) {
@@ -502,7 +502,7 @@ store.getById("59e34e1ad8d4e302b00ca219").then(function (result) {
 // });
 
 
-//     var _newstore = new userschema({"Name":" anisa","Email":"anisa@gmail.com","Password":"123456","Status":"Inctive","ProfilePicture":"https://tammypatterson.files.wordpress.com/2011/09/img_2852c_lg.jpg","CoverPhoto":"https://tammypatterson.files.wordpress.com/2011/09/img_2852c_lg.jpg"
+//     var _newstore = new userschema({"Name":" elmonsh","Email":"ahmedelmonshareh@gmail.com","Password":"123456","ProfilePicture":"https://tammypatterson.files.wordpress.com/2011/09/img_2852c_lg.jpg","CoverPhoto":"https://tammypatterson.files.wordpress.com/2011/09/img_2852c_lg.jpg"
     
     
 // });
