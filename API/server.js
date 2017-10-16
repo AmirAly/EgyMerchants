@@ -138,17 +138,17 @@ mongoose.connect(db.url, function (err) {
 //    console.log(err);
 //});
 
-// var newuser = new userschema({
-//    "Email": "ahmedelmonshareh@gmail.com", "Password": "123456", "Name": "ghgk",
-//    "ProfilePicture": "https://www.w3schools.com/css/img_lights.jpg","Contacts":[{"Addresses":["hafez wahby"]}]
+var newuser = new userschema({
+   "Email": "ahmedelmonshareh@gmail.com", "Password": "123456", "Name": "ghgk",
+   "ProfilePicture": "https://www.w3schools.com/css/img_lights.jpg","Contacts":[{"Addresses":["hafez wahby"]}]
 
 
-// });
-// user.register(newuser).then(function (result) {
-//    console.log(result); 
-// }, function(err) {
-//    console.log(err); 
-// });
+});
+user.register(newuser).then(function (result) {
+   console.log(result); 
+}, function(err) {
+   console.log(err); 
+});
 
 
 // Rate:[{

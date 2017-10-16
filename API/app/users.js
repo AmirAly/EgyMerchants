@@ -28,7 +28,7 @@ module.exports = {
                                             data: err
                                         });
                                     else {
-                                        var link =" https://egymarket.herokuapp.com/User/SetToActive/"+_newuser._id;
+                                        var link =" https://egym.herokuapp.com/User/SetToActive/"+_newuser._id;
                                        
                                         
                                         console.log(_newUser._id);
