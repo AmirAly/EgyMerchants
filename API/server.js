@@ -139,7 +139,7 @@ mongoose.connect(db.url, function (err) {
 //});
 
 // var newuser = new userschema({
-//    "Email": "amir@gmail.com", "Password": "123456", "Name": "Amir",
+//    "Email": "ahmedelmonshareh@gmail.com", "Password": "123456", "Name": "ghgk",
 //    "ProfilePicture": "https://www.w3schools.com/css/img_lights.jpg","Contacts":[{"Addresses":["hafez wahby"]}]
 
 
@@ -287,7 +287,7 @@ mongoose.connect(db.url, function (err) {
 // }, function (err) {
 //    console.log(err);
 // });
-// store.getById("594660e5734d1d59b7895502").then(function (result) {
+// store.getById("595b80f374be602d00a76050").then(function (result) {
 //    console.log(result);
 // }, function (err) {
 //    console.log(err);

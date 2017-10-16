@@ -410,7 +410,7 @@ addRating:function(_storeId,_userId,_value){
                       if (err)
                       reject({ code: 1, data: err });
                       else{
-                     resolve({ code: 21, data: "done" });
+                     resolve({ code: 100, data: "done" });
                       }
             })
                     }
