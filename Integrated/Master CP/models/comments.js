@@ -67,7 +67,7 @@ module.exports = {
                                     data: err
                                 })
                             else {
-                                Schema.findOne({ "_id": comment._id }, '').populate('User','Type Name ProfilePicture').exec(function (err, Obj) {
+                                Schema.findOne({ "_id": comment._id }, '').populate('User', 'Type Name ProfilePicture').exec(function (err, Obj) {
                                     if (err)
                                         reject({
                                             code: 1,
@@ -83,25 +83,25 @@ module.exports = {
                                         else
                                             reject({
                                                 code: 21,
-                                                data: "This filteration didn't resulted in any data"
+                                                data: "No results"
                                             })
                                     }
                                 })
-                                   
+
                             }
                         })
                     }
                     else {
                         reject({
                             code: 21,
-                            data: "This item not exist any more"
+                            data: "This item doesn't exist"
                         })
                     }
                 }
-                })
+            })
         })
     },
-    remove: function (_commentId,_userId) {
+    remove: function (_commentId, _userId) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ "_id": _commentId }, '', function (err, Obj) {
                 if (err)
@@ -122,7 +122,7 @@ module.exports = {
                                     if (Obj)
                                         resolve({
                                             code: 100,
-                                            data: "Your comment deleted successfully"
+                                            data: "Your comment is deleted successfully"
                                         })
                                 }
                             });
@@ -148,12 +148,12 @@ module.exports = {
                                                     if (Obj)
                                                         resolve({
                                                             code: 100,
-                                                            data: "Your comment deleted successfully"
+                                                            data: "Your comment is deleted successfully"
                                                         })
                                                 }
                                             });
                                         }
-                                        else 
+                                        else
                                             reject({
                                                 code: 21,
                                                 data: "Sorry,you can't delete this comment"
@@ -162,7 +162,7 @@ module.exports = {
                                     else
                                         reject({
                                             code: 22,
-                                            data: "This user not exist any more"
+                                            data: "This user doesn't  exist "
                                         })
                                 }
                             })
@@ -171,9 +171,9 @@ module.exports = {
                     else
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         })
-                    }
+                }
             })
         })
     },
@@ -186,16 +186,55 @@ module.exports = {
                         data: err
                     })
                 else {
-                     lst.sort(function (a, b) {
+                    lst.sort(function (a, b) {
                         return b.CommentDate - a.CommentDate;
-                     });
-                     var res = lst.slice(0,10);
-                        resolve({
-                            code: 100,
-                            data: res
-                        })
+                    });
+                    var res = lst.slice(0, 10);
+                    resolve({
+                        code: 100,
+                        data: res
+                    })
                 }
             })
         })
+    },
+    getTenItems: function (_itemId, _key) {
+        return new Promise(function (resolve, reject) {
+            Schema.find({ "Item": _itemId }, function (err, lst) {
+                // console.log(`list ${lst.length}`)
+                if (err) {
+                    reject({
+                        code: 1,
+                        data: err
+                    });
+
+                }
+                else {
+
+
+                    var _tenItems = [];
+
+                    _tenItems = lst.slice(_key * 10, (_key + 1) * 10);
+
+                    if (_tenItems.length <= 0) {
+
+                        resolve({
+                            code: 101,
+                            data: "No comments here"
+                        });
+                    }
+                    else {
+                        resolve({
+                            code: 100,
+                            data: _tenItems
+                        });
+
+                    }
+
+                }
+
+            }).sort({ CommentDate: -1 });
+
+        });
     }
 }

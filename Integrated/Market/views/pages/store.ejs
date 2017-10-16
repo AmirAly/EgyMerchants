@@ -22,13 +22,13 @@ var GalleriesJson = <%-JSON.stringify(GalleriesJson)%>;
                         </div>
 						
                         <div class="dvStoreInfo" title="<%= store.Name %> rate is 3.5 star">
-                            <h1><%= store.Name %></h1>"<%= store.Rate %>"
+                            <h1><%= store.Name %></h1>"<%= store %>"
                             <span class="dvRating">
                                 <!-- <star-rating ng-model="rating" readonly="isReadonly" on-rating-selected="rateFunction(rating)"></star-rating>
 								<label>
 								 <input type="checkbox" ng-model="isReadonly"/> Is Readonly  {{rating}} 
 								</label>-->
-								<span class="rating golden" data-default-rating="3.5"  ng-disabled="isRatedBefore" ></span>
+								<span class="rating golden" data-default-rating="3.3" data-step="0.1"  ng-disabled="isRatedBefore" ></span>
                             </span>
                         </div>
 
@@ -49,6 +49,8 @@ var GalleriesJson = <%-JSON.stringify(GalleriesJson)%>;
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="dvStoreIcons">
+						<% if (store.Badges) { %>
+
                             <% if (store.Badges.HasFactory) { %>
                             <img title="Has factory" src="/images/factory.png" />
                             <% } else { %>
@@ -60,7 +62,8 @@ var GalleriesJson = <%-JSON.stringify(GalleriesJson)%>;
                             <% } else { %>
                             <img title="Not verified" src="/images/notverified.png" />
                             <% } %>
-					   <a type="button" title="send" ng-show="loggedUser && userId != '<%= store._id %>'" href="/<%= countryIso %>/Inbox/{{userId}}/<%= store._id %>" class="btn btn-primary active pull-right sendMsgBtn"> <span>Send Message</span> <span class="fa fa-paper-plane-o"></span></a>
+					   <% } %>
+					        <a type="button" title="send" ng-show="loggedUser && userId != '<%= store._id %>'" href="/<%= countryIso %>/Inbox/{{userId}}/<%= store._id %>" class="btn btn-primary active pull-right sendMsgBtn"> <span>Send Message</span> <span class="fa fa-paper-plane-o"></span></a>
 
                         </div>
 				    

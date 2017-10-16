@@ -10,7 +10,7 @@ var Mongoose = require("mongoose");
 module.exports = {
     register: function (_newStore) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $or: [{ 'Email': _newStore.Email }, { 'Name': _newStore.Name }] } , '', function (err, Obj) {
+            Schema.findOne({ $or: [{ 'Email': {$regex: new RegExp('^' + _newStore.Email+"$" , 'i')} }, { 'Name': {$regex: new RegExp('^' + _newStore.Name+"$" , 'i')} }] } , '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -23,9 +23,12 @@ module.exports = {
                             data: "This email or store name already exist"
                         });
                     else {
+                      
+                        
                         _newStore.Type = 'store';
                             Helper.uploadImage(_newStore.ProfilePicture, function (_url) {
                                 _newStore.ProfilePicture = _url;
+                                
                                 Helper.uploadImage(_newStore.CoverPhoto, function (_url) {
                                     _newStore.CoverPhoto = _url;
                                 _newStore.save(function (err, _newstore) {
@@ -35,6 +38,20 @@ module.exports = {
                                             data: err
                                         });
                                     else {
+                                        var link ="http://localhost:8007/Store/SetToActive/"+_newStore._id
+                                        console.log(_newStore._id);
+                                        var data = {
+                                            to: _newStore.Email,
+                                            subject: "Please confirm your e-mail address ",
+                                            html: 'Dear '+_newStore.Name+" store"+'<br />'+
+                                            'Welcome to EgyMerchant'+'<br />'+
+                                           ' You are almost ready to start interacting with our web site...'+'<br />'
+                                         +'  Please confirm your email address by clicking the link below'+'<br />'+
+                                         '<a href='+link+'>Confirm your e-mail</a>'
+                                        }
+                                       
+                                                Helper.sendEmail(data);
+                                                console.log(data)
                                         resolve({
                                             code: 100,
                                             data: { _id: _newstore._id, Name: _newstore.Name, Type: _newstore.Type }
@@ -51,7 +68,7 @@ module.exports = {
     },
     login: function (_store) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ 'Email': _store.Email }, { 'Password': _store.Password }, { 'Type': 'store' }] }, '', function (err, Obj) {
+            Schema.findOne({ $and: [{ 'Email': {$regex: new RegExp('^' + _store.Email+"$" , 'i')}}, { 'Password': {$regex: new RegExp('^' + _store.Password+"$" , 'i')} }, { 'Type': 'store' }] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -60,19 +77,19 @@ module.exports = {
                 else if (!Obj)
                     reject({
                         code: 21,
-                        data: "This email or password incorrect"
+                        data: "This email or password is incorrect"
                     });
                 else if (Obj.Status == "Suspended")
                     reject({
                         code: 22,
-                        data: "This account suspended "
+                        data: "This account is suspended "
                     });
                 else if (Obj.Status == "Deleted")
                     reject({
                         code: 23,
-                        data: "This account deleted"
+                        data: "This account is deleted"
                     });
-                else if (Obj.Status == "Active")
+               else
                     resolve({
                         code: 100,
                         data: { _id: Obj._id, Name: Obj.Name, Type: Obj.Type, ProfilePicture: Obj.ProfilePicture }
@@ -80,9 +97,9 @@ module.exports = {
             })
         })
     },
-    editProfile: function (_id, _email, _city, _address, _country, _description, _imgs, _profilePicture, _coverPhoto) {
+    editProfile: function (_id, _email, _city, _address, _country, _description, _imgs, _profilePicture, _coverPhoto,_contacts) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Email': _email, '_id': { $ne: _id } }, '', function (err, Obj) {
+            Schema.findOne({ 'Email': {$regex: new RegExp('^' + _email+"$" , 'i')}, '_id': { $ne: _id } }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -111,6 +128,8 @@ module.exports = {
                                         Obj.Address = _address;
                                         Obj.Country = _country;
                                         Obj.Description = _description;
+                                        Obj.Contacts=_contacts;
+                                        
                                             Helper.uploadImage(_profilePicture, function (_url) {
                                                 Obj.ProfilePicture = _url;
                                                     Helper.uploadImage(_coverPhoto, function (_url) {
@@ -124,7 +143,7 @@ module.exports = {
                                                             else
                                                                 resolve({
                                                                     code: 100,
-                                                                    data: "Your profile updated successfully"
+                                                                    data: "Your profile is updated successfully"
                                                                 });
                                                         })
                                                     })
@@ -140,7 +159,7 @@ module.exports = {
                                 else
                                     reject({
                                         code: 21,
-                                        data: "There is no such store"
+                                        data: "There is not store"
                                     });
                             }
                         })
@@ -156,9 +175,9 @@ module.exports = {
                     reject({ code: 1, data: err })
                 else {
                     if (Obj)
-                        resolve({ code: 100, data: "Store badges edited successfully" })
+                        resolve({ code: 100, data: "Store badges is edited successfully" })
                     else
-                        reject({ code: 21, data: "This filteration didn't resulted in any data" })
+                        reject({ code: 21, data: "No result" })
                 }
             })
         })
@@ -167,7 +186,7 @@ module.exports = {
         return new Promise(function (resolve, reject) {
             var i = 0;
             _.each(_notifications, function (notification) {
-                            Schema.findOneAndUpdate({ "_id": _id, 'AdminNotifications._id': notification._id }, { $set: { 'AdminNotifications.$.Status':true} }, function (err, Obj) {
+                            Schema.findOneAndUpdate({ "_id": _id, 'Status': 'Active', 'AdminNotifications._id': notification._id }, { $set: { 'AdminNotifications.$.Status':true} }, function (err, Obj) {
                                 if (err)
                                     reject({ code: 1, data: err })
                                 else {
@@ -175,7 +194,7 @@ module.exports = {
                                     if ( i== _notifications.length)
                                         resolve({
                                             code: 100,
-                                            data: "Admin notifications updated successfully"
+                                            data: "Admin notifications is updated successfully"
                                         });
                                 }
                             })
@@ -198,7 +217,7 @@ module.exports = {
                                 data: { 'AdminNotifications': result }
                             });
                             }
-                        else reject({code:21,data:"This store not exist"})
+                        else reject({code:21,data:"This store doesn't exist"})
                     }
                 })
         })
@@ -206,6 +225,7 @@ module.exports = {
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _id,'Type':'store'}, { "Password": 0 }, function (err, Obj) {
+              
                 if (err)
                     reject({
                         code: 1,
@@ -213,11 +233,39 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
+                      
                         if (Obj.Status == "Active")
-                            resolve({
-                                code: 100,
-                                data: Obj
-                            });
+                        {
+                            
+                           
+                                 var sum=[]; 
+                                 var constant=0;
+                                                                        
+                                                                        
+                                for (var i=0 ; i< Obj.Rate.length; i++){
+                               
+                              
+                                    sum =(Obj.Rate[i].Value);
+                                
+                                constant+=sum;
+                                 }
+                                
+                                                                        
+                                var average = constant/Obj.Rate.length;
+                               average=   average .toFixed(1) ;  
+                             
+                         
+                            Obj.Average=   average;   
+                         Obj.save(function(err,_result){
+                        if(err) 
+                        reject({code: 1, data: err});
+                else
+                {
+                    resolve({code: 100, data: _result}); 
+                }
+                         })    
+                         
+                        }
                         if (Obj.Status == "Suspended" || Obj.Status == "Deleted")
                             resolve({
                                 code: 101,
@@ -227,7 +275,7 @@ module.exports = {
                     else
                         reject({
                             code: 21,
-                            data: "This store not exist"
+                            data: "This store doesn't exist"
                         });
                 }
             })
@@ -275,7 +323,7 @@ module.exports = {
                                                           else {
                                                               //this if check to confirm that when resolve happen the data already updated in database
                                                               if (expo._id == allexpoes[allexpoes.length - 1]._id && coordinate._id == coordinatesfiltered[coordinatesfiltered.length - 1]._id)
-                                                                  resolve({ code: 100, data: "This store deleted successfully" });
+                                                                  resolve({ code: 100, data: "This store is deleted successfully" });
                                                           }
                                                       })
                                                 }
@@ -283,7 +331,7 @@ module.exports = {
                                         })
                                     })
                                 }
-                                else { resolve({ code: 100, data: "This store deleted successfully" }); }
+                                else { resolve({ code: 100, data: "This store is deleted successfully" }); }
                             }
                         });
 
@@ -292,7 +340,7 @@ module.exports = {
                         reject({ code: 21, data: "This store not exist" })
                 }
             })
-        })
+        });
     },
     suspend: function (_id) {
         return new Promise(function (resolve, reject) {
@@ -314,14 +362,15 @@ module.exports = {
                                         reject({
                                             code: 3,
                                             data: err
-                                        })
-                                    else resolve({ code: 100, data: "This store Suspended successfully" })
+                                        });
+                                    else resolve({ code: 100, data: "This store is suspended successfully" });
                                 })
                             }
                         })
                     }
+                
                     else
-                        reject({ code: 21, data: "This store not exist" })
+                        reject({ code: 21, data: "This store doesn't exist" })
                 }
             })
         })
@@ -347,14 +396,14 @@ module.exports = {
                                             code: 3,
                                             data: err
                                         })
-                                    else resolve({ code: 100, data: "This store activated successfully" })
+                                    else resolve({ code: 100, data: "This store is activated successfully" })
                                 })
                             }
                         })
                     }
                         
                     else
-                        reject({ code: 21, data: "This store not exist" })
+                        reject({ code: 21, data: "This store doesn't exist" })
                 }
             })
         })
@@ -377,9 +426,9 @@ module.exports = {
                     reject({ code: 1, data: err })
                 else
                     if(Obj)
-                        resolve({ code: 100, data: "notification added successfully" })
+                        resolve({ code: 100, data: "Notification added successfully" })
                     else
-                        reject({code:21,data:"This store not exist"})
+                        reject({code:21,data:"This store doesn't exist"})
             })
         })
     },
@@ -451,6 +500,9 @@ module.exports = {
                                         reject({ code: 21, data: "This filteration didn't result in any data" })
                                     }
                                 }
+                                
+                               
+                              
                             if (_keyWord != "all") {
                                     Item.find({ $and: [{ $or: [{ 'Name': { "$regex": _keyWord, "$options": "i" } }, { 'Description': { "$regex": _keyWord, "$options": "i" } }] }, { 'Status': 'Active' }] }, '_id Name Pictures Store', function (err, itemLst) {
                                         if (err)
@@ -459,6 +511,7 @@ module.exports = {
                                                 data: err
                                             });
                                         else {
+                                      
                                             if (itemLst.length > 0) {
                                                 itemsList = _.map(itemLst, function (item) {
                                                     return _.pick(_.extend({}, item, { Type: "item" }), '_id', 'Name', 'Pictures', 'Store', 'Type');
@@ -481,6 +534,7 @@ module.exports = {
                                                         return (store.Name.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1 || store.Description.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1 || store.Address.toLowerCase().indexOf(_keyWord.toLowerCase()) !== -1)
                                                     }))
                                                 }
+
                                                     _.each(storesList, function (store) {
                                                         var res = _.filter(itemsList, function (item) {
                                                             return item.Store == store._id.toString();
@@ -503,7 +557,7 @@ module.exports = {
                                                 resolve({ code: 100, data: _.groupBy(finalList, 'Type') });
                                             }
                                             else {
-                                                reject({ code: 21, data: "This filteration didn't result in any data" })
+                                                reject({ code: 21, data: "No results" })
                                             }
                                         }
                                     })
@@ -515,7 +569,7 @@ module.exports = {
                                         resolve({ code: 100, data: _.groupBy(finalList, 'Type') });
                                     }
                                     else {
-                                        reject({ code: 21, data: "This filteration didn't result in any data" })
+                                        reject({ code: 21, data: "No results" })
                                     }
                                     }
                                 else {
@@ -525,10 +579,10 @@ module.exports = {
                                             resolve({ code: 100, data: _.groupBy(finalList, 'Type') });
                                         }
                                         else {
-                                            reject({ code: 21, data: "This filteration didn't result in any data" })
+                                            reject({ code: 21, data: "No results" })
                                         }
                                     }
-                                    else { reject({ code: 22, data: "please enter any value for search" }) }
+                                    else { reject({ code: 22, data: "Please enter any value " }) }
                                     }
                                 }
                                 
@@ -540,4 +594,7 @@ module.exports = {
             })
         })
     },
+
+
+
 }
