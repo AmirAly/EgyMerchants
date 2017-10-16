@@ -2,10 +2,14 @@ var Mongoose = require("mongoose");
 var Schema = Mongoose.Schema;
 var User = new Schema({
     Name: { type: String, min:2,max:50,required: 'Name is required' },
-    Email: { type: String, required: 'Email is required', min: 6, match: /[A-Za-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$/ },
+    Email: { type: String, required: 'Email is required', min: 6, match: /[A-Za-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$/  },
     Password: { type: String, required: 'Password is required',min:6},
     ProfilePicture: { type:String, min:2 },
     VisitedStores: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    RatedStores:[{
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
@@ -36,16 +40,43 @@ var User = new Schema({
     LastActivity: { type: Number },
     Imgs: [{ URL: { type: String } }],
     CreateDate: { type: String, default: new Date().getTime() },
-    Rate: { type: Number },
-    Contacts: [
-        {
+
+
+    // Rate:[{
+    //    Store: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User',
+       
+    //    },
+
+
+       Rate:[{
+       User: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+       
+       },
+
+
+     Value:{type:Number }
+   
+    }],
+    
+    Contacts: 
+      [ 
+           {
             Label: { type: String },
             Value: { type: String }
+       
         }
-    ],
+    ]
+    ,
     City: { type: String, default: 'Cairo',min:2,max:25},
+    
+
     Address: { type: String, default: '',min:2},
     Type:{type: String},
-    Status: { type: String, default: 'Active' },
+    Status: { type: String, default: 'Inactive' },
+    Average:{type: Number , default:0}
 });
 module.exports = Mongoose.model('User', User);

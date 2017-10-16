@@ -1,6 +1,7 @@
 var Schema = require('./models/item');
 var _ = require("underscore");
-var Helper= require('./helper');
+var Helper = require('./helper');
+var async=require('async');
 module.exports = {
     getFeatured: function (_storeId) {
         return new Promise(function (resolve, reject) {
@@ -19,7 +20,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         });
                     }
                 }
@@ -35,18 +36,17 @@ module.exports = {
                         data: err
                     });
                 else {
-                    if (lst.length > 0)
-                    {
+                    if (lst.length > 0) {
                         var result = _.chain(lst)
-                                    .groupBy('Gallery')
-                                   .map(function (value, key) {
-                                       return {
-                                       Gallery: key,
-                                        Items: value
-                                             }
-                                   }).value();
-								   // _.each(result,function(x){console.log(x.Gallery)})
-								   // console.log(result);
+                            .groupBy('Gallery')
+                            .map(function (value, key) {
+                                return {
+                                    Gallery: key,
+                                    Items: value
+                                }
+                            }).value();
+                        // _.each(result,function(x){console.log(x.Gallery)})
+                        // console.log(result);
                         result.sort(function (a, b) {
                             return parseInt(a.Gallery.split(":")[3].split(" ")[1]) - parseInt(b.Gallery.split(":")[3].split(" ")[1]);
                         });
@@ -58,7 +58,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         });
                     }
                 }
@@ -82,7 +82,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         });
                     }
                 }
@@ -91,7 +91,7 @@ module.exports = {
     },
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate({ path: 'Gallery',select:'Store _id', populate: { path: 'Store', model: 'User', select: 'Name' } }).exec(function (err, Obj) {
+            Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate({ path: 'Gallery', select: 'Store _id', populate: { path: 'Store', model: 'User', select: 'Name' } }).exec(function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -106,7 +106,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This item not exist"
+                            data: "This item doesn't exist"
                         });
                     }
                 }
@@ -130,7 +130,7 @@ module.exports = {
                     else {
                         reject({
                             code: 21,
-                            data: "This filteration didn't resulted in any data"
+                            data: "No results"
                         });
                     }
                 }
@@ -139,17 +139,18 @@ module.exports = {
     },
     add: function (_product) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Name': _product.Name, 'Gallery': _product.Gallery, 'Status': 'Active' }, '', function (err, Obj) {
+            Schema.findOne({ 'Name': { $regex: new RegExp('^' + _product.Name + "$", 'i') }, 'Gallery': _product.Gallery, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
                         data: err
                     });
                 else {
+
                     if (Obj)
                         reject({
                             code: 21,
-                            data: "There is item with same name in this gallery"
+                            data: "There is item with the same name in this gallery"
                         });
                     else {
                         if (_product.Pictures.length) {
@@ -165,25 +166,25 @@ module.exports = {
                                     else {
                                         resolve({
                                             code: 100,
-                                            data:"This item added successfully"
+                                            data: "This item is added successfully"
                                         });
                                     }
                                 })
                             });
                         }
                         else {
-                        _product.save(function (err, Obj) {
-                            if (err)
-                                reject({
-                                    code: 1,
-                                    data: err
-                                });
-                            else {
-                                resolve({
-                                    code: 100,
-                                    data: "This item added successfully"
-                                });
-                            }
+                            _product.save(function (err, Obj) {
+                                if (err)
+                                    reject({
+                                        code: 1,
+                                        data: err
+                                    });
+                                else {
+                                    resolve({
+                                        code: 100,
+                                        data: "This item is added successfully"
+                                    });
+                                }
                             })
                         }
                     }
@@ -202,19 +203,25 @@ module.exports = {
                     });
                 else {
                     if (item) {
-                        Schema.findOne({ 'Name': _name, 'Gallery': item.Gallery, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
+                        Schema.findOne({ 'Name': { $regex: new RegExp('^' + _name + "$", 'i') }, 'Gallery': item.Gallery, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
+                            console.log(Obj)
                             if (err)
                                 reject({
                                     code: 1,
                                     data: err
                                 });
                             else {
-                                if (Obj)
+
+                                if (Obj) {
+                                    // console.log(Obj)
                                     reject({
                                         code: 21,
                                         data: "There is item with the same name in this gallery"
                                     });
+                                }
                                 else {
+
+
                                     item.Pictures = [];
                                     if (_imgs.length) {
                                         Helper.uploadMultipleImages(_imgs, function (_url) {
@@ -222,9 +229,12 @@ module.exports = {
                                             var result = _imgs;
                                             _.each(_url, function (imageurl) { if (i < _imgs.length) { result[i].URL = imageurl; i++; } });
                                             item.Pictures = item.Pictures.concat(result);
+
+
                                             item.Name = _name;
                                             item.Description = _description;
                                             item.Price = _price;
+
                                             item.PriceBeforeSale = _priceBeforeSale;
                                             item.Badges = _badges;
                                             item.Tags = _tags;
@@ -237,7 +247,7 @@ module.exports = {
                                                 else
                                                     resolve({
                                                         code: 100,
-                                                        data: "This item updated successfully"
+                                                        data: "This item  is updated successfully"
                                                     });
                                             })
                                         });
@@ -258,17 +268,17 @@ module.exports = {
                                             else
                                                 resolve({
                                                     code: 100,
-                                                    data: "This item updated successfully"
+                                                    data: "This item  is updated successfully"
                                                 });
                                         })
                                     }
-                                   
+
                                 }
                             }
                         })
                     }
                     else {
-                        reject({ code: 21, data: "This filteration didn't resulted in any data" })
+                        reject({ code: 21, data: "No results" })
                     }
                 }
             })
@@ -282,38 +292,78 @@ module.exports = {
                 else {
                     if (Obj)
                         resolve({
-                            code: 100, data: "This item deleted successfully"
+                            code: 100, data: "This item is deleted successfully"
                         })
                     else
-                        reject({ code: 22, data: "This item not exist" })
+                        reject({ code: 22, data: "This item doesn't exist" })
                 }
             })
         })
     },
-    removeImage: function (_itemid,_imageid) {
+    removeImage: function (_itemid, _imageid) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _itemid }, 'Pictures', function (err, Obj) {
                 if (err)
                     reject({ code: 1, data: err })
                 else {
-                    if (Obj)
-                    {
-                        if (Obj.Pictures.length > 1)
-                        {
+                    if (Obj) {
+                        if (Obj.Pictures.length > 1) {
                             Schema.update({ '_id': _itemid }, { $pull: { "Pictures": { "_id": _imageid } } }, function (err, Obj) {
                                 if (err)
                                     reject({ code: 2, data: err })
                                 else
-                                    resolve({code: 100, data: "This item image deleted successfully"})
+                                    resolve({ code: 100, data: "This item image is deleted successfully" })
                             })
                         }
                         else
                             resolve({ code: 101, data: "Sorry not allowed to delete the last item image" })
                     }
                     else
-                        reject({ code: 22, data: "This item not exist" })
-                        }
+                        resolve({ code: 22, data: "This item doesn't exist" })
+                }
             })
         })
-    }
+    },
+    getSimilar: function (_itemId) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOne({ '_id': _itemId }, '', function (err, Obj) {
+               
+                if (err)
+                    reject({ code: 0, data: err });
+                else {
+                  
+                  
+                //     var _arr =[];
+                //    var x=0;
+                    // _.each(Obj.Tags, function (_tag) {
+                        Schema.find( { Tags: { $in: Obj.Tags }} , function (err, _lst) {
+                            if (err)
+                            reject({ code: 0, data: err });  
+                            else{
+                               
+                        //    x+=_lst.length;
+                         
+                        //         _arr.push(_lst);
+                            
+                        //          if(x==_arr.length){
+                        //              console.log(x)
+                        //              console.log(_arr.length)
+                                   
+                                 resolve({code:100,data: _lst});
+                            //   console.log(_lst);
+                                // }  
+                            }
+                                              
+     });
+            
+    // });
+      
+    
+                }
+            })
+
+        })
+
+    },
+
 }

@@ -75,6 +75,7 @@ module.exports = function (app) {
         //console.log(req.params.countryIso);
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
+        console.log(req.params.storeId);
         store.getById(req.params.storeId).then(function (_data) {
             console.log('**************************************************************');
             console.log(_data);
@@ -127,7 +128,7 @@ module.exports = function (app) {
             }
 
         }).catch(function (_err) {
-            //console.log(_err);
+            console.log(_err);
             _scope.store = {};
             _scope.Galleries = [];
             _scope.GalleriesJson = [];

@@ -79,7 +79,7 @@
                   </a>
                   <form id="search_mini_form" name="frmSearch" class="hidden-xs">
                     <div class="form-search ">
-                      <input id="search" type="text" required="" name="txtSearch" minlength="2" placeholder="Search" ng-model="txtSearch" pattern="[a-zA-Z0-9-]+" class="input-text" autocomplete="off" />
+                      <input id="search" type="text" required="" name="txtSearch" minlength="2" placeholder="Search" ng-model="txtSearch" class="input-text" autocomplete="off" />
 
                       <button type="submit" form="frmSearch" ng-click="search(frmSearch)" title="Search" class="button">
                         <i class="glyphicon glyphicon-search"></i>
@@ -88,11 +88,13 @@
 
                   </form>
                   <span ng-show="frmSearch.txtSearch.$dirty && frmSearch.txtSearch.$invalid">
-                    <span class="errorFont" ng-show="frmSearch.txtSearch.$error.required">Enter 2 characters minimum</span>
+                    
+                    <span class="errorFont" ng-show="searchErr">Enter 2 characters minimum</span>
+
+                    <!--<span class="errorFont" ng-show="frmSearch.txtSearch.$error.required">Enter 2 characters txt minimum</span>
                     <span class="errorFont" ng-show="frmSearch.txtSearch.$error.minlength">Enter 2 characters minimum</span>
-                    <span class="errorFont" ng-show="frmSearch.txtSearch.$error.pattern">Letters and numbers only</span>
+                    <span class="errorFont" ng-show="frmSearch.txtSearch.$error.pattern">Letters and numbers only</span>-->
                   </span>
-                  <!--<span class="errorFont" ng-show="searchErr">Enter 2 characters minimum</span>-->
 
                 </div>
 

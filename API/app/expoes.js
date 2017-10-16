@@ -248,7 +248,7 @@ module.exports = {
                             expos.push(Obj);
                             module.exports.filterByExpiryDate(expos).then(function (data) {
                                 if (data.code == 100) {
-                                    Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate('Floors.Coordinates.Store', '_id Name Type Badges Status').exec(function (err, expo) {
+                                    Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate('Floors.Coordinates.Store', '_id Name Type Badges Status ProfilePicture').exec(function (err, expo) {
                                         if (err)
                                             reject({
                                                 code: 2,

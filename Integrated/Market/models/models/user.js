@@ -77,5 +77,6 @@ var User = new Schema({
     Address: { type: String, default: '',min:2},
     Type:{type: String},
     Status: { type: String, default: 'Inactive' },
+    Average:{type: Number , default:0}
 });
 module.exports = Mongoose.model('User', User);

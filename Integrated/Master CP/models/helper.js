@@ -1,7 +1,7 @@
 
 var fs = require('fs');
 var cloudinary = require('cloudinary');
-
+var nodemailer = require('nodemailer')
 
 cloudinary.config({
     cloud_name: 'dce2oozza',
@@ -11,7 +11,16 @@ cloudinary.config({
 
 module.exports = {
     uploadImage: function (_url, callback) {
-        cloudinary.v2.uploader.upload(_url, function (error, result) { callback(result.secure_url) });
+        console.log("url is "+_url)
+        cloudinary.v2.uploader.upload(_url, function (error, result)
+         { 
+             if(error) console.log(error);
+             else {
+             console.log("url  inside function is "+result.secure_url)
+             callback(result.secure_url)
+            }
+         });
+         
     },
     uploadMultipleImages: function (_url, callback) {
         var secureUrls = [];
@@ -25,6 +34,7 @@ module.exports = {
                         else {
                             secureUrls.push(result.secure_url);
                             uploadeurl(i + 1);
+                            console.log("secureUrls is"+secureUrls);
                         }
                     })
                 }
@@ -38,10 +48,11 @@ module.exports = {
             function uploadeimg(i) {
                 if (i < _url.length) {
                     cloudinary.v2.uploader.upload(_url[i].Img, function (error, result) {
-                        if (error) { console.log(error); }
+                        if (error) {   console.log(error); }
                         else {
                             secureUrls.push(result.secure_url);
                             uploadeimg(i + 1);
+                            console.log("secureUrls is"+secureUrls);
                         }
                     })
                 }
@@ -89,8 +100,8 @@ module.exports = {
             port: 587,
             requiresAuth: true,
             auth: {
-                user: 'aali.ibtekar@gmail.com',
-                pass: '2682013AmirAmira'
+                user: 'ahmedelmonshareh@gmail.com',
+                pass: 'allah1malo42'
             }
         });
         var mailOptions = {

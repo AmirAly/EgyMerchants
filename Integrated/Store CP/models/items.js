@@ -327,19 +327,38 @@ module.exports = {
     getSimilar: function (_itemId) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _itemId }, '', function (err, Obj) {
+               
                 if (err)
-                    reject({ code: 0, data: err })
+                    reject({ code: 0, data: err });
                 else {
-        
-                    var _arr =[];
-                    var _arr1 =[];
-                    
-                    _.each(Obj.Tags, function (_tag) {
-                        Schema.find({ Tags: { $regex: _tag, $options: "i" }}, function ( _lst) {
-                         console.log(_lst)                             
+                  
+                  
+                //     var _arr =[];
+                //    var x=0;
+                    // _.each(Obj.Tags, function (_tag) {
+                        Schema.find( { Tags: { $in: Obj.Tags }} , function (err, _lst) {
+                            if (err)
+                            reject({ code: 0, data: err });  
+                            else{
+                               
+                        //    x+=_lst.length;
+                         
+                        //         _arr.push(_lst);
+                            
+                        //          if(x==_arr.length){
+                        //              console.log(x)
+                        //              console.log(_arr.length)
+                                   
+                                 resolve({code:100,data: _lst});
+                            //   console.log(_lst);
+                                // }  
+                            }
+                                              
      });
             
-    });
+    // });
+      
+    
                 }
             })
 

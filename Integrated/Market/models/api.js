@@ -117,8 +117,8 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-    api.get('/Store/SetToActive/:_store_id', function (req, res) {
-        UserLogic.setToActive(req.params._storeid).then(function (result) {
+    api.get('/Store/SetToActive/:_storeId', function (req, res) {
+        StoreLogic.setToActive(req.params._storeId).then(function (result) {
             console.log(req.params._storeId)
             res.redirect("https://egymarket.herokuapp.com");
         }, function (err) {
@@ -349,6 +349,7 @@ module.exports = function (app, express) {
         });
     })
 
+
     api.put('/User/EditProfile', function (req, res) {
         UserLogic.editProfile(req.body._userid, req.body._name , req.body._profilePicture).then(function (result) {
             res.json(result);
@@ -358,7 +359,7 @@ module.exports = function (app, express) {
     })
 
     api.put('/User/AddRating', function (req, res) {
-        UserLogic.addRating(req.body._userId, req.body._storeId , req.body._value).then(function (result) {
+        UserLogic.addRating(req.body._storeId, req.body._userId , req.body._value).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
