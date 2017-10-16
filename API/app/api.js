@@ -120,7 +120,7 @@ module.exports = function (app, express) {
     api.get('/Store/SetToActive/:_storeId', function (req, res) {
         StoreLogic.setToActive(req.params._storeId).then(function (result) {
             console.log(req.params._storeId)
-            res.redirect(" https://storecp.herokuapp.com");
+            res.redirect("https://storecp.herokuapp.com");
            
             
         }, function (err) {
