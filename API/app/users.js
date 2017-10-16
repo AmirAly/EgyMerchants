@@ -28,7 +28,9 @@ module.exports = {
                                             data: err
                                         });
                                     else {
-                                        var link ="http://localhost:8007/User/SetToActive/"+_newuser._id
+                                        var link =" https://egymarket.herokuapp.com/User/SetToActive/"+_newuser._id;
+                                       
+                                        
                                         console.log(_newUser._id);
                                         var data = {
                                             to: _newUser.Email,
