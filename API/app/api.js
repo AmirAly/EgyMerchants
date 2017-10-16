@@ -359,7 +359,7 @@ module.exports = function (app, express) {
     })
 
     api.put('/User/AddRating', function (req, res) {
-        UserLogic.addRating(req.body._userId, req.body._storeId , req.body._value).then(function (result) {
+        UserLogic.addRating(req.body._storeId, req.body._userId , req.body._value).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);

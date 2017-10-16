@@ -522,16 +522,16 @@ mongoose.connect(db.url, function (err) {
     //     }
     // ],
 
-//     user.addRating(
-//       "59e34ff4e9efe91d8846a8ff",
-//      "59da07cd62f38f1ca083f033",
-// 5
+    user.addRating(
+      "595b80f374be602d00a76050",
+     "59da07cd62f38f1ca083f033",
+5
         
-//     ).then(function (result) {
-//             console.log(result);
-//         }, function (err) {
-//             console.log(err);
-//         });
+    ).then(function (result) {
+            console.log(result);
+        }, function (err) {
+            console.log(err);
+        });
 
         // Rate: [{
         //     type: Schema.Types.ObjectId,
