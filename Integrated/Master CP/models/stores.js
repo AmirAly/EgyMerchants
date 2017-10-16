@@ -9,6 +9,7 @@ var _ = require("underscore");
 var Mongoose = require("mongoose");
 module.exports = {
     register: function (_newStore) {
+      
         return new Promise(function (resolve, reject) {
             Schema.findOne({ $or: [{ 'Email': {$regex: new RegExp('^' + _newStore.Email+"$" , 'i')} }, { 'Name': {$regex: new RegExp('^' + _newStore.Name+"$" , 'i')} }] } , '', function (err, Obj) {
                 if (err)
@@ -24,7 +25,7 @@ module.exports = {
                         });
                     else {
                       
-                        
+                     
                         _newStore.Type = 'store';
                             Helper.uploadImage(_newStore.ProfilePicture, function (_url) {
                                 _newStore.ProfilePicture = _url;
@@ -98,6 +99,29 @@ module.exports = {
             })
         })
     },
+    
+setToActive:function(_storeId){
+    return new Promise(function (resolve, reject) {
+        console.log(_storeId);
+    Schema.findOneAndUpdate({"_id":_storeId },{$set:{'Status':'Active'}},{ new: true},function(err,Obj){
+        console.log(Obj)
+    if (err) {
+        reject({
+            code: 1,
+            data: err
+        });
+    }
+    else{
+        resolve({
+            code: 100,
+            data: Obj
+        });
+    
+    }
+    });
+    })
+    },
+    
     editProfile: function (_id, _email, _city, _address, _country, _description, _imgs, _profilePicture, _coverPhoto,_contacts) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ 'Email': {$regex: new RegExp('^' + _email+"$" , 'i')}, '_id': { $ne: _id } }, '', function (err, Obj) {
