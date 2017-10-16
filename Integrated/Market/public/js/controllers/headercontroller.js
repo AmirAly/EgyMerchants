@@ -192,11 +192,11 @@
     $scope.txtSearch = '';
     //$scope.regex = "^\!%()*+,-./@:;<=>[\\]^_`{|}~";
     $scope.search = function (form) {
-        angular.forEach($scope.frmSearch.$error.required, function (field) {
-            field.$setDirty();
-        });
+        //angular.forEach($scope.frmSearch.$error.required, function (field) {
+        //    field.$setDirty();
+        //});
         $scope.searchErr = false;
-        if (form.$valid) {
+        if ($scope.txtSearch != '' && $scope.txtSearch.length > 1) {
             window.location.href = "/" + $rootScope.IsoCode + "/Search/" + $scope.txtSearch;
         }
         else {
