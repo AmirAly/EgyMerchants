@@ -410,8 +410,28 @@ addRating:function(_storeId,_userId,_value){
                       if (err)
                       reject({ code: 1, data: err });
                       else{
-                     resolve({ code: 100, data: "done" });
-                      }
+                   
+                        var sum=[]; 
+                        var constant=0;
+                                                               
+                                                               
+                       for (var i=0 ; i< _store.Rate.length; i++){
+                      
+                     
+                           sum =(_store.Rate[i].Value);
+                       
+                       constant+=sum;
+                        }
+                       
+                                                               
+                       var average = constant/_store.Rate.length;
+                      average=   average .toFixed(1) ;  
+                      console.log(average)
+                 
+                        resolve({ code: 100, data: average });
+
+               
+                }
             })
                     }
 

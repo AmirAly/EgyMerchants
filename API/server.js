@@ -524,8 +524,8 @@ mongoose.connect(db.url, function (err) {
 
 //     user.addRating(
 //       "59e34ff4e9efe91d8846a8ff",
-//      "59da07cd62f38f1ca083f022",
-// 2
+//      "59da07cd62f38f1ca083f033",
+// 5
         
 //     ).then(function (result) {
 //             console.log(result);
