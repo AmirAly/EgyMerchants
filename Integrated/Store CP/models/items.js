@@ -310,7 +310,7 @@ module.exports = {
                         if (Obj.Pictures.length > 1) {
                             Schema.update({ '_id': _itemid }, { $pull: { "Pictures": { "_id": _imageid } } }, function (err, Obj) {
                                 if (err)
-                                    reject({ code: 2, data: err })
+                                    reject({ code: 2, data: err });
                                 else
                                     resolve({ code: 100, data: "This item image is deleted successfully" })
                             })
@@ -329,36 +329,49 @@ module.exports = {
             Schema.findOne({ '_id': _itemId }, '', function (err, Obj) {
                
                 if (err)
-                    reject({ code: 0, data: err });
-                else {
+                    reject({ code: 1, data: err });
+                else if (Obj){
                   
-                  
-                //     var _arr =[];
-                //    var x=0;
-                    // _.each(Obj.Tags, function (_tag) {
-                        Schema.find( { Tags: { $in: Obj.Tags }} , function (err, _lst) {
-                            if (err)
-                            reject({ code: 0, data: err });  
-                            else{
-                               
-                        //    x+=_lst.length;
+                        if(Obj.Tags.length<=0){
+                        var arr=Obj.Name.split(" ");
                          
-                        //         _arr.push(_lst);
-                            
-                        //          if(x==_arr.length){
-                        //              console.log(x)
-                        //              console.log(_arr.length)
-                                   
-                                 resolve({code:100,data: _lst});
-                            //   console.log(_lst);
-                                // }  
-                            }
-                                              
-     });
-            
-    // });
-      
+                   Obj.Tags=arr;
+                   Obj.save(function(err,_result){
+                                    if (err)
+                                    reject({ code: 1, data: err });
+                                    else
+                                    Schema.find( { Tags: { $in: _result.Tags }, '_id': { $ne: _itemId }} , function (err, _lst) {
+                                        if (err)
+                                        reject({ code: 0, data: err });  
+                                        else{
     
+                                            
+                                            resolve({code:100,data: _lst});
+                                        
+                                        }
+                                                    
+                                        });
+            
+                                    })   
+
+                        }
+                        else
+                            Schema.find( { Tags: { $in: Obj.Tags }, '_id': { $ne: _itemId }} , function (err, _lst) {
+                                    if (err)
+                                    reject({ code: 0, data: err });  
+                                    else{
+
+                                        
+                                        resolve({code:100,data: _lst});
+                                    
+                                    }
+                                                
+                                    });
+        
+      
+                }
+                else{
+                    resolve({code:21,data:"This item doesn't exist"});
                 }
             })
 

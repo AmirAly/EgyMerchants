@@ -173,16 +173,55 @@ module.exports = function (app) {
                         _scope.comments = _commentsList.data;
                         _scope.JsonComments = JSON.stringify(_commentsList.data);
 
-                        res.render('pages/product', _scope);
+                        // similar 
+                        product.getSimilar(req.params.productId).then(function (_similarList) {
+                            if (_similarList.code == 100) {
+                                console.log(_similarList.data);
+                                _scope.similarList = _similarList.data;
+                                _scope.JsonSimilarList = JSON.stringify(_similarList.data);
+
+                                res.render('pages/product', _scope);
+                            } else {
+                                _scope.similarList = [];
+                                _scope.JsonSimilarList = [];
+                                res.render('pages/product', _scope);
+                            }
+                        }).catch(function (err) {
+                            //console.log(_err);
+                            _scope.similarList = [];
+                            _scope.JsonSimilarList = [];
+                            res.render('pages/product', _scope);
+                        });
                     } else {
                         _scope.comments = [];
                         _scope.JsonComments = [];
-                        res.render('pages/product', _scope);
+                        // similar 
+                        product.getSimilar(req.params.productId).then(function (_similarList) {
+                            if (_similarList.code == 100) {
+                                console.log(_similarList.data);
+                                _scope.similarList = _similarList.data;
+                                _scope.JsonSimilarList = JSON.stringify(_similarList.data);
+
+                                res.render('pages/product', _scope);
+                            } else {
+                                _scope.similarList = [];
+                                _scope.JsonSimilarList = [];
+                                res.render('pages/product', _scope);
+                            }
+                        }).catch(function (err) {
+                            //console.log(_err);
+                            _scope.similarList = [];
+                            _scope.JsonSimilarList = [];
+                            res.render('pages/product', _scope);
+                        });
                     }
+
                 }).catch(function (err) {
                     //console.log(_err);
                     _scope.comments = [];
                     _scope.JsonComments = [];
+                    _scope.similarList = [];
+                    _scope.JsonSimilarList = [];
                     res.render('pages/product', _scope);
                 });
 
@@ -190,12 +229,16 @@ module.exports = function (app) {
             else {
                 _scope.product = [];
                 _scope.JsonProductName = "";
+                _scope.similarList = [];
+                _scope.JsonSimilarList = [];
                 res.render('pages/product', _scope);
             }
         }).catch(function (_err) {
             //console.log(_err);
             _scope.product = [];
             _scope.JsonProductName = "";
+            _scope.similarList = [];
+            _scope.JsonSimilarList = [];
             res.render('pages/product', _scope);
         });
 

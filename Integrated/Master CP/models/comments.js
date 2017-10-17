@@ -211,25 +211,24 @@ module.exports = {
                 }
                 else {
 
+                        var _tenItems = [];
 
-                    var _tenItems = [];
+                        _tenItems = lst.slice(_key * 10, (_key + 1) * 10);
 
-                    _tenItems = lst.slice(_key * 10, (_key + 1) * 10);
+                        if (_tenItems.length <= 0) {
+     console.log(_tenItems.length)
+                            resolve({
+                                code: 21,
+                                data: "No comments here"
+                            });
+                        }
+                        else {
+                            resolve({
+                                code: 100,
+                                data: _tenItems
+                            });
 
-                    if (_tenItems.length <= 0) {
-
-                        resolve({
-                            code: 101,
-                            data: "No comments here"
-                        });
-                    }
-                    else {
-                        resolve({
-                            code: 100,
-                            data: _tenItems
-                        });
-
-                    }
+                        }
 
                 }
 

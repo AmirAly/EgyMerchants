@@ -14,6 +14,13 @@
     };
 
     $scope.currentStore = JSON.parse((window.storeObject).replace(/&quot;/g, '"'));
+    console.log($scope.currentStore);
+    if ($scope.currentStore.Contacts.length == 0) {
+        $scope.currentStore.Contacts = [
+            { Label: 'Facebook', Value: '' },
+            { Label: 'Twitter', Value: '' }
+        ];
+    }
 
     $scope.preload();
 
@@ -53,16 +60,18 @@
     };
 
 
-    $scope.currentStore.Contacts = [
-        { Label: 'Facebook', Value: 'https://www.facebook.com/TwitterInc/' },
-        { Label: 'Twitter', Value: '@Twitter' }
-    ];
+
     $scope.contactData = {};
 
     $scope.addContactData = function () {
         $scope.currentStore.Contacts.push($scope.contactData);
         console.log($scope.currentStore.Contacts);
         $scope.contactData = {};
+    }
+
+    $scope.removeContactData = function (_index) {
+        if (_index > -1) 
+            $scope.currentStore.Contacts.splice(_index, 1);
     }
 
 });

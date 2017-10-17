@@ -48,7 +48,7 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Store/EditProfile', function (req, res) {
-        StoreLogic.editProfile(req.body._id, req.body.Email, req.body.City, req.body.Address, req.body.Country, req.body.Description, req.body.Imgs, req.body.ProfilePicture, req.body.CoverPhoto).then(function (result) {
+        StoreLogic.editProfile(req.body._id, req.body.Email, req.body.City, req.body.Address, req.body.Country, req.body.Description, req.body.Imgs, req.body.ProfilePicture, req.body.CoverPhoto,req.body.Contacts).then(function (result) {
             res.json(result );
         }, function (err) {
             res.json(err);
@@ -120,7 +120,9 @@ module.exports = function (app, express) {
     api.get('/Store/SetToActive/:_storeId', function (req, res) {
         StoreLogic.setToActive(req.params._storeId).then(function (result) {
             console.log(req.params._storeId)
-            res.redirect("https://egymarket.herokuapp.com");
+            res.redirect("https://storecp.herokuapp.com");
+           
+            
         }, function (err) {
             res.json(err);
         });
@@ -465,13 +467,16 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-    //api.get('/Comment/getByItem/:_itemId', function (req, res) {
-    //    CommentLogic.getByItem(req.params._itemId).then(function (result) {
-    //        res.json(result);
-    //    }, function (err) {
-    //        res.json(err);
-    //    });
-    //})
+    
+    api.get('/Comment/SeeMore/:_itemId/:_keyword', function (req, res) {
+        CommentLogic.getTenItems(req.params._itemId,req.params._keyword).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    
+
 
     //notifications api calls
     api.get('/Notification/GetUnRead/:_userid', function (req, res) {

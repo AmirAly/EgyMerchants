@@ -4100,7 +4100,7 @@ footer {
                 height: 200px;
                 display: flex;
                 justify-content: center;
-                background:#fff;
+                background: #fff;
             }
 
             .card .card-header.card-chart + .content h4 {
@@ -5786,7 +5786,7 @@ footer {
 
 .ui-sortable-placeholder {
     border: 2px dashed #3c4858;
-    visibility:visible !important;
+    visibility: visible !important;
 }
 
 i.fa.fa-twitter-square {
@@ -5799,4 +5799,18 @@ i.fa.fa-facebook-square {
     font-size: 40px;
     padding: 25px;
     color: #4267b2;
+}
+
+.pageProfile .fa-times {
+    color: red;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.pageProfile .alignRow {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin: 5px;
+    height: 60px;
 }
