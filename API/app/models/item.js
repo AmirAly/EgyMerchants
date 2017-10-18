@@ -23,11 +23,6 @@ var Item = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: "Please add store id"
-    },
-    User: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: "Please add store id"
     }
 
 });

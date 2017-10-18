@@ -3,9 +3,14 @@
     $scope.init = function (_isoCode, _itemId) {
         $rootScope.IsoCode = _isoCode;
 
-        console.log(window.commentObject);
+        console.log(window.commentObject); 
         $scope.commentsList = JSON.parse(window.commentObject);
         console.log($scope.commentsList);
+
+        console.log(window.itemSimilar);
+        $scope.similarList = JSON.parse(window.itemSimilar);
+        console.log($scope.similarList);
+
 
         $scope.itemName = JSON.parse(window.itemName);
 

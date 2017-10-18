@@ -40,7 +40,10 @@ module.exports = {
                                         });
                                     else {
                                         console.log("here")
-                                        var link ="http://localhost:8007/Store/SetToActive/"+_newStore._id;
+                                        var link =" https://egym.herokuapp.com/Store/SetToActive/"+_newStore._id;
+                                        
+                                       
+                                        
                                         console.log(_newStore._id);
                                         var data = {
                                             to: _newStore.Email,
