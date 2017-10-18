@@ -438,11 +438,11 @@ mongoose.connect(db.url, function (err) {
 // ItemLogic.edit(req.body._id, req.body.Name, req.body.Description, req.body.Imgs, req.body.Price, req.body.PriceBeforeSale, req.body.Badges,req.body.Tags).then(function (result) {
     
     
-// gallery.edit("59466188734d1d59b789551e", "For WOMEN collection", "req.body.Description", "http://html.com/wp-content/uploads/very-large-flamingo.jpg").then(function (result) {
-//     console.log(result);
-// }, function (err) {
-//     console.log(err);
-// });
+gallery.edit("59e71dbc9bc6940012ef7d98", "Dvid Beckham", "Thi gallery is just found in City Stars branch", "http://html.com/wp-content/uploads/very-large-flamingo.jpg").then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
 // var _newGallery = new galleryschema({
 //      "59d257104dcbcb1a546be3c7",
 //      "classic gallery",
@@ -450,6 +450,7 @@ mongoose.connect(db.url, function (err) {
 //     "594660e5734d1d59b7895502"
   
 //  });
+
 // // gallery.add(_newGallery).then(function (result) {
 // //    console.log(result);
 // // }, function (err) {
