@@ -1,131 +1,66 @@
 <!-- Social widgets -->
-<section class="social-widgets hidden-xs" ng-hover="loadSocialData()">
-  <ul class="items">
-    <li class="item item-01 facebook">
-      <a href="/social/facebook.html" class="tab-icon">
-        <span class="icon-facebook-3"></span>
-      </a>
-      <div class="tab-content">
-        <div class="title">Facebook</div>
-        <div class="loading">
-          <!--<img src="/images/ajax-loader.gif" class="ajaxloader" alt="loader">-->
+<div ng-controller="socialController">
 
-          <div class="fb-like-box" data-href="https://www.facebook.com/AppoutLLC" data-width="240" data-height="240" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="true"></div>
 
-          <!-- Facebook Api -->
-          <div id="fb-root"></div>
-          <script>
-            (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_EN/all.js#xfbml=1&appId=469510423153590";
-            fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-          </script>
-          <!-- //end Facebook Api -->
-        </div>
-      </div>
-    </li>
-    <li class="item item-02 twitter">
-      <a href="/social/twitter.html" class="tab-icon">
-        <span class="icon-twitter-3"></span>
-      </a>
-      <div class="tab-content">
-        <div class="title">Twitter feeds</div>
-        <div class="loading">
-          <div class="twitter-widget">
-            <a class="twitter-timeline" href="https://twitter.com/zahra_elomr">Tweets by zahra_elomr</a>
-            <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <section class="social-widgets hidden-xs" >
+    <ul class="items">
+      <li class="item item-01 facebook">
+        <a href="/social/facebook.html" class="tab-icon">
+          <span class="icon-facebook-3"></span>
+        </a>
+        <div class="tab-content">
+          <div class="title">Facebook</div>
+          <div class="loading">
+            <!--<img src="/images/ajax-loader.gif" class="ajaxloader" alt="loader">-->
+
+            <div class="fb-like-box" data-href="" data-width="240" data-height="240" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="true"></div>
+
+            <!-- Facebook Api -->
+            <div id="fb-root"></div>
+           
+            <!-- //end Facebook Api -->
           </div>
         </div>
-      </div>
-    </li>
-    <li class="item item-03 twitter">
-      <a href="/social/googlemap.html" class="tab-icon">
-        <span class="icon-vcard"></span>
-      </a>
-      <div class="tab-content">
-        <div class="title">Find us</div>
-        <div class="loading">
-          <!--<img src="/images/ajax-loader.gif" class="ajaxloader" alt="loader">-->
-          <div class="twitter-widget contacts-widget">
-            <ul>
-              <li>
-                <b>Address</b>&nbsp;:&nbsp;<span>End of Al-ashraf st., El imam tower, Tanta, Egypt.</span>
-              </li>
-              <li>
-                <b>Phone</b>&nbsp;:&nbsp;<span>+2 (012) 111 11111</span>
-              </li>
-              <li>
-                <b>Mobile</b>&nbsp;:&nbsp;<span>+2 (012) 222 22222</span>
-              </li>
-            </ul>
+      </li>
+
+      <li class="item item-02 twitter">
+        <a href="/social/twitter.html" class="tab-icon">
+          <span class="icon-twitter-3"></span>
+        </a>
+        <div class="tab-content">
+          <div class="title">Twitter feeds</div>
+          <div class="loading">
+            <div class="twitter-widget">
+              <a class="twitter-timeline" href="">Tweets</a>
+              <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
           </div>
         </div>
-      </div>
-    </li>
-  </ul>
-</section>
-<!-- //end Social widgets -->
+      </li>
 
-<script>
+      <li class="item item-03 twitter">
+        <a href="/social/googlemap.html" class="tab-icon">
+          <span class="icon-vcard"></span>
+        </a>
+        <div class="tab-content">
+          <div class="title">Find us</div>
+          <div class="loading">
+            <!--<img src="/images/ajax-loader.gif" class="ajaxloader" alt="loader">-->
+            <div class="twitter-widget contacts-widget">
+              <ul>
+                <li ng-repeat="contact in Contacts">
+                  <b>{{contact.Label}}</b>&nbsp;:&nbsp;<span>{{contact.Value}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <!-- //end Social widgets -->
 
-  jQuery(function ($) {
-  "use strict";
-  var socialItems = $('.social-widgets .items .item');
-  var counter = 0;
-  socialItems.each(function () {
-  counter++;
-  var itemclass = "item-0" + counter;
-  $(this).addClass(itemclass)
-  });
-  });
+  
 
-  jQuery(function ($) {
-  "use strict";
-  var loadmap = $(".social-widgets .item a");
-  loadmap.click(function (e) {
-  e.preventDefault()
-  });
-  loadmap.hover(function (e) {
-  if (!$(this).parent().hasClass("load")) {
-  var loadcontainer = $(this).parent().find(".loading");
-  $.ajax({
-  url: $(this).attr("href"),
-  cache: false,
-  success: function (data) {
-  setTimeout(function () {
-  //loadcontainer.html(data)
-  }, 1000)
-  }
-  });
-  $(this).parent().addClass("load")
-  }
-  })
-  });
 
-  jQuery(function ($) {
-  "use strict";
-  $(".social-widgets .item").each(function () {
-  var $this = $(this),
-  timer;
-  $this.on("mouseenter", function () {
-  var $this = $(this);
-  if (timer) clearTimeout(timer);
-  timer = setTimeout(function () {
-  $this.addClass("active")
-  }, 200)
-  }).on("mouseleave", function () {
-  var $this = $(this);
-  if (timer) clearTimeout(timer);
-  timer = setTimeout(function () {
-  $this.removeClass("active")
-  }, 100)
-  }).on("click", function (e) {
-  e.preventDefault()
-  })
-  })
-  });
-
-</script>
+</div>

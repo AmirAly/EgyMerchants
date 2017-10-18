@@ -100,8 +100,8 @@ module.exports = {
             port: 587,
             requiresAuth: true,
             auth: {
-                user: 'ahmedelmonshareh@gmail.com',
-                pass: 'allah1malo42'
+                user: 'a.elmonshareh@appout.co',
+                pass: 'a.2017'
             }
         });
         var mailOptions = {
