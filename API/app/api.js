@@ -451,13 +451,13 @@ module.exports = function (app, express) {
             res.json(err);
         });
 
-        api.get('/Message/SeeMore/:_UserTo/:_UserFrom/:_keyword', function (req, res) {
-            MessageLogic.getTenMessages(req.params._UserTo , req.params._UserFrom , req.params._keyword).then(function (result) {
-                res.json(result);
-            }, function (err) {
-                res.json(err);
-            });
-        })
+    })
+    api.get('/Message/SeeMore/:_UserTo/:_UserFrom/:_keyword', function (req, res) {
+        MessageLogic.getTenMessages(req.params._UserTo , req.params._UserFrom , req.params._keyword).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
     })
     api.put('/Message/UpdateStatus', function (req, res) {
         MessageLogic.updateStatus(req.body._id).then(function (result) {
