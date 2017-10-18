@@ -420,6 +420,13 @@ module.exports = function (app, express) {
             res.json(err);
         });
     });
+    api.get('/Expo/GetStore/:_expoId', function (req, res) {
+        ExpoLogic.getStores(req.params._expoId).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    });
 
     //message api calls
     api.post('/Message/Send', function (req, res) {
@@ -443,6 +450,14 @@ module.exports = function (app, express) {
         }, function (err) {
             res.json(err);
         });
+
+        api.get('/Message/SeeMore/:_UserTo/:_UserFrom/:_keyword', function (req, res) {
+            MessageLogic.getTenMessages(req.params._UserTo , req.params._UserFrom , req.params._keyword).then(function (result) {
+                res.json(result);
+            }, function (err) {
+                res.json(err);
+            });
+        })
     })
     api.put('/Message/UpdateStatus', function (req, res) {
         MessageLogic.updateStatus(req.body._id).then(function (result) {
@@ -487,7 +502,14 @@ module.exports = function (app, express) {
         });
     })
 
-
+    api.get('/Notification/SeeMore/:_userId/:_keyword', function (req, res) {
+        NotificationLogic.getTenNotifications(req.params._userId,req.params._keyword).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    
 
 //    api.get('/User/AllRatedStores, function (req, res) {
       

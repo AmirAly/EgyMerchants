@@ -200,7 +200,7 @@ module.exports = {
     },
     getTenItems: function (_itemId, _key) {
         return new Promise(function (resolve, reject) {
-            Schema.find({ "Item": _itemId }, function (err, lst) {
+            Schema.find({ "Item": _itemId }).sort({ CommentDate: -1 }).populate('User', 'Type Name ProfilePicture').exec (function (err, lst) {
                 // console.log(`list ${lst.length}`)
                 if (err) {
                     reject({
@@ -213,10 +213,8 @@ module.exports = {
 
                         var _tenItems = [];
 
-                        _tenItems = lst.slice(_key * 10, (_key + 1) * 10);
-
+                        _tenItems = lst.slice(parseInt(_key )* 10,(parseInt(_key) + 1) * 10);
                         if (_tenItems.length <= 0) {
-     console.log(_tenItems.length)
                             resolve({
                                 code: 21,
                                 data: "No comments here"
@@ -232,7 +230,7 @@ module.exports = {
 
                 }
 
-            }).sort({ CommentDate: -1 });
+            })
 
         });
     }

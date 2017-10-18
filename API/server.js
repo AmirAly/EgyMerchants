@@ -122,6 +122,11 @@ mongoose.connect(db.url, function (err) {
 //}, function (err) {
 //    console.log(err);
 //});
+// comment.getTenItems("5980671c6e1f6f0b30dc4377",1).then(function (result) {
+//    console.log(result);
+// }, function (err) {
+//    console.log(err);
+// });
 //notification.updateStatus("598c41c201a9fb1220b10396").then(function (result) {
 //    console.log(result);
 //}, function (err) {
