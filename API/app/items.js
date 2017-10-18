@@ -327,26 +327,41 @@ module.exports = {
     getSimilar: function (_itemId) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ '_id': _itemId }, '', function (err, Obj) {
-               
+           
                 if (err)
                     reject({ code: 1, data: err });
                 else if (Obj){
-                  
-                        if(Obj.Tags.length<=0){
-                        var arr=Obj.Name.split(" ");
-                         
-                   Obj.Tags=arr;
-                   Obj.save(function(err,_result){
+                   if(!Obj.Tags){
+                    
+                            Obj.Tags=  Obj.Name.split(" ");
+                            Obj.save(function(err,_result){
                                     if (err)
                                     reject({ code: 1, data: err });
                                     else
-                                    Schema.find( { Tags: { $in: _result.Tags }, '_id': { $ne: _itemId }} , function (err, _lst) {
+                                   
+                                    var array =_result.Tags.split(',');
+
+                                //  //
+                                //     Schema.mapReduce(
+                                //         function() {
+                                //             this.Tags.split(",").forEach(function(Tags) {
+                                //                 emit(Tags,someData);
+                                //             });
+                                //         },
+                                //         function(key,results) {
+                                //           
+                                //         },
+                                //         { "out": { "inline": 1 } }
+                                //     )
+                                //   //
+
+
+                                    Schema.find( { Tags: { $in: array }, '_id': { $ne: _itemId }} , function (err, _lst) {
                                         if (err)
                                         reject({ code: 0, data: err });  
                                         else{
-    
-                                            
                                             resolve({code:100,data: _lst});
+                                            
                                         
                                         }
                                                     
@@ -355,8 +370,10 @@ module.exports = {
                                     })   
 
                         }
-                        else
-                            Schema.find( { Tags: { $in: Obj.Tags }, '_id': { $ne: _itemId }} , function (err, _lst) {
+                        else{
+                        var _arr=Obj.Tags.split(",");
+                        
+                            Schema.find( { Tags: { $in: _arr }, '_id': { $ne: _itemId }} , function (err, _lst) {
                                     if (err)
                                     reject({ code: 0, data: err });  
                                     else{
@@ -368,7 +385,7 @@ module.exports = {
                                                 
                                     });
         
-      
+                    }
                 }
                 else{
                     resolve({code:21,data:"This item doesn't exist"});

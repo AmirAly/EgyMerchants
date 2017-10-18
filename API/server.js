@@ -287,7 +287,7 @@ mongoose.connect(db.url, function (err) {
 // }, function (err) {
 //    console.log(err);
 // });
-// store.getById("595b80f374be602d00a76050").then(function (result) {
+// store.getById("59e715769bc6940012ef7d91").then(function (result) {
 //    console.log(result);
 // }, function (err) {
 //    console.log(err);
@@ -496,7 +496,9 @@ mongoose.connect(db.url, function (err) {
 // });
 
 
-//     var _newstore = new userschema({"Name":" elmonsh","Email":"ahmedelmonshareh@gmail.com","Password":"123456","ProfilePicture":"https://tammypatterson.files.wordpress.com/2011/09/img_2852c_lg.jpg","CoverPhoto":"https://tammypatterson.files.wordpress.com/2011/09/img_2852c_lg.jpg"
+//     var _newstore = new userschema({"Name":" NBC","Email":"NBC@mail.com.com","Password":"123456","ProfilePicture":"https://tammypatterson.files.wordpress.com/2011/09/img_2852c_lg.jpg","CoverPhoto":"https://tammypatterson.files.wordpress.com/2011/09/img_2852c_lg.jpg"
+
+
     
     
 // });
@@ -564,7 +566,7 @@ mongoose.connect(db.url, function (err) {
 //    "59e4c98e0c7eba32d43f7858"
    
 //   ).then(function (result) {
-//           console.log(result.data);
+//           console.log(result);
 //       }, function (err) {
 //           console.log(err);
 //       });
