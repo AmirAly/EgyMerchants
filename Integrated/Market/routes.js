@@ -81,6 +81,7 @@ module.exports = function (app) {
             console.log(_data);
             if (_data.code == 100) {
                 _scope.store = _data.data;
+                _scope.storeJson = JSON.stringify(_data.data);
                 product.getByStore(req.params.storeId).then(function (_galleriesData) {
                     if (_galleriesData.code == 100) {
                         if (_galleriesData.data) {
@@ -121,6 +122,7 @@ module.exports = function (app) {
             }
             else {
                 _scope.store = {};
+                _scope.storeJson = {};
                 _scope.Galleries = [];
                 _scope.GalleriesJson = [];
                 _scope.featured = [];
@@ -130,6 +132,7 @@ module.exports = function (app) {
         }).catch(function (_err) {
             console.log(_err);
             _scope.store = {};
+            _scope.storeJson = {};
             _scope.Galleries = [];
             _scope.GalleriesJson = [];
             _scope.featured = [];

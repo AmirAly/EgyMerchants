@@ -1,6 +1,5 @@
 ﻿app.controller("expoController", function ($scope, $rootScope, $timeout, $filter) {
-    //prepare social plugins
-
+    //prepare social plugins (default data)
     $rootScope.Contacts = [{ Label: 'Address', Value: 'End of Al-ashraf st., El imam tower, Tanta, Egypt.' },
    { Label: 'Phone', Value: '+2 (012) 111 11111' },
    { Label: 'Mobile', Value: '+2 (012) 222 22222' },

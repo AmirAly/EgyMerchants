@@ -76,7 +76,6 @@ module.exports = {
                                     });
                                 }
                                 else {
-                                    console.log(obj)
                                   
                                     gallery.DisplayPicture = "";
                                     gallery.Title = _title;
@@ -96,7 +95,7 @@ module.exports = {
                                                 else
                                                     resolve({
                                                         code: 100,
-                                                        data: "This galleryis  updated successfully"
+                                                        data: "This gallery is  updated successfully"
                                                     });
                                             })
                                         })
@@ -120,7 +119,7 @@ module.exports = {
                         })
                     }
                     else {
-                        reject({ code: 21, data: "No results"})
+                        reject({ code: 21, data: "No gallery with this name"})
                     }
                 }
             })

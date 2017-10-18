@@ -3,6 +3,7 @@
 
 <script>
 var GalleriesJson = <%-JSON.stringify(GalleriesJson)%>;
+var storeJson = <%-JSON.stringify(storeJson)%>
 </script>
 
 <div class="storePage"  ng-controller="storeController"> <!--style="background-image: url(<%= store.CoverPhoto %>);"-->
@@ -21,7 +22,7 @@ var GalleriesJson = <%-JSON.stringify(GalleriesJson)%>;
                             </div>
                         </div>
 						
-                        <div class="dvStoreInfo" title="<%= store.Name %> rate is <%= store.Average %> star">
+                        <div class="dvStoreInfo" title="<%= store.Name %> rate is <%= store.Average %> star{{RateValue}}">
                             <h1><%= store.Name %></h1>
                             <span class="dvRating">
 								<span class="rating golden" data-default-rating="<%= store.Average %>" data-step="0.1"  ng-disabled="isRatedBefore" ></span>
@@ -29,7 +30,7 @@ var GalleriesJson = <%-JSON.stringify(GalleriesJson)%>;
                         </div>
 
                         <div class="dvFlagContainer">
-                            <img alt="Flag" title="store's country flag" class="img-responsive" src="https://egym.herokuapp.com/<%= store.Country %>.png" />
+                            <img alt="Flag" title="<%= store.Country %>" class="img-responsive" src="https://egym.herokuapp.com/<%= store.Country %>.png" />
                         </div>
                     </div>
                 </div>
