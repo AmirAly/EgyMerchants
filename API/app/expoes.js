@@ -245,17 +245,29 @@ module.exports = {
                     if (Obj) {
                         if (Obj.Floors) {
                             var expos = [];
+                            var res=[];
                             expos.push(Obj);
                             module.exports.filterByExpiryDate(expos).then(function (data) {
                                 if (data.code == 100) {
-                                    Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate('Floors.Coordinates.Store', '_id Name Type Badges Status ProfilePicture').exec(function (err, expo) {
+                                    Schema.findOne({ '_id': _id, 'Status': 'Active' }, 'Floors.Coordinates.Store').populate('Floors.Coordinates.Store', '_id Name Type Badges Status ProfilePicture').exec(function (err, expo) {
                                         if (err)
                                             reject({
                                                 code: 2,
                                                 data: err
                                             });
                                         else {
-                                            resolve({ code: 100, data: expo })
+                                            var i=0;
+                                            _.each(expo.Floors, function (floor) {
+                                                _.each(floor.Coordinates, function (coordinate) {i++;});
+                                            });
+                                            _.each(expo.Floors, function (floor) {
+                                                _.each(floor.Coordinates, function (coordinate) {
+                                                     res.push(coordinate.Store);
+                                                     if(res.length+1==i)
+                                            resolve({ code: 100, data: res })
+                                            
+                                                })
+                                            })
                                         }
                                     })
                                 }
@@ -265,7 +277,7 @@ module.exports = {
                                 })
                             });
                         }
-                        else resolve({ code: 100, data: Obj })
+                        else resolve({ code: 100, data: res })
                     }
                     else {
                         reject({

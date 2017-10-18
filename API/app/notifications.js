@@ -90,6 +90,7 @@ module.exports = {
 getTenNotifications: function (_userId, _key) {
     return new Promise(function (resolve, reject) {
         Schema.find({ "User": _userId }, function (err, lst) {
+            console.log(lst)
             console.log(`list ${lst.length}`)
             if (err) {
                 reject({
@@ -103,7 +104,7 @@ getTenNotifications: function (_userId, _key) {
 
                 var _tenNotifications = [];
 
-                _tenNotifications = lst.slice(_key * 10, (_key + 1) * 10);
+                _tenNotifications = lst.slice(parseInt(_key )* 10,(parseInt(_key) + 1) * 10);
 
                 if (_tenNotifications.length <= 0) {
 
