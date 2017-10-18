@@ -7,7 +7,7 @@ app.run(function ($rootScope, $timeout, socket) {
     // ================
     function addUser() {
         if ($rootScope.userObject) {
-            console.log('enter ' + $rootScope.userObject._id);
+            //console.log('enter ' + $rootScope.userObject._id);
             socket.emit('adduser', $rootScope.userObject._id);
         }
     }
@@ -16,7 +16,7 @@ app.run(function ($rootScope, $timeout, socket) {
     }, 5000);
 
     socket.on('newmsg', function (_data) {
-        console.log('new msg ***************************************');
+        //console.log('new msg ***************************************');
 
         $rootScope.newMsgReceived = true;
         $timeout(function () {
@@ -36,9 +36,9 @@ app.run(function ($rootScope, $timeout, socket) {
     });
 
     socket.on('ping', function (data) {
-        console.log("Ping received from server");
+        //console.log("Ping received from server");
         if (data && $rootScope.loggedUser) {
-            console.log(data.beat);
+            //console.log(data.beat);
             socket.emit('pong', "pong");
             socket.emit('adduser', $rootScope.userObject._id);
         }
@@ -50,7 +50,7 @@ app.run(function ($rootScope, $timeout, socket) {
     });
 
     //$rootScope.addUserToSockets = function () {
-    //    console.log('enter');
+    //    //console.log('enter');
     //    //if (typeof socket !== 'undefined') {
     //        socket.emit('adduser', $rootScope.userObject._id);
     //    //}

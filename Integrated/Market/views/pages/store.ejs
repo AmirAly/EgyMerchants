@@ -24,12 +24,19 @@ var storeJson = <%-JSON.stringify(storeJson)%>
 						
                         <div class="dvStoreInfo" title="<%= store.Name %> rate is <%= store.Average %> star{{RateValue}}">
                             <h1><%= store.Name %></h1>
-                            <span class="dvRating">
+                            <span class="dvRating" ng-show="false">
 								<span class="rating golden" data-default-rating="<%= store.Average %>" data-step="0.1"  ng-disabled="isRatedBefore" ></span>
                             </span>
+
+						    <input  id="input-id" name="input-name" type="number" class="rating" step="1" data-size="xs">
+
+
                         </div>
 
-                        <div class="dvFlagContainer">
+
+                       
+					   
+					    <div class="dvFlagContainer">
                             <img alt="Flag" title="<%= store.Country %>" class="img-responsive" src="https://egym.herokuapp.com/<%= store.Country %>.png" />
                         </div>
                     </div>

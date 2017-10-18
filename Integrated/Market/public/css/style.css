@@ -2838,3 +2838,8 @@ However, delay the fade out process for 2.5 seconds */
     padding-bottom: 10px;
     color: #fff;
 }
+
+
+.rating-xs{
+    line-height:2;
+}

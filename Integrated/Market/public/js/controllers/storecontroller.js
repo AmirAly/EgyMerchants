@@ -13,17 +13,51 @@
                 $scope.exist = $filter('filter')($scope.storeJson.Rate, { User: $rootScope.userId })[0];
                 if ($scope.exist) {
                     $scope.isRatedBefore = true;
+                    console.log($scope.isRatedBefore);
                     $scope.RateValue = ", You rated this store with " + $scope.exist.Value;
+
+                    $("#input-id").rating({ step: 0.1 });
+                    $('#input-id').rating('update', $scope.storeJson.Average);
+                    $('#input-id').rating('refresh', { disabled: true, showClear: false, showCaption: true });
+
+                    $('#input-id').on('rating.change', function (event, value, caption) {
+                        console.log(value);
+                        console.log(caption);
+                        $scope.addRate(value);
+                    });
+                }
+                else {
+                    $scope.isRatedBefore = false; // allow rate
+                    console.log($scope.isRatedBefore);
+                    $("#input-id").rating({ step: 1 });
+                    $('#input-id').rating('update', $scope.storeJson.Average);
+                    $('#input-id').rating('refresh', { disabled: false, showClear: false, showCaption: true });
+
+                    $('#input-id').on('rating.change', function (event, value, caption) {
+                        console.log(value);
+                        console.log(caption);
+                        $scope.addRate(value);
+                    });
                 }
             }
             else {
-               $scope.isRatedBefore = false; // get users array and check me
+                $scope.isRatedBefore = false; // get users array and check me
+                console.log($scope.isRatedBefore);
+                $("#input-id").rating({ step: 1 });
+                $('#input-id').rating('update', $scope.storeJson.Average);
+                $('#input-id').rating('refresh', { disabled: false, showClear: false, showCaption: true });
+
+                $('#input-id').on('rating.change', function (event, value, caption) {
+                    console.log(value);
+                    console.log(caption);
+                    $scope.addRate(value);
+                });
             }
-
             //prepare social plugins
-            $rootScope.FacebookLink = $scope.storeJson.Contacts[0].Value;
-            $rootScope.TwitterLink = $scope.storeJson.Contacts[1].Value;
-
+            if ($scope.storeJson.Contacts.length > 0) {
+                $rootScope.FacebookLink = $scope.storeJson.Contacts[0].Value;
+                $rootScope.TwitterLink = $scope.storeJson.Contacts[1].Value;
+            }
             jQuery(function ($) {
                 "use strict";
                 $rootScope.TwitterLink = "https://twitter.com/TwitterVideo";
@@ -94,20 +128,10 @@
 
 
             });
-
         }
         else {
             $scope.storeJson = [];
         }
-
-
-        
-
-
-
-        
-
-
 
         if (window.GalleriesJson.length > 0) {
             $scope.GalleriesJson = JSON.parse(window.GalleriesJson);
@@ -140,48 +164,29 @@
     }
 
 
-
-
-    var ratings = document.getElementsByClassName('rating');
-    for (var i = 0; i < ratings.length; i++) {
-        var r = new SimpleStarRating(ratings[i]);
-        ratings[i].addEventListener('rate', function (e) {
-            $scope.isRatedBefore = true;
-            console.log('Rating: ' + e.detail);
-
-            var req = {
-                method: 'put',
-                url: '/User/AddRating',
-                data: {
-                    _userId: $rootScope.userId,
-                    _storeId: $scope.storeId,
-                    _value: e.detail
-                }
+    $scope.addRate = function (_val) {
+        var req = {
+            method: 'put',
+            url: '/User/AddRating',
+            data: {
+                _userId: $rootScope.userId,
+                _storeId: $scope.storeId,
+                _value: _val
             }
-            console.log(req);
-            API.execute(req).then(function (_res) {
-                console.log(_res);
-                if (_res.data.code == 100) {
-                    console.log('rate added');
-                    location.reload(true);
-                } else {
-                    console.log('rate NOT added');
-                }
-
-            });
-
+        }
+        console.log(req);
+        API.execute(req).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 100) {
+                console.log('rate added');
+                location.reload(true);
+            } else {
+                console.log('rate NOT added');
+            }
 
         });
     }
 
-
-
-
-
-    //set new rate
-    //$scope.rateFunction = function (rating) {
-    //    console.log('Rating selected: ' + rating);
-    //};
 
     $scope.addToVisited = function (_storeId) {
         $scope.storeData = {};

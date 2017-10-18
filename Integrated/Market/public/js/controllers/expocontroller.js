@@ -108,6 +108,29 @@
         floorsCounter = $scope.exposList[0].Floors.length;
 
         console.log($scope.exposList);
+
+
+        //$rootScope.loading = true;
+        for (var i = 0; i < $scope.exposList.length; i++) {
+            var req = {
+                method: 'get',
+                url: '/expo/getStores/' + $scope.exposList[i]._id,
+                data: {}
+            }
+            API.execute(req).then(function (_res) {
+                console.log(_res);
+                if (_res.data.code == 100) {
+                    $scope.exposList[i].stores = _res.data.data;
+                } 
+            });
+        }
+
+        //$rootScope.loading = false;
+
+
+
+
+
         // set which activeFloorCounter for every expo
         angular.forEach($scope.exposList, function (expo) {
             var expoId = expo._id;

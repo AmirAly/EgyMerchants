@@ -61,6 +61,26 @@
 
     }
 
+    $scope.seeMoreComments = function () {
+        $rootScope.loading = true;
+        var req = {
+            method: 'get',
+            url: '/Notification/GetUnRead/' + $rootScope.userId,
+            data: {}
+        }
+        API.execute(req).then(function (_res) {
+            //console.log(_res);
+            if (_res.data.code == 100) {
+
+                $rootScope.loading = false;
+            } 
+        });
+    }
+
+
+
+
+
     $scope.fbshareCurrentPage = function (_itemName) {
         window.open("https://www.facebook.com/sharer/sharer.php?u=" + escape(window.location.href) + "&quote=" + encodeURIComponent(_itemName) + "&title=" + document.title, '',
     'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');

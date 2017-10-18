@@ -170,7 +170,7 @@ module.exports = function (app) {
                 _scope.product = _product.data;
                 _scope.JsonProductName = JSON.stringify(_product.data.Name);
 
-                comment.getByItem(req.params.productId).then(function (_commentsList) {
+                comment.getTenItems(req.params.productId,0).then(function (_commentsList) {
                     if (_commentsList.code == 100) {
                         //console.log(_commentsList.data);
                         _scope.comments = _commentsList.data;

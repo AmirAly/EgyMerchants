@@ -5,7 +5,7 @@ app.factory('API', function ($http) {
         name: 'API',
         execute: function (_req) {
             _req.url = _url + _req.url;
-            console.log(_req.url);
+            //console.log(_req.url);
             _req.headers = { 'Content-Type': 'application/json' };
             var result = $http(_req);
             return result;
@@ -16,10 +16,10 @@ app.factory('API', function ($http) {
 
 app.factory('socket', ['$rootScope', function ($rootScope) {
     var socket = io.connect();
-    console.log('enterrrrrrrrrrrr Sockets connect');
+    //console.log('enterrrrrrrrrrrr Sockets connect');
     return {
         on: function (eventName, callback) {
-            console.log('OOOOOOOOONNN');
+            //console.log('OOOOOOOOONNN');
             socket.on(eventName, function () {
                 var args = arguments;
                 $rootScope.$apply(function () {
@@ -28,14 +28,14 @@ app.factory('socket', ['$rootScope', function ($rootScope) {
             });
         },
         emit: function (eventName, data, callback) {
-            console.log('EEMMIITT');
+            //console.log('EEMMIITT');
 
             socket.emit(eventName, data, function () {
                 var args = arguments;
-                console.log('enter emit');
+                //console.log('enter emit');
                 $rootScope.$apply(function () {
                     if (callback) {
-                        console.log(callback);
+                        //console.log(callback);
                         callback.apply(socket, args);
                     }
                 });

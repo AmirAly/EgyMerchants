@@ -94,6 +94,11 @@ module.exports = {
                         code: 23,
                         data: "This account is deleted"
                     });
+                    else if (Obj.Status == "Inactive")
+                    reject({
+                        code: 23,
+                        data: "Please, activate your account"
+                    });
                else
                     resolve({
                         code: 100,
@@ -187,7 +192,7 @@ setToActive:function(_storeId){
                                 else
                                     reject({
                                         code: 21,
-                                        data: "There is not store"
+                                        data: "This is not store"
                                     });
                             }
                         })
