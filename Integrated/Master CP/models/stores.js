@@ -301,7 +301,7 @@ setToActive:function(_storeId){
                             
                          }
                         }
-                        if (Obj.Status == "Suspended" || Obj.Status == "Deleted")
+                        if (Obj.Status == "Suspended" || Obj.Status == "Deleted" || Obj.Status == "Inactive")
                             resolve({
                                 code: 100,
                                 data: Obj

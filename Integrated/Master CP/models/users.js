@@ -79,6 +79,11 @@ module.exports = {
                         code: 23,
                         data: "This account is deleted"
                     });
+                    else if (Obj.Status == "Inactive")
+                    reject({
+                        code: 23,
+                        data: "Please, activate your account"
+                    });
                 else 
                     resolve({
                         code: 100,
@@ -292,106 +297,6 @@ else{
 })
 },
 
-// addRating:function(_userId,_storeId,_value){
-    
-//    return new Promise(function (resolve, reject) {
-//     Schema.findOne({"_id":_userId, "Status":"Active"},function(err,_obj){
-    
-//     if(!_obj){
-//         console.log(_obj)
-//         resolve({ code: 21, data:"No user found"});
-        
-//     }
-//     else{
-//       Schema.findOne({"_id":_userId,"Rate.Store":_storeId },function(err,_user){
-    
-//             if(err)
-//             reject({ code: 1, data: err});
-//             else  if(_user){
-//             console.log(_user);
-//             resolve({ code: 100, data: "You can't rate twice"});
-//             }
-//             else{
-            
-//                 Schema.findOne({"_id":_userId  },function(err,Obj){
-                                            
-//                                 if(err)
-//                                 reject({ code: 1, data: err});
-//                                 else
-//                                 {
-//                                 var _object={"Store":_storeId,"Value":_value};
-                            
-//                                 Obj.Rate.push(_object);
-
-//                                     Obj.save(function(err,res){
-//                                 if(err)  
-
-//                                 reject({ code: 1, data: err});
-//                                 else{
-//                                     Schema.find({"Rate.Store":_storeId},'Rate Name',function(err,_lst){
-                                        
-//                                         if(err)
-//                                         reject({ code: 1, data: err});
-
-//                                         else{
-//                                         var sum=[]; 
-//                                         var constant=0;
-                                        
-                                        
-//                                         for (var i=0 ; i< _lst.length; i++){
-//                                             for(var f = 0 ;f<_lst[i].Rate.length; f++)
-//                                             {
-//                                                 if(_lst[i].Rate[f].Store==_storeId)
-//                                                 sum =(_lst[i].Rate[f].Value);
-//                                             }
-//                                             constant+=sum;
-//                                         }
-                                        
-//                                         var average = constant/_lst.length;
-//                                         average=   average .toFixed(1) ;                      
-                         
-
-// getAllRatedStores:function(_userId){
-//     return new Promise(function (resolve, reject) {
-//   Schema.findOne({"_id":_userId , "Status":"Active"},'Rate.Store',function(err,_lst){
-//       console.log(_lst)
-    
-
-//     if(err){
-//     console.log("if");
-
-//     reject({ code: 1, data: err });
-//     }
-//    else if( _lst){
-//    console.log("else if");
-//     resolve({ code: 100, data: _lst });
-//    }
-//     else
-//     {
-//     console.log("else");
-//     resolve({ code: 21, data: 'User not found' });
-//     }
-//   });
-// });
-// }
-// };
-//                resolve({ code: 100, data: average});
-//                                         console.log(average)
-                                        
-//                                         }
-//                             }) ;
-                                
-//                                 resolve({ code: 100, data:res});
-//                                 }
-//                                 })
-//                                 }
-//                 })
-//                 }
-//     })
-// }
-// })
-
-// })
 addRating:function(_storeId,_userId,_value){
     return new Promise(function (resolve, reject) {
     Schema.findOne({"_id":_storeId,"Rate.User":_userId },function(err,_obj){
