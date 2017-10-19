@@ -214,19 +214,14 @@ module.exports = {
                         var _tenItems = [];
 
                         _tenItems = lst.slice(parseInt(_key )* 10,(parseInt(_key) + 1) * 10);
-                        if (_tenItems.length <= 0) {
-                            resolve({
-                                code: 21,
-                                data: "No comments here"
-                            });
-                        }
-                        else {
+                       
+                         
                             resolve({
                                 code: 100,
                                 data: _tenItems
                             });
 
-                        }
+                        
 
                 }
 

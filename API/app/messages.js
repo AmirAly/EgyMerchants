@@ -183,14 +183,7 @@ console.log(Msgs.length)
 _tenMessages = Msgs.slice(parseInt(_key )* 10,(parseInt(_key) + 1) * 10);
 
 
-                if (_tenMessages.length <= 0) {
 
-                    resolve({
-                        code: 101,
-                        data: "No comments here"
-                    });
-                }
-                else {
                     resolve({
                         code: 100,
                         data: _tenMessages
