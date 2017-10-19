@@ -33,18 +33,42 @@
 						  </a>
                         </li>
 
+
+
+
                      <% }); %>
 
                     </ul>
+
+
+					<ul>
+					
+						<li ng-show="notification" ng-class="{'unReadNotification': notification.Status == 'un read'}" ng-repeat="notification in notifications">
+                          <a href="/{{IsoCode}}/{{ notification.RedirectURL }}">
+						    <h6><span class="dvIcon glyphicon glyphicon-bell"></span><span> {{ notification.Text }} </span></h6>
+                            <div class="text-right"><span class="text-muted">{{ notification.NotificationDate | date:'MMM d, y @ h:mma' }}</span></div>
+						  </a>
+                        </li>
+					
+					</ul>
+
+
 					<% } else { %>
 					<p class="txtNoData"> No notifications found </p>
 					<% } %>
                 </div>
 
 
+				
                 
             </div>
             <!-- //end view -->
+
+             <% if(listNotifications.length > 0){ %>
+				<div class="txtMoreContainer">
+				   <a href="" ng-show="moreNotifications" class="dvSeeMore" ng-click="getMore()">See More</a>
+				</div>
+			 <% }; %>
 
         </section>
         <!-- //end Two columns content -->

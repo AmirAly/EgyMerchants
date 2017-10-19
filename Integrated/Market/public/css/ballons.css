@@ -8,6 +8,7 @@
     height: 125px;
     z-index: 2;
 }
+
     .balloon:hover {
         opacity: .7;
     }
@@ -24,9 +25,10 @@
         width: 0.2rem;
         animation: once-after 5s 1 ease-in-out forwards;
     }
-    @keyframes once-after {
+
+@keyframes once-after {
     0% {
-        transform:scale(1);
+        transform: scale(1);
         top: 124px;
         left: 58px;
     }
@@ -36,20 +38,20 @@
     }
 
     100% {
-        transform:scale(0.7);
+        transform: scale(0.7);
         top: 62px;
         left: 29px;
     }
 }
 
 
-    .balloon:nth-child(1) {
-        background: yellow;
-        background-size: cover;
-        background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
-        visibility: hidden;
-        animation: once-1 5s 1 ease-in-out forwards;
-    }
+.balloon:nth-child(1) {
+    background: yellow;
+    background-size: cover;
+    /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
+    visibility: hidden;
+    animation: once-1 5s 1 ease-in-out forwards;
+}
 
 @keyframes once-1 {
     0% {
@@ -85,7 +87,7 @@
 .balloon:nth-child(2) {
     background: blue;
     background-size: cover;
-    background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+    /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
     animation: once-2 5s 1 ease-in-out forwards;
     animation-delay: 0.2s;
 }
@@ -124,7 +126,7 @@
 .balloon:nth-child(3) {
     background: purple;
     background-size: cover;
-    background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+    /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
     visibility: hidden;
     animation: once-3 5s 1 ease-in-out forwards;
     animation-delay: 0.4s;
@@ -164,7 +166,7 @@
 .balloon:nth-child(4) {
     background: red;
     background-size: cover;
-    background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+    /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
     visibility: hidden;
     animation: once-4 5s 1 ease-in-out forwards;
     animation-delay: 0.6s;
@@ -204,7 +206,7 @@
 .balloon:nth-child(5) {
     background: cyan;
     background-size: cover;
-    background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+    /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
     visibility: hidden;
     animation: once-5 5s 1 ease-in-out forwards;
     animation-delay: 0.8s;
@@ -245,7 +247,7 @@
 .balloon:nth-child(6) {
     background: yellow;
     background-size: cover;
-    background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+    /*background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);*/
     visibility: hidden;
     animation: once-6 5s 1 ease-in-out forwards;
     animation-delay: 1s;
@@ -286,7 +288,7 @@
 .balloon:nth-child(7) {
     background: blue;
     background-size: cover;
-    background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+    /*background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);*/
     visibility: hidden;
     animation: once-7 5s 1 ease-in-out forwards;
     animation-delay: 1.2s;
@@ -326,7 +328,7 @@
 .balloon:nth-child(8) {
     background: purple;
     background-size: cover;
-    background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+    /*background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);*/
     visibility: hidden;
     animation: once-8 5s 1 ease-in-out forwards;
     animation-delay: 1.4s;
@@ -366,7 +368,7 @@
 .balloon:nth-child(9) {
     background: red;
     background-size: cover;
-    background-image: url(http://www.mybligr.com/wp-content/uploads/2017/01/most-beautiful-tiger-animals-pics-images-photos-pictures-6.jpg);
+    /*background-image: url(http://www.mybligr.com/wp-content/uploads/2017/01/most-beautiful-tiger-animals-pics-images-photos-pictures-6.jpg);*/
     visibility: hidden;
     animation: once-9 5s 1 ease-in-out forwards;
     animation-delay: 1.6s;
@@ -406,7 +408,7 @@
 .balloon:nth-child(10) {
     background: cyan;
     background-size: cover;
-    background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+    /*background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);*/
     visibility: hidden;
     animation: once-10 5s 1 ease-in-out forwards;
     animation-delay: 1.8s;
@@ -446,7 +448,7 @@
 .balloon:nth-child(11) {
     background: yellow;
     background-size: cover;
-    background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+    /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
     visibility: hidden;
     animation: once-11 5s 1 ease-in-out forwards;
     animation-delay: 2s;
@@ -486,7 +488,7 @@
 .balloon:nth-child(12) {
     background: blue;
     background-size: cover;
-    background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+    /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
     visibility: hidden;
     animation: once-12 5s 1 ease-in-out forwards;
     animation-delay: 2.2s;
@@ -526,7 +528,7 @@
 .balloon:nth-child(13) {
     background: purple;
     background-size: cover;
-    background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+    /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
     visibility: hidden;
     animation: once-13 5s 1 ease-in-out forwards;
     animation-delay: 2.4s;
@@ -566,7 +568,7 @@
 .balloon:nth-child(14) {
     background: red;
     background-size: cover;
-    background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+    /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
     visibility: hidden;
     animation: once-14 5s 1 ease-in-out forwards;
     animation-delay: 2.6s;
@@ -606,7 +608,7 @@
 .balloon:nth-child(15) {
     background: cyan;
     background-size: cover;
-    background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+    /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
     visibility: hidden;
     animation: once-15 5s 1 ease-in-out forwards;
     animation-delay: 2.8s;
@@ -646,7 +648,7 @@
 .balloon:nth-child(16) {
     background: yellow;
     background-size: cover;
-    background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+    /*background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);*/
     visibility: hidden;
     animation: once-16 5s 1 ease-in-out forwards;
     animation-delay: 3s;
@@ -686,7 +688,7 @@
 .balloon:nth-child(17) {
     background: blue;
     background-size: cover;
-    background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+    /*background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);*/
     visibility: hidden;
     animation: once-17 5s 1 ease-in-out forwards;
     animation-delay: 3.2s;
@@ -726,7 +728,7 @@
 .balloon:nth-child(18) {
     background: purple;
     background-size: cover;
-    background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+    /*background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);*/
     visibility: hidden;
     animation: once-18 5s 1 ease-in-out forwards;
     animation-delay: 3.4s;
@@ -766,7 +768,7 @@
 .balloon:nth-child(19) {
     background: red;
     background-size: cover;
-    background-image: url(http://www.mybligr.com/wp-content/uploads/2017/01/most-beautiful-tiger-animals-pics-images-photos-pictures-6.jpg);
+    /*background-image: url(http://www.mybligr.com/wp-content/uploads/2017/01/most-beautiful-tiger-animals-pics-images-photos-pictures-6.jpg);*/
     visibility: hidden;
     animation: once-19 5s 1 ease-in-out forwards;
     animation-delay: 3.6s;
@@ -806,7 +808,7 @@
 .balloon:nth-child(20) {
     background: cyan;
     background-size: cover;
-    background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+    /*background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);*/
     visibility: hidden;
     animation: once-20 5s 1 ease-in-out forwards;
     animation-delay: 3.8s;
@@ -846,7 +848,7 @@
 .balloon:nth-child(21) {
     background: yellow;
     background-size: cover;
-    background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+    /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
     visibility: hidden;
     animation: once-21 5s 1 ease-in-out forwards;
     animation-delay: 4s;
@@ -886,7 +888,7 @@
 .balloon:nth-child(22) {
     background: blue;
     background-size: cover;
-    background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+    /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
     visibility: hidden;
     animation: once-22 5s 1 ease-in-out forwards;
     animation-delay: 4.2s;
@@ -926,7 +928,7 @@
 .balloon:nth-child(23) {
     background: purple;
     background-size: cover;
-    background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+    /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
     visibility: hidden;
     animation: once-23 5s 1 ease-in-out forwards;
     animation-delay: 4.4s;
@@ -966,7 +968,7 @@
 .balloon:nth-child(24) {
     background: red;
     background-size: cover;
-    background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+    /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
     visibility: hidden;
     animation: once-24 5s 1 ease-in-out forwards;
     animation-delay: 4.6s;
@@ -1006,7 +1008,7 @@
 .balloon:nth-child(25) {
     background: cyan;
     background-size: cover;
-    background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);
+    /*background-image: url(http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=);*/
     visibility: hidden;
     animation: once-25 5s 1 ease-in-out forwards;
     animation-delay: 4.8s;
@@ -1047,7 +1049,7 @@
 .balloon:nth-child(26) {
     background: yellow;
     background-size: cover;
-    background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+    /*background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);*/
     visibility: hidden;
     animation: once-26 5s 1 ease-in-out forwards;
     animation-delay: 5s;
@@ -1088,7 +1090,7 @@
 .balloon:nth-child(27) {
     background: blue;
     background-size: cover;
-    background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+    /*background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);*/
     visibility: hidden;
     animation: once-27 5s 1 ease-in-out forwards;
     animation-delay: 5.2s;
@@ -1128,7 +1130,7 @@
 .balloon:nth-child(28) {
     background: purple;
     background-size: cover;
-    background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+    /*background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);*/
     visibility: hidden;
     animation: once-28 5s 1 ease-in-out forwards;
     animation-delay: 5.4s;
@@ -1168,7 +1170,7 @@
 .balloon:nth-child(29) {
     background: red;
     background-size: cover;
-    background-image: url(http://www.mybligr.com/wp-content/uploads/2017/01/most-beautiful-tiger-animals-pics-images-photos-pictures-6.jpg);
+    /*background-image: url(http://www.mybligr.com/wp-content/uploads/2017/01/most-beautiful-tiger-animals-pics-images-photos-pictures-6.jpg);*/
     visibility: hidden;
     animation: once-29 5s 1 ease-in-out forwards;
     animation-delay: 5.6s;
@@ -1208,7 +1210,7 @@
 .balloon:nth-child(30) {
     background: cyan;
     background-size: cover;
-    background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);
+    /*background-image: url(https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg);*/
     visibility: hidden;
     animation: once-30 5s 1 ease-in-out forwards;
     animation-delay: 5.8s;

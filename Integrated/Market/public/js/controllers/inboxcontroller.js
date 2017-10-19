@@ -1,6 +1,7 @@
 ﻿app.controller("inboxController", function ($scope, $rootScope, $timeout, API, $filter, socket) {
 
-
+    $scope.moreMsgs = true;
+    var page = 1;
 
     socket.on('newmsg', function (_data) {
         // check if from = opend inbox page  ------   push msg & emit or call msg is read
@@ -64,7 +65,8 @@
     });
 
     $scope.init = function (_isoCode, _activeUser, _currentMessageReceiver) {
-
+        $scope.moreMsgs = true;
+        page = 1;
         $rootScope.IsoCode = _isoCode;
         $scope.activeUserId = _activeUser;
         if (_currentMessageReceiver != '') {
@@ -95,7 +97,7 @@
             var objDiv = document.getElementById("dvMessagesBodyContainer");
             $('#' + 'dvMessagesBodyContainer').animate({
                 scrollTop: objDiv.scrollHeight
-            },1500);
+            }, 1500);
             console.log('hhhhhhh');
 
         }, 2000);
@@ -140,5 +142,35 @@
             window.location.reload();
         }, 2000);
     }
+
+
+
+    $scope.getMore = function () {
+        // Message/SeeMore/:_UserTo/:_UserFrom
+        var req = {
+            method: 'get',
+            url: '/Message/SeeMore/' + $rootScope.userId +'/' + $scope.activeUserId + '/' + page,
+            data: {}
+        }
+        API.execute(req).then(function (_res) {
+            if (_res.data.code == 100) {
+                console.log(_res.data.data);
+                for (var i = 0; i < _res.data.data.length; i++) {
+                    $scope.inboxMesagesList.unshift(_res.data.data[i]);
+                }
+                console.log($scope.inboxMesagesList);
+                if (_res.data.data.length == 0) {
+                    $scope.moreMsgs = false;
+                }
+                else {
+                    page++;
+                }
+            }
+            else {
+                console.log(_res);
+            }
+        });
+    }
+
 
 });

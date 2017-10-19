@@ -1418,6 +1418,7 @@ h6.mega {
         .expoPage article .expoData h4:hover span {
             visibility: visible;
             opacity: 1;
+            width: 100%;
         }
 
         .expoPage article .expoData h4 span:hover {
@@ -1470,6 +1471,10 @@ h6.mega {
             box-sizing: border-box;
             width: calc(100% / 10);
         }
+
+            .expoPage article .expoData h4:hover .dvFloorLogo img {
+                height: 80px;
+            }
 
 
 
@@ -2240,6 +2245,16 @@ h6.mega {
             padding-left: 0;
         }
 
+.txtMoreContainer {
+    text-align: center;
+    margin: 10px;
+}
+
+    .txtMoreContainer .dvSeeMore {
+        text-decoration: underline;
+        color: #337ab7;
+    }
+
 
 /************* favourites Page **************/
 .favouritesPage {
@@ -2840,6 +2855,6 @@ However, delay the fade out process for 2.5 seconds */
 }
 
 
-.rating-xs{
-    line-height:2;
+.rating-xs {
+    line-height: 2;
 }

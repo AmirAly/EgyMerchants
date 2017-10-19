@@ -28,41 +28,7 @@
 													     
 
 														 <div ng-show="startShowLogos">
-															<div class="balloon yellow"></div>
-															<div class="balloon blue"></div>
-															<div class="balloon purple"></div>
-															<div class="balloon red"></div>
-															<div class="balloon cyan"></div>
-
-															<div class="balloon yellow"></div>
-															<div class="balloon blue"></div>
-															<div class="balloon purple"></div>
-															<div class="balloon red"></div>
-															<div class="balloon cyan"></div>
-
-															<div class="balloon yellow"></div>
-															<div class="balloon blue"></div>
-															<div class="balloon purple"></div>
-															<div class="balloon red"></div>
-															<div class="balloon cyan"></div>
-
-															<div class="balloon yellow"></div>
-															<div class="balloon blue"></div>
-															<div class="balloon purple"></div>
-															<div class="balloon red"></div>
-															<div class="balloon cyan"></div>
-
-															<div class="balloon yellow"></div>
-															<div class="balloon blue"></div>
-															<div class="balloon purple"></div>
-															<div class="balloon red"></div>
-															<div class="balloon cyan"></div>
-
-															<div class="balloon yellow"></div>
-															<div class="balloon blue"></div>
-															<div class="balloon purple"></div>
-															<div class="balloon red"></div>
-															<div class="balloon cyan"></div>
+															<div class="balloon" ng-repeat="obj in expo.stores | unique:'_id'" ng-style="{'background-image':'url(' + obj.ProfilePicture + ')'}"></div>
 														</div>
 
 
@@ -81,25 +47,11 @@
 															</div>
 
 															<span class="flexContainer">
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-														
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
-																<div class="dvFloorLogo"><img class="img-responsive" src="https://sherowallpapers.files.wordpress.com/2012/01/beautiful-blue-wallpapers-free-download.jpg" /></div>
+
+																<div class="dvFloorLogo" ng-repeat="obj in expo.stores | unique:'_id'">
+																   <img class="img-responsive" src="{{obj.ProfilePicture}}" />
+																</div>
+																
 															</span>
 														</h4>
                                                     </div>
