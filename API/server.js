@@ -567,13 +567,13 @@ mongoose.connect(db.url, function (err) {
 //       });
 
 
-item.getSimilar(
+// item.getSimilar(
 
-   "59e4c98e0c7eba32d43f7858"
+//    "59e4c98e0c7eba32d43f7858"
    
-  ).then(function (result) {
-          console.log(result);
-      }, function (err) {
-          console.log(err);
-      });
+//   ).then(function (result) {
+//           console.log(result);
+//       }, function (err) {
+//           console.log(err);
+//       });
     
