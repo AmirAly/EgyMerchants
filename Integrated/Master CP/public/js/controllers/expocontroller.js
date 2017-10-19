@@ -11,6 +11,7 @@
         document.getElementById('uploadItemImage').click();
     };
     $scope.expoLst = JSON.parse((window.expoObject).replace(/&quot;/g, '"'));
+    $scope.expoLst.FlipTime = $scope.expoLst.FlipTime / 1000;
     $scope.floorLst = JSON.parse((window.floorObject).replace(/&quot;/g, '"'));
 
     $scope.floors = function (_id) {
@@ -27,9 +28,12 @@
                 Title: $scope.expoLst.Title,
                 Category: $scope.expoLst.Category._id,
                 Floors: $scope.floorLst,
+                FlipTime: $scope.expoLst.FlipTime * 1000,
                 Banner: $('#imgItem').attr('src')
             }
         }
+        console.log(typeof $scope.expoLst.FlipTime);
+        console.log(req);
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
                 window.location.reload();
@@ -75,9 +79,11 @@
                 Title: $scope.expoLst.Title,
                 Category: $scope.expoLst.Category._id,
                 Floors: $scope.floorLst,
+                FlipTime: $scope.expoLst.FlipTime * 1000,
                 Banner: $('#imgItem').attr('src')
             }
         }
+
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
                 window.location.href = '/expo/' + $scope.expoDelId

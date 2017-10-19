@@ -1,4 +1,4 @@
-ï»¿<% include ../partials/pagestart %>
+<% include ../partials/pagestart %>
 <% include ../partials/pageheader %>
 
 <script>
@@ -14,8 +14,8 @@
         <section class="container">
             <nav class="breadcrumbs">
                 <span class="maincrumb"><a href="/{{IsoCode}}/Home">Home</a></span>
-                <span class="maincrumb"><span class="divider">â€º</span><a href="/{{IsoCode}}/Store/<%= product.Gallery.Store.Name %>/<%= product.Gallery.Store._id %>"><span> <%= product.Gallery.Store.Name %></span></a></span>
-                <span class="maincrumb"><span class="divider">â€º</span><a href="/{{IsoCode}}/Product/<%= product.Name %>/<%= product._id %>"><span> <%= product.Name %></span></a></span>
+                <span class="maincrumb"><span class="divider">›</span><a href="/{{IsoCode}}/Store/<%= product.Gallery.Store.Name %>/<%= product.Gallery.Store._id %>"><span> <%= product.Gallery.Store.Name %></span></a></span>
+                <span class="maincrumb"><span class="divider">›</span><a href="/{{IsoCode}}/Product/<%= product.Name %>/<%= product._id %>"><span> <%= product.Name %></span></a></span>
             </nav>
         </section>
         <!-- //end Breadcrumbs -->
@@ -227,13 +227,13 @@
                 <!-- Products list -->
                 <div class="products-list-small">
                     <ul class="slides">
-                        <% if (similarProducts.length > 0) { %>
-                        <% similarProducts.forEach(function(product){ %>
+                        <% if (similarList.length > 0) { %>
+                        <% similarList.forEach(function(product){ %>
                         <li>
                             <div class="product-preview">
                                 <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                                    <a href="#"><img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= product.img %>" alt=""></a>
-                                    <a href="#" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a>
+                                    <a href="/{{IsoCode}}/Product/<%= product.Name %>/<%= product._id %>"><img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= product.Pictures[0].URL %>" alt=""></a>
+                                    <a href="/{{IsoCode}}/Product/<%= product.Name %>/<%= product._id %>" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a>
                                 </div>
                             </div>
                         </li>
@@ -253,6 +253,7 @@
                     <div class="product-view-container"> </div>
                 </div>
                 <!-- //end Product view compact -->
+
 
             </section>
             <!-- //end Upsell products -->

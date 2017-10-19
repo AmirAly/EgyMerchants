@@ -2858,3 +2858,7 @@ However, delay the fade out process for 2.5 seconds */
 .rating-xs {
     line-height: 2;
 }
+
+.twitter-widget ul li {
+    overflow: auto;
+}

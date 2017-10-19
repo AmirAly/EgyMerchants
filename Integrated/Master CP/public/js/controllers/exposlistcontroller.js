@@ -35,6 +35,7 @@
             url: '/Expo/Add',
             data: {
                 Title: $scope.expo.Title,
+                FlipTime:$scope.expo.FlipTime,
                 Category: $scope.expo.selectedCategory,
                 Banner: $('#imgItem').attr('src'),
                 Status: 'Active',

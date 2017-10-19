@@ -100,25 +100,25 @@
     }
     var currentExpoId;
     var floorsCounter;
-    var intervalPeriod = 5000;
+    var intervalPeriod;
     var i = 0;
     $scope.getstores = function (i) {
         if (i < $scope.exposList.length) {
-       var req = {
-            method: 'get',
-            url: '/Expo/GetStore/' + $scope.exposList[i]._id,
-            data: {}
-        }
-        API.execute(req).then(function (_res) {
-            if (_res.data.code == 100) {
-                $scope.exposList[i].stores = _res.data.data;
-                console.log($scope.exposList);
-                $scope.getstores(i + 1);
+            var req = {
+                method: 'get',
+                url: '/Expo/GetStore/' + $scope.exposList[i]._id,
+                data: {}
             }
-        });
+            API.execute(req).then(function (_res) {
+                if (_res.data.code == 100) {
+                    $scope.exposList[i].stores = _res.data.data;
+                    console.log($scope.exposList);
+                    $scope.getstores(i + 1);
+                }
+            });
 
         }
-      //  $scope.getstores(i+1);
+        //  $scope.getstores(i+1);
     }
 
     $scope.init = function (_isoCode) {
@@ -127,13 +127,14 @@
         $scope.exposList = JSON.parse((window.exposObject).replace(/&quot;/g, '"'));
         currentExpoId = $scope.exposList[0]._id;
         floorsCounter = $scope.exposList[0].Floors.length;
+        intervalPeriod = $scope.exposList[0].FlipTime;
 
         console.log($scope.exposList);
 
 
         //$rootScope.loading = true;
 
-            $scope.getstores(i);
+        $scope.getstores(i);
 
         //$rootScope.loading = false;
 
@@ -202,13 +203,15 @@
                     console.log('onSnapped');
                     console.log(direction);
                     currentExpoId = (current.id).slice(4);
+                    intervalPeriod = current.getAttribute('data-flipTime');
                     console.log(current);
-                    var floorsCounter = current.getAttribute('data-floors'); // no need for it now
+                    floorsCounter = current.getAttribute('data-floors'); // no need for it now
                     console.log(floorsCounter);
-                    interval = setInterval(function () {
-                        $('#nextFloor' + currentExpoId).click();
-                    }, intervalPeriod);
-
+                    if (intervalPeriod > 0) {
+                        interval = setInterval(function () {
+                            $('#nextFloor' + currentExpoId).click();
+                        }, intervalPeriod);
+                    }
                     $scope.$apply();
                 }
             });

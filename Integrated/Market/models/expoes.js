@@ -377,7 +377,7 @@ module.exports = {
                         });
                     }
                     else {
-                        Schema.find({ 'Category': _categoryId, 'Status': 'Active' }, '_id Title Banner Floors').populate('Floors.Coordinates.Store', '_id Name Type Badges Status ProfilePicture').exec(function (err, lst) {
+                        Schema.find({ 'Category': _categoryId, 'Status': 'Active' }, '_id Title Banner Floors FlipTime').populate('Floors.Coordinates.Store', '_id Name Type Badges Status ProfilePicture').exec(function (err, lst) {
                             if (err)
                                 reject({
                                     code: 2,

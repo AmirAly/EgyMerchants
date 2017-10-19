@@ -14,6 +14,7 @@
     limitDate.setDate(limitDate.getDate() + 1);
     $scope.limitDate = limitDate;
 
+    $scope.imgSizeErr = false;
 
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
         $scope.selectedstore = $scope.stores[0]._id;
@@ -133,19 +134,48 @@
                 ExpiryDate: ($scope.myDate).valueOf()
             };
             index++;
-            $scope.floor.Coordinates.push($scope.oneStoreCoordinates);
-            $scope.imgLink = '';
-            //remove class active
-            $('.active').removeClass('active');
-            // clear array from isBusy status
-            for (var i = 0; i < $scope.floor.Sections.length; i++) {
-                if ($scope.floor.Sections[i].isBusy != false) {
-                    $scope.floor.Sections[i].isBusy = false;
+            
+
+
+            // console
+            console.log(sectionWidth);
+            console.log(sectionHeight);
+            var sectionPercent = sectionWidth / sectionHeight;
+            console.log('sectionPercent ' + sectionPercent);
+            var img = document.getElementById('imgItem');
+            //or however you get a handle to the IMG
+            var actualWidth = img.clientWidth;
+            var actualHeight = img.clientHeight;
+            console.log(actualWidth);
+            console.log(actualHeight);
+            var actualPercent = actualWidth / actualHeight;
+            console.log('actualPercent ' + actualPercent);
+
+            if (sectionPercent - 0.5 < actualPercent && actualPercent < sectionPercent + 0.5) {
+                console.log('good');
+
+                $scope.floor.Coordinates.push($scope.oneStoreCoordinates);
+                $scope.imgLink = '';
+                //remove class active
+                $('.active').removeClass('active');
+                // clear array from isBusy status
+                for (var i = 0; i < $scope.floor.Sections.length; i++) {
+                    if ($scope.floor.Sections[i].isBusy != false) {
+                        $scope.floor.Sections[i].isBusy = false;
+                    }
                 }
+
+                $('#modal').modal('toggle');
+                // load floor data
+                $scope.loadArray();
             }
-            $('#modal').modal('toggle');
-            // load floor data
-            $scope.loadArray();
+            else {
+                $('#modal').modal('toggle');
+                $scope.imgSizeErr = true;
+                console.log('not sutable');
+            }
+
+
 
         }
 
@@ -167,8 +197,8 @@
             var div = document.createElement('div');
             div.innerHTML = '<div  data-toggle="modal" data-target=".modalDeleteSection" class="customSectionDv" ng-click="deleteSection(' + $scope.floor.Coordinates[i].index + ')" style="cursor:pointer;background-image:url(' + $scope.floor.Coordinates[i].Img + ');position:absolute;top:' + top + ';left:' + left + ';height:' + height + ';width:' + width + ';background-size: cover;background-repeat: no-repeat;"></div>';
             angular.element(document.querySelector('#imagesContainer')).append($compile(div)($scope));
-
         }
+        $scope.imgSizeErr = false;
     }
     $scope.init2();
 
