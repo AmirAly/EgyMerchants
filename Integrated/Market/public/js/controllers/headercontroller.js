@@ -196,6 +196,7 @@
         //    field.$setDirty();
         //});
         $scope.searchErr = false;
+        console.log($scope.txtSearch);
         if ($scope.txtSearch != '' && $scope.txtSearch.length > 1) {
             window.location.href = "/" + $rootScope.IsoCode + "/Search/" + $scope.txtSearch;
         }

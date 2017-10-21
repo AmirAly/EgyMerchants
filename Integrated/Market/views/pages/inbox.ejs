@@ -30,6 +30,7 @@ var usersListObject = <%- JSON.stringify(usersList) %>
 				 <div id="dvMessagesBodyContainer" class="dvMessagesBodyContainer" tabindex="-1"> 
 
 				 <div class="txtMoreContainer">
+				 <h3 ng-show="noBodyHere">Choose a contact and start messaging!</h3>
 				   <a href="" ng-show="moreMsgs" class="dvSeeMore" ng-click="getMore()">See More</a>
 				 </div>
 				 

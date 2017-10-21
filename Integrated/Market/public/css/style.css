@@ -421,7 +421,7 @@ h6.mega {
 
 
     .dvMiddlePart .errorFont {
-        padding-left: 30px;
+        padding: 0;
         line-height: 1.4;
         text-align: center;
         color: red;
@@ -2255,6 +2255,11 @@ h6.mega {
         color: #337ab7;
     }
 
+    .txtMoreContainer h3 {
+        color: #9E9E9E;
+        text-transform: none;
+        font-size: 26px;
+    }
 
 /************* favourites Page **************/
 .favouritesPage {
@@ -2746,6 +2751,12 @@ h6.mega {
     font-size: 18px;
 }
 
+.label {
+    padding: 5px;
+    margin-right: 10px;
+    font-size: 10px;
+}
+
 /****** Message toast *******/
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
@@ -2825,7 +2836,7 @@ However, delay the fade out process for 2.5 seconds */
 /*social*/
 .social-widgets .twitter-widget {
     height: 300px;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding-top: 0px;
     padding-right: 10px;
 }
@@ -2841,6 +2852,17 @@ However, delay the fade out process for 2.5 seconds */
         padding-top: 10px;
         padding-left: 10px;
     }
+
+.social-widgets .dvContactData .tab-content {
+    height: 300px !important;
+}
+
+.social-widgets .dvContactData .contacts-widget {
+    height: auto;
+    overflow-y: auto;
+}
+
+
 
 /*hide item controls search page*/
 .product-controls-list.right {
