@@ -67,8 +67,10 @@ var storeJson = <%-JSON.stringify(storeJson)%>
                             <img title="Not verified" src="/images/notverified.png" />
                             <% } %>
 					   <% } %>
-					        <a type="button" title="send" ng-show="loggedUser && userId != '<%= store._id %>'" href="/<%= countryIso %>/Inbox/{{userId}}/<%= store._id %>" class="btn btn-primary active pull-right sendMsgBtn"> <span>Send Message</span> <span class="fa fa-paper-plane-o"></span></a>
 
+					        <div style="right:15px;position:absolute;" title="{{ loggedUser ? 'Send Message to this store' : 'You have to login first to send a message to stores'}}">
+					           <a type="button" ng-disabled="!loggedUser" ng-show="userId != '<%= store._id %>'" href="/<%= countryIso %>/Inbox/{{userId}}/<%= store._id %>" class="btn btn-primary active pull-right sendMsgBtn"> <span>Send Message</span> <span class="fa fa-paper-plane-o"></span></a>
+							</div>
                         </div>
 				    
 					<div class="clear">
