@@ -340,23 +340,13 @@ module.exports = {
                                     else
                                    
                                     var array =_result.Tags.split(',');
-
-                                //  //
-                                //     Schema.mapReduce(
-                                //         function() {
-                                //             this.Tags.split(",").forEach(function(Tags) {
-                                //                 emit(Tags,someData);
-                                //             });
-                                //         },
-                                //         function(key,results) {
-                                //           
-                                //         },
-                                //         { "out": { "inline": 1 } }
-                                //     )
-                                //   //
+                    var regex = [];
+                    for (var i = 0; i < array.length; i++) {
+                        regex[i] = new RegExp(array[i]);
+                    }
 
 
-                                    Schema.find( { Tags: { $in: array }, '_id': { $ne: _itemId }} , function (err, _lst) {
+                    Schema.find({"Tags": {$in: regex}, '_id': { $ne: _itemId } } , function (err, _lst) {
                                         if (err)
                                         reject({ code: 0, data: err });  
                                         else{
@@ -371,10 +361,14 @@ module.exports = {
 
                         }
                         else{
-                        var _arr=Obj.Tags.split(",");
-                        
-                            Schema.find( { Tags: { $in: _arr }, '_id': { $ne: _itemId }} , function (err, _lst) {
-                                    if (err)
+                        var array=Obj.Tags.split(",");
+                        var regex = [];
+                        for (var i = 0; i < array.length; i++) {
+                            regex[i] = new RegExp(array[i]);
+                        }
+    
+                        Schema.find({"Tags": {$in: regex}, '_id': { $ne: _itemId } } , function (err, _lst) {
+                            if (err)
                                     reject({ code: 0, data: err });  
                                     else{
 

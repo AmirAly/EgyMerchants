@@ -36,7 +36,7 @@
         </div>
       </li>
 
-      <li class="item item-03 twitter">
+      <li class="item item-03 twitter dvContactData">
         <a href="/social/googlemap.html" class="tab-icon">
           <span class="icon-vcard"></span>
         </a>
@@ -46,7 +46,7 @@
             <!--<img src="/images/ajax-loader.gif" class="ajaxloader" alt="loader">-->
             <div class="twitter-widget contacts-widget">
               <ul>
-                <li ng-repeat="contact in Contacts">
+                <li ng-repeat="contact in Contacts" ng-show="contact.Label !='Facebook' && contact.Label !='Twitter'">
                   <b>{{contact.Label}}</b>&nbsp;:&nbsp;<span>{{contact.Value}}</span>
                 </li>
               </ul>

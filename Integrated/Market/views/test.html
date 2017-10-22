@@ -1,9 +1,10 @@
-ï»¿<% include ../partials/pagestart %>
+<% include ../partials/pagestart %>
 <% include ../partials/pageheader %>
 
 <script>
     var commentObject = <%-JSON.stringify(JsonComments)%>;
     var itemName = <%-JSON.stringify(JsonProductName)%>;
+    var itemSimilar = <%-JSON.stringify(JsonSimilarList)%>;
 </script>
 
 <div ng-controller="productController">
@@ -13,8 +14,8 @@
         <section class="container">
             <nav class="breadcrumbs">
                 <span class="maincrumb"><a href="/{{IsoCode}}/Home">Home</a></span>
-                <span class="maincrumb"><span class="divider">â€º</span><a href="/{{IsoCode}}/Store/<%= product.Gallery.Store.Name %>/<%= product.Gallery.Store._id %>"><span> <%= product.Gallery.Store.Name %></span></a></span>
-                <span class="maincrumb"><span class="divider">â€º</span><a href="/{{IsoCode}}/Product/<%= product.Name %>/<%= product._id %>"><span> <%= product.Name %></span></a></span>
+                <span class="maincrumb"><span class="divider">›</span><a href="/{{IsoCode}}/Store/<%= product.Gallery.Store.Name %>/<%= product.Gallery.Store._id %>"><span> <%= product.Gallery.Store.Name %></span></a></span>
+                <span class="maincrumb"><span class="divider">›</span><a href="/{{IsoCode}}/Product/<%= product.Name %>/<%= product._id %>"><span> <%= product.Name %></span></a></span>
             </nav>
         </section>
         <!-- //end Breadcrumbs -->
@@ -63,7 +64,7 @@
                         <div class="col-xs-12">
                             <!-- Description -->
                             <div class="product-description">
-                                <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span>
+
                                 <div class="panel-group accordion-simple" id="product-accordion">
                                     <div class="panel">
                                         <div class="panel-heading"> <a data-toggle="collapse" data-parent="#product-accordion" href="#product-description"> <span class="arrow-down icon-arrow-down-4"></span> <span class="arrow-up icon-arrow-up-4"></span> Description </a> </div>
@@ -71,6 +72,18 @@
                                             <div class="panel-body"> <%= product.Description %></div>
                                         </div>
                                     </div>
+
+                                    <div class="panel" ng-init="tags = '<%= product.Tags %>'.split(',')" ng-show="tags.length != 0">
+                                        <div class="panel-heading"> <a data-toggle="collapse" data-parent="#product-accordion" href="#product-tags"> <span class="arrow-down icon-arrow-down-4"></span> <span class="arrow-up icon-arrow-up-4"></span> Tags </a> </div>
+                                        <div id="product-tags" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <div>
+                                                    <label class="label label-default" ng-repeat="tag in tags">{{tag}} </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             <!-- //end Description -->
@@ -86,13 +99,8 @@
                                     &nbsp;<img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                 </div>
                                 <div ng-show="loggedUser" class="itemsSeprator"> | </div>
-                                <div class="">
-                                    <a ng-click="fbshareCurrentPage(itemName)" class="btn btn-sm facebookShare" target="_blank" alt="Share on Facebook">
-                                        <i class="fa fa-facebook-square fa-1"><span> Share</span></i>
-                                    </a>
-                                </div>
-                                <div class="itemsSeprator"> | </div>
-                                <div class="">
+
+                                <div ng-show="loggedUser">
                                     <a class="twitter-share-button"
                                        href="https://twitter.com/intent/tweet?text=<%= product.Name %>&image=<%= product.Pictures[0].URL %>">
                                         Tweet
@@ -100,36 +108,32 @@
                                 </div>
 
 
-                                <div class="itemsSeprator"> | </div>
-                                <!-- You can use Open Graph tags to customize link previews.
-                                Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
-                                <meta property="og:url" content="https://egymarket.herokuapp.com/EG/Product/<%= product.Name %>/<%= product._id %>" />
-                                <meta property="og:type" content="website" />
-                                <meta property="og:title" content="<%= product.Name %>" />
-                                <meta property="og:description" content="<%= product.Description %>" />
-                                <meta property="og:image" content="<%= product.Pictures[0].URL %>" />
+                                <div ng-show="loggedUser" class="itemsSeprator"> | </div>
+                                <div ng-show="loggedUser">
+                                    <!-- You can use Open Graph tags to customize link previews.
+                                    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+                                    <meta property="og:url" content="https://egymarket.herokuapp.com/EG/Product/<%= product.Name %>/<%= product._id %>" />
+                                    <meta property="og:type" content="website" />
+                                    <meta property="og:title" content="<%= product.Name %>" />
+                                    <meta property="og:description" content="<%= product.Description %>" />
+                                    <meta property="og:image" content="<%= product.Pictures[0].URL %>" />
 
-                                <!-- Load Facebook SDK for JavaScript -->
-                                <div id="fb-root"></div>
-                                <script>
-                                (function(d, s, id) {
-                                    var js, fjs = d.getElementsByTagName(s)[0];
-                                    if (d.getElementById(id)) return;
-                                    js = d.createElement(s); js.id = id;
-                                    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10";
-                                    fjs.parentNode.insertBefore(js, fjs);
-                                }(document, 'script', 'facebook-jssdk'));
-                                </script>
+                                    <!-- Load Facebook SDK for JavaScript -->
+                                    <div id="fb-root"></div>
+                                    <script>
+                                        (function(d, s, id) {
+                                            var js, fjs = d.getElementsByTagName(s)[0];
+                                            if (d.getElementById(id)) return;
+                                            js = d.createElement(s); js.id = id;
+                                            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10";
+                                            fjs.parentNode.insertBefore(js, fjs);
+                                        }(document, 'script', 'facebook-jssdk'));
+                                    </script>
 
-                                <!-- Your share button code -->
-                                <div class="fb-share-button" data-href="https://egymarket.herokuapp.com/EG/Product/<%= product.Name %>/<%= product._id %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://egymarket.herokuapp.com/EG/Product/<%= product.Name %>/<%= product._id %>&amp;src=sdkpreparse">Share</a></div>
+                                    <!-- Your share button code -->
+                                    <div class="fb-share-button" data-href="https://egymarket.herokuapp.com/EG/Product/<%= product.Name %>/<%= product._id %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://egymarket.herokuapp.com/EG/Product/<%= product.Name %>/<%= product._id %>&amp;src=sdkpreparse">Share</a></div>
+                                </div>
 
-
-                                <!-- <a href="https://twitter.com/intent/tweet?button_hashtag=egyMerchants&amp;text=hi there - http://www.youm7.com%2f3446891" rel="nofollow">
-                                            <img src="http://img.youm7.com/images/graphics/socialmediaicon2016new/twitter-128.png?2" alt="Share on twitter" class="img-responsive">
-                                        </a>
-                                        https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/flip.jpg
-                                -->
 
                             </div>
                         </div>
@@ -210,6 +214,11 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="txtMoreContainer" ng-show="commentsList.length > 0">
+                            <a href="" ng-show="moreComments" class="dvSeeMore" ng-click="seeMoreComments()">See More</a>
+                        </div>
+
                     </div>
                 </div>
                 <hr />
@@ -221,13 +230,13 @@
                 <!-- Products list -->
                 <div class="products-list-small">
                     <ul class="slides">
-                        <% if (similarProducts.length > 0) { %>
-                        <% similarProducts.forEach(function(product){ %>
+                        <% if (similarList.length > 0) { %>
+                        <% similarList.forEach(function(product){ %>
                         <li>
                             <div class="product-preview">
                                 <div class="preview  wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                                    <a href="#"><img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= product.img %>" alt=""></a>
-                                    <a href="#" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a>
+                                    <a href="/{{IsoCode}}/Product/<%= product.Name %>/<%= product._id %>"><img class="wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s" src="<%= product.Pictures[0].URL %>" alt=""></a>
+                                    <a href="/{{IsoCode}}/Product/<%= product.Name %>/<%= product._id %>" class="quick-view"> <span class="icon-zoom-in-2"></span> View </a>
                                 </div>
                             </div>
                         </li>
@@ -247,6 +256,7 @@
                     <div class="product-view-container"> </div>
                 </div>
                 <!-- //end Product view compact -->
+
 
             </section>
             <!-- //end Upsell products -->

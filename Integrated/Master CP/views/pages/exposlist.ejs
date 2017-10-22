@@ -147,7 +147,7 @@
                                         <div class="card-content">
                                             <form name="frmAddExpo" id="frmAddExpo">
                                                 <div class="row">
-                                                    <div class="col-md-5">
+                                                    <div class="col-md-8">
                                                         <div class="form-group label-floating" ng-class="{'is-empty':isEmpty == true}">
                                                             <label class="control-label">Expo Name</label>
                                                             <input type="text" class="form-control" ng-model="expo.Title" required name="expoTitle" id="expoTitle" ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
@@ -160,6 +160,16 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+												<div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group label-floating" ng-class="{'is-empty':isEmpty == true}">
+                                                            <label class="control-label">Expo auto flip timer (in seconds)</label>
+                                                    <input type="number" class="form-control" ng-model="expo.FlipTime" name="expoFlipTime" id="expoFlipTime">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <div class="row">
 													<script>var categoryLstObject = <%-JSON.stringify(categorieslstObj)%>;</script>
                                                     <div class="col-md-8">

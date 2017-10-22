@@ -165,7 +165,7 @@ module.exports = {
 
 getTenMessages: function (_userTo,_userFrom, _key) {
     return new Promise(function (resolve, reject) {
-        console.log("hjgmhg")
+       
         
 
                 Schema.find({ $or: [{ "From": _userFrom, "To": _userTo }, { "From": _userTo, "To": _userFrom }] }, '').sort({ MessageDate: -1 }).populate('From', 'Name ProfilePicture').populate('To', 'Name ProfilePicture').exec(function (err, Msgs) {
@@ -179,24 +179,17 @@ getTenMessages: function (_userTo,_userFrom, _key) {
                     }
                     else{
                 var _tenMessages = [];
-console.log(Msgs.length)
+
 _tenMessages = Msgs.slice(parseInt(_key )* 10,(parseInt(_key) + 1) * 10);
 
 
-                if (_tenMessages.length <= 0) {
 
-                    resolve({
-                        code: 101,
-                        data: "No comments here"
-                    });
-                }
-                else {
                     resolve({
                         code: 100,
                         data: _tenMessages
                     });
 
-                }
+               
             }
             })
             

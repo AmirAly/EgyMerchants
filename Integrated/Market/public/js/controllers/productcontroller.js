@@ -61,22 +61,34 @@
 
     }
 
+    $scope.moreComments = true;
+    var page = 1;
+
     $scope.seeMoreComments = function () {
-        $rootScope.loading = true;
         var req = {
             method: 'get',
-            url: '/Notification/GetUnRead/' + $rootScope.userId,
+            url: '/Comment/SeeMore/' + $scope.itemId + '/' + page,
             data: {}
         }
         API.execute(req).then(function (_res) {
-            //console.log(_res);
             if (_res.data.code == 100) {
-
-                $rootScope.loading = false;
-            } 
+                console.log(_res.data.data);
+                for (var i = 0; i < _res.data.data.length; i++) {
+                    $scope.commentsList.push(_res.data.data[i]);
+                }
+                console.log($scope.commentsList);
+                if (_res.data.data.length == 0) {
+                    $scope.moreComments = false;
+                }
+                else {
+                    page++;
+                }
+            }
+            else {
+                console.log(_res);
+            }
         });
     }
-
 
 
 

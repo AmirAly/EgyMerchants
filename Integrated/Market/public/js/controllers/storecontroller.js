@@ -11,10 +11,16 @@
 
             if ($scope.storeJson.Rate.length > 0) {
                 $scope.exist = $filter('filter')($scope.storeJson.Rate, { User: $rootScope.userId })[0];
+                console.log($scope.exist);
                 if ($scope.exist) {
                     $scope.isRatedBefore = true;
                     console.log($scope.isRatedBefore);
-                    $scope.RateValue = ", You rated this store with " + $scope.exist.Value;
+                    if ($rootScope.loggedUser) {
+                        $scope.RateValue = ", You rated this store with " + $scope.exist.Value;
+                    } else {
+                        $scope.RateValue = ", You have to log in first to rate a store";
+                    }
+
 
                     $("#input-id").rating({ step: 0.1 });
                     $('#input-id').rating('update', $scope.storeJson.Average);
