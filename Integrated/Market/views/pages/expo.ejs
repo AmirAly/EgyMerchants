@@ -11,7 +11,7 @@
             <% if (expos.length > 0) { %>
             <div ng-repeat="expo in exposList">
                 <div ng-if="expo.Floors.length > 0">
-                    <section swinch-duration="3000" swinch-delay="1500" ng-attr-swinch-offset="{{ $first ? -50 : 0 }}" data-floors="{{expo.Floors.length}}" data-flipTime="{{expo.FlipTime}}" class="secondExpo repeated-item smooth-container" id="expo{{expo._id}}">
+                    <section swinch-duration="5000" swinch-delay="1500" ng-attr-swinch-offset="{{ $first ? -50 : 0 }}" data-floors="{{expo.Floors.length}}" data-flipTime="{{expo.FlipTime}}" class="secondExpo repeated-item smooth-container" id="expo{{expo._id}}">
                         <article>
 
                             <div class="expoData">

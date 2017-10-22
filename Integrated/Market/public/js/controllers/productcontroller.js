@@ -3,13 +3,9 @@
     $scope.init = function (_isoCode, _itemId) {
         $rootScope.IsoCode = _isoCode;
 
-        console.log(window.commentObject); 
         $scope.commentsList = JSON.parse(window.commentObject);
-        console.log($scope.commentsList);
 
-        console.log(window.itemSimilar);
         $scope.similarList = JSON.parse(window.itemSimilar);
-        console.log($scope.similarList);
 
 
         $scope.itemName = JSON.parse(window.itemName);
@@ -22,7 +18,6 @@
             $scope.favList = [];
         }
 
-        console.log($scope.favList);
         if ($scope.favList.indexOf(_itemId) !== -1) {
             $scope.message = 'artNr already exists!';
             $scope.IsFav = true;
@@ -31,7 +26,6 @@
             $scope.message = 'artNr Not exists!';
             $scope.IsFav = false;
         }
-        console.log($scope.message);
 
 
         if (localStorage.getItem('userObject')) {
@@ -41,7 +35,6 @@
         }
 
 
-        console.log($scope.userType);
         window.twttr = (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0],
               t = window.twttr || {};
@@ -72,20 +65,15 @@
         }
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
-                console.log(_res.data.data);
                 for (var i = 0; i < _res.data.data.length; i++) {
                     $scope.commentsList.push(_res.data.data[i]);
                 }
-                console.log($scope.commentsList);
                 if (_res.data.data.length == 0) {
                     $scope.moreComments = false;
                 }
                 else {
                     page++;
                 }
-            }
-            else {
-                console.log(_res);
             }
         });
     }
@@ -113,7 +101,6 @@
                 data: $scope.favData
             }
             API.execute(req).then(function (_res) {
-                console.log(_res);
                 if (_res.data.code == 100) {
                     $rootScope.favoritesLoader = false;
                     $scope.IsFav = false;
@@ -121,7 +108,6 @@
                 } else {
                     $rootScope.favoritesLoader = false;
                     $scope.IsFav = true;
-                    console.log('not fav');
                 }
 
             });
@@ -133,17 +119,14 @@
                 data: $scope.favData
             }
             API.execute(req).then(function (_res) {
-                console.log(_res);
                 if (_res.data.code == 100) {
                     $rootScope.favoritesLoader = false;
                     $scope.IsFav = true;
-                    console.log('is fav');
                     localStorage.setItem('userObject', JSON.stringify(_res.data.data));
 
                 } else {
                     $rootScope.favoritesLoader = false;
                     $scope.IsFav = false;
-                    console.log('not fav');
                 }
 
             });
@@ -164,20 +147,17 @@
             data: $scope.newComment
         }
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
                 $scope.newCommentLoading = false;
                 $scope.commentsList.unshift(_res.data.data);
                 $scope.commentTxt = "";
             } else {
                 $scope.newCommentLoading = false;
-                console.log('fail');
             }
         });
     }
 
     $scope.openModal = function (_commentId) {
-        console.log(_commentId);
         $scope.selectedComment = _commentId;
     }
 
@@ -193,7 +173,6 @@
             data: $scope.commentToDelete
         }
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
                 $scope.dismiss();
                 $scope['deleteCommentLoading' + $scope.selectedComment] = false;
@@ -203,7 +182,6 @@
 
             } else {
                 $scope['deleteCommentLoading' + $scope.selectedComment] = false;
-                console.log('fail');
             }
 
         });

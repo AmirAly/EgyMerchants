@@ -228,6 +228,10 @@
             <section class="slider-products content-box">
                 <h3>Simillar products</h3>
                 <!-- Products list -->
+				<% if (!similarList.length > 0) { %>
+				     <p class="txtNoData"> No products available </p>
+				<% }; %>
+
                 <div class="products-list-small">
                     <ul class="slides">
                         <% if (similarList.length > 0) { %>
@@ -241,8 +245,6 @@
                             </div>
                         </li>
                         <% }); %>
-                        <% } else { %>
-                        <p class="txtNoData"> No data available </p>
                         <% } %>
                     </ul>
                 </div>

@@ -81,7 +81,6 @@
         }
         if (window.inboxObject.length > 0) {
             $scope.inboxMesagesList = JSON.parse(window.inboxObject);
-            console.log($scope.inboxMesagesList.length);
             if ($scope.inboxMesagesList.length == 10) {
                 $scope.moreMsgs = true;
             } else {

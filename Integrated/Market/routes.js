@@ -19,12 +19,10 @@ module.exports = function (app) {
 
     // index page welcome + categories
     app.get('/:countryIso/Home', function (req, res) {
-        //console.log(req.params.countryIso);
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
         country.getAll().then(function (_countriesData) {
             if (_countriesData.code == 100) {
-                //console.log(_countriesData.data);
                 _scope.allCountries = _countriesData.data;
                 _scope.JsonCountries = JSON.stringify(_countriesData.data);
                 res.render('pages/landing', _scope);
@@ -35,7 +33,6 @@ module.exports = function (app) {
                 res.render('pages/landing', _scope);
             }
         }).catch(function (_err) {
-            //console.log(_err);
             _scope.allCountries = [];
             _scope.JsonCountries = [];
             res.render('pages/landing', _scope);
@@ -46,7 +43,6 @@ module.exports = function (app) {
     // expo page expos
     app.get('/:countryIso/Expos/:catId', function (req, res) {
 
-        //console.log(req.params.countryIso);
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
         expo.getByCategory(req.params.catId).then(function (_data) {
@@ -61,7 +57,6 @@ module.exports = function (app) {
                 res.render('pages/expo', _scope);
             }
         }).catch(function (_err) {
-            //console.log(_err);
             _scope.expos = [];
             _scope.JsonExpos = [];
             res.render('pages/expo', _scope);
@@ -72,7 +67,6 @@ module.exports = function (app) {
 
     // store page /EG/store/almaksoud
     app.get('/:countryIso/Store/:storeName/:storeId', function (req, res) {
-        //console.log(req.params.countryIso);
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
         console.log(req.params.storeId);
@@ -99,7 +93,6 @@ module.exports = function (app) {
                                 res.render('pages/store', _scope);
                             }
                         }).catch(function (_err) {
-                            //console.log(_err);
                             _scope.featured = [];
                             res.render('pages/store', _scope);
                         });
@@ -110,7 +103,6 @@ module.exports = function (app) {
                         res.render('pages/store', _scope);
                     }
                 }).catch(function (_err) {
-                    //console.log(_err);
                     _scope.Galleries = [];
                     _scope.GalleriesJson = [];
                     _scope.featured = [];
@@ -142,40 +134,18 @@ module.exports = function (app) {
 
     // product page 
     app.get('/:countryIso/Product/:productName/:productId', function (req, res) {
-        //console.log(req.params.countryIso);
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
-        var similarProducts = [
-           { id: 1, img: 'https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg' },
-           { id: 2, img: 'https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg' },
-           { id: 3, img: 'https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg' },
-           { id: 4, img: 'http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg' },
-           { id: 1, img: 'https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg' },
-           { id: 2, img: 'https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg' },
-           { id: 3, img: 'https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg' },
-           { id: 4, img: 'http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg' },
-           { id: 1, img: 'https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg' },
-           { id: 2, img: 'https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg' },
-           { id: 3, img: 'https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg' },
-           { id: 4, img: 'http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg' },
-           { id: 1, img: 'https://s-media-cache-ak0.pinimg.com/736x/9d/d0/eb/9dd0ebcd13e908de44ccbb2a7e5a294f.jpg' },
-           { id: 2, img: 'https://s-media-cache-ak0.pinimg.com/736x/a7/c3/da/a7c3da858c7a67841ab92b849c4f88a7.jpg' },
-           { id: 3, img: 'https://s-media-cache-ak0.pinimg.com/736x/bb/52/a4/bb52a4eca27d512bf9f0d9dca0e8cfaf.jpg' },
-           { id: 4, img: 'http://hative.com/wp-content/uploads/2016/10/behind-couch/1-space-behind-couch.jpg' },
-        ];
-        _scope.similarProducts = similarProducts;
 
         product.getById(req.params.productId).then(function (_product) {
             if (_product.code == 100) {
                 _scope.product = _product.data;
                 _scope.JsonProductName = JSON.stringify(_product.data.Name);
 
-                comment.getTenItems(req.params.productId,0).then(function (_commentsList) {
+                comment.getTenItems(req.params.productId, 0).then(function (_commentsList) {
                     if (_commentsList.code == 100) {
-                        //console.log(_commentsList.data);
                         _scope.comments = _commentsList.data;
                         _scope.JsonComments = JSON.stringify(_commentsList.data);
-
                         // similar 
                         product.getSimilar(req.params.productId).then(function (_similarList) {
                             if (_similarList.code == 100) {
@@ -190,7 +160,6 @@ module.exports = function (app) {
                                 res.render('pages/product', _scope);
                             }
                         }).catch(function (err) {
-                            //console.log(_err);
                             _scope.similarList = [];
                             _scope.JsonSimilarList = [];
                             res.render('pages/product', _scope);
@@ -212,7 +181,6 @@ module.exports = function (app) {
                                 res.render('pages/product', _scope);
                             }
                         }).catch(function (err) {
-                            //console.log(_err);
                             _scope.similarList = [];
                             _scope.JsonSimilarList = [];
                             res.render('pages/product', _scope);
@@ -220,7 +188,6 @@ module.exports = function (app) {
                     }
 
                 }).catch(function (err) {
-                    //console.log(_err);
                     _scope.comments = [];
                     _scope.JsonComments = [];
                     _scope.similarList = [];
@@ -237,7 +204,6 @@ module.exports = function (app) {
                 res.render('pages/product', _scope);
             }
         }).catch(function (_err) {
-            //console.log(_err);
             _scope.product = [];
             _scope.JsonProductName = "";
             _scope.similarList = [];
@@ -249,7 +215,6 @@ module.exports = function (app) {
 
     // contacts page 
     app.get('/:countryIso/Contactus', function (req, res) {
-        //console.log(req.params.countryIso);
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
         res.render('pages/contactus');
@@ -257,11 +222,9 @@ module.exports = function (app) {
 
     // search page 
     app.get('/:countryIso/Search/:searchTxt', function (req, res) {
-        //console.log(req.params.countryIso);
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
         _scope.searchTxt = req.params.searchTxt;
-        //console.log(req.params.searchTxt);
         expo.getAll().then(function (_expo) {
             if (_expo.code == 100) {
                 _scope.expolist = _expo.data;
@@ -272,8 +235,6 @@ module.exports = function (app) {
                             if (_store.code == 100) {
                                 _scope.storeslst = _store.data;
                                 store.search('all', 'all', _scope.searchTxt, 'all').then(function (_searchResult) {
-                                    //console.log(_scope.searchTxt);
-                                    ////console.log(_searchResult);
                                     if (_searchResult.code == 100) {
                                         _scope.lstSearchResult = _searchResult.data;
                                         _scope.JsonSearchResult = JSON.stringify(_searchResult.data);
@@ -284,8 +245,6 @@ module.exports = function (app) {
                                         res.render('pages/search', _scope);
                                     }
                                 }).catch(function (err) {
-                                    //console.log(_scope.searchTxt);
-                                    //console.log(err);
                                     _scope.storeslst = [];
                                     _scope.lstSearchResult = [];
                                     _scope.JsonSearchResult = [];
@@ -312,7 +271,6 @@ module.exports = function (app) {
                         res.render('pages/search', _scope);
                     }
                 }).catch(function (_err) {
-                    //console.log(_err);
                     _scope.storeslst = [];
                     _scope.expolist = [];
                     _scope.countrieslst = [];
@@ -330,7 +288,6 @@ module.exports = function (app) {
                 res.render('pages/search', _scope);
             }
         }).catch(function (_err) {
-            //console.log(_err);
             _scope.storeslst = [];
             _scope.expolist = [];
             _scope.countrieslst = [];
@@ -343,16 +300,13 @@ module.exports = function (app) {
 
     // inbox page
     app.get('/:countryIso/Inbox/:me/:user', function (req, res) {
-        //console.log(req.params.countryIso);
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
 
         _scope.chatPartener = req.params.user;
-        //console.log(_scope.chatPartener);
 
         message.getAllContacts(req.params.me).then(function (_listAllContacts) {
             if (_listAllContacts.code == 100) {
-                //console.log(_listAllContacts.data);
                 var allMyUsers = JSON.stringify(_listAllContacts.data);
                 _scope.usersList = allMyUsers;
 
@@ -361,13 +315,10 @@ module.exports = function (app) {
                     user.getById(req.params.user).then(function (_newStore) {
                         if (_newStore.code == 100) {
                             // store data
-                            //console.log(_newStore.data);
                             _scope.currentMessageReceiver = JSON.stringify(_newStore.data);
 
                             message.getAll(req.params.me, req.params.user).then(function (_data) {
-                                //console.log(_data);
                                 if (_data.code == 100) {
-                                    //console.log(_data.data);
                                     var chatingHistory = _data.data;
                                     var JsonInbox = JSON.stringify(chatingHistory);
                                     _scope.chatingHistory = chatingHistory;
@@ -375,14 +326,11 @@ module.exports = function (app) {
                                     res.render('pages/inbox', _scope);
                                 }
                                 else {
-                                    //console.log('nooooooooooooo data');
                                     _scope.chatingHistory = [];
                                     _scope.JsonInbox = [];
                                     res.render('pages/inbox', _scope);
                                 }
                             }).catch(function (err) {
-                                //console.log(err);
-                                //console.log('nooooooooooooo data');
                                 _scope.chatingHistory = [];
                                 _scope.JsonInbox = [];
                                 res.render('pages/inbox', _scope);
@@ -435,15 +383,12 @@ module.exports = function (app) {
 
     // notifications page
     app.get('/:countryIso/Notifications/:me', function (req, res) {
-        //console.log(req.params.countryIso);
         var _scope = {};
         _scope.moment = moment;
         _scope.countryIso = req.params.countryIso;
 
         notification.getAll(req.params.me).then(function (_listAllNotifications) {
-            //console.log(_listAllNotifications);
             if (_listAllNotifications.code == 100) {
-                //console.log(_listAllNotifications.data);
                 _scope.listNotifications = _listAllNotifications.data;
                 res.render('pages/notification', _scope);
             } else {
@@ -452,7 +397,6 @@ module.exports = function (app) {
             }
         })
         .catch(function (err) {
-            //console.log(err);
             _scope.listNotifications = [];
             res.render('pages/notification', _scope);
         });
@@ -460,14 +404,11 @@ module.exports = function (app) {
 
     //// favorites page
     app.get('/:countryIso/Favorites/:me', function (req, res) {
-        //console.log(req.params.countryIso);
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
 
         user.getFavourites(req.params.me).then(function (_list) {
-            //console.log(_list);
             if (_list.code == 100) {
-                //console.log(_list.data);
                 _scope.listFavourites = _list.data.FavouriteItems;
                 res.render('pages/favourites', _scope);
             } else {
@@ -476,7 +417,6 @@ module.exports = function (app) {
             }
         })
         .catch(function (err) {
-            //console.log(err);
             _scope.listFavourites = [];
             res.render('pages/favourites', _scope);
         });

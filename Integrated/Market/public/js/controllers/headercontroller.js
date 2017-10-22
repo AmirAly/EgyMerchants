@@ -50,7 +50,6 @@
                 data: {}
             }
             API.execute(req).then(function (_res) {
-                //console.log(_res);
                 if (_res.data.code == 100 || _res.data.code == 21) {
                     $rootScope.loading = false;
                     if (_res.data.data.unread) {
@@ -63,7 +62,6 @@
                     }
                 } else {
                     $rootScope.loading = false;
-                    //console.log('err');
                 }
             });
         }
@@ -79,13 +77,11 @@
                 data: {}
             }
             API.execute(req).then(function (_res) {
-                //console.log(_res);
                 if (_res.data.code == 100) {
                     $scope.unreadMessagesCounterArray = _res.data.data;
                     $scope.unreadMessagesCounterArray = $scope.unreadMessagesCounterArray.filter(function (obj) {
                         return obj.UnRead == true;
                     });
-                    //console.log($scope.unreadMessagesCounterArray);
                     $rootScope.unreadMessagesCounter = $scope.unreadMessagesCounterArray.length;
 
                     if ($rootScope.unreadMessagesCounter && $rootScope.unreadMessagesCounter > 0) {
@@ -96,7 +92,6 @@
                     }
                 } else {
                     $rootScope.showUnReadMessagesCounter = false;
-                    //console.log('err');
                 }
             });
         }
@@ -120,7 +115,6 @@
                 data: $scope.loginObj
             }
             API.execute(req).then(function (_res) {
-                //console.log(_res.data.data);
                 if (_res.data.code == 100) {
                     $scope.dataLoading = false;
                     $scope.frmLogin.$setPristine();
@@ -131,9 +125,7 @@
                     $rootScope.userId = _res.data.data._id;
                     $rootScope.ProfilePicture = _res.data.data.ProfilePicture;
                     localStorage.setItem('userObject', JSON.stringify(_res.data.data));
-                    //console.log(_res.data.data);
                     $scope.dismiss();
-                    //$rootScope.addUserToSockets();
                     window.location.reload();
                 } else {
                     $scope.dataLoading = false;
@@ -196,7 +188,6 @@
         //    field.$setDirty();
         //});
         $scope.searchErr = false;
-        console.log($scope.txtSearch);
         if ($scope.txtSearch != '' && $scope.txtSearch.length > 1) {
             window.location.href = "/" + $rootScope.IsoCode + "/Search/" + $scope.txtSearch;
         }
@@ -218,15 +209,12 @@
                 data: {}
             }
             API.execute(req).then(function (_res) {
-                //console.log(_res);
                 if (_res.data.code == 100) {
-                    //console.log('get fav');
                     $scope.listFavourites = _res.data.data.FavouriteItems;
                     $rootScope.favoritesDataLoading = false;
                 } else {
                     $rootScope.favoritesDataLoading = false;
                     $scope.listFavourites = [];
-                    //console.log('err');
                 }
             });
         }
@@ -245,17 +233,14 @@
             data: $scope.favData
         }
         API.execute(req).then(function (_res) {
-            //console.log(_res);
             if (_res.data.code == 100) {
                 $scope['favoritesDataLoading' + _itemId] = false;
-                //console.log('removed fav');
                 localStorage.setItem('userObject', JSON.stringify(_res.data.data));
                 $scope.listFavourites = $scope.listFavourites.filter(function (obj) {
                     return obj._id !== _itemId;
                 });
             } else {
                 $scope['favoritesDataLoading' + _itemId] = false;
-                //console.log('not removed fav');
             }
         });
     }
@@ -266,7 +251,6 @@
 
     $scope.openProfileModal = function () {
         $('#modal-profile').modal('show');
-        //console.log($rootScope.userName);
         $scope.userNametxt = $rootScope.userName;
         $('#imgItemCover').attr('src', $rootScope.ProfilePicture);
     }
@@ -279,7 +263,6 @@
             _name: $scope.userNametxt,
             _profilePicture: $rootScope.ProfilePicture
         }
-        //console.log($scope.Data);
 
         $scope.afterProfileError = "";
         if (form.$valid) {
@@ -292,7 +275,6 @@
                 data: $scope.Data
             }
             API.execute(req).then(function (_res) {
-                //console.log(_res.data.data);
                 if (_res.data.code == 100) {
                     $scope.dataLoading = false;
                     $scope.frmProfile.$setPristine();
@@ -303,13 +285,6 @@
                     userObj.Name = $rootScope.userName;
                     userObj.ProfilePicture = $rootScope.ProfilePicture;
                     localStorage.setItem('userObject', JSON.stringify(userObj));
-                    //$rootScope.$apply();
-                    // new data
-                    //$rootScope.userName = _res.data.data.Name;
-                    //$rootScope.userId = _res.data.data._id;
-                    //$rootScope.ProfilePicture = _res.data.data.ProfilePicture;
-                    //localStorage.setItem('userObject', JSON.stringify(_res.data.data));
-                    ////console.log(_res.data.data);
                     $scope.dismiss();
 
                 } else {
@@ -403,17 +378,10 @@
     ];
 
     $scope.$watch('$root.TwitterLink', function () {
-        //console.log('twitter changed');
-        //console.log($rootScope.TwitterLink);
         $('.twitter-timeline').attr('href', $rootScope.TwitterLink);
     });
     $scope.$watch('$root.FacebookLink', function () {
-        //console.log('facebook changed');
-        //console.log($rootScope.TwitterLink);
         $('.fb-like-box').attr('data-href', $rootScope.FacebookLink);
-    });
-    $scope.$watch('$root.Contacts', function () {
-        //console.log('contacts changed');
     });
 
 
@@ -429,9 +397,7 @@ function convertUserImgToBase64URL(event) {
         fileReader.onload = function (fileLoadedEvent) {
             img.onload = function () {
                 BaseImg64 = fileLoadedEvent.target.result;
-                //UploadImageUser(BaseImg64);
                 $('#imgItemCover').attr('src', BaseImg64);
-                //console.log('Here');
             };
 
         };
@@ -439,7 +405,3 @@ function convertUserImgToBase64URL(event) {
         img.src = URL.createObjectURL(fileToLoad);
     }
 };
-
-//function UploadImageUser(_BaseImg64) {
-//    $('#imgItemCover').attr('src', _BaseImg64);
-//};

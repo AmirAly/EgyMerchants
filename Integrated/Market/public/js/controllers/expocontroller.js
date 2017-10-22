@@ -1,4 +1,4 @@
-﻿app.controller("expoController", function ($scope, $rootScope, $timeout, $filter, API) {
+﻿app.controller("expoController", function ($scope, $rootScope, $timeout, $filter, API, $cookies) {
     //prepare social plugins (default data)
     $rootScope.Contacts = [{ Label: 'Address', Value: 'End of Al-ashraf st., El imam tower, Tanta, Egypt.' },
    { Label: 'Phone', Value: '+2 (012) 111 11111' },
@@ -84,8 +84,6 @@
     $scope.expos = [];
 
     window.onresize = function () {
-        console.log('resize');
-        console.log($rootScope.loading);
         $scope.exposList = JSON.parse((window.exposObject).replace(/&quot;/g, '"'));
     }
 
@@ -112,13 +110,11 @@
             API.execute(req).then(function (_res) {
                 if (_res.data.code == 100) {
                     $scope.exposList[i].stores = _res.data.data;
-                    console.log($scope.exposList);
                     $scope.getstores(i + 1);
                 }
             });
 
         }
-        //  $scope.getstores(i+1);
     }
 
     $scope.init = function (_isoCode) {
@@ -128,20 +124,7 @@
         currentExpoId = $scope.exposList[0]._id;
         floorsCounter = $scope.exposList[0].Floors.length;
         intervalPeriod = $scope.exposList[0].FlipTime;
-
-        console.log($scope.exposList);
-
-
-        //$rootScope.loading = true;
-
         $scope.getstores(i);
-
-        //$rootScope.loading = false;
-
-
-
-
-
         // set which activeFloorCounter for every expo
         angular.forEach($scope.exposList, function (expo) {
             var expoId = expo._id;
@@ -154,8 +137,6 @@
 
     //// swipe floors 1 ,  2
     $scope.nextPage = function (_expoId, _floorsCounter) {
-        console.log('enter Next');
-        console.log($scope['activeFloorCounter' + _expoId]);
         $scope['activeFloorCounter' + _expoId]++;
         if ($scope['activeFloorCounter' + _expoId] < _floorsCounter) {
             $scope['activePageNumber' + _expoId] = $scope['activeFloorCounter' + _expoId];
@@ -182,64 +163,62 @@
     $(document).ready(function () {
         var interval;
         $scope.startShowLogos = false;
-        $scope.startScroll = function () {
-            swinch.init(null, {
-                snapTo: 'bottom',
-                scrollToElem: '.secondExpo',
-                onBeforeSnap: function onBeforeSnap(currentSection, nextSection, scrollDirection) {
-                    //
-                },
-                onSnapped: function (current, previous, direction) {
-                    /**
-                     * Called after the snapping completes
-                     *
-                     * @param  {Node}   currentSection
-                     * @param  {Node}   previousSection
-                     * @param  {Object} scrollDirection {isUp: <boolean>, isDown: <boolean>}
-                     *
-                     * @return {void}
-                     */
-                    clearInterval(interval);
-                    console.log('onSnapped');
-                    console.log(direction);
-                    currentExpoId = (current.id).slice(4);
-                    intervalPeriod = current.getAttribute('data-flipTime');
-                    console.log(current);
-                    floorsCounter = current.getAttribute('data-floors'); // no need for it now
-                    console.log(floorsCounter);
-                    if (intervalPeriod > 0) {
-                        interval = setInterval(function () {
-                            $('#nextFloor' + currentExpoId).click();
-                        }, intervalPeriod);
+        //$scope.startScroll = function () {
+        //    $timeout(function () {
+                swinch.init(null, {
+                    snapTo: 'bottom',
+                    scrollToElem: '.secondExpo',
+                    onBeforeSnap: function onBeforeSnap(currentSection, nextSection, scrollDirection) {
+                        //
+                    },
+                    onSnapped: function (current, previous, direction) {
+                        clearInterval(interval);
+                        currentExpoId = (current.id).slice(4);
+                        intervalPeriod = current.getAttribute('data-flipTime');
+                        floorsCounter = current.getAttribute('data-floors'); // no need for it now
+                        if (intervalPeriod > 0) {
+                            interval = setInterval(function () {
+                                $('#nextFloor' + currentExpoId).click();
+                            }, intervalPeriod);
+                        }
+                        $scope.$apply();
                     }
-                    $scope.$apply();
-                }
-            });
+                });
+        //    }, 2000);
+        //}
+
+
+        var curStep = $cookies.get('myTour');
+        if (typeof curStep === 'string')
+            curStep = parseInt(curStep);
+        $scope.currentStep = curStep || 0;
+
+        if ($scope.currentStep < 5) {
+            $timeout(function () {
+                $scope.currentStep = 0;
+            }, 1000);
+        }
+        else {
+            //$scope.startScroll();
+            $scope.startShowLogos = true;
         }
 
 
-        //var curStep = $cookies.get('myTour');
-        //if (typeof curStep === 'string')
-        //    curStep = parseInt(curStep);
-        //$scope.currentStep = curStep || 0;
-
-        $timeout(function () {
-            $scope.currentStep = 0;
-        }, 1000);
-
         $scope.postTourCallback = function () {//close
-            console.log('tour closes');
-            $scope.startScroll();
+            //console.log('tour closes');
+            $cookies.put('myTour', $scope.currentStep);
+            //$scope.startScroll();
             $scope.startShowLogos = true;
         };
 
         $scope.tourCompleteCallback = function () {// complete
-            console.log('tour completed');
+            //console.log('tour completed');
+            $cookies.put('myTour', $scope.currentStep);
         }
 
         $scope.postStepCallback = function () {// one step
-            console.log('Tour - Update Step', $scope.currentStep);
-            //$cookies.put('myTour', $scope.currentStep);
+            //console.log('Tour - Update Step', $scope.currentStep);
+            $cookies.put('myTour', $scope.currentStep);
         };
 
     });

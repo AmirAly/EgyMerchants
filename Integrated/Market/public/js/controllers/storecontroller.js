@@ -6,15 +6,12 @@
 
         if (window.storeJson.length > 0) {
             $scope.storeJson = JSON.parse(window.storeJson);
-            console.log($scope.storeJson);
             $rootScope.Contacts = $scope.storeJson.Contacts;
 
             if ($scope.storeJson.Rate.length > 0) {
                 $scope.exist = $filter('filter')($scope.storeJson.Rate, { User: $rootScope.userId })[0];
-                console.log($scope.exist);
                 if ($scope.exist) {
                     $scope.isRatedBefore = true;
-                    console.log($scope.isRatedBefore);
                     if ($rootScope.loggedUser) {
                         $scope.RateValue = ", You rated this store with " + $scope.exist.Value;
                     } else {
@@ -27,35 +24,27 @@
                     $('#input-id').rating('refresh', { disabled: true, showClear: false, showCaption: true });
 
                     $('#input-id').on('rating.change', function (event, value, caption) {
-                        console.log(value);
-                        console.log(caption);
                         $scope.addRate(value);
                     });
                 }
                 else {
                     $scope.isRatedBefore = false; // allow rate
-                    console.log($scope.isRatedBefore);
                     $("#input-id").rating({ step: 1 });
                     $('#input-id').rating('update', $scope.storeJson.Average);
                     $('#input-id').rating('refresh', { disabled: false, showClear: false, showCaption: true });
 
                     $('#input-id').on('rating.change', function (event, value, caption) {
-                        console.log(value);
-                        console.log(caption);
                         $scope.addRate(value);
                     });
                 }
             }
             else {
                 $scope.isRatedBefore = false; // get users array and check me
-                console.log($scope.isRatedBefore);
                 $("#input-id").rating({ step: 1 });
                 $('#input-id').rating('update', $scope.storeJson.Average);
                 $('#input-id').rating('refresh', { disabled: false, showClear: false, showCaption: true });
 
                 $('#input-id').on('rating.change', function (event, value, caption) {
-                    console.log(value);
-                    console.log(caption);
                     $scope.addRate(value);
                 });
             }
@@ -63,11 +52,12 @@
             if ($scope.storeJson.Contacts.length > 0) {
                 $rootScope.FacebookLink = $scope.storeJson.Contacts[0].Value;
                 $rootScope.TwitterLink = $scope.storeJson.Contacts[1].Value;
+               
             }
             jQuery(function ($) {
                 "use strict";
-                $rootScope.TwitterLink = "https://twitter.com/TwitterVideo";
-                $rootScope.FacebookLink = "https://www.facebook.com/Skype/";
+                $rootScope.FacebookLink = $scope.storeJson.Contacts[0].Value;
+                $rootScope.TwitterLink = $scope.storeJson.Contacts[1].Value;
 
                 $('.twitter-timeline').attr('href', $rootScope.TwitterLink);
                 $('.fb-like-box').attr('data-href', $rootScope.FacebookLink);
@@ -151,10 +141,8 @@
             $scope.GalleriesJson[i].Gallery = result;
         }
         $scope.GalleriesLst = $scope.GalleriesJson;
-        console.log($scope.GalleriesLst);
         if ($rootScope.loggedUser) {
             $scope.visitedList = JSON.parse(localStorage.getItem('userObject')).VisitedStores;
-            console.log($scope.visitedList);
             if ($scope.visitedList.indexOf(_storeId) !== -1) {
                 $scope.message = 'artNr  visited!';
                 $scope.isVisited = true;
@@ -165,7 +153,6 @@
                 //call to add to visited
                 $scope.addToVisited(_storeId);
             }
-            console.log($scope.message);
         }
     }
 
@@ -180,14 +167,10 @@
                 _value: _val
             }
         }
-        console.log(req);
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
-                console.log('rate added');
                 location.reload(true);
             } else {
-                console.log('rate NOT added');
             }
 
         });
@@ -205,13 +188,9 @@
             data: $scope.storeData
         }
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
-                console.log('visit added');
                 localStorage.setItem('userObject', JSON.stringify(_res.data.data));
-            } else {
-                console.log('visit NOT added');
-            }
+            } 
 
         });
     }

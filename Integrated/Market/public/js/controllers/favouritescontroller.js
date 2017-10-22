@@ -1,7 +1,6 @@
 ﻿app.controller("favouritesController", function ($scope, $rootScope, $timeout, API) {
 
     $scope.init = function (_isoCode) {
-        console.log('enter');
         $rootScope.IsoCode = _isoCode;
     }
 
@@ -17,18 +16,14 @@
             data: $scope.favData
         }
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
-                //$rootScope.loading = false;
                 $scope.IsFav = true;
-                console.log('removed fav');
                 localStorage.setItem('userObject', JSON.stringify(_res.data.data));
                 window.location.reload();
 
             } else {
                 $rootScope.loading = false;
                 $scope.IsFav = false;
-                console.log('not removed fav');
             }
 
         });

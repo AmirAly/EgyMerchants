@@ -4,7 +4,7 @@
     $scope.countries = 'all';
     $scope.stores = 'all';
 
-    console.log(window.x);
+   //console.log(window.x);
     if (window.x.length > 2) {
 console.log(JSON.parse((window.x).replace(/&quot;/g, '"')));
     $scope.searchResult = JSON.parse((window.x).replace(/&quot;/g, '"'));
@@ -13,13 +13,13 @@ console.log(JSON.parse((window.x).replace(/&quot;/g, '"')));
 
     $scope.init1 = function ( _isoCode) {
         $rootScope.IsoCode = _isoCode;
-        console.log($rootScope.IsoCode);
+       //console.log($rootScope.IsoCode);
         localStorage.setItem('IsoCode', _isoCode);
     }
 
     $scope.refineSearch = function () {
         $rootScope.IsoCode = localStorage.getItem('IsoCode');
-        console.log($rootScope.IsoCode);
+       //console.log($rootScope.IsoCode);
         $rootScope.loading = true;
         ////////////// call API /////////
         var store, expo, keyword, country;
@@ -55,7 +55,7 @@ console.log(JSON.parse((window.x).replace(/&quot;/g, '"')));
                 $scope.searchResult = '';
                 $rootScope.loading = false;
             }
-            console.log($rootScope.IsoCode);
+           //console.log($rootScope.IsoCode);
         });
     }
 
@@ -77,7 +77,7 @@ console.log(JSON.parse((window.x).replace(/&quot;/g, '"')));
                 $scope.searchResult = '';
                 $rootScope.loading = false;
             }
-            console.log($rootScope.IsoCode);
+           //console.log($rootScope.IsoCode);
         });
 
     }

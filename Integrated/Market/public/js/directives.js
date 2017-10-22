@@ -60,7 +60,6 @@ app.directive('myModal', function () {
         restrict: 'A',
         link: function (scope, element, attr) {
             scope.dismiss = function () {
-                console.log('here');
                 element.modal('hide');
             };
         }

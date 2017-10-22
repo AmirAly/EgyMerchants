@@ -1,4 +1,4 @@
-﻿var app = angular.module("app", ['ngAnimate', 'angular-tour']);
+﻿var app = angular.module("app", ['ngAnimate', 'angular-tour', 'ngCookies']);
 
 app.run(function ($rootScope, $timeout, socket) {
     
@@ -7,7 +7,6 @@ app.run(function ($rootScope, $timeout, socket) {
     // ================
     function addUser() {
         if ($rootScope.userObject) {
-            //console.log('enter ' + $rootScope.userObject._id);
             socket.emit('adduser', $rootScope.userObject._id);
         }
     }
@@ -16,7 +15,6 @@ app.run(function ($rootScope, $timeout, socket) {
     }, 5000);
 
     socket.on('newmsg', function (_data) {
-        //console.log('new msg ***************************************');
 
         $rootScope.newMsgReceived = true;
         $timeout(function () {
@@ -24,21 +22,10 @@ app.run(function ($rootScope, $timeout, socket) {
         }, 3000);
 
         $rootScope.getUnreadMessages();
-
-        //// Get the snackbar DIV
-        //var x = document.getElementById("snackbar");
-        //// Add the "show" class to DIV
-        //x.className = "show";
-        //// After 3 seconds, remove the show class from DIV
-        //setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-        //$rootScope.$apply();
-
     });
 
     socket.on('ping', function (data) {
-        //console.log("Ping received from server");
         if (data && $rootScope.loggedUser) {
-            //console.log(data.beat);
             socket.emit('pong', "pong");
             socket.emit('adduser', $rootScope.userObject._id);
         }
@@ -49,12 +36,6 @@ app.run(function ($rootScope, $timeout, socket) {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
     });
 
-    //$rootScope.addUserToSockets = function () {
-    //    //console.log('enter');
-    //    //if (typeof socket !== 'undefined') {
-    //        socket.emit('adduser', $rootScope.userObject._id);
-    //    //}
-    //}
 
     $rootScope.loggedUser = false;
     // get user object from local storage
@@ -65,7 +46,6 @@ app.run(function ($rootScope, $timeout, socket) {
         $rootScope.ProfilePicture = $rootScope.userObject.ProfilePicture;
         $rootScope.loggedUser = true;
         $rootScope.$apply();
-        //$rootScope.addUserToSockets();
     }
     else {
         $rootScope.userName = '';

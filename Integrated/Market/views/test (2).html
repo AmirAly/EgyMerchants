@@ -1,0 +1,81 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        .color_div {
+            height: 700px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div id="home" class="home_div">
+        //here home page code
+    </div>
+
+    <div id="color1" class="color_div" style="background-color:#253412;">
+        aaaaaaaaaaaa
+    </div>
+
+    <div id="color2" class="color_div" style="background-color:#956341;">
+        bbbbbbbbbbbbbb
+    </div>
+
+
+    <div id="color3" class="color_div" style="background-color:red;">
+        cccccccccc
+    </div>
+
+    <div id="color4" class="color_div" style="background-color:blue;">
+        dddddddddddddd
+    </div>
+
+    <div id="color5" class="color_div" style="background-color:yellow;">
+        eeeeeeeeeeeeeee
+    </div>
+
+    <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+
+    <script>
+        var lastScroll = 0;
+        var counter = 1;
+        var temp = $("#color" + counter);
+        console.log(temp.selector);
+        $(window).scroll(function (event) {
+            //Sets the current scroll position
+            var st = $(this).scrollTop();
+            var scrollBy = $('#color' + counter).offset().top;
+
+            if (st > lastScroll) {
+                if ($('#color' + counter).offset()) {
+                    $('html, body').animate({
+                        scrollTop: scrollBy
+                    }, 600);
+                    counter++;
+                    temp = $("#color" + counter);
+                }
+
+            }
+            else if (st < lastScroll) {
+
+                if ($('#color' + counter).offset()) {
+
+                    console.log(scrollBy);
+                    $('html, body').animate({
+                        scrollTop: scrollBy
+                    }, 600);
+
+                    counter--;
+                    temp = $("#color" + counter);
+                }
+
+
+            }
+            //Updates scroll position
+            lastScroll = st;
+
+        });
+    </script>
+</body>
+</html>
