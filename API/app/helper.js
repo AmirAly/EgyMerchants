@@ -11,12 +11,12 @@ cloudinary.config({
 
 module.exports = {
     uploadImage: function (_url, callback) {
-        console.log("url is "+_url)
+    
         cloudinary.v2.uploader.upload(_url, function (error, result)
          { 
              if(error) console.log(error);
              else {
-             console.log("url  inside function is "+result.secure_url)
+           
              callback(result.secure_url)
             }
          });
@@ -111,7 +111,7 @@ module.exports = {
         }
         smtpTransport.sendMail(mailOptions, function (err, response) {
             if (err) {
-                console.log(err);
+             
                 return err;
             }
             else

@@ -54,15 +54,13 @@ mongoose.connect(db.url, function (err) {
         app.use(express.static('public'));
         app.use('/', api);
 
-        //app.listen(port);
+     
         server.listen(port, function () {
             console.log('listening on 8007');
         });
         console.log('connected to database and server is listeining ');
-        // console.log(mongoose.Types.ObjectId('578df3efb618f5141202a196'));
-        // console.log(new Date("1/9/2017 4:00:00").getTime());
-        // console.log(new Date(  1506600924382));
-
-        
+    
     }
 });
+
+
