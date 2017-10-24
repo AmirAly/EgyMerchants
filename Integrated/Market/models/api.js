@@ -29,7 +29,7 @@ module.exports = function (app, express) {
         return res.json({ code: '100', data: 'This api is working great, however further calls to other endpoints require a token' });
     });
     
-
+    
     //store API calls
     api.post('/Store/Register', function (req, res) {
         var _newstore = new User(req.body);
@@ -385,7 +385,7 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Expo/Edit', function (req, res) {
-        ExpoLogic.edit(req.body._id, req.body.Title, req.body.Banner, req.body.Category, req.body.Floors).then(function (result) {
+        ExpoLogic.edit(req.body._id, req.body.Title, req.body.Banner, req.body.Category, req.body.Floors, req.body.FlipTime).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);

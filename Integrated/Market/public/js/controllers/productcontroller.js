@@ -2,7 +2,7 @@
 
     $scope.init = function (_isoCode, _itemId) {
         $rootScope.IsoCode = _isoCode;
-
+        localStorage.setItem('IsoCode', _isoCode);
         $scope.commentsList = JSON.parse(window.commentObject);
 
         $scope.similarList = JSON.parse(window.itemSimilar);

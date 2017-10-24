@@ -119,7 +119,7 @@
 
     $scope.init = function (_isoCode) {
         $rootScope.IsoCode = _isoCode;
-
+        localStorage.setItem('IsoCode', _isoCode);
         $scope.exposList = JSON.parse((window.exposObject).replace(/&quot;/g, '"'));
         currentExpoId = $scope.exposList[0]._id;
         floorsCounter = $scope.exposList[0].Floors.length;
@@ -191,29 +191,35 @@
         var curStep = $cookies.get('myTour');
         if (typeof curStep === 'string')
             curStep = parseInt(curStep);
-        $scope.currentStep = curStep || 0;
+        //$scope.currentStep = curStep || 0;
 
-        if ($scope.currentStep < 5) {
+        if (curStep < 5 && $scope.exposList[0].Floors[0].Coordinates.length > 0) { //floor array not empty
+            //console.log('if');
+            //console.log($scope.exposList[0].Floors[0].Coordinates.length);
             $timeout(function () {
                 $scope.currentStep = 0;
             }, 1000);
         }
         else {
-            //$scope.startScroll();
+            //$scope.startScroll(); 
+            //console.log('else');
+            $scope.currentStep = 5;
             $scope.startShowLogos = true;
         }
 
 
         $scope.postTourCallback = function () {//close
-            //console.log('tour closes');
-            $cookies.put('myTour', $scope.currentStep);
+            //console.log('tour closes');            
             //$scope.startScroll();
+            $cookies.put('myTour', $scope.currentStep);
             $scope.startShowLogos = true;
         };
 
         $scope.tourCompleteCallback = function () {// complete
             //console.log('tour completed');
+            //$scope.startScroll();
             $cookies.put('myTour', $scope.currentStep);
+            $scope.startShowLogos = true;
         }
 
         $scope.postStepCallback = function () {// one step

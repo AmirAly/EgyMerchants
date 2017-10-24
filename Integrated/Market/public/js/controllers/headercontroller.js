@@ -121,6 +121,13 @@
                     $scope.frmLogin.$setUntouched();
                     $scope.loginObj = {};
                     $rootScope.loggedUser = true;
+                    //console.log(_res.data.data);
+                    $rootScope.Status = _res.data.data.Status;
+                    if ($rootScope.Status == 'Active') {
+                        $rootScope.activeUser = true;
+                    } else {
+                        $rootScope.activeUser = false;
+                    }
                     $rootScope.userName = _res.data.data.Name;
                     $rootScope.userId = _res.data.data._id;
                     $rootScope.ProfilePicture = _res.data.data.ProfilePicture;
@@ -158,6 +165,13 @@
                     $scope.frmRegister.$setUntouched();
                     $scope.registerObj = {};
                     $rootScope.loggedUser = true;
+                    //console.log(_res.data.data);
+                    $rootScope.Status = _res.data.data.Status;
+                    if ($rootScope.Status == 'Active') {
+                        $rootScope.activeUser = true;
+                    } else {
+                        $rootScope.activeUser = false;
+                    }
                     $rootScope.userName = _res.data.data.Name;
                     $rootScope.ProfilePicture = _res.data.data.ProfilePicture;
                     $rootScope.userId = _res.data.data._id;
@@ -176,8 +190,9 @@
     }
     $rootScope.IsoCode = localStorage.getItem('IsoCode');
     $scope.logout = function () {
+        var IsoCode = localStorage.getItem('IsoCode');
         localStorage.clear();
-        window.location.href = "/" + $rootScope.IsoCode + "/Home";
+        window.location.href = "/" + IsoCode + "/Home";
     }
 
     $scope.searchErr = false;

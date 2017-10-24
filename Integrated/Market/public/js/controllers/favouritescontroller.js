@@ -2,6 +2,7 @@
 
     $scope.init = function (_isoCode) {
         $rootScope.IsoCode = _isoCode;
+        localStorage.setItem('IsoCode', _isoCode);
     }
 
     $scope.removeFromFavorites = function (_itemId) {

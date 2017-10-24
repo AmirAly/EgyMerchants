@@ -2,6 +2,7 @@
 
     $scope.init = function (_isoCode, _storeId) {
         $rootScope.IsoCode = _isoCode;
+        localStorage.setItem('IsoCode', _isoCode);
         $scope.storeId = _storeId;
 
         if (window.storeJson.length > 0) {
@@ -10,14 +11,24 @@
 
             if ($scope.storeJson.Rate.length > 0) {
                 $scope.exist = $filter('filter')($scope.storeJson.Rate, { User: $rootScope.userId })[0];
-                if ($scope.exist) {
+                if (!$rootScope.activeUser) {
                     $scope.isRatedBefore = true;
-                    if ($rootScope.loggedUser) {
+                    $scope.RateValue = ", You have to active your account first to rate a store";
+                    $("#input-id").rating({ step: 0.1 });
+                    $('#input-id').rating('update', $scope.storeJson.Average);
+                    $('#input-id').rating('refresh', { disabled: true, showClear: false, showCaption: true });
+
+                    $('#input-id').on('rating.change', function (event, value, caption) {
+                        $scope.addRate(value);
+                    });
+                }
+               else if ($scope.exist && $rootScope.activeUser) {
+                    $scope.isRatedBefore = true;
+                    if ($rootScope.loggedUser && $rootScope.activeUser) {
                         $scope.RateValue = ", You rated this store with " + $scope.exist.Value;
                     } else {
                         $scope.RateValue = ", You have to log in first to rate a store";
                     }
-
 
                     $("#input-id").rating({ step: 0.1 });
                     $('#input-id').rating('update', $scope.storeJson.Average);

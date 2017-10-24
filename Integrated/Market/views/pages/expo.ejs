@@ -25,7 +25,8 @@
                                                 <!-- floors -->
                                                 <div ng-repeat="floor in expo.Floors" class="boxme" ng-show="activePageNumber{{expo._id}} == {{$index}}" ng-init="initfirstPage(expo._id,0)">
                                                     <div class="imagesContainer" id="imagesContainer{{expo._id}}">
-													     
+			                    <div class="dvNoFloors" ng-show="!floor.Coordinates.length">We are sorry :(<br/>current floor '{{floor.Name}}' is empty!</div>
+
 
 														 <div ng-show="startShowLogos">
 															<div class="balloon" ng-repeat="obj in expo.stores | unique:'_id'" ng-style="{'background-image':'url(' + obj.ProfilePicture + ')'}"></div>

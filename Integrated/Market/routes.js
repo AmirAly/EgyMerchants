@@ -1,4 +1,5 @@
-﻿var _ = require("underscore");
+﻿// modules =================================================
+var _ = require("underscore");
 var store = require('./models/stores');
 var product = require('./models/items');
 var gallery = require('./models/galleries');
@@ -11,10 +12,31 @@ var notification = require('./models/notifications');
 var comment = require('./models/comments');
 var moment = require('moment');
 
+        var https = require('https');
+
 module.exports = function (app) {
     // use res.render to load up an ejs view file
     app.get('/', function (req, res) {
-        return res.redirect('/EG/Home');
+
+        //app.get("http://ip-api.com/json").then(function (response) {
+        //    console.log(response);
+        //    //return response;
+        //});
+
+
+        //https.get('https://ip-api.com/json', function (resp) {
+        //    var body = ''
+        //    resp.on('data', function (data) {
+        //        body += data;
+        //    });
+
+        //    resp.on('end', function () {
+        //        var loc = JSON.parse(body);
+        //        console.log(loc);
+        //    });
+        //});
+
+        return res.redirect('/' + null + '/Home');
     });
 
     // index page welcome + categories

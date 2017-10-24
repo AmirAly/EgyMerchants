@@ -3,6 +3,7 @@
     $scope.init = function (_isoCode) {
         //console.log('enter');
         $rootScope.IsoCode = _isoCode;
+        localStorage.setItem('IsoCode', _isoCode);
     }
 
     $scope.moreNotifications = true;

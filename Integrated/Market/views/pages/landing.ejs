@@ -37,14 +37,14 @@
                 <div class="col-md-5 big">
                     <img src="/images/Expoeveryday.png">
                 </div>
-                <div class="col-md-5 big">
+                <div class="col-md-6 big">
                     <h1 class="wow slideInDown" data-wow-delay="1s" data-wow-duration="2s" ng-bind="txtWelcomeHeader"></h1>
                     <p class="wow slideInUp" ng-cloak data-wow-delay="1s" data-wow-duration="2s" ng-bind="txtWelcomeMsg"></p>
 
                     <div ng-cloak data-wow-delay="1s" ng-repeat="category in allcategories track by $index" class="wow bounceInRight txtCategoryContainer" data-wow-duration="2s" ng-click="openExpo(IsoCode , category._id)">
                         <a href="/{{IsoCode}}/Expos/{{category._id}}">{{category.Name}}</a>
                     </div>
-                    <p ng-show="countryCategories.length > 0" class="txtNoData"> No categories available </p>
+                    <p ng-show="!allcategories.length" class="txtNoData"> please choose another country. </p>
                 </div>
                 <div class="col-sm-1 small">
                     <div class="dropdown">

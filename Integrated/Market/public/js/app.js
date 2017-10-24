@@ -1,7 +1,7 @@
 ﻿var app = angular.module("app", ['ngAnimate', 'angular-tour', 'ngCookies']);
 
 app.run(function ($rootScope, $timeout, socket) {
-    
+
 
     // Socket listeners
     // ================
@@ -29,7 +29,7 @@ app.run(function ($rootScope, $timeout, socket) {
             socket.emit('pong', "pong");
             socket.emit('adduser', $rootScope.userObject._id);
         }
-        
+
     });
 
     $rootScope.$on('$stateChangeSuccess', function () {
@@ -45,11 +45,19 @@ app.run(function ($rootScope, $timeout, socket) {
         $rootScope.userId = $rootScope.userObject._id;
         $rootScope.ProfilePicture = $rootScope.userObject.ProfilePicture;
         $rootScope.loggedUser = true;
+        if ($rootScope.userObject.Status == 'Active') {
+            $rootScope.activeUser = true;
+        } else {
+            $rootScope.activeUser = false;
+        }
+
+
         $rootScope.$apply();
     }
     else {
         $rootScope.userName = '';
         $rootScope.userId = '';
         $rootScope.loggedUser = false;
+        $rootScope.activeUser = false;
     }
 });

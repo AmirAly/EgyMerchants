@@ -94,7 +94,7 @@ module.exports = {
             })
         })
     },
-    edit: function (_id, _title, _banner, _category, _Floors) {
+    edit: function (_id, _title, _banner, _category, _Floors, _FlipTime) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ 'Title': {$regex: new RegExp('^' + _title+"$" , 'i')}, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
@@ -117,12 +117,16 @@ module.exports = {
                                     data: err
                                 });
                             else {
+                                console.log(_FlipTime);
                                 if (Obj) {
                                     Obj.Title = _title;
                                     Obj.Category = _category;
                                     Obj.Floors = _Floors;
+                                    
                                     Helper.uploadImage(_banner, function (_url) {
                                         Obj.Title = _title;
+                                        Obj.FlipTime = _FlipTime;
+                                        console.log(Obj.FlipTime);
                                         Obj.Banner = _url;
                                         Obj.Category = _category;
                                         Obj.save(function (err, expo) {

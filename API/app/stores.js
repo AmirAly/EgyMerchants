@@ -49,10 +49,10 @@ module.exports = {
                                             to: _newStore.Email,
                                             subject: "Please confirm your e-mail address ",
                                             html: 'Dear '+_newStore.Name+" store"+'<br />'+
-                                            'Welcome to EgyMerchant'+'<br />'+
+                                            'Welcome to EgyMerchants'+'<br />'+
                                            ' You are almost ready to start interacting with our web site...'+'<br />'
                                          +'  Please confirm your email address by clicking the link below'+'<br />'+
-                                         '<a href='+link+'>Confirm your e-mail</a>'
+                                         '<a href=' + link + '>Confirm your e-mail</a>' + '<b> Then relogin with your data.</b>'
                                         }
                                        
                                                 Helper.sendEmail(data);

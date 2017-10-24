@@ -696,13 +696,16 @@ h6.mega {
     }
 
     .pageLanding .container-fluid p {
-        font-size: 45px;
+        /*font-size: 45px;*/
+        font-size: 36px;
         font-weight: 100;
         font-family: "Mavenpro";
         line-height: .9;
         margin-bottom: 7vh;
         color: #2b2b2b;
         padding-left: 30px;
+        background: transparent;
+        text-align: left;
     }
 
     .pageLanding .container-fluid .txtCategoryContainer {
@@ -1395,8 +1398,9 @@ h6.mega {
     }
 
         .expoPage article .expoData h4:hover {
-            min-width: calc(100% - 120px - 20px);
+            min-width: 80%;
             min-height: 100px;
+            height: 100px;
             overflow: auto;
             text-align: center;
             border-radius: 10px;
@@ -1493,14 +1497,14 @@ h6.mega {
         border-radius: 30px 0;
         box-shadow: 0 0 4px 1px #2f3946;
         box-shadow: 0 0 0px 5px #2f3946;
-        -moz-animation: cssAnimation 3s ease-in-out 0.5s both;
+        /*-moz-animation: cssAnimation 3s ease-in-out 0.5s both;*/
         /* Firefox */
-        -webkit-animation: cssAnimation 3s ease-in-out 0.5s both;
+        /*-webkit-animation: cssAnimation 3s ease-in-out 0.5s both;*/
         /* Safari and Chrome */
-        -o-animation: cssAnimation 3s ease-in-out 0.5s both;
+        /*-o-animation: cssAnimation 3s ease-in-out 0.5s both;*/
         /* Opera */
         animation: cssAnimation 3s ease-in-out 0.5s both;
-        -webkit-animation-fill-mode: both;
+        /*-webkit-animation-fill-mode: both;*/
         animation-fill-mode: both;
     }
 
@@ -1508,27 +1512,30 @@ h6.mega {
 @keyframes cssAnimation {
     0% {
         bottom: 24px;
-        left: calc(100% - 30px);
+        left: 100%;
         visibility: hidden;
         opacity: 0;
+        transform: translateX(0);
     }
 
     10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90% {
-        bottom: calc(24px + 80px);
-        left: calc(100% - 150px);
+        bottom: 110px;
+        left: 100%;
         visibility: visible;
         opacity: 1;
+        transform: translateX(-210px);
     }
 
     100% {
         bottom: 24px;
-        left: calc(100% - 30px);
+        left: 100%;
         visibility: hidden;
         opacity: 0;
+        transform: translateX(0);
     }
 }
 
-@-webkit-keyframes cssAnimation {
+/*@-webkit-keyframes cssAnimation {
     0% {
         bottom: 24px;
         left: calc(100% - 30px);
@@ -1549,7 +1556,7 @@ h6.mega {
         visibility: hidden;
         opacity: 0;
     }
-}
+}*/
 
 .expoPage article .expoData h1 {
     color: #fff;
@@ -1645,6 +1652,11 @@ h6.mega {
     background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
 }
+
+    .expoPage .dvNoFloors.dvNoFloors2 {
+        padding-top: 0;
+        margin-top: -16px;
+    }
 
 /*product page*/
 .cloudzoom-lens {

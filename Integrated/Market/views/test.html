@@ -1,237 +1,180 @@
 <% include ../partials/pagestart %>
 <% include ../partials/pageheader %>
 
-<script>
-    var GalleriesJson = <%-JSON.stringify(GalleriesJson)%>;
-    var storeJson = <%-JSON.stringify(storeJson)%>
-</script>
-
-<div class="storePage" ng-controller="storeController">
-    <!--style="background-image: url(<%= store.CoverPhoto %>);"-->
-    <div class="container">
-        <div class="pageCover" style="background: url(<%= store.CoverPhoto %>);">
-
-        </div>
-        <div class="pageBody" ng-init="init('<%= countryIso %>', '<%= store._id %>')">
-            <div class="dvStoreHeader">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="dvProfileImgContainer">
-                            <div class="dvProfileImg">
-                                <span class="icon-checkmark-2" ng-class="{'visitedStore': isVisited == true}" title="{{ isVisited ? 'Visited store' : 'Not a visited store'}}"></span>
-                                <img class="img-responsive" src="<%= store.ProfilePicture %>" />
-                            </div>
-                        </div>
-
-                        <div class="dvStoreInfo" title="<%= store.Name %> rate is <%= store.Average %> star{{RateValue}}">
-                            <h1><%= store.Name %></h1>
-                            <span class="dvRating" ng-show="false">
-                                <span class="rating golden" data-default-rating="<%= store.Average %>" data-step="0.1" ng-disabled="isRatedBefore"></span>
-                            </span>
-
-                            <input id="input-id" name="input-name" type="number" class="rating" step="1" data-size="xs">
+<div class="expoPage" ng-controller="expoController">
 
 
-                        </div>
+    <div class="allExposView" ng-hide="showSingleExpo">
+        <div class="secondDiv" ng-init="init('<%= countryIso %>')" id="one">
+            <script>var exposObject = <%-JSON.stringify(JsonExpos)%>;</script>
+
+            <% if (expos.length > 0) { %>
+            <div ng-repeat="expo in exposList">
+                <div ng-if="expo.Floors.length > 0">
+                    <section swinch-duration="5000" swinch-delay="1500" ng-attr-swinch-offset="{{ $first ? -50 : 0 }}" data-floors="{{expo.Floors.length}}" data-fliptime="{{expo.FlipTime}}" class="secondExpo repeated-item smooth-container" id="expo{{expo._id}}">
+                        <article>
+
+                            <div class="expoData">
+
+                                <div>
+                                    <div class="singleExpoView" id="expo{{expo._id}}">
+                                        <div class="container-fluid">
+
+                                            <div class="row" ng-init="loadArray(expo._id)">
+
+                                                <!-- floors -->
+                                                <div ng-repeat="floor in expo.Floors" ng-show="expo.Floors.length" class="boxme" ng-show="activePageNumber{{expo._id}} == {{$index}}" ng-init="initfirstPage(expo._id,0)">
+                                                    <div class="imagesContainer" id="imagesContainer{{expo._id}}">
 
 
+                                                        <div ng-show="startShowLogos">
+                                                            <div class="balloon" ng-repeat="obj in expo.stores | unique:'_id'" ng-style="{'background-image':'url(' + obj.ProfilePicture + ')'}"></div>
+                                                        </div>
 
+                                                        
+                                                        <span>{{floor.Coordinates.length}}</span>
+                                                        <div class="dvNoFloors" ng-show="!floor.Coordinates.length > 0">bbbbbbbbbbbbbbbba</div>
 
-                        <div class="dvFlagContainer">
-                            <img alt="Flag" title="<%= store.Country %>" class="img-responsive" src="https://egym.herokuapp.com/<%= store.Country %>.png" />
-                        </div>
-                    </div>
-                </div>
+                                                        <div class="outerContainer" ng-repeat="sec in floor.Coordinates">
+                                                            <div ng-class="{'suspendedstore':sec.Store.Status == 'Suspended'}" class=" repeated-item" ng-style="{'background-image': 'url({{sec.Img}})','position':'absolute','background-size': 'cover','background-repeat': 'no-repeat','top':{{sec.Top * oneSectionHeight}} +'px','left':{{sec.Left * oneSectionWidth}} +'px','height':{{sec.Height * oneSectionHeight}} - 3 +'px', 'width':{{sec.Width * oneSectionWidth}} - 3 +'px'}">
+                                                                <a ng-if="sec.Store.Status != 'Suspended'" href="/{{IsoCode}}/Store/{{sec.StoreName}}/{{sec.Store._id}}"><div class="image-hover"><i class="icon-zoom-in-2"></i></div></a>
+                                                                <div class="image-title">{{sec.StoreName}}</div>
+                                                                <div class="suspendMsg" ng-if="sec.Store.Status == 'Suspended'"><h5>This store is disabled</h5></div>
+                                                            </div>
+                                                        </div>
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="dvStoreDescription">
-                            <h3><%= store.Description %></h3>
-                        </div>
-                    </div>
-                </div>
+                                                        <h6>Floor {{$index + 1}} of {{expo.Floors.length}}</h6>
+                                                        <h4 id="two">
+                                                            <div class="dvExpoFloorName">
+                                                                <div class="dvExpoName">Expo: {{expo.Title}}</div>
+                                                                <div class="dvFloorName">{{floor.Name}}</div>
+                                                            </div>
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="dvStoreIcons">
-                            <% if (store.Badges) { %>
+                                                            <span class="flexContainer">
 
-                            <% if (store.Badges.HasFactory) { %>
-                            <img title="Has factory" src="/images/factory.png" />
-                            <% } else { %>
-                            <img title="No factory" src="/images/nofactory.png" />
-                            <% } %>
+                                                                <div class="dvFloorLogo" ng-repeat="obj in expo.stores | unique:'_id'">
+                                                                    <img class="img-responsive" src="{{obj.ProfilePicture}}" />
+                                                                </div>
 
-                            <% if (store.Badges.Verified) { %>
-                            <img title="Verified" src="/images/verified.png" />
-                            <% } else { %>
-                            <img title="Not verified" src="/images/notverified.png" />
-                            <% } %>
-                            <% } %>
+                                                            </span>
+                                                        </h4>
+                                                    </div>
 
-                            <div style="right:15px;position:absolute;" title="{{ loggedUser ? 'Send Message to this store' : 'You have to login first to send a message to stores'}}">
-                                <a type="button" ng-disabled="!loggedUser" ng-show="userId != '<%= store._id %>'" href="/<%= countryIso %>/Inbox/{{userId}}/<%= store._id %>" class="btn btn-primary active pull-right sendMsgBtn"> <span>Send Message</span> <span class="fa fa-paper-plane-o"></span></a>
-                            </div>
-                        </div>
+                                                </div>
+                                                
+                                            </div>
 
-                        <div class="clear">
-                        </div>
-                    </div>
-                </div>
+                                            <div class="expoDetails" ng-hide="expo.Floors.length == 1">
+                                                <!-- Pagination -->
 
-                <div class="dvSectionTitle">
-                    <div class="row">
-                        <div class="col-sm-12 text-left">
-                            <div class="labelContainer">
-                                <h4>Featured products</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                                <h5 id="nextFloor{{expo._id}}" class="text-center light dvNextPage" ng-click="nextPage(expo._id,expo.Floors.length)">
+                                                    <img src="/images/rightarrow.png" />
+                                                </h5>
 
-                <div class="dvProductsBlock row">
-                    <div class="col-sm-12">
+                                                <h5 class="text-center light dvPrePage" ng-click="previousPage(expo._id,expo.Floors.length)">
+                                                    <img src="/images/leftarrow.png" id="three" />
+                                                </h5>
 
-                        <% if (featured.length > 0) { %>
-                        <% featured.forEach(function(item){ %>
-                        <div class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                            <a href="/{{IsoCode}}/Product/<%= item.Name %>/<%= item._id %>">
-                                <div class="dvItemContainer text-center">
-                                    <img src="<%= item.Pictures[0].URL %>" class="img-responsive" />
-                                    <div class="dvItemDescription">
-                                        <h1><%= item.Name %></h1>
-                                        <h6><%= item.Description %></h6>
-                                        <h2>$ <%= item.Price %></h2>
-                                        <h5>Product details</h5>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <% }); %>
-                        <% } else { %>
-                        <p class="txtNoData"> No featured products available </p>
-                        <% } %>
-
-                    </div>
-                </div>
-
-                <div ng-repeat="gallery in GalleriesLst">
-
-                    <div class="dvAdvcontainer">
-                        <img class="img-responsive" src="/images/adv1.png" />
-                    </div>
-
-                    <div class="dvSectionTitle">
-                        <div class="row">
-                            <div class="col-sm-12 text-left">
-                                <div class="labelContainer">
-                                    <h4>{{gallery.Gallery}}</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dvProductsBlock row">
-                        <div class="col-sm-12">
-
-                            <div ng-repeat="item in gallery.Items" class="col-md-2 col-sm-3 wow zoomIn" data-wow-offset="30" data-wow-duration="1s" data-wow-delay="0.5s">
-                                <a href="/{{IsoCode}}/Product/{{item.Name}}/{{item._id}}">
-                                    <div class="dvItemContainer text-center">
-                                        <img src="{{item.Pictures[0].URL}}" class="img-responsive" />
-                                        <div class="dvItemDescription">
-                                            <h1>{{item.Name}}</h1>
-                                            <h6>{{item.Description}}</h6>
-                                            <h2>$ {{item.Price}}</h2>
-                                            <h5>Product details</h5>
+                                            </div>
+                                            <!-- //end Pagination -->
                                         </div>
                                     </div>
-                                </a>
+                                </div>
                             </div>
+                        </article>
+                    </section>
 
+                    <div class="homepage-bar">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <i class="icon-shipping"></i>
+                                    <div class="text-area"><h3>Free shipping &amp, return</h3><p>Free shipping on all orders over $99.</p></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <i class="icon-money-bag"></i>
+                                    <div class="text-area"><h3>Money back guarantee</h3><p>100% money back guarantee.</p></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <i class="icon-support"></i>
+                                    <div class="text-area"><h3>Online support 24/7</h3><p>Lorem ipsum dolor sit amet.</p></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                 </div>
-
-                <p ng-show="!GalleriesLst.length > 0" class="txtNoData"> No galleries available </p>
-
-                <div class="dvAdvcontainer">
-                    <img class="img-responsive" src="/images/adv2.PNG" />
+                <div ng-if="!expo.Floors.length > 0" class="dvNoFloors">
+                    There is no floors currently <br /> in the expo {{expo.Title}} :(
                 </div>
-
             </div>
+
+
+
+
+            <div class="brands-slide">
+                <div class="container">
+                    <div>
+                        <img class="lazyOwl" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand1.png">
+                        <img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand2.png">
+                        <img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand3.png">
+                        <img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand4.png">
+                        <img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand5.png">
+                    </div>
+                </div>
+            </div>
+
+            <% } else { %>
+            <p class="txtNoData"> No data available </p>
+            <% } %>
         </div>
     </div>
 
+    <tour step="currentStep" post-tour="postTourCallback()" post-step="postStepCallback()" tour-complete="tourCompleteCallback()">
+        <virtual-step tourtip="Expos with floors."
+                      tourtip-title="Welcome to the expo"
+                      tourtip-next-label="Learn more"
+                      tourtip-placement="top"
+                      tourtip-step="0"
+                      tourtip-element="#one"></virtual-step>
 
-    <% include ../partials/pagefooter %>
-    <% include ../partials/pageend %>
-    <script src="/scripts/store.js"></script>
+        <virtual-step tourtip="Floor name"
+                      tourtip-next-label="Next"
+                      tourtip-placement="top"
+                      tourtip-step="1"
+                      tourtip-element="#two"></virtual-step>
+
+        <virtual-step tourtip="hover to see expo name with participated stores"
+                      tourtip-next-label="Next"
+                      tourtip-placement="left"
+                      tourtip-step="2"
+                      tourtip-element="#two"></virtual-step>
+
+        <virtual-step tourtip="use arrows to navigate between expo floors"
+                      tourtip-next-label="Next"
+                      tourtip-placement="left"
+                      tourtip-step="3"
+                      tourtip-element="#three"></virtual-step>
+
+        <virtual-step tourtip="finally"
+                      tourtip-title="enjoy!"
+                      tourtip-next-label="Done"
+                      tourtip-placement="top"
+                      tourtip-step="4"
+                      tourtip-element="#one"></virtual-step>
+    </tour>
 
 
 
 
-    <!-- Social widgets -->
-    <div>
-        <section class="social-widgets hidden-xs">
-            <ul class="items">
-                <li class="item item-01 facebook">
-                    <a href="/social/facebook.html" class="tab-icon">
-                        <span class="icon-facebook-3"></span>
-                    </a>
-                    <div class="tab-content">
-                        <div class="title">Facebook</div>
-                        <div class="loading">
-                            <!--<img src="/images/ajax-loader.gif" class="ajaxloader" alt="loader">-->
 
-                            <div class="fb-like-box" data-href="" data-width="240" data-height="240" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="true"></div>
+</div>
 
-                            <!-- Facebook Api -->
-                            <div id="fb-root"></div>
+<% include ../partials/pagefooter %>
+<% include ../partials/pageend %>
+<% include ../partials/pagesocial %>
 
-                            <!-- //end Facebook Api -->
-                        </div>
-                    </div>
-                </li>
 
-                <li class="item item-02 twitter">
-                    <a href="/social/twitter.html" class="tab-icon">
-                        <span class="icon-twitter-3"></span>
-                    </a>
-                    <div class="tab-content">
-                        <div class="title">Twitter feeds</div>
-                        <div class="loading">
-                            <div class="twitter-widget">
-                                <a class="twitter-timeline" href="">Tweets</a>
-                                <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+</body>
 
-                <li class="item item-03 twitter dvContactData">
-                    <a href="/social/googlemap.html" class="tab-icon">
-                        <span class="icon-vcard"></span>
-                    </a>
-                    <div class="tab-content">
-                        <div class="title">Find us</div>
-                        <div class="loading">
-                            <!--<img src="/images/ajax-loader.gif" class="ajaxloader" alt="loader">-->
-                            <div class="twitter-widget contacts-widget">
-                                <ul>
-                                    <li ng-repeat="contact in Contacts" ng-show="contact.Label !='Facebook' && contact.Label !='Twitter'">
-                                        <b>{{contact.Label}}</b>&nbsp;:&nbsp;<span>{{contact.Value}}</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </section>
-        <!-- //end Social widgets -->
-    </div>
-
-    </body>
-
-    </html>
+</html>

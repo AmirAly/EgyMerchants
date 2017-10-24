@@ -92,13 +92,13 @@
                         <div class="row">
                             <div class="col-xs-1"></div>
                             <div class="col-xs-9" style="display:flex;">
-                                <div class="" ng-show="loggedUser">
+                                <div class="" ng-show="activeUser">
                                     <span ng-click="!favoritesLoader && addToFavorites('<%= product._id %>')" ng-class="{'glyphicon-heart-empty' : IsFav == false , 'glyphicon-heart IsFavItem' : IsFav == true }" class="glyphicon text-muted iconFav" title="{{{false:'add to favorites' , true:'Remove from favorites'}[IsFav]}}"></span>
                                 </div>
                                 <div ng-show="favoritesLoader">
                                     &nbsp;<img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                 </div>
-                                <div ng-show="loggedUser" class="itemsSeprator"> | </div>
+                                <div ng-show="activeUser" class="itemsSeprator"> | </div>
 
                                 <div ng-show="loggedUser">
                                     <a class="twitter-share-button"
@@ -185,12 +185,12 @@
                             <input type="text" ng-disabled="newCommentLoading" required="" ng-model="commentTxt" placeholder="add comment" class="form-email form-control" />
                         </div>
                         <div class="col-xs-2 text-center">
-                            <button ng-hide="newCommentLoading" type="submit" title="send" ng-disabled="!commentTxt || !loggedUser" ng-click="submitComment()" class="btn btn-primary btn-block" ng><span class="fa fa-paper-plane-o"></span></button>
+                            <button ng-hide="newCommentLoading" type="submit" title="send" ng-disabled="!commentTxt || !activeUser" ng-click="submitComment()" class="btn btn-primary btn-block" ng><span class="fa fa-paper-plane-o"></span></button>
                             <img ng-show="newCommentLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                         </div>
                     </div>
                     <div class="row text-center">
-                        <span class="errorFont" ng-show="!loggedUser && commentTxt">You should login to post your comment</span>
+                        <span class="errorFont" ng-show="!activeUser && commentTxt">You should login with active account to post your comment</span>
                     </div>
                     <div class="spacer1"></div>
                     <div class="timeline">

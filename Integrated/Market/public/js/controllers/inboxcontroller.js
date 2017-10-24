@@ -9,6 +9,12 @@
 
         if (_data.From._id == $scope.activeUserId) {
             $scope.inboxMesagesList.push(_data);
+            // scroll after send
+            var objDiv = document.getElementById("dvMessagesBodyContainer");
+            $('#' + 'dvMessagesBodyContainer').animate({
+                scrollTop: objDiv.scrollHeight
+            }, 100);
+
             var req = {
                 method: 'put',
                 url: '/Message/UpdateStatus',
@@ -69,6 +75,7 @@
         $scope.moreMsgs = true;
         page = 1;
         $rootScope.IsoCode = _isoCode;
+        localStorage.setItem('IsoCode', _isoCode);
         $scope.activeUserId = _activeUser;
         if (_currentMessageReceiver != '') {
             $scope.currentMessageReceiver = JSON.parse(_currentMessageReceiver);
@@ -107,7 +114,7 @@
             var objDiv = document.getElementById("dvMessagesBodyContainer");
             $('#' + 'dvMessagesBodyContainer').animate({
                 scrollTop: objDiv.scrollHeight
-            }, 1500);
+            }, 500);
             //console.log('hhhhhhh');
 
         }, 2000);
@@ -134,6 +141,11 @@
                 $scope.activeUserId = $scope.currentMessageReceiver._id;
             }
 
+            // scroll after send
+            var objDiv = document.getElementById("dvMessagesBodyContainer");
+            $('#' + 'dvMessagesBodyContainer').animate({
+                scrollTop: objDiv.scrollHeight
+            }, 100);
 
         } else {
             //console.log('you have to login first');

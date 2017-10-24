@@ -46,7 +46,7 @@ module.exports = {
                                                 console.log(data)
                                         resolve({
                                             code: 100,
-                                            data: { _id: _newuser._id, Name: _newuser.Name, Type: _newuser.Type , Email: _newuser.Email }
+                                            data: { _id: _newuser._id, Name: _newuser.Name, Type: _newuser.Type , Email: _newuser.Email , Status:_newuser.Status }
                                         });
                                     }
                                 })
@@ -58,7 +58,7 @@ module.exports = {
     },
     login: function (_user) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ 'Email':{$regex: new RegExp('^' + _user.Email+"$" , 'i')} }, { 'Password':{$regex: new RegExp('^' + _user.Password+"$" , 'i')}}] }, '_id Name Type FavouriteItems VisitedStores ProfilePicture Rate.Store', function (err, Obj) {
+            Schema.findOne({ $and: [{ 'Email':{$regex: new RegExp('^' + _user.Email+"$" , 'i')} }, { 'Password':{$regex: new RegExp('^' + _user.Password+"$" , 'i')}}] }, '_id Name Type FavouriteItems VisitedStores ProfilePicture Rate.Store Status', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -78,11 +78,6 @@ module.exports = {
                     reject({
                         code: 23,
                         data: "This account is deleted"
-                    });
-                    else if (Obj.Status == "Inactive")
-                    reject({
-                        code: 23,
-                        data: "Please, activate your account"
                     });
                 else 
                     resolve({

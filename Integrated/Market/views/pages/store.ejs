@@ -31,10 +31,7 @@ var storeJson = <%-JSON.stringify(storeJson)%>
 						    <input  id="input-id" name="input-name" type="number" class="rating" step="1" data-size="xs">
 
 
-                        </div>
-
-
-                       
+                        </div>                       
 					   
 					    <div class="dvFlagContainer">
                             <img alt="Flag" title="<%= store.Country %>" class="img-responsive" src="https://egym.herokuapp.com/<%= store.Country %>.png" />
@@ -68,8 +65,8 @@ var storeJson = <%-JSON.stringify(storeJson)%>
                             <% } %>
 					   <% } %>
 
-					        <div style="right:15px;position:absolute;" title="{{ loggedUser ? 'Send Message to this store' : 'You have to login first to send a message to stores'}}">
-					           <a type="button" ng-disabled="!loggedUser" ng-show="userId != '<%= store._id %>'" href="/<%= countryIso %>/Inbox/{{userId}}/<%= store._id %>" class="btn btn-primary active pull-right sendMsgBtn"> <span>Send Message</span> <span class="fa fa-paper-plane-o"></span></a>
+					        <div style="right:25px;position:absolute;" title="{{ activeUser ? 'Send Message to this store' : 'You have to login with active account first to send a message to stores'}}">
+					           <a type="button" ng-disabled="!activeUser" ng-show="userId != '<%= store._id %>'" href="/<%= countryIso %>/Inbox/{{userId}}/<%= store._id %>" class="btn btn-primary active pull-right sendMsgBtn"> <span>Send Message</span> <span class="fa fa-paper-plane-o"></span></a>
 							</div>
                         </div>
 				    

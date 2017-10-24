@@ -166,18 +166,21 @@
                 </div>
                 <div class="menu-all-pages-container">
                   <ul class="menu">
+                    <li class="act">
+                      <a href="/{{selectedCountry.IsoCode}}/Home">Home</a>
+                    </li>
                     <li class="act" data-toggle="modal" data-target="#modal-login" ng-hide="loggedUser">
                       <a href="#">Log in</a>
                     </li>
-                    <li class="act" ng-show="loggedUser">
+                    <li class="act" ng-show="loggedUser && activeUser">
                       <a href="#" ng-click="getFavorites()">Favourites</a>
                     </li>
-                    <li class="act" ng-show="loggedUser">
+                    <li class="act" ng-show="loggedUser && activeUser">
                       <a href="/{{selectedCountry.IsoCode}}/Notifications/{{userId}}">
                         Notifications <span title="You have {{nonificationsCounter}} unread notifications" ng-show="showNotificationsCounter" class="badge">{{nonificationsCounter}}</span>
                       </a>
                     </li>
-                    <li class="act" ng-show="loggedUser">
+                    <li class="act" ng-show="loggedUser && activeUser">
                       <a href="/{{selectedCountry.IsoCode}}/Inbox/{{userId}}/0">
                         Inbox <span title="You have unread messages from {{unreadMessagesCounter}} user" ng-show="showUnReadMessagesCounter" class="badge">{{unreadMessagesCounter}}</span>
                       </a>
@@ -311,7 +314,12 @@
             <span class="errorFont text-center">{{afterRegisterError}}</span>
           </form>
 
-
+          <div class="clear2"></div>
+<div class="alert alert-warning">
+  <strong>Warning!</strong> You have to active your account to be able to rate a store, message store, comment on item.
+</div>
+          
+          
           <div class="clear2"></div>
           <div class="text-center">
             <a>
