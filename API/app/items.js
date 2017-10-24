@@ -45,8 +45,7 @@ module.exports = {
                                     Items: value
                                 }
                             }).value();
-                        // _.each(result,function(x){console.log(x.Gallery)})
-                        // console.log(result);
+                      
                         result.sort(function (a, b) {
                             return parseInt(a.Gallery.split(":")[3].split(" ")[1]) - parseInt(b.Gallery.split(":")[3].split(" ")[1]);
                         });
@@ -204,7 +203,7 @@ module.exports = {
                 else {
                     if (item) {
                         Schema.findOne({ 'Name': { $regex: new RegExp('^' + _name + "$", 'i') }, 'Gallery': item.Gallery, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
-                            console.log(Obj)
+                      
                             if (err)
                                 reject({
                                     code: 1,
@@ -213,7 +212,7 @@ module.exports = {
                             else {
 
                                 if (Obj) {
-                                    // console.log(Obj)
+                                  
                                     reject({
                                         code: 21,
                                         data: "There is item with the same name in this gallery"
