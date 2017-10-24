@@ -375,6 +375,13 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
+    api.post('/User/ContactUS', function (req, res) {
+        UserLogic.contactUs(req.body._name,req.body._phone,req.body._mail,req.body._comment).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
     //expo API calls
     api.post('/Expo/Add', function (req, res) {
         var _newExpo = new Expo(req.body);
@@ -510,29 +517,6 @@ module.exports = function (app, express) {
         });
     })
     
-
-//    api.get('/User/AllRatedStores, function (req, res) {
-      
-//       User.find({"_id":req.body._id},'Rate.Store',function(err,_lst){
-//         if(err)
-//         reject({ code: 1, data: err })
-//         else
-//         resolve({ code: 100, data: _lst });
-//         console.log(_lst);
-    
-//       });
-    
-//     }
-// });
-// }); 
-            
-    // api.get('/User/AllRatedStores', function (req, res) {
-    //    UserLogic.getAllRatedStores(req.params._userid).then(function (result) {
-    //        res.json(result);
-    //    }, function (err) {
-    //        res.json(err);
-    //    });
-    // })
-
+ 
     return api;
 };

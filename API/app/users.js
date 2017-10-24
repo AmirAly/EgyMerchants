@@ -369,12 +369,10 @@ else{
             }
             smtpTransport.sendMail(mailOptions, function (err, response) {
                 if (err) {
-                 
-                    return err;
+                    reject({ code: 1, data: err });
                 }
                 else
-                    console.log("mail sent");
-                return 100;
+                resolve({ code: 100, data: "mail sent successfully" });
             });
         
 
