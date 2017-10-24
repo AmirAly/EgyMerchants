@@ -15,7 +15,7 @@
                 });
                 function checkScrollTop() {
                     if ($(window).scrollTop() < 100) {
-                        $('.header-wrapper').attr('style', 'position: static !important;background-color: #2f3946 !important;'); // .removeClass('isScrolled');
+                        $('.header-wrapper').attr('style', 'position: static !important;background-color: #2f3946 !important;'); // removeClass('isScrolled');
                     }
                     else {
                         $('.header-wrapper').attr('style', 'position: fixed !important;background-color: rgba(47, 57, 70, 0.58) !important;').addClass('isScrolled');
@@ -121,7 +121,6 @@
                     $scope.frmLogin.$setUntouched();
                     $scope.loginObj = {};
                     $rootScope.loggedUser = true;
-                    //console.log(_res.data.data);
                     $rootScope.Status = _res.data.data.Status;
                     if ($rootScope.Status == 'Active') {
                         $rootScope.activeUser = true;
@@ -138,7 +137,6 @@
                     $scope.dataLoading = false;
                     $scope.afterLoginError = _res.data.data;
                     $rootScope.loggedUser = false;
-                    //localStorage.setItem('userObject', '');
                 }
 
             });
@@ -165,7 +163,6 @@
                     $scope.frmRegister.$setUntouched();
                     $scope.registerObj = {};
                     $rootScope.loggedUser = true;
-                    //console.log(_res.data.data);
                     $rootScope.Status = _res.data.data.Status;
                     if ($rootScope.Status == 'Active') {
                         $rootScope.activeUser = true;
@@ -177,13 +174,11 @@
                     $rootScope.userId = _res.data.data._id;
                     localStorage.setItem('userObject', JSON.stringify(_res.data.data));
                     $scope.dismiss();
-                    //$rootScope.addUserToSockets();
                     window.location.reload();
                 } else {
                     $scope.dataLoading = false;
                     $scope.afterRegisterError = _res.data.data;
                     $rootScope.loggedUser = false;
-                    //localStorage.setItem('userObject', '');
                 }
             });
         }
@@ -197,11 +192,7 @@
 
     $scope.searchErr = false;
     $scope.txtSearch = '';
-    //$scope.regex = "^\!%()*+,-./@:;<=>[\\]^_`{|}~";
     $scope.search = function (form) {
-        //angular.forEach($scope.frmSearch.$error.required, function (field) {
-        //    field.$setDirty();
-        //});
         $scope.searchErr = false;
         if ($scope.txtSearch != '' && $scope.txtSearch.length > 1) {
             window.location.href = "/" + $rootScope.IsoCode + "/Search/" + $scope.txtSearch;
@@ -309,9 +300,6 @@
 
             });
         }
-
-
-        //$('#modal-profile').modal('hide');
     }
 
     jQuery(function ($) {

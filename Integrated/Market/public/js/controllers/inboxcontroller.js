@@ -21,7 +21,6 @@
                 data: { _id: _data.msgId }
             }
             API.execute(req).then(function (_res) {
-                //console.log(_res);
                 if (_res.data.code == 100) {
                     //console.log('msg is read');
 
@@ -34,30 +33,14 @@
         else {
             var sender = ($filter('filter')($scope.usersList, { _id: _data.From._id }))[0];
             if (sender) {
-                //console.log('exist sender');
                 ($filter('filter')($scope.usersList, { _id: _data.From._id }))[0].UnRead = true;
             }
             else {
                 // add new sender
-                //console.log('new sender');
                 $scope.usersList.push(_data.From);
                 ($filter('filter')($scope.usersList, { _id: _data.From._id }))[0].UnRead = true;
             }
         }
-
-
-
-        //// Get the snackbar DIV
-        //var x = document.getElementById("snackbar");
-
-        //// Add the "show" class to DIV
-        //x.className = "show";
-
-        //// After 3 seconds, remove the show class from DIV
-        //setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-
-
-        //$scope.$apply();
 
     });
 
@@ -65,7 +48,6 @@
         for (var i = 0; i < $scope.inboxMesagesList.length; i++) {
             if ($scope.inboxMesagesList[i].showMe == false) {
                 $scope.inboxMesagesList[i].showMe = true;
-                //$scope.$apply();
             }
         }
 
@@ -98,24 +80,18 @@
             $scope.inboxMesagesList = [];
             $scope.moreMsgs = false;
         }
-        //console.log(JSON.parse(window.usersListObject));
         if (JSON.parse(window.usersListObject).length > 0) {
             $scope.usersList = JSON.parse(window.usersListObject);
-            //console.log($scope.usersList);
-            //console.log('if');
         }
         else {
             $scope.usersList = [];
-            //console.log('else');
 
         }
-        //console.log($scope.usersList);
         $timeout(function () {
             var objDiv = document.getElementById("dvMessagesBodyContainer");
             $('#' + 'dvMessagesBodyContainer').animate({
                 scrollTop: objDiv.scrollHeight
             }, 500);
-            //console.log('hhhhhhh');
 
         }, 2000);
     }
@@ -132,8 +108,6 @@
             $scope.messageObject.MessageDate = new Date();
             $scope.inboxMesagesList.push($scope.messageObject);
 
-            //console.log($scope.messageObject);
-
             $scope.txtMessage = "";
 
             if (angular.isUndefined($filter('filter')($scope.usersList, { _id: $scope.currentMessageReceiver._id })[0])) {
@@ -147,20 +121,15 @@
                 scrollTop: objDiv.scrollHeight
             }, 100);
 
-        } else {
-            //console.log('you have to login first');
-        }
+        } 
 
     }
 
     $scope.redirectToMsg = function (_me, _partener) {
 
         window.location = "/" + $rootScope.IsoCode + "/Inbox/" + _me + "/" + _partener;
-        //console.log('Change URL');
-        //$scope.$apply();
 
         $timeout(function () {
-            //console.log('timeout');
             window.location.reload();
         }, 2000);
     }
@@ -190,9 +159,6 @@
                         $scope.moreMsgs = false;
                     }
                 }
-            }
-            else {
-                //console.log(_res);
             }
         });
     }

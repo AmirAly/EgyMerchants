@@ -13,7 +13,7 @@
         else {
             $scope.allCountries = JSON.parse(_allcountres);
             localStorage.setItem('allCountries', (JSON.stringify($scope.allCountries)));
-            $scope.selectedCountry = ($filter('filter')($scope.allCountries, { 'IsoCode': _isoCode }))[0]; //$scope.allCountries[0];
+            $scope.selectedCountry = ($filter('filter')($scope.allCountries, { 'IsoCode': _isoCode }))[0]; 
             localStorage.setItem('selectedCountry', (JSON.stringify($scope.selectedCountry)));
             $rootScope.IsoCode = _isoCode;
 

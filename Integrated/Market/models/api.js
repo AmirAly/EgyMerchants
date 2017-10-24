@@ -119,10 +119,7 @@ module.exports = function (app, express) {
     })
     api.get('/Store/SetToActive/:_storeId', function (req, res) {
         StoreLogic.setToActive(req.params._storeId).then(function (result) {
-            console.log(req.params._storeId)
             res.redirect("https://storecp.herokuapp.com");
-           
-            
         }, function (err) {
             res.json(err);
         });
@@ -344,7 +341,6 @@ module.exports = function (app, express) {
     })
     api.get('/User/SetToActive/:_userId', function (req, res) {
         UserLogic.setToActive(req.params._userId).then(function (result) {
-            console.log(req.params._userId)
             res.redirect("https://egymarket.herokuapp.com");
         }, function (err) {
             res.json(err);
@@ -509,30 +505,7 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-    
-
-//    api.get('/User/AllRatedStores, function (req, res) {
-      
-//       User.find({"_id":req.body._id},'Rate.Store',function(err,_lst){
-//         if(err)
-//         reject({ code: 1, data: err })
-//         else
-//         resolve({ code: 100, data: _lst });
-//         console.log(_lst);
-    
-//       });
-    
-//     }
-// });
-// }); 
-            
-    // api.get('/User/AllRatedStores', function (req, res) {
-    //    UserLogic.getAllRatedStores(req.params._userid).then(function (result) {
-    //        res.json(result);
-    //    }, function (err) {
-    //        res.json(err);
-    //    });
-    // })
+   
 
     return api;
 };

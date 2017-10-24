@@ -201,7 +201,6 @@ module.exports = {
     getTenItems: function (_itemId, _key) {
         return new Promise(function (resolve, reject) {
             Schema.find({ "Item": _itemId }).sort({ CommentDate: -1 }).populate('User', 'Type Name ProfilePicture').exec (function (err, lst) {
-                // console.log(`list ${lst.length}`)
                 if (err) {
                     reject({
                         code: 1,

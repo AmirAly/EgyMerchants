@@ -117,7 +117,6 @@ module.exports = {
                                     data: err
                                 });
                             else {
-                                console.log(_FlipTime);
                                 if (Obj) {
                                     Obj.Title = _title;
                                     Obj.Category = _category;
@@ -126,7 +125,6 @@ module.exports = {
                                     Helper.uploadImage(_banner, function (_url) {
                                         Obj.Title = _title;
                                         Obj.FlipTime = _FlipTime;
-                                        console.log(Obj.FlipTime);
                                         Obj.Banner = _url;
                                         Obj.Category = _category;
                                         Obj.save(function (err, expo) {
