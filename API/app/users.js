@@ -1,6 +1,6 @@
 var Schema = require('./models/user');
 var Helper = require('./helper');
-
+var nodemailer = require('nodemailer')
 module.exports = {
     register: function (_newUser) {
         return new Promise(function (resolve, reject) {
@@ -84,12 +84,7 @@ module.exports = {
                         code: 100,
                         data: Obj
                     });
-                    // Rate:[{
-                    //     Store: {
-                    //      type: Schema.Types.ObjectId,
-                    //      ref: 'User',
-                        
-                    //     }
+                  
             })
         })
     },
@@ -343,5 +338,46 @@ addRating:function(_storeId,_userId,_value){
     });
     
     },
-   
+    contactUs:function(_name,_phone,_mail,_comment){
+    return new Promise(function (resolve, reject) {
+var myPhone = _phone;  
+if(myPhone.length>0){
+    myPhone = _phone;
+}
+else{
+    myPhone = "____";
+}
+         
+            var smtpTransport = nodemailer.createTransport({
+                transport: "SMTP",
+                host: "smtp.gmail.com",
+                secureConnection: false,
+                port: 587,
+                requiresAuth: true,
+                auth: {
+                    user: 'appoutcompany@gmail.com',
+                    pass: 'appout123'
+                }
+            });
+            var mailOptions = {
+                to: "ahmedelmonshareh@gmail.com",
+                subject: "This is a message from"+" "+ _name,
+                html: `Name : ${_name}` +"<br/>"+
+                `Email : ${_mail}` +"<br/>"+
+                `Phone : ${myPhone}` +"<br/>"+
+                `Comment : ${_comment}`
+            }
+            smtpTransport.sendMail(mailOptions, function (err, response) {
+                if (err) {
+                 
+                    return err;
+                }
+                else
+                    console.log("mail sent");
+                return 100;
+            });
+        
+
+    });
+    }
  };

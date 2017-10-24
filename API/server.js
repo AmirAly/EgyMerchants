@@ -62,3 +62,9 @@ mongoose.connect(db.url, function (err) {
     
     }
 });
+
+// user.contactUs("Mohammed","0","ahmedelmonshareh@gmail.com","dont be so cruel with us").then(function (result) {
+//    console.log(result); 
+// }, function(err) {
+//    console.log(err); 
+// });
