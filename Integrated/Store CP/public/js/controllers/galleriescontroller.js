@@ -4,26 +4,22 @@ egm.controller("galleriesController", ['$scope', 'API', function ($scope, API) {
     $scope.sortingLog = [];
 
     $scope.sortableOptions = {
-        //update: function (e, ui) {
-        //    var logEntry = $scope.galleriesObject.map(function (i) {
-        //        return i;
-        //    }).join(', ');
-        //    $scope.sortingLog.push('Update: ' + logEntry);
-        //    console.log($scope.sortingLog);
-        //    console.log($scope.galleriesObject);
-        //},
-        //stop: function (e, ui) {
-        //    // this callback has the changed model
-        //    var logEntry = $scope.galleriesObject.map(function (i) {
-        //        return i;
-        //    }).join(', ');
-        //    $scope.sortingLog.push('Stop: ' + logEntry);
-        //    console.log($scope.sortingLog);
-        //    console.log($scope.galleriesObject);
-        //}
-        //change: function (event, ui) {
-        //    ui.placeholder.css({ visibility: 'visible!important', border: '1px dashed yellow' });
-        //}
+        update: function (e, ui) {
+            var logEntry = $scope.galleriesObject.map(function (i) {
+                return i;
+            }).join(', ');
+            $scope.sortingLog.push('Update: ' + logEntry);
+        },
+        stop: function (e, ui) {
+            // this callback has the changed model
+            var logEntry = $scope.galleriesObject.map(function (i) {
+                return i;
+            }).join(', ');
+            $scope.sortingLog.push('Stop: ' + logEntry);
+        }
+        ,change: function (event, ui) {
+            ui.placeholder.css({ visibility: 'visible!important', border: '1px dashed yellow' });
+        }
     };
 
     $scope.load = function () {
@@ -36,7 +32,6 @@ egm.controller("galleriesController", ['$scope', 'API', function ($scope, API) {
     $scope.saveGalleries = function () {
         // save new order
         //..
-        console.log($scope.galleriesObject);
 
         $scope.loading = true;
         var req = {
@@ -47,8 +42,6 @@ egm.controller("galleriesController", ['$scope', 'API', function ($scope, API) {
             }
         }
         API.execute(req).then(function (_res) {
-            console.log('enter fun with res');
-            console.log(_res);
             if (_res.data.code == 100) {
                 window.location.reload();
             } else {

@@ -23,7 +23,6 @@ module.exports = function (app) {
                 res.render('pages/store', _scope);
             }
         }).catch(function (_err) {
-            console.log(_err);
             _scope.storeslst = [];
             res.render('pages/store', _scope);
         });
@@ -55,7 +54,6 @@ module.exports = function (app) {
                 res.render('pages/exposlist', _scope);
             }
         }).catch(function (_err) {
-            console.log(_err);
             _scope.categorieslst = {};
             _scope.categorieslstObj = {};
             res.render('pages/exposlist', _scope);
@@ -76,7 +74,6 @@ module.exports = function (app) {
                 res.render('pages/floors', _scope);
             }
         }).catch(function (_err) {
-            console.log(_err);
             _scope.storeslst = [];
             _scope.storeslstObj = [];
             res.render('pages/floors', _scope);
@@ -95,7 +92,6 @@ module.exports = function (app) {
                         _scope.storeslstObj = JSON.stringify(_store.data);
                         for (var i = 0; i < _expo.data.Floors.length; i++) {
                             if (_expo.data.Floors[i]._id == req.params.floorid) {
-                                //console.log(_expo.data.Floors[i]);
                                 _scope.floorslstJSON = JSON.stringify(_expo.data.Floors[i]);
                             }
                         }
@@ -107,7 +103,6 @@ module.exports = function (app) {
                         res.render('pages/editfloor', _scope);
                     }
                 }).catch(function (_err) {
-                    console.log(_err);
                     _scope.storeslst = [];
                     _scope.storeslstObj = [];
                     res.render('pages/editfloor', _scope);
@@ -121,7 +116,6 @@ module.exports = function (app) {
                 res.render('pages/editfloor', _scope);
             }
         }).catch(function (_err) {
-            console.log(_err);
             _scope.expoJson = {};
             _scope.floorslstJSON = [];
             _scope.storeslst = [];
@@ -134,9 +128,7 @@ module.exports = function (app) {
 
     app.get('/expo/:expoId', function (req, res) {
         var _scope = {};
-        console.log('000000000000');
         expo.getById(req.params.expoId).then(function (_expo) {
-            console.log('ssssssssssssssssssssssss');
             if (_expo.code == 100) {
                 _scope.expo = _expo.data;
                 _scope.floorslstJSON = JSON.stringify(_expo.data.Floors);
@@ -150,7 +142,6 @@ module.exports = function (app) {
                         res.render('pages/expo', _scope);
                     }
                 }).catch(function (_err) {
-                    console.log(_err);
                     _scope.categorieslst = {};
                     res.render('pages/expo', _scope);
                 });
@@ -160,7 +151,6 @@ module.exports = function (app) {
                 res.render('pages/expo', _scope);
             }
         }).catch(function (_err) {
-            console.log(_err);
             _scope.expo = {};
             _scope.floorslstJSON = [];
             res.render('pages/expo', _scope);
@@ -183,7 +173,6 @@ module.exports = function (app) {
                         res.render('pages/categorieslist', _scope);
                     }
                 }).catch(function (_err) {
-                    console.log(_err);
                     _scope.categorieslst = {};
                     res.render('pages/categorieslist', _scope);
                 });
@@ -192,7 +181,6 @@ module.exports = function (app) {
                 res.render('pages/categorieslist', _scope);
             }
         }).catch(function (_err) {
-            console.log(_err);
             _scope.categorieslst = {};
             res.render('pages/categorieslist', _scope);
         });
@@ -210,7 +198,6 @@ module.exports = function (app) {
                 res.render('pages/countrieslist', _scope);
             }
         }).catch(function (_err) {
-            console.log(_err);
             _scope.countrieslst = [];
             res.render('pages/countrieslist', _scope);
         });
@@ -232,7 +219,6 @@ module.exports = function (app) {
                         res.render('pages/country', _scope);
                     }
                 }).catch(function (_err) {
-                    console.log(_err);
                     _scope.categorieslst = {};
                     res.render('pages/country', _scope);
                 });
@@ -242,7 +228,6 @@ module.exports = function (app) {
                 res.render('pages/country', _scope);
             }
         }).catch(function (_err) {
-            console.log(_err);
             _scope.country = {};
             res.render('pages/country', _scope);
         });
@@ -259,7 +244,6 @@ module.exports = function (app) {
                 res.render('pages/login', _scope);
             }
         }).catch(function (_err) {
-            console.log(_err);
             _scope.loginData = [];
             res.render('pages/login', _scope);
         });

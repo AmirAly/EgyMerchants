@@ -29,7 +29,6 @@
         var theDate = new Date();
         var myNewDate = new Date(theDate);
         myNewDate.setDate(myNewDate.getDate() + 30);
-        console.log(myNewDate);
         $scope.myDate = myNewDate;
         $scope.$apply();
     });
@@ -138,21 +137,14 @@
 
 
             // console
-            console.log(sectionWidth);
-            console.log(sectionHeight);
             var sectionPercent = sectionWidth / sectionHeight;
-            console.log('sectionPercent ' + sectionPercent);
             var img = document.getElementById('imgItem');
             //or however you get a handle to the IMG
             var actualWidth = img.clientWidth;
             var actualHeight = img.clientHeight;
-            console.log(actualWidth);
-            console.log(actualHeight);
             var actualPercent = actualWidth / actualHeight;
-            console.log('actualPercent ' + actualPercent);
 
             if (sectionPercent - 0.5 < actualPercent && actualPercent < sectionPercent + 0.5) {
-                console.log('good');
 
                 $scope.floor.Coordinates.push($scope.oneStoreCoordinates);
                 $scope.imgLink = '';
@@ -172,7 +164,6 @@
             else {
                 $('#modal').modal('toggle');
                 $scope.imgSizeErr = true;
-                console.log('not sutable');
             }
 
 

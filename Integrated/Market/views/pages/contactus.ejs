@@ -1,75 +1,107 @@
 ﻿<% include ../partials/pagestart %>
 <% include ../partials/pageheader %>
 
-<div class="clear"></div>
-<section class="container">
-    <nav class="breadcrumbs"> <a href="/EG/Home">Home</a> <span class="divider">›</span> Contact us </nav>
-</section>
-<!-- Two column content -->
-<section class="container contacts">
-    <div class="row">
-        <section class="col-md-4 col-lg-4">
-            <h3>Contact us</h3>
-            <ul class="simple-list compressed-list address">
-                <li><span class="icon icon-house"></span> El imam towers, Tanta, Egypt</li>
-                <li><span class="icon icon-phone-4"></span> 321321321, 321321321</li>
-                <li><span class="icon icon-envelop"></span> <a href="#">info@appout.co</a></li>
-            </ul>
-            <div class="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6115.684863819771!2d-82.9719195443651!3d39.96727545833253!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf3846176f3dff5ed!2sLa+Aurora!5e0!3m2!1sen!2sus!4v1416911994304" class="google-map-big"></iframe>
-            </div>
+
+<div ng-controller="contactusController">
+    <div ng-init="init('<%= countryIso %>')">
+        <div class="clear"></div>
+        <section class="container">
+            <nav class="breadcrumbs"> <a href="/{{IsoCode}}/Home">Home</a> <span class="divider">›</span> Contact us </nav>
         </section>
-        <section class="col-md-8 col-lg-8">
-
-            <!-- Contact us form -->
-            <div class="contacts-form">
-                <div class="wrap-paper">
-                    <div class="paper">
-                        <h3>Contact form</h3>
-
-                        <div id="success">
-                            <p>Your message was sent successfully!</p>
-                        </div>
-                        <div id="error">
-                            <p>Something went wrong, try refreshing and submitting the form again.</p>
-                        </div>
-
-                        <form id="contactform" class="boxed-form" name="contactform"  novalidate="novalidate">
-                            <div class="form-group">
-                                <span class="icon icon-user"></span>
-                                <input type="text" name="name" class="form-control" value="Name:" onblur="if (this.value == '') {this.value = 'Name:';}" onfocus="if(this.value == 'Name:') {this.value = '';}">
-                            </div>
-                            <div class="form-group">
-                                <span class="icon icon-phone-4"></span>
-                                <input type="text" name="phone" class="form-control" value="Telephone:" onblur="if (this.value == '') {this.value = 'Telephone:';}" onfocus="if(this.value == 'Telephone:') {this.value = '';}">
-                            </div>
-                            <div class="form-group">
-                                <span class="icon icon-envelop"></span>
-                                <input type="text" name="email" class="form-control" value="E-Mail:" onblur="if (this.value == '') {this.value = 'E-Mail:';}" onfocus="if(this.value == 'E-Mail:') {this.value = '';}">
-                            </div>
-                            <div class="form-group">
-                                <span class="icon icon-bubbles-2"></span>
-                                <textarea class="form-control" name="message" onblur="if (this.value == '') {this.value = 'Comment';}" onfocus="if(this.value == 'Comment') {this.value = '';}">Comment</textarea>
-                            </div>
-                            <button type="submit" id="submit" class="btn btn-mega">SEND MESSAGE</button>
-                        </form>
+        <!-- Two column content -->
+        <section class="container contacts">
+            <div class="row">
+                <section class="col-md-4 col-lg-4">
+                    <h3>Contact us</h3>
+                    <ul class="simple-list compressed-list address">
+                        <li><span class="icon icon-house"></span> El imam towers, Tanta, Egypt</li>
+                        <li><span class="icon icon-phone-4"></span> 321321321, 321321321</li>
+                        <li><span class="icon icon-envelop"></span> <a href="#">info@appout.co</a></li>
+                    </ul>
+                    <div class="map">
+                        <div id="map" style="height: 400px;width: 100%;"></div>
                     </div>
-                    <div class="clearfix"></div>
-                </div>
-                <img class="back" src="/images/contacts-back.png" alt="">
+                </section>
+                <section class="col-md-8 col-lg-8">
+
+                    <!-- Contact us form -->
+                    <div class="contacts-form">
+                        <div class="wrap-paper">
+                            <div class="paper">
+                                <h3>Contact form</h3>
+
+                                <div id="success">
+                                    <p>Your message was sent successfully!</p>
+                                </div>
+                                <div id="error">
+                                    <p>Something went wrong, try refreshing and submitting the form again.</p>
+                                </div>
+
+                                <form role="form" id="contactform" class="boxed-form" name="frmContact" novalidate="novalidate">
+                                    <div class="form-group">
+                                        <span class="icon icon-user"></span>
+                                        <input type="text" name="txtName" class="form-control" placeholder="Name" ng-model="contactObj.Name" required>
+                                        <span ng-show="frmContact.txtName.$touched  && frmContact.txtName.$invalid">
+                                            <span class="errorFont" ng-show="frmContact.txtName.$error.required">Name is required</span>
+                                        </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="icon icon-phone-4"></span>
+                                        <input type="text" name="txtPhone" class="form-control" placeholder="Phone Number" ng-model="contactObj.Phone">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="icon icon-envelop"></span>
+                                        <input type="text" name="txtEmail" class="form-control" placeholder="E-Mail" ng-model="contactObj.Email" required>
+                                        <span ng-show="frmContact.txtEmail.$touched  && frmContact.txtEmail.$invalid">
+                                            <span class="errorFont" ng-show="frmContact.txtEmail.$error.required">Email is required</span>
+                                        </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="icon icon-bubbles-2"></span>
+                                        <textarea class="form-control" name="txtMessage" placeholder="Message" ng-model="contactObj.Message" required></textarea>
+                                        <span ng-show="frmContact.txtMessage.$touched  && frmContact.txtMessage.$invalid">
+                                            <span class="errorFont" ng-show="frmContact.txtMessage.$error.required">Message text is required</span>
+                                        </span>
+                                    </div>
+                                    <button type="submit" ng-disabled="frmContact.$invalid || dataLoading" ng-click="submit(frmContact)" class="btn btn-mega">
+                                    SEND MESSAGE &nbsp;
+                                        <img ng-show="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                    </button>
+
+                                </form>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <img class="back" src="/images/contacts-back.png" alt="">
+                    </div>
+                    <!-- //end Contact us form -->
+
+                </section>
             </div>
-            <!-- //end Contact us form -->
-
         </section>
+
     </div>
-</section>
-
-    
-
+</div>
 <% include ../partials/pagefooter %>
 <% include ../partials/pageend %>
 <% include ../partials/pagesocial %>
 
+<script>
+    function initMap() {
+        var latlng = { lat: 30.799074, lng: 31.009416 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: latlng
+        });
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2CuttoU8t1XvRLSzujSe85kBH-RYMweM&callback=initMap"></script>
 </body>
 
 </html>

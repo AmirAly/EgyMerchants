@@ -62,8 +62,6 @@
     };
 
     $scope.activateStore = function () {
-        console.log('activateStore');
-        console.log($scope.selectedStore);
         // store [] is enabled now 
         $scope.loading = true;
         var req = {
@@ -74,7 +72,6 @@
             }
         }
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
                 window.location.reload();
             } else {
@@ -87,8 +84,6 @@
     }
 
     $scope.suspendStore = function () {
-        console.log('suspendStore');
-        console.log($scope.selectedStore);
         // store [] is suspended now 
         $scope.loading = true;
         var req = {
@@ -99,7 +94,6 @@
             }
         }
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
                 window.location.reload();
             } else {
@@ -112,8 +106,6 @@
     }
 
     $scope.deleteStore = function () {
-        console.log('deleteStore');
-        console.log($scope.selectedStore);
         // store [] is suspended now 
         $scope.loading = true;
         var req = {
@@ -124,7 +116,6 @@
             }
         }
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
                 window.location.reload();
             } else {
@@ -137,9 +128,6 @@
     }
 
     $scope.sendmessage = function () {
-        console.log('sendmessage');
-        console.log($scope.selectedStore);
-        console.log($scope.adminMessage);
         // store [] is suspended now 
         $scope.loading = true;
         var req = {
@@ -148,7 +136,6 @@
             data: { _id: $scope.selectedStore, _notification:{ Text:$scope.adminMessage, Admin:localStorage.getItem('admin') }}
         }
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
                 window.location.reload();
             } else {

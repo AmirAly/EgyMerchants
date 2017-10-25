@@ -32,8 +32,6 @@
                 Banner: $('#imgItem').attr('src')
             }
         }
-        console.log(typeof $scope.expoLst.FlipTime);
-        console.log(req);
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
                 window.location.reload();

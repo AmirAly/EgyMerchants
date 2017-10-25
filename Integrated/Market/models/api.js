@@ -29,7 +29,7 @@ module.exports = function (app, express) {
         return res.json({ code: '100', data: 'This api is working great, however further calls to other endpoints require a token' });
     });
     
-    
+
     //store API calls
     api.post('/Store/Register', function (req, res) {
         var _newstore = new User(req.body);
@@ -119,7 +119,10 @@ module.exports = function (app, express) {
     })
     api.get('/Store/SetToActive/:_storeId', function (req, res) {
         StoreLogic.setToActive(req.params._storeId).then(function (result) {
+            console.log(req.params._storeId)
             res.redirect("https://storecp.herokuapp.com");
+           
+            
         }, function (err) {
             res.json(err);
         });
@@ -341,6 +344,7 @@ module.exports = function (app, express) {
     })
     api.get('/User/SetToActive/:_userId', function (req, res) {
         UserLogic.setToActive(req.params._userId).then(function (result) {
+            console.log(req.params._userId)
             res.redirect("https://egymarket.herokuapp.com");
         }, function (err) {
             res.json(err);
@@ -366,6 +370,13 @@ module.exports = function (app, express) {
     })
 	  api.get('/GetFavourites/:_userId', function (req, res) {
         UserLogic.getFavourites(req.params._userId).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    })
+    api.post('/User/ContactUS', function (req, res) {
+        UserLogic.contactUs(req.body._name,req.body._phone,req.body._mail,req.body._comment).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -505,7 +516,7 @@ module.exports = function (app, express) {
             res.json(err);
         });
     })
-   
-
+    
+ 
     return api;
 };

@@ -163,8 +163,8 @@
     $(document).ready(function () {
         var interval;
         $scope.startShowLogos = false;
-        //$scope.startScroll = function () {
-        //    $timeout(function () {
+        $scope.startScroll = function () {
+            $timeout(function () {
                 swinch.init(null, {
                     snapTo: 'bottom',
                     scrollToElem: '.secondExpo',
@@ -184,40 +184,39 @@
                         $scope.$apply();
                     }
                 });
-        //    }, 2000);
-        //}
+            }, 2000);
+        }
 
-
+         //$cookies.remove('myTour');
         var curStep = $cookies.get('myTour');
         if (typeof curStep === 'string')
             curStep = parseInt(curStep);
-        //$scope.currentStep = curStep || 0;
-
-        if (curStep < 5 && $scope.exposList[0].Floors[0].Coordinates.length > 0) { //floor array not empty
-            //console.log('if');
-            //console.log($scope.exposList[0].Floors[0].Coordinates.length);
+        $scope.currentStep = curStep || 0;
+        //console.log($scope.currentStep);
+        if ($scope.currentStep < 5 && $scope.exposList[0].Floors[0].Coordinates.length > 0) { //floor array not empty
             $timeout(function () {
                 $scope.currentStep = 0;
             }, 1000);
         }
         else {
-            //$scope.startScroll(); 
-            //console.log('else');
             $scope.currentStep = 5;
+            $scope.startScroll();
             $scope.startShowLogos = true;
         }
 
 
         $scope.postTourCallback = function () {//close
             //console.log('tour closes');            
-            //$scope.startScroll();
+            $scope.startScroll();
+            $scope.startShowLogos = true;
             $cookies.put('myTour', $scope.currentStep);
             $scope.startShowLogos = true;
         };
 
         $scope.tourCompleteCallback = function () {// complete
             //console.log('tour completed');
-            //$scope.startScroll();
+            $scope.startScroll();
+            $scope.startShowLogos = true;
             $cookies.put('myTour', $scope.currentStep);
             $scope.startShowLogos = true;
         }

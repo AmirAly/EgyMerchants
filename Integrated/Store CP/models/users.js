@@ -1,6 +1,6 @@
 var Schema = require('./models/user');
 var Helper = require('./helper');
-
+var nodemailer = require('nodemailer')
 module.exports = {
     register: function (_newUser) {
         return new Promise(function (resolve, reject) {
@@ -31,19 +31,19 @@ module.exports = {
                                         var link =" https://egym.herokuapp.com/User/SetToActive/"+_newuser._id;
                                        
                                         
-                                        console.log(_newUser._id);
+                                      
                                         var data = {
                                             to: _newUser.Email,
                                             subject: "Please confirm your e-mail address ",
                                             html: 'Dear '+_newuser.Name+'<br />'+
-                                            'Welcome to EgyMerchant'+'<br />'+
+                                            'Welcome to EgyMerchants'+'<br />'+
                                            ' You are almost ready to start interacting with our web site...'+'<br />'
                                          +'  Please confirm your email address by clicking the link below'+'<br />'+
-                                         '<a href='+link+'>Confirm your e-mail</a>'
+                                         '<a href='+link+'>Confirm your e-mail</a>'+'<b> Then relogin with your data.</b>'
                                         }
                                        
                                                 Helper.sendEmail(data);
-                                                console.log(data)
+                                            
                                         resolve({
                                             code: 100,
                                             data: { _id: _newuser._id, Name: _newuser.Name, Type: _newuser.Type , Email: _newuser.Email , Status:_newuser.Status }
@@ -84,12 +84,7 @@ module.exports = {
                         code: 100,
                         data: Obj
                     });
-                    // Rate:[{
-                    //     Store: {
-                    //      type: Schema.Types.ObjectId,
-                    //      ref: 'User',
-                        
-                    //     }
+                  
             })
         })
     },
@@ -118,13 +113,12 @@ module.exports = {
                     });
                 else {
                     if (Obj) {
-                        console.log(`obj is ${Obj}`)
+                      
                         Obj.Name = _name;
-                        console.log(`name is  ${_name}`)
+                      
                         Helper.uploadImage(_profilePicture, function (_url) {
                             Obj.ProfilePicture = _url;
-                            console.log(`Obj.ProfilePicture is  ${ Obj.ProfilePicture}`)
-                            console.log(`img is  ${_url}`)
+                           
                             Obj.save(function (err, _newuser) {
                                     if (err)
                                         reject({
@@ -272,9 +266,9 @@ module.exports = {
 
 setToActive:function(_userId){
 return new Promise(function (resolve, reject) {
-    console.log(_userId);
+   
 Schema.findOneAndUpdate({"_id":_userId },{$set:{'Status':'Active'}},{ new: true},function(err,Obj){
-    console.log(Obj)
+   
 if (err) {
     reject({
         code: 1,
@@ -328,7 +322,7 @@ addRating:function(_storeId,_userId,_value){
                                                                
                        var average = constant/_store.Rate.length;
                       average=   average .toFixed(1) ;  
-                      console.log(average)
+                    
                  
                         resolve({ code: 100, data: average });
 
@@ -344,5 +338,44 @@ addRating:function(_storeId,_userId,_value){
     });
     
     },
-   
+    contactUs:function(_name,_phone,_mail,_comment){
+    return new Promise(function (resolve, reject) {
+var myPhone = _phone;  
+if(myPhone.length>0){
+    myPhone = _phone;
+}
+else{
+    myPhone = "____";
+}
+         
+            var smtpTransport = nodemailer.createTransport({
+                transport: "SMTP",
+                host: "smtp.gmail.com",
+                secureConnection: false,
+                port: 587,
+                requiresAuth: true,
+                auth: {
+                    user: 'appoutcompany@gmail.com',
+                    pass: 'appout123'
+                }
+            });
+            var mailOptions = {
+                to: "ahmedelmonshareh@gmail.com",
+                subject: "This is a message from"+" "+ _name,
+                html: `Name : ${_name}` +"<br/>"+
+                `Email : ${_mail}` +"<br/>"+
+                `Phone : ${myPhone}` +"<br/>"+
+                `Comment : ${_comment}`
+            }
+            smtpTransport.sendMail(mailOptions, function (err, response) {
+                if (err) {
+                    reject({ code: 1, data: err });
+                }
+                else
+                resolve({ code: 100, data: "mail sent successfully" });
+            });
+        
+
+    });
+    }
  };

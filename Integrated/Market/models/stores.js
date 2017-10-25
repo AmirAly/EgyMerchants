@@ -39,21 +39,24 @@ module.exports = {
                                             data: err
                                         });
                                     else {
+                                     
                                         var link =" https://egym.herokuapp.com/Store/SetToActive/"+_newStore._id;
                                         
                                        
                                         
+                                      
                                         var data = {
                                             to: _newStore.Email,
                                             subject: "Please confirm your e-mail address ",
                                             html: 'Dear '+_newStore.Name+" store"+'<br />'+
-                                            'Welcome to EgyMerchant'+'<br />'+
+                                            'Welcome to EgyMerchants'+'<br />'+
                                            ' You are almost ready to start interacting with our web site...'+'<br />'
                                          +'  Please confirm your email address by clicking the link below'+'<br />'+
-                                         '<a href='+link+'>Confirm your e-mail</a>'
+                                         '<a href=' + link + '>Confirm your e-mail</a>' + '<b> Then relogin with your data.</b>'
                                         }
                                        
                                                 Helper.sendEmail(data);
+                                              
                                         resolve({
                                             code: 100,
                                             data: { _id: _newstore._id, Name: _newstore.Name, Type: _newstore.Type }
@@ -107,7 +110,9 @@ module.exports = {
     
 setToActive:function(_storeId){
     return new Promise(function (resolve, reject) {
+    
     Schema.findOneAndUpdate({"_id":_storeId },{$set:{'Status':'Active'}},{ new: true},function(err,Obj){
+       
     if (err) {
         reject({
             code: 1,

@@ -1,5 +1,4 @@
 ﻿egm.controller("loginController", function ($scope, API) {
-    console.log(localStorage.getItem('admin'));
     $scope.preload = function () {
         if (localStorage.getItem('admin') !== null && localStorage.getItem('admin') !== '') {
             window.location.href = '/store';
@@ -28,7 +27,6 @@
         }
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
-                console.log(_res.data.data._id);
                 localStorage.setItem('admin', _res.data.data._id);
                 window.location.href = '/store';
             } else {

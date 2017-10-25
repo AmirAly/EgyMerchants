@@ -1,62 +1,40 @@
-﻿app.controller("contactusController", function ($scope, $state, $rootScope, $timeout) {
-   
-    $scope.submit = function () {
-        $('#success').fadeIn();
-        $('#contactform').each(function () { this.reset(); });
-        //if (Error) {
-        //    $('#contactform').fadeTo("slow", 0, function () {
-        //        $('#error').fadeIn();
-        //    });
-        //}
+﻿app.controller("contactusController", function ($scope, $rootScope, $timeout, API) {
+
+    $scope.contactObj = {};
+
+    $scope.init = function (_isoCode) {
+        $rootScope.IsoCode = _isoCode;
+        localStorage.setItem('IsoCode', _isoCode);
     }
 
-    // validate contact form
-    //$(function () {
-    //    $('#contactform').validate({
-    //        rules: {
-    //            name: {
-    //                required: true,
-    //                minlength: 2
-    //            },
-    //            phone: {
-    //                required: true,
-    //                minlength: 5
-    //            },
-    //            email: {
-    //                required: true,
-    //                email: true
-    //            }
+    $scope.submit = function (form) {
+        if (form.$valid) {
+            // call loader , login , hide modal & add user name
+            $scope.dataLoading = true;
+            var req = {
+                method: 'post',
+                url: '/User/ContactUS',
+                data: {
+                    _name: $scope.contactObj.Name,
+                    _phone: $scope.contactObj.Phone,
+                    _mail: $scope.contactObj.Email,
+                    _comment: $scope.contactObj.Message
+                }
+            }
+            API.execute(req).then(function (_res) {
+                $scope.dataLoading = false;
+                if (_res.data.code == 100) {
+                    $('#contactform').fadeTo("slow", 0, function () {
+                        $('#success').fadeIn();
+                    });
+                }
+                else {
+                    $('#contactform').fadeTo("slow", 0, function () {
+                        $('#error').fadeIn();
+                    });
+                }
+            });
+        }
+    }
 
-    //        },
-    //        messages: {
-    //            name: {
-    //                required: "Please enter your name",
-    //                minlength: "Your name must consist of at least 2 characters"
-    //            },
-    //            phone: {
-    //                required: "Please enter your contact phone",
-    //                minlength: "Your name must consist of at least 5 characters"
-    //            },
-    //            email: {
-    //                required: "Please enter your email"
-    //            }
-    //        },
-    //        submitHandler: function (form) {
-    //            $(form).ajaxSubmit({
-    //                type: "POST",
-    //                data: $(form).serialize(),
-    //                url: "process-contact.php",
-    //                success: function () {
-    //                    $('#success').fadeIn();
-    //                    $('#contactform').each(function () { this.reset(); });
-    //                },
-    //                error: function () {
-    //                    $('#contactform').fadeTo("slow", 0, function () {
-    //                        $('#error').fadeIn();
-    //                    });
-    //                }
-    //            });
-    //        }
-    //    });
-    //});
 });

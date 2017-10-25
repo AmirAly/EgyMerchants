@@ -17,25 +17,6 @@ var moment = require('moment');
 module.exports = function (app) {
     // use res.render to load up an ejs view file
     app.get('/', function (req, res) {
-
-        //app.get("http://ip-api.com/json").then(function (response) {
-        //    console.log(response);
-        //    //return response;
-        //});
-
-
-        //https.get('https://ip-api.com/json', function (resp) {
-        //    var body = ''
-        //    resp.on('data', function (data) {
-        //        body += data;
-        //    });
-
-        //    resp.on('end', function () {
-        //        var loc = JSON.parse(body);
-        //        console.log(loc);
-        //    });
-        //});
-
         return res.redirect('/' + null + '/Home');
     });
 
@@ -239,7 +220,7 @@ module.exports = function (app) {
     app.get('/:countryIso/Contactus', function (req, res) {
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
-        res.render('pages/contactus');
+        res.render('pages/contactus', _scope);
     });
 
     // search page 

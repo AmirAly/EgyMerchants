@@ -1,6 +1,5 @@
 ﻿egm.controller("loginController", function ($scope, $rootScope, API) {
 
-    console.log(localStorage.getItem('StoreId'));
     $scope.preload = function () {
         if (localStorage.getItem('StoreId') !== null && localStorage.getItem('StoreId') !== '') {
             window.location.href = '/galleries/' + localStorage.getItem('StoreId');
@@ -28,9 +27,12 @@
             data: $scope.loginData
         }
         API.execute(req).then(function (_res) {
+            console.log(_res);
             if (_res.data.code == 100) {
                 localStorage.setItem('StoreId', _res.data.data._id);
-                $rootScope.currentUser = _res.data.data._id;
+                localStorage.setItem('StoreName', _res.data.data.Name);
+                $rootScope.currentUser = localStorage.getItem('StoreId');
+                $rootScope.currentName = localStorage.getItem('StoreName');
                 window.location.href = '/galleries/' + _res.data.data._id;
             } else {
                 $scope.loading = false;

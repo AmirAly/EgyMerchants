@@ -82,6 +82,7 @@ module.exports = {
                                    
                                     
                                     if (_img) {
+                                   
                                         Helper.uploadImage(_img, function (_url) {
                                             gallery.DisplayPicture = _url;
                                             gallery.save(function (err, Obj) {

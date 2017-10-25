@@ -3,10 +3,10 @@ var egm = angular.module('egm', ['ui.sortable']);
 
 egm.run(function ($rootScope, API) {
     $rootScope.currentUser = localStorage.getItem('StoreId');
+    $rootScope.currentName = localStorage.getItem('StoreName');
 
     $rootScope.$watch('currentUser', function () {
         if ($rootScope.currentUser != "" && $rootScope.currentUser != null) {
-            console.log('here');
             $rootScope.getAdminNotifications();
         }
     });
@@ -18,7 +18,6 @@ egm.run(function ($rootScope, API) {
             data: {}
         }
         API.execute(req).then(function (_res) {
-            console.log(_res);
             if (_res.data.code == 100) {
                 //// open modal
                 if (_res.data.data.AdminNotifications.length > 0) {

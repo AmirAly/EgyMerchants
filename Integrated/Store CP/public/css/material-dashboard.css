@@ -5787,6 +5787,7 @@ footer {
 .ui-sortable-placeholder {
     border: 2px dashed #3c4858;
     visibility: visible !important;
+    height:300px;
 }
 
 i.fa.fa-twitter-square {

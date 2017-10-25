@@ -14,7 +14,6 @@
     };
 
     $scope.currentStore = JSON.parse((window.storeObject).replace(/&quot;/g, '"'));
-    console.log($scope.currentStore);
     if ($scope.currentStore.Contacts.length == 0) {
         $scope.currentStore.Contacts = [
             { Label: 'Facebook', Value: '' },
@@ -65,7 +64,6 @@
 
     $scope.addContactData = function () {
         $scope.currentStore.Contacts.push($scope.contactData);
-        console.log($scope.currentStore.Contacts);
         $scope.contactData = {};
     }
 

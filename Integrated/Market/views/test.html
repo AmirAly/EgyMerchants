@@ -1,180 +1,107 @@
 <% include ../partials/pagestart %>
 <% include ../partials/pageheader %>
 
-<div class="expoPage" ng-controller="expoController">
 
+<div ng-controller="contactusController">
+    <div ng-init="init('<%= countryIso %>')">
+        <div class="clear"></div>
+        <section class="container">
+            <nav class="breadcrumbs"> <a href="/{{IsoCode}}/Home">Home</a> <span class="divider">›</span> Contact us </nav>
+        </section>
+        <!-- Two column content -->
+        <section class="container contacts">
+            <div class="row">
+                <section class="col-md-4 col-lg-4">
+                    <h3>Contact us</h3>
+                    <ul class="simple-list compressed-list address">
+                        <li><span class="icon icon-house"></span> El imam towers, Tanta, Egypt</li>
+                        <li><span class="icon icon-phone-4"></span> 321321321, 321321321</li>
+                        <li><span class="icon icon-envelop"></span> <a href="#">info@appout.co</a></li>
+                    </ul>
+                    <div class="map">
+                        <div id="map" style="height: 400px;width: 100%;"></div>
+                    </div>
+                </section>
+                <section class="col-md-8 col-lg-8">
 
-    <div class="allExposView" ng-hide="showSingleExpo">
-        <div class="secondDiv" ng-init="init('<%= countryIso %>')" id="one">
-            <script>var exposObject = <%-JSON.stringify(JsonExpos)%>;</script>
+                    <!-- Contact us form -->
+                    <div class="contacts-form">
+                        <div class="wrap-paper">
+                            <div class="paper">
+                                <h3>Contact form</h3>
 
-            <% if (expos.length > 0) { %>
-            <div ng-repeat="expo in exposList">
-                <div ng-if="expo.Floors.length > 0">
-                    <section swinch-duration="5000" swinch-delay="1500" ng-attr-swinch-offset="{{ $first ? -50 : 0 }}" data-floors="{{expo.Floors.length}}" data-fliptime="{{expo.FlipTime}}" class="secondExpo repeated-item smooth-container" id="expo{{expo._id}}">
-                        <article>
+                                <div id="success">
+                                    <p>Your message was sent successfully!</p>
+                                </div>
+                                <div id="error">
+                                    <p>Something went wrong, try refreshing and submitting the form again.</p>
+                                </div>
 
-                            <div class="expoData">
-
-                                <div>
-                                    <div class="singleExpoView" id="expo{{expo._id}}">
-                                        <div class="container-fluid">
-
-                                            <div class="row" ng-init="loadArray(expo._id)">
-
-                                                <!-- floors -->
-                                                <div ng-repeat="floor in expo.Floors" ng-show="expo.Floors.length" class="boxme" ng-show="activePageNumber{{expo._id}} == {{$index}}" ng-init="initfirstPage(expo._id,0)">
-                                                    <div class="imagesContainer" id="imagesContainer{{expo._id}}">
-
-
-                                                        <div ng-show="startShowLogos">
-                                                            <div class="balloon" ng-repeat="obj in expo.stores | unique:'_id'" ng-style="{'background-image':'url(' + obj.ProfilePicture + ')'}"></div>
-                                                        </div>
-
-                                                        
-                                                        <span>{{floor.Coordinates.length}}</span>
-                                                        <div class="dvNoFloors" ng-show="!floor.Coordinates.length > 0">bbbbbbbbbbbbbbbba</div>
-
-                                                        <div class="outerContainer" ng-repeat="sec in floor.Coordinates">
-                                                            <div ng-class="{'suspendedstore':sec.Store.Status == 'Suspended'}" class=" repeated-item" ng-style="{'background-image': 'url({{sec.Img}})','position':'absolute','background-size': 'cover','background-repeat': 'no-repeat','top':{{sec.Top * oneSectionHeight}} +'px','left':{{sec.Left * oneSectionWidth}} +'px','height':{{sec.Height * oneSectionHeight}} - 3 +'px', 'width':{{sec.Width * oneSectionWidth}} - 3 +'px'}">
-                                                                <a ng-if="sec.Store.Status != 'Suspended'" href="/{{IsoCode}}/Store/{{sec.StoreName}}/{{sec.Store._id}}"><div class="image-hover"><i class="icon-zoom-in-2"></i></div></a>
-                                                                <div class="image-title">{{sec.StoreName}}</div>
-                                                                <div class="suspendMsg" ng-if="sec.Store.Status == 'Suspended'"><h5>This store is disabled</h5></div>
-                                                            </div>
-                                                        </div>
-
-                                                        <h6>Floor {{$index + 1}} of {{expo.Floors.length}}</h6>
-                                                        <h4 id="two">
-                                                            <div class="dvExpoFloorName">
-                                                                <div class="dvExpoName">Expo: {{expo.Title}}</div>
-                                                                <div class="dvFloorName">{{floor.Name}}</div>
-                                                            </div>
-
-                                                            <span class="flexContainer">
-
-                                                                <div class="dvFloorLogo" ng-repeat="obj in expo.stores | unique:'_id'">
-                                                                    <img class="img-responsive" src="{{obj.ProfilePicture}}" />
-                                                                </div>
-
-                                                            </span>
-                                                        </h4>
-                                                    </div>
-
-                                                </div>
-                                                
-                                            </div>
-
-                                            <div class="expoDetails" ng-hide="expo.Floors.length == 1">
-                                                <!-- Pagination -->
-
-                                                <h5 id="nextFloor{{expo._id}}" class="text-center light dvNextPage" ng-click="nextPage(expo._id,expo.Floors.length)">
-                                                    <img src="/images/rightarrow.png" />
-                                                </h5>
-
-                                                <h5 class="text-center light dvPrePage" ng-click="previousPage(expo._id,expo.Floors.length)">
-                                                    <img src="/images/leftarrow.png" id="three" />
-                                                </h5>
-
-                                            </div>
-                                            <!-- //end Pagination -->
-                                        </div>
+                                <form role="form" id="contactform" class="boxed-form" name="frmContact" novalidate="novalidate">
+                                    <div class="form-group">
+                                        <span class="icon icon-user"></span>
+                                        <input type="text" name="txtName" class="form-control" placeholder="Name" ng-model="contactObj.Name" required>
+                                        <span ng-show="frmContact.txtName.$touched  && frmContact.txtName.$invalid">
+                                            <span class="errorFont" ng-show="frmContact.txtName.$error.required">Name is required</span>
+                                        </span>
                                     </div>
-                                </div>
-                            </div>
-                        </article>
-                    </section>
+                                    <div class="form-group">
+                                        <span class="icon icon-phone-4"></span>
+                                        <input type="text" name="txtPhone" class="form-control" placeholder="Phone Number" ng-model="contactObj.Phone">
 
-                    <div class="homepage-bar">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <i class="icon-shipping"></i>
-                                    <div class="text-area"><h3>Free shipping &amp, return</h3><p>Free shipping on all orders over $99.</p></div>
-                                </div>
-                                <div class="col-md-4">
-                                    <i class="icon-money-bag"></i>
-                                    <div class="text-area"><h3>Money back guarantee</h3><p>100% money back guarantee.</p></div>
-                                </div>
-                                <div class="col-md-4">
-                                    <i class="icon-support"></i>
-                                    <div class="text-area"><h3>Online support 24/7</h3><p>Lorem ipsum dolor sit amet.</p></div>
-                                </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="icon icon-envelop"></span>
+                                        <input type="text" name="txtEmail" class="form-control" placeholder="E-Mail" ng-model="contactObj.Email" required>
+                                        <span ng-show="frmContact.txtEmail.$touched  && frmContact.txtEmail.$invalid">
+                                            <span class="errorFont" ng-show="frmContact.txtEmail.$error.required">Email is required</span>
+                                        </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="icon icon-bubbles-2"></span>
+                                        <textarea class="form-control" name="txtMessage" placeholder="Message" ng-model="contactObj.Message" required></textarea>
+                                        <span ng-show="frmContact.txtMessage.$touched  && frmContact.txtMessage.$invalid">
+                                            <span class="errorFont" ng-show="frmContact.txtMessage.$error.required">Message text is required</span>
+                                        </span>
+                                    </div>
+                                    <button type="submit" ng-disabled="frmContact.$invalid || dataLoading" ng-click="submit(frmContact)" class="btn btn-mega">
+                                    SEND MESSAGE &nbsp;
+                                        <img ng-show="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                    </button>
+
+                                </form>
                             </div>
+                            <div class="clearfix"></div>
                         </div>
+                        <img class="back" src="/images/contacts-back.png" alt="">
                     </div>
+                    <!-- //end Contact us form -->
 
-                </div>
-                <div ng-if="!expo.Floors.length > 0" class="dvNoFloors">
-                    There is no floors currently <br /> in the expo {{expo.Title}} :(
-                </div>
+                </section>
             </div>
+        </section>
 
-
-
-
-            <div class="brands-slide">
-                <div class="container">
-                    <div>
-                        <img class="lazyOwl" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand1.png">
-                        <img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand2.png">
-                        <img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand3.png">
-                        <img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand4.png">
-                        <img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand5.png">
-                    </div>
-                </div>
-            </div>
-
-            <% } else { %>
-            <p class="txtNoData"> No data available </p>
-            <% } %>
-        </div>
     </div>
-
-    <tour step="currentStep" post-tour="postTourCallback()" post-step="postStepCallback()" tour-complete="tourCompleteCallback()">
-        <virtual-step tourtip="Expos with floors."
-                      tourtip-title="Welcome to the expo"
-                      tourtip-next-label="Learn more"
-                      tourtip-placement="top"
-                      tourtip-step="0"
-                      tourtip-element="#one"></virtual-step>
-
-        <virtual-step tourtip="Floor name"
-                      tourtip-next-label="Next"
-                      tourtip-placement="top"
-                      tourtip-step="1"
-                      tourtip-element="#two"></virtual-step>
-
-        <virtual-step tourtip="hover to see expo name with participated stores"
-                      tourtip-next-label="Next"
-                      tourtip-placement="left"
-                      tourtip-step="2"
-                      tourtip-element="#two"></virtual-step>
-
-        <virtual-step tourtip="use arrows to navigate between expo floors"
-                      tourtip-next-label="Next"
-                      tourtip-placement="left"
-                      tourtip-step="3"
-                      tourtip-element="#three"></virtual-step>
-
-        <virtual-step tourtip="finally"
-                      tourtip-title="enjoy!"
-                      tourtip-next-label="Done"
-                      tourtip-placement="top"
-                      tourtip-step="4"
-                      tourtip-element="#one"></virtual-step>
-    </tour>
-
-
-
-
-
 </div>
-
 <% include ../partials/pagefooter %>
 <% include ../partials/pageend %>
 <% include ../partials/pagesocial %>
 
-
+<script>
+    function initMap() {
+        var latlng = { lat: 30.799074, lng: 31.009416 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: latlng
+        });
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2CuttoU8t1XvRLSzujSe85kBH-RYMweM&callback=initMap"></script>
 </body>
 
 </html>
