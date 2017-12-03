@@ -160,7 +160,8 @@
         $scope['activePageNumber' + _expoId] = _floorId;
     }
 
-    $(document).ready(function () {
+    //$(document).ready(function () {
+    angular.element(document).ready(function () {
         var interval;
         $scope.startShowLogos = false;
         $scope.startScroll = function () {

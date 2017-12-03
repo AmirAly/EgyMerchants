@@ -44,8 +44,8 @@
                                                     </label>
                                                     <input type="email" class="form-control" ng-model="loginData.Email" placeholder="Email..." required="" name="email" id="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                                                     <span ng-show="frmLogin.email.$touched && frmLogin.email.$invalid">
-                                                        <span class="errorFont" ng-show="frmLogin.email.$error.required">Required</span>
-														<span class="errorFont" ng-show="frmLogin.email.$error.pattern">Invalid email. it should be as example@mail.com</span>
+                                                        <span class="errorFont" id="txtEmailRequiredErr" ng-show="frmLogin.email.$error.required">Required</span>
+														<span class="errorFont" id="txtEmailPatternErr" ng-show="frmLogin.email.$error.pattern">Invalid email. it should be as example@mail.com</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -56,15 +56,15 @@
                                                     </label>
                                                     <input name="pwd" id="pwd" type="password" class="form-control" ng-model="loginData.Password" placeholder="password..." required="" ng-minlength="6">
                                                     <span ng-show="frmLogin.pwd.$touched && frmLogin.pwd.$invalid">
-                                                        <span class="errorFont" ng-show="frmLogin.pwd.$error.required">Required</span>
-                                                        <span class="errorFont" ng-show="frmLogin.pwd.$error.minlength">Password minimum length 6 Characters</span>
+                                                        <span class="errorFont" id="txtPasswordRequiredErr" ng-show="frmLogin.pwd.$error.required">Required</span>
+                                                        <span class="errorFont" id="txtPasswordMinlengthErr" ng-show="frmLogin.pwd.$error.minlength">Password minimum length 6 Characters</span>
                                                     </span>
 
                                                 </div>
                                             </div>
                                             <div class="col-sm-8 col-sm-offset-2">
                                                 <div class=" alert-danger clear text-center" ng-show="errdiv">
-                                                    <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
+                                                    <span class="errorFont" id="txtLoginErr" ng-show="errMsg"> {{errorMsg}} </span>
                                                 </div>
                                             </div>
                                         </div>

@@ -68,6 +68,7 @@ module.exports = {
                             else {
                                 
                                 if (Obj){
+                                console.log(obj)
                                 
                                     reject({
                                         code: 21,
@@ -82,7 +83,7 @@ module.exports = {
                                    
                                     
                                     if (_img) {
-                                   
+                                        console.log(_img)
                                         Helper.uploadImage(_img, function (_url) {
                                             gallery.DisplayPicture = _url;
                                             gallery.save(function (err, Obj) {

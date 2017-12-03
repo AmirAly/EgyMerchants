@@ -90,7 +90,8 @@ module.exports = {
 getTenNotifications: function (_userId, _key) {
     return new Promise(function (resolve, reject) {
         Schema.find({ "User": _userId }, function (err, lst) {
-         
+            console.log(lst)
+            console.log(`list ${lst.length}`)
             if (err) {
                 reject({
                     code: 1,

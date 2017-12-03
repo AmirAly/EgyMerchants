@@ -12,32 +12,32 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="active">
-                        <a href="/countrieslist">
+                   <li id="itmCountiesLst" class="active">
+                        <a id="lnkCountiesLst" href="/countrieslist">
                             <i class="material-icons">person</i>
                             <p>Countries</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="/categorieslist">
+                    <li id="itmCategoriesLst">
+                        <a id="lnkCategoriesLst" href="/categorieslist">
                             <i class="material-icons">person</i>
                             <p>Categories</p>
                         </a>
                     </li>
-                    <li>
-                        <a href='/exposlist'>
+                    <li id="itmExposLst">
+                        <a id="lnkExposLst" href='/exposlist'>
                             <i class="material-icons">dashboard</i>
                             <p>Expos</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="/store">
+                    <li id="itmStoresLst">
+                        <a id="lnkStoresLst" href="/store">
                             <i class="material-icons">person</i>
                             <p>Stores</p>
                         </a>
                     </li>
-                    <li ng-click="signOut()" class="cursorPointer">
-                        <a>
+                    <li id="itmLogout" ng-click="signOut()" class="cursorPointer">
+                        <a id="lnkLogout">
                             <i class="material-icons">person</i>
                             <p>Sign Out</p>
                         </a>
@@ -85,7 +85,7 @@
                                         </thead>
                                         <tbody>
 
-                                            <tr ng-repeat="country in countries">
+                                            <tr ng-repeat="country in countries" id="tblRow{{country.Name}}" name="tblRow">
                                                 <td class="flagImg">
                                                     <img class="divImgTable" src="{{country.Flag}}" />
                                                 </td>
@@ -94,13 +94,13 @@
                                                 <td class="light"><span class="tableSpan">{{country.WelcomeMsg}}</span></td>
 
                                                 <td>
-                                                    <button type="button" tool-tip rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" ng-click="editCountry(country._id)" data-original-title="Edit category">
+                                                    <button type="button" tool-tip rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" id="btnEdit{{country.Name}}" ng-click="editCountry(country._id)" data-original-title="Edit category">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <button type="button" tool-tip rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg3" ng-click="callDelModal(country._id)" data-original-title="Remove category" aria-describedby="tooltip451158">
+                                                    <button type="button" tool-tip rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" id="btnDelete{{country.Name}}" data-toggle="modal" data-target=".bs-example-modal-lg3" ng-click="callDelModal(country._id)" data-original-title="Remove category" aria-describedby="tooltip451158">
                                                         <i class="material-icons">close</i>
                                                         <div class="ripple-container"></div>
                                                     </button>
@@ -230,7 +230,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnIconCloseDeleteModal">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <h4 class="modal-title">Confirm deletion</h4>
@@ -257,8 +257,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" ng-click="removeCountry()" class="btn btn-primary">Delete</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCloseDeleteModal">Close</button>
+                    <button type="button" ng-click="removeCountry()" class="btn btn-primary" id="btnDeleteDeleteModal">Delete</button>
                 </div>
             </div>
         </div>

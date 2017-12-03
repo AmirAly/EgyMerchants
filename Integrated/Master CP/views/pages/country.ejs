@@ -12,32 +12,32 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li>
-                        <a href="/countrieslist">
+                    <li id="itmCountiesLst">
+                        <a id="lnkCountiesLst" href="/countrieslist">
                             <i class="material-icons">person</i>
                             <p>Countries</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="/categorieslist">
+                    <li id="itmCategoriesLst">
+                        <a id="lnkCategoriesLst" href="/categorieslist">
                             <i class="material-icons">person</i>
                             <p>Categories</p>
                         </a>
                     </li>
-                    <li>
-                        <a href='/exposlist'>
+                    <li id="itmExposLst">
+                        <a id="lnkExposLst" href='/exposlist'>
                             <i class="material-icons">dashboard</i>
                             <p>Expos</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="/store">
+                    <li id="itmStoresLst">
+                        <a id="lnkStoresLst" href="/store">
                             <i class="material-icons">person</i>
                             <p>Stores</p>
                         </a>
                     </li>
-                    <li ng-click="signOut()" class="cursorPointer">
-                        <a>
+                    <li id="itmLogout" ng-click="signOut()" class="cursorPointer">
+                        <a id="lnkLogout">
                             <i class="material-icons">person</i>
                             <p>Sign Out</p>
                         </a>
@@ -73,10 +73,10 @@
                                                     <label class="control-label">Country name</label>
                                                     <input type="text" class="form-control" ng-model="currentCountry.Name" value="currentCountry.Name" name="countryTitle" id="countryTitle" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                     <span ng-show="frmUpdateCountry.countryTitle.$dirty && frmUpdateCountry.countryTitle.$invalid">
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryTitle.$error.required">Required</span>
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryTitle.$error.minlength">Country name is too short </span>
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryTitle.$error.maxlength">Country name is too long</span>
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryTitle.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
+                                                        <span class="errorFont" id="txtTitleRequired" ng-show="frmUpdateCountry.countryTitle.$error.required">Required</span>
+                                                        <span class="errorFont" id="txtTitleMinlength" ng-show="frmUpdateCountry.countryTitle.$error.minlength">Country name is too short </span>
+                                                        <span class="errorFont" id="txtTitleMaxlength" ng-show="frmUpdateCountry.countryTitle.$error.maxlength">Country name is too long</span>
+                                                        <span class="errorFont" id="txtTitlePattern" ng-show="frmUpdateCountry.countryTitle.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -87,9 +87,9 @@
                                                     <label class="control-label">Country iso code</label>
                                                     <input type="text" class="form-control" ng-model="currentCountry.IsoCode" value="currentCountry.IsoCode" name="countryIso" id="countryIso" required ng-minlength="2" ng-maxlength="3">
                                                     <span ng-show="frmUpdateCountry.countryIso.$dirty && frmUpdateCountry.countryIso.$invalid">
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryIso.$error.required">Required</span>
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryIso.$error.minlength">Iso code is too short</span>
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryIso.$error.maxlength">Iso code is too Long</span>
+                                                        <span class="errorFont" id="txtIsoCodeRequired" ng-show="frmUpdateCountry.countryIso.$error.required">Required</span>
+                                                        <span class="errorFont" id="txtIsoCodeMinlength" ng-show="frmUpdateCountry.countryIso.$error.minlength">Iso code is too short</span>
+                                                        <span class="errorFont" id="txtIsoCodeMaxlength" ng-show="frmUpdateCountry.countryIso.$error.maxlength">Iso code is too Long</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -100,21 +100,21 @@
                                                     <label class="control-label">Country welcome message</label>
                                                     <input type="text" class="form-control" ng-model="currentCountry.WelcomeMsg" value="currentCountry.WelcomeMsg" name="countryMsg" id="countryMsg" required ng-minlength="2" ng-maxlength="50" pattern="^((?!\{\{[^}]+\}\}).)*$">
                                                     <span ng-show="frmUpdateCountry.countryMsg.$dirty && frmUpdateCountry.countryMsg.$invalid">
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryMsg.$error.required">Required</span>
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryMsg.$error.minlength">Welcome message is too short </span>
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryMsg.$error.maxlength">Welcome message is too long</span>
-                                                        <span class="errorFont" ng-show="frmUpdateCountry.countryMsg.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
+                                                        <span class="errorFont" id="txtWelcomeMsgRequired" ng-show="frmUpdateCountry.countryMsg.$error.required">Required</span>
+                                                        <span class="errorFont" id="txtWelcomeMsgMinlength" ng-show="frmUpdateCountry.countryMsg.$error.minlength">Welcome message is too short </span>
+                                                        <span class="errorFont" id="txtWelcomeMsgMaxlength" ng-show="frmUpdateCountry.countryMsg.$error.maxlength">Welcome message is too long</span>
+                                                        <span class="errorFont" id="txtWelcomeMsgPattern" ng-show="frmUpdateCountry.countryMsg.$error.pattern">Can't accept words between double curly brackets {{  "{{ text }\}"   }}</span>
                                                     </span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" ng-click="updateCountry()" ng-disabled="frmUpdateCountry.$invalid" class="btn btn-primary pull-right">Update country</button>
+                                        <button type="submit" id="btnUpdateCountry" ng-click="updateCountry()" ng-disabled="frmUpdateCountry.$invalid" class="btn btn-primary pull-right">Update country</button>
 
 
 
                                         <div class="clearfix"></div>
                                         <div class=" alert-danger clear text-center" ng-show="errdiv">
-                                            <span class="errorFont " ng-show="errMsg"> {{errorMsg}} </span>
+                                            <span class="errorFont" id="txtUpdateCountryErr" ng-show="errMsg"> {{errorMsg}} </span>
                                         </div>
                                     </form>
                                 </div>
