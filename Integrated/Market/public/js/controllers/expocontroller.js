@@ -123,7 +123,7 @@
         $scope.exposList = JSON.parse((window.exposObject).replace(/&quot;/g, '"'));
         currentExpoId = $scope.exposList[0]._id;
         floorsCounter = $scope.exposList[0].Floors.length;
-        intervalPeriod = $scope.exposList[0].FlipTime;
+        intervalPeriod = $scope.exposList[0].FlipTime * 1000;
         $scope.getstores(i);
         // set which activeFloorCounter for every expo
         angular.forEach($scope.exposList, function (expo) {
@@ -175,7 +175,7 @@
                     onSnapped: function (current, previous, direction) {
                         clearInterval(interval);
                         currentExpoId = (current.id).slice(4);
-                        intervalPeriod = current.getAttribute('data-flipTime');
+                        intervalPeriod = current.getAttribute('data-flipTime') * 1000;
                         floorsCounter = current.getAttribute('data-floors'); // no need for it now
                         if (intervalPeriod > 0) {
                             interval = setInterval(function () {

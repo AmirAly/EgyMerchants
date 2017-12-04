@@ -119,10 +119,7 @@ module.exports = function (app, express) {
     })
     api.get('/Store/SetToActive/:_storeId', function (req, res) {
         StoreLogic.setToActive(req.params._storeId).then(function (result) {
-            console.log(req.params._storeId)
             res.redirect("https://storecp.herokuapp.com");
-           
-            
         }, function (err) {
             res.json(err);
         });
@@ -344,7 +341,6 @@ module.exports = function (app, express) {
     })
     api.get('/User/SetToActive/:_userId', function (req, res) {
         UserLogic.setToActive(req.params._userId).then(function (result) {
-            console.log(req.params._userId)
             res.redirect("https://egymarket.herokuapp.com");
         }, function (err) {
             res.json(err);

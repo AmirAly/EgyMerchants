@@ -4,7 +4,7 @@ var nodemailer = require('nodemailer')
 module.exports = {
     register: function (_newUser) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $or: [{ 'Email': {$regex: new RegExp('^' + _newUser.Email+"$" , 'i')} }, { 'Name':  {$regex: new RegExp('^' + _newUser.Name+"$" , 'i')} }] }, '', function (err, Obj) {
+            Schema.findOne({ $or: [{ 'Email': { $regex: new RegExp('^' + _newUser.Email + "$", 'i') } }] }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -14,7 +14,7 @@ module.exports = {
                     if (Obj) {
                         reject({
                             code: 21,
-                            data: "This email or name already exist"
+                            data: "This email already exist"
                         });
                     }
                     else {
@@ -22,35 +22,32 @@ module.exports = {
                         Helper.uploadImage(_newUser.ProfilePicture, function (_url) {
                             _newUser.ProfilePicture = _url;
                             _newUser.save(function (err, _newuser) {
-                                    if (err)
-                                        reject({
-                                            code: 1,
-                                            data: err
-                                        });
-                                    else {
-                                        var link =" https://egym.herokuapp.com/User/SetToActive/"+_newuser._id;
-                                       
-                                        
-                                      
-                                        var data = {
-                                            to: _newUser.Email,
-                                            subject: "Please confirm your e-mail address ",
-                                            html: 'Dear '+_newuser.Name+'<br />'+
-                                            'Welcome to EgyMerchants'+'<br />'+
-                                           ' You are almost ready to start interacting with our web site...'+'<br />'
-                                         +'  Please confirm your email address by clicking the link below'+'<br />'+
-                                         '<a href='+link+'>Confirm your e-mail</a>'+'<b> Then relogin with your data.</b>'
-                                        }
-                                       
-                                                Helper.sendEmail(data);
-                                            
-                                        resolve({
-                                            code: 100,
-                                            data: { _id: _newuser._id, Name: _newuser.Name, Type: _newuser.Type , Email: _newuser.Email , Status:_newuser.Status }
-                                        });
+                                if (err)
+                                    reject({
+                                        code: 1,
+                                        data: err
+                                    });
+                                else {
+                                    var link = " https://egym.herokuapp.com/User/SetToActive/" + _newuser._id;
+                                    var data = {
+                                        to: _newUser.Email,
+                                        subject: "Please confirm your e-mail address ",
+                                        html: 'Dear ' + _newuser.Name + '<br />' +
+                                            'Welcome to EgyMerchants' + '<br />' +
+                                            ' You are almost ready to start interacting with our web site...' + '<br />'
+                                            + '  Please confirm your email address by clicking the link below' + '<br />' +
+                                            '<a href=' + link + '>Confirm your e-mail</a>' + '<b> Then relogin with your data.</b>'
                                     }
-                                })
+
+                                    Helper.sendEmail(data);
+
+                                    resolve({
+                                        code: 100,
+                                        data: { _id: _newuser._id, Name: _newuser.Name, Type: _newuser.Type, Email: _newuser.Email, Status: _newuser.Status }
+                                    });
+                                }
                             })
+                        })
                     }
                 }
             })
@@ -58,7 +55,7 @@ module.exports = {
     },
     login: function (_user) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $and: [{ 'Email':{$regex: new RegExp('^' + _user.Email+"$" , 'i')} }, { 'Password':{$regex: new RegExp('^' + _user.Password+"$" , 'i')}}] }, '_id Name Type FavouriteItems VisitedStores ProfilePicture Rate.Store Status', function (err, Obj) {
+            Schema.findOne({ $and: [{ 'Email': { $regex: new RegExp('^' + _user.Email + "$", 'i') } }, { 'Password': { $regex: new RegExp('^' + _user.Password + "$", 'i') } }] }, '_id Name Type FavouriteItems VisitedStores ProfilePicture Rate.Store Status', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -79,18 +76,18 @@ module.exports = {
                         code: 23,
                         data: "This account is deleted"
                     });
-                else 
+                else
                     resolve({
                         code: 100,
                         data: Obj
                     });
-                  
+
             })
         })
     },
     editProfile: function (_id, _name, _profilePicture) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ $or: [{ 'Name': {$regex: new RegExp('^' + _name+"$" , 'i')}}] , '_id': { $ne: _id }}, '', function (err, Obj) {
+            Schema.findOne({ $or: [{ 'Name': { $regex: new RegExp('^' + _name + "$", 'i') } }], '_id': { $ne: _id } }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -98,55 +95,55 @@ module.exports = {
                     })
                 else {
                     if (Obj) {
-                      
+
                         reject({
                             code: 21,
                             data: "This name already exists"
                         });
                     }
                     else {
-            Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
-                if (err)
-                    reject({
-                        code: 1,
-                        data: err
-                    });
-                else {
-                    if (Obj) {
-                      
-                        Obj.Name = _name;
-                      
-                        Helper.uploadImage(_profilePicture, function (_url) {
-                            Obj.ProfilePicture = _url;
-                           
-                            Obj.save(function (err, _newuser) {
-                                    if (err)
-                                        reject({
-                                            code: 1,
-                                            data: err
-                                        });
-                                    else {
-                                        resolve({
-                                            code: 100,
-                                            data: "Your profile is updated successfully"
-                                        });
-                                    }
-                                })
-                            })
+                        Schema.findOne({ '_id': _id, 'Status': 'Active' }, '', function (err, Obj) {
+                            if (err)
+                                reject({
+                                    code: 1,
+                                    data: err
+                                });
+                            else {
+                                if (Obj) {
+
+                                    Obj.Name = _name;
+
+                                    Helper.uploadImage(_profilePicture, function (_url) {
+                                        Obj.ProfilePicture = _url;
+
+                                        Obj.save(function (err, _newuser) {
+                                            if (err)
+                                                reject({
+                                                    code: 1,
+                                                    data: err
+                                                });
+                                            else {
+                                                resolve({
+                                                    code: 100,
+                                                    data: "Your profile is updated successfully"
+                                                });
+                                            }
+                                        })
+                                    })
+                                }
+                                else
+                                    reject({
+                                        code: 21,
+                                        data: "No results"
+                                    });
+                            }
+                        })
                     }
-                    else 
-                        reject({
-                            code: 21,
-                            data: "No results"
-                        });
-                    }
-                })
                 }
-            }
-    })
+            })
         })
     },
-    addToFavourites: function (_userId,_itemId) {
+    addToFavourites: function (_userId, _itemId) {
         return new Promise(function (resolve, reject) {
             Schema.findOneAndUpdate({ "_id": _userId, "Status": "Active" }, { $addToSet: { FavouriteItems: _itemId } }, { new: true, fields: '_id Name Type FavouriteItems VisitedStores ProfilePicture' }, function (err, Obj) {
                 if (err)
@@ -162,9 +159,9 @@ module.exports = {
                         });
                     else
                         reject({
-                        code: 21,
-                        data: "No results"
-                    });
+                            code: 21,
+                            data: "No results"
+                        });
                 }
             })
         })
@@ -217,14 +214,14 @@ module.exports = {
     },
     getFavourites: function (_userId) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ "_id": _userId, "Status": "Active" }, 'FavouriteItems').populate('FavouriteItems',{Name:1, Pictures: { $slice: 1 }}).exec(function (err, Obj) {
+            Schema.findOne({ "_id": _userId, "Status": "Active" }, 'FavouriteItems').populate('FavouriteItems', { Name: 1, Pictures: { $slice: 1 } }).exec(function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
                         data: err
                     })
                 else {
-                    if (Obj){
+                    if (Obj) {
                         resolve({
                             code: 100,
                             data: Obj
@@ -241,7 +238,7 @@ module.exports = {
     },
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id}, { "Password": 0 }, function (err, Obj) {
+            Schema.findOne({ '_id': _id }, { "Password": 0 }, function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -264,90 +261,90 @@ module.exports = {
         })
     },
 
-setToActive:function(_userId){
-return new Promise(function (resolve, reject) {
-   
-Schema.findOneAndUpdate({"_id":_userId },{$set:{'Status':'Active'}},{ new: true},function(err,Obj){
-   
-if (err) {
-    reject({
-        code: 1,
-        data: err
-    });
-}
-else{
-    resolve({
-        code: 100,
-        data: Obj
-    });
+    setToActive: function (_userId) {
+        return new Promise(function (resolve, reject) {
 
-}
-});
-})
-},
+            Schema.findOneAndUpdate({ "_id": _userId }, { $set: { 'Status': 'Active' } }, { new: true }, function (err, Obj) {
 
-addRating:function(_storeId,_userId,_value){
-    return new Promise(function (resolve, reject) {
-    Schema.findOne({"_id":_storeId,"Rate.User":_userId },function(err,_obj){
-   if(err)
-   reject({ code: 1, data: err })
-   else if(_obj){
-   resolve({ code: 21, data: "You can't rate twice" });
-    }
-   else{
-
-                Schema.findOne({"_id":_storeId },function(err,_store){
-                    if(err)
-                    reject({ code: 1, data: err });
-                    else{
-             var _userObject={"User":_userId,"Value":_value};
-            _store.Rate.push(_userObject);
-            _store.save(function(err,_result){
-                      if (err)
-                      reject({ code: 1, data: err });
-                      else{
-                   
-                        var sum=[]; 
-                        var constant=0;
-                                                               
-                                                               
-                       for (var i=0 ; i< _store.Rate.length; i++){
-                      
-                     
-                           sum =(_store.Rate[i].Value);
-                       
-                       constant+=sum;
-                        }
-                       
-                                                               
-                       var average = constant/_store.Rate.length;
-                      average=   average .toFixed(1) ;  
-                    
-                 
-                        resolve({ code: 100, data: average });
-
-               
+                if (err) {
+                    reject({
+                        code: 1,
+                        data: err
+                    });
                 }
-            })
-                    }
+                else {
+                    resolve({
+                        code: 100,
+                        data: Obj
+                    });
 
-                });
- }
-
-    });
-    });
-    
+                }
+            });
+        })
     },
-    contactUs:function(_name,_phone,_mail,_comment){
-    return new Promise(function (resolve, reject) {
-var myPhone = _phone;  
-if(myPhone.length>0){
-    myPhone = _phone;
-}
-else{
-    myPhone = "____";
-}
-         
+
+    addRating: function (_storeId, _userId, _value) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOne({ "_id": _storeId, "Rate.User": _userId }, function (err, _obj) {
+                if (err)
+                    reject({ code: 1, data: err })
+                else if (_obj) {
+                    resolve({ code: 21, data: "You can't rate twice" });
+                }
+                else {
+
+                    Schema.findOne({ "_id": _storeId }, function (err, _store) {
+                        if (err)
+                            reject({ code: 1, data: err });
+                        else {
+                            var _userObject = { "User": _userId, "Value": _value };
+                            _store.Rate.push(_userObject);
+                            _store.save(function (err, _result) {
+                                if (err)
+                                    reject({ code: 1, data: err });
+                                else {
+
+                                    var sum = [];
+                                    var constant = 0;
+
+
+                                    for (var i = 0; i < _store.Rate.length; i++) {
+
+
+                                        sum = (_store.Rate[i].Value);
+
+                                        constant += sum;
+                                    }
+
+
+                                    var average = constant / _store.Rate.length;
+                                    average = average.toFixed(1);
+
+
+                                    resolve({ code: 100, data: average });
+
+
+                                }
+                            })
+                        }
+
+                    });
+                }
+
+            });
+        });
+
+    },
+    contactUs: function (_name, _phone, _mail, _comment) {
+        return new Promise(function (resolve, reject) {
+            var myPhone = _phone;
+            if (myPhone.length > 0) {
+                myPhone = _phone;
+            }
+            else {
+                myPhone = "____";
+            }
+
             var smtpTransport = nodemailer.createTransport({
                 transport: "SMTP",
                 host: "smtp.gmail.com",
@@ -361,21 +358,21 @@ else{
             });
             var mailOptions = {
                 to: "ahmedelmonshareh@gmail.com",
-                subject: "This is a message from"+" "+ _name,
-                html: `Name : ${_name}` +"<br/>"+
-                `Email : ${_mail}` +"<br/>"+
-                `Phone : ${myPhone}` +"<br/>"+
-                `Comment : ${_comment}`
+                subject: "This is a message from" + " " + _name,
+                html: `Name : ${_name}` + "<br/>" +
+                    `Email : ${_mail}` + "<br/>" +
+                    `Phone : ${myPhone}` + "<br/>" +
+                    `Comment : ${_comment}`
             }
             smtpTransport.sendMail(mailOptions, function (err, response) {
                 if (err) {
                     reject({ code: 1, data: err });
                 }
                 else
-                resolve({ code: 100, data: "mail sent successfully" });
+                    resolve({ code: 100, data: "mail sent successfully" });
             });
-        
 
-    });
+
+        });
     }
- };
+};

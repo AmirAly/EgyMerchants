@@ -4100,7 +4100,7 @@ footer {
                 height: 200px;
                 display: flex;
                 justify-content: center;
-                background: #fff;
+                /* background: #fff; */
             }
 
             .card .card-header.card-chart + .content h4 {

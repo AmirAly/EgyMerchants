@@ -32,6 +32,29 @@
         $scope.allCountriesGeneralList = JSON.parse(localStorage.getItem('allCountries'));
         $scope.selectedCountry = JSON.parse(localStorage.getItem('selectedCountry'));
 
+        $rootScope.loggedUser = false;
+        // get user object from local storage
+        $rootScope.userObject = JSON.parse(localStorage.getItem('userObject'));
+        if ($rootScope.userObject != '' && $rootScope.userObject != null) {
+            console.log('enter if');
+            console.log($rootScope.userObject);
+            $rootScope.userName = $rootScope.userObject.Name;
+            $rootScope.userId = $rootScope.userObject._id;
+            $rootScope.ProfilePicture = $rootScope.userObject.ProfilePicture;
+            $rootScope.loggedUser = true;
+            if ($rootScope.userObject.Status == 'Active') {
+                $rootScope.activeUser = true;
+            } else {
+                $rootScope.activeUser = false;
+            }
+        }
+        else {
+            $rootScope.userName = '';
+            $rootScope.userId = '';
+            $rootScope.loggedUser = false;
+            $rootScope.activeUser = false;
+        }
+
     }
     $scope.load();
 
@@ -115,6 +138,7 @@
                 data: $scope.loginObj
             }
             API.execute(req).then(function (_res) {
+                console.log(_res);
                 if (_res.data.code == 100) {
                     $scope.dataLoading = false;
                     $scope.frmLogin.$setPristine();
@@ -172,7 +196,7 @@
                     $rootScope.userName = _res.data.data.Name;
                     $rootScope.ProfilePicture = _res.data.data.ProfilePicture;
                     $rootScope.userId = _res.data.data._id;
-                    localStorage.setItem('userObject', JSON.stringify(_res.data.data));
+                    //localStorage.setItem('userObject', JSON.stringify(_res.data.data));
                     $scope.dismiss();
                     window.location.reload();
                 } else {

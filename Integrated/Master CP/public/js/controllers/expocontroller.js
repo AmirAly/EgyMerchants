@@ -11,7 +11,7 @@
         document.getElementById('uploadItemImage').click();
     };
     $scope.expoLst = JSON.parse((window.expoObject).replace(/&quot;/g, '"'));
-    $scope.expoLst.FlipTime = $scope.expoLst.FlipTime / 1000;
+    $scope.expoLst.FlipTime = $scope.expoLst.FlipTime;
     $scope.floorLst = JSON.parse((window.floorObject).replace(/&quot;/g, '"'));
 
     $scope.floors = function (_id) {
@@ -28,7 +28,7 @@
                 Title: $scope.expoLst.Title,
                 Category: $scope.expoLst.Category._id,
                 Floors: $scope.floorLst,
-                FlipTime: $scope.expoLst.FlipTime * 1000,
+                FlipTime: $scope.expoLst.FlipTime,
                 Banner: $('#imgItem').attr('src')
             }
         }
@@ -77,7 +77,7 @@
                 Title: $scope.expoLst.Title,
                 Category: $scope.expoLst.Category._id,
                 Floors: $scope.floorLst,
-                FlipTime: $scope.expoLst.FlipTime * 1000,
+                FlipTime: $scope.expoLst.FlipTime,
                 Banner: $('#imgItem').attr('src')
             }
         }

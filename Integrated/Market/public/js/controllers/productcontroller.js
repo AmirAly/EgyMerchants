@@ -18,12 +18,10 @@
             $scope.favList = [];
         }
 
-        if ($scope.favList.indexOf(_itemId) !== -1) {
-            $scope.message = 'artNr already exists!';
+        if ($scope.favList && $scope.favList.indexOf(_itemId) !== -1) {
             $scope.IsFav = true;
         }
         else {
-            $scope.message = 'artNr Not exists!';
             $scope.IsFav = false;
         }
 

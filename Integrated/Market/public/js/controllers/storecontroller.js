@@ -22,7 +22,7 @@
                         $scope.addRate(value);
                     });
                 }
-               else if ($scope.exist && $rootScope.activeUser) {
+                else if ($scope.exist && $rootScope.activeUser) {
                     $scope.isRatedBefore = true;
                     if ($rootScope.loggedUser && $rootScope.activeUser) {
                         $scope.RateValue = ", You rated this store with " + $scope.exist.Value;
@@ -59,17 +59,18 @@
                     $scope.addRate(value);
                 });
             }
-            //prepare social plugins
-            if ($scope.storeJson.Contacts.length > 0) {
-                $rootScope.FacebookLink = $scope.storeJson.Contacts[0].Value;
-                $rootScope.TwitterLink = $scope.storeJson.Contacts[1].Value;
-               
-            }
-            jQuery(function ($) {
-                "use strict";
-                $rootScope.FacebookLink = $scope.storeJson.Contacts[0].Value;
-                $rootScope.TwitterLink = $scope.storeJson.Contacts[1].Value;
 
+            jQuery(function ($) {
+                //prepare social plugins
+                if ($scope.storeJson.Contacts.length > 0) {
+                    $rootScope.FacebookLink = $scope.storeJson.Contacts[0].Value;
+                    $rootScope.TwitterLink = $scope.storeJson.Contacts[1].Value;
+
+                } else {
+                    $rootScope.FacebookLink = '';
+                    $rootScope.TwitterLink = '';
+                }
+                "use strict";
                 $('.twitter-timeline').attr('href', $rootScope.TwitterLink);
                 $('.fb-like-box').attr('data-href', $rootScope.FacebookLink);
 
@@ -115,7 +116,7 @@
 
                 $(".social-widgets .item").each(function () {
                     var $this = $(this),
-                    timer;
+                        timer;
                     $this.on("mouseenter", function () {
                         var $this = $(this);
                         if (timer) clearTimeout(timer);
@@ -154,7 +155,7 @@
         $scope.GalleriesLst = $scope.GalleriesJson;
         if ($rootScope.loggedUser) {
             $scope.visitedList = JSON.parse(localStorage.getItem('userObject')).VisitedStores;
-            if ($scope.visitedList.indexOf(_storeId) !== -1) {
+            if ($scope.visitedList && $scope.visitedList.indexOf(_storeId) !== -1) {
                 $scope.message = 'artNr  visited!';
                 $scope.isVisited = true;
             }
@@ -201,7 +202,7 @@
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
                 localStorage.setItem('userObject', JSON.stringify(_res.data.data));
-            } 
+            }
 
         });
     }

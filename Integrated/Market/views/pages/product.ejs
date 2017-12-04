@@ -73,7 +73,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="panel" ng-init="tags = '<%= product.Tags %>'.split(',')" ng-show="tags.length != 0">
+                                    <div class="panel" ng-init="tags = '<%= product.Tags %>'.split(',')" ng-show="tags.length != 0 && tags != 'undefined'">
                                         <div class="panel-heading"> <a data-toggle="collapse" data-parent="#product-accordion" href="#product-tags"> <span class="arrow-down icon-arrow-down-4"></span> <span class="arrow-up icon-arrow-up-4"></span> Tags </a> </div>
                                         <div id="product-tags" class="panel-collapse collapse in">
                                             <div class="panel-body">
@@ -88,7 +88,7 @@
                             </div>
                             <!-- //end Description -->
                         </div>
-
+{{activeUser}}
                         <div class="row">
                             <div class="col-xs-1"></div>
                             <div class="col-xs-9" style="display:flex;">

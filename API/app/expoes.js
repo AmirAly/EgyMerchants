@@ -4,7 +4,7 @@ var _ = require("underscore");
 module.exports = {
     add: function (_newExpo) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Title': {$regex: new RegExp('^' +_newExpo.Title +"$" , 'i')}, 'Status': 'Active' }, '', function (err, Obj) {
+            Schema.findOne({ 'Title': { $regex: new RegExp('^' + _newExpo.Title + "$", 'i') }, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -96,7 +96,7 @@ module.exports = {
     },
     edit: function (_id, _title, _banner, _category, _Floors, _FlipTime) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ 'Title': {$regex: new RegExp('^' + _title+"$" , 'i')}, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
+            Schema.findOne({ 'Title': { $regex: new RegExp('^' + _title + "$", 'i') }, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -122,11 +122,11 @@ module.exports = {
                                     Obj.Title = _title;
                                     Obj.Category = _category;
                                     Obj.Floors = _Floors;
-                                    
+
                                     Helper.uploadImage(_banner, function (_url) {
                                         Obj.Title = _title;
                                         Obj.FlipTime = _FlipTime;
-                                     
+
                                         Obj.Banner = _url;
                                         Obj.Category = _category;
                                         Obj.save(function (err, expo) {
@@ -239,7 +239,7 @@ module.exports = {
     },
     getStores: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id, 'Status': 'Active' },function (err, Obj) {
+            Schema.findOne({ '_id': _id, 'Status': 'Active' }, function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -249,7 +249,7 @@ module.exports = {
                     if (Obj) {
                         if (Obj.Floors) {
                             var expos = [];
-                            var res=[];
+                            var res = [];
                             expos.push(Obj);
                             module.exports.filterByExpiryDate(expos).then(function (data) {
                                 if (data.code == 100) {
@@ -260,16 +260,16 @@ module.exports = {
                                                 data: err
                                             });
                                         else {
-                                            var i=0;
+                                            var i = 0;
                                             _.each(expo.Floors, function (floor) {
-                                                _.each(floor.Coordinates, function (coordinate) {i++;});
+                                                _.each(floor.Coordinates, function (coordinate) { i++; });
                                             });
                                             _.each(expo.Floors, function (floor) {
                                                 _.each(floor.Coordinates, function (coordinate) {
-                                                     res.push(coordinate.Store);
-                                                     if(res.length+1==i)
-                                            resolve({ code: 100, data: res })
-                                            
+                                                    res.push(coordinate.Store);
+                                                    if (res.length  == i) {
+                                                        resolve({ code: 100, data: res });
+                                                    }
                                                 })
                                             })
                                         }
@@ -309,15 +309,14 @@ module.exports = {
     },
     getById: function (_id) {
         return new Promise(function (resolve, reject) {
-            Schema.findOne({ '_id': _id, 'Status': 'Active' },function (err, Obj) {
+            Schema.findOne({ '_id': _id, 'Status': 'Active' }, function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
                         data: err
                     });
                 else {
-                    if (Obj)
-                    {
+                    if (Obj) {
                         if (Obj.Floors) {
                             var expos = [];
                             expos.push(Obj);
@@ -408,15 +407,15 @@ module.exports = {
                             if (coordinate.ExpiryDate < new Date().getTime()) {
                                 var floorid = floor._id;
                                 Schema.findOneAndUpdate({ '_id': expo._id, "Floors._id": floor._id },
-                                                { $pull: { 'Floors.$.Coordinates': { "_id": coordinate._id } } },
-                                              { new: true }, function (err, Obj) {
-                                                  if (err) { reject({ code: 2, data: err }) }
-                                                  else {
-                                                      if (expo._id == lstexpos[lstexpos.length - 1]._id && coordinate._id == coordinatesfiltered[coordinatesfiltered.length - 1]._id) {
-                                                          resolve({ code: 100 });
-                                                      }
-                                                  }
-                                              })
+                                    { $pull: { 'Floors.$.Coordinates': { "_id": coordinate._id } } },
+                                    { new: true }, function (err, Obj) {
+                                        if (err) { reject({ code: 2, data: err }) }
+                                        else {
+                                            if (expo._id == lstexpos[lstexpos.length - 1]._id && coordinate._id == coordinatesfiltered[coordinatesfiltered.length - 1]._id) {
+                                                resolve({ code: 100 });
+                                            }
+                                        }
+                                    })
                             }
                         })
                     })

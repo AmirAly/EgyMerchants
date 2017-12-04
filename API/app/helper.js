@@ -34,7 +34,6 @@ module.exports = {
                         else {
                             secureUrls.push(result.secure_url);
                             uploadeurl(i + 1);
-                            console.log("secureUrls is"+secureUrls);
                         }
                     })
                 }
@@ -52,7 +51,6 @@ module.exports = {
                         else {
                             secureUrls.push(result.secure_url);
                             uploadeimg(i + 1);
-                            console.log("secureUrls is"+secureUrls);
                         }
                     })
                 }
@@ -81,8 +79,6 @@ module.exports = {
                 cloudinary.v2.uploader.upload(_url[i].Img, function (error, result) {
                     if (result) {
                         secureUrls.push(result.secure_url);
-                        console.log(secureUrls);
-                        console.log(i);
                         if (secureUrls.length == _url.length) {
                             callback(secureUrls);
                         }
@@ -115,7 +111,7 @@ module.exports = {
                 return err;
             }
             else
-                console.log("mail sent");
+                console.log("");
             return 100;
         });
     },
