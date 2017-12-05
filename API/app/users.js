@@ -145,7 +145,7 @@ module.exports = {
     },
     addToFavourites: function (_userId, _itemId) {
         return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ "_id": _userId, "Status": "Active" }, { $addToSet: { FavouriteItems: _itemId } }, { new: true, fields: '_id Name Type FavouriteItems VisitedStores ProfilePicture' }, function (err, Obj) {
+            Schema.findOneAndUpdate({ "_id": _userId, "Status": "Active" }, { $addToSet: { FavouriteItems: _itemId } }, { new: true, fields: '_id Name Type FavouriteItems VisitedStores ProfilePicture Rate.Store Status' }, function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -168,7 +168,7 @@ module.exports = {
     },
     removeFromFavourites: function (_userId, _itemId) {
         return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ "_id": _userId, "Status": "Active" }, { $pull: { FavouriteItems: _itemId } }, { new: true, fields: '_id Name Type FavouriteItems VisitedStores ProfilePicture' }, function (err, Obj) {
+            Schema.findOneAndUpdate({ "_id": _userId, "Status": "Active" }, { $pull: { FavouriteItems: _itemId } }, { new: true, fields: '_id Name Type FavouriteItems VisitedStores ProfilePicture Rate.Store Status' }, function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,
@@ -191,7 +191,7 @@ module.exports = {
     },
     addToVisited: function (_userId, _storeId) {
         return new Promise(function (resolve, reject) {
-            Schema.findOneAndUpdate({ "_id": _userId }, { $addToSet: { VisitedStores: _storeId } }, { new: true, fields: '_id Name Type FavouriteItems VisitedStores ProfilePicture' }, function (err, Obj) {
+            Schema.findOneAndUpdate({ "_id": _userId }, { $addToSet: { VisitedStores: _storeId } }, { new: true, fields: '_id Name Type FavouriteItems VisitedStores ProfilePicture Rate.Store Status' }, function (err, Obj) {
                 if (err)
                     reject({
                         code: 1,

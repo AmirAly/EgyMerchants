@@ -36,8 +36,6 @@
         // get user object from local storage
         $rootScope.userObject = JSON.parse(localStorage.getItem('userObject'));
         if ($rootScope.userObject != '' && $rootScope.userObject != null) {
-            console.log('enter if');
-            console.log($rootScope.userObject);
             $rootScope.userName = $rootScope.userObject.Name;
             $rootScope.userId = $rootScope.userObject._id;
             $rootScope.ProfilePicture = $rootScope.userObject.ProfilePicture;
@@ -138,7 +136,6 @@
                 data: $scope.loginObj
             }
             API.execute(req).then(function (_res) {
-                console.log(_res);
                 if (_res.data.code == 100) {
                     $scope.dataLoading = false;
                     $scope.frmLogin.$setPristine();
@@ -196,7 +193,7 @@
                     $rootScope.userName = _res.data.data.Name;
                     $rootScope.ProfilePicture = _res.data.data.ProfilePicture;
                     $rootScope.userId = _res.data.data._id;
-                    //localStorage.setItem('userObject', JSON.stringify(_res.data.data));
+                    localStorage.setItem('userObject', JSON.stringify(_res.data.data));
                     $scope.dismiss();
                     window.location.reload();
                 } else {
