@@ -11,8 +11,7 @@ var user = require('./models/users');
 var notification = require('./models/notifications');
 var comment = require('./models/comments');
 var moment = require('moment');
-
-        var https = require('https');
+var https = require('https');
 
 module.exports = function (app) {
     // use res.render to load up an ejs view file
@@ -45,7 +44,6 @@ module.exports = function (app) {
 
     // expo page expos
     app.get('/:countryIso/Expos/:catId', function (req, res) {
-
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
         expo.getByCategory(req.params.catId).then(function (_data) {
@@ -64,18 +62,36 @@ module.exports = function (app) {
             _scope.JsonExpos = [];
             res.render('pages/expo', _scope);
         });
+    });
 
-
+    // expo page expos (Mobile)
+    app.get('/:countryIso/Mobile/Expos/:catId', function (req, res) {
+        var _scope = {};
+        _scope.countryIso = req.params.countryIso;
+        expo.getByCategory(req.params.catId).then(function (_data) {
+            if (_data.code == 100) {        
+                _scope.mobileexpos = _data.data;
+                _scope.JsonMobileExpos = JSON.stringify(_data.data);
+                res.render('pages/mobileexpo', _scope);
+            }
+            else {
+                _scope.mobileexpos = [];
+                _scope.JsonMobileExpos = [];
+                res.render('pages/mobileexpo', _scope);
+            }
+        }).catch(function (_err) {        
+            _scope.mobileexpos = [];
+            _scope.JsonMobileExpos = [];
+            res.render('pages/mobileexpo', _scope);
+        });
+     
     });
 
     // store page /EG/store/almaksoud
     app.get('/:countryIso/Store/:storeName/:storeId', function (req, res) {
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
-        console.log(req.params.storeId);
         store.getById(req.params.storeId).then(function (_data) {
-            console.log('**************************************************************');
-            console.log(_data);
             if (_data.code == 100) {
                 _scope.store = _data.data;
                 _scope.storeJson = JSON.stringify(_data.data);
@@ -125,7 +141,6 @@ module.exports = function (app) {
             }
 
         }).catch(function (_err) {
-            console.log(_err);
             _scope.store = {};
             _scope.storeJson = {};
             _scope.Galleries = [];
@@ -152,7 +167,6 @@ module.exports = function (app) {
                         // similar 
                         product.getSimilar(req.params.productId).then(function (_similarList) {
                             if (_similarList.code == 100) {
-                                console.log(_similarList.data);
                                 _scope.similarList = _similarList.data;
                                 _scope.JsonSimilarList = JSON.stringify(_similarList.data);
 
@@ -173,7 +187,6 @@ module.exports = function (app) {
                         // similar 
                         product.getSimilar(req.params.productId).then(function (_similarList) {
                             if (_similarList.code == 100) {
-                                console.log(_similarList.data);
                                 _scope.similarList = _similarList.data;
                                 _scope.JsonSimilarList = JSON.stringify(_similarList.data);
 
@@ -399,10 +412,10 @@ module.exports = function (app) {
                 res.render('pages/notification', _scope);
             }
         })
-        .catch(function (err) {
-            _scope.listNotifications = [];
-            res.render('pages/notification', _scope);
-        });
+            .catch(function (err) {
+                _scope.listNotifications = [];
+                res.render('pages/notification', _scope);
+            });
     });
 
     //// favorites page
@@ -419,10 +432,10 @@ module.exports = function (app) {
                 res.render('pages/favourites', _scope);
             }
         })
-        .catch(function (err) {
-            _scope.listFavourites = [];
-            res.render('pages/favourites', _scope);
-        });
+            .catch(function (err) {
+                _scope.listFavourites = [];
+                res.render('pages/favourites', _scope);
+            });
     });
 
 }

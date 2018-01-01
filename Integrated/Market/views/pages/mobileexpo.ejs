@@ -1,0 +1,135 @@
+<% include ../partials/pagestart %>
+<% include ../partials/pageheader %>
+
+<div class="expoPage" ng-controller="mobileexpoController">
+
+    <div class="allExposView" ng-hide="showSingleExpo">
+        <div class="secondDiv" ng-init="init('<%= countryIso %>')" id="one">
+            <script>var exposObject = <%-JSON.stringify(JsonMobileExpos)%>;</script>
+
+            <% if (mobileexpos.length > 0) { %>
+                <div ng-repeat="expo in exposList">
+                    <div ng-if="expo.Floors.length > 0">
+                        <section swinch-duration="5000" swinch-delay="1500" ng-attr-swinch-offset="{{ $first ? -50 : 0 }}" data-floors="{{expo.Floors.length}}"
+                            data-flipTime="{{expo.FlipTime}}" class="secondExpo repeated-item smooth-container" id="expo{{expo._id}}">
+                            <article>
+                                <div class="expoData">
+                                    <div>
+                                        <div class="singleExpoView" id="expo{{expo._id}}">
+                                            <div class="container-fluid">
+
+                                                <div class="row" ng-init="loadArray(expo._id)">
+
+                                                    <!-- floors -->
+                                                    <div ng-repeat="floor in expo.Floors" class="boxme" ng-show="activePageNumber{{expo._id}} == {{$index}}" ng-init="initfirstPage(expo._id,0)">
+                                                        <div class="imagesContainer" id="imagesContainer{{expo._id}}">
+                                                            <div class="dvNoFloors" ng-show="!floor.Coordinates.length">We are sorry :(
+                                                                <br/>current floor '{{floor.Name}}' is empty!</div>
+
+                                                            <div class="outerContainer" ng-repeat="sec in floor.Coordinates">
+                                                                <div ng-class="{'suspendedstore':sec.Store.Status == 'Suspended'}" class=" repeated-item" 
+                                                                ng-style="{'background-image': 'url({{sec.Img}})','position':'absolute','background-size': 'cover','background-repeat': 'no-repeat','top':{{sec.Top * oneSectionHeight}} +'px','left':{{sec.Left * oneSectionWidth}} +'px','height':{{sec.Height * oneSectionHeight}} - 3 +'px', 'width':{{sec.Width * oneSectionWidth}} - 3 +'px'}">
+                                                                    <a ng-if="sec.Store.Status != 'Suspended'" href="/{{IsoCode}}/Store/{{sec.StoreName}}/{{sec.Store._id}}">
+                                                                        <div class="image-hover">
+                                                                            <i class="icon-zoom-in-2"></i>
+                                                                        </div>
+                                                                    </a>
+                                                                    <div class="image-title">{{sec.StoreName}}</div>
+                                                                    <div class="suspendMsg" ng-if="sec.Store.Status == 'Suspended'">
+                                                                        <h5>This store is disabled</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>\
+                                                            <!--floor number, expo details and logos-->
+                                                            <h6>Floor {{$index + 1}} of {{expo.Floors.length}}</h6>
+                                                            <h4 id="two">
+                                                                <div class="dvExpoFloorName">
+                                                                    <div class="dvExpoName">Expo: {{expo.Title}}</div>
+                                                                    <div class="dvFloorName">{{floor.Name}}</div>
+                                                                </div>
+
+                                                                <span class="flexContainer">
+
+                                                                    <div class="dvFloorLogo" ng-repeat="obj in expo.stores | unique:'_id'">
+                                                                        <img class="img-responsive" src="{{obj.ProfilePicture}}" />
+                                                                    </div>
+
+                                                                </span>
+                                                            </h4>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </section>
+
+                        <div class="homepage-bar">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <i class="icon-shipping"></i>
+                                        <div class="text-area">
+                                            <h3>Free shipping &amp, return</h3>
+                                            <p>Free shipping on all orders over $99.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <i class="icon-money-bag"></i>
+                                        <div class="text-area">
+                                            <h3>Money back guarantee</h3>
+                                            <p>100% money back guarantee.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <i class="icon-support"></i>
+                                        <div class="text-area">
+                                            <h3>Online support 24/7</h3>
+                                            <p>Lorem ipsum dolor sit amet.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div ng-if="!expo.Floors.length > 0" class="dvNoFloors">
+                        There is no floors currently
+                        <br /> in the expo {{expo.Title}} :(
+                    </div>
+                </div>
+
+
+
+
+                <div class="brands-slide">
+                    <div class="container">
+                        <div>
+                            <img class="lazyOwl" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand1.png">
+                            <img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand2.png">
+                            <img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand3.png">
+                            <img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand4.png">
+                            <img class="lazyOwl" width="166" height="63" alt="" src="http://www.newsmartwave.net/magento/porto/media/wysiwyg/porto/homepage/content/09/brand5.png">
+                        </div>
+                    </div>
+                </div>
+
+                <% } else { %>
+                    <p class="txtNoData"> No data available </p>
+                    <% } %>
+        </div>
+    </div>
+
+</div>
+<% include ../partials/pagefooter %>
+<% include ../partials/pageend %>
+
+</body>
+</html>
