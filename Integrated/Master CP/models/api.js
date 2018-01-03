@@ -119,10 +119,7 @@ module.exports = function (app, express) {
     })
     api.get('/Store/SetToActive/:_storeId', function (req, res) {
         StoreLogic.setToActive(req.params._storeId).then(function (result) {
-            console.log(req.params._storeId)
             res.redirect("https://storecp.herokuapp.com");
-           
-            
         }, function (err) {
             res.json(err);
         });
@@ -344,7 +341,6 @@ module.exports = function (app, express) {
     })
     api.get('/User/SetToActive/:_userId', function (req, res) {
         UserLogic.setToActive(req.params._userId).then(function (result) {
-            console.log(req.params._userId)
             res.redirect("https://egymarket.herokuapp.com");
         }, function (err) {
             res.json(err);
@@ -392,7 +388,7 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Expo/Edit', function (req, res) {
-        ExpoLogic.edit(req.body._id, req.body.Title, req.body.Banner, req.body.Category, req.body.Floors, req.body.FlipTime).then(function (result) {
+        ExpoLogic.edit(req.body._id, req.body.Title, req.body.Banner, req.body.Category, req.body.Floors, req.body.FlipTime,req.body.MobileFloors).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
@@ -406,13 +402,12 @@ module.exports = function (app, express) {
         });
     })
     api.put('/Expo/SetFloor', function (req, res) {
-        ExpoLogic.setFloor(req.body._id,req.body.Floor).then(function (result) {
+        ExpoLogic.setFloor(req.body._id,req.body.Floor,req.body.MobileFloor).then(function (result) {
             res.json(result);
         }, function (err) {
             res.json(err);
         });
     });
-
     api.put('/Expo/Remove', function (req, res) {
         ExpoLogic.remove(req.body._id).then(function (result) {
             res.json(result);

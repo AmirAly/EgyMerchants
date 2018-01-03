@@ -17,7 +17,7 @@
     $scope.floors = function (_id) {
         window.location.href = '/floors/' + _id;
     };
-    
+
     $scope.updateExpo = function (_id) {
         $scope.loading = true;
         var req = {
@@ -57,7 +57,7 @@
         localStorage.clear();
     };
 
-    $scope.callDelModal = function (_floorId , _expoId) {
+    $scope.callDelModal = function (_floorId, _expoId) {
         $scope.floorDelId = _floorId;
         $scope.expoDelId = _expoId;
     };
@@ -102,7 +102,19 @@
     };
 
     $scope.editFloor = function (_floorId, _expoId) {
-        window.location.href = "/editfloor/" + _floorId + "/" + _expoId;
+        console.log($scope.expoLst);
+        // var mobilefloor = $scope.expoLst.MobileFloors.forEach(floor => {
+        //     return floor.FloorID === _floorId;
+        // });
+        for (var index = 0; index < $scope.expoLst.MobileFloors.length; index++) {
+            if ($scope.expoLst.MobileFloors[index].FloorID == _floorId) {
+                $scope.mobilefloor = $scope.expoLst.MobileFloors[index];
+                console.log($scope.mobilefloor);
+              window.location.href = "/editfloor/" + _floorId + "/" + $scope.mobilefloor._id + "/" + _expoId;
+
+            }
+        }
+
     };
 
 });

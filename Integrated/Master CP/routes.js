@@ -80,7 +80,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/editfloor/:floorid/:expoid', function (req, res) {
+    app.get('/editfloor/:floorid/:mobilefloorid/:expoid', function (req, res) {
         var _scope = {};
 
         expo.getById(req.params.expoid).then(function (_expo) {
@@ -95,7 +95,11 @@ module.exports = function (app) {
                                 _scope.floorslstJSON = JSON.stringify(_expo.data.Floors[i]);
                             }
                         }
-
+                        for (var i = 0; i < _expo.data.MobileFloors.length; i++) {
+                            if (_expo.data.MobileFloors[i]._id == req.params.mobilefloorid) {
+                                _scope.mobilefloorslstJSON = JSON.stringify(_expo.data.MobileFloors[i]);
+                            }
+                        }
                         res.render('pages/editfloor', _scope);
                     } else {
                         _scope.storeslst = [];
@@ -112,12 +116,14 @@ module.exports = function (app) {
             } else {
                 _scope.expoJson = {};
                 _scope.floorslstJSON = [];
+                _scope._scope.mobilefloorslstJSON = [];
                 _scope.storeslst = [];
                 res.render('pages/editfloor', _scope);
             }
         }).catch(function (_err) {
             _scope.expoJson = {};
             _scope.floorslstJSON = [];
+            _scope._scope.mobilefloorslstJSON = [];
             _scope.storeslst = [];
             res.render('pages/editfloor', _scope);
         });
