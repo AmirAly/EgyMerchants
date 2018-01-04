@@ -71,14 +71,10 @@
         }
         var req = {
             method: 'put',
-            url: '/Expo/Edit',
+            url: '/Expo/RemoveFloor',
             data: {
                 _id: $scope.expoDelId,
-                Title: $scope.expoLst.Title,
-                Category: $scope.expoLst.Category._id,
-                Floors: $scope.floorLst,
-                FlipTime: $scope.expoLst.FlipTime,
-                Banner: $('#imgItem').attr('src')
+                FloorID: $scope.floorDelId
             }
         }
 
@@ -102,14 +98,9 @@
     };
 
     $scope.editFloor = function (_floorId, _expoId) {
-        console.log($scope.expoLst);
-        // var mobilefloor = $scope.expoLst.MobileFloors.forEach(floor => {
-        //     return floor.FloorID === _floorId;
-        // });
         for (var index = 0; index < $scope.expoLst.MobileFloors.length; index++) {
             if ($scope.expoLst.MobileFloors[index].FloorID == _floorId) {
                 $scope.mobilefloor = $scope.expoLst.MobileFloors[index];
-                console.log($scope.mobilefloor);
               window.location.href = "/editfloor/" + _floorId + "/" + $scope.mobilefloor._id + "/" + _expoId;
 
             }

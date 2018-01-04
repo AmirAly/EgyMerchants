@@ -5,6 +5,7 @@ app.controller("mobileexpoController", function ($scope, $rootScope, $timeout, $
 
     window.onresize = function () {
         $scope.exposList = JSON.parse((window.exposObject).replace(/&quot;/g, '"'));
+        console.log($scope.exposList);
     }
 
     $scope.loadArray = function (_expoID) {
@@ -42,7 +43,7 @@ app.controller("mobileexpoController", function ($scope, $rootScope, $timeout, $
         localStorage.setItem('IsoCode', _isoCode);
         $scope.exposList = JSON.parse((window.exposObject).replace(/&quot;/g, '"'));
         currentExpoId = $scope.exposList[0]._id;
-        floorsCounter = $scope.exposList[0].Floors.length;
+        floorsCounter = $scope.exposList[0].MobileFloors.length;
         intervalPeriod = $scope.exposList[0].FlipTime * 1000;
         $scope.getstores(i);
         // set which activeFloorCounter for every expo
@@ -91,12 +92,12 @@ app.controller("mobileexpoController", function ($scope, $rootScope, $timeout, $
     //$(document).keydown(function (e) {
     //    if (e.which == 37) { // left arrow keyboard --> previous
     //        $scope.selectedExpo = ($filter('filter')($scope.exposList, { '_id': currentExpoId }))[0];
-    //        $scope.previousPage(currentExpoId, $scope.selectedExpo.Floors.length);
+    //        $scope.previousPage(currentExpoId, $scope.selectedExpo.MobileFloors.length);
     //        $scope.$apply();
     //    }
     //    else if (e.which == 39) { // right arrow keyboard --> next
     //        $scope.selectedExpo = ($filter('filter')($scope.exposList, { '_id': currentExpoId }))[0];
-    //        $scope.nextPage(currentExpoId, $scope.selectedExpo.Floors.length);
+    //        $scope.nextPage(currentExpoId, $scope.selectedExpo.MobileFloors.length);
     //        $scope.$apply();
     //    }
 

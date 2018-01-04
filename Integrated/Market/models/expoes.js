@@ -133,6 +133,39 @@ module.exports = {
             })
         })
     },
+    removeFloor: function (_expoId, _floorID) {
+        return new Promise(function (resolve, reject) {
+            Schema.findOneAndUpdate({ '_id': _expoId,'Status': 'Active'  }, { $pull: { "Floors": { "_id": _floorID } } }, function (err, Obj) {
+                if (err) {
+                    if (err)
+                        reject({ code: 1, data: err });
+                }
+                else {
+                    if (Obj) {
+                        Schema.findOneAndUpdate({ '_id': _expoId,'Status': 'Active'  }, { $pull: { "MobileFloors": { "FloorID": _floorID } } }, function (err, _Obj) {
+                            if (err) {
+                                reject({ code: 1, data: err });
+                            }
+                            else {
+                                if(_Obj)
+                                {
+                                resolve({ code: 100, data: "Removed successfully" });
+                                }
+                                else{
+                                }
+                                resolve({ code: 21, data: 'No result' });
+
+                            }
+                        });
+                    }
+                    else {
+                        resolve({ code: 21, data: 'No result' });
+                    }
+                }
+            });
+        });
+    },
+
     edit: function (_id, _title, _banner, _category, _Floors, _FlipTime, _MobileFloors) {
         return new Promise(function (resolve, reject) {
             Schema.findOne({ 'Title': { $regex: new RegExp('^' + _title + "$", 'i') }, '_id': { $ne: _id }, 'Status': 'Active' }, '', function (err, Obj) {
@@ -360,11 +393,8 @@ module.exports = {
                             expos.push(Obj);
                             module.exports.filterByExpiryDate(expos).then(function (data) {
                                 if (data.code == 100) {
-                                    console.log('ok data')
                                     module.exports.filterMobileFloorsByExpiryDate(expos).then(function (result) {
                                         if (result.code == 100) {
-                                            console.log('ok result')
-
                                             Schema.findOne({ '_id': _id, 'Status': 'Active' }, '').populate('Category', '_id Name').populate('Floors.Coordinates.Store', '_id Name Status').populate('MobileFloors.Coordinates.Store', '_id FloorID  Name Status').exec(function (err, expo) {
                                                 if (err)
                                                     reject({

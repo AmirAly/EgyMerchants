@@ -58,8 +58,8 @@
         $scope.loadArray();
 
         $scope.mobilefloor = JSON.parse((window.mobilefloorsObject).replace(/&quot;/g, '"'));
-        for (var i = 0; i < $scope.mobilefloor.length; i++) {
-            $scope.mobilefloor[i].index = index2;
+        for (var i = 0; i < $scope.mobilefloor.Coordinates.length; i++) {
+            $scope.mobilefloor.Coordinates[i].index = index2;
             index2++;
         }
         $scope.loadMobileArray()
@@ -334,7 +334,7 @@
     }
 $timeout(function () {
     $scope.init2(); 
-},1000);
+},500);
 
 
     $scope.deleteSection = function (_objId) {
@@ -359,6 +359,7 @@ $timeout(function () {
         $scope.mobilefloor.Coordinates = $scope.mobilefloor.Coordinates.filter(function (obj) {
             return obj.index !== $scope.deletedSectionId;
         });
+        
         $('.customMobileSectionDv').remove();
         for (var i = 0; i < $scope.mobilefloor.Sections.length; i++) {
             var sec = $scope.mobilefloor.Sections[i];
@@ -370,11 +371,6 @@ $timeout(function () {
     var pathArray = window.location.pathname.split('/');
 
     $scope.saveFloor = function () {
-        for (var i = 0; i < $scope.expo.Floors.length; i++) {
-            if ($scope.expo.Floors[i]._id == $scope.floor._id) {
-                $scope.expo.Floors[i] = $scope.floor;
-            }
-        }
         $scope.loading = true;
         var req = {
             method: 'put',
@@ -382,17 +378,11 @@ $timeout(function () {
             data: {
                 _id: $scope.expo._id,
                 Floor: $scope.floor,
-                //MobileFloor:$scope.mobilefloor 
             }
         }
         API.execute(req).then(function (_res) {
             if (_res.data.code == 100) {
-        
-                for (var i = 0; i < $scope.expo.MobileFloors.length; i++) {
-                    if ($scope.expo.MobileFloors[i]._id == $scope.floor._id) {
-                        $scope.expo.MobileFloors[i] = $scope.floor;
-                    }
-                }
+                $scope.mobilefloor.Name = $scope.floor.Name;
                 var req = {
                     method: 'put',
                     url: '/Expo/EditFloor',

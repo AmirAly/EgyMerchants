@@ -408,6 +408,13 @@ module.exports = function (app, express) {
             res.json(err);
         });
     });
+    api.put('/Expo/RemoveFloor', function (req, res) {
+        ExpoLogic.removeFloor(req.body._id,req.body.FloorID).then(function (result) {
+            res.json(result);
+        }, function (err) {
+            res.json(err);
+        });
+    });
     api.put('/Expo/Remove', function (req, res) {
         ExpoLogic.remove(req.body._id).then(function (result) {
             res.json(result);
