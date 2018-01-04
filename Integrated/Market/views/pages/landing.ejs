@@ -42,7 +42,7 @@
                     <p class="wow slideInUp" ng-cloak data-wow-delay="1s" data-wow-duration="2s" ng-bind="txtWelcomeMsg"></p>
 
                     <div ng-cloak data-wow-delay="1s" ng-repeat="category in allcategories track by $index" class="wow bounceInRight txtCategoryContainer" data-wow-duration="2s" ng-click="openExpo(IsoCode , category._id)">
-                        <a href="/{{IsoCode}}/Expos/{{category._id}}">{{category.Name}}</a>
+                        <a href="">{{category.Name}}</a>
                     </div>
                     <p ng-show="!allcategories.length" class="txtNoData"> please choose another country. </p>
                 </div>
@@ -73,7 +73,7 @@
 
     <script type="text/javascript" src="/js/general/angular.min.js"></script>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-cookies.js"></script>
-
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-touch.js"></script>
     <script src="/js/general/angular-animate.js"></script>
     <!-- sockets online link-->
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>

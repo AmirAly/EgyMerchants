@@ -1,4 +1,4 @@
-﻿var app = angular.module("app", ['ngAnimate', 'angular-tour', 'ngCookies']);
+﻿var app = angular.module("app", ['ngAnimate', 'angular-tour', 'ngCookies', 'ngTouch']);
 
 app.run(function ($rootScope, $timeout, socket) {
 

@@ -1,5 +1,5 @@
 app.controller("mobileexpoController", function ($scope, $rootScope, $timeout, $filter, API, $cookies) {
-    
+
 
     $scope.expos = [];
 
@@ -55,8 +55,13 @@ app.controller("mobileexpoController", function ($scope, $rootScope, $timeout, $
         }
     }
 
+    $scope.navigate = function (_IsoCode, _StoreName, _StoreId) {
+        if ($scope.swiping) { return; }
+        window.location.href = "/" + _IsoCode + "/Store/" + _StoreName + "/" + _StoreId;
+    }
     //// swipe floors 1 ,  2
     $scope.nextPage = function (_expoId, _floorsCounter) {
+        console.log('nextPage');
         $scope['activeFloorCounter' + _expoId]++;
         if ($scope['activeFloorCounter' + _expoId] < _floorsCounter) {
             $scope['activePageNumber' + _expoId] = $scope['activeFloorCounter' + _expoId];
@@ -67,6 +72,7 @@ app.controller("mobileexpoController", function ($scope, $rootScope, $timeout, $
         }
     }
     $scope.previousPage = function (_expoId, _floorsCounter) {
+        console.log('previousPage');
         $scope['activeFloorCounter' + _expoId]--;
         if ($scope['activeFloorCounter' + _expoId] < _floorsCounter && $scope['activeFloorCounter' + _expoId] >= 0) {
             $scope['activePageNumber' + _expoId] = $scope['activeFloorCounter' + _expoId];
@@ -80,22 +86,21 @@ app.controller("mobileexpoController", function ($scope, $rootScope, $timeout, $
         $scope['activePageNumber' + _expoId] = _floorId;
     }
 
-   
 
-    $(document).keydown(function (e) {
-        if (e.which == 37) { // left arrow keyboard --> previous
-            $scope.selectedExpo = ($filter('filter')($scope.exposList, { '_id': currentExpoId }))[0];
-            $scope.previousPage(currentExpoId, $scope.selectedExpo.Floors.length);
-            $scope.$apply();
-        }
-        else if (e.which == 39) { // right arrow keyboard --> next
-            $scope.selectedExpo = ($filter('filter')($scope.exposList, { '_id': currentExpoId }))[0];
-            $scope.nextPage(currentExpoId, $scope.selectedExpo.Floors.length);
-            $scope.$apply();
-        }
 
-        // e.preventDefault(); // prevent the default action (scroll / move caret)
-    });
+    //$(document).keydown(function (e) {
+    //    if (e.which == 37) { // left arrow keyboard --> previous
+    //        $scope.selectedExpo = ($filter('filter')($scope.exposList, { '_id': currentExpoId }))[0];
+    //        $scope.previousPage(currentExpoId, $scope.selectedExpo.Floors.length);
+    //        $scope.$apply();
+    //    }
+    //    else if (e.which == 39) { // right arrow keyboard --> next
+    //        $scope.selectedExpo = ($filter('filter')($scope.exposList, { '_id': currentExpoId }))[0];
+    //        $scope.nextPage(currentExpoId, $scope.selectedExpo.Floors.length);
+    //        $scope.$apply();
+    //    }
+
+    //    // e.preventDefault(); // prevent the default action (scroll / move caret)
+    //});
 
 });
-

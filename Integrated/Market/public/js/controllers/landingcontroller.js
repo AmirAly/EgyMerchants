@@ -13,7 +13,7 @@
         else {
             $scope.allCountries = JSON.parse(_allcountres);
             localStorage.setItem('allCountries', (JSON.stringify($scope.allCountries)));
-            $scope.selectedCountry = ($filter('filter')($scope.allCountries, { 'IsoCode': _isoCode }))[0]; 
+            $scope.selectedCountry = ($filter('filter')($scope.allCountries, { 'IsoCode': _isoCode }))[0];
             localStorage.setItem('selectedCountry', (JSON.stringify($scope.selectedCountry)));
             $rootScope.IsoCode = _isoCode;
 
@@ -43,7 +43,14 @@
     }
 
     $scope.openExpo = function (_isoCode, _categoryId) {
-        localStorage.setItem("expohref", "/" + _isoCode + "/Expos/" + _categoryId);
+        console.log(window.screen.width);
+        if (window.screen.width < 720) {
+            localStorage.setItem("expohref", "/" + _isoCode + "/Mobile/Expos/" + _categoryId);
+            window.location.href = "/" + _isoCode + "/Mobile/Expos/" + _categoryId;
+        } else {
+            localStorage.setItem("expohref", "/" + _isoCode + "/Expos/" + _categoryId);
+            window.location.href = "/" + _isoCode + "/Expos/" + _categoryId;
+        }
     }
 
     $scope.changeCountry = function (_isoCode) {

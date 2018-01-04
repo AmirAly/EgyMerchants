@@ -1,7 +1,7 @@
 <% include ../partials/pagestart %>
 <% include ../partials/pageheader %>
 
-<div class="expoPage" ng-controller="mobileexpoController">
+<div class="expoPage mobileexpoPage" ng-controller="mobileexpoController">
 
     <div class="allExposView" ng-hide="showSingleExpo">
         <div class="secondDiv" ng-init="init('<%= countryIso %>')" id="one">
@@ -29,7 +29,10 @@
                                                             <div class="outerContainer" ng-repeat="sec in floor.Coordinates">
                                                                 <div ng-class="{'suspendedstore':sec.Store.Status == 'Suspended'}" class=" repeated-item" 
                                                                 ng-style="{'background-image': 'url({{sec.Img}})','position':'absolute','background-size': 'cover','background-repeat': 'no-repeat','top':{{sec.Top * oneSectionHeight}} +'px','left':{{sec.Left * oneSectionWidth}} +'px','height':{{sec.Height * oneSectionHeight}} - 3 +'px', 'width':{{sec.Width * oneSectionWidth}} - 3 +'px'}">
-                                                                    <a ng-if="sec.Store.Status != 'Suspended'" href="/{{IsoCode}}/Store/{{sec.StoreName}}/{{sec.Store._id}}">
+                                                                    <a ng-if="sec.Store.Status != 'Suspended'" 
+																	ng-swipe-left="nextPage(expo._id,expo.Floors.length);swiping=true;" 
+																	ng-swipe-right="previousPage(expo._id,expo.Floors.length);swiping=true;" 
+																	ng-click="swiping ? ( swiping = false ) : navigate(IsoCode,sec.StoreName,sec.Store._id);" >
                                                                         <div class="image-hover">
                                                                             <i class="icon-zoom-in-2"></i>
                                                                         </div>

@@ -258,10 +258,10 @@
                 Img: $('#imgMobileItem').attr('src'),
                 Store: $scope.selectedstore,
                 StoreName: strUser,
-                index: index,
+                index: index2,
                 ExpiryDate: ($scope.myDate).valueOf()
             };
-            index++;
+            index2++;
 
             // console
             var sectionPercent = sectionWidth / sectionHeight;
