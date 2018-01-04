@@ -166,23 +166,47 @@
         $scope.startShowLogos = false;
         $scope.startScroll = function () {
             $timeout(function () {
-                swinch.init(null, {
-                    snapTo: 'bottom',
-                    scrollToElem: '.secondExpo',
-                    onBeforeSnap: function onBeforeSnap(currentSection, nextSection, scrollDirection) {
-                        //
-                    },
-                    onSnapped: function (current, previous, direction) {
+                // swinch.init(null, {
+                //     snapTo: 'bottom',
+                //     scrollToElem: '.secondExpo',
+                //     onBeforeSnap: function onBeforeSnap(currentSection, nextSection, scrollDirection) {
+                //         //
+                //     },
+                //     onSnapped: function (current, previous, direction) {
+                //         clearInterval(interval);
+                //         currentExpoId = (current.id).slice(4);
+                //         intervalPeriod = current.getAttribute('data-flipTime') * 1000;
+                //         floorsCounter = current.getAttribute('data-floors'); // no need for it now
+                //         if (intervalPeriod > 0) {
+                //             interval = setInterval(function () {
+                //                 $('#nextFloor' + currentExpoId).click();
+                //             }, intervalPeriod);
+                //         }
+                //         $scope.$apply();
+                //     }
+                // });
+                $.scrollify({
+                    section: ".secondExpo,.homepage-bar",
+                    sectionName: true,
+                    easing: "easeOutExpo",
+                    setHeights: false,
+                    scrollSpeed: 1100,
+                    updateHash: false,
+                    interstitialSection: ".pageHeader,.social-widget,footer",
+                    after: function (index, sections) {
+                        var current = sections[index][0];
+
                         clearInterval(interval);
                         currentExpoId = (current.id).slice(4);
-                        intervalPeriod = current.getAttribute('data-flipTime') * 1000;
+                        intervalPeriod = current.getAttribute('data-flipTime');
                         floorsCounter = current.getAttribute('data-floors'); // no need for it now
                         if (intervalPeriod > 0) {
                             interval = setInterval(function () {
                                 $('#nextFloor' + currentExpoId).click();
-                            }, intervalPeriod);
+                            }, intervalPeriod*1000);
                         }
                         $scope.$apply();
+
                     }
                 });
             }, 2000);

@@ -47,7 +47,6 @@ module.exports = function (app) {
         var _scope = {};
         _scope.countryIso = req.params.countryIso;
         expo.getByCategory(req.params.catId).then(function (_data) {
-            console.log(_data);
             if (_data.code == 100) {
                 _scope.expos = _data.data;
                 _scope.JsonExpos = JSON.stringify(_data.data);

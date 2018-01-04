@@ -1364,7 +1364,7 @@ h6.mega {
         position: absolute;
         z-index: 100;
         cursor: pointer;
-        bottom: 20px;
+        bottom: 120px;
         right: 0px;
     }
 
@@ -1373,7 +1373,7 @@ h6.mega {
         position: absolute;
         z-index: 100;
         cursor: pointer;
-        bottom: 24px;
+        bottom: 124px;
         right: 60px;
     }
 
